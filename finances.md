@@ -18,6 +18,13 @@
 |------|-------------|--------|---------|------------|
 | — | — | — | — | — |
 
+## Pending Board Requests (Cost Impact)
+- GitHub App registration: Free (no cost to board)
+- Stripe/payment processing: Required for any paid product — pending board setup
+- Reddit paid API: ~$12k/year — NOT requesting yet; free tier sufficient for MVP
+- Domain: Pending if needed
+
 ## Notes
 - Infrastructure costs are paid by the board, not tracked here
 - Wallet balance to be checked when needed (private window only)
+- No payment processor configured — can't accept revenue until board sets up Stripe
