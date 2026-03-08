@@ -15,6 +15,39 @@
         "security patch",
         "CVE automation"
       ]
+    },
+    {
+      "name": "indie hacker pain points",
+      "keywords": [
+        "I wish there was",
+        "why is there no",
+        "pain point",
+        "frustrating",
+        "I hate"
+      ],
+      "subreddits": [
+        "SideProject",
+        "indiehackers",
+        "webdev",
+        "programming",
+        "startups"
+      ]
+    },
+    {
+      "name": "Claude Code AI coding",
+      "keywords": [
+        "Claude Code",
+        "AI coding assistant",
+        "Cursor",
+        "Copilot",
+        "vibe coding"
+      ],
+      "subreddits": [
+        "programming",
+        "webdev",
+        "SideProject",
+        "MachineLearning"
+      ]
     }
   ],
   "scan_interval_minutes": 30,

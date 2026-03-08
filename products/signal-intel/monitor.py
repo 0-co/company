@@ -19,6 +19,7 @@ import os
 import urllib.request
 import urllib.parse
 import hashlib
+import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -127,6 +128,87 @@ def search_github_issues(query: str, limit: int = 5) -> list[dict]:
     return results
 
 
+def fetch_rss(url: str) -> list[dict]:
+    """Fetch and parse a Reddit Atom RSS feed into normalized items."""
+    try:
+        req = urllib.request.Request(url, headers={
+            "User-Agent": "Mozilla/5.0 (compatible; SignalBot/1.0)",
+            "Accept": "application/rss+xml, application/atom+xml",
+        })
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            raw = resp.read().decode("utf-8", errors="replace")
+    except Exception:
+        return []
+
+    try:
+        root = ET.fromstring(raw)
+    except ET.ParseError:
+        return []
+
+    ns = {"atom": "http://www.w3.org/2005/Atom"}
+    items = []
+    for entry in root.findall("atom:entry", ns):
+        title_el = entry.find("atom:title", ns)
+        title = title_el.text.strip() if title_el is not None and title_el.text else ""
+        # Reddit RSS uses <link href="..."> without rel="alternate"
+        link_el = entry.find("atom:link[@rel='alternate']", ns) or entry.find("atom:link", ns)
+        link = link_el.get("href", "") if link_el is not None else ""
+        id_el = entry.find("atom:id", ns)
+        entry_id = id_el.text.strip() if id_el is not None and id_el.text else link
+        author_el = entry.find("atom:author/atom:name", ns)
+        author = author_el.text.strip() if author_el is not None and author_el.text else ""
+        updated_el = entry.find("atom:updated", ns)
+        ts = 0
+        if updated_el is not None and updated_el.text:
+            try:
+                dt = datetime.fromisoformat(updated_el.text.replace("Z", "+00:00"))
+                ts = int(dt.timestamp())
+            except ValueError:
+                pass
+        content_el = entry.find("atom:content", ns)
+        text = ""
+        if content_el is not None and content_el.text:
+            # Strip HTML tags crudely
+            import re as _re
+            text = _re.sub(r"<[^>]+>", " ", content_el.text)[:500]
+        # Derive subreddit from URL
+        sub_match = link.split("/r/")
+        subreddit = sub_match[1].split("/")[0] if len(sub_match) > 1 else ""
+        items.append({
+            "id": f"reddit:{hashlib.md5(entry_id.encode()).hexdigest()[:12]}",
+            "source": "Reddit",
+            "title": title,
+            "url": link,
+            "hn_url": link,
+            "score": 0,  # RSS doesn't expose vote counts
+            "comments": 0,
+            "author": author,
+            "created_at": ts,
+            "text": text,
+            "subreddit": subreddit,
+        })
+    return items
+
+
+def search_reddit(query: str, subreddits: list[str] | None = None, limit: int = 10) -> list[dict]:
+    """Search Reddit via RSS feeds (no auth required)."""
+    encoded = urllib.parse.quote(query)
+    results = []
+
+    if subreddits:
+        for sub in subreddits[:3]:  # cap to avoid rate limits
+            url = (
+                f"https://www.reddit.com/r/{sub}/search.rss"
+                f"?q={encoded}&restrict_sr=1&sort=new&t=week&limit={limit}"
+            )
+            results.extend(fetch_rss(url))
+    else:
+        url = f"https://www.reddit.com/search.rss?q={encoded}&sort=new&t=week&limit={limit}"
+        results.extend(fetch_rss(url))
+
+    return results
+
+
 # ────────────────────────────────────────────────────────────
 # Relevance scoring
 # ────────────────────────────────────────────────────────────
@@ -223,10 +305,21 @@ def scan(config: dict, state: dict, verbose: bool = True) -> dict:
         if verbose:
             print(f"\n[{name}] Scanning... ", end="", flush=True)
 
+        subreddits = topic.get("subreddits")
         all_items = []
         all_items.extend(search_hn(name, max_age_days=max_age))
         for kw in keywords[:2]:  # avoid too many GitHub requests
             all_items.extend(search_github_issues(kw))
+        # Reddit: search by topic name + each keyword
+        all_items.extend(search_reddit(name, subreddits=subreddits))
+        for kw in keywords[:2]:
+            all_items.extend(search_reddit(kw, subreddits=subreddits))
+
+        # Deduplicate by id (overlapping searches produce duplicates)
+        seen_ids: dict[str, dict] = {}
+        for item in all_items:
+            seen_ids[item["id"]] = item
+        all_items = list(seen_ids.values())
 
         # Score and filter
         for item in all_items:
@@ -284,15 +377,18 @@ def cmd_run(loop: bool = False):
         save_state(state)
 
 
-def cmd_add_topic(name: str, keywords: str | None = None):
+def cmd_add_topic(name: str, keywords: str | None = None, subreddits: str | None = None):
     config = load_config()
     kw_list = [k.strip() for k in keywords.split(",")] if keywords else [name]
     topic = {"name": name, "keywords": kw_list}
+    if subreddits:
+        topic["subreddits"] = [s.strip() for s in subreddits.split(",")]
     # Remove existing topic with same name
     config["topics"] = [t for t in config.get("topics", []) if t["name"] != name]
     config["topics"].append(topic)
     save_config(config)
-    print(f"✓ Added topic: {name} (keywords: {', '.join(kw_list)})")
+    subs = f" · r/{', '.join(topic.get('subreddits', []))}" if topic.get("subreddits") else ""
+    print(f"✓ Added topic: {name} (keywords: {', '.join(kw_list)}){subs}")
 
 
 def cmd_status():
@@ -334,15 +430,20 @@ def main():
         cmd_run(loop=loop)
     elif cmd == "add-topic":
         if len(args) < 2:
-            print("Usage: python monitor.py add-topic \"topic name\" [--keywords \"kw1,kw2\"]")
+            print("Usage: python monitor.py add-topic \"topic name\" [--keywords \"kw1,kw2\"] [--subreddits \"r1,r2\"]")
             sys.exit(1)
         name = args[1]
         kw = None
+        subs = None
         if "--keywords" in args:
             idx = args.index("--keywords")
             if idx + 1 < len(args):
                 kw = args[idx + 1]
-        cmd_add_topic(name, kw)
+        if "--subreddits" in args:
+            idx = args.index("--subreddits")
+            if idx + 1 < len(args):
+                subs = args[idx + 1]
+        cmd_add_topic(name, kw, subs)
     elif cmd == "status":
         cmd_status()
     elif cmd == "set-webhook":
