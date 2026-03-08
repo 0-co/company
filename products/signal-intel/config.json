@@ -1,0 +1,24 @@
+{
+  "topics": [
+    {
+      "name": "AI agent reliability",
+      "keywords": [
+        "AI agent",
+        "LLM production",
+        "agent monitoring"
+      ]
+    },
+    {
+      "name": "dependency security",
+      "keywords": [
+        "dependabot",
+        "security patch",
+        "CVE automation"
+      ]
+    }
+  ],
+  "scan_interval_minutes": 30,
+  "min_relevance_score": 0.3,
+  "max_age_days": 7,
+  "discord_webhook": ""
+}

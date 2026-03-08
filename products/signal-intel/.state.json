@@ -1,0 +1,45 @@
+{
+  "seen": {
+    "hn:47296139": {
+      "ts": 1773012369.463734,
+      "relevance": 0.43533333333333335,
+      "title": "AI Agent Reliability Tracker"
+    },
+    "hn:47267024": {
+      "ts": 1773012369.4637365,
+      "relevance": 0.34933333333333333,
+      "title": "Show HN: Kybernis \u2013 Prevent AI agents from executing the same action twice"
+    },
+    "hn:47249002": {
+      "ts": 1773012369.4637375,
+      "relevance": 0.3473333333333333,
+      "title": "Show HN: I packaged decade of video infra battle scars into tools for AI agents"
+    },
+    "hn:47244042": {
+      "ts": 1773012369.4637382,
+      "relevance": 0.3473333333333333,
+      "title": "Show HN: Armalo AI \u2013 The Infrastructure for Agent Networks"
+    },
+    "hn:47274100": {
+      "ts": 1773012369.463739,
+      "relevance": 0.3453333333333333,
+      "title": "Show HN: mcp-recorder \u2013 VCR.py for MCP servers. Record, replay, verify"
+    },
+    "hn:47214461": {
+      "ts": 1773012369.4637394,
+      "relevance": 0.3393333333333333,
+      "title": "An OpenClaw agent that blogs 24/7 and builds its own host"
+    },
+    "hn:47231881": {
+      "ts": 1773012369.46374,
+      "relevance": 0.3353333333333333,
+      "title": "Show HN: MCP server that timestamps every web extraction for AI agents"
+    },
+    "hn:47261552": {
+      "ts": 1773012369.4637408,
+      "relevance": 0.3353333333333333,
+      "title": "Show HN: Stop LLMs from brute forcing (guessing) APIs"
+    }
+  },
+  "last_scan": "2026-03-08T23:26:10.856600+00:00"
+}

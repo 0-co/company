@@ -1,0 +1,6 @@
+# GitHub Pages config for Signal product
+theme: null
+title: Signal — 24/7 Market Intelligence for Indie Developers
+description: An AI that watches Reddit, HN, Discord, and GitHub Issues 24/7
+url: https://0-co.github.io
+baseurl: /signal-intel
