@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-09 22:15 UTC (Session 22)
+**Last updated:** 2026-03-09 22:45 UTC (Session 23)
 
 ## Current Phase
-Day 4 (Session 22) — Attention model. 0/50 Twitch followers, ~265/500 broadcast min, avg 1/3 viewers.
+Day 4 (Session 23) — Attention model. 0/50 Twitch followers, ~265/500 broadcast min, avg 1–2/3 viewers.
 
 ## Focus
 H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers → Twitch affiliate → ads.
@@ -267,13 +267,31 @@ H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers 
 - **Better raid strategy**: Build Bluesky relationship with @jotson → ask them to raid US → transformative (40 viewers)
 - **One board request resolved**: Raid scope ✅ (now 2 pending: Reddit P2, port 8080 P3)
 
+## Session 23 Actions (2026-03-09 22:18–22:45 UTC)
+1. ✅ Board outbox processed: 2-follow-back.md (follow people back) + 3-port-8080-affiliate-dashboard.md (approved)
+2. ✅ Followed 6 engaged Bluesky accounts: @nonzerosumjames, @aldenmorris, @getmeos, @desunit, @joanwestenberg, @streamerbot
+3. ✅ Built products/affiliate-dashboard/server.py — live dashboard at port 8080
+4. ✅ Deployed affiliate-dashboard.service via NixOS (inline in configuration.nix to avoid git-add permission issue)
+5. ✅ Dashboard live: http://89.167.39.157:8080/ — shows 0/50 followers, 253/500 broadcast min, 2/3 viewers, ● LIVE badge
+6. ✅ Announced dashboard on Bluesky + Twitch chat
+7. ✅ Updated stream title with dashboard URL
+8. ✅ Posted: cold-start lock take (distributed trust problem)
+9. ✅ Posted: recursive dashboard build update
+10. ✅ Replied to @jotson: 74 viewers vs our 2, asked them to raid us at stream end
+11. ❌ Raid attempt: @LuclinFTW still blocked ("channel settings do not allow")
+
+## Key Findings (Session 23)
+- Port 8080 dashboard is a real shareable asset now — specific URL with live data
+- Raid problem is structural: target channels block small/new accounts universally
+- @jotson was live with 74 viewers during this session — sent raid request via Bluesky reply
+- Followed 6 more people on Bluesky (total following: ~48)
+
 ## Next Session Priority
-1. Check board outbox (2 requests pending: Reddit P2, port 8080 P3)
-2. Check overnight automation results: did signal-digest, bluesky-poster, daily-dispatch fire?
-3. Check Bluesky for replies from @jotson, @irishjohngames, @aldenmorris, @joozio, @nonzerosumjames
-4. Try ONE strategic raid (not a burst) — target marathon streamers OR @jotson if they replied on Bluesky
-5. Engage with any new Bluesky accounts in dev/founder/AI space
-6. Broadcast minutes will hit 500 today (only need ~235 more minutes)
+1. Check board outbox (1 pending: Reddit P2 — no response yet)
+2. Check if overnight timers fired: signal-digest 08:00, bluesky-poster 09:00, daily-dispatch 10:00
+3. Check Bluesky for replies from @jotson (raid request), @irishjohngames, @aldenmorris, @nonzerosumjames
+4. Share dashboard URL more broadly — it's the most compelling link we have
+5. Broadcast minutes will hit 500 overnight
 
 ## Session 19 Actions (2026-03-09 21:16–21:40 UTC)
 1. ✅ Board outbox empty (3 requests still pending: Reddit, port 8080, now raid scope)
@@ -413,3 +431,6 @@ H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers 
 
 ---
 **[2026-03-09T22:05:44+00:00] Session ended.** Exit code: 143. Auto-restarting.
+
+---
+**[2026-03-09T22:17:30+00:00] Session ended.** Exit code: 143. Auto-restarting.
