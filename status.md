@@ -1,6 +1,6 @@
 # Company Status
 
-**Last updated:** 2026-03-09 12:10 UTC
+**Last updated:** 2026-03-09 13:30 UTC
 
 ## Current Phase
 Day 3 — Extensive Bluesky engagement. 4 products with waitlists. HN account request filed. Pages still building.
@@ -65,35 +65,55 @@ Distribution + validation. Products are built. Now need customer signals.
 15. ✅ Posted AI agent reliability thread (2 posts)
 16. ✅ Filed board request: 3-atlassian-community-account.md (H3 customer discovery)
 
-## Board Inbox (3 items pending)
-- `2-hn-account-and-vault.md` — HN account + vault-hn wrapper so I can post Show HN myself
-- `2-github-pages-still-404.md` — Pages still 404 after legacy deploy fix (builds list empty)
-- `3-atlassian-community-account.md` — Atlassian Community account for H3 customer discovery
+**Session 4 (13:00 UTC):**
+17. ✅ Processed 3 board outbox responses (Show HN, Pages, H3 Atlassian)
+18. ✅ Daily Bluesky CVE post: axios/axios (4 security PRs, oldest 16 days)
+19. ✅ H3 formally downgraded in decisions.md per board feedback
+20. ✅ Updated README for Day 3 (4 products, fresh data, Bluesky link)
+21. ✅ 6 targeted Bluesky replies:
+    - @samstart (FinOps behavioral monitoring → H4)
+    - @shawnchauhan1 (M&A observability gap → H4)
+    - @profesordragan (silent failure / 0 rows → H4)
+    - @joozio (unattended ≠ unsupervised → H4 discovery question)
+    - @benmccann (5k PRs / dep security scale → H1 DepTriage)
+    - @codemonument (OSS maintainer closing 900 PRs/day → H1 direct offer)
+22. ✅ Followed @joozio
+23. ✅ Signal Intel confirmed working (204 webhook, 126 items seen)
+
+## Board Inbox/Outbox
+- **Pending in inbox:** `2-hn-account-and-vault.md` — HN account + vault-hn wrapper (critical unlock)
+- **Board responses processed this session:**
+  - Show HN: Board reiterated "post yourself" — waiting on vault-hn
+  - GitHub Pages: Board doesn't know why 404; may need account to age (same as Actions)
+  - H3 Atlassian: Board challenged H3 thesis ("minimal evidence, Jira has official solution") → H3 formally downgraded
 
 ### Key Board Feedback
-Board said: "You should be posting things like this yourself, not asking me to do it."
-→ Now requesting infrastructure (accounts + vault wrappers), not asking them to post for me.
+Board pattern: will create accounts/vault wrappers, but NOT post content for me. Escalate infrastructure blockers, not content requests.
+H3 challenge: Board is right — Jira's official path reduces our addressable market significantly.
+
+## H3 Reassessment (Per Board Feedback)
+H3 (AutoPage) EV revised down: $13.5k → ~$3k/month. Competition from Jira/PagerDuty/GrafanaOnCall is stronger than estimated. No more active investment until clear demand signal.
 
 ## Blockers
-| Blocker | Impact | Board Request |
+| Blocker | Impact | Status |
 |---|---|---|
-| GitHub Pages building | Landing pages still 404 (board fixed, building) | RESOLVED by board |
-| Twitch auth | No live streaming, no demos | Still pending from Day 2 |
-| HN Show HN | Primary H1 validation channel | Filed: 2-post-show-hn.md |
+| GitHub Pages | Landing pages still 404 | Account aging issue — wait |
+| Twitch auth | No live streaming | Still pending from Day 2 (~40h wait) |
+| HN vault-hn | Primary H1 channel | In inbox, awaiting board |
 
 ## Next Actions (Priority Order)
-1. ⏳ Wait for board: HN account + vault-hn (self-post Show HN)
-2. ⏳ Wait for board: GitHub Pages fix OR alternative (Cloudflare Pages/Netlify)
-3. ⏳ Wait for board: Atlassian Community post (H3 discovery)
-4. ⏳ Wait for board: Twitch auth (Day 2 item, still pending)
-5. Each session: run `python3 products/dep-triage/bluesky_poster.py daily`
-6. Continue Bluesky engagement (replies to relevant conversations)
-7. March 15: make go/kill decision on H1 and H2
+1. ⏳ Wait for board: HN vault-hn (self-post Show HN — critical path for H1)
+2. Continue Bluesky engagement: targeted replies > broadcast posts
+3. Each session: run `python3 products/dep-triage/bluesky_poster.py daily`
+4. H4 build decision: need 2+ "willing to pay" signals before building
+5. March 15: go/kill decision on H1 and H2
 
-## Key Learning: Board's Expected Role
-Board does: create accounts, create vault wrappers, fix NixOS infrastructure
-I do: all content posting, API calls, product development
-Do NOT ask board to post on social media on my behalf.
+## H1 Risk Assessment (March 9, 6 days to deadline)
+- Current signals: 0 signups, 0 GitHub reactions, 0 paying intent expressions
+- Best leads today: @codemonument.com (OpenClaw maintainer, 500-900 PRs/day), @benmccann.com (dev blogger, 13 likes on dep security post)
+- Path to validation: 3+ teams expressing intent to pay (more achievable than 10 signups without HN)
+- If HN account arrives today: post in 8-10am EST window, 5 days to get feedback
+- If HN account arrives after March 12: extend H1 to March 22
 
 ---
 **[2026-03-08T23:00:00+00:00] Session started.** Day 1. No prior state.
