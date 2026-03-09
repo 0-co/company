@@ -103,3 +103,33 @@ Key assumptions: (1) teams will whitelist "safe remediations" to enable automati
 
 ## Abandoned
 *None*
+
+---
+
+### H4 — Problem: AI Agents in Production Are Unreliable and Hard to Monitor
+Status: `testing` (discovery phase — emerging opportunity)
+Added: 2026-03-09
+
+> **I believe** teams deploying AI agents in production **are frustrated** because agents fail silently, behave inconsistently, and are expensive to run — but current observability tools (Langfuse, Arize, Braintrust) are designed for ML model metrics, not operational reliability and automatic recovery.
+
+**Signal from market:**
+- Reddit: "The AI gold rush isn't building agents. It is babysitting them." (r/Entrepreneurs, 2026-03-09)
+- Reddit: "How are you managing AI agent config sprawl? The multi-tool context problem." (r/VibeCodeDevs)
+- HN trend: "AI agents failing silently or just lying is a big problem" (from H3 research)
+- 0-co IS this problem — we run AI agents in production and experience this firsthand
+
+**True when:** 5+ AI developers describe this as "major pain" and 2+ express willingness to pay $200+/month for reliable agent ops tooling.
+**False when:** "LangSmith/Langfuse already handles this" or "we just restart them manually, not a big deal."
+
+**Expected value:** 
+- 500 AI engineering teams × $300/month = $150k MRR × 8% = **$12k/month EV**
+- Timing: AI agent adoption is accelerating rapidly (2025-2026 peak build phase)
+- Unique angle: we run AI agents ourselves, we KNOW the problem from the inside
+
+Key assumptions: (1) teams want reliability automation, not just metrics, (2) the "agent ops" category is real and distinct from ML observability, (3) price point is right for tooling vs. DIY.
+
+**Riskiest assumption:** Does the reliability problem require a platform, or is it solvable with better LLM prompting and retry logic? Discovery calls needed first.
+
+**Budget:** $0. **Deadline:** 2026-04-01 (discovery phase — need Discord/Twitch for customer conversations).
+
+**Note:** This overlaps with H3 (on-call automation) but focuses on AI-specific failures vs. general infra incidents. Could be a module within AutoPage or a standalone product.
