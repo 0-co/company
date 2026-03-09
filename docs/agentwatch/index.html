@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgentWatch — Detect Silent Failures in AI Agent Runs</title>
+  <meta name="description" content="Your AI agents exit 0 and print Done — while the task quietly failed. AgentWatch wraps your agent with post-run verification and behavioral drift detection.">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: #0d0d0d;
+      color: #e8e8e8;
+      line-height: 1.6;
+    }
+    .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+    /* Nav */
+    nav { padding: 20px 0; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em; color: #fff; }
+    .nav-badge {
+      font-size: 0.75rem; background: #1a2e1a; color: #7cff7c;
+      padding: 4px 10px; border-radius: 20px; border: 1px solid #2a5a2a;
+    }
+
+    /* Hero */
+    .hero { padding: 80px 0 60px; }
+    .hero-tag {
+      display: inline-block; font-size: 0.8rem; color: #888;
+      border: 1px solid #2a2a2a; border-radius: 4px;
+      padding: 3px 8px; margin-bottom: 20px; font-family: monospace;
+    }
+    h1 {
+      font-size: 2.4rem; font-weight: 800; line-height: 1.15;
+      letter-spacing: -0.03em; margin-bottom: 20px; color: #fff;
+    }
+    h1 span { color: #ff6b6b; }
+    .hero-sub {
+      font-size: 1.1rem; color: #aaa; max-width: 560px; margin-bottom: 36px;
+    }
+
+    /* Terminal demo */
+    .terminal {
+      background: #111; border: 1px solid #222; border-radius: 8px;
+      padding: 20px 24px; font-family: monospace; font-size: 0.85rem;
+      line-height: 1.7; margin-bottom: 40px; overflow-x: auto;
+    }
+    .terminal .comment { color: #555; }
+    .terminal .cmd { color: #7cff7c; }
+    .terminal .out { color: #888; }
+    .terminal .warn { color: #ff6b6b; font-weight: 600; }
+    .terminal .ok { color: #7cff7c; }
+
+    /* CTA */
+    .cta-group { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 60px; }
+    .btn-primary {
+      background: #ff6b6b; color: #fff; font-weight: 600;
+      padding: 12px 22px; border-radius: 6px; text-decoration: none;
+      font-size: 0.95rem; transition: background 0.15s;
+    }
+    .btn-primary:hover { background: #ff4444; }
+    .btn-secondary {
+      background: transparent; color: #aaa;
+      border: 1px solid #333; padding: 12px 22px; border-radius: 6px;
+      text-decoration: none; font-size: 0.95rem;
+    }
+    .btn-secondary:hover { color: #fff; border-color: #555; }
+
+    /* Problem */
+    .section { padding: 60px 0; border-top: 1px solid #1a1a1a; }
+    h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: 20px; color: #fff; letter-spacing: -0.02em; }
+    p { color: #aaa; margin-bottom: 16px; }
+    .failure-list { list-style: none; padding: 0; margin-bottom: 24px; }
+    .failure-list li {
+      padding: 10px 0; border-bottom: 1px solid #1a1a1a;
+      color: #888; font-size: 0.95rem;
+    }
+    .failure-list li:last-child { border-bottom: none; }
+    .failure-list li::before { content: "✗ "; color: #ff4444; font-weight: 700; }
+
+    /* Features */
+    .features { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
+    @media (max-width: 560px) { .features { grid-template-columns: 1fr; } }
+    .feature {
+      background: #111; border: 1px solid #1e1e1e; border-radius: 8px;
+      padding: 20px;
+    }
+    .feature-icon { font-size: 1.4rem; margin-bottom: 10px; }
+    .feature h3 { font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 6px; }
+    .feature p { font-size: 0.88rem; color: #777; margin: 0; }
+
+    /* Quick start */
+    .quickstart code {
+      background: #111; border: 1px solid #1e1e1e; border-radius: 6px;
+      padding: 16px 20px; display: block; font-family: monospace;
+      font-size: 0.85rem; color: #7cff7c; margin-bottom: 16px;
+      overflow-x: auto; white-space: pre;
+    }
+
+    /* Footer */
+    footer { padding: 40px 0; border-top: 1px solid #1a1a1a; }
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-links a { color: #555; text-decoration: none; font-size: 0.85rem; }
+    .footer-links a:hover { color: #aaa; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <nav>
+    <span class="logo">AgentWatch</span>
+    <span class="nav-badge">discovery phase</span>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-tag">AI agent reliability</div>
+    <h1>Your agents <span>lie silently.</span><br>AgentWatch catches them.</h1>
+    <p class="hero-sub">
+      AI agents exit 0 and print "Done" while the task quietly failed: 0 rows written,
+      PDF never created, API call swallowed by try/except. Nobody notices until a user
+      reports it two days later.
+    </p>
+
+    <div class="terminal">
+<span class="comment"># Wrap your agent with a post-run verification check</span>
+<span class="cmd">python3 agentwatch.py run \
+  --cmd "python3 order_agent.py --queue orders" \
+  --verify "sqlite3 orders.db 'SELECT COUNT(*) FROM orders'" \
+  --session "order_processor"</span>
+
+<span class="out">Running: python3 order_agent.py --queue orders
+Agent exited 0 in 4.8s. Running verification...</span>
+<span class="warn">WARNING  Silent exit-0 failure detected
+         Agent reported success (exit 0) but verification failed.</span>
+
+<span class="comment"># Check drift over time</span>
+<span class="cmd">python3 agentwatch.py report --session "order_processor"</span>
+<span class="warn">WARNING  Behavioral drift detected: 62% success rate (threshold: 80%)</span>
+<span class="out">         Total runs: 13 | Pass rate: 62% | Last 5: F P F P F</span>
+    </div>
+
+    <div class="cta-group">
+      <a href="https://github.com/0-co/company/issues/6" class="btn-primary">Join beta waitlist</a>
+      <a href="https://github.com/0-co/company/tree/master/products/agentwatch" class="btn-secondary">View on GitHub →</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>The problem</h2>
+    <p>Silent failures are the hardest bugs to catch in AI agent pipelines:</p>
+    <ul class="failure-list">
+      <li>Database insert succeeds but 0 rows match the expected query</li>
+      <li>File write completes but the output path is wrong</li>
+      <li>API call returns 200 but the response body is empty/malformed</li>
+      <li>Agent works 90% of the time — then silently degrades over weeks</li>
+      <li>No exception thrown, no non-zero exit code, no alert fired</li>
+    </ul>
+    <p>
+      Current observability tools (Langfuse, Arize, Braintrust) track token costs and latency.
+      They don't tell you whether the agent actually did what it was supposed to do.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>What AgentWatch does</h2>
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">🔍</div>
+        <h3>Silent failure detection</h3>
+        <p>Runs a post-execution verification check (shell, file, or HTTP) and alerts when the agent claims success but the check fails.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📉</div>
+        <h3>Behavioral drift tracking</h3>
+        <p>Tracks pass rates over time per session. Alerts when your agent drops below 80% — before it becomes an incident.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🔔</div>
+        <h3>Webhook alerts</h3>
+        <p>POST to any Discord or Slack webhook on failure. Know the moment an agent breaks, not two days later.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📦</div>
+        <h3>Zero dependencies</h3>
+        <p>Single stdlib-only Python file. Drop it in your repo and wrap any shell command. Python 3.8+, no pip installs.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section quickstart">
+    <h2>Quick start (available now)</h2>
+    <p>The v0.1 tool is already available:</p>
+<code>curl -O https://raw.githubusercontent.com/0-co/company/master/products/agentwatch/agentwatch.py
+
+# Verify state without running an agent
+python3 agentwatch.py check \
+  --verify "test -f /output/report.pdf" \
+  --session "smoke_test"
+
+# Wrap an agent and track drift
+python3 agentwatch.py run \
+  --cmd "python3 my_agent.py" \
+  --verify "test -f /output/report.pdf" \
+  --session "report_generator"
+
+# Check pass rate over time
+python3 agentwatch.py report --session "report_generator"</code>
+    <p>
+      The <strong>beta platform</strong> adds: multi-check pipelines, dashboard, team alerting,
+      CI/CD integration, and anomaly detection across agent fleets.
+    </p>
+    <div class="cta-group">
+      <a href="https://github.com/0-co/company/issues/6" class="btn-primary">Join beta waitlist</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-links">
+      <a href="https://0-co.github.io/company/">← All products</a>
+      <a href="https://github.com/0-co/company/tree/master/products/agentwatch">GitHub</a>
+      <a href="https://github.com/0-co/company/issues/6">Beta waitlist</a>
+      <a href="https://discord.gg/YKDw7H7K">Discord</a>
+      <a href="https://bsky.app/profile/0coceo.bsky.social">Bluesky</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

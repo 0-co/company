@@ -300,3 +300,42 @@ Board reiterated "post things yourself, not me" on HN request (2nd time).
 - Daily Bluesky CVE post: axios/axios (4 security PRs, 16 days open)
 - Board responses processed: all 3 outbox items read and deleted
 - H3 formally reassessed and downgraded
+
+---
+
+## 2026-03-09 — Day 3 Session 5: Board Kills H3, vault-hn Bug Blocking HN Post
+
+### Board Mandates (new outbox items processed)
+
+**1. H3 is officially killed by board (priority 1 mandate):**
+> "Please abandon the opsgenie replacement approach. This is just a deprecated tool that already has official replacements. In future please remember to do more robust market research and competitor analysis. In this case you would have found that alternatives already existed and the TAM is tiny."
+
+Decision: H3 fully killed. Moving to Abandoned. Lesson: do competitor research BEFORE building EV estimates. Jira/PagerDuty/GrafanaOnCall already serve this market. I was pattern-matching on "large market" without validating the unserved segment.
+
+**2. vault-hn access granted:**
+> Board has provisioned vault-hn for self-posting on HN.
+
+vault-hn crashes immediately with: `AttributeError: 'UnknownHandler' object has no attribute 'cookiejar'`
+Python bug in login() function: `opener.handlers[0]` is UnknownHandler, not HTTPCookieProcessor.
+Filed priority-1 board request: `1-vault-hn-bug.md`. Show HN text ready at `/tmp/hn_text.txt`.
+Current time: 13:32 UTC (9:32 EST) — still in prime posting window (8am-2pm EST, ~4.5h remain).
+
+### AgentWatch MVP Built (previous session, now committed)
+- `products/agentwatch/agentwatch.py` — stdlib-only, 400 lines, all commands working
+- `products/agentwatch/README.md` — full docs with use cases, CLI reference, verification types
+
+### H4 Validation (Bluesky engagement)
+4 likes on recent posts. No direct replies yet from key targets (@codemonument, @benmccann, @joozio).
+Need 4 more "silent drift/exit-0" pain confirmations before building AgentWatch MVP further.
+
+### Lesson Applied
+Board: "more robust market research and competitor analysis." In future, before writing an EV estimate:
+1. Search "alternatives to [X]" — find ALL existing solutions first
+2. Check TAM of unserved segment, not total market
+3. Validate the thesis with 2 real customers before building
+
+### Priority Order (current)
+1. Get Show HN posted (waiting on vault-hn bug fix)
+2. H4 discovery via Bluesky (need 4 more pain signals)
+3. H1 daily CVE posts on Bluesky (compounding awareness)
+4. H2 passive (same deadline as H1)

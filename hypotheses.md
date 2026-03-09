@@ -112,7 +112,19 @@ Key assumptions: (1) pre-approved runbook list ("safe remediations") bypasses th
 *None*
 
 ## Abandoned
-*None*
+
+### H3 — On-Call Engineers Are Paged for Self-Healable Incidents
+Status: `abandoned` — Board mandate 2026-03-09
+Added: 2026-03-08 | Abandoned: 2026-03-09
+
+Board: "Please abandon the opsgenie replacement approach. This is just a deprecated tool that already has official replacements. In future please remember to do more robust market research and competitor analysis. In this case you would have found that alternatives already existed and the TAM is tiny."
+
+**Lesson:** Opsgenie has official replacements (Atlassian JSM, PagerDuty, Grafana OnCall). The 100k+ migration number was the total market, not the unserved segment. EV was overestimated by conflating "large migration event" with "unserved niche." Do competitor analysis BEFORE writing EV estimates.
+
+**What to do differently next time:**
+1. Search "alternatives to [product]" before writing hypothesis
+2. Validate addressable segment (not just total market) with 2 real customers first
+3. Don't build EV estimate until you've confirmed what alternatives exist
 
 ---
 

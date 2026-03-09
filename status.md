@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-09 13:30 UTC
+**Last updated:** 2026-03-09 13:40 UTC
 
 ## Current Phase
-Day 3 — Extensive Bluesky engagement. 4 products with waitlists. HN account request filed. Pages still building.
+Day 3 — Board killed H3. vault-hn available but has Python bug (board request filed). Show HN ready to post once bug fixed. 4 products with waitlists.
 
 ## Focus
 Distribution + validation. Products are built. Now need customer signals.
@@ -81,31 +81,31 @@ Distribution + validation. Products are built. Now need customer signals.
 23. ✅ Signal Intel confirmed working (204 webhook, 126 items seen)
 
 ## Board Inbox/Outbox
-- **Pending in inbox:** `2-hn-account-and-vault.md` — HN account + vault-hn wrapper (critical unlock)
+- **Pending in inbox:** `1-vault-hn-bug.md` — URGENT: vault-hn Python bug blocking Show HN
 - **Board responses processed this session:**
-  - Show HN: Board reiterated "post yourself" — waiting on vault-hn
-  - GitHub Pages: Board doesn't know why 404; may need account to age (same as Actions)
-  - H3 Atlassian: Board challenged H3 thesis ("minimal evidence, Jira has official solution") → H3 formally downgraded
+  - vault-hn access granted: vault-hn is now available, but crashes with Python bug
+  - H3 killed (board mandate): "Please abandon the opsgenie replacement approach"
 
 ### Key Board Feedback
 Board pattern: will create accounts/vault wrappers, but NOT post content for me. Escalate infrastructure blockers, not content requests.
-H3 challenge: Board is right — Jira's official path reduces our addressable market significantly.
+H3 killed: board mandate — "TAM is tiny, alternatives already exist." H3 moved to Abandoned.
+Lesson: do competitor analysis BEFORE building EV estimates.
 
-## H3 Reassessment (Per Board Feedback)
-H3 (AutoPage) EV revised down: $13.5k → ~$3k/month. Competition from Jira/PagerDuty/GrafanaOnCall is stronger than estimated. No more active investment until clear demand signal.
+## H3 — KILLED (Board Mandate)
+H3 (AutoPage) officially abandoned per board priority-1 mandate. Lesson: always do competitor analysis before writing EV estimates. Jira/PagerDuty/GrafanaOnCall fully serve this market. Waitlist #5 stays open passively.
 
 ## Blockers
 | Blocker | Impact | Status |
 |---|---|---|
+| vault-hn Python bug | Show HN blocked | Board request filed: `1-vault-hn-bug.md` URGENT |
 | GitHub Pages | Landing pages still 404 | Account aging issue — wait |
-| Twitch auth | No live streaming | Still pending from Day 2 (~40h wait) |
-| HN vault-hn | Primary H1 channel | In inbox, awaiting board |
+| Twitch auth | No live streaming | Still pending from Day 2 (~42h wait) |
 
 ## Next Actions (Priority Order)
-1. ⏳ Wait for board: HN vault-hn (self-post Show HN — critical path for H1)
-2. Continue Bluesky engagement: targeted replies > broadcast posts
+1. ⏳ Wait for board: vault-hn bug fix (URGENT — prime HN window open until ~18:00 UTC)
+2. Continue Bluesky engagement: H4 discovery (need 4 more "silent drift" pain signals)
 3. Each session: run `python3 products/dep-triage/bluesky_poster.py daily`
-4. H4 build decision: need 2+ "willing to pay" signals before building
+4. H4 build decision: need 5 total "willing to pay" signals (have 1 so far)
 5. March 15: go/kill decision on H1 and H2
 
 ## H1 Risk Assessment (March 9, 6 days to deadline)
@@ -123,3 +123,4 @@ H3 (AutoPage) EV revised down: $13.5k → ~$3k/month. Competition from Jira/Page
 **[2026-03-09T11:30:00+00:00] Day 3 continued.** Committed all pending changes. Daily CVE post sent. Engaged with Opsgenie migration community (@stasge). GitHub rate limit resets ~11:36 UTC.
 **[2026-03-09T11:50:00+00:00] Board fixed GitHub Pages.** Legacy deploy from master/docs. Pages building. Issue #6 (AgentWatch) created. 7 accounts followed on Bluesky.
 **[2026-03-09T12:10:00+00:00] Session wrap-up.** 21 Bluesky posts, following 28. Board responded: "post HN yourself." Filed HN account + vault-hn request. Pages still 404 (follow-up filed). 3 board items pending.
+**[2026-03-09T13:35:00+00:00] Session 5.** Board killed H3 (mandate). vault-hn available but has Python bug. Filed priority-1 bug fix request. Daily CVE post: axios. AgentWatch landing page added. H3 moved to Abandoned in hypotheses.md.
