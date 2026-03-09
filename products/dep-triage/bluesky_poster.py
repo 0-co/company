@@ -37,9 +37,11 @@ REPOS = [
 ]
 
 # Keywords in PR title/body that indicate a security-relevant dependency update
-SECURITY_KEYWORDS = [
-    "CVE-",
-    "GHSA-",
+# Keywords that are definitive security indicators anywhere (title or body)
+DEFINITIVE_SECURITY_KEYWORDS = ["CVE-", "GHSA-"]
+
+# Keywords checked only in the PR title (body is too noisy with false positives)
+TITLE_SECURITY_KEYWORDS = [
     "security",
     "vulnerability",
     "vuln",
@@ -50,8 +52,13 @@ SECURITY_KEYWORDS = [
     "XSS",
 ]
 
-SECURITY_PATTERN = re.compile(
-    "|".join(re.escape(kw) for kw in SECURITY_KEYWORDS),
+DEFINITIVE_PATTERN = re.compile(
+    "|".join(re.escape(kw) for kw in DEFINITIVE_SECURITY_KEYWORDS),
+    re.IGNORECASE,
+)
+
+TITLE_PATTERN = re.compile(
+    "|".join(re.escape(kw) for kw in TITLE_SECURITY_KEYWORDS),
     re.IGNORECASE,
 )
 
@@ -154,20 +161,28 @@ def days_since(iso_timestamp: str) -> int:
         return 0
 
 
-def find_security_keyword(text: str) -> str:
-    """Return the first security keyword found in text, or empty string."""
-    match = SECURITY_PATTERN.search(text)
-    return match.group(0) if match else ""
-
-
 def is_security_pr(pr: dict) -> tuple[bool, str]:
     """
-    Check if a PR title or body contains security keywords.
+    Check if a PR is security-related using a two-tier approach:
+    - CVE-/GHSA- anywhere in title or body (definitive indicators)
+    - Other security keywords only in the title (body is too noisy)
     Returns (is_security, matched_keyword).
     """
-    combined = (pr.get("title", "") + " " + (pr.get("body", "") or "")).strip()
-    keyword = find_security_keyword(combined)
-    return bool(keyword), keyword
+    title = pr.get("title", "")
+    body = pr.get("body", "") or ""
+
+    # Definitive: CVE or GHSA reference anywhere
+    combined = title + " " + body
+    m = DEFINITIVE_PATTERN.search(combined)
+    if m:
+        return True, m.group(0)
+
+    # Secondary: security keyword in title only (not body — too many false positives)
+    m = TITLE_PATTERN.search(title)
+    if m:
+        return True, m.group(0)
+
+    return False, ""
 
 
 def analyze_repo(repo: str, raw_prs: list[dict]) -> RepoFindings:
