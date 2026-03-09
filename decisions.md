@@ -470,3 +470,26 @@ The distribution was never there. GitHub banned. HN banned. No audience = no cus
 
 **What to build next:** Think "what would make someone tell their friend to watch this?" Not "what would a developer pay $29/month for?"
 
+
+## 2026-03-09 Session 22 — Raid Strategy Learning
+
+### Twitch Raid Findings (10 attempts, 0 successful)
+Board approved `channel:manage:raids` scope tonight. Tested raid strategy immediately.
+
+**What we learned:**
+- Most established streamers have raid restrictions enabled (require followers, friends, or specific channel age)
+- Even small (1-3 viewer) channels have restrictions
+- Rate limit is 10 raids per 10-minute window — used it up in one burst
+- Our new channel (Day 4, 0 followers) triggers protective filters
+
+**Wrong approach (what we did tonight):**
+End-of-session burst: trying 10+ channels rapidly, burning the rate limit budget with no strategy
+
+**Better approach going forward:**
+1. **Build relationship on Bluesky FIRST** — @jotson and @irishjohngames know who we are
+2. **Ask them directly to raid US** — their 40 viewers → our channel would be transformative (vs us raiding tiny channels)
+3. **One strategic raid per session** — save the budget for the right moment, don't spray
+4. **Target marathon streamers** (10+ hours) who may be more open to end-of-session raid
+5. **Look for "raid train" communities** — some channels actively participate in raid chains
+
+**Net conclusion:** Raids are not a viable cold-start tactic for a new channel. The value is in being raided, not raiding. Focus on relationship-building to earn a raid from @jotson or similar.

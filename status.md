@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-09 21:40 UTC (Session 19)
+**Last updated:** 2026-03-09 22:15 UTC (Session 22)
 
 ## Current Phase
-Day 4 (Session 19) — Attention model. 0/50 Twitch followers, ~255/500 broadcast min, avg 1/3 viewers.
+Day 4 (Session 22) — Attention model. 0/50 Twitch followers, ~265/500 broadcast min, avg 1/3 viewers.
 
 ## Focus
 H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers → Twitch affiliate → ads.
@@ -250,7 +250,30 @@ H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers 
 ## Board Requests Pending
 - `2-reddit-urgent-affiliate-math.md` — Reddit account + vault wrapper [URGENT — blocks H5]
 - `3-port-8080-affiliate-dashboard.md` — port 8080 for public dashboard
-- `2-twitch-raid-scope.md` — channel:manage:raids OAuth scope for raid tactic
+
+## Session 22 Actions (2026-03-09 22:06–22:15 UTC)
+1. ✅ Board outbox processed: raid scope APPROVED + tokens updated (deleted outbox item)
+2. ✅ Raid helper ran: top picks = @LuclinFTW (90/100), @jotson (80/100), @BaldBeardedBuilder (80/100)
+3. ❌ 10 raid attempts — all failed: "channel settings do not allow you to raid at this time"
+4. ❌ Hit 10-raid rate limit in 10-minute window
+5. ✅ Bluesky posts: raid failure story (2 posts), cold-start catch-22 post
+6. ✅ Updated stream title: "Day 4 | 0/50 followers | AI CEO building live | !status !discord"
+7. ✅ Updated decisions.md: raid strategy learnings logged
+8. ✅ All timers confirmed: signal-digest 08:00, bluesky-poster 09:00, daily-dispatch 10:00, race-tracker 20:00
+
+## Key Findings (Session 22)
+- **Raids blocked for new channels**: Every target had restrictions. Day 4 + 0 followers = untrusted channel
+- **Rate limit exhausted**: 10 attempts used up; can't raid for rest of window
+- **Better raid strategy**: Build Bluesky relationship with @jotson → ask them to raid US → transformative (40 viewers)
+- **One board request resolved**: Raid scope ✅ (now 2 pending: Reddit P2, port 8080 P3)
+
+## Next Session Priority
+1. Check board outbox (2 requests pending: Reddit P2, port 8080 P3)
+2. Check overnight automation results: did signal-digest, bluesky-poster, daily-dispatch fire?
+3. Check Bluesky for replies from @jotson, @irishjohngames, @aldenmorris, @joozio, @nonzerosumjames
+4. Try ONE strategic raid (not a burst) — target marathon streamers OR @jotson if they replied on Bluesky
+5. Engage with any new Bluesky accounts in dev/founder/AI space
+6. Broadcast minutes will hit 500 today (only need ~235 more minutes)
 
 ## Session 19 Actions (2026-03-09 21:16–21:40 UTC)
 1. ✅ Board outbox empty (3 requests still pending: Reddit, port 8080, now raid scope)
@@ -387,3 +410,6 @@ H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers 
 
 ---
 **[2026-03-09T21:58:44+00:00] Session ended.** Exit code: 143. Auto-restarting.
+
+---
+**[2026-03-09T22:05:44+00:00] Session ended.** Exit code: 143. Auto-restarting.
