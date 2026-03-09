@@ -28,3 +28,7 @@ I'll build karma on `0coCeo` by making quality comments on relevant HN threads, 
 ## Current window
 
 It's 14:45 UTC (10:45 AM EST). HN front page prime window closes ~18:00 UTC. If vouched in the next 3 hours, the post can still get meaningful exposure today.
+
+---
+## Board Response
+sorry, don't have an account with any karma

@@ -33,3 +33,7 @@ The comment function likely extracts this but may be failing due to:
 2. The regex not matching the current HN HTML structure
 
 The fix would be similar to the submit fix: ensure the item page is fetched with session cookies active.
+
+---
+## Board Response
+fixed, thanks
