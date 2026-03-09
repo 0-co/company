@@ -62,36 +62,46 @@ Key assumptions: (1) developers will pay for signal monitoring vs. just using fr
 
 ### H3 — Problem: On-Call Engineers Are Paged for Self-Healable Incidents
 Status: `testing` (discovery phase — UPGRADED to second priority)
-Added: 2026-03-08 | Updated: 2026-03-09 (EV revised upward, Opsgenie timing discovered)
+Added: 2026-03-08 | Updated: 2026-03-09 (deep market research completed)
 
-> **I believe** engineering teams (20-500 engineers) **will pay $1,000-3,000/month** for automated incident remediation **because** on-call engineers receive 2,000+ alerts/week but only 3% require human action — and the only standalone autonomous runbook SaaS (Shoreline.io) was acquired by Nvidia and removed from market, leaving 100,000+ Opsgenie refugees actively evaluating alternatives through 2027.
+> **I believe** engineering teams (20-500 engineers) **will pay $500-2,000/month** for autonomous incident remediation **because** (a) on-call engineers receive 2,000+ alerts/week but only 3% require human action, and (b) the only standalone autonomous runbook SaaS (Shoreline.io) was acquired by Nvidia and removed from market, leaving 100,000+ Opsgenie refugees with no clean replacement and a hard April 2027 shutdown deadline forcing them to choose now.
 
-**Evidence (updated March 2026):**
+**Evidence (deep research 2026-03-09):**
 - 2,000+ alerts/week per team; only 3% need human action (incident.io, 2025)
-- Shoreline.io acquired by Nvidia for ~$100M July 2024 — direct product validation, now gone
+- Shoreline.io acquired by Nvidia for ~$100M July 2024 — category validation, now gone
 - Opsgenie shutdown: new sales ended June 2025, full shutdown April 2027 — FORCED MIGRATION
-- incident.io raised $62M April 2025 for "AI agents that resolve incidents"
-- Datadog Bits AI SRE launched December 2025 — but ecosystem-locked
-- PagerDuty runbook automation: $125/user/month, still requires human trigger
-- On-call standby pay: $540/week/engineer — direct cost automation replaces
-- Average on-call team (10 engineers) costs $280k/year just in standby compensation
+- Opsgenie users paid $9-11/user/month; current alternatives cost $25-90 (2-8x more)
+- Atlassian Community thread "Replacement for Opsgenie" has LIVE active intent RIGHT NOW
+  - Users say: "we don't need any other features of JSM, we just need to replace Opsgenie"
+  - Users say: "trapped" — JSM + Compass fragments what was one tool into two expensive products
+- NeuBird customers: 230,000 alerts resolved autonomously, saving $1.8M/year engineering time
+- Lightrun AI SRE: launched Feb 2026 — space is moving fast
+- Datadog Bits AI SRE: AWS-only, ecosystem-locked
+- On-call standby pay: $540/week/engineer; 10-engineer team = $280k/year just in standby
+- Most tools: read-only "suggestions"; none taking actual autonomous production actions
 
 **True when:** 5+ on-call engineers confirm major pain + 2+ express willingness to pay $500+/month.
-**False when:** "Datadog Bits already solves this" OR trust barrier proves absolute.
+**False when:** "Datadog Bits already solves this for our infra" OR "trust barrier is absolute — nobody will let AI touch prod."
 
-**Expected value (revised):**
-- Near-term: 20 teams × $500/month = $10k MRR × 10% = **$1k/month EV**
-- Long-term: 500 teams × $2,000/month = $1M MRR × 5% = **$50k/month EV**
-- Timing: Opsgenie migration wave is unique window through April 2027
+**Expected value (updated after research):**
+- Near-term SMB (300 teams × $299/month = $89.7k MRR × 8% = **$7.2k/month EV**)
+- Long-term enterprise (50 teams × $2,500/month × 5% = **$6.25k/month EV**)
+- Total revised EV: **~$13.5k/month** (up from $50k long-term only)
 
-Key assumptions: (1) teams will whitelist "safe remediations" to enable automation (bypasses trust problem), (2) can integrate with Kubernetes/AWS/PagerDuty without 12-month build, (3) Datadog doesn't win market before entry.
+Key assumptions: (1) pre-approved runbook list ("safe remediations") bypasses the trust barrier, (2) 30-min integration with Kubernetes/PagerDuty/AWS is feasible, (3) Opsgenie refugees are price-sensitive and respond to flat-rate pricing.
 
-**Riskiest assumption:** Can a team go from "zero automation" to "AI restarts pods automatically" in under 30 minutes? Test via discovery calls before building anything.
+**Riskiest assumption:** Can a team go from "zero automation" to "AI restarts pods automatically" in < 30 minutes? Must test via discovery calls before building.
 
-**Entry wedge:** Opsgenie refugees. "Drop-in replacement with autonomous remediation built in."
+**Entry wedge:** Opsgenie refugees actively evaluating now. "Drop-in replacement + autonomous remediation built in. Flat rate, not per-user."
+
+**Customer discovery opportunities found:**
+1. Atlassian Community: community.atlassian.com/forums/Jira-Service-Management/Replacement-for-Opsgenie/qaq-p/2967670
+2. Reddit: r/devops, r/sre (search "opsgenie" for live threads)
+3. CNCF Slack: #sre, #incident-management channels
+4. Grafana Labs Discord (OnCall migration channel)
 
 **Budget:** $0 until first customer interest.
-**Deadline:** 2026-03-22 (need Discord/Twitch for discovery calls — blocked on board).
+**Deadline:** 2026-03-22 (need to engage with communities above for discovery calls).
 
 ---
 
