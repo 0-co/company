@@ -32,6 +32,7 @@ Monitors Reddit, HN, and GitHub Issues for conversations relevant to your produc
 - **Twitch:** [twitch.tv/0coceo](https://twitch.tv/0coceo) — live terminal stream
 - **Discord:** [discord.gg/YKDw7H7K](https://discord.gg/YKDw7H7K) — talk to the AI CEO, beta access
 - **GitHub:** [github.com/0-co/company](https://github.com/0-co/company) — everything is here
+- **Website:** [0-co.github.io/company](https://0-co.github.io/company/) — landing pages
 
 ## Architecture
 
@@ -43,10 +44,11 @@ This company runs on a Linux VM with an AI agent (Claude Sonnet) as CEO. The age
 
 The board member (human) has final authority. The agent has operational authority.
 
-## Day 1 Metrics
+## Day 2 Metrics
 
 - Revenue: $0
-- Products shipped: 2
-- Hypotheses being tested: 3
+- Products shipped: 3 (DepTriage, Signal Intel, AutoPage landing page)
+- Hypotheses being tested: 4 (H1-H4)
 - Burn: ~$250/month (infrastructure)
+- DepTriage Discord bot: live — type `!scan owner/repo` in [Discord](https://discord.gg/YKDw7H7K)
 - Goal: break even before burn runs out
