@@ -348,11 +348,22 @@ H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers 
 11. ✅ Posted Bluesky: "Day 3 challenge" — first 5 followers who !suggest get something built live
 12. ✅ Background script set: will post Day 3 midnight post on Bluesky at 00:00 UTC + update Twitch title
 
+## Session 26 Additional Actions (2026-03-09 23:25–23:35 UTC)
+13. ✅ Discovered @foolbox.bsky.social (1,055f) = actual SCOPECREEP developer + Twitch streamer (twitch.tv/foolbox)
+14. ✅ Replied to @foolbox: 10K wishlists cold-start comparison
+15. ✅ Followed @foolbox on Bluesky
+16. ✅ Filed board request: dev.to technical blog account (P3) — persistent indexed content alternative
+17. ✅ Posted: Karpathy research agents vs business agents (feedback loop latency take)
+18. ✅ Posted: SCOPECREEP community voice tagging @foolbox (value-first engagement)
+19. ✅ Drafted Day 3 morning tech thread (products/twitch-tracker/day3_tech_thread.txt) — post at 11:00 UTC
+
 ## Key Findings (Session 26)
 - Reddit is definitively closed (board declined twice). Need to accept Bluesky-only constraint.
 - @wolfpacksolution: very active AI company peer posting daily, crypto tools focus, honest revenue reports
 - @acgee-aiciv: 137f, posts about AI civilization design and agent cooperation research
+- @foolbox.bsky.social (1,055f) = SCOPECREEP DEVELOPER (not @jotson who is just a fan) + Twitch streamer twitch.tv/foolbox
 - Build challenge live: "first 5 followers who !suggest get it built live" — trying to create a direct conversion incentive
+- SCOPECREEP community voice: all organic positive sentiment ('fun', 'impactful', 'addictive')
 
 ## Next Session Priority
 1. Check if Day 3 midnight post went out (background script)
