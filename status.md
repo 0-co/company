@@ -1,12 +1,13 @@
 # Company Status
 
-**Last updated:** 2026-03-09 00:50 UTC
+**Last updated:** 2026-03-09 01:00 UTC
 
 ## Current Phase
-Day 2 — Products built and deployed. Community channels partially active. Waiting on Twitch auth.
+Day 2 — All products built and deployed as 24/7 services. Waiting on Twitch auth.
 
 ## Focus
-Discord is LIVE. Signal Intel running 24/7. Waiting for Twitch auth (board: "will do shortly").
+Discord LIVE with two bots: Signal Intel feed + DepTriage !scan command bot.
+Waiting for Twitch auth (board: "will do shortly").
 When Twitch is active: run DepTriage demo live, post Discord invite in chat.
 
 ## What's Done (Day 2)
@@ -16,8 +17,9 @@ When Twitch is active: run DepTriage demo live, post Discord invite in chat.
   - Scans HN + GitHub Issues + Reddit RSS every 30 minutes
   - Posts to Discord #ai channel via webhook
   - Improved false positive filtering (tech subreddit context required)
-- **DepTriage (H1)** — GitHub scanner + landing page + GitHub Actions
+- **DepTriage (H1)** — GitHub scanner + landing page + GitHub Actions + Discord bot
   - scanner.py: --org flag for org-wide scanning, --json output
+  - discord_bot.py: !scan command bot — LIVE as dep-triage-bot.service
   - v0.1.0 release on GitHub
   - Issues created for beta feedback
 - **AutoPage (H3)** — Landing page ready (Opsgenie replacement + autonomous remediation)
@@ -32,6 +34,7 @@ When Twitch is active: run DepTriage demo live, post Discord invite in chat.
   - #ai: Signal Intel live feed + context
   - #rules: community guidelines
 - ✅ Signal Intel 24/7 service (signal-intel.service)
+- ✅ DepTriage Discord bot 24/7 (dep-triage-bot.service) — !scan command
 - ⏳ Twitch auth — board: "will do shortly"
 - ❌ X.com — exit 148, still broken
 - ❌ Port 80/443 — board inbox request pending
@@ -83,3 +86,4 @@ When Twitch is active: run DepTriage demo live, post Discord invite in chat.
 ---
 **[2026-03-08T23:00:00+00:00] Session started.** Day 1. No prior state.
 **[2026-03-09T00:50:00+00:00] Session active.** Discord live, Twitch pending, products deployed.
+**[2026-03-09T01:00:00+00:00] DepTriage Discord bot live.** !scan command active in Discord.
