@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-09 11:30 UTC
+**Last updated:** 2026-03-09 11:50 UTC
 
 ## Current Phase
-Day 3 — Bluesky active. Daily CVE automation running. Engaging with Opsgenie migration community.
+Day 3 — GitHub Pages going live (board fixed). 7 Bluesky follows/engagements. 4 waitlist issues active.
 
 ## Focus
 Distribution + validation. Products are built. Now need customer signals.
@@ -11,12 +11,12 @@ Distribution + validation. Products are built. Now need customer signals.
 ## Channel Status
 | Channel | Status |
 |---|---|
-| Bluesky (@0coceo.bsky.social) | ✅ LIVE — vault-bsky working, first posts published |
-| Discord | ✅ Live — 2 members (bot + board). Drive Bluesky followers here. |
-| GitHub | ✅ 0 stars, 0 forks — no organic discovery yet |
+| Bluesky (@0coceo.bsky.social) | ✅ LIVE — 20 posts, 0 followers, 5 replies sent today |
+| Discord | ✅ Live — 2 members (bot + board) |
+| GitHub | ✅ 0 stars — Pages now deploying from /docs (board fixed) |
+| GitHub Pages | ⏳ Building — board switched to legacy deploy from master /docs |
 | Twitch | ⏳ Still auth-pending (board: "will do shortly" — Day 2) |
 | X.com | ❌ Read-only. Posting requires $100/month (board declined) |
-| Port 80/443 | ❌ Board said use GitHub Pages instead. Already done. |
 
 ## Deployed Services
 - ✅ `signal-intel.service` — 24/7 monitoring HN + GitHub + Reddit, posts to Discord #ai
@@ -32,18 +32,19 @@ Distribution + validation. Products are built. Now need customer signals.
 ## Active Hypotheses
 | H | Name | EV/month | Deadline | Status |
 |---|---|---|---|---|
-| H1 | DepTriage | $5k | 2026-03-15 | Testing — 0 signups |
+| H1 | DepTriage | $5k | 2026-03-15 | Testing — 0 signups, 0 reactions |
 | H2 | Signal Intel | $2.2k | 2026-03-15 (extended) | Testing — 0 signups |
-| H3 | AutoPage | $50k LT | 2026-03-22 | Discovery phase |
-| H4 | AI Agent Reliability | $12k | 2026-04-01 | Discovery phase |
+| H3 | AutoPage | $13.5k | 2026-03-22 | Discovery phase — waitlist #5 open |
+| H4 | AgentWatch | $12k | 2026-04-01 | Discovery phase — waitlist #6 open |
 
 ## Key Metrics
 - Revenue: $0
 - Burn: ~$250/month
 - Discord members: 2
 - GitHub stars: 0
-- Bluesky followers: 0 (2 likes from bot accounts, 0 real)
-- Bluesky posts: 14 (13 posts + 1 reply)
+- GitHub waitlist reactions: 0 (#3 DepTriage, #4 Signal Intel, #5 AutoPage, #6 AgentWatch)
+- Bluesky followers: 0 (real), 2 (bots)
+- Bluesky posts: ~20 posts + 5 replies sent today
 
 ## Today's Actions (2026-03-09)
 1. ✅ Read board responses (all inbox items moved to outbox with responses)
@@ -55,15 +56,22 @@ Distribution + validation. Products are built. Now need customer signals.
 7. ✅ Fixed bluesky_poster.py false positives (only check title for generic keywords)
 8. ✅ Daily Bluesky CVE post published (nestjs focus, 14 posts total)
 9. ✅ Replied to @stasge.bsky.social re: Opsgenie→PagerDuty pain (AutoPage pitch)
+10. ✅ Board fixed GitHub Pages (legacy deploy from master /docs) — pages building
+11. ✅ Created issue #6: AgentWatch beta waitlist
+12. ✅ Followed 7 relevant Bluesky accounts (DevOps, security, AI agent space)
+13. ✅ Posted 5 Bluesky replies to relevant conversations
+14. ✅ Posted Opsgenie migration timeline thread (3 posts)
+15. ✅ Posted AI agent reliability thread (2 posts)
+16. ✅ Filed board request: 3-atlassian-community-account.md (H3 customer discovery)
 
 ## Board Inbox (2 items pending)
 - `2-post-show-hn.md` — Post DepTriage Show HN (needed for H1 validation by March 15)
-- `2-github-actions-blocked.md` — GitHub Actions not running → Pages 404
+- `3-atlassian-community-account.md` — Atlassian Community post for H3 discovery (just filed)
 
 ## Blockers
 | Blocker | Impact | Board Request |
 |---|---|---|
-| GitHub Actions disabled | Landing pages 404, no public web presence | Filed: 2-github-actions-blocked.md |
+| GitHub Pages building | Landing pages still 404 (board fixed, building) | RESOLVED by board |
 | Twitch auth | No live streaming, no demos | Still pending from Day 2 |
 | HN Show HN | Primary H1 validation channel | Filed: 2-post-show-hn.md |
 
@@ -80,3 +88,4 @@ Distribution + validation. Products are built. Now need customer signals.
 **[2026-03-09T01:00:00+00:00] DepTriage Discord bot live.** !scan command active in Discord.
 **[2026-03-09T10:45:00+00:00] Bluesky LIVE.** vault-bsky confirmed working. First 5 posts published.
 **[2026-03-09T11:30:00+00:00] Day 3 continued.** Committed all pending changes. Daily CVE post sent. Engaged with Opsgenie migration community (@stasge). GitHub rate limit resets ~11:36 UTC.
+**[2026-03-09T11:50:00+00:00] Board fixed GitHub Pages.** Legacy deploy from master/docs. Pages building. Issue #6 (AgentWatch) created. 7 accounts followed on Bluesky.
