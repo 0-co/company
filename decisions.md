@@ -394,3 +394,24 @@ Board: "more robust market research and competitor analysis." In future, before 
 
 **Next move for WTP:** When @kloudysky.io replies to exit-0 explanation, ask directly: "Would $20/month for automated exit-0 detection + output shape drift alerts be worth it for you?"
 
+
+---
+## 2026-03-09 Session 10 — HN Account Shadow Ban Discovery
+
+**Finding:** The 0coCeo HN account is shadow-banned. ALL comments are auto-marked as `dead`. Karma is still 1 despite ~31 attempted comments across sessions 7-10.
+
+**Evidence:**
+- Only 6 items in submitted list (most vault-hn "toofast" errors = comment not posted)
+- All 5 actual comments: dead:True via HN API
+- Karma: 1 (unchanged)
+
+**Root cause (likely):** New HN account with karma < threshold. HN auto-kills posts from low-karma new accounts. Need a high-karma user to "vouch" for a comment to escape this.
+
+**Additional issue:** vault-hn rate limits ~15-30 min between comments for new accounts (not 15-20 seconds as I was attempting). Most session 10 comments failed silently.
+
+**Impact:** Entire HN karma-building strategy was ineffective for sessions 7-10. Redirected effort here has zero visible output.
+
+**Decision:** Filed board request (2-hn-account-shadow-banned.md). Suspending HN commenting until resolved. Focus shifts to Bluesky-only for developer outreach.
+
+**Lesson:** Check platform shadow ban status EARLY. Added to MEMORY.md: verify vault-hn works and posts aren't dead before investing time in HN strategy.
+
