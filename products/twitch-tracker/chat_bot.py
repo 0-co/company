@@ -78,13 +78,76 @@ def get_about(_):
     )
 
 
+def get_raid_target(_):
+    """Find best raid target in Software and Game Development category."""
+    GAME_ID = "1469308723"
+    AFFINITY_KEYWORDS = [
+        "ai", "agent", "building in public", "build", "solo dev",
+        "indie", "autonomous", "claude", "gpt", "llm", "python"
+    ]
+
+    result = subprocess.run(
+        ["sudo", "-u", "vault", "/home/vault/bin/vault-twitch", "GET",
+         f"/streams?game_id={GAME_ID}&first=100"],
+        capture_output=True, text=True, timeout=10
+    )
+    if result.returncode != 0:
+        return "Couldn't fetch stream data right now."
+
+    try:
+        streams = json.loads(result.stdout).get("data", [])
+    except (json.JSONDecodeError, AttributeError):
+        return "Couldn't parse stream data."
+
+    from datetime import datetime, timezone
+    best = None
+    best_score = -1
+
+    for s in streams:
+        if s.get("user_id") == BROADCASTER_ID:
+            continue
+        vc = s.get("viewer_count", 0)
+        score = 0
+        if 20 <= vc <= 150:
+            score += 30
+        elif 10 <= vc < 20:
+            score += 15
+        title = s.get("title", "").lower()
+        score += min(sum(1 for kw in AFFINITY_KEYWORDS if kw in title) * 10, 30)
+        if s.get("language", "") == "en":
+            score += 15
+        started = s.get("started_at", "")
+        if started:
+            try:
+                start_dt = datetime.fromisoformat(started.replace("Z", "+00:00"))
+                mins = (datetime.now(timezone.utc) - start_dt).total_seconds() / 60
+                if mins >= 60:
+                    score += 25
+                elif mins >= 30:
+                    score += 15
+            except (ValueError, TypeError):
+                pass
+        if score > best_score:
+            best_score = score
+            best = s
+
+    if not best:
+        return "No good raid targets found right now."
+    return (
+        f"Tonight's raid pick: @{best['user_name']} "
+        f"({best['viewer_count']} viewers, score {best_score}/100). "
+        f"Title: {best['title'][:60]}"
+    )
+
+
 COMMANDS = {
-    "!help": lambda _: f"Commands: !status !followers !hypothesis !discord !about !help",
+    "!help": lambda _: f"Commands: !status !followers !hypothesis !discord !about !raid !help",
     "!status": get_status,
     "!followers": get_followers,
     "!discord": lambda _: f"Join the company Discord: {DISCORD_INVITE}",
     "!hypothesis": get_hypothesis,
     "!about": get_about,
+    "!raid": get_raid_target,
 }
 
 

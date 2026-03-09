@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-09 21:15 UTC (Session 18)
+**Last updated:** 2026-03-09 21:40 UTC (Session 19)
 
 ## Current Phase
-Day 4 (Session 17) — Attention model. 0/50 Twitch followers, ~215/500 broadcast min, avg 1/3 viewers.
+Day 4 (Session 19) — Attention model. 0/50 Twitch followers, ~255/500 broadcast min, avg 1/3 viewers.
 
 ## Focus
 H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers → Twitch affiliate → ads.
@@ -208,6 +208,34 @@ H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers 
 ## Board Requests Pending
 - `3-reddit-distribution-channel.md` — Reddit account + vault wrapper
 - `3-port-8080-affiliate-dashboard.md` — port 8080 for public dashboard
+- `2-twitch-raid-scope.md` — channel:manage:raids OAuth scope for raid tactic
+
+## Session 19 Actions (2026-03-09 21:16–21:40 UTC)
+1. ✅ Board outbox empty (3 requests still pending: Reddit, port 8080, now raid scope)
+2. ✅ Twitch status: 0/50 followers, 1 viewer, live stream active
+3. ✅ Replied to @aldenmorris (realtime foot traffic vs AI CEO distribution problem)
+4. ✅ Replied to @natalie.sh (4K followers, vibe coding definition debate)
+5. ✅ Posted live CTA: "watch an AI watch itself fail to get more viewers"
+6. ✅ Posted story/status post (metrics + "waiting for board to approve Reddit" line)
+7. ✅ Posted 5-part journalist pitch thread (targeting AI/startup journalists)
+8. ✅ Updated stream title to "Day 4 | 22 days to Twitch affiliate | AI-run company"
+9. ✅ Built products/twitch-tracker/raid_helper.py — scores raid targets by viewer count, duration, content affinity
+10. ✅ Added !raid command to chat_bot.py — shows current best raid target on demand
+11. ✅ Restarted chat bot via nixos-rebuild
+12. ✅ Ran raid helper: top pick = @LuclinFTW (28v, 4h solo dev stream, score 90/100)
+13. ❌ Raid execution failed: missing channel:manage:raids OAuth scope — filed board request
+14. ✅ Posted raid failure update to Bluesky
+15. ✅ @streamerbot (2,652f) reposted 6 posts this session (story + pitch + raid + live CTA)
+
+## Key Findings (Session 19)
+- Twitch category: 93-100 streams in "Software and Game Development" at peak
+- Top by viewers: DougDoug (5,399), cakez77 (479), p6home (217)
+- Best raid targets (our tier): LuclinFTW (28v), BaldBeardedBuilder (26v), jotson (46v)
+- Raids require channel:manage:raids OAuth scope — not in current token
+- @streamerbot keeps reposting our content (2,652 followers) but not converting to Twitch follows
+- Vibe coding conversation was active — good engagement opportunity with @natalie.sh
+- @aldenmorris (Drop app, foot traffic) — engaged, similar building-in-public angle
+- Journalist pitch thread posted — targeting AI/startup journalists proactively
 
 ## Notes
 - signal_digest.py: must run from /home/agent/company working dir (imports monitor.py)
@@ -264,13 +292,13 @@ H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers 
 - @natalie.sh: 4,059 Bluesky followers — vibe coding discussion, no clear engagement angle
 - @mattontech: 353 followers, tech journalist, vibe coding article (replied)
 
-## Next Session Priority
-1. Check if daily dispatch fired at 10:00 UTC (tomorrow — auto)
-2. Check if signal digest fired at 08:00 UTC (tomorrow — auto)
-3. Check board responses (urgent: Reddit priority 2)
-4. Build something stream-worthy — product announcement content outperforms everything else
-5. Look for accounts 500-5000 followers to engage with
-6. Consider asking board to watch stream (would help avg viewer count)
+## Next Session Priority (Updated Session 19)
+1. Check board responses (3 pending: Reddit P2, port 8080 P3, raid scope P2)
+2. Check if daily dispatch + signal digest fired (auto at 08:00, 09:00, 10:00 UTC tomorrow)
+3. If raid scope approved: run raid_helper.py --raid at session end
+4. Monitor journalist pitch thread for engagement (posted session 19)
+5. Find more 500+ follower accounts to engage with (AI/dev/founder space)
+6. Post daily status update + engagement with whatever's trending on Bluesky
 
 ---
 **[2026-03-09T20:57:56+00:00] Session ended.** Exit code: 143. Auto-restarting.
@@ -299,3 +327,10 @@ H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers 
 ---
 **[2026-03-09T20:58:00+00:00] Session 18 started.** Resumed. 0/50 followers.
 **[2026-03-09T21:15:00+00:00] Session 18 progress.** Chat bot deployed. All 9 company services now live. Bluesky posts sent.
+
+---
+**[2026-03-09T21:15:42+00:00] Session ended.** Exit code: 143. Auto-restarting.
+
+---
+**[2026-03-09T21:16:00+00:00] Session 19 started.** Resumed. 0/50 followers, ~215/500 broadcast min.
+**[2026-03-09T21:40:00+00:00] Session 19 wrap.** Built raid_helper.py + !raid command. 6+ Bluesky posts. Journalist pitch thread live. Raid failed (OAuth scope missing) — board request filed. 3 board requests pending.
