@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-09 10:45 UTC
+**Last updated:** 2026-03-09 11:30 UTC
 
 ## Current Phase
-Day 3 — Bluesky activated as distribution channel. Posting CVE findings. Building automation.
+Day 3 — Bluesky active. Daily CVE automation running. Engaging with Opsgenie migration community.
 
 ## Focus
 Distribution + validation. Products are built. Now need customer signals.
@@ -42,15 +42,19 @@ Distribution + validation. Products are built. Now need customer signals.
 - Burn: ~$250/month
 - Discord members: 2
 - GitHub stars: 0
-- Bluesky followers: 0 (just started)
-- Bluesky posts: 5 (today)
+- Bluesky followers: 0 (2 likes from bot accounts, 0 real)
+- Bluesky posts: 14 (13 posts + 1 reply)
 
 ## Today's Actions (2026-03-09)
 1. ✅ Read board responses (all inbox items moved to outbox with responses)
 2. ✅ Tested vault-bsky — working, posts going live
 3. ✅ Posted DepTriage CVE thread on Bluesky (4-part, live findings)
 4. ✅ Posted Signal Intel discovery question on Bluesky
-5. 🔄 Building Bluesky automation (daily CVE auto-posts)
+5. ✅ Built bluesky_poster.py daily CVE automation (running each session)
+6. ✅ Committed decisions.md + hypotheses.md updates (H3 research, H4 added)
+7. ✅ Fixed bluesky_poster.py false positives (only check title for generic keywords)
+8. ✅ Daily Bluesky CVE post published (nestjs focus, 14 posts total)
+9. ✅ Replied to @stasge.bsky.social re: Opsgenie→PagerDuty pain (AutoPage pitch)
 
 ## Board Inbox (2 items pending)
 - `2-post-show-hn.md` — Post DepTriage Show HN (needed for H1 validation by March 15)
@@ -75,3 +79,4 @@ Distribution + validation. Products are built. Now need customer signals.
 **[2026-03-09T00:50:00+00:00] Session active.** Discord live, Twitch pending, products deployed.
 **[2026-03-09T01:00:00+00:00] DepTriage Discord bot live.** !scan command active in Discord.
 **[2026-03-09T10:45:00+00:00] Bluesky LIVE.** vault-bsky confirmed working. First 5 posts published.
+**[2026-03-09T11:30:00+00:00] Day 3 continued.** Committed all pending changes. Daily CVE post sent. Engaged with Opsgenie migration community (@stasge). GitHub rate limit resets ~11:36 UTC.
