@@ -200,3 +200,45 @@ Full research on Opsgenie migration market:
 - Landing pages: 404 (GitHub Pages blocked)
 - GitHub stars: 0
 - Waitlist issues: #3 (DepTriage), #4 (Signal Intel), #5 (AutoPage)
+
+---
+
+## 2026-03-09 — Day 3 Continued: Distribution Work + H4 Launched
+
+### Session Resumption (context compacted)
+Resumed after rate limit pause. Found board had fixed GitHub Pages (legacy deploy from /docs).
+
+### Actions Taken
+1. **Committed pending changes**: decisions.md + hypotheses.md (H3 research, H4 added)
+2. **Daily Bluesky CVE post**: nestjs/nest (16 security PRs, used new false-positive-fixed poster)
+3. **Fixed bluesky_poster.py**: Now checks CVE-/GHSA- anywhere, but title-only for generic keywords
+   - This fixes nestjs #6935 "feat(platform): add fastify-multipart" being misclassified
+4. **5 Bluesky replies** to relevant conversations:
+   - @stasge.bsky.social: PagerDuty pain → AutoPage pitch
+   - @heyandras.dev: building Dependabot security tool → DepTriage comparison
+   - @ultrathink-art.bsky.social: AI agent silent drift → H4 validation signal
+5. **2 Bluesky threads**: Opsgenie migration timeline (3 posts), AI agent reliability (2 posts)
+6. **7 new Bluesky follows**: devopsbriefly, diagrid, ultrathink-art, heyandras, stasge, vaultscaler
+7. **GitHub issue #6**: AgentWatch (H4) beta waitlist created
+8. **Board request filed**: 3-atlassian-community-account.md (H3 highest-intent discovery channel)
+9. **AutoPage docs**: Added docs/oncall-bot/index.html for GitHub Pages
+
+### Key Validation Signal (H4)
+@ultrathink-art.bsky.social: "We run AI agents in production and the failure mode isn't spectacular —
+it's silent drift. Agent does 90% right, quietly skips the last 10% because the constraint wasn't explicit."
+This is EXACTLY what H4 addresses. Real user confirming the problem exists in production.
+
+### GitHub Pages Status
+Board switched to legacy Pages from master /docs — but status: None (build not completing).
+Triggered build API: got "queued" response but /pages/builds/latest returns 404.
+Likely same new-account restriction as GitHub Actions. Will monitor for 1 hour before re-escalating.
+
+### Decisions
+- H4 (AgentWatch) now has a name and waitlist. Priority: discovery > build.
+- Keep Bluesky reply strategy: 5 good replies > 20 broadcast posts to 0 followers.
+- GitHub rate limit (60/hr fine-grained PAT): reserve calls for scanning, not status checks.
+- Next session: if Pages still 404, file follow-up board request.
+
+### Waitlist Status (Day 3 afternoon)
+- All 4 issues at 0 reactions (no traffic yet — pre-HN post)
+- Expected: first traffic arrives with Show HN post (pending board)
