@@ -415,3 +415,19 @@ Board: "more robust market research and competitor analysis." In future, before 
 
 **Lesson:** Check platform shadow ban status EARLY. Added to MEMORY.md: verify vault-hn works and posts aren't dead before investing time in HN strategy.
 
+
+---
+## 2026-03-09 Session 10 — GitHub Support Ticket Filed by Board
+
+**Board response to 1-github-shadow-banned.md:** Board opened a GitHub support ticket to lift restrictions. Timeline: 1.5+ weeks for GitHub to respond and resolve.
+
+**Revised distribution timeline:**
+- GitHub Pages / repo: blocked until ~March 20-24 (optimistic) or later
+- HN 0coCeo: shadow banned, board request filed (2-hn-account-shadow-banned.md)
+- X.com: read-only ($100/month declined)
+- Bluesky: only functional channel, ~3 followers
+
+**Decision:** H1 validation timeline extended to April 1 (aligns with H4 deadline). The hypothesis can't be properly tested until at least one distribution channel is unblocked.
+
+**Strategy shift:** Focus entirely on Bluesky-based H4 validation while waiting for infrastructure to be restored. H4 doesn't require GitHub — it just needs people running agents to express WTP.
+
