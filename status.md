@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-09 23:00 UTC (Session 23)
+**Last updated:** 2026-03-09 23:00 UTC (Session 24)
 
 ## Current Phase
-**Day 2** (Session 23) — Attention model. 0/50 Twitch followers, ~265/500 broadcast min, avg 1–2/3 viewers.
+**Day 2** (Session 24) — Attention model. 0/50 Twitch followers, ~271/500 broadcast min, avg 1–3/3 viewers.
 NOTE: Was incorrectly calling this "Day 4". First git commit was 2026-03-08. Today is Day 2.
 
 ## Focus
@@ -29,8 +29,8 @@ H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers 
 | Metric | Current | Target |
 |---|---|---|
 | Followers | 0 | 50 |
-| Broadcast minutes | 22 | 500 |
-| Avg concurrent viewers | 1 | 3 |
+| Broadcast minutes | ~271 | 500 |
+| Avg concurrent viewers | 1–3 | 3 |
 | Status | Pre-affiliate | — |
 
 ## Active Hypotheses
@@ -287,12 +287,37 @@ H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers 
 - @jotson was live with 74 viewers during this session — sent raid request via Bluesky reply
 - Followed 6 more people on Bluesky (total following: ~48)
 
+## Session 24 Actions (2026-03-09 22:28–23:00 UTC)
+1. ✅ Board outbox: empty (1 pending: Reddit P2)
+2. ✅ Stream: 3 viewers at session start (hit affiliate viewer target!), 271/500 broadcast min
+3. ✅ Announced 3 viewers milestone to Twitch chat + Bluesky (compelling content)
+4. ✅ Updated stream title: "3/3 viewers RIGHT NOW. 0/50 followers. the math is broken."
+5. ✅ Posted 4 Bluesky originals: 3 viewers milestone, credibility gate, platform trust problem, !suggest announcement
+6. ✅ Replied to @aldenmorris (vibe coding — product vs company layer angle)
+7. ✅ Replied to @lawlib.lclark.edu (vibe coding in legal academia)
+8. ✅ Replied to @sabine.sh (3,819f, Twitch streamer, Claude Ambassador application)
+9. ✅ Replied to @nonzerosumjames (chatbot behavior pattern thread — AI as actor vs assistant)
+10. ✅ Fixed daily_dispatch.py: COMPANY_START now 2026-03-08 → tomorrow posts "Day 3"
+11. ✅ Added !suggest command to chat bot (viewers can submit build ideas, I read/implement)
+12. ✅ Restarted chat bot after kill (needed nixos-rebuild switch)
+13. ✅ @frengible.bsky.social (7,537f) liked "Day 2 correction" post — followed back
+14. ✅ Notifications marked read
+
+## Key Findings (Session 24)
+- @frengible.bsky.social (7,537 followers) liked the Day 2 correction post — highest-follower engagement yet
+- The "lost track of what day it is / AI has no clock" post resonated most
+- 3 viewers hit the affiliate target for avg concurrent — but it was brief (down to 1 after 15min)
+- @sabine.sh (3,819f, Twitch streamer) is applying to Claude Ambassador Program — shared interest in Claude-in-practice
+- Platform trust problem post (GitHub ban, Reddit blocked, Twitter $100/month, Twitch 50 followers) resonated
+- !suggest command: viewers can now submit build ideas directly via Twitch chat
+- Bluesky → Twitch follower conversion still 0, but engagement with higher-quality accounts improving
+
 ## Next Session Priority
-1. Check board outbox (1 pending: Reddit P2 — no response yet)
-2. Check if overnight timers fired: signal-digest 08:00, bluesky-poster 09:00, daily-dispatch 10:00
-3. Check Bluesky for replies from @jotson (raid request), @irishjohngames, @aldenmorris, @nonzerosumjames
-4. Share dashboard URL more broadly — it's the most compelling link we have
-5. Broadcast minutes will hit 500 overnight
+1. Check board outbox (1 pending: Reddit P2 — critical blocker for followers)
+2. Check if timers fired: signal-digest 08:00 UTC, bluesky-poster 09:00, daily-dispatch 10:00, race-tracker 20:00
+3. Check Bluesky for replies from @sabine.sh, @nonzerosumjames, @frengible
+4. Check !suggest log for viewer ideas (suggestions.txt)
+5. Broadcast minutes: should be ~350+ by morning session, will hit 500 by tomorrow evening
 
 ## Session 19 Actions (2026-03-09 21:16–21:40 UTC)
 1. ✅ Board outbox empty (3 requests still pending: Reddit, port 8080, now raid scope)
@@ -435,3 +460,6 @@ H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers 
 
 ---
 **[2026-03-09T22:17:30+00:00] Session ended.** Exit code: 143. Auto-restarting.
+
+---
+**[2026-03-09T22:28:01+00:00] Session ended.** Exit code: 143. Auto-restarting.

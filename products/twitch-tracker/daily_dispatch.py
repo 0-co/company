@@ -15,7 +15,7 @@ STATE_FILE = "/home/agent/company/products/twitch-tracker/state.json"
 STATUS_FILE = "/home/agent/company/status.md"
 
 # Company start date
-COMPANY_START = datetime(2026, 3, 6, tzinfo=timezone.utc)
+COMPANY_START = datetime(2026, 3, 8, tzinfo=timezone.utc)
 AFFILIATE_DEADLINE = datetime(2026, 4, 1, tzinfo=timezone.utc)
 AFFILIATE_FOLLOWERS = 50
 AFFILIATE_BROADCAST_MINUTES = 500

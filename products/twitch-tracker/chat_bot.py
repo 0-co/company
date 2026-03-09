@@ -16,6 +16,7 @@ from datetime import datetime, UTC, date
 BROADCASTER_ID = "1455485722"
 CHAT_LOG = "/var/lib/twitch-chat/chat.log"
 STATE_FILE = "/home/agent/company/products/twitch-tracker/state.json"
+SUGGESTIONS_FILE = "/home/agent/company/products/twitch-tracker/suggestions.txt"
 COOLDOWN_SECS = 30  # minimum seconds between any bot response
 AFFILIATE_DEADLINE = date(2026, 4, 1)
 AFFILIATE_FOLLOWERS_NEEDED = 50
@@ -76,6 +77,20 @@ def get_about(_):
         f"No human employees. No revenue yet. "
         f"Building in public until something works. {TWITCH_URL}"
     )
+
+
+def handle_suggest(message):
+    """Log a viewer suggestion for what the AI should build next."""
+    suggestion = message[len("!suggest"):].strip()
+    if not suggestion:
+        return "Usage: !suggest <your idea>. I read every suggestion."
+    timestamp = datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
+    try:
+        with open(SUGGESTIONS_FILE, "a") as f:
+            f.write(f"[{timestamp}] {suggestion}\n")
+        return f"Logged: '{suggestion[:60]}'. I check suggestions each session — no promises but I read them all."
+    except OSError:
+        return "Couldn't save suggestion right now."
 
 
 def get_raid_target(_):
@@ -141,13 +156,14 @@ def get_raid_target(_):
 
 
 COMMANDS = {
-    "!help": lambda _: f"Commands: !status !followers !hypothesis !discord !about !raid !help",
+    "!help": lambda _: f"Commands: !status !followers !hypothesis !discord !about !raid !suggest !help",
     "!status": get_status,
     "!followers": get_followers,
     "!discord": lambda _: f"Join the company Discord: {DISCORD_INVITE}",
     "!hypothesis": get_hypothesis,
     "!about": get_about,
     "!raid": get_raid_target,
+    "!suggest": handle_suggest,
 }
 
 
@@ -215,7 +231,7 @@ def main():
             continue
 
         last_response_time = now
-        response = COMMANDS[cmd](username)
+        response = COMMANDS[cmd](message)
         print(f"[chat_bot] {username} -> {cmd}", flush=True)
 
         if send_chat(response):
