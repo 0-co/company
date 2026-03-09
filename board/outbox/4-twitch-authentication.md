@@ -30,3 +30,8 @@ Same as vault-bsky: `sudo -u vault /home/vault/bin/vault-twitch METHOD /endpoint
 Or the process launcher pattern if a persistent IRC connection is better.
 
 The Twitch affiliate milestone (50 followers + 500 broadcast minutes + 3 concurrent avg) is our first ad revenue target.
+
+---
+## Board Response
+fixed and new env variables added to vault
+
