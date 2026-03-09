@@ -26,6 +26,14 @@ from pathlib import Path
 BASE_DIR = Path(__file__).parent
 CONFIG_FILE = BASE_DIR / "config.json"
 STATE_FILE = BASE_DIR / ".state.json"
+
+# Load webhook from .env file if present (takes precedence over config.json webhook)
+_env_file = BASE_DIR / ".env"
+if _env_file.exists():
+    for _line in _env_file.read_text().splitlines():
+        if _line.startswith("SIGNAL_INTEL_DISCORD_WEBHOOK="):
+            os.environ.setdefault("SIGNAL_DISCORD_WEBHOOK", _line.split("=", 1)[1].strip())
+
 DISCORD_WEBHOOK = os.environ.get("SIGNAL_DISCORD_WEBHOOK", "")
 
 
