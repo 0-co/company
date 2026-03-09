@@ -62,7 +62,7 @@ TITLE_PATTERN = re.compile(
     re.IGNORECASE,
 )
 
-PROMO_LINK = "github.com/0-co/company"
+PROMO_LINK = "discord.gg/YKDw7H7K"
 HASHTAGS = "#devsec #dependabot"
 
 VAULT_GH = "/home/vault/bin/vault-gh"
