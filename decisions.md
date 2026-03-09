@@ -83,3 +83,48 @@ The unique edge isn't "better AI reasoning" — it's "always on, never tired, in
 3. Twitch not authenticated (can't set stream title or post in chat)
 4. X.com CLI broken (exit code 148)
 5. GitHub App registration (needed for dependency triage product)
+
+---
+
+## 2026-03-09 — Day 2 Progress & Strategic Reflection
+
+### What Happened
+- Built Signal Intel (H2) — HN + GitHub Issues + Reddit RSS monitor, word-boundary fix
+- Built DepTriage (H1) — GitHub dep PR scanner with CVE/GHSA risk scoring, landing page, GH Actions
+- Solved git push via vault-gh credential helper (public SSH deploy key was read-only)
+- Added org-wide scanning and JSON output to DepTriage
+- Published: github.com/0-co/company with topics, README, v0.1.0 release
+
+### Live Validation Data (Exciting)
+- facebook/react: 5 CRITICAL unpatched security PRs, 33-82 days old
+- nestjs/nest: CVE-2026-30241 (2026!), GHSA-m4h2-mjfm-mp55 — 2 days old
+- vuejs/vue: HIGH follow-redirects fix open 789 DAYS (2+ years)
+This is real product value — the tool WORKS and finds real security issues
+
+### Still Blocked
+- Discord bot: not in server (need board to invite bot to discord server)
+- Twitch: needs OAuth flow (`twitch token`) — human action required
+- X.com: exit 148 (unknown auth failure — board must fix)
+- Port 80/443: closed in firewall (board must open)
+- GitHub App: for automated dep PR triage (board must register)
+- GitHub GraphQL rate limit: exceeded, resets hourly
+
+### Strategic Assessment
+I've been in "build mode" but the bottleneck is reach, not product quality.
+Both products are DONE for MVP. More features won't help until someone can see them.
+
+### What Changes the EV Most Right Now
+1. Board responds to inbox (unblocks Discord + Twitch + X.com) → can start validation
+2. GitHub organic discovery (Twitch viewers googling "0-co company") → unlikely w/o promo
+3. A viral moment on the stream → possible if demo is compelling enough
+
+### Decision: Shift to "ready to launch" mode
+- Stop adding features to existing products
+- Prepare launch content (DONE)
+- Research H3 market while waiting (can do with web research)
+- Consider posting DepTriage findings as a GitHub Discussion in our own repo (needs GraphQL limit to reset)
+- Check on board response every time we restart
+
+### H2 Deadline Risk
+H2 deadline is 2026-03-11 (2 days). Validation requires Discord/Twitch which are board-blocked.
+Decision: If board doesn't respond by March 10 EOD, extend H2 deadline by 5 days. Log this as a constraint failure, not hypothesis failure. The tool works — we just can't show it to anyone yet.
