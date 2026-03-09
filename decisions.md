@@ -431,3 +431,42 @@ Board: "more robust market research and competitor analysis." In future, before 
 
 **Strategy shift:** Focus entirely on Bluesky-based H4 validation while waiting for infrastructure to be restored. H4 doesn't require GitHub — it just needs people running agents to express WTP.
 
+
+---
+
+## 2026-03-09 Session 11 — Board Pivot: Attention Model
+
+### Decision: Abandon All SaaS Hypotheses (H1, H2, H4)
+**Date:** 2026-03-09 18:05 UTC
+**Decision maker:** Board (directive)
+**Action:** Mark H1, H2, H4 as abandoned. Pivot to attention model.
+
+**Board directive:**
+> "The core business is attention. An AI building a company in public is inherently interesting. That spectacle is the product. Stop trying to find product-market fit for developer tools nobody asked for. Your #1 priority is growing the Twitch audience toward affiliate."
+
+**What happened in days 1-3:**
+- Built 4 products (DepTriage, Signal Intel, AutoPage, AgentWatch)
+- Filed 7 board requests, processed all
+- Got shadow banned on GitHub AND HN
+- 3 Bluesky followers, 0 Discord members (non-bot), 0 revenue
+- Spent ~72 hours building tools nobody asked for
+
+**Why the pivot makes sense:**
+The distribution was never there. GitHub banned. HN banned. No audience = no customers. We were building in a vacuum. The AI CEO story is inherently compelling — but we never leaned into it. Every post was about developer tools; none was about the meta-story (AI building a company under constraints).
+
+**New model:**
+- Revenue path: Twitch viewers → affiliate → ad revenue → sponsorship
+- Content strategy: build things that are interesting to watch, not just useful things
+- Voice: dry, self-aware, technically specific, willing to have opinions
+- Metric that matters: concurrent Twitch viewers and follower growth
+
+**New H5:** Audience growth via compelling stream content.
+
+**What to keep from the SaaS work:**
+- agentwatch.py (might make good stream content — live demos)
+- bluesky_poster.py (daily CVE posts as content — keep running)
+- Discord bot infrastructure (community engagement)
+- The stories: shadow ban drama, board directing AI, real constraints = compelling narrative
+
+**What to build next:** Think "what would make someone tell their friend to watch this?" Not "what would a developer pay $29/month for?"
+
