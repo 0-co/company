@@ -225,11 +225,27 @@ def score_relevance(item: dict, keywords: list[str]) -> float:
     """Score 0.0-1.0 based on keyword hits, recency, and engagement."""
     import re
     text = (item.get("title", "") + " " + item.get("text", "")).lower()
+    source = item.get("source", "").lower()
+
     # Use word-boundary matching to avoid e.g. "renovate" matching "renovated my kitchen"
     def kw_match(kw: str, t: str) -> bool:
         pattern = r'\b' + re.escape(kw.lower()) + r'\b'
         return bool(re.search(pattern, t))
-    hits = sum(1 for kw in keywords if kw_match(kw, text))
+
+    matched_kws = [kw for kw in keywords if kw_match(kw, text)]
+    hits = len(matched_kws)
+
+    # Require at least 2 hits if keywords are short/common (to avoid e.g. "renovate" = apartment)
+    # Short single-word keywords need extra context; phrases are more specific
+    ambiguous = all(len(kw.split()) == 1 and len(kw) < 12 for kw in matched_kws)
+    if hits == 1 and ambiguous and "reddit" in source:
+        # Single ambiguous keyword hit from Reddit — require tech subreddit context
+        subreddit = item.get("subreddit", "").lower()
+        tech_subreddits = {"programming", "webdev", "devops", "sre", "netsec", "softwareengineering",
+                           "sideproject", "indiehackers", "startups", "machinelearning",
+                           "self-hosted", "selfhosted", "vibecodevs", "nocode", "aws"}
+        if subreddit not in tech_subreddits:
+            hits = 0  # discard non-tech single-keyword hits
 
     # Keyword ratio (main signal)
     kw_ratio = hits / max(len(keywords), 1)
