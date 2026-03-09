@@ -99,6 +99,13 @@ class DepPR:
 # GitHub API helpers
 # ---------------------------------------------------------------------------
 
+class GitHubAPIError(Exception):
+    """Raised when a GitHub API request fails."""
+    def __init__(self, message: str, status: int = 0):
+        super().__init__(message)
+        self.status = status
+
+
 def make_request(url: str, token: Optional[str]) -> dict | list:
     """Fetch a URL from the GitHub API and return parsed JSON."""
     headers = {
@@ -114,18 +121,15 @@ def make_request(url: str, token: Optional[str]) -> dict | list:
             return json.loads(response.read().decode("utf-8"))
     except urllib.error.HTTPError as exc:
         if exc.code == 403:
-            print(
-                "ERROR: GitHub API rate limit exceeded. Pass --token to increase limits.",
-                file=sys.stderr,
+            raise GitHubAPIError(
+                "GitHub API rate limit exceeded. Pass --token to increase limits.", status=403
             )
         elif exc.code == 404:
-            print(f"ERROR: Repository not found: {url}", file=sys.stderr)
+            raise GitHubAPIError(f"Repository not found: {url}", status=404)
         else:
-            print(f"ERROR: HTTP {exc.code} fetching {url}", file=sys.stderr)
-        sys.exit(1)
+            raise GitHubAPIError(f"HTTP {exc.code} fetching {url}", status=exc.code)
     except urllib.error.URLError as exc:
-        print(f"ERROR: Network error fetching {url}: {exc.reason}", file=sys.stderr)
-        sys.exit(1)
+        raise GitHubAPIError(f"Network error: {exc.reason}")
 
 
 def fetch_all_open_prs(repo: str, token: Optional[str]) -> list[dict]:
@@ -136,7 +140,11 @@ def fetch_all_open_prs(repo: str, token: Optional[str]) -> list[dict]:
             f"https://api.github.com/repos/{repo}/pulls"
             f"?state=open&per_page=100&page={page}"
         )
-        page_data = make_request(url, token)
+        try:
+            page_data = make_request(url, token)
+        except GitHubAPIError as exc:
+            print(f"ERROR: {exc}", file=sys.stderr)
+            sys.exit(1)
         if not isinstance(page_data, list) or not page_data:
             break
         all_prs.extend(page_data)
@@ -424,14 +432,123 @@ def run(repo: str, token: Optional[str]) -> None:
 # CLI
 # ---------------------------------------------------------------------------
 
+def fetch_org_repos(org: str, token: Optional[str]) -> list[str]:
+    """Return list of 'org/repo' strings for all repos in an organization."""
+    if not token:
+        print("ERROR: --org scanning requires --token (unauthenticated rate limit too low).", file=sys.stderr)
+        sys.exit(1)
+    repos = []
+    for page in range(1, 11):  # up to 1000 repos
+        url = f"https://api.github.com/orgs/{org}/repos?type=all&per_page=100&page={page}"
+        try:
+            page_data = make_request(url, token)
+        except GitHubAPIError as exc:
+            print(f"ERROR fetching org repos: {exc}", file=sys.stderr)
+            break
+        if not isinstance(page_data, list) or not page_data:
+            break
+        repos.extend(r["full_name"] for r in page_data if not r.get("archived"))
+        if len(page_data) < 100:
+            break
+    return repos
+
+
+def run_org(org: str, token: Optional[str], json_output: bool = False) -> None:
+    """Scan all repos in a GitHub org and print a combined report."""
+    print(f"Fetching repos for org: {org}...", file=sys.stderr)
+    repos = fetch_org_repos(org, token)
+    print(f"Found {len(repos)} active repos.", file=sys.stderr)
+
+    all_results = {}
+    org_totals = {RISK_CRITICAL: 0, RISK_HIGH: 0, RISK_MEDIUM: 0, RISK_LOW: 0}
+
+    rate_limited = False
+    for repo in repos:
+        try:
+            raw_prs = fetch_all_open_prs(repo, token)
+        except SystemExit:
+            if not rate_limited:
+                print(f"  Skipping {repo} (API error)", file=sys.stderr)
+                rate_limited = True
+            continue
+        dep_prs = [build_dep_pr(pr) for pr in raw_prs if is_dep_pr(pr)]
+        if dep_prs:
+            all_results[repo] = dep_prs
+            for pr in dep_prs:
+                org_totals[pr.risk] += 1
+
+    if json_output:
+        import json as _json
+        output = {
+            "org": org,
+            "repos_scanned": len(repos),
+            "repos_with_dep_prs": len(all_results),
+            "totals": org_totals,
+            "repos": {
+                repo: [
+                    {
+                        "number": pr.number,
+                        "title": pr.title,
+                        "package": pr.package,
+                        "risk": pr.risk,
+                        "reason": pr.reason,
+                        "days_open": pr.days_open,
+                        "url": pr.html_url,
+                    }
+                    for pr in prs
+                ]
+                for repo, prs in all_results.items()
+            },
+        }
+        print(_json.dumps(output, indent=2))
+        return
+
+    sep = "=" * 70
+    print(f"\nORG TRIAGE REPORT — {org}")
+    print(f"Scanned {len(repos)} repos | {len(all_results)} have dep PRs")
+    print(sep)
+
+    # Show CRITICAL repos first
+    for risk_level in [RISK_CRITICAL, RISK_HIGH, RISK_MEDIUM, RISK_LOW]:
+        for repo, prs in all_results.items():
+            repo_prs = [p for p in prs if p.risk == risk_level]
+            if not repo_prs:
+                continue
+            print(f"\n  {repo}:")
+            for pr in repo_prs[:5]:  # max 5 per repo
+                pkg = pr.package or "(unknown)"
+                version_str = format_version_display(pr)
+                risk_label = colorize(f"{pr.risk:<8}", pr.risk)
+                print(f"    #{pr.number} {risk_label} {pkg} {version_str} — {pr.days_open}d open")
+            if len(repo_prs) > 5:
+                print(f"    ... and {len(repo_prs) - 5} more")
+
+    print(f"\n{sep}")
+    print(
+        f"Org summary: {org_totals[RISK_CRITICAL]} critical, "
+        f"{org_totals[RISK_HIGH]} high, {org_totals[RISK_MEDIUM]} medium, "
+        f"{org_totals[RISK_LOW]} safe"
+    )
+    if org_totals[RISK_CRITICAL]:
+        critical_repos = [r for r, prs in all_results.items() if any(p.risk == RISK_CRITICAL for p in prs)]
+        print(f"CRITICAL repos ({len(critical_repos)}): {', '.join(critical_repos)}")
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         prog="scanner",
-        description="Triage open dependency update PRs on a GitHub repository.",
+        description="Triage open dependency update PRs on a GitHub repository or org.",
     )
-    parser.add_argument(
+    target = parser.add_mutually_exclusive_group(required=True)
+    target.add_argument(
         "repo",
+        nargs="?",
         help="GitHub repository as 'owner/repo' or full GitHub URL.",
+    )
+    target.add_argument(
+        "--org",
+        metavar="ORG",
+        help="Scan all repos in a GitHub organization.",
     )
     parser.add_argument(
         "--token",
@@ -439,13 +556,21 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help="GitHub personal access token (increases API rate limit).",
     )
+    parser.add_argument(
+        "--json",
+        action="store_true",
+        help="Output results as JSON (useful for CI/CD pipelines).",
+    )
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
-    repo = parse_repo_arg(args.repo)
-    run(repo, args.token)
+    if args.org:
+        run_org(args.org, args.token, json_output=args.json)
+    else:
+        repo = parse_repo_arg(args.repo)
+        run(repo, args.token)
 
 
 if __name__ == "__main__":
