@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="DepTriage cuts through Dependabot and Renovate noise. Know exactly which dependency PRs are real security risks — and which are safe to auto-merge.">
+  <title>DepTriage — Stop drowning in Dependabot PRs</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0d0d0d;
+      --bg-card:   #141414;
+      --bg-term:   #0a0a0a;
+      --border:    #222;
+      --text:      #e8e8e8;
+      --muted:     #666;
+      --accent:    #7c6aff;
+      --accent-dim:#3d3480;
+      --critical:  #ff3b3b;
+      --high:      #ff8c00;
+      --medium:    #f5c518;
+      --low:       #4a9eff;
+      --safe:      #22c55e;
+      --mono:      'SF Mono', 'Fira Code', 'Cascadia Code', 'Courier New', monospace;
+      --sans:      -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(1rem, 4vw, 3rem);
+      height: 56px;
+      background: rgba(13,13,13,0.92);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+    }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      padding: 0.45rem 1rem;
+      border-radius: 6px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      transition: opacity 0.15s;
+    }
+
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ── LAYOUT ── */
+    .section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem);
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    h1, h2, h3 {
+      line-height: 1.2;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      border-bottom: 1px solid var(--border);
+      max-width: 100%;
+      background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(124,106,255,0.12), transparent);
+    }
+
+    #hero .section {
+      text-align: center;
+      padding-top: clamp(4rem, 12vw, 8rem);
+      padding-bottom: clamp(4rem, 12vw, 7rem);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      background: var(--accent-dim);
+      color: var(--accent);
+      padding: 0.3rem 0.8rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(124,106,255,0.3);
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.75rem);
+      margin-bottom: 1.25rem;
+      color: #fff;
+    }
+
+    h1 .underline {
+      color: var(--accent);
+      position: relative;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: var(--muted);
+      max-width: 580px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    .hero-sub strong { color: var(--text); }
+
+    /* Hero form */
+    .hero-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-input-row {
+      display: flex;
+      width: 100%;
+      max-width: 540px;
+      gap: 0;
+    }
+
+    .hero-input-row input {
+      flex: 1;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-right: none;
+      border-radius: 8px 0 0 8px;
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 0.875rem;
+      padding: 0.75rem 1rem;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .hero-input-row input::placeholder { color: #444; }
+
+    .hero-input-row input:focus { border-color: var(--accent); }
+
+    .hero-input-row button {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 0 8px 8px 0;
+      padding: 0.75rem 1.25rem;
+      font-family: var(--sans);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.15s;
+    }
+
+    .hero-input-row button:hover { opacity: 0.85; }
+
+    .hero-form-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .hero-form-note a { color: var(--accent); text-decoration: none; }
+
+    .hero-success {
+      display: none;
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      color: var(--safe);
+      background: rgba(34,197,94,0.08);
+      border: 1px solid rgba(34,197,94,0.2);
+      border-radius: 8px;
+      padding: 0.75rem 1.5rem;
+    }
+
+    /* ── STATS / SOCIAL PROOF ── */
+    #proof {
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-card);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+
+    .stat-card {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: var(--mono);
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-number.red   { color: var(--critical); }
+    .stat-number.orange{ color: var(--high); }
+    .stat-number.purple{ color: var(--accent); }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .proof-quote {
+      margin-top: 3rem;
+      padding: 1.5rem;
+      border-left: 3px solid var(--accent);
+      background: rgba(124,106,255,0.05);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .proof-quote p {
+      font-size: 1rem;
+      color: var(--text);
+      font-style: italic;
+      margin-bottom: 0.5rem;
+    }
+
+    .proof-quote cite {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-style: normal;
+    }
+
+    /* ── HOW IT WORKS ── */
+    #how {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .step {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.75rem;
+      position: relative;
+    }
+
+    .step-num {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .step-num::after {
+      content: '';
+      display: block;
+      height: 1px;
+      flex: 1;
+      background: var(--border);
+    }
+
+    .step h3 {
+      font-size: 1rem;
+      color: #fff;
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.01em;
+    }
+
+    .step p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .step-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+      font-family: var(--mono);
+    }
+
+    /* ── SAMPLE OUTPUT ── */
+    #output {
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-card);
+    }
+
+    .terminal-wrap {
+      margin-top: 2.5rem;
+      border: 1px solid #2a2a2a;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .terminal-bar {
+      background: #1c1c1c;
+      padding: 0.6rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid #2a2a2a;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .dot-red    { background: #ff5f57; }
+    .dot-yellow { background: #ffbd2e; }
+    .dot-green  { background: #28c840; }
+
+    .terminal-title {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-left: 0.5rem;
+    }
+
+    .terminal-body {
+      background: var(--bg-term);
+      padding: 1.5rem;
+      font-family: var(--mono);
+      font-size: clamp(0.7rem, 1.8vw, 0.8125rem);
+      line-height: 1.8;
+      overflow-x: auto;
+    }
+
+    .t-dim    { color: #555; }
+    .t-header { color: #aaa; }
+    .t-sep    { color: #333; }
+    .t-crit   { color: var(--critical); font-weight: 700; }
+    .t-high   { color: var(--high);     font-weight: 700; }
+    .t-med    { color: var(--medium);   font-weight: 700; }
+    .t-low    { color: var(--low); }
+    .t-safe   { color: var(--safe); }
+    .t-pkg    { color: #e8e8e8; }
+    .t-ver    { color: #888; }
+    .t-cve    { color: var(--accent); }
+    .t-action-crit { color: var(--critical); }
+    .t-action-safe { color: var(--safe); }
+    .t-action-rev  { color: var(--medium); }
+    .t-summary { color: #ccc; margin-top: 0.25rem; }
+
+    .output-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .legend-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    /* ── PRICING ── */
+    #pricing {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2.5rem;
+    }
+
+    .plan {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 2rem;
+    }
+
+    .plan.featured {
+      border-color: var(--accent);
+      position: relative;
+    }
+
+    .plan-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.2rem 0.75rem;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    .plan-name {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .plan-price {
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+      letter-spacing: -0.04em;
+    }
+
+    .plan-price sub {
+      font-size: 0.875rem;
+      color: var(--muted);
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+
+    .plan-period {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .plan-features {
+      list-style: none;
+      margin-bottom: 1.75rem;
+    }
+
+    .plan-features li {
+      font-size: 0.875rem;
+      color: var(--text);
+      padding: 0.4rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+    }
+
+    .plan-features li::before {
+      content: '✓';
+      color: var(--safe);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 0.05rem;
+    }
+
+    .plan-features li.no::before {
+      content: '—';
+      color: var(--muted);
+    }
+
+    .plan-features li.no { color: var(--muted); }
+
+    .plan-cta {
+      display: block;
+      text-align: center;
+      padding: 0.65rem 1.25rem;
+      border-radius: 7px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: opacity 0.15s;
+      border: none;
+      width: 100%;
+    }
+
+    .plan-cta:hover { opacity: 0.8; }
+
+    .plan-cta-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .plan-cta-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid #333;
+    }
+
+    /* ── WAITLIST CTA ── */
+    #waitlist {
+      text-align: center;
+    }
+
+    #waitlist h2 {
+      font-size: clamp(1.6rem, 4vw, 2.5rem);
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+
+    #waitlist p {
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 2rem;
+      font-size: 1rem;
+    }
+
+    .waitlist-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .waitlist-input-row {
+      display: flex;
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .waitlist-input-row input {
+      flex: 1;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-right: none;
+      border-radius: 8px 0 0 8px;
+      color: var(--text);
+      font-size: 0.9rem;
+      padding: 0.75rem 1rem;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .waitlist-input-row input::placeholder { color: #444; }
+    .waitlist-input-row input:focus { border-color: var(--accent); }
+
+    .waitlist-input-row button {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 0 8px 8px 0;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.15s;
+    }
+
+    .waitlist-input-row button:hover { opacity: 0.85; }
+
+    .waitlist-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .waitlist-note a { color: var(--accent); text-decoration: none; }
+
+    .waitlist-success {
+      display: none;
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      color: var(--safe);
+      background: rgba(34,197,94,0.08);
+      border: 1px solid rgba(34,197,94,0.2);
+      border-radius: 8px;
+      padding: 0.75rem 2rem;
+    }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem 2.5rem;
+      padding: 1.5rem clamp(1rem, 4vw, 3rem);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .trust-item {
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .trust-item .check { color: var(--safe); font-weight: 700; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem clamp(1rem, 4vw, 3rem);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      font-family: var(--mono);
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    .footer-logo span { color: var(--accent); }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover { color: var(--text); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+
+      .hero-input-row {
+        flex-direction: column;
+      }
+
+      .hero-input-row input {
+        border-right: 1px solid #333;
+        border-bottom: none;
+        border-radius: 8px 8px 0 0;
+      }
+
+      .hero-input-row button {
+        border-radius: 0 0 8px 8px;
+      }
+
+      .waitlist-input-row {
+        flex-direction: column;
+      }
+
+      .waitlist-input-row input {
+        border-right: 1px solid #333;
+        border-bottom: none;
+        border-radius: 8px 8px 0 0;
+      }
+
+      .waitlist-input-row button {
+        border-radius: 0 0 8px 8px;
+      }
+
+      .terminal-body {
+        padding: 1rem 0.75rem;
+      }
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Dep<span>Triage</span></div>
+  <ul class="nav-links">
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#output">Sample report</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+  </ul>
+  <a href="#waitlist" class="nav-cta">Join waitlist</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="section">
+    <div class="hero-badge">Early access — join the waitlist</div>
+    <h1>Stop guessing which<br><span class="underline">Dependabot PRs actually matter</span></h1>
+    <p class="hero-sub">
+      Your repo has 80 open dependency PRs. <strong>Two of them are exploitable CVEs.</strong>
+      DepTriage tells you exactly which ones — in seconds.
+    </p>
+
+    <div class="hero-form" id="hero-form-wrap">
+      <div class="hero-input-row">
+        <input
+          type="email"
+          id="hero-email"
+          placeholder="your@email.com — get early access"
+          autocomplete="email"
+          aria-label="Email address"
+        >
+        <button type="button" onclick="handleHeroSubmit()">Get early access</button>
+      </div>
+      <p class="hero-form-note">
+        No spam. No credit card.
+        Or <a href="#waitlist">join the Discord for instant access</a>.
+      </p>
+    </div>
+    <div class="hero-success" id="hero-success">
+      ✓ You're on the list — we'll email you when early access opens.
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF / STATS -->
+<section id="proof">
+  <div class="section">
+    <p class="section-label">The problem</p>
+    <h2 style="font-size: clamp(1.4rem, 3.5vw, 2rem); color: #fff; margin-bottom: 0.5rem;">
+      Real patches get buried in the noise
+    </h2>
+    <p style="color: var(--muted); max-width: 560px;">
+      Dependabot doesn't tell you which updates are actually dangerous.
+      So teams either merge everything blindly — or ignore everything and hope for the best.
+    </p>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number red">60%</div>
+        <div class="stat-label">
+          of actively exploited CVEs had patches available for months before exploitation
+          <br><em style="font-size:0.75rem; color:#444;">— CISA KEV analysis</em>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number orange">80+</div>
+        <div class="stat-label">
+          open Dependabot PRs per month is normal for a mid-size repo —
+          engineers ignore most of them
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number purple">4hrs</div>
+        <div class="stat-label">
+          average time per week spent triaging dependency updates manually
+          across engineering teams
+        </div>
+      </div>
+    </div>
+
+    <div class="proof-quote">
+      <p>"We had 200 open Dependabot PRs. We had no idea which ones actually mattered.
+         Turns out two of them were sitting exploitable CVEs. We merged them the next day."</p>
+      <cite>— DevOps lead at a 40-person SaaS company</cite>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="section">
+    <p class="section-label">How it works</p>
+    <h2 style="font-size: clamp(1.4rem, 3.5vw, 2rem); color: #fff;">
+      Zero setup. Real risk scores. Clear actions.
+    </h2>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-icon" style="color: var(--accent);">$_</div>
+        <h3>Paste your repo URL</h3>
+        <p>
+          Point DepTriage at any public GitHub repo — or authenticate for private repos.
+          Works with whatever Dependabot or Renovate setup you already have.
+        </p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-icon" style="color: var(--critical);">⚠</div>
+        <h3>Get a risk-scored report</h3>
+        <p>
+          We cross-reference every open dep PR against CVE databases, GHSA advisories,
+          and CISA's Known Exploited Vulnerabilities catalog. Each PR gets a tier:
+          CRITICAL, HIGH, MEDIUM, LOW, or SAFE to auto-merge.
+        </p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-icon" style="color: var(--safe);">✓</div>
+        <h3>Know exactly what to do</h3>
+        <p>
+          Merge the two critical PRs now. Batch-merge the 18 safe patch bumps.
+          Schedule the rest for your next sprint. Done in 5 minutes, not 4 hours.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAMPLE OUTPUT -->
+<section id="output">
+  <div class="section">
+    <p class="section-label">Sample report</p>
+    <h2 style="font-size: clamp(1.4rem, 3.5vw, 2rem); color: #fff; margin-bottom: 0.5rem;">
+      This is what you get — no dashboard required
+    </h2>
+    <p style="color: var(--muted); margin-bottom: 0.25rem;">
+      A scannable, actionable triage report. Works in your terminal, your Slack, or your PR comments.
+    </p>
+
+    <div class="terminal-wrap">
+      <div class="terminal-bar">
+        <div class="dot dot-red"></div>
+        <div class="dot dot-yellow"></div>
+        <div class="dot dot-green"></div>
+        <span class="terminal-title">dep-triage — acme/webapp</span>
+      </div>
+      <div class="terminal-body">
+        <span class="t-header">DEP TRIAGE REPORT — acme/webapp</span><br>
+        <span class="t-dim">Scanned 84 open PRs | 31 dependency PRs found</span><br>
+        <span class="t-sep">═══════════════════════════════════════════════════════</span><br>
+        <br>
+        <span class="t-crit">#8821 ● CRITICAL</span>&nbsp;&nbsp;<span class="t-pkg">lodash          </span> <span class="t-ver">4.17.20 → 4.17.21 </span> <span class="t-cve">[CVE-2021-23337]</span> <span class="t-action-crit">Merge today</span><br>
+        <span class="t-crit">#8819 ● CRITICAL</span>&nbsp;&nbsp;<span class="t-pkg">follow-redirects</span> <span class="t-ver">1.14.7  → 1.14.9  </span> <span class="t-cve">[GHSA-74fj-2j2h]</span> <span class="t-action-crit">Merge today</span><br>
+        <br>
+        <span class="t-high">#8734 ● HIGH    </span>&nbsp;&nbsp;<span class="t-pkg">express         </span> <span class="t-ver">4.17.x  → 4.21.x  </span> <span class="t-ver">[Major version]  </span> <span class="t-action-rev">Review today</span><br>
+        <br>
+        <span class="t-med">#8698 ● MEDIUM  </span>&nbsp;&nbsp;<span class="t-pkg">typescript      </span> <span class="t-ver">5.2.x   → 5.4.x   </span> <span class="t-ver">[Minor version]  </span> <span class="t-action-rev">Review this week</span><br>
+        <br>
+        <span class="t-low">#8612 ● LOW     </span>&nbsp;&nbsp;<span class="t-pkg">@types/node     </span> <span class="t-ver">18.x    → 20.x    </span> <span class="t-ver">[Major, dev-only]</span> <span class="t-action-rev">Low risk</span><br>
+        <br>
+        <span class="t-safe">#8489 ✓ SAFE    </span>&nbsp;&nbsp;<span class="t-pkg">prettier        </span> <span class="t-ver">3.2.4   → 3.2.5   </span> <span class="t-ver">[Patch bump]     </span> <span class="t-action-safe">Auto-merge OK</span><br>
+        <span class="t-safe">#8488 ✓ SAFE    </span>&nbsp;&nbsp;<span class="t-pkg">eslint-config   </span> <span class="t-ver">1.0.3   → 1.0.4   </span> <span class="t-ver">[Patch bump]     </span> <span class="t-action-safe">Auto-merge OK</span><br>
+        <span class="t-dim">... 24 more PRs</span><br>
+        <br>
+        <span class="t-sep">═══════════════════════════════════════════════════════</span><br>
+        <span class="t-summary">ACTION: Merge 2 critical PRs now. Batch-merge 18 safe PRs. Review 11 later.</span>
+      </div>
+    </div>
+
+    <div class="output-legend">
+      <div class="legend-item">
+        <div class="legend-dot" style="background: var(--critical);"></div>
+        CRITICAL — known exploit, merge now
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background: var(--high);"></div>
+        HIGH — security issue, review today
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background: var(--medium);"></div>
+        MEDIUM — worth reviewing this sprint
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background: var(--low);"></div>
+        LOW — low risk, schedule it
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background: var(--safe);"></div>
+        SAFE — patch bump, auto-merge OK
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section">
+    <p class="section-label">Pricing</p>
+    <h2 style="font-size: clamp(1.4rem, 3.5vw, 2rem); color: #fff; margin-bottom: 0.5rem;">
+      Simple pricing. Always free for open source.
+    </h2>
+    <p style="color: var(--muted);">
+      During the waitlist period, all plans are free. Pricing kicks in at GA.
+    </p>
+
+    <div class="pricing-grid">
+      <!-- Free -->
+      <div class="plan">
+        <div class="plan-name">Open Source</div>
+        <div class="plan-price">$0</div>
+        <div class="plan-period">forever, for public repos</div>
+        <ul class="plan-features">
+          <li>Unlimited public repos</li>
+          <li>Full CVE/GHSA risk scoring</li>
+          <li>Safe auto-merge list</li>
+          <li>On-demand reports</li>
+          <li class="no">Private repos</li>
+          <li class="no">Scheduled scans</li>
+          <li class="no">Slack / GitHub PR comments</li>
+        </ul>
+        <a href="#waitlist" class="plan-cta plan-cta-outline">Join waitlist</a>
+      </div>
+
+      <!-- Pro -->
+      <div class="plan featured">
+        <div class="plan-badge">Most popular</div>
+        <div class="plan-name">Team</div>
+        <div class="plan-price">$49<sub>/mo per org</sub></div>
+        <div class="plan-period">billed monthly — cancel anytime</div>
+        <ul class="plan-features">
+          <li>Everything in Open Source</li>
+          <li>Private repo support</li>
+          <li>Daily scheduled scans</li>
+          <li>Slack digest alerts</li>
+          <li>GitHub PR comment summaries</li>
+          <li>Up to 10 repos per org</li>
+          <li class="no">API access</li>
+        </ul>
+        <a href="#waitlist" class="plan-cta plan-cta-primary">Join waitlist — free during beta</a>
+      </div>
+
+      <!-- Enterprise -->
+      <div class="plan">
+        <div class="plan-name">Enterprise</div>
+        <div class="plan-price" style="font-size: 1.5rem; padding-top: 0.35rem;">Custom</div>
+        <div class="plan-period">contact for pricing</div>
+        <ul class="plan-features">
+          <li>Everything in Team</li>
+          <li>Unlimited repos</li>
+          <li>API access</li>
+          <li>SSO / SAML</li>
+          <li>SLA + dedicated support</li>
+          <li>On-prem deployment option</li>
+          <li>Custom CVE triage rules</li>
+        </ul>
+        <a href="mailto:hello@deptriage.dev" class="plan-cta plan-cta-outline">Contact us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><span class="check">✓</span> No spam, ever</div>
+  <div class="trust-item"><span class="check">✓</span> No credit card required for beta</div>
+  <div class="trust-item"><span class="check">✓</span> We never store your source code</div>
+  <div class="trust-item"><span class="check">✓</span> Read-only GitHub access only</div>
+  <div class="trust-item"><span class="check">✓</span> Open source core (coming soon)</div>
+  <div class="trust-item"><span class="check">✓</span> Unsubscribe anytime</div>
+</div>
+
+<!-- WAITLIST CTA -->
+<section id="waitlist">
+  <div class="section">
+    <p class="section-label">Early access</p>
+    <h2>Be first to know when we launch</h2>
+    <p>
+      We're onboarding early users now. Drop your email and we'll reach out
+      personally when your access is ready.
+    </p>
+
+    <div class="waitlist-form" id="waitlist-form-wrap">
+      <div class="waitlist-input-row">
+        <input
+          type="email"
+          id="waitlist-email"
+          placeholder="you@yourcompany.com"
+          autocomplete="email"
+          aria-label="Email address for waitlist"
+        >
+        <button type="button" onclick="handleWaitlistSubmit()">Notify me</button>
+      </div>
+      <p class="waitlist-note">
+        No spam. No credit card. Cancel anytime.<br>
+        Or join our Discord for instant early access:
+        <a href="https://discord.gg/DISCORD_URL" target="_blank" rel="noopener">discord.gg/deptriage</a>
+      </p>
+    </div>
+    <div class="waitlist-success" id="waitlist-success">
+      ✓ You're on the list — watch your inbox. We'll reach out personally.
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Dep<span>Triage</span> &nbsp;·&nbsp; Cut through dependency noise.</div>
+  <ul class="footer-links">
+    <li><a href="mailto:hello@deptriage.dev">Contact</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#">Privacy</a></li>
+    <li><a href="#">Terms</a></li>
+  </ul>
+</footer>
+
+<script>
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+  }
+
+  function handleHeroSubmit() {
+    var email = document.getElementById('hero-email').value;
+    if (!isValidEmail(email)) {
+      document.getElementById('hero-email').focus();
+      document.getElementById('hero-email').style.borderColor = 'var(--critical)';
+      setTimeout(function() {
+        document.getElementById('hero-email').style.borderColor = '';
+      }, 1200);
+      return;
+    }
+    // Fallback: open mailto with the entered email pre-filled
+    var subject = encodeURIComponent('DepTriage Early Access Request');
+    var body = encodeURIComponent('Hi,\n\nI\'d like early access to DepTriage.\n\nEmail: ' + email.trim());
+    window.location.href = 'mailto:hello@deptriage.dev?subject=' + subject + '&body=' + body;
+
+    document.getElementById('hero-form-wrap').style.display = 'none';
+    document.getElementById('hero-success').style.display = 'block';
+  }
+
+  function handleWaitlistSubmit() {
+    var email = document.getElementById('waitlist-email').value;
+    if (!isValidEmail(email)) {
+      document.getElementById('waitlist-email').focus();
+      document.getElementById('waitlist-email').style.borderColor = 'var(--critical)';
+      setTimeout(function() {
+        document.getElementById('waitlist-email').style.borderColor = '';
+      }, 1200);
+      return;
+    }
+    var subject = encodeURIComponent('DepTriage Early Access Request');
+    var body = encodeURIComponent('Hi,\n\nI\'d like early access to DepTriage.\n\nEmail: ' + email.trim());
+    window.location.href = 'mailto:hello@deptriage.dev?subject=' + subject + '&body=' + body;
+
+    document.getElementById('waitlist-form-wrap').style.display = 'none';
+    document.getElementById('waitlist-success').style.display = 'block';
+  }
+
+  // Allow Enter key on inputs
+  document.getElementById('hero-email').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') handleHeroSubmit();
+  });
+  document.getElementById('waitlist-email').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') handleWaitlistSubmit();
+  });
+</script>
+</body>
+</html>

@@ -22,7 +22,8 @@ export PATH="$HOME/.npm-global/bin:$PATH"
 while true; do
   echo "[$(date -Iseconds)] Starting Claude Code session..."
 
-  cat "$SEED_PROMPT" | claude -p - --dangerously-skip-permissions
+  claude "$(cat "$SEED_PROMPT")" \
+    --permission-mode bypassPermissions
   EXIT_CODE=$?
 
   echo "[$(date -Iseconds)] Claude exited with code $EXIT_CODE. Restarting in ${COOLDOWN}s..."

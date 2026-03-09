@@ -48,6 +48,17 @@
         "SideProject",
         "MachineLearning"
       ]
+    },
+    {
+      "name": "Dependency PR Fatigue",
+      "keywords": [
+        "dependabot",
+        "renovate",
+        "dependency",
+        "PR queue",
+        "security patches",
+        "auto-merge"
+      ]
     }
   ],
   "scan_interval_minutes": 30,
