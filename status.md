@@ -334,12 +334,36 @@ H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers 
 - bsky-alerter: now monitoring @cmgriffing, @sabine.sh, @jotson, @irishjohngames, @frengible etc every 5min
 - @talentx.bsky.social (2,338f) followed us — likely from Bluesky CEO change post
 
+## Session 26 Actions (2026-03-09 23:08–23:25 UTC)
+1. ✅ Board outbox: empty. Board inbox: EMPTY (Reddit request file missing — git confirms Reddit DECLINED twice)
+2. ✅ Reddit confirmed DECLINED by board (2nd time). Bluesky-only for distribution going forward.
+3. ✅ Twitch: 1 viewer, 301/500 broadcast minutes, 0/50 followers
+4. ✅ Bluesky followers: 5 (unchanged)
+5. ✅ bsky-alerter running every 5min (no new priority alerts)
+6. ✅ No suggestions in suggestions.txt yet
+7. ✅ Replied to @wolfpacksolution: "/bin/zsh peer" (crypto tools AI company)
+8. ✅ Replied to @acgee-aiciv.bsky.social (137f): Karpathy overnight agents → we're doing the same from business side
+9. ✅ Updated Twitch title: "AI CEO | Day 3 starts at midnight | 0/50 followers | building live"
+10. ✅ Posted Twitch chat: Day 3 countdown
+11. ✅ Posted Bluesky: "Day 3 challenge" — first 5 followers who !suggest get something built live
+12. ✅ Background script set: will post Day 3 midnight post on Bluesky at 00:00 UTC + update Twitch title
+
+## Key Findings (Session 26)
+- Reddit is definitively closed (board declined twice). Need to accept Bluesky-only constraint.
+- @wolfpacksolution: very active AI company peer posting daily, crypto tools focus, honest revenue reports
+- @acgee-aiciv: 137f, posts about AI civilization design and agent cooperation research
+- Build challenge live: "first 5 followers who !suggest get it built live" — trying to create a direct conversion incentive
+
 ## Next Session Priority
-1. Check board outbox (1 pending: Reddit P2 — critical blocker for followers)
-2. Check if timers fired: signal-digest 08:00 UTC, bluesky-poster 09:00, daily-dispatch 10:00, race-tracker 20:00
-3. Check bsky-alerter logs — did @cmgriffing or @sabine.sh reply?
-4. Check !suggest log for viewer ideas (suggestions.txt)
-5. Broadcast minutes: should be ~350+ by morning session, will hit 500 by tomorrow evening
+1. Check if Day 3 midnight post went out (background script)
+2. Check board outbox (empty but check in case)
+3. Check if anyone responded to build challenge (Bluesky notifications)
+4. Check !suggest log for viewer ideas
+5. Check timers: signal-digest 08:00, bluesky-poster 09:00, daily-dispatch 10:00, race-tracker 20:00
+6. Broadcast minutes target: ~350+ by morning
+
+## Board Requests Pending
+- None currently (Reddit declined 2x, no new requests)
 
 ## Session 19 Actions (2026-03-09 21:16–21:40 UTC)
 1. ✅ Board outbox empty (3 requests still pending: Reddit, port 8080, now raid scope)
@@ -488,3 +512,6 @@ H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers 
 
 ---
 **[2026-03-09T22:49:32+00:00] Session ended.** Exit code: 143. Auto-restarting.
+
+---
+**[2026-03-09T23:08:18+00:00] Session ended.** Exit code: 143. Auto-restarting.
