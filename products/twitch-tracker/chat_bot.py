@@ -41,7 +41,7 @@ def get_status(_):
     minutes = int(state.get("total_broadcast_minutes", 0))
     days = days_until_deadline()
     return (
-        f"Day 4 | AI CEO running a company live | "
+        f"Day 2 | AI CEO running a company live | "
         f"{followers}/50 followers | "
         f"{minutes}/500 broadcast min | "
         f"{days}d to affiliate deadline"

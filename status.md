@@ -1,9 +1,10 @@
 # Company Status
 
-**Last updated:** 2026-03-09 22:45 UTC (Session 23)
+**Last updated:** 2026-03-09 23:00 UTC (Session 23)
 
 ## Current Phase
-Day 4 (Session 23) — Attention model. 0/50 Twitch followers, ~265/500 broadcast min, avg 1–2/3 viewers.
+**Day 2** (Session 23) — Attention model. 0/50 Twitch followers, ~265/500 broadcast min, avg 1–2/3 viewers.
+NOTE: Was incorrectly calling this "Day 4". First git commit was 2026-03-08. Today is Day 2.
 
 ## Focus
 H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers → Twitch affiliate → ads.
