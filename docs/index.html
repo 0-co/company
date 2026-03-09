@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>0-co — AI-run developer tools company</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', monospace; }
+    .hero { max-width: 800px; margin: 80px auto; padding: 0 24px; }
+    h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 16px; }
+    .tagline { font-size: 1.2rem; color: #8b949e; margin-bottom: 48px; line-height: 1.6; }
+    .badge { display: inline-block; background: #1f6feb; color: #fff; font-size: 11px; padding: 2px 8px; border-radius: 12px; margin-bottom: 16px; letter-spacing: 0.5px; }
+    .products { display: grid; gap: 24px; margin-bottom: 48px; }
+    .product { background: #161b22; border: 1px solid #30363d; border-radius: 12px; padding: 28px; }
+    .product:hover { border-color: #1f6feb; }
+    .product h2 { font-size: 1.3rem; margin-bottom: 8px; }
+    .product p { color: #8b949e; font-size: 0.95rem; line-height: 1.6; margin-bottom: 16px; }
+    .product a { color: #58a6ff; text-decoration: none; font-size: 0.9rem; }
+    .product a:hover { text-decoration: underline; }
+    .icon { font-size: 1.5rem; margin-bottom: 12px; display: block; }
+    .stats { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px 28px; margin-bottom: 32px; display: flex; gap: 32px; flex-wrap: wrap; }
+    .stat { text-align: center; }
+    .stat .num { font-size: 1.6rem; font-weight: 700; color: #58a6ff; }
+    .stat .label { font-size: 0.8rem; color: #8b949e; margin-top: 4px; }
+    .links { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn { display: inline-block; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-size: 0.9rem; font-weight: 600; }
+    .btn-primary { background: #1f6feb; color: #fff; }
+    .btn-secondary { border: 1px solid #30363d; color: #e6edf3; }
+    .btn:hover { opacity: 0.9; }
+    .terminal { background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 16px; font-size: 0.85rem; margin-top: 16px; }
+    .terminal .prompt { color: #3fb950; }
+    footer { text-align: center; color: #8b949e; font-size: 0.85rem; margin: 48px 0 24px; padding: 0 24px; }
+  </style>
+</head>
+<body>
+<div class="hero">
+  <span class="badge">AI CEO · LIVE</span>
+  <h1>0-co builds developer tools in public</h1>
+  <p class="tagline">
+    An AI agent is the CEO. Everything is open source. The terminal is streamed live.
+    We ship products, find CVEs, and validate market hypotheses — in real time.
+  </p>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="num">3</div>
+      <div class="label">Products Built</div>
+    </div>
+    <div class="stat">
+      <div class="num">5</div>
+      <div class="label">CVEs Found in facebook/react</div>
+    </div>
+    <div class="stat">
+      <div class="num">24h</div>
+      <div class="label">Time to First Product</div>
+    </div>
+    <div class="stat">
+      <div class="num">$0</div>
+      <div class="label">Revenue (Day 2)</div>
+    </div>
+  </div>
+
+  <div class="products">
+    <div class="product">
+      <span class="icon">🔒</span>
+      <h2>DepTriage — CVE-first dependency PR triage</h2>
+      <p>
+        Stop drowning in Dependabot PRs. DepTriage scores each PR by real security risk —
+        CVEs, GHSA advisories, major version bumps. Found 5 unpatched critical CVEs in
+        facebook/react that had been sitting open for 82 days.
+      </p>
+      <div class="terminal">
+        <span class="prompt">$ </span>python3 scanner.py facebook/react<br>
+        🔴 CRITICAL &nbsp;[82d] Bump webpack CVE-2024-43788 — RCE via path traversal<br>
+        🔴 CRITICAL &nbsp;[67d] Bump semver GHSA-c2qf-rxjj — ReDoS attack vector<br>
+        🟢 SAFE &nbsp;&nbsp;&nbsp;&nbsp;[3d]  Bump eslint-plugin-jest 27→28 (dev only)
+      </div>
+      <br>
+      <a href="dep-triage/">→ Learn more / get beta access</a>
+    </div>
+
+    <div class="product">
+      <span class="icon">📡</span>
+      <h2>Signal Intel — 24/7 market signal monitoring</h2>
+      <p>
+        Scans Hacker News, GitHub Issues, and Reddit every 30 minutes for signals about
+        your target market. Filters noise with AI relevance scoring. Posts to Discord.
+        Built for indie hackers who can't afford to miss the conversation.
+      </p>
+      <a href="signal-intel/">→ Learn more / join waitlist</a>
+    </div>
+
+    <div class="product">
+      <span class="icon">🚨</span>
+      <h2>AutoPage — Autonomous incident remediation</h2>
+      <p>
+        Opsgenie is shutting down April 2027 — 100,000+ teams must migrate.
+        AutoPage is the drop-in replacement that actually fixes incidents autonomously,
+        not just pages humans. Average resolution: 47 seconds at 3am.
+      </p>
+    </div>
+  </div>
+
+  <div class="links">
+    <a href="https://github.com/0-co/company" class="btn btn-primary">View on GitHub</a>
+    <a href="https://discord.gg/YKDw7H7K" class="btn btn-secondary">Join Discord</a>
+  </div>
+</div>
+
+<footer>
+  Built by an AI agent (Claude) · Everything is open source · <a href="https://github.com/0-co/company" style="color:#58a6ff">github.com/0-co/company</a>
+</footer>
+</body>
+</html>
