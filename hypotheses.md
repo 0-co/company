@@ -61,27 +61,37 @@ Key assumptions: (1) developers will pay for signal monitoring vs. just using fr
 ---
 
 ### H3 — Problem: On-Call Engineers Are Paged for Self-Healable Incidents
-Status: `testing` (demand validation pending, lower priority)
-Added: 2026-03-08
+Status: `testing` (discovery phase — UPGRADED to second priority)
+Added: 2026-03-08 | Updated: 2026-03-09 (EV revised upward, Opsgenie timing discovered)
 
-> **I believe** on-call engineers at software companies **are burned out** because 95%+ of alerts they receive should be auto-resolved by executing a known runbook, but current tools (PagerDuty, Opsgenie) only route alerts — they don't execute remediation. Real incidents become noise in a sea of false positives.
+> **I believe** engineering teams (20-500 engineers) **will pay $1,000-3,000/month** for automated incident remediation **because** on-call engineers receive 2,000+ alerts/week but only 3% require human action — and the only standalone autonomous runbook SaaS (Shoreline.io) was acquired by Nvidia and removed from market, leaving 100,000+ Opsgenie refugees actively evaluating alternatives through 2027.
 
-**Evidence:**
-- Average on-call engineer receives ~50 alerts/week; only 2-5% require human action
-- 53% of security alerts are false positives
-- 77-80% MTTR reduction when runbook automation is applied (PagerDuty + AIOps data)
-- "Alert fatigue is killing your on-call team" — March 2026 post, 200+ comments
+**Evidence (updated March 2026):**
+- 2,000+ alerts/week per team; only 3% need human action (incident.io, 2025)
+- Shoreline.io acquired by Nvidia for ~$100M July 2024 — direct product validation, now gone
+- Opsgenie shutdown: new sales ended June 2025, full shutdown April 2027 — FORCED MIGRATION
+- incident.io raised $62M April 2025 for "AI agents that resolve incidents"
+- Datadog Bits AI SRE launched December 2025 — but ecosystem-locked
+- PagerDuty runbook automation: $125/user/month, still requires human trigger
+- On-call standby pay: $540/week/engineer — direct cost automation replaces
+- Average on-call team (10 engineers) costs $280k/year just in standby compensation
 
-**True when:** 5+ on-call engineers describe this as "major pain" and 2+ express willingness to pay $200+/month in discovery conversations.
-**False when:** Consistently hear "we handle this fine with existing tools" or "trust issues prevent automation."
+**True when:** 5+ on-call engineers confirm major pain + 2+ express willingness to pay $500+/month.
+**False when:** "Datadog Bits already solves this" OR trust barrier proves absolute.
 
-**Expected value:** 200 teams × $200/month = $40k MRR × 5% probability = **$2k/month EV**
-Key assumptions: (1) teams will trust AI to execute runbooks automatically, (2) integration complexity is solvable.
+**Expected value (revised):**
+- Near-term: 20 teams × $500/month = $10k MRR × 10% = **$1k/month EV**
+- Long-term: 500 teams × $2,000/month = $1M MRR × 5% = **$50k/month EV**
+- Timing: Opsgenie migration wave is unique window through April 2027
 
-**Budget:** $0.
-**Deadline:** 2026-03-22 (2-week discovery phase — talk to 5 on-call engineers before building anything).
+Key assumptions: (1) teams will whitelist "safe remediations" to enable automation (bypasses trust problem), (2) can integrate with Kubernetes/AWS/PagerDuty without 12-month build, (3) Datadog doesn't win market before entry.
 
-**Riskiest assumption:** Trust. Auto-remediation in production requires high trust. Start with "read-only + suggest" mode and escalate to auto-execute only after trust is built. Test this assumption first.
+**Riskiest assumption:** Can a team go from "zero automation" to "AI restarts pods automatically" in under 30 minutes? Test via discovery calls before building anything.
+
+**Entry wedge:** Opsgenie refugees. "Drop-in replacement with autonomous remediation built in."
+
+**Budget:** $0 until first customer interest.
+**Deadline:** 2026-03-22 (need Discord/Twitch for discovery calls — blocked on board).
 
 ---
 
