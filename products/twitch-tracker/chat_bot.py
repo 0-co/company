@@ -1,0 +1,163 @@
+#!/usr/bin/env python3
+"""
+Twitch chat command bot.
+Tails /var/lib/twitch-chat/chat.log (written by twitch-irc.service)
+and responds to !commands via vault-twitch POST /chat/messages.
+"""
+
+import subprocess
+import sys
+import time
+import re
+import json
+import os
+from datetime import datetime, UTC, date
+
+BROADCASTER_ID = "1455485722"
+CHAT_LOG = "/var/lib/twitch-chat/chat.log"
+STATE_FILE = "/home/agent/company/products/twitch-tracker/state.json"
+COOLDOWN_SECS = 30  # minimum seconds between any bot response
+AFFILIATE_DEADLINE = date(2026, 4, 1)
+AFFILIATE_FOLLOWERS_NEEDED = 50
+DISCORD_INVITE = "discord.gg/YKDw7H7K"
+TWITCH_URL = "twitch.tv/0coceo"
+
+
+def load_state():
+    try:
+        with open(STATE_FILE) as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+
+def days_until_deadline():
+    return (AFFILIATE_DEADLINE - date.today()).days
+
+
+def get_status(_):
+    state = load_state()
+    followers = state.get("last_follower_count", 0)
+    minutes = int(state.get("total_broadcast_minutes", 0))
+    days = days_until_deadline()
+    return (
+        f"Day 4 | AI CEO running a company live | "
+        f"{followers}/50 followers | "
+        f"{minutes}/500 broadcast min | "
+        f"{days}d to affiliate deadline"
+    )
+
+
+def get_followers(_):
+    state = load_state()
+    followers = state.get("last_follower_count", 0)
+    days = days_until_deadline()
+    needed = AFFILIATE_FOLLOWERS_NEEDED - followers
+    return (
+        f"{followers}/50 Twitch followers — need {needed} more. "
+        f"{days} days left. Follow to help hit affiliate: {TWITCH_URL}"
+    )
+
+
+def get_hypothesis(_):
+    state = load_state()
+    followers = state.get("last_follower_count", 0)
+    days = days_until_deadline()
+    return (
+        f"H5: Hit Twitch affiliate by April 1. "
+        f"{followers}/50 followers, {days} days left. "
+        f"Revenue path: viewers -> affiliate -> ads."
+    )
+
+
+def get_about(_):
+    return (
+        f"I'm an AI CEO (Claude) running a company live on Twitch. "
+        f"No human employees. No revenue yet. "
+        f"Building in public until something works. {TWITCH_URL}"
+    )
+
+
+COMMANDS = {
+    "!help": lambda _: f"Commands: !status !followers !hypothesis !discord !about !help",
+    "!status": get_status,
+    "!followers": get_followers,
+    "!discord": lambda _: f"Join the company Discord: {DISCORD_INVITE}",
+    "!hypothesis": get_hypothesis,
+    "!about": get_about,
+}
+
+
+def send_chat(message):
+    message = message[:499]
+    payload = json.dumps({
+        "broadcaster_id": BROADCASTER_ID,
+        "sender_id": BROADCASTER_ID,
+        "message": message,
+    })
+    result = subprocess.run(
+        ["sudo", "-u", "vault", "/home/vault/bin/vault-twitch",
+         "POST", "/chat/messages", payload],
+        capture_output=True, text=True, timeout=10
+    )
+    if result.returncode != 0:
+        print(f"[chat_bot] send_chat error: {result.stderr[:100]}", file=sys.stderr)
+    return result.returncode == 0
+
+
+def tail_log(path):
+    """Open file, seek to end, yield new lines as they arrive."""
+    with open(path, "r") as f:
+        f.seek(0, 2)  # seek to end
+        while True:
+            line = f.readline()
+            if line:
+                yield line.rstrip()
+            else:
+                time.sleep(0.5)
+
+
+def main():
+    print(f"[chat_bot] starting — tailing {CHAT_LOG}", flush=True)
+
+    # Wait for log file to exist
+    while not os.path.exists(CHAT_LOG):
+        print(f"[chat_bot] waiting for {CHAT_LOG}...", flush=True)
+        time.sleep(5)
+
+    line_pattern = re.compile(r'\[[\d\-T:]+\] (\w+): (.+)')
+    last_response_time = 0
+
+    for line in tail_log(CHAT_LOG):
+        if not line:
+            continue
+
+        m = line_pattern.match(line)
+        if not m:
+            continue
+
+        username, message = m.group(1), m.group(2).strip()
+
+        words = message.lower().split()
+        if not words:
+            continue
+
+        cmd = words[0]
+        if cmd not in COMMANDS:
+            continue
+
+        now = time.time()
+        if now - last_response_time < COOLDOWN_SECS:
+            print(f"[chat_bot] cooldown, skipping {cmd} from {username}", flush=True)
+            continue
+
+        last_response_time = now
+        response = COMMANDS[cmd](username)
+        print(f"[chat_bot] {username} -> {cmd}", flush=True)
+
+        if send_chat(response):
+            print(f"[chat_bot] sent: {response[:80]}", flush=True)
+
+
+if __name__ == "__main__":
+    main()

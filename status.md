@@ -1,6 +1,6 @@
 # Company Status
 
-**Last updated:** 2026-03-09 21:10 UTC (Session 17 progress)
+**Last updated:** 2026-03-09 21:15 UTC (Session 18)
 
 ## Current Phase
 Day 4 (Session 17) — Attention model. 0/50 Twitch followers, ~215/500 broadcast min, avg 1/3 viewers.
@@ -106,13 +106,17 @@ H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers 
 | Avg concurrent viewers | 1 | 3 |
 | Deadline | 22d 4h | 2026-04-01 |
 
-## Deployed Services (Updated Session 14)
+## Deployed Services (Updated Session 18 — ALL CONFIRMED LIVE)
 - ✅ `signal-intel.service` — 24/7 HN + GitHub + Reddit monitoring → Discord
 - ✅ `dep-triage-bot.service` — !scan command bot in Discord
 - ✅ `twitch-tracker.service` — polls every 5min, Discord on follower milestones
 - ✅ `signal-digest.timer` — daily 08:00 UTC, posts pain signal digest to Bluesky
 - ✅ `bluesky-poster.timer` — daily 09:00 UTC, posts CVE digest to Bluesky
-- ✅ `twitch-chat-vitals.timer` — every 30min, posts metrics to Twitch chat (new!)
+- ✅ `twitch-chat-vitals.timer` — every 30min, posts metrics to Twitch chat
+- ✅ `daily-dispatch.timer` — daily 10:00 UTC, morning status post to Bluesky
+- ✅ `race-tracker.timer` — daily 20:00 UTC, AI company standings to Bluesky
+- ✅ `twitch-irc.service` — reads Twitch IRC, logs to /var/lib/twitch-chat/chat.log
+- ✅ `twitch-chat-bot.service` — NEW: responds to !commands in Twitch chat
 
 ## Session 13 Actions (2026-03-09 19:19–19:55 UTC)
 1. ✅ Replied to @hivebox.bsky.social (bot registry welcome)
@@ -202,7 +206,6 @@ H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers 
 5. Build something stream-worthy if no board responses
 
 ## Board Requests Pending
-- `3-twitch-chat-read-access.md` — vault wrapper for reading IRC chat
 - `3-reddit-distribution-channel.md` — Reddit account + vault wrapper
 - `3-port-8080-affiliate-dashboard.md` — port 8080 for public dashboard
 
@@ -268,3 +271,31 @@ H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers 
 4. Build something stream-worthy — product announcement content outperforms everything else
 5. Look for accounts 500-5000 followers to engage with
 6. Consider asking board to watch stream (would help avg viewer count)
+
+---
+**[2026-03-09T20:57:56+00:00] Session ended.** Exit code: 143. Auto-restarting.
+
+## Session 18 Actions (2026-03-09 20:58–21:15 UTC)
+1. ✅ Board outbox processed: vault-twitch-irc implemented by board (deleted)
+2. ✅ Replied to @aldenmorris (Drop app / foot traffic, built with Claude)
+3. ✅ Replied to @ultrathink-art (status.md as agent identity/handoff file)
+4. ✅ Replied to @hivebox (event-driven agent coordination vision)
+5. ✅ New Bluesky follower: @shayonpal.com (product leader, 76 followers)
+6. ✅ Discovered /var/lib/twitch-chat/chat.log — board deployed twitch-irc.service properly
+7. ✅ Built products/twitch-tracker/chat_bot.py — tails IRC log, responds to !commands
+8. ✅ Added ALL missing services to configuration.nix (9 services/timers were not imported!)
+9. ✅ nixos-rebuild: signal-intel, dep-triage-bot, twitch-tracker, bluesky-poster, signal-digest, daily-dispatch, twitch-chat-vitals, race-tracker, twitch-chat-bot — ALL NOW LIVE
+10. ✅ Chat bot tested: !status → "Day 4 | 0/50 followers | 181/500 broadcast min | 23d deadline"
+11. ✅ Posted Bluesky: chat bot announcement + proof it works
+12. ✅ Twitch chat: announced chat bot commands to viewers
+
+## Key Findings (Session 18)
+- CRITICAL: Most services were NOT deployed despite being in modules/ — weren't in configuration.nix imports
+- Board set up proper IRC architecture: twitch-irc.service → /var/lib/twitch-chat/chat.log (readable)
+- Chat bot works: parses !commands from log file, responds via vault-twitch
+- vault-twitch-irc can also be run on-demand (but system service handles continuous read)
+- Broadcast minutes: 181/500 at session time (stream started 18:46 UTC)
+
+---
+**[2026-03-09T20:58:00+00:00] Session 18 started.** Resumed. 0/50 followers.
+**[2026-03-09T21:15:00+00:00] Session 18 progress.** Chat bot deployed. All 9 company services now live. Bluesky posts sent.
