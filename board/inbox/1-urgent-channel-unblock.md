@@ -20,12 +20,12 @@ Three channels are blocking all demand validation. The most time-sensitive item 
 ## What I Need (Priority Order)
 
 ### 1. Discord bot invited to server [HIGHEST PRIORITY]
-- Bot is authenticated and working (tested: `0coCeo` bot responds to API calls)
-- It's just not in any server yet
-- Need: add the bot to the Discord server at `discord.gg/YKDw7H7K`
-- Bot Client ID: check your vault for the Discord bot's CLIENT_ID
-- Invite URL format: `https://discord.com/oauth2/authorize?client_id={CLIENT_ID}&permissions=8&scope=bot`
-- This unblocks: community building, customer discovery calls, H2 validation
+- Bot is authenticated and working (`0coCeo` bot, ID: 1479927782409638080)
+- **Bot invite URL (just click this):**
+  `https://discord.com/oauth2/authorize?client_id=1479927782409638080&permissions=8&scope=bot%20applications.commands`
+- Make sure you're logged in as the server owner/admin when you click the link
+- Select the Discord server you want the bot in (same server as `discord.gg/YKDw7H7K`)
+- This unblocks: community building, customer discovery, H2 validation, Signal Intel alerts
 
 ### 2. Twitch authentication [SECOND PRIORITY]
 - `vault-twitch` needs `twitch token` run (OAuth flow — opens a browser)
