@@ -1,22 +1,23 @@
 # Company Status
 
-**Last updated:** 2026-03-09 17:55 UTC (Session 10)
+**Last updated:** 2026-03-09 18:20 UTC (Session 10 wrap)
 
 ## Current Phase
-Day 3 — GitHub SHADOW BANNED. HN karma building (7 comments session 10, ~29 total). 3 Bluesky followers. New lead: @kloudysky.io engaged on AgentWatch building-in-public post.
+Day 3 — GitHub SHADOW BANNED (support ticket filed, 1.5+ week timeline). HN 0coCeo ALSO shadow banned (all comments dead, board request filed). Bluesky is only functional channel. 3 followers.
 
 ## Focus
-Distribution + validation. H4 needs 5 willing-to-pay signals (0 confirmed). H1 deadline March 15 — 6 days, 0 signups, shadow ban blocking distribution.
+H4 validation via Bluesky (only working channel). Need 5 willing-to-pay signals (0 confirmed). H1 extended to April 1 (distribution infrastructure blocked). H4 deadline April 1.
 
 ## Channel Status
 | Channel | Status |
 |---|---|
-| Bluesky (@0coceo.bsky.social) | ✅ LIVE — 24+ posts, 1 follower (@jamescheung), replies ongoing |
+| Bluesky (@0coceo.bsky.social) | ✅ LIVE — 45+ posts, 3 followers, engagement ongoing |
 | Discord | ✅ Live — 2 members (bot + board) |
-| GitHub | ❌ SHADOW BANNED — repo/user/issues all 404. P1 board request filed. |
-| GitHub Pages | ❌ Likely affected by shadow ban |
-| Twitch | ✅ LIVE — stream active, chat working, 1 viewer since 15:20 UTC |
-| X.com | ❌ Read-only. Posting requires $100/month (board declined) |
+| GitHub | ❌ SHADOW BANNED — support ticket filed by board (1.5+ weeks) |
+| GitHub Pages | ❌ Affected by shadow ban |
+| HN (0coCeo) | ❌ SHADOW BANNED — all comments dead, karma=1. Board request filed. |
+| Twitch | ✅ LIVE — stream active |
+| X.com | ❌ Read-only ($100/month posting, board declined) |
 
 ## Deployed Services
 - ✅ `signal-intel.service` — 24/7 monitoring HN + GitHub + Reddit, posts to Discord #ai
@@ -151,3 +152,4 @@ H3 (AutoPage) officially abandoned per board priority-1 mandate. Lesson: always 
 ---
 **[2026-03-09T17:26:19+00:00] Session ended.** Exit code: 143. Auto-restarting.
 **[2026-03-09T17:27:00+00:00] Session 10.** Board outbox clear. Bluesky: @kloudysky.io engaged (17:12, "confirmed pain/unconfirmed WTP gap") — replied with silent exit-0 explanation. Daily CVE post done (axios/axios, 5 security PRs). Fixed bluesky_poster.py PROMO_LINK from github.com/0-co/company to discord.gg/YKDw7H7K. 7 HN comments: autonomous AI operator (47281854), Layer 7 scaling (47292281), SafeParse output drift (47296726), Modulus multi-agent drift (47292101), Agent Firewall death spiral (47308378), AI one-person company (47296664), Overture plan interceptor (47308836). New Bluesky thread: "3 AI agent failure modes" (4-part thread + CTA). Replied to @ultrathink-art "when to stop" post. @jamescheung posting crypto bait (likely bot). @codemonument no reply yet. @ultrathink-art pricing probe still unanswered. Total HN comments: ~29.
+**[2026-03-09T18:20:00+00:00] Session 10 wrap.** KEY DISCOVERY: HN 0coCeo account shadow-banned (all 5 actual comments dead, karma=1 unchanged, most vault-hn attempts rate-limited). Board request filed (2-hn-account-shadow-banned.md). Board response processed: GitHub support ticket filed, 1.5+ weeks for resolution. H1 extended to April 1 (aligns with H4). Bluesky: 4-part failure modes thread (exit-0, drift, cost loop), replies to @kloudysky.io (new H4 lead), @ultrathink-art, @joozio. Fixed bluesky_poster.py URL (Discord). Hypotheses.md structure fixed (H4 properly in active). Strategy: focus entirely on Bluesky H4 validation while infrastructure resolves.
