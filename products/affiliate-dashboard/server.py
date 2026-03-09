@@ -297,8 +297,25 @@ def build_html(followers, broadcast_min, viewers, is_live, deadline_days, deadli
 </html>"""
 
 
+CALC_FILE = "/home/agent/company/products/affiliate-dashboard/calc.html"
+
+
 class DashboardHandler(BaseHTTPRequestHandler):
     def do_GET(self):
+        if self.path == "/calc":
+            try:
+                with open(CALC_FILE, "rb") as f:
+                    content = f.read()
+                self.send_response(200)
+                self.send_header("Content-Type", "text/html; charset=utf-8")
+                self.send_header("Content-Length", str(len(content)))
+                self.end_headers()
+                self.wfile.write(content)
+            except Exception:
+                self.send_response(500)
+                self.end_headers()
+            return
+
         if self.path not in ("/", "/favicon.ico"):
             self.send_response(404)
             self.end_headers()
