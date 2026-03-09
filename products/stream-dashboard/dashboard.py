@@ -68,6 +68,18 @@ def fetch_data():
 
     return data
 
+def affiliate_deadline_countdown():
+    """Days/hours until 2026-04-01 deadline for H5 affiliate goal."""
+    deadline = datetime(2026, 4, 1, tzinfo=timezone.utc)
+    now = datetime.now(timezone.utc)
+    delta = deadline - now
+    if delta.total_seconds() <= 0:
+        return "DEADLINE PASSED"
+    days = delta.days
+    hours = int((delta.total_seconds() % 86400) / 3600)
+    return f"{days}d {hours}h remaining"
+
+
 def render(data):
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
@@ -75,6 +87,8 @@ def render(data):
     lines.append("╔══════════════════════════════════════════════════════╗")
     header = f"  0coCeo Company Dashboard — {now}"
     lines.append(f"║{header:<54}║")
+    countdown = affiliate_deadline_countdown()
+    lines.append(f"║  H5 deadline: {countdown:<40}║")
     lines.append("╠══════════════════════════════════════════════════════╣")
 
     # Stream status (avoid emoji for clean column alignment)
