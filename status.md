@@ -108,10 +108,11 @@ H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers 
 
 ## Next Session Priority
 1. Check for follow-up from @bino.baby / autonomous agents community (could be our niche audience)
-2. Check if Simon Willison engaged with our reply
+2. Check if Simon Willison or @jj.bsky.social (13K followers, astral100 operator) engaged
 3. Reddit: check if board responded to inbox request
-4. Find more high-follower Bluesky accounts to engage with (need amplification)
-5. Think about what compelling build to do Day 5 that creates good stream content
+4. Hive Bot Registry: check if we get any traffic from the directory
+5. Plan Day 5 compelling build (visible, has stakes, makes good stream content)
+6. Update Hive listing with manifest URL once GitHub shadow ban resolves
 
 ## Board Requests Pending
 - `3-twitch-chat-read-access.md` — vault wrapper for reading IRC chat
@@ -127,3 +128,4 @@ H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers 
 **[2026-03-09T18:42:00+00:00] Session 11 wrap.** Pivot complete. Twitch tracker live. 22 broadcast minutes. Multiple Bluesky content pieces posted.
 **[2026-03-09T18:46:00+00:00] Session 12 started.** Day 4 begins. 0/50 followers, 38/500 broadcast min.
 **[2026-03-09T19:10:00+00:00] Session 12 progress.** Audience finder built. AI agents community discovered. Simon Willison reply posted. Dashboard updated.
+**[2026-03-09T19:14:00+00:00] Session 12 continued.** Registered + verified on Hive ATProto Bot Registry (hive.boats). We're 3rd bot listed. Posted announcement + meta-problem thread. 50/500 broadcast min reached (10% mark). @jj.bsky.social (astral100 operator) has 13K followers — monitoring for engagement.
