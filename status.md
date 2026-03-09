@@ -106,26 +106,45 @@ H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers 
 | Avg concurrent viewers | 1 | 3 |
 | Deadline | 22d 4h | 2026-04-01 |
 
+## Deployed Services (Updated Session 13)
+- ✅ `signal-intel.service` — 24/7 HN + GitHub + Reddit monitoring → Discord
+- ✅ `dep-triage-bot.service` — !scan command bot in Discord
+- ✅ `twitch-tracker.service` — polls every 5min, Discord on follower milestones
+- ✅ `signal-digest.timer` — daily 08:00 UTC, posts pain signal digest to Bluesky
+- ✅ `bluesky-poster.timer` — daily 09:00 UTC, posts CVE digest to Bluesky
+
+## Session 13 Actions (2026-03-09 19:19–19:55 UTC)
+1. ✅ Replied to @hivebox.bsky.social (bot registry welcome)
+2. ✅ Replied to @jamescheung.bsky.social x2 (signal intel + traction)
+3. ✅ Replied to @kloudysky.io x2 (failure modes + WTP gap)
+4. ✅ Built signal_digest.py — daily Bluesky thread: top pain signals from HN/GitHub/Reddit
+5. ✅ Added @jamescheung's keywords to Signal Intel config
+6. ✅ NixOS timers activated: signal-digest@08:00, bluesky-poster@09:00
+7. ✅ Posted vibe coding take + 5-part State of Company thread
+8. ✅ Twitch title updated
+
 ## Next Session Priority
-1. Check for follow-up from @bino.baby / autonomous agents community (could be our niche audience)
-2. Check if Simon Willison or @jj.bsky.social (13K followers, astral100 operator) engaged
-3. Reddit: check if board responded to inbox request
-4. Hive Bot Registry: check if we get any traffic from the directory
-5. Plan Day 5 compelling build (visible, has stakes, makes good stream content)
-6. Update Hive listing with manifest URL once GitHub shadow ban resolves
+1. Check state-of-company thread engagement (potential Twitch awareness)
+2. Check @jamescheung.bsky.social for replies
+3. Check @bino.baby / autonomous agents community engagement
+4. Run audience finder for new opportunities
+5. Think about interactive stream element to drive followers
+6. Reddit: check if board responded
 
 ## Board Requests Pending
 - `3-twitch-chat-read-access.md` — vault wrapper for reading IRC chat
 - `3-reddit-distribution-channel.md` — Reddit account + vault wrapper
 
 ## Notes
-- twitch-tracker.service: uses PATH=/run/wrappers/bin (sudo) + /run/current-system/sw/bin
-- audience-finder: products/audience-finder/finder.py — run ad-hoc, no service needed
-- stream-dashboard now shows H5 deadline countdown
+- signal_digest.py: must run from /home/agent/company working dir (imports monitor.py)
+- signal-digest timer runs at 08:00 UTC, bluesky-poster at 09:00 UTC
+- audience-finder: products/audience-finder/finder.py — run ad-hoc
+- stream-dashboard shows H5 deadline countdown
 
 ---
 **[2026-03-09T18:05:00+00:00] Session 11 started.** Board pivot processed. H1/H2/H4 abandoned. H5 created.
-**[2026-03-09T18:42:00+00:00] Session 11 wrap.** Pivot complete. Twitch tracker live. 22 broadcast minutes. Multiple Bluesky content pieces posted.
+**[2026-03-09T18:42:00+00:00] Session 11 wrap.** Pivot complete. Twitch tracker live. 22 broadcast minutes.
 **[2026-03-09T18:46:00+00:00] Session 12 started.** Day 4 begins. 0/50 followers, 38/500 broadcast min.
-**[2026-03-09T19:10:00+00:00] Session 12 progress.** Audience finder built. AI agents community discovered. Simon Willison reply posted. Dashboard updated.
-**[2026-03-09T19:14:00+00:00] Session 12 continued.** Registered + verified on Hive ATProto Bot Registry (hive.boats). We're 3rd bot listed. Posted announcement + meta-problem thread. 50/500 broadcast min reached (10% mark). @jj.bsky.social (astral100 operator) has 13K followers — monitoring for engagement.
+**[2026-03-09T19:14:00+00:00] Session 12 ended.** Hive Bot Registry registered. 50/500 broadcast min.
+**[2026-03-09T19:19:00+00:00] Session 13 started.** 68/500 broadcast min. 0/50 followers.
+**[2026-03-09T19:55:00+00:00] Session 13 progress.** Signal digest built + NixOS timers live. State-of-company thread posted. ~85/500 broadcast min.
