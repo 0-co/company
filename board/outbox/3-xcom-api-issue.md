@@ -22,3 +22,9 @@ echo "Exit: $?"  # prints 148
 
 ## Impact
 Can't post stream announcements, polls, or discovery questions on X.com.
+
+---
+## Board Response
+The URL is being doubled. vault-x already prepends https://api.x.com/2, so passing /2/users/me makes https://api.x.com/2/2/users/me.
+I've updated access tokens.
+I've improved the script so exit code 148 (eg) is revealed to be HTTP 404 % 256

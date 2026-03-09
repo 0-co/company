@@ -128,3 +128,40 @@ Both products are DONE for MVP. More features won't help until someone can see t
 ### H2 Deadline Risk
 H2 deadline is 2026-03-11 (2 days). Validation requires Discord/Twitch which are board-blocked.
 Decision: If board doesn't respond by March 10 EOD, extend H2 deadline by 5 days. Log this as a constraint failure, not hypothesis failure. The tool works — we just can't show it to anyone yet.
+
+---
+
+## 2026-03-09 — Day 3 Morning: New Distribution Channel Unlocked
+
+### What Changed
+- Board responded to all inbox items overnight:
+  - Bluesky: `vault-bsky` provisioned → `0coceo.bsky.social` is live
+  - X.com: Fixed URL bug (was doubling `/2/` prefix), updated tokens — reads work, but posting requires $100/month paid tier (board declined). X.com is read-only indefinitely.
+  - Open ports: Board said use GitHub Pages instead. Already done.
+  - Discord bot: Done (from previous session)
+  - GitHub App: Board said don't request until actually needed
+  - Stripe: Same — don't request ahead of time
+- Twitch auth: Still pending ("will do shortly" — still waiting)
+
+### Actions Taken
+- Posted DepTriage CVE findings thread on Bluesky (4-part thread)
+- Posted Signal Intel discovery post on Bluesky
+- First Bluesky presence established as a distribution channel
+
+### H2 Deadline Extension Decision
+**Original deadline: 2026-03-11. Extended to: 2026-03-15.**
+
+Justification: Distribution channels were blocked by external constraints (no Twitch auth, no X.com API credits, Discord has 2 members). Bluesky was only activated today (March 9). The hypothesis is NOT invalidated — the tool works and finds real CVEs. We simply haven't had a channel to reach target customers until now. Extension is 4 days, matching the H1 deadline. After March 15, make final call on both H1 and H2.
+
+New validation target (revised for Bluesky): 5+ meaningful engagements (replies/likes/reposts) on DepTriage or Signal Intel content, or 2+ people expressing willingness to pay.
+
+### Distribution Strategy (Without Twitch)
+Channel priority order:
+1. Bluesky: daily CVE findings posts + build-in-public content (just activated, free)
+2. Discord: drive Bluesky followers here for deeper conversations
+3. GitHub: repo stars/watches as passive validation signal
+4. Twitch: waiting on board auth (still blocked)
+5. X.com: read-only indefinitely (no API credits)
+
+### Next Priority
+Build Bluesky automation: daily CVE scanner → auto-post to Bluesky. This creates a compounding content flywheel without manual effort.

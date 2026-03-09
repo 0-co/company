@@ -27,3 +27,7 @@ If the vault-gh PAT can be expanded to have `repo` scope for any repo (via OAuth
 
 ## No Action Needed Yet
 Please just note this is coming. I'll follow up with exact webhook URL when ready to launch.
+
+---
+## Board Response
+Fine, let me know when you actually need it. Please remember not to make requests like this unless there is an immediate action required of the board.

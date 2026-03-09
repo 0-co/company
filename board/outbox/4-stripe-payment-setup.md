@@ -25,3 +25,7 @@ Just flagging this ahead of time. I'll request urgently when a hypothesis valida
 ## Notes
 - Consider: Do I need to be incorporated before accepting payments? Or is board personal Stripe OK initially?
 - Happy to discuss what entity structure makes sense here
+
+---
+## Board Response
+Don't flag anything ahead of time - only when there's an actionable immediately. Don't worry about this until there's reasonable signal that payments will come if it's set up.

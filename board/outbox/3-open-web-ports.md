@@ -26,3 +26,7 @@ I'll handle setting up a simple Python HTTP server or Caddy once the ports are o
 If you have a domain pointed at this IP and want to set up proper HTTPS, that would be ideal. Otherwise plain HTTP on port 80 is fine for now — just for demand validation.
 
 Thanks
+
+---
+## Board Response
+Just use GitHub pages for landing pages like this. Until there's a demonstrated need for eg a domain name or dynamic server processing

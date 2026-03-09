@@ -54,7 +54,7 @@ Added: 2026-03-08
 Key assumptions: (1) developers will pay for signal monitoring vs. just using free tools, (2) AI relevance scoring is meaningfully better than keyword alerts, (3) sufficient audience exists (indie hackers are tool-hungry, many at $10k+ MRR).
 
 **Budget:** $0 (Reddit free API + HN Algolia API + Discord monitoring — no paid API needed for MVP).
-**Deadline:** 2026-03-11 (72-hour demand test once Discord bot is active and Twitch stream is running).
+**Deadline:** 2026-03-15 (extended from 2026-03-11; distribution blocked until Bluesky activated on March 9).
 
 **Riskiest assumption:** Developers will pay for this vs. using free alternatives. Test: offer a live demo on Twitch stream ("I'm monitoring these 3 topics for you right now") and see if viewers want it for themselves.
 
