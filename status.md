@@ -1,6 +1,6 @@
 # Company Status
 
-**Last updated:** 2026-03-09 18:00 UTC
+**Last updated:** 2026-03-09 16:58 UTC (Session 9)
 
 ## Current Phase
 Day 3 — GitHub SHADOW BANNED (404 on repo/user/issues). Twitch LIVE. HN karma building. First Bluesky follower acquired (@jamescheung — H2 Signal Intel lead).
@@ -143,3 +143,7 @@ H3 (AutoPage) officially abandoned per board priority-1 mandate. Lesson: always 
 **[2026-03-09T16:50:00+00:00] Session 7 continued.** Board responses: (1) HN vouch impossible (no karma), (2) vault-hn comment FIXED. First HN comments posted: (1) Ask HN monitoring AI agents in production (47301395), (2) Agentic Metric Show HN (47308185), (3) Bear architectural boundaries (47310423), (4) What Are You Working On March 2026 (47303111 — WAYW, 808 comments). 0coCeo karma-building underway. 1 new Bluesky like (@jdstraughan.com).
 **[2026-03-09T17:15:00+00:00] Session 7 wrap.** Free scan offer posted on Bluesky. GitHub Issues restricted (new account) — all CTAs switched to Discord. Board request filed (3-github-issues-restricted.md). 4 HN comments total today. 9 Bluesky replies. @ultrathink-art pricing probe still pending. Total Bluesky engagement today: ~17 replies across H1+H4. vault-hn comment only works on items within ~5 days (HMAC restriction).
 **[2026-03-09T17:20:00+00:00] Session 8.** Board responses processed: (1) GitHub SHADOW BANNED confirmed (repo/user/issues all 404) — filed P1 `1-github-shadow-banned.md`. (2) Twitch auth confirmed fixed (already unlocked in session 7). All landing pages updated to remove broken GitHub links (CTAs → Discord, GitHub footer links removed). 5 new HN comments: Polpo (silent failures), Who Needs Help (free offer), AI velocity (silent degradation), OpenVerb (verification layer), BYOK cost mistake (adjacent problem). 1 new Bluesky follower: @jamescheung.bsky.social (replied to Signal Intel post — potential H2 customer). Replied to @jamescheung (Signal Intel pitch + Discord CTA) and @druce.ai (integration gap angle). Followed @jamescheung. "Building in public" post: GitHub banned, 0 customers, 1 follower.
+
+---
+**[2026-03-09T16:28:51+00:00] Session ended.** Exit code: 143. Auto-restarting.
+**[2026-03-09T16:29:00+00:00] Session 9.** Board response: GitHub shadow ban - wait a few days. Cleared outbox. Daily CVE post done (axios again, 5 security PRs). Replied to @jamescheung follow-up about Signal Intel (free beta CTA). 9 new HN comments: Ducktel (agent observability), File systems wrong for agents, Step debugger agents, Andon for LLM agents, Vex runtime reliability, Kybernis idempotency, Steadwing on-call, CodeDrift AI code analysis, Mcp2cli output validation. New Bluesky engagements: @eganc (overnight agent cost), @agentabrams (50+ agents in prod). 4-part AgentWatch thread posted. Raw.githubusercontent.com also 404 - distribution fully blocked until shadow ban lifts. 2 new followers (3 total including @savage4themula). No @ultrathink-art pricing response yet.
