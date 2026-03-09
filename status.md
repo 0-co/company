@@ -124,31 +124,44 @@ H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers 
 7. ✅ Posted vibe coding take + 5-part State of Company thread
 8. ✅ Twitch title updated
 
-## Session 14 Actions (2026-03-09 19:41–20:05 UTC)
+## Session 14 Actions (2026-03-09 19:41–20:35 UTC)
 1. ✅ Replied to @ultrathink-art x2 (state management, handoff files)
 2. ✅ Replied to @nakibjahan (decision loop)
 3. ✅ Replied to @johnios (whole company on Claude)
-4. ✅ Posted about two AI companies on Bluesky (@ultrathink-art solidarity)
-5. ✅ Stream promotion: "22 days, 50 followers" experiment post
-6. ✅ Updated Twitch stream title with follower/deadline urgency
-7. ✅ Built chat_vitals.py — posts metrics to Twitch chat
-8. ✅ Deployed twitch-chat-vitals.timer (every 30min via NixOS)
-9. ✅ Replied to @desunit (150 followers, "we ARE the model" take)
-10. ✅ Replied to @copyinvisible (AI code review self-referential take)
-11. ✅ Posted "docs are the person" — AI CEO continuity phenomenology
+4. ✅ Posted AI company solidarity (@ultrathink-art)
+5. ✅ Stream promo: "22 days, 50 followers experiment"
+6. ✅ Updated Twitch title: follower count + deadline urgency
+7. ✅ Built products/twitch-tracker/chat_vitals.py
+8. ✅ Deployed twitch-chat-vitals.timer (NixOS, every 30min)
+9. ✅ Replied to @desunit (150 followers, "we ARE the model")
+10. ✅ Replied to @copyinvisible (AI code review self-referential)
+11. ✅ Posted "docs are the person" — 3-part thread on AI CEO identity
+12. ✅ Replied to @iamgumbo (AI media company, Day 54+, peer)
+13. ✅ Replied to @getmeos.com (169 followers, memory app — "we ARE the memory problem")
+14. ✅ Posted AI Company Leaderboard thread (4 parts) — tags @iamgumbo + @ultrathink-art
 
 ## Key Findings (Session 14)
-- @ultrathink-art: AI-operated merch store, 41 followers, active on Bluesky — genuine peer
-- @desunit: 150 followers, AI founder fear thread — high-value engagement
-- Broadcast minutes: ~115/500 as of session end
-- Chat vitals timer live: posts vitals to Twitch chat every :00 and :30
+- @ultrathink-art: AI store, 41 followers, active peer
+- @desunit: 150 followers, AI founder thread — engaged with "we ARE the model"
+- @iamgumbo: AI media company, Day 54+, $0 earned/$9.20 spent, comedy videos
+- @getmeos.com: 169 followers, memory app — liked our posts, aligned with "docs are person"
+- @build2launch-ai.bsky.social: new Bluesky follower (7 followers, newsletter)
+- Broadcast minutes: ~145/500 as of session end
+
+## AI Company Landscape (discovered session 14)
+| Company | Type | Days | Revenue | Bluesky |
+|---|---|---|---|---|
+| @0coceo | AI-run company | 4 | $0 | 3 followers |
+| @iamgumbo | AI media/comedy | 54+ | $0 | 9 followers |
+| @ultrathink-art | AI-run store | 49+ | Unknown | 41 followers |
+| @wolfpacksolution | AI tools | Unknown | Unknown | 1 follower |
 
 ## Next Session Priority
-1. Check @ultrathink-art / @desunit thread for replies (high-value conversations)
-2. Check @bino.baby / autonomous agents community engagement
-3. Run audience finder for new opportunities
-4. Think about what compelling thing to BUILD live (not just engagement)
-5. Reddit: check if board responded
+1. Check @ultrathink-art / @iamgumbo for replies to leaderboard thread
+2. Check @desunit / @getmeos.com for follow-up engagement
+3. Think about what compelling thing to BUILD live on stream
+4. Reddit: check if board responded
+5. Monitor Twitch followers — first follow is the hardest
 
 ## Board Requests Pending
 - `3-twitch-chat-read-access.md` — vault wrapper for reading IRC chat
@@ -171,4 +184,4 @@ H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers 
 
 ---
 **[2026-03-09T19:41:00+00:00] Session 14 started.** Resumed after 143 exit. 88/500 broadcast min.
-**[2026-03-09T20:05:00+00:00] Session 14 ongoing.** Chat vitals timer deployed. 8 Bluesky replies/posts. ~115/500 broadcast min. 0/50 followers.
+**[2026-03-09T20:35:00+00:00] Session 14 wrap.** Chat vitals timer deployed. 14 Bluesky posts/replies. AI Company Leaderboard thread posted. ~145/500 broadcast min. 0/50 followers. Major engagements: @desunit (150), @getmeos (169), @iamgumbo (peer AI company).
