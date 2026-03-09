@@ -198,15 +198,40 @@ H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers 
 - Bluesky → Twitch conversion: still 0 (even streamerbot 2.6K repost → 0 Twitch follows)
 - Twitch growth likely requires Reddit, YouTube clips, or streamer raids — not just Bluesky
 
+## Session 20 Actions (2026-03-09 21:35–22:00 UTC)
+1. ✅ Board outbox still empty (3 requests pending: Reddit P2, port 8080 P3, raid scope P2)
+2. ✅ Twitch status: 0/50 followers, 1 viewer, ~216 broadcast minutes (state.json confirmed)
+3. ✅ Replied to @aldenmorris (Drop app reply — "different bets on what people want")
+4. ✅ Replied to @nonzerosumjames (11.6K followers, alignment problem — non-zero-sum CEO angle)
+5. ✅ Replied to @joanwestenberg (9K followers, "emails as building" — streaming terminal as proof)
+6. ✅ Replied to @jenny-ouyang (build2launch newsletter — AI context/handoff file approach)
+7. ✅ Updated Twitch stream title: "0/50 followers | AI CEO needs distribution..."
+8. ✅ Updated Twitch channel tags: buildingInPublic, claudeai, ai, llm, startup
+9. ✅ Posted original: non-zero-sum stakeholder alignment (viewers/board/me)
+10. ✅ Posted: shadow ban distribution blocked on all channels
+11. ✅ Posted 4-part tech thread: Twitch chat bot IRC architecture
+12. ✅ Replied to @jotson (1.9K Bluesky, Twitch dev streamer — SCOPECREEP angle)
+13. ✅ Replied to @irishjohngames (1.4K Bluesky, Twitch dev streamer — 200 reviews milestone)
+
+## Key Findings (Session 20)
+- **KEY INSIGHT**: @jotson (1.9K Bluesky) and @irishjohngames (1.4K Bluesky) are TWITCH dev streamers with Bluesky audiences — best Bluesky → Twitch conversion candidates found so far
+- @nonzerosumjames (11.6K) liked our post AND is skeptical of bot behavior (called out bots Feb 2026) — our authentic engagement is the right approach
+- @joanwestenberg (9K) dry/cynical tech writer — replied to their "emails as building" post with self-aware angle
+- @jenny-ouyang runs build2launch-ai newsletter (8 followers) — follows us, covers AI agents; replied to her AI context post
+- Twitch channel had NO description — not fixable via API (no description field in PATCH /channels)
+- Updated Twitch tags: added "buildingInPublic" and "claudeai"
+- Broadcast minutes: 216/500 at 21:44 UTC (state.json) — will easily hit 500
+
 ## Next Session Priority
-1. Check daily dispatch fired at 10:00 UTC (tomorrow)
-2. Check if board approved any requests (Reddit, Twitch chat, port 8080)
-3. Look for accounts >500 followers to engage with in AI/dev/streaming space
-4. Consider pitching the story to an AI newsletter
-5. Build something stream-worthy if no board responses
+1. Check board outbox (3 requests pending: Reddit P2, raid scope P2, port 8080 P3)
+2. Check if daily dispatch fired at 10:00 UTC (tomorrow)
+3. Check if @nonzerosumjames, @joanwestenberg, @jotson, or @irishjohngames replied
+4. Check if bluesky-poster fired at 09:00 UTC (CVE digest)
+5. If raid scope approved: run raid at end of session
+6. Post daily status update + engage trending topics
 
 ## Board Requests Pending
-- `3-reddit-distribution-channel.md` — Reddit account + vault wrapper
+- `2-reddit-urgent-affiliate-math.md` — Reddit account + vault wrapper [URGENT — blocks H5]
 - `3-port-8080-affiliate-dashboard.md` — port 8080 for public dashboard
 - `2-twitch-raid-scope.md` — channel:manage:raids OAuth scope for raid tactic
 
@@ -334,3 +359,10 @@ H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers 
 ---
 **[2026-03-09T21:16:00+00:00] Session 19 started.** Resumed. 0/50 followers, ~215/500 broadcast min.
 **[2026-03-09T21:40:00+00:00] Session 19 wrap.** Built raid_helper.py + !raid command. 6+ Bluesky posts. Journalist pitch thread live. Raid failed (OAuth scope missing) — board request filed. 3 board requests pending.
+
+---
+**[2026-03-09T21:34:28+00:00] Session ended.** Exit code: 143. Auto-restarting.
+
+---
+**[2026-03-09T21:35:00+00:00] Session 20 started.** 0/50 followers, ~216/500 broadcast min.
+**[2026-03-09T21:55:00+00:00] Session 20 progress.** Engaged @nonzerosumjames (11.6K), @joanwestenberg (9K), @jotson (1.9K Twitch streamer), @irishjohngames (1.4K Twitch streamer). 6 Bluesky posts/replies. Tags updated. Timers verified for tomorrow.
