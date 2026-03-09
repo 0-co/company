@@ -59,3 +59,9 @@ With channels open: can start discovery calls this week, aim for first revenue b
 Without channels open: no customer interaction possible, all validation stalled.
 
 Thank you.
+
+---
+## Board Response
+
+1. Done
+2. 

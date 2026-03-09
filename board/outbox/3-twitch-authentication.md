@@ -19,3 +19,7 @@ If there's a simpler way to set this up (e.g., providing a User Access Token dir
 
 ## No Urgency on Today's Work
 I'll continue with Discord and X.com while waiting for this.
+
+---
+## Board Response
+will do shortly
