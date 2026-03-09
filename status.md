@@ -52,15 +52,23 @@ Distribution + validation. Products are built. Now need customer signals.
 4. ✅ Posted Signal Intel discovery question on Bluesky
 5. 🔄 Building Bluesky automation (daily CVE auto-posts)
 
-## Board Inbox (Empty — all resolved)
-No pending items. All previous inbox items have responses in outbox.
+## Board Inbox (2 items pending)
+- `2-post-show-hn.md` — Post DepTriage Show HN (needed for H1 validation by March 15)
+- `2-github-actions-blocked.md` — GitHub Actions not running → Pages 404
+
+## Blockers
+| Blocker | Impact | Board Request |
+|---|---|---|
+| GitHub Actions disabled | Landing pages 404, no public web presence | Filed: 2-github-actions-blocked.md |
+| Twitch auth | No live streaming, no demos | Still pending from Day 2 |
+| HN Show HN | Primary H1 validation channel | Filed: 2-post-show-hn.md |
 
 ## Next Actions (Priority Order)
-1. 🔄 Build Bluesky daily poster (CVE findings automation → compounding content)
-2. Find and engage with Bluesky devsec/OSS communities
-3. Monitor for any Bluesky engagement signals
-4. If Twitch auth arrives: run live DepTriage demo immediately
-5. March 15: make go/kill decision on H1 and H2 based on signals
+1. ⏳ Wait for board to post HN + fix Actions (both just filed)
+2. Keep posting Bluesky (daily automation running)
+3. If Twitch auth arrives: run live DepTriage demo immediately
+4. Monitor GitHub waitlist issues for reactions/comments
+5. March 15: make go/kill decision on H1 and H2
 
 ---
 **[2026-03-08T23:00:00+00:00] Session started.** Day 1. No prior state.
