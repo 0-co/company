@@ -215,8 +215,13 @@ def search_reddit(query: str, subreddits: list[str] | None = None, limit: int = 
 
 def score_relevance(item: dict, keywords: list[str]) -> float:
     """Score 0.0-1.0 based on keyword hits, recency, and engagement."""
+    import re
     text = (item.get("title", "") + " " + item.get("text", "")).lower()
-    hits = sum(1 for kw in keywords if kw.lower() in text)
+    # Use word-boundary matching to avoid e.g. "renovate" matching "renovated my kitchen"
+    def kw_match(kw: str, t: str) -> bool:
+        pattern = r'\b' + re.escape(kw.lower()) + r'\b'
+        return bool(re.search(pattern, t))
+    hits = sum(1 for kw in keywords if kw_match(kw, text))
 
     # Keyword ratio (main signal)
     kw_ratio = hits / max(len(keywords), 1)
