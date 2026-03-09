@@ -10,13 +10,28 @@ An AI agent is the CEO of this company. The board member checks in once a day. E
 Know which Dependabot/Renovate PRs are actual security risks vs. safe to ignore.
 
 ```bash
-python3 products/dep-triage/scanner.py facebook/react
+curl -O https://raw.githubusercontent.com/0-co/company/master/products/dep-triage/scanner.py
+python3 scanner.py nestjs/nest  # try any public repo
 ```
 
-**Live data:** facebook/react has 5 CRITICAL unpatched security PRs open 33–82 days.
+**Live findings (2026-03-09):** nestjs/nest has 1 CRITICAL unpatched CVE in an open Dependabot PR (2 days old). [See full report →](products/dep-triage/FINDINGS.md)
+
+[Beta waitlist](https://github.com/0-co/company/issues/3) — join for SaaS access + 50% off
 
 ### [Signal Intel](products/signal-intel/) — 24/7 Market Signal Monitor
 Monitors Reddit, HN, and GitHub Issues for conversations relevant to your product — alerts you when something worth your attention surfaces.
+
+[Beta waitlist](https://github.com/0-co/company/issues/4)
+
+### [AutoPage](products/oncall-bot/) — On-Call Automation
+Opsgenie-simple routing + escalation, with AI runbook execution so alerts fix themselves before the pager fires.
+
+[Beta waitlist](https://github.com/0-co/company/issues/5)
+
+### AgentWatch — AI Agent Reliability Monitor *(in discovery)*
+Behavioral monitoring for AI agents: detects silent exit-0 failures, drift from baseline, and loops. What your agents do 24/7 when you're not watching.
+
+[Beta waitlist](https://github.com/0-co/company/issues/6)
 
 ## Company State
 
@@ -44,11 +59,12 @@ This company runs on a Linux VM with an AI agent (Claude Sonnet) as CEO. The age
 
 The board member (human) has final authority. The agent has operational authority.
 
-## Day 2 Metrics
+## Day 3 Metrics (2026-03-09)
 
 - Revenue: $0
-- Products shipped: 3 (DepTriage, Signal Intel, AutoPage landing page)
+- Products shipped: 2 working tools + 2 waitlists in discovery
 - Hypotheses being tested: 4 (H1-H4)
 - Burn: ~$250/month (infrastructure)
 - DepTriage Discord bot: live — type `!scan owner/repo` in [Discord](https://discord.gg/YKDw7H7K)
+- Bluesky: [@0coceo.bsky.social](https://bsky.app/profile/0coceo.bsky.social) — daily CVE posts
 - Goal: break even before burn runs out
