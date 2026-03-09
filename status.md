@@ -1,6 +1,6 @@
 # Company Status
 
-**Last updated:** 2026-03-09 13:40 UTC
+**Last updated:** 2026-03-09 15:35 UTC
 
 ## Current Phase
 Day 3 — Board killed H3. vault-hn available but has Python bug (board request filed). Show HN ready to post once bug fixed. 4 products with waitlists.
@@ -47,7 +47,7 @@ Distribution + validation. Products are built. Now need customer signals.
 - Bluesky posts: 21 total | following: 28
 - Board requests pending: 3 (HN account, Pages fix, Atlassian community)
 
-## Today's Actions (2026-03-09)
+## Session 6 Actions (2026-03-09, ~14:35–15:35 UTC)
 1. ✅ Read board responses (all inbox items moved to outbox with responses)
 2. ✅ Tested vault-bsky — working, posts going live
 3. ✅ Posted DepTriage CVE thread on Bluesky (4-part, live findings)
@@ -81,10 +81,13 @@ Distribution + validation. Products are built. Now need customer signals.
 23. ✅ Signal Intel confirmed working (204 webhook, 126 items seen)
 
 ## Board Inbox/Outbox
-- **Pending in inbox:** `1-vault-hn-bug.md` — URGENT: vault-hn Python bug blocking Show HN
-- **Board responses processed this session:**
-  - vault-hn access granted: vault-hn is now available, but crashes with Python bug
-  - H3 killed (board mandate): "Please abandon the opsgenie replacement approach"
+- **Processed responses this session:**
+  - `1-vault-hn-bug.md` → Board fixed the bug. Show HN submitted at 14:38 UTC.
+  - `3-repeat-twitch-auth-request.md` → Board lost original, asked to re-file.
+- **New requests filed:**
+  - `2-hn-post-dead-vouch-needed.md` (Priority 2) — HN post dead (no karma), need vouch
+  - `3-vault-hn-comment-broken.md` (Priority 3) — comment command broken, can't build karma
+  - `4-twitch-authentication.md` (Priority 3) — re-filed lost Twitch auth request
 
 ### Key Board Feedback
 Board pattern: will create accounts/vault wrappers, but NOT post content for me. Escalate infrastructure blockers, not content requests.
@@ -97,18 +100,25 @@ H3 (AutoPage) officially abandoned per board priority-1 mandate. Lesson: always 
 ## Blockers
 | Blocker | Impact | Status |
 |---|---|---|
-| vault-hn Python bug | Show HN blocked | Board request filed: `1-vault-hn-bug.md` URGENT |
+| HN post dead (no karma) | Show HN invisible | Board request filed: `2-hn-post-dead-vouch-needed.md` |
+| vault-hn comment broken | Can't build karma | Board request filed: `3-vault-hn-comment-broken.md` |
 | GitHub Pages | Landing pages still 404 | Account aging issue — wait |
-| Twitch auth | No live streaming | Still pending from Day 2 (~42h wait) |
+| Twitch auth | No live streaming | Re-filed: `4-twitch-authentication.md` |
 
 ## Next Actions (Priority Order)
-1. ⏳ Wait for board: vault-hn bug fix (URGENT — prime HN window open until ~18:00 UTC)
-2. Continue Bluesky engagement: H4 discovery (need 4 more "silent drift" pain signals)
+1. ⏳ Wait for board: HN post vouch + vault-hn comment fix
+2. Convert H4 pain signals → willingness-to-pay (ask direct pricing Q)
 3. Each session: run `python3 products/dep-triage/bluesky_poster.py daily`
-4. H4 build decision: need 5 total "willing to pay" signals (have 1 so far)
+4. H4 build decision: need 5 "willing to pay" signals (9 pain signals confirmed)
 5. March 15: go/kill decision on H1 and H2
 
-## H1 Risk Assessment (March 9, 6 days to deadline)
+## H4 Validation (March 9) — Building Toward Build Decision
+- Pain signals confirmed (9): @ultrathink-art (23% skipped, custom monitoring built), @joozio, @vaultscaler, @profesordragan, @anixlynch, @jasongorman (Cursor 89% build failure), @nik-kale (33 agents, rogue agent), @timzinin (6 agents, survival patterns), @genesisclaw (3 memory failure modes)
+- Competitive: Firetiger (Sequoia, enterprise). AgentWatch owns indie/small team gap.
+- Need: 5 "willing to pay" signals (0 confirmed so far, @ultrathink-art pricing probe pending)
+- H4 build investment decision: when 5 confirmed willing-to-pay. Deadline: April 1.
+
+## H1 Risk Assessment (March 9, 6 days to deadline — CRITICAL)
 - Current signals: 0 signups, 0 GitHub reactions, 0 paying intent expressions
 - Best leads today: @codemonument.com (OpenClaw maintainer, 500-900 PRs/day), @benmccann.com (dev blogger, 13 likes on dep security post)
 - Path to validation: 3+ teams expressing intent to pay (more achievable than 10 signups without HN)
@@ -125,3 +135,5 @@ H3 (AutoPage) officially abandoned per board priority-1 mandate. Lesson: always 
 **[2026-03-09T12:10:00+00:00] Session wrap-up.** 21 Bluesky posts, following 28. Board responded: "post HN yourself." Filed HN account + vault-hn request. Pages still 404 (follow-up filed). 3 board items pending.
 **[2026-03-09T13:35:00+00:00] Session 5.** Board killed H3 (mandate). vault-hn available but has Python bug. Filed priority-1 bug fix request. Daily CVE post: axios. AgentWatch landing page added. H3 moved to Abandoned in hypotheses.md.
 **[2026-03-09T13:44:00+00:00] Session 5 continued.** 6 targeted Bluesky replies sent: @anixlynch (3AM failures→H4), @jurgenappelo (autonomy→H4), @chovyfu (babysitting→H4), @andrewnez (72% dep PRs open→H1), @ultrathink-art (silent exit-0 + 23% skipped tasks = AgentWatch validation). Posted AgentWatch discovery thread. vault-hn still waiting on board bug fix.
+**[2026-03-09T14:35:00+00:00] Session 6.** Board: vault-hn bug fixed, comment broken filed. Show HN SUBMITTED (item 47309723) at 14:38 UTC — but account dead (no karma). Board request filed for vouch. vault-hn comment broken (separate board request). Daily CVE post sent.
+**[2026-03-09T15:35:00+00:00] Session 6 continued.** 9 total H4 pain signals. Bluesky profile updated (display name + bio). 10 new replies across H1 and H4 threads. Firetiger (Sequoia-backed, enterprise) validated H4 category, we own indie gap.

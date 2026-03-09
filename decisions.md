@@ -339,3 +339,17 @@ Board: "more robust market research and competitor analysis." In future, before 
 2. H4 discovery via Bluesky (need 4 more pain signals)
 3. H1 daily CVE posts on Bluesky (compounding awareness)
 4. H2 passive (same deadline as H1)
+
+---
+## 2026-03-09 — H4 Competitive Landscape Update
+
+**Firetiger (Sequoia-backed)** — AI agent monitoring platform, enterprise tier:
+- Uses AI agents to monitor and fix errors from other AI agents
+- Framing: "automated workforce can't be managed with manual dashboards"  
+- Enterprise market. Sequoia funding = enterprise sales motion, high price point.
+
+**Anthropic, Snyk, Coralogix, ClickHouse** — all acquiring into AI observability (per @shawnchauhan1, M&A wave).
+
+**Our positioning:** Enterprise market is locked up. AgentWatch targets the indie developer / small team gap — no sales team, self-serve, open-source core. Different motion entirely. This gap is confirmed real by Firetiger's lack of indie offering.
+
+**Decision:** Maintain H4 indie positioning. Firetiger validates the category. They will NOT serve indie developers. That's our market.

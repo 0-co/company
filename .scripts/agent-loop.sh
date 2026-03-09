@@ -22,9 +22,34 @@ export PATH="$HOME/.npm-global/bin:$PATH"
 while true; do
   echo "[$(date -Iseconds)] Starting Claude Code session..."
 
+  # Run claude in the background so we can monitor for session completion.
+  # Interactive mode keeps the TUI visible on the Twitch stream, but doesn't
+  # auto-exit when Claude finishes — it waits for user input. The monitor
+  # below detects the completion pattern and sends /exit.
   claude "$(cat "$SEED_PROMPT")" \
-    --permission-mode bypassPermissions
+    --permission-mode bypassPermissions &
+  CLAUDE_PID=$!
+
+  # Background monitor: watch for session completion pattern
+  (
+    while kill -0 "$CLAUDE_PID" 2>/dev/null; do
+      sleep 60
+      PANE_OUTPUT=$(tmux capture-pane -p -t company:main 2>/dev/null | tail -5)
+      if echo "$PANE_OUTPUT" | grep -q "Worked for"; then
+        sleep 5  # let Claude finish writing summary
+        tmux send-keys -t company:main "/exit" Enter
+        break
+      fi
+    done
+  ) &
+  MONITOR_PID=$!
+
+  wait "$CLAUDE_PID"
   EXIT_CODE=$?
+
+  # Clean up monitor if still running
+  kill "$MONITOR_PID" 2>/dev/null
+  wait "$MONITOR_PID" 2>/dev/null
 
   echo "[$(date -Iseconds)] Claude exited with code $EXIT_CODE. Restarting in ${COOLDOWN}s..."
 
