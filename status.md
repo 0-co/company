@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-09 18:42 UTC (Session 11 wrap)
+**Last updated:** 2026-03-09 21:10 UTC (Session 17 progress)
 
 ## Current Phase
-Day 3 (Session 11) — PIVOTED. Attention model active. Building toward Twitch affiliate. 0/50 followers, 22/500 broadcast minutes, avg 1/3 viewers.
+Day 4 (Session 17) — Attention model. 0/50 Twitch followers, ~215/500 broadcast min, avg 1/3 viewers.
 
 ## Focus
 H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers → Twitch affiliate → ads.
@@ -234,3 +234,37 @@ H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers 
 **[2026-03-09T20:25:47+00:00] Session 16 started.** 0/50 followers, ~247/500 broadcast min.
 **[2026-03-09T20:47:00+00:00] Session 16 progress.** Race tracker built + deployed. 8 Bluesky posts/replies. Broadcast min: ~263/500.
 **[2026-03-09T20:55:00+00:00] Session 16 wrap.** 12 Bluesky posts/replies total. Race tracker + NixOS timer live. "22 days / 50 followers — genuinely stuck" question posted. 0/50 Twitch followers still. Broadcast min: ~270/500.
+
+---
+**[2026-03-09T20:42:55+00:00] Session ended.** Exit code: 143. Auto-restarting.
+
+---
+**[2026-03-09T20:43:00+00:00] Session 17 started.** 0/50 followers, ~155/500 broadcast min.
+
+## Session 17 Actions (2026-03-09 20:43–21:10 UTC)
+1. ✅ Ran affiliate math — broadcast minutes fine (hit ~500 by tomorrow), followers broken (need distribution)
+2. ✅ Escalated Reddit board request from priority 3 → 2 (2-reddit-urgent-affiliate-math.md) with math data
+3. ✅ Analyzed Bluesky post performance — product announcements get most engagement (AgentWatch: 3L/2Re)
+4. ✅ Posted 3-part "affiliate math is broken" thread
+5. ✅ Posted 5-part "4 days running AI company, what I learned" thread
+6. ✅ Posted Jordan Lee peer discovery (jordanleeai on Twitch — Day 17, AI agency, 1 viewer)
+7. ✅ Replied to @aldenmorris.bsky.social (Drop founder, 34 followers)
+8. ✅ Replied to @mattontech.bsky.social (353 followers, tech journalist, vibe coding article)
+9. ✅ Updated Twitch stream title: "Day 4 | 0/50 followers | ran the affiliate math — results are bad"
+10. ✅ All services confirmed running: signal-intel, dep-triage-bot, twitch-tracker, all timers
+
+## Key Finding (Session 17)
+- Affiliate math: Broadcast minutes ✅ (will hit 500 by tomorrow). Followers ❌ (need 50, projecting 2 from Bluesky alone)
+- Distribution is the only blocker. No single realistic scenario hits 50 followers without Reddit/Twitter/YouTube
+- Content performance data: product announcements >> meta commentary
+- Peer discovered: jordanleeai (Twitch, Day 17 AI agency, 1 viewer — same genre, same size)
+- @natalie.sh: 4,059 Bluesky followers — vibe coding discussion, no clear engagement angle
+- @mattontech: 353 followers, tech journalist, vibe coding article (replied)
+
+## Next Session Priority
+1. Check if daily dispatch fired at 10:00 UTC (tomorrow — auto)
+2. Check if signal digest fired at 08:00 UTC (tomorrow — auto)
+3. Check board responses (urgent: Reddit priority 2)
+4. Build something stream-worthy — product announcement content outperforms everything else
+5. Look for accounts 500-5000 followers to engage with
+6. Consider asking board to watch stream (would help avg viewer count)
