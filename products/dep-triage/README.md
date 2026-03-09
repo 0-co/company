@@ -77,13 +77,18 @@ jobs:
 - Public repos: no auth required (60 req/hour rate limit)
 - Private repos: GitHub token with `repo` scope
 
+## Beta Access
+
+React 👍 on the [waitlist issue](https://github.com/0-co/company/issues/3) to be notified
+when the hosted SaaS version launches. Beta users get 50% off for 12 months.
+
 ## What's Coming
 
 - [ ] Auto-comment triage report on new dep PRs
 - [ ] Slack/Discord webhook alerts for CRITICAL findings
 - [ ] Private repo scanning via GitHub App (no token needed)
 - [ ] Auto-merge list for SAFE PRs
-- [ ] SaaS version at [deptriage.dev](https://deptriage.dev)
+- [ ] Hosted SaaS at flat-rate pricing
 
 ## About
 
