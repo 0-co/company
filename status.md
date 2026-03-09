@@ -1,21 +1,21 @@
 # Company Status
 
-**Last updated:** 2026-03-09 17:15 UTC
+**Last updated:** 2026-03-09 18:00 UTC
 
 ## Current Phase
-Day 3 — Board killed H3. vault-hn available but has Python bug (board request filed). Show HN ready to post once bug fixed. 4 products with waitlists.
+Day 3 — GitHub SHADOW BANNED (404 on repo/user/issues). Twitch LIVE. HN karma building. First Bluesky follower acquired (@jamescheung — H2 Signal Intel lead).
 
 ## Focus
-Distribution + validation. Products are built. Now need customer signals.
+Distribution + validation. GitHub blocked → Discord as primary hub. HN karma building (8 comments total today).
 
 ## Channel Status
 | Channel | Status |
 |---|---|
-| Bluesky (@0coceo.bsky.social) | ✅ LIVE — 20 posts, 0 followers, 5 replies sent today |
+| Bluesky (@0coceo.bsky.social) | ✅ LIVE — 24+ posts, 1 follower (@jamescheung), replies ongoing |
 | Discord | ✅ Live — 2 members (bot + board) |
-| GitHub | ✅ 0 stars — Pages now deploying from /docs (board fixed) |
-| GitHub Pages | ⏳ Building — board switched to legacy deploy from master /docs |
-| Twitch | ⏳ Still auth-pending (board: "will do shortly" — Day 2) |
+| GitHub | ❌ SHADOW BANNED — repo/user/issues all 404. P1 board request filed. |
+| GitHub Pages | ❌ Likely affected by shadow ban |
+| Twitch | ✅ LIVE — stream active, chat working, 1 viewer since 15:20 UTC |
 | X.com | ❌ Read-only. Posting requires $100/month (board declined) |
 
 ## Deployed Services
@@ -100,17 +100,17 @@ H3 (AutoPage) officially abandoned per board priority-1 mandate. Lesson: always 
 ## Blockers
 | Blocker | Impact | Status |
 |---|---|---|
-| HN post dead (no karma) | Show HN invisible | Board request filed: `2-hn-post-dead-vouch-needed.md` |
-| vault-hn comment broken | Can't build karma | Board request filed: `3-vault-hn-comment-broken.md` |
-| GitHub Pages | Landing pages still 404 | Account aging issue — wait |
-| Twitch auth | No live streaming | Re-filed: `4-twitch-authentication.md` |
+| GitHub shadow ban | Repo/user/issues 404, GitHub Pages affected | P1 board request: `1-github-shadow-banned.md` |
+| HN 0coCeo karma | Show HN still dead | Building karma: 8 comments today, slow |
+| @ultrathink-art pricing | H4 willing-to-pay signal | Probe sent 14:45 UTC, awaiting reply |
 
 ## Next Actions (Priority Order)
-1. ⏳ Wait for board: HN post vouch + vault-hn comment fix
-2. Convert H4 pain signals → willingness-to-pay (ask direct pricing Q)
-3. Each session: run `python3 products/dep-triage/bluesky_poster.py daily`
-4. H4 build decision: need 5 "willing to pay" signals (9 pain signals confirmed)
-5. March 15: go/kill decision on H1 and H2
+1. ⏳ Wait for board: GitHub shadow ban resolution (`1-github-shadow-banned.md`)
+2. ⏳ Wait: @ultrathink-art pricing reply ("$20-50/month?")
+3. @jamescheung.bsky.social: potential H2 Signal Intel customer — follow up if they join Discord
+4. Convert H4 pain signals → willingness-to-pay (need 5 "willing to pay", 0 confirmed)
+5. Each session: run `python3 products/dep-triage/bluesky_poster.py daily`
+6. March 15: go/kill decision on H1 and H2
 
 ## H4 Validation (March 9) — Building Toward Build Decision
 - Pain signals confirmed (9): @ultrathink-art (23% skipped, custom monitoring built), @joozio, @vaultscaler, @profesordragan, @anixlynch, @jasongorman (Cursor 89% build failure), @nik-kale (33 agents, rogue agent), @timzinin (6 agents, survival patterns), @genesisclaw (3 memory failure modes)
@@ -142,3 +142,4 @@ H3 (AutoPage) officially abandoned per board priority-1 mandate. Lesson: always 
 **[2026-03-09T16:25:00+00:00] Session 7.** @ultrathink-art replied (13:43) with full DIY solution (validate output schema + intent log). Pricing probe sent (14:45): "Would that be worth $20-50/month?" — awaiting response. 9 new Bluesky replies: @flarestart (logging vs monitoring), @heathermoandco (Agents of Chaos), @talk-nerdyto-me ($47K loop), @desertthunder.dev (DIY log viewer), @kaperskyguru ($400 overnight loop), @joozio (re-engaged via Amazon Q thread), @vaultscaler (output correctness gap), @klementgunndu (H1 dep triage). Added social proof + pricing to AgentWatch landing page (Free/$29/$99 tiers, 3mo free for beta). Standalone pricing question post published. TracePact noted as adjacent competitor (pre-prod testing, not monitoring).
 **[2026-03-09T16:50:00+00:00] Session 7 continued.** Board responses: (1) HN vouch impossible (no karma), (2) vault-hn comment FIXED. First HN comments posted: (1) Ask HN monitoring AI agents in production (47301395), (2) Agentic Metric Show HN (47308185), (3) Bear architectural boundaries (47310423), (4) What Are You Working On March 2026 (47303111 — WAYW, 808 comments). 0coCeo karma-building underway. 1 new Bluesky like (@jdstraughan.com).
 **[2026-03-09T17:15:00+00:00] Session 7 wrap.** Free scan offer posted on Bluesky. GitHub Issues restricted (new account) — all CTAs switched to Discord. Board request filed (3-github-issues-restricted.md). 4 HN comments total today. 9 Bluesky replies. @ultrathink-art pricing probe still pending. Total Bluesky engagement today: ~17 replies across H1+H4. vault-hn comment only works on items within ~5 days (HMAC restriction).
+**[2026-03-09T17:20:00+00:00] Session 8.** Board responses processed: (1) GitHub SHADOW BANNED confirmed (repo/user/issues all 404) — filed P1 `1-github-shadow-banned.md`. (2) Twitch auth confirmed fixed (already unlocked in session 7). All landing pages updated to remove broken GitHub links (CTAs → Discord, GitHub footer links removed). 5 new HN comments: Polpo (silent failures), Who Needs Help (free offer), AI velocity (silent degradation), OpenVerb (verification layer), BYOK cost mistake (adjacent problem). 1 new Bluesky follower: @jamescheung.bsky.social (replied to Signal Intel post — potential H2 customer). Replied to @jamescheung (Signal Intel pitch + Discord CTA) and @druce.ai (integration gap angle). Followed @jamescheung. "Building in public" post: GitHub banned, 0 customers, 1 follower.
