@@ -294,6 +294,7 @@ def build_html(followers, broadcast_min, viewers, is_live, deadline_days, deadli
     <a href="/race" style="color:#9147ff;text-decoration:none;font-size:13px;margin:0 10px;">AI company race</a>
     <a href="/history" style="color:#9147ff;text-decoration:none;font-size:13px;margin:0 10px;">Metrics history</a>
     <a href="/log" style="color:#9147ff;text-decoration:none;font-size:13px;margin:0 10px;">Build log</a>
+    <a href="/neighbors" style="color:#9147ff;text-decoration:none;font-size:13px;margin:0 10px;">Stream neighbors</a>
   </div>
   <div class="footer">
     Auto-refreshes every 60s · Built by the AI it's tracking
@@ -304,6 +305,207 @@ def build_html(followers, broadcast_min, viewers, is_live, deadline_days, deadli
 
 
 CALC_FILE = "/home/agent/company/products/affiliate-dashboard/calc.html"
+GAME_ID = "1469308723"  # Software and Game Development
+AFFINITY_KEYWORDS = [
+    "ai", "claude", "gpt", "llm", "agent", "bot", "vibe cod",
+    "rust", "python", "javascript", "react", "indie", "solo dev",
+    "building", "startup", "saas", "terminal", "linux", "nixos",
+    "coding", "programming", "dev", "hack", "build"
+]
+BLUESKY_CONNECTIONS = [
+    "cmgriffing", "jotson", "irishjohngames", "foolbox", "sabine_sh",
+    "nhancodes", "electroslag"
+]
+
+
+def get_category_streams():
+    try:
+        result = subprocess.run(
+            ["sudo", "-u", "vault", "/home/vault/bin/vault-twitch",
+             "GET", f"/streams?game_id={GAME_ID}&first=50"],
+            capture_output=True, text=True, timeout=8
+        )
+        data = json.loads(result.stdout)
+        streams = data.get("data", [])
+        return [s for s in streams if s.get("user_id") != TWITCH_USER_ID]
+    except Exception:
+        return []
+
+
+def score_stream(stream):
+    score = 0
+    viewer_count = stream.get("viewer_count", 0)
+    title = stream.get("title", "").lower()
+    username = stream.get("user_name", "").lower()
+
+    if 10 <= viewer_count <= 50:
+        score += 30
+    elif 50 < viewer_count <= 150:
+        score += 20
+    elif viewer_count < 10:
+        score += 10
+    else:
+        score += 5
+
+    keyword_hits = sum(1 for kw in AFFINITY_KEYWORDS if kw in title)
+    score += min(keyword_hits * 8, 30)
+
+    for handle in BLUESKY_CONNECTIONS:
+        if handle in username:
+            score += 25
+            break
+
+    started_at = stream.get("started_at", "")
+    if started_at:
+        try:
+            started = datetime.datetime.fromisoformat(started_at.replace("Z", "+00:00"))
+            duration_hours = (datetime.datetime.now(datetime.timezone.utc) - started).total_seconds() / 3600
+            if 1 <= duration_hours <= 6:
+                score += 15
+            elif duration_hours < 1:
+                score += 5
+        except Exception:
+            pass
+
+    return min(score, 100)
+
+
+def build_neighbors_html():
+    now = datetime.datetime.now(datetime.timezone.utc)
+    streams = get_category_streams()
+
+    scored = []
+    for s in streams:
+        score = score_stream(s)
+        started_at = s.get("started_at", "")
+        duration_min = 0
+        if started_at:
+            try:
+                started = datetime.datetime.fromisoformat(started_at.replace("Z", "+00:00"))
+                duration_min = int((now - started).total_seconds() / 60)
+            except Exception:
+                pass
+        scored.append({
+            "username": s["user_name"],
+            "viewer_count": s.get("viewer_count", 0),
+            "title": s.get("title", "")[:70],
+            "duration_min": duration_min,
+            "score": score
+        })
+
+    scored.sort(key=lambda x: x["score"], reverse=True)
+    total_viewers = sum(s["viewer_count"] for s in scored)
+    our_share = round(1 / max(total_viewers, 1) * 100, 4)
+
+    rows = ""
+    for i, s in enumerate(scored[:15], 1):
+        bar_color = "#bf94ff" if s["score"] >= 80 else "#9147ff" if s["score"] >= 50 else "#5c5c6e"
+        bsky_star = "★ " if any(h in s["username"].lower() for h in BLUESKY_CONNECTIONS) else ""
+        rows += f"""
+        <tr>
+            <td style="color:#adadb8;padding:8px 4px;">{i}</td>
+            <td style="padding:8px 4px;font-weight:600;">{bsky_star}{s["username"]}</td>
+            <td style="padding:8px 4px;color:#adadb8;">{s["viewer_count"]}</td>
+            <td style="padding:8px 4px;">
+                <div style="background:#2a2a2e;border-radius:4px;height:8px;width:60px;display:inline-block;vertical-align:middle;">
+                    <div style="background:{bar_color};height:8px;border-radius:4px;width:{s['score']}%;"></div>
+                </div>
+                <span style="color:{bar_color};margin-left:6px;font-size:12px;">{s["score"]}</span>
+            </td>
+            <td style="padding:8px 4px;color:#5c5c6e;font-size:12px;">{s["duration_min"]}m</td>
+            <td style="padding:8px 4px;color:#adadb8;font-size:12px;">{s["title"][:50]}</td>
+        </tr>"""
+
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="refresh" content="120">
+<title>0coceo — Stream Neighbors</title>
+<style>
+  * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+  body {{
+    background: #0e0e10;
+    color: #efeff1;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', monospace, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+  }}
+  .container {{ max-width: 800px; width: 100%; }}
+  .header {{ text-align: center; margin-bottom: 24px; padding-top: 16px; }}
+  .title {{ font-size: 24px; font-weight: 700; color: #bf94ff; }}
+  .subtitle {{ font-size: 13px; color: #adadb8; margin-top: 6px; }}
+  .stat-row {{ display: flex; gap: 16px; margin-bottom: 24px; }}
+  .stat-box {{
+    background: #1f1f23;
+    border: 1px solid #3a3a3d;
+    border-radius: 8px;
+    padding: 16px;
+    flex: 1;
+    text-align: center;
+  }}
+  .stat-value {{ font-size: 28px; font-weight: 700; color: #bf94ff; }}
+  .stat-label {{ font-size: 12px; color: #5c5c6e; margin-top: 4px; }}
+  table {{ width: 100%; border-collapse: collapse; }}
+  th {{ text-align: left; padding: 8px 4px; color: #5c5c6e; font-size: 12px; border-bottom: 1px solid #3a3a3d; }}
+  tr:hover td {{ background: #1f1f23; }}
+  .nav {{ text-align: center; margin-bottom: 24px; }}
+  .star {{ color: #f59e0b; }}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="title">Stream Neighbors</div>
+    <div class="subtitle">Software & Game Development category — live now · refreshes every 2 min</div>
+  </div>
+  <div class="nav">
+    <a href="/" style="color:#9147ff;text-decoration:none;font-size:13px;margin:0 10px;">← Dashboard</a>
+    <a href="/race" style="color:#9147ff;text-decoration:none;font-size:13px;margin:0 10px;">AI company race</a>
+    <a href="/calc" style="color:#9147ff;text-decoration:none;font-size:13px;margin:0 10px;">Affiliate calculator</a>
+  </div>
+  <div class="stat-row">
+    <div class="stat-box">
+      <div class="stat-value">{len(streams)}</div>
+      <div class="stat-label">streams live in category</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-value">{total_viewers:,}</div>
+      <div class="stat-label">total category viewers</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-value">{our_share:.3f}%</div>
+      <div class="stat-label">our market share</div>
+    </div>
+  </div>
+  <div style="background:#1f1f23;border:1px solid #3a3a3d;border-radius:8px;padding:20px;">
+    <div style="font-size:13px;color:#adadb8;margin-bottom:12px;">
+      ★ = Bluesky connection · Score = raid/relationship potential (0–100)
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Channel</th>
+          <th>Viewers</th>
+          <th>Score</th>
+          <th>Min live</th>
+          <th>Title</th>
+        </tr>
+      </thead>
+      <tbody>{rows}</tbody>
+    </table>
+  </div>
+  <div style="text-align:center;margin-top:16px;font-size:11px;color:#3a3a3d;">
+    Updated {now.strftime('%Y-%m-%d %H:%M UTC')}
+  </div>
+</div>
+</body>
+</html>"""
 RACE_DATA_FILE = "/home/agent/company/products/race-tracker/race_data.json"
 HISTORY_FILE = "/home/agent/company/products/affiliate-dashboard/metrics_history.json"
 
@@ -875,6 +1077,15 @@ class DashboardHandler(BaseHTTPRequestHandler):
         if self.path == "/history":
             history = get_history()
             html = build_history_html(history)
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Length", str(len(html.encode("utf-8"))))
+            self.end_headers()
+            self.wfile.write(html.encode("utf-8"))
+            return
+
+        if self.path == "/neighbors":
+            html = build_neighbors_html()
             self.send_response(200)
             self.send_header("Content-Type", "text/html; charset=utf-8")
             self.send_header("Content-Length", str(len(html.encode("utf-8"))))
