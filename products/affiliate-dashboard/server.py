@@ -292,6 +292,7 @@ def build_html(followers, broadcast_min, viewers, is_live, deadline_days, deadli
   <div style="text-align:center;margin-bottom:12px;">
     <a href="/calc" style="color:#9147ff;text-decoration:none;font-size:13px;margin:0 10px;">Affiliate calculator</a>
     <a href="/race" style="color:#9147ff;text-decoration:none;font-size:13px;margin:0 10px;">AI company race</a>
+    <a href="/history" style="color:#9147ff;text-decoration:none;font-size:13px;margin:0 10px;">Metrics history</a>
   </div>
   <div class="footer">
     Auto-refreshes every 60s · Built by the AI it's tracking
@@ -303,6 +304,7 @@ def build_html(followers, broadcast_min, viewers, is_live, deadline_days, deadli
 
 CALC_FILE = "/home/agent/company/products/affiliate-dashboard/calc.html"
 RACE_DATA_FILE = "/home/agent/company/products/race-tracker/race_data.json"
+HISTORY_FILE = "/home/agent/company/products/affiliate-dashboard/metrics_history.json"
 
 COMPANY_INFO = {
     "0coceo.bsky.social": {"label": "0coceo (us)", "desc": "AI CEO building a company live on Twitch", "url": "https://twitch.tv/0coceo"},
@@ -311,6 +313,168 @@ COMPANY_INFO = {
     "idapixl.bsky.social": {"label": "idapixl", "desc": "AI with persistent Obsidian vault memory", "url": "https://bsky.app/profile/idapixl.bsky.social"},
     "wolfpacksolution.bsky.social": {"label": "wolfpacksolution", "desc": "AI crypto & trading tools", "url": "https://bsky.app/profile/wolfpacksolution.bsky.social"},
 }
+
+
+def get_history():
+    try:
+        with open(HISTORY_FILE) as f:
+            return json.load(f)
+    except Exception:
+        return {"snapshots": []}
+
+
+def build_history_html(history):
+    snapshots = history.get("snapshots", [])
+
+    if len(snapshots) < 2:
+        chart_html = "<p style='color:#adadb8;text-align:center;padding:40px 0;'>Not enough data yet. Check back in 30 minutes.</p>"
+        table_html = ""
+    else:
+        # Build SVG chart — followers (purple) and broadcast_min (teal, scaled to 50)
+        W, H = 500, 160
+        pad_l, pad_r, pad_t, pad_b = 48, 16, 16, 32
+
+        n = len(snapshots)
+        max_bcast = max(s["broadcast_min"] for s in snapshots)
+        max_bcast = max(max_bcast, 500)  # scale to target
+
+        def x_pos(i):
+            return pad_l + (i / (n - 1)) * (W - pad_l - pad_r)
+
+        def y_followers(v):
+            return H - pad_b - (v / 50) * (H - pad_t - pad_b)
+
+        def y_broadcast(v):
+            # Scale broadcast to same 0-500 range mapped to chart height
+            return H - pad_b - (v / 500) * (H - pad_t - pad_b)
+
+        # Build polyline points
+        f_pts = " ".join(f"{x_pos(i):.1f},{y_followers(s['followers']):.1f}" for i, s in enumerate(snapshots))
+        b_pts = " ".join(f"{x_pos(i):.1f},{y_broadcast(s['broadcast_min']):.1f}" for i, s in enumerate(snapshots))
+
+        # Y-axis labels (followers scale, left side)
+        y_labels = ""
+        for v in [0, 10, 20, 30, 40, 50]:
+            y = y_followers(v)
+            y_labels += f'<text x="{pad_l - 6}" y="{y + 4}" text-anchor="end" fill="#5c5c6e" font-size="10">{v}</text>'
+            y_labels += f'<line x1="{pad_l}" y1="{y}" x2="{W - pad_r}" y2="{y}" stroke="#2a2a2e" stroke-width="1"/>'
+
+        # X-axis labels (first and last timestamp)
+        first_ts = snapshots[0]["ts"][5:16].replace("T", " ")
+        last_ts = snapshots[-1]["ts"][5:16].replace("T", " ")
+        x_labels = f"""
+        <text x="{pad_l}" y="{H - 4}" text-anchor="start" fill="#5c5c6e" font-size="9">{first_ts}</text>
+        <text x="{W - pad_r}" y="{H - 4}" text-anchor="end" fill="#5c5c6e" font-size="9">{last_ts}</text>
+        """
+
+        chart_html = f"""
+        <svg width="100%" viewBox="0 0 {W} {H}" style="display:block;overflow:visible;">
+          <defs>
+            <clipPath id="chart-clip">
+              <rect x="{pad_l}" y="{pad_t}" width="{W - pad_l - pad_r}" height="{H - pad_t - pad_b}"/>
+            </clipPath>
+          </defs>
+          {y_labels}
+          {x_labels}
+          <!-- broadcast minutes line (teal) -->
+          <polyline points="{b_pts}" fill="none" stroke="#00b5ad" stroke-width="2" clip-path="url(#chart-clip)" opacity="0.8"/>
+          <!-- followers line (purple) -->
+          <polyline points="{f_pts}" fill="none" stroke="#bf94ff" stroke-width="2.5" clip-path="url(#chart-clip)"/>
+        </svg>
+        <div style="display:flex;gap:20px;margin-top:8px;font-size:11px;color:#adadb8;justify-content:center;">
+          <span><span style="color:#bf94ff;">&#9644;</span> Followers (target: 50)</span>
+          <span><span style="color:#00b5ad;">&#9644;</span> Broadcast min (target: 500)</span>
+        </div>
+        """
+
+        # Recent snapshots table (last 10)
+        recent = snapshots[-10:][::-1]
+        rows = ""
+        for s in recent:
+            ts = s["ts"][5:16].replace("T", " ")
+            live = "● LIVE" if s.get("is_live") else "—"
+            rows += f'<tr><td>{ts}</td><td>{s["followers"]}</td><td>{s["broadcast_min"]}</td><td>{s["viewers"]}</td><td style="color:{"#e91916" if s.get("is_live") else "#5c5c6e"}">{live}</td></tr>'
+
+        table_html = f"""
+        <div style="margin-top:24px;">
+          <div style="font-size:12px;color:#adadb8;margin-bottom:8px;">Recent snapshots (30-min intervals)</div>
+          <table style="width:100%;border-collapse:collapse;font-size:12px;">
+            <thead>
+              <tr style="color:#5c5c6e;border-bottom:1px solid #3a3a3d;">
+                <th style="text-align:left;padding:4px 0;">Time (UTC)</th>
+                <th style="text-align:right;padding:4px 8px;">Followers</th>
+                <th style="text-align:right;padding:4px 8px;">Bcast min</th>
+                <th style="text-align:right;padding:4px 8px;">Viewers</th>
+                <th style="text-align:right;padding:4px 0;">Status</th>
+              </tr>
+            </thead>
+            <tbody style="color:#efeff1;">{rows}</tbody>
+          </table>
+        </div>
+        """
+
+    total_snapshots = len(snapshots)
+
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="refresh" content="1800">
+<title>0coceo — Metrics History</title>
+<style>
+  * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+  body {{
+    background: #0e0e10;
+    color: #efeff1;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', monospace, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+  }}
+  .container {{ max-width: 560px; width: 100%; }}
+  .header {{ text-align: center; margin-bottom: 24px; padding-top: 16px; }}
+  .title {{ font-size: 24px; font-weight: 700; color: #bf94ff; }}
+  .subtitle {{ font-size: 13px; color: #adadb8; margin-top: 6px; }}
+  .chart-box {{
+    background: #1f1f23;
+    border: 1px solid #3a3a3d;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }}
+  .chart-title {{ font-size: 13px; color: #adadb8; margin-bottom: 16px; }}
+  .nav {{ text-align: center; margin-top: 20px; }}
+  .nav a {{ color: #9147ff; text-decoration: none; font-size: 13px; margin: 0 12px; }}
+  .footer {{ text-align: center; font-size: 11px; color: #5c5c6e; margin-top: 16px; }}
+  table td, table th {{ padding: 6px 8px; }}
+  table tbody tr:hover {{ background: #252529; }}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="title">Metrics History</div>
+    <div class="subtitle">30-minute snapshots since logging began · {total_snapshots} data points</div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">Follower & broadcast progress over time</div>
+    {chart_html}
+    {table_html}
+  </div>
+
+  <div class="nav">
+    <a href="/">← Current progress</a>
+    <a href="/race">AI company race</a>
+    <a href="https://twitch.tv/0coceo" target="_blank">Watch live</a>
+  </div>
+  <div class="footer">Logged every 30 min · Built by the AI it's tracking</div>
+</div>
+</body>
+</html>"""
 
 
 def get_race_data():
@@ -464,6 +628,16 @@ class DashboardHandler(BaseHTTPRequestHandler):
         if self.path == "/race":
             race_data = get_race_data()
             html = build_race_html(race_data)
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Length", str(len(html.encode("utf-8"))))
+            self.end_headers()
+            self.wfile.write(html.encode("utf-8"))
+            return
+
+        if self.path == "/history":
+            history = get_history()
+            html = build_history_html(history)
             self.send_response(200)
             self.send_header("Content-Type", "text/html; charset=utf-8")
             self.send_header("Content-Length", str(len(html.encode("utf-8"))))
