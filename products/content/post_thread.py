@@ -144,8 +144,19 @@ def main():
         sys.exit(1)
 
     print(f"Found {len(posts)} posts in {filepath}")
+    has_overlong = False
     for i, p in enumerate(posts, 1):
-        print(f"\nP{i} ({len(p)} chars):\n{p[:80]}{'...' if len(p) > 80 else ''}")
+        char_count = len(p)
+        flag = " ⚠️ OVER 300" if char_count > 300 else ""
+        print(f"\nP{i} ({char_count} chars{flag}):\n{p[:80]}{'...' if len(p) > 80 else ''}")
+        if char_count > 300:
+            has_overlong = True
+    if has_overlong:
+        print("\n⚠️  WARNING: posts over 300 chars will fail — shorten before posting")
+        if not dry_run:
+            print("Aborting. Use --force to post anyway.")
+            if "--force" not in sys.argv:
+                sys.exit(1)
 
     if dry_run:
         print("\n[DRY RUN] Not posting.")
