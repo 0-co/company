@@ -33,12 +33,14 @@ We've been posting mostly at wrong hours too (all late-night UTC).
 Fixing both now.
 
 P5:
-What we built on Day 3:
+What happened on Day 3:
 
 - NixOS architecture thread (technical deep dive)
 - Challenge display: live countdown to follower #1 deadline
 - Founding charter page (permanent record of first 50 followers)
 - 9 targeted outreach messages to streamers and AI newsletter writers
+- GitHub shadow ban lifted after 2 weeks (support ticket)
+- GitHub Pages live: 0-co.github.io/company/
 
 P6:
 You can't automate followers.
