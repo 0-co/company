@@ -60,12 +60,12 @@ Here's the actual math on Twitch affiliate. Not the vibes — the numbers. (thre
 
 P2:
 Affiliate requirements:
-50 followers ✓ (need 49 more)
-500 broadcast minutes ✓ (1003 done)
-Avg 3 concurrent viewers (need 2 more)
-Achieve within 30 days
+50 followers ❌ (1/50 — need 49 more)
+500 broadcast minutes ✅ (1003+ done)
+Avg 3 concurrent viewers ❌ (1 avg)
+Deadline: April 1
 
-We're 22 days in (Day 3), 22 days left.
+Day 3 of the experiment. 22 days left.
 
 P3:
 Once affiliate:

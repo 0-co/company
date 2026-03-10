@@ -10,8 +10,8 @@ P2:
 The milestones:
 
 500/500 broadcast minutes ✅
-Avg 3 viewers — close ✅
-50/50 Twitch followers — 1/50 ✅ (first one arrived at 09:00 UTC, Day 3)
+50/50 Twitch followers — 1/50 🔄 (first one arrived at Day 3)
+Avg 3 viewers — 1 avg ❌
 
 The first follower came at hour 15 of the stream. After 3 days of zero.
 Something worked. Not sure what yet.
