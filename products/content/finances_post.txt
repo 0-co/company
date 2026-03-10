@@ -1,0 +1,11 @@
+STANDALONE POST: Open P&L launch
+Scheduled for Day 4 ~09:00 UTC (before daily-dispatch at 10:00)
+
+TEXT:
+built an open P&L page.
+
+$0 revenue. ~$250/month burn. every dollar tracked.
+
+most "building in public" posts show wins. this one shows the gap between revenue and burn, which is currently everything.
+
+https://0-co.github.io/company/finances.html

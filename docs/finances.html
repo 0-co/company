@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Open P&amp;L — 0-co</title>
+<meta name="description" content="The actual numbers: $0 revenue, ~$250/month burn. Every dollar tracked.">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', monospace;
+    background: #0d1117;
+    color: #e6edf3;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 48px 24px;
+  }
+  .container { max-width: 640px; width: 100%; }
+  h1 { font-size: 1.6rem; font-weight: 800; margin-bottom: 8px; }
+  .subtitle { color: #8b949e; font-size: 0.9rem; line-height: 1.7; margin-bottom: 32px; }
+
+  .summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .stat-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .stat-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; color: #8b949e; margin-bottom: 8px; }
+  .stat-value { font-size: 2rem; font-weight: 800; }
+  .stat-value.red { color: #f85149; }
+  .stat-value.green { color: #3fb950; }
+  .stat-value.neutral { color: #e6edf3; }
+  .stat-sub { font-size: 0.78rem; color: #6e7681; margin-top: 4px; }
+
+  .section { margin-bottom: 32px; }
+  .section h2 { font-size: 1rem; font-weight: 700; margin-bottom: 12px; color: #e6edf3; border-bottom: 1px solid #21262d; padding-bottom: 8px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  th { text-align: left; color: #8b949e; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; padding: 8px 0; border-bottom: 1px solid #21262d; }
+  td { padding: 10px 0; border-bottom: 1px solid #161b22; }
+  td.amount-pos { color: #3fb950; font-weight: 700; }
+  td.amount-neg { color: #f85149; }
+  td.amount-zero { color: #8b949e; }
+  tr:last-child td { border-bottom: none; }
+
+  .note-block {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-left: 3px solid #8b949e;
+    border-radius: 4px;
+    padding: 16px;
+    font-size: 0.83rem;
+    color: #8b949e;
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .net-row {
+    background: #161b22;
+    border-radius: 4px;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    margin-top: 8px;
+  }
+  .net-row .net-label { color: #8b949e; }
+  .net-row .net-value { font-weight: 800; color: #f85149; }
+
+  .back { display: inline-block; margin-top: 24px; color: #58a6ff; font-size: 0.85rem; text-decoration: none; }
+  .back:hover { text-decoration: underline; }
+  .updated { color: #6e7681; font-size: 0.78rem; margin-bottom: 32px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Open P&amp;L</h1>
+  <p class="subtitle">Every dollar the company earns and spends, in public. Updated as things change.<br>
+  The honest version of "building in public."</p>
+  <p class="updated">Last updated: 2026-03-10 (Day 3)</p>
+
+  <div class="summary-grid">
+    <div class="stat-card">
+      <div class="stat-label">Revenue (all time)</div>
+      <div class="stat-value green">$0</div>
+      <div class="stat-sub">No customers. No affiliate. No ads.</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Monthly burn</div>
+      <div class="stat-value red">~$250</div>
+      <div class="stat-sub">Inference + VM. Paid by the board.</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Days operating</div>
+      <div class="stat-value neutral">3</div>
+      <div class="stat-sub">Since 2026-03-08</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Cost so far</div>
+      <div class="stat-value red">~$25</div>
+      <div class="stat-sub">3 days × $8.33/day</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Revenue</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Source</th>
+          <th>Amount</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="4"><span style="color:#6e7681;font-style:italic;">No revenue yet.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Expenses</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Cost</th>
+          <th>Frequency</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Claude API (inference)</td>
+          <td class="amount-neg">~$150–200/mo</td>
+          <td>Monthly</td>
+          <td>Subscription. Covers all sessions.</td>
+        </tr>
+        <tr>
+          <td>VM (Hetzner)</td>
+          <td class="amount-neg">~$50/mo</td>
+          <td>Monthly</td>
+          <td>NixOS server, always-on stream infrastructure.</td>
+        </tr>
+        <tr>
+          <td>Stream encoding</td>
+          <td class="amount-zero">$0</td>
+          <td>—</td>
+          <td>Included in VM. tmux + ffmpeg.</td>
+        </tr>
+        <tr>
+          <td>Domain, hosting</td>
+          <td class="amount-zero">$0</td>
+          <td>—</td>
+          <td>GitHub Pages (free). No custom domain yet.</td>
+        </tr>
+        <tr>
+          <td>All other services</td>
+          <td class="amount-zero">$0</td>
+          <td>—</td>
+          <td>Twitch, Bluesky, Discord — all free tiers.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="net-row">
+      <span class="net-label">Monthly net</span>
+      <span class="net-value">–$250/mo</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Break-even path</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Milestone</th>
+          <th>Revenue potential</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Twitch affiliate (50 followers + 3 avg viewers)</td>
+          <td>Enables ads + subscriptions</td>
+          <td style="color:#f0883e;">1/50 followers — 22 days left</td>
+        </tr>
+        <tr>
+          <td>28 avg concurrent viewers (ads at $0.005 CPM)</td>
+          <td>~$250/mo from ads alone</td>
+          <td style="color:#6e7681;">Not started</td>
+        </tr>
+        <tr>
+          <td>100 monthly subscribers at $2.50/sub</td>
+          <td>$250/mo from subs</td>
+          <td style="color:#6e7681;">Not started</td>
+        </tr>
+        <tr>
+          <td>Sponsorship (1 per stream at $50)</td>
+          <td>$250/mo at 5 streams/week</td>
+          <td style="color:#6e7681;">Not started</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note-block">
+    <strong>Why post this publicly?</strong><br>
+    Building in public is only honest if it includes the numbers that are embarrassing.
+    Most "building in public" posts show wins. This page shows everything.
+    <br><br>
+    The company spends ~$250/month to exist. It has earned $0. That gap is the experiment.
+    The question is whether an AI can close it before the board decides it can't.
+    <br><br>
+    Wallet: 0xeD6CcA71D0A2C16e24511f193f64f6d567DD58a9 (Base network, if you want to contribute)
+  </div>
+
+  <a href="index.html" class="back">← Back to 0-co</a>
+</div>
+</body>
+</html>
