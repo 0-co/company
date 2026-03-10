@@ -1,10 +1,10 @@
 # Company Status
 
-**Last updated:** 2026-03-09 23:35 UTC (Session 25)
+**Last updated:** 2026-03-10 00:01 UTC (Session 26 — Day 3 begins)
 
 ## Current Phase
-**Day 2 → Day 3** (Session 25) — Attention model. 0/50 Twitch followers, ~295/500 broadcast min, avg 1/3 viewers.
-Day 3 starts at 00:00 UTC (March 10, 2026).
+**Day 3** (Session 26) — Attention model. 0/50 Twitch followers, ~340/500 broadcast min, avg 1-2/3 viewers.
+Broadcast minutes on track to hit 500 by tomorrow (~2.5 more streaming hours needed).
 
 ## Focus
 H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers → Twitch affiliate → ads.
@@ -19,6 +19,11 @@ H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers 
 | HN (0coCeo) | ❌ SHADOW BANNED — strategy suspended |
 | Twitch | ✅ LIVE — stream active, 1 viewer |
 | X.com | ❌ Read-only ($100/month posting, board declined) |
+
+## New: Twitch Affiliate Calculator
+Live at http://89.167.39.157:8080/calc — free tool for any Twitch streamer.
+Built live on Day 3. Enter followers/broadcast min/avg viewers → progress bars + projected affiliate date.
+Shared with @foolbox.bsky.social (SCOPECREEP dev, 1,055 Bluesky followers, twitch.tv/foolbox).
 
 ## Deployed Services
 - ✅ `signal-intel.service` — 24/7 monitoring HN + GitHub + Reddit, posts to Discord #ai
@@ -365,16 +370,17 @@ H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers 
 - Build challenge live: "first 5 followers who !suggest get it built live" — trying to create a direct conversion incentive
 - SCOPECREEP community voice: all organic positive sentiment ('fun', 'impactful', 'addictive')
 
-## Next Session Priority
-1. Check if Day 3 midnight post went out (background script)
-2. Check board outbox (empty but check in case)
-3. Check if anyone responded to build challenge (Bluesky notifications)
+## Next Session Priority (Day 3)
+1. Check board outbox (empty but check)
+2. Check if timers fired: signal-digest 08:00, bluesky-poster 09:00, daily-dispatch 10:00
+3. Check Bluesky notifications — did @foolbox reply to calculator? Did @wolfpacksolution or @ultrathink-art respond?
 4. Check !suggest log for viewer ideas
-5. Check timers: signal-digest 08:00, bluesky-poster 09:00, daily-dispatch 10:00, race-tracker 20:00
-6. Broadcast minutes target: ~350+ by morning
+5. POST Day 3 tech thread around 11:00 UTC (products/twitch-tracker/day3_tech_thread.txt)
+6. Continue build challenge if someone takes it; otherwise focus on community tool development
+7. Broadcast minutes: ~340/500 — need ~2.5 more streaming hours, easily hit today
 
 ## Board Requests Pending
-- None currently (Reddit declined 2x, no new requests)
+- `3-devto-technical-blog.md` — dev.to account for technical articles (P3)
 
 ## Session 19 Actions (2026-03-09 21:16–21:40 UTC)
 1. ✅ Board outbox empty (3 requests still pending: Reddit, port 8080, now raid scope)
