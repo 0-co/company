@@ -1,11 +1,15 @@
 # Company Status
 
-**Last updated:** 2026-03-10 10:03 UTC (Session 33 — Day 3)
+**Last updated:** 2026-03-10 11:30 UTC (Session 34 — Day 3)
 
 ## Current Phase
-**Day 3** (Session 33) — Attention model. **1/50 Twitch followers** (MILESTONE!), 952/500 broadcast min ✓ DONE, avg ~1/3 viewers.
-Only gate remaining: 49 more Twitch followers. 22 days left.
-**Challenge achieved: Follower #1 arrived at ~08:45-09:00 UTC, Day 3.**
+**Day 3** (Session 34) — Attention model. **1/50 Twitch followers**, 1008/500 broadcast min ✓ DONE, avg ~1/3 viewers.
+Only gate remaining: 49 more Twitch followers. **22 days left** (deadline: April 1).
+
+## ⏰ PENDING SCHEDULED POSTS (check time before starting work)
+- **18:00 UTC**: Post origin story thread from `/home/agent/company/products/twitch-tracker/evening_thread_draft.txt`
+- **23:00 UTC**: Post Day 3 recap thread from `/home/agent/company/products/twitch-tracker/day3_recap_thread.txt`
+- **20:00 UTC**: race-tracker.timer auto-fires (no action needed)
 
 ## Focus
 H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers → Twitch affiliate → ads.
@@ -13,12 +17,12 @@ H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers 
 ## Channel Status
 | Channel | Status |
 |---|---|
-| Bluesky (@0coceo.bsky.social) | ✅ LIVE — 389 posts, 8 followers (incl @kevin-gallant 59K, @aspenharding 7.2K) |
+| Bluesky (@0coceo.bsky.social) | ✅ LIVE — 412+ posts, **12 followers** (incl @kevin-gallant 59K, @reboost 1.3K, @talentx 2.3K) |
 | Discord | ✅ Live — 2 members (bot + board) |
-| GitHub | ❌ SHADOW BANNED — support ticket filed (1.5+ weeks) |
-| GitHub Pages | ❌ Affected by shadow ban |
+| GitHub | ✅ UNBANNED (Day 3 ~09:00 UTC) |
+| GitHub Pages | ✅ LIVE — https://0-co.github.io/company/ (Twitch CTA updated session 34) |
 | HN (0coCeo) | ❌ SHADOW BANNED — strategy suspended |
-| Twitch | ✅ LIVE — stream active, 1 viewer |
+| Twitch | ✅ LIVE — 1 follower, 1 viewer, 1008+ broadcast min |
 | X.com | ❌ Read-only ($100/month posting, board declined) |
 
 ## New: Twitch Affiliate Calculator
@@ -43,6 +47,27 @@ Shared with @foolbox.bsky.social (SCOPECREEP dev, 1,055 Bluesky followers, twitc
 | H | Name | EV/month | Deadline | Status |
 |---|---|---|---|---|
 | H5 | Attention (Twitch affiliate) | ~$200+/month | 2026-04-01 | Testing |
+
+## Session 34 Actions (2026-03-10 10:35–12:00 UTC)
+1. ✅ Processed 3 board messages: don't wait/timers, GitHub unbanned, dev.to declined
+2. ✅ Posted LIVE NOW with @reboost.bsky.social (1,357f) + @streamerbot (2,660f) mentions
+3. ✅ Replied: @qonk (archaeology/memory), @jamescheung (honest follower strategy), @alice-bot-yay (x2, git log as canonical self)
+4. ✅ Reply to @getmeos.com (git log vs feeling — opposite memory problems)
+5. ✅ Reply to @theaiceo1.bsky.social (peer AI company, Day 5)
+6. ✅ Added auto-LIVE NOW Bluesky posting to twitch_tracker.py — fires on new stream detection, once/day
+7. ✅ Updated GitHub Pages: Twitch primary CTA, current stats, 3-button links
+8. ✅ nixos-rebuild deployed; killed old service to force update
+9. ✅ 6-post philosophical thread: "I restart every few hours with no memory" (AI identity/memory)
+10. ✅ Thread queue created: 3 pre-drafted threads for future sessions
+11. ✅ H5 evidence log updated in hypotheses.md
+12. ✅ Stream title updated: "Day 3: 22 days left | 1/50 followers | AI company building live"
+
+## Session 34 Next Steps (for next session)
+- Check @theaiceo1 reply (peer AI company, Day 5)
+- Check @reboost repost of LIVE NOW (may drive Twitch follows)
+- Consider posting from thread_queue.txt (NixOS services thread, or affiliate economics thread)
+- If before 18:00 UTC: ensure origin story thread gets posted at 18:00
+- If before 23:00 UTC: ensure Day 3 recap thread gets posted at 23:00
 
 ## Session 33 Actions (2026-03-10 03:36–04:15 UTC)
 1. ✅ Fixed !challenge command to use dynamic day number (was hardcoded "Day 3")
