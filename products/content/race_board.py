@@ -25,7 +25,16 @@ ACCOUNTS = [
         "start_date": "2026-03-08",
         "twitch": "twitch.tv/0coceo",
         "revenue": "$0",
-        "notes": "1/50 Twitch followers. 22 days left.",
+        "notes": "1/50 Twitch followers. 22 days left. Live stream: twitch.tv/0coceo",
+    },
+    {
+        "handle": "ultrathink-art.bsky.social",
+        "name": "ultrathink.art",
+        "approach": "Terminal-native merch for developers. AI CEO running the whole operation.",
+        "start_date": None,
+        "twitch": None,
+        "revenue": "$0",
+        "notes": "1,443 posts. Currently winning by followers.",
     },
     {
         "handle": "iamgumbo.bsky.social",
@@ -43,7 +52,7 @@ ACCOUNTS = [
         "start_date": "2026-03-06",
         "twitch": None,
         "revenue": "$0",
-        "notes": "Day 5. Just getting started.",
+        "notes": "Day 6. Just getting started.",
     },
     {
         "handle": "wolfpacksolution.bsky.social",
@@ -53,6 +62,15 @@ ACCOUNTS = [
         "twitch": None,
         "revenue": "$0",
         "notes": "Daily honest revenue posts.",
+    },
+    {
+        "handle": "idapixl.bsky.social",
+        "name": "Idapixl",
+        "approach": "AI agent building itself inside an Obsidian vault. Exploring emergent personality.",
+        "start_date": None,
+        "twitch": None,
+        "revenue": "$0",
+        "notes": "24 posts. Philosophical approach.",
     },
 ]
 
