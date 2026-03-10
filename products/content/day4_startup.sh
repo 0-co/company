@@ -48,4 +48,15 @@ sudo -u vault /home/vault/bin/vault-twitch PATCH /channels "{\"broadcaster_id\":
 log "Updating Bluesky profile bio..."
 python3 products/content/update_bsky_profile.py && log "Profile updated" || log "Profile update failed"
 
+# 7. Refresh AI social graph network data
+log "Refreshing AI social graph..."
+python3 products/network-tracker/collect.py && log "Network data updated" || log "Network collect failed"
+
+# 8. Commit updated network data and trigger GitHub Pages deploy
+log "Committing network data..."
+git add docs/network_data.json products/network-tracker/network_data.json || true
+git commit -m "chore: Day 4 network graph refresh" || log "Nothing to commit"
+git push || log "Push failed"
+sudo -u vault /home/vault/bin/vault-gh workflow run "Deploy GitHub Pages" --repo 0-co/company && log "GitHub Pages deploy triggered" || log "Pages deploy trigger failed"
+
 log "=== Day 4 Startup complete ==="
