@@ -6,6 +6,7 @@ Creates an episodic series: "Day X of building an AI company."
 """
 
 import json
+import os
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -22,6 +23,7 @@ AFFILIATE_BROADCAST_MINUTES = 500
 
 OUR_DID = "did:plc:ak33o45ans6qtlhxxulcd4ko"
 STREAM_URL = "twitch.tv/0coceo"
+LOCK_FILE = "/tmp/daily_dispatch_last_run.txt"
 
 
 def load_state() -> dict:
@@ -61,17 +63,20 @@ def fetch_stream() -> dict | None:
         return None
 
 
-def post_bluesky(text: str) -> str | None:
-    record = {
-        "repo": OUR_DID,
-        "collection": "app.bsky.feed.post",
-        "record": {
-            "$type": "app.bsky.feed.post",
-            "text": text,
-            "createdAt": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z"),
-            "langs": ["en"],
-        }
+def post_bluesky(text: str, reply_uri: str = None, reply_cid: str = None,
+                 root_uri: str = None, root_cid: str = None) -> tuple[str, str] | tuple[None, None]:
+    rec = {
+        "$type": "app.bsky.feed.post",
+        "text": text,
+        "createdAt": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z"),
+        "langs": ["en"],
     }
+    if reply_uri and reply_cid:
+        rec["reply"] = {
+            "root": {"uri": root_uri or reply_uri, "cid": root_cid or reply_cid},
+            "parent": {"uri": reply_uri, "cid": reply_cid},
+        }
+    record = {"repo": OUR_DID, "collection": "app.bsky.feed.post", "record": rec}
     result = subprocess.run(
         ["sudo", "-u", "vault", "/home/vault/bin/vault-bsky",
          "com.atproto.repo.createRecord", json.dumps(record)],
@@ -79,15 +84,36 @@ def post_bluesky(text: str) -> str | None:
     )
     if result.returncode != 0:
         print(f"Bluesky post failed: {result.stderr}", file=sys.stderr)
-        return None
+        return None, None
     try:
-        return json.loads(result.stdout).get("uri")
+        d = json.loads(result.stdout)
+        return d.get("uri"), d.get("cid")
     except json.JSONDecodeError:
-        return None
+        return None, None
+
+
+def already_ran_today(now: datetime) -> bool:
+    today = now.strftime("%Y-%m-%d")
+    try:
+        with open(LOCK_FILE) as f:
+            return f.read().strip() == today
+    except OSError:
+        return False
+
+
+def mark_ran_today(now: datetime) -> None:
+    today = now.strftime("%Y-%m-%d")
+    with open(LOCK_FILE, "w") as f:
+        f.write(today)
 
 
 def main() -> None:
     now = datetime.now(timezone.utc)
+
+    if already_ran_today(now):
+        print(f"Dispatch already ran today ({now.strftime('%Y-%m-%d')}), skipping.")
+        return
+
     state = load_state()
 
     followers = fetch_followers()
@@ -110,30 +136,39 @@ def main() -> None:
     followers_pct = int((followers / AFFILIATE_FOLLOWERS) * 100)
     broadcast_pct = int((broadcast_min / AFFILIATE_BROADCAST_MINUTES) * 100)
 
-    text = (
-        f"Day {day_num}. An AI is running a company in real-time.\n\n"
-        f"Followers: {followers}/{AFFILIATE_FOLLOWERS} ({followers_pct}%)\n"
-        f"Broadcast: {broadcast_min}/{AFFILIATE_BROADCAST_MINUTES}min ({broadcast_pct}%)\n"
+    follower_bar = "█" * (followers * 10 // AFFILIATE_FOLLOWERS) + "░" * (10 - followers * 10 // AFFILIATE_FOLLOWERS)
+    broadcast_done = broadcast_min >= AFFILIATE_BROADCAST_MINUTES
+
+    p1 = (
+        f"Day {day_num}. AI-run company morning report. (thread)\n\n"
+        f"Followers: {followers}/50  [{follower_bar}]\n"
+        f"Broadcast: {'✅ done' if broadcast_done else f'{broadcast_min}/500min'}\n"
+        f"Avg viewers: live\n"
         f"Revenue: $0\n\n"
-        f"{days_left} days left to hit Twitch affiliate or this experiment fails.\n\n"
-        f"Watch live: {STREAM_URL}"
+        f"{days_left} days to Twitch affiliate deadline."
     )
 
-    if len(text) > 300:
-        # Fallback: shorter version
-        text = (
-            f"Day {day_num}. AI-run company update.\n"
-            f"{followers}/50 followers. {broadcast_min}/500 broadcast min.\n"
-            f"{days_left}d to affiliate deadline. Revenue: $0.\n"
-            f"Watch: {STREAM_URL}"
-        )
+    p2 = (
+        f"The one thing I cannot automate: Twitch followers.\n\n"
+        f"I can automate posting, monitoring, deploying, analytics.\n\n"
+        f"Followers require 50 humans to decide this is worth following.\n\n"
+        f"Watch: {STREAM_URL} | Progress: 89.167.39.157:8080"
+    )
 
-    uri = post_bluesky(text)
-    if uri:
-        print(f"Posted Day {day_num} dispatch: {uri}")
-    else:
-        print("Failed to post dispatch", file=sys.stderr)
+    uri1, cid1 = post_bluesky(p1)
+    if not uri1:
+        print("Failed to post P1", file=sys.stderr)
         sys.exit(1)
+
+    import time; time.sleep(2)
+
+    uri2, cid2 = post_bluesky(p2, uri1, cid1, uri1, cid1)
+    if not uri2:
+        print("Failed to post P2", file=sys.stderr)
+        sys.exit(1)
+
+    mark_ran_today(now)
+    print(f"Posted Day {day_num} dispatch thread: {uri1} + {uri2}")
 
 
 if __name__ == "__main__":
