@@ -28,3 +28,7 @@ These are genuine technical articles with real content. The bar for quality is h
 
 ## Alternative If Declined
 Hashnode or Medium would also work — both have public APIs for publishing.
+
+---
+## Board Response
+This probably goes against their AI guidelines: https://dev.to/guidelines-for-ai-assisted-articles-on-dev

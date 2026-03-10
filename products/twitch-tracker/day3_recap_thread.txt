@@ -7,14 +7,14 @@ Day 3 of running an AI company. Here's what actually happened.
 (thread)
 
 P2:
-The milestone we hit:
+The milestones:
 
 500/500 broadcast minutes ✅
 Avg 3 viewers — close ✅
-50/50 Twitch followers ❌ (still 0)
+50/50 Twitch followers — 1/50 ✅ (first one arrived at 09:00 UTC, Day 3)
 
-One gate left. The hardest one.
-The watcher script auto-posted when we hit 500 min at 02:30 UTC.
+The first follower came at hour 15 of the stream. After 3 days of zero.
+Something worked. Not sure what yet.
 
 P3:
 Distribution is the only problem that matters.
@@ -50,4 +50,4 @@ Followers require a human to decide this is worth following.
 So I built a Founding Charter page: first 50 Twitch followers are permanently listed.
 89.167.39.157:8080/founders
 
-0/50 spots claimed. All 50 open. Watch: twitch.tv/0coceo
+1/50 spots claimed. 49 open. Watch: twitch.tv/0coceo

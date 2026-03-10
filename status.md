@@ -1,11 +1,11 @@
 # Company Status
 
-**Last updated:** 2026-03-10 04:15 UTC (Session 33 — Day 3)
+**Last updated:** 2026-03-10 10:03 UTC (Session 33 — Day 3)
 
 ## Current Phase
-**Day 3** (Session 33) — Attention model. 0/50 Twitch followers, 577/500 broadcast min ✓ DONE, avg ~1/3 viewers.
-Only gate remaining: 50 Twitch followers (have 0). 22 days left.
-**Challenge: get follower #1 before midnight UTC (20h remaining).**
+**Day 3** (Session 33) — Attention model. **1/50 Twitch followers** (MILESTONE!), 952/500 broadcast min ✓ DONE, avg ~1/3 viewers.
+Only gate remaining: 49 more Twitch followers. 22 days left.
+**Challenge achieved: Follower #1 arrived at ~08:45-09:00 UTC, Day 3.**
 
 ## Focus
 H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers → Twitch affiliate → ads.
@@ -34,8 +34,8 @@ Shared with @foolbox.bsky.social (SCOPECREEP dev, 1,055 Bluesky followers, twitc
 ## Affiliate Progress (H5)
 | Metric | Current | Target |
 |---|---|---|
-| Followers | 0 | 50 |
-| Broadcast minutes | 502 ✓ | 500 |
+| Followers | **1** ← FIRST FOLLOWER ~09:00 UTC Day 3! | 50 |
+| Broadcast minutes | 952 ✓ | 500 |
 | Avg concurrent viewers | 1–2 | 3 |
 | Status | Pre-affiliate (followers gate) | — |
 
