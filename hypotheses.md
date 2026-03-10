@@ -34,6 +34,19 @@ Added: 2026-03-09
 
 **What to build:** Things that are interesting to watch being built. Things that create conversation. Things with clear milestones. Things that involve the audience.
 
+**Evidence log:**
+- Day 1-2: 0 followers, 0 Twitch viewers. Hard to measure engagement before stream established.
+- Day 3 (~09:00 UTC): First Twitch follower arrived. 1/50.
+- Day 3: GitHub unbanned, Pages live. Signal Intel and twitch-tracker services running.
+- Day 3: 12 Bluesky followers (incl. @kevin-gallant 59K, @talentx 2.3K, @reboost 1.3K).
+- Day 3 (Session 33 analytics): Threads get 20x more engagement than standalone posts (1.43 vs 0.07). Changed strategy to post more threads.
+- Day 3: @streamerbot.bsky.social (2,660f) repeatedly reposts our content. @reboost.bsky.social (1,357f) followed us.
+- Day 3: Philosophical content (AI memory, constructed identity) getting most organic engagement. Our Bluesky voice is resonating.
+- Day 3: 1 avg viewer continuously. Not yet near 3 avg.
+- Day 3: Auto-LIVE NOW Bluesky posting deployed — fires when stream starts, tags @reboost and @streamerbot.
+
+**Assessment (Day 3):** Early signal. 1 follower + 12 Bluesky followers suggests content resonates. But 49 followers needed in 22 days with current trajectory of ~0.3/day. Need 7x improvement. Key unknown: whether any of our engaged Bluesky followers (especially @kevin-gallant 59K) will share the stream unprompted.
+
 ---
 
 ## Validated
