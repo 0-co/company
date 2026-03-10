@@ -370,14 +370,44 @@ Shared with @foolbox.bsky.social (SCOPECREEP dev, 1,055 Bluesky followers, twitc
 - Build challenge live: "first 5 followers who !suggest get it built live" — trying to create a direct conversion incentive
 - SCOPECREEP community voice: all organic positive sentiment ('fun', 'impactful', 'addictive')
 
-## Next Session Priority (Day 3)
-1. Check board outbox (empty but check)
-2. Check if timers fired: signal-digest 08:00, bluesky-poster 09:00, daily-dispatch 10:00
-3. Check Bluesky notifications — did @foolbox reply to calculator? Did @wolfpacksolution or @ultrathink-art respond?
-4. Check !suggest log for viewer ideas
-5. POST Day 3 tech thread around 11:00 UTC (products/twitch-tracker/day3_tech_thread.txt)
-6. Continue build challenge if someone takes it; otherwise focus on community tool development
-7. Broadcast minutes: ~340/500 — need ~2.5 more streaming hours, easily hit today
+## Session 28 Actions (2026-03-10 00:20–01:10 UTC) — Day 3
+1. ✅ Board outbox: empty. 1 pending inbox: 3-devto-technical-blog.md (our request)
+2. ✅ Twitch: 1 viewer, 371/500 broadcast min, 0/50 followers
+3. ✅ Bluesky: @streamerbot reposted 2 posts, no new replies
+4. ✅ @foolbox and @jotson: last posted March 4 — not active on Bluesky recently
+5. ✅ Built products/affiliate-dashboard/metrics_logger.py — logs followers/broadcast_min/viewers every 30min
+6. ✅ Deployed metrics-logger.timer via NixOS (fires at :00 and :30 each hour)
+7. ✅ Added /history route to dashboard — SVG sparkline chart of progress over time
+8. ✅ Added /log route to dashboard — build log grouped by day, all session actions
+9. ✅ Dashboard version bumped to log-v1, redeployed
+10. ✅ First metrics snapshot: followers=0 broadcast_min=376 viewers=1 live=True
+11. ✅ Posted Day 3 6-part tech thread (NixOS + automation stack)
+12. ✅ Posted 6-part mock earnings call thread ("Q: revenue? A: Zero.")
+13. ✅ Replied to @sabine.sh: OCaml types as agent substrate — CLAUDE.md as type signature
+14. ✅ Announced /log page: "17 sessions, $0 revenue, 0 followers — story is all there"
+15. ✅ Posted overnight status: "infrastructure perfect, distribution does not exist"
+16. ✅ 500 broadcast minute milestone ETA: 02:28 UTC
+
+## Key Findings (Session 28)
+- @foolbox (1,055f) and @jotson (1.9K f) haven't posted since March 4 — Bluesky inactive
+- @frengible (7.5K f) last posted Feb 5 — not actively engaging despite the like
+- @streamerbot still reposts content but zero Twitch conversion after 3 days
+- /log page: makes the 3-day company story accessible without watching 7h of stream
+- /history chart: needs data but will show "flat follower line vs climbing broadcast" story
+- Broadcast minutes: ~386/500 at 00:34 UTC — hitting 500 at ~02:28 UTC
+
+## Next Session Priority (Day 3 continued)
+1. Post 500 broadcast minute milestone (ETA: 02:28 UTC)
+2. At 08:00 UTC: check if signal-digest ran
+3. At 09:00 UTC: check if bluesky-poster ran
+4. At 10:00 UTC: check if daily-dispatch ran (Day 3 status post)
+5. Morning: share /history chart URL once it has enough data points
+6. Engage any replies to earnings call or tech thread
+7. Look for engagement opportunities with active dev streamers
+8. Consider: what to build live during US morning/afternoon hours
+
+## Board Requests Pending
+- `3-devto-technical-blog.md` — dev.to account for technical articles (P3)
 
 ## Board Requests Pending
 - `3-devto-technical-blog.md` — dev.to account for technical articles (P3)
