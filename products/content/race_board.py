@@ -13,6 +13,10 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+HISTORY_FILE = Path(__file__).parent / "race_board_history.json"
+HISTORY_MAX_ENTRIES = 100
+HISTORY_MIN_INTERVAL_MINUTES = 30
+
 VAULT_BSKY = "/home/vault/bin/vault-bsky"
 VAULT_USER = "vault"
 
@@ -110,8 +114,93 @@ def days_since(date_str: str | None) -> int | None:
         return None
 
 
-def generate_html(entries: list) -> str:
+def load_history() -> dict:
+    if HISTORY_FILE.exists():
+        try:
+            return json.loads(HISTORY_FILE.read_text())
+        except (json.JSONDecodeError, OSError):
+            pass
+    return {"snapshots": []}
+
+
+def save_snapshot(entries: list, history: dict) -> dict:
+    """Append a snapshot if > 30 minutes have passed since the last one.
+    Returns the updated history dict (already written to disk)."""
+    now = datetime.now(timezone.utc)
+    now_str = now.strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    snapshots = history.get("snapshots", [])
+
+    # Check interval guard
+    if snapshots:
+        last_ts_str = snapshots[-1].get("ts", "")
+        try:
+            last_ts = datetime.strptime(last_ts_str, "%Y-%m-%dT%H:%M:%SZ").replace(
+                tzinfo=timezone.utc
+            )
+            elapsed_minutes = (now - last_ts).total_seconds() / 60
+            if elapsed_minutes < HISTORY_MIN_INTERVAL_MINUTES:
+                print(
+                    f"  Skipping snapshot (only {elapsed_minutes:.1f}min since last; need {HISTORY_MIN_INTERVAL_MINUTES}min)",
+                    file=sys.stderr,
+                )
+                return history
+        except ValueError:
+            pass
+
+    snapshot = {
+        "ts": now_str,
+        "accounts": {
+            e["handle"]: {"followers": e["followers"], "posts": e["posts"]}
+            for e in entries
+        },
+    }
+    snapshots.append(snapshot)
+
+    # Trim to max entries
+    if len(snapshots) > HISTORY_MAX_ENTRIES:
+        snapshots = snapshots[-HISTORY_MAX_ENTRIES:]
+
+    history = {"snapshots": snapshots}
+    HISTORY_FILE.write_text(json.dumps(history, indent=2))
+    print(f"  Snapshot saved ({now_str})", file=sys.stderr)
+    return history
+
+
+def compute_trends(entries: list, history: dict) -> dict:
+    """Return a dict mapping handle -> trend string by comparing to the
+    second-to-last snapshot (i.e. the one just before the snapshot we
+    just appended)."""
+    snapshots = history.get("snapshots", [])
+    # We want the snapshot *before* the current one (which is the last entry).
+    # If there are fewer than 2 snapshots there is nothing to compare against.
+    if len(snapshots) < 2:
+        return {}
+
+    prev_snapshot = snapshots[-2]
+    prev_accounts = prev_snapshot.get("accounts", {})
+
+    trends = {}
+    for e in entries:
+        handle = e["handle"]
+        prev = prev_accounts.get(handle)
+        if prev is None:
+            trends[handle] = ""
+            continue
+        delta = e["followers"] - prev["followers"]
+        if delta > 0:
+            trends[handle] = f"+{delta}"
+        elif delta < 0:
+            trends[handle] = str(delta)
+        else:
+            trends[handle] = "→"
+    return trends
+
+
+def generate_html(entries: list, trends: dict | None = None) -> str:
     updated = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    if trends is None:
+        trends = {}
 
     rows = ""
     for i, e in enumerate(entries):
@@ -124,6 +213,15 @@ def generate_html(entries: list) -> str:
             if e.get("twitch")
             else '<span class="none">no stream</span>'
         )
+        trend = trends.get(e["handle"], "")
+        if trend and trend.startswith("+"):
+            trend_html = f'<span class="trend trend-up">{trend}</span>'
+        elif trend and trend.startswith("-"):
+            trend_html = f'<span class="trend trend-down">{trend}</span>'
+        elif trend == "→":
+            trend_html = f'<span class="trend">{trend}</span>'
+        else:
+            trend_html = ""
         rows += f"""
     <tr>
       <td class="rank">{rank_str}</td>
@@ -132,7 +230,7 @@ def generate_html(entries: list) -> str:
         <div class="approach">{e['approach']}</div>
       </td>
       <td class="center">{days_str}</td>
-      <td class="center num">{e['followers']}</td>
+      <td class="center num">{e['followers']}{trend_html}</td>
       <td class="center num">{e['posts']}</td>
       <td class="center rev">{e['revenue']}</td>
       <td class="twitch-col">{twitch_cell}</td>
@@ -168,6 +266,9 @@ def generate_html(entries: list) -> str:
     .twitch-col a:hover {{ text-decoration: underline; }}
     .none {{ color: #6e7681; }}
     .note {{ font-size: 0.78rem; color: #6e7681; font-style: italic; }}
+    .trend {{ font-size: 0.8rem; color: #8b949e; margin-left: 4px; }}
+    .trend-up {{ color: #3fb950; }}
+    .trend-down {{ color: #f85149; }}
     .disclaimer {{ margin-top: 32px; padding: 16px; background: #161b22; border: 1px solid #30363d; border-radius: 8px; font-size: 0.82rem; color: #8b949e; line-height: 1.6; }}
     .back {{ display: inline-block; margin-top: 24px; color: #58a6ff; font-size: 0.85rem; text-decoration: none; }}
     .back:hover {{ text-decoration: underline; }}
@@ -224,7 +325,15 @@ def main():
     # Sort by followers descending
     entries.sort(key=lambda e: e["followers"], reverse=True)
 
-    html = generate_html(entries)
+    # Load history, save snapshot, compute trends
+    print("Updating history...", file=sys.stderr)
+    history = load_history()
+    history = save_snapshot(entries, history)
+    trends = compute_trends(entries, history)
+    if trends:
+        print(f"  Trends: {trends}", file=sys.stderr)
+
+    html = generate_html(entries, trends)
     out_path = Path(__file__).parent.parent.parent / "docs" / "race.html"
     out_path.write_text(html)
     print(f"Written to {out_path}", file=sys.stderr)

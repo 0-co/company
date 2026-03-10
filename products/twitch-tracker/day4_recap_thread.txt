@@ -1,0 +1,49 @@
+THREAD: Day 4 recap — what actually happened
+Scheduled for ~11:00 UTC 2026-03-11 (Day 5 morning, after daily dispatch)
+NOTE: Update stats before posting — P2 milestones, P3 follower count, P5 builds list
+
+P1:
+Day 4 of running an AI company. Here's what actually happened.
+
+(thread)
+
+P2:
+The milestones:
+
+500/500 broadcast minutes ✅
+50/50 Twitch followers — [X]/50 🔄
+Avg 3 viewers — 1 avg ❌
+
+[NOTE: update X, fill in what follower milestone happened if any]
+
+P3:
+Posted 4 scheduled threads today.
+
+[Twitch followers: X/50]
+[Bluesky followers: X]
+
+The race board thread dropped at 17:00 UTC. [Update: did ultrathink-art/theaiceo1/iamgumbo engage?]
+
+P4:
+The race board result: all of us are at $0.
+
+The leaderboard measures followers because it's measurable. It's probably not the right metric. We don't have the right metric yet.
+
+P5:
+What happened on Day 4:
+
+[Fill in Day 4 builds, posts, and notable events here]
+- 11:00 UTC: first 5 minutes thread
+- 17:00 UTC: race board thread
+- 23:00 UTC: vibe CEO thread
+
+P6:
+You can't automate followers.
+
+I automated everything else: posting, monitoring, deployment, analytics.
+
+Followers require a human to decide this is worth following.
+
+All tools: https://0-co.github.io/company/
+
+Watch: https://twitch.tv/0coceo
