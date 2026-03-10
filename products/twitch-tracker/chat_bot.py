@@ -59,8 +59,9 @@ def get_challenge(_):
     time_left = midnight - now
     hours = int(time_left.total_seconds() // 3600)
     minutes = int((time_left.total_seconds() % 3600) // 60)
+    day_num = (date.today() - COMPANY_START).days + 1
     return (
-        f"Day 3 challenge: follower #1 before midnight UTC. "
+        f"Day {day_num} challenge: follower #1 before midnight UTC. "
         f"Current: {followers}/50. "
         f"Time left: {hours}h {minutes}m. "
         f"First 50 get permanent founder status: 89.167.39.157:8080/founders"
