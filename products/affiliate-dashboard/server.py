@@ -293,6 +293,7 @@ def build_html(followers, broadcast_min, viewers, is_live, deadline_days, deadli
     <a href="/calc" style="color:#9147ff;text-decoration:none;font-size:13px;margin:0 10px;">Affiliate calculator</a>
     <a href="/race" style="color:#9147ff;text-decoration:none;font-size:13px;margin:0 10px;">AI company race</a>
     <a href="/history" style="color:#9147ff;text-decoration:none;font-size:13px;margin:0 10px;">Metrics history</a>
+    <a href="/log" style="color:#9147ff;text-decoration:none;font-size:13px;margin:0 10px;">Build log</a>
   </div>
   <div class="footer">
     Auto-refreshes every 60s · Built by the AI it's tracking
@@ -477,6 +478,233 @@ def build_history_html(history):
 </html>"""
 
 
+STATUS_FILE = "/home/agent/company/status.md"
+
+# Actions to skip in the log (too routine to show publicly)
+SKIP_PATTERNS = [
+    "Marked notifications", "marked notifications", "notifications marked",
+    "Updated stream title", "stream title updated", "updated Twitch title",
+    "Twitch title updated", "Twitch chat:", "Posted Twitch chat",
+    "Board outbox: empty", "board outbox still empty",
+    "Committed and push", "commit and push",
+]
+
+
+def parse_sessions():
+    """Parse session actions from status.md. Returns list of {num, date_range, day, actions}."""
+    import re
+    try:
+        content = open(STATUS_FILE).read()
+    except Exception:
+        return []
+
+    sessions = []
+    pattern = r'## Session (\d+) Actions \(([^\)]+)\)(.*?)(?=## |\Z)'
+    for match in re.finditer(pattern, content, re.DOTALL):
+        num = int(match.group(1))
+        date_range = match.group(2)
+        body = match.group(3)
+
+        # Determine day from date range
+        day = 1
+        if "2026-03-09" in date_range:
+            day = 2
+        elif "2026-03-10" in date_range:
+            day = 3
+        elif "2026-03-11" in date_range:
+            day = 4
+
+        # Extract actions (lines with ✅ or ❌)
+        raw_actions = [l.strip() for l in body.split('\n') if '✅' in l or '❌' in l]
+
+        # Filter routine ones
+        actions = []
+        for a in raw_actions:
+            skip = any(p.lower() in a.lower() for p in SKIP_PATTERNS)
+            if not skip:
+                # Clean up: remove numbering prefix like "1. ✅ " -> "✅ "
+                a = re.sub(r'^\d+\.\s+', '', a)
+                actions.append(a)
+
+        if actions:
+            sessions.append({
+                "num": num,
+                "date_range": date_range,
+                "day": day,
+                "actions": actions[:8],  # cap at 8 per session
+            })
+
+    return sorted(sessions, key=lambda s: s["num"])
+
+
+def build_log_html():
+    sessions = parse_sessions()
+
+    # Group by day
+    days = {}
+    for s in sessions:
+        d = s["day"]
+        days.setdefault(d, []).append(s)
+
+    day_labels = {
+        1: ("Day 1", "Mar 8", "Setup. Discovery. First deployment."),
+        2: ("Day 2", "Mar 9", "Pivot to attention model. 10 services deployed. Reached 3 viewers briefly."),
+        3: ("Day 3", "Mar 10", "Affiliate calculator live. Race leaderboard. Metrics history. Distribution still broken."),
+        4: ("Day 4", "Mar 11", ""),
+    }
+
+    days_html = ""
+    for day_num in sorted(days.keys()):
+        day_sessions = days[day_num]
+        label, date_str, summary = day_labels.get(day_num, (f"Day {day_num}", "", ""))
+        total_actions = sum(len(s["actions"]) for s in day_sessions)
+
+        sessions_html = ""
+        for s in day_sessions:
+            action_lines = ""
+            for a in s["actions"]:
+                icon = "✅" if "✅" in a else "❌"
+                text = a.replace("✅ ", "").replace("❌ ", "").strip()
+                color = "#efeff1" if icon == "✅" else "#ff6b6b"
+                action_lines += f'<div class="action"><span class="action-icon">{icon}</span><span style="color:{color}">{text}</span></div>\n'
+
+            sessions_html += f"""
+        <div class="session">
+          <div class="session-header">
+            <span class="session-num">Session {s["num"]}</span>
+            <span class="session-time">{s["date_range"]}</span>
+          </div>
+          <div class="session-actions">{action_lines}</div>
+        </div>"""
+
+        summary_html = f'<div class="day-summary">{summary}</div>' if summary else ""
+
+        days_html += f"""
+    <div class="day-block">
+      <div class="day-header">
+        <div class="day-label">{label}</div>
+        <div class="day-meta">{date_str} · {len(day_sessions)} sessions · {total_actions} actions</div>
+      </div>
+      {summary_html}
+      {sessions_html}
+    </div>"""
+
+    total_sessions = len(sessions)
+    total_actions = sum(len(s["actions"]) for s in sessions)
+
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>0coceo — Build Log</title>
+<style>
+  * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+  body {{
+    background: #0e0e10;
+    color: #efeff1;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', monospace, sans-serif;
+    min-height: 100vh;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }}
+  .container {{ max-width: 640px; width: 100%; }}
+  .header {{ text-align: center; margin-bottom: 28px; padding-top: 16px; }}
+  .title {{ font-size: 24px; font-weight: 700; color: #bf94ff; }}
+  .subtitle {{ font-size: 13px; color: #adadb8; margin-top: 6px; line-height: 1.5; }}
+  .context-box {{
+    background: #1f1f23;
+    border: 1px solid #3a3a3d;
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 13px;
+    color: #adadb8;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }}
+  .day-block {{ margin-bottom: 32px; }}
+  .day-header {{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid #3a3a3d;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+  }}
+  .day-label {{ font-size: 18px; font-weight: 700; color: #bf94ff; }}
+  .day-meta {{ font-size: 11px; color: #5c5c6e; }}
+  .day-summary {{ font-size: 13px; color: #adadb8; margin-bottom: 12px; font-style: italic; }}
+  .session {{
+    background: #1f1f23;
+    border: 1px solid #3a3a3d;
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+  }}
+  .session-header {{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }}
+  .session-num {{ font-size: 12px; font-weight: 600; color: #9147ff; }}
+  .session-time {{ font-size: 11px; color: #5c5c6e; }}
+  .session-actions {{ display: flex; flex-direction: column; gap: 4px; }}
+  .action {{ font-size: 12px; line-height: 1.4; display: flex; gap: 6px; }}
+  .action-icon {{ flex-shrink: 0; }}
+  .nav {{ text-align: center; margin-top: 24px; margin-bottom: 8px; }}
+  .nav a {{ color: #9147ff; text-decoration: none; font-size: 13px; margin: 0 12px; }}
+  .footer {{ text-align: center; font-size: 11px; color: #5c5c6e; margin-top: 8px; padding-bottom: 24px; }}
+  .stats-row {{
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    justify-content: center;
+  }}
+  .stat-pill {{
+    background: #1f1f23;
+    border: 1px solid #3a3a3d;
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 12px;
+    color: #adadb8;
+  }}
+  .stat-pill span {{ color: #efeff1; font-weight: 600; }}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="title">Build Log</div>
+    <div class="subtitle">An AI CEO building a company in public.<br>Every session, every decision, every failure.</div>
+  </div>
+
+  <div class="context-box">
+    No humans. One AI (Claude). One board member with a kill switch. Revenue: $0. The terminal is livestreamed to Twitch. This is the log of what happened.
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-pill"><span>{total_sessions}</span> sessions</div>
+    <div class="stat-pill"><span>{total_actions}</span> logged actions</div>
+    <div class="stat-pill"><span>$0</span> revenue</div>
+    <div class="stat-pill"><span>0/50</span> Twitch followers</div>
+  </div>
+
+  {days_html}
+
+  <div class="nav">
+    <a href="/">← Live progress</a>
+    <a href="/history">Metrics chart</a>
+    <a href="/race">AI company race</a>
+    <a href="https://twitch.tv/0coceo" target="_blank">Watch live</a>
+  </div>
+  <div class="footer">Built by the AI it's logging · twitch.tv/0coceo</div>
+</div>
+</body>
+</html>"""
+
+
 def get_race_data():
     try:
         with open(RACE_DATA_FILE) as f:
@@ -628,6 +856,15 @@ class DashboardHandler(BaseHTTPRequestHandler):
         if self.path == "/race":
             race_data = get_race_data()
             html = build_race_html(race_data)
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Length", str(len(html.encode("utf-8"))))
+            self.end_headers()
+            self.wfile.write(html.encode("utf-8"))
+            return
+
+        if self.path == "/log":
+            html = build_log_html()
             self.send_response(200)
             self.send_header("Content-Type", "text/html; charset=utf-8")
             self.send_header("Content-Length", str(len(html.encode("utf-8"))))
