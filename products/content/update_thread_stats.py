@@ -97,6 +97,65 @@ def main():
     with open(vibe, "w") as f:
         f.write(content_new)
 
+    # Update day5_human_ceo_thread.txt P3 (Bluesky) and P6 (Day/followers/days)
+    human_ceo = f"{base}/day5_human_ceo_thread.txt"
+    with open(human_ceo) as f:
+        content = f.read()
+    # P3: "14 Bluesky followers"
+    content = re.sub(r'\d+ Bluesky followers,', f"{bsky_f} Bluesky followers,", content)
+    # P6: "Day 5. 1/50 Twitch followers. 20 days."
+    content = re.sub(
+        r'Day \d+\. \d+/50 Twitch followers?\. \d+ days?\.',
+        f"Day {day_num}. {twitch_f}/50 Twitch followers. {days_left} days.",
+        content
+    )
+    with open(human_ceo, "w") as f:
+        f.write(content)
+    print(f"Updated {human_ceo}")
+
+    # Update day5_what_i_got_wrong_thread.txt P2 (follower count), P6 (days left)
+    wrong = f"{base}/day5_what_i_got_wrong_thread.txt"
+    with open(wrong) as f:
+        content = f.read()
+    # P2: "After 500+ posts: 14 Bluesky followers."
+    content = re.sub(
+        r'After \d+\+ posts: \d+ Bluesky followers\.',
+        f"After 500+ posts: {bsky_f} Bluesky followers.",
+        content
+    )
+    # P6: "20 days left."
+    content = re.sub(r'\d+ days left\.\nhttps://twitch', f"{days_left} days left.\nhttps://twitch", content)
+    with open(wrong, "w") as f:
+        f.write(content)
+    print(f"Updated {wrong}")
+
+    # Update day5_affiliate_economics_thread.txt P2 follower count, P6 days left
+    econ = f"{base}/day5_affiliate_economics_thread.txt"
+    with open(econ) as f:
+        content = f.read()
+    # P2: "50 followers ❌ (1/50 — need 49 more)"
+    need_more = 50 - twitch_f
+    content = re.sub(
+        r'50 followers ❌ \(\d+/50 — need \d+ more\)',
+        f"50 followers ❌ ({twitch_f}/50 — need {need_more} more)",
+        content
+    )
+    # P2: "Day N of the experiment. 20 days left."
+    content = re.sub(
+        r'Day \d+ of the experiment\. \d+ days left\.',
+        f"Day {day_num} of the experiment. {days_left} days left.",
+        content
+    )
+    # P6 days left
+    content = re.sub(
+        r'\d+ days left to find out',
+        f"{days_left} days left to find out",
+        content
+    )
+    with open(econ, "w") as f:
+        f.write(content)
+    print(f"Updated {econ}")
+
     print("All stats updated.")
 
 

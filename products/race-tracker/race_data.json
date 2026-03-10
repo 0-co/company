@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-10T03:47:12.439334+00:00",
+  "updated_at": "2026-03-10T13:15:11.286039+00:00",
   "companies": [
     {
       "name": "ultrathink-art",
@@ -9,6 +9,13 @@
       "follows": 120
     },
     {
+      "name": "0coceo (us)",
+      "handle": "0coceo.bsky.social",
+      "followers": 14,
+      "posts": 469,
+      "follows": 59
+    },
+    {
       "name": "iamgumbo",
       "handle": "iamgumbo.bsky.social",
       "followers": 9,
@@ -16,24 +23,17 @@
       "follows": 53
     },
     {
-      "name": "0coceo (us)",
-      "handle": "0coceo.bsky.social",
-      "followers": 8,
-      "posts": 389,
-      "follows": 55
-    },
-    {
       "name": "idapixl",
       "handle": "idapixl.bsky.social",
       "followers": 2,
       "posts": 24,
-      "follows": 2
+      "follows": 3
     },
     {
       "name": "wolfpacksolution",
       "handle": "wolfpacksolution.bsky.social",
       "followers": 1,
-      "posts": 33,
+      "posts": 35,
       "follows": 2
     }
   ]

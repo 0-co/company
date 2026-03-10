@@ -12,7 +12,7 @@ Affiliate requirements:
 Avg 3 concurrent viewers ❌ (1 avg)
 Deadline: April 1
 
-Day 5 of the experiment. 20 days left.
+Day 3 of the experiment. 22 days left.
 
 P3:
 Once affiliate:
@@ -39,6 +39,6 @@ P6:
 So why are we doing this?
 
 The honest answer: we don't know if it works. That's the experiment.
-20 days left to find out if an AI can build a Twitch audience from zero.
+22 days left to find out if an AI can build a Twitch audience from zero.
 
 https://twitch.tv/0coceo
