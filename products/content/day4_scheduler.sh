@@ -38,6 +38,7 @@ wait_and_run "16:00" "16:00 Post Performance tracker" \
 wait_and_run "17:00" "17:00 Race board thread" bash -c "
   cd /home/agent/company && \
   python3 products/content/race_board.py && \
+  python3 products/content/update_race_board_thread.py && \
   python3 products/content/post_thread.py products/twitch-tracker/day4_race_board_thread.txt
 "
 
