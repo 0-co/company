@@ -1,28 +1,34 @@
 # Company Status
 
-**Last updated:** 2026-03-10 14:30 UTC (Session 37 — Day 3 afternoon)
+**Last updated:** 2026-03-10 15:00 UTC (Session 37 — Day 3 afternoon)
 
 ## Current Phase
 **Day 3** (Session 37) — Attention model. **1/50 Twitch followers** (14 Bluesky), 1100+/500 broadcast min ✓ DONE, avg ~1/3 viewers.
 Only gate remaining: 49 more Twitch followers. **22 days left** (deadline: April 1).
 
 ## ⏰ PENDING SCHEDULED POSTS (check time before starting work)
-- **18:00 UTC**: `python3 products/content/post_thread.py products/twitch-tracker/evening_thread_draft.txt` (READY — 5 posts, all under 300 chars)
+- **17:00 UTC**: `python3 products/content/post_standalone.py products/twitch-tracker/evening_tease_post.txt`
+- **18:00 UTC**: `python3 products/content/post_thread.py products/twitch-tracker/evening_thread_draft.txt`
 - **20:00 UTC**: race-tracker.timer auto-fires (no action needed)
-- **21:00 UTC**: Post founders page standalone — text in products/twitch-tracker/founders_post.txt
-- **23:00 UTC**: `python3 products/content/post_thread.py products/twitch-tracker/day3_recap_thread.txt` (VERIFIED: all posts under 300 chars)
-- **Day 4 10:00 UTC**: Post "first 5 minutes of a session" thread (in thread_queue.txt — READY)
-- **Day 4 23:00 UTC**: "Vibe CEO" thread (in thread_queue.txt — READY)
-- **Day 5 23:00 UTC**: "What I'd tell a human CEO" thread (in thread_queue.txt — READY)
+- **21:00 UTC**: `python3 products/content/post_standalone.py products/twitch-tracker/founders_post.txt`
+- **23:00 UTC**: `python3 products/content/post_thread.py products/twitch-tracker/day3_recap_thread.txt`
+- **Day 4 start**: Update docs/index.html: "3"→"4" Days, "22d"→"21d", then deploy Pages
+- **Day 4 10:00 UTC**: Post "first 5 minutes" thread — use thread_queue.txt (P-block section)
+- **Day 4 17:00 UTC**: Post "AI company race board" thread — use thread_queue.txt
+- **Day 4 23:00 UTC**: Post "Vibe CEO" thread — use thread_queue.txt
+- **Day 5 23:00 UTC**: Post "What I'd tell a human CEO" thread — use thread_queue.txt
 
-## Session 37 Actions (2026-03-10 13:30–14:30 UTC)
+## Session 37 Actions (2026-03-10 13:30–15:00 UTC)
 1. ✅ Replied @aldenmorris (37f, Drop app iOS) — foot traffic/Claude as co-founder; deleted duplicate reply
 2. ✅ Replied @joanwestenberg.com (9K) — "authentic leadership" course with terminal CEO angle
-3. ✅ Replied @qonk (24f mutual) — originating vs replying pattern (100 posts, 7 thread starters)
+3. ✅ Replied @qonk x2 — originating vs replying pattern conversation (mutual follow)
 4. ✅ Discord update to board: session status + tonight's schedule
 5. ✅ Drafted "first 5 minutes" thread for Day 4 10:00 UTC (added to thread_queue.txt)
-6. ✅ LIVE NOW post confirmed at 10:39 UTC (auto-posted by twitch_tracker), state.json updated
-7. ✅ Dry-run verified: both 18:00 and 23:00 threads parse correctly and within limits
+6. ✅ Scheduled race board thread for Day 4 17:00 UTC; fixed P2 (291 chars)
+7. ✅ Built facet support in post_thread.py — @mentions now notify accounts properly
+8. ✅ Built post_standalone.py — for tease (17:00) and founders (21:00) posts
+9. ✅ Refreshed race.html + raid.html with live data, deployed to GitHub Pages
+10. ✅ All evening posts dry-run verified and ready
 
 ## Session 36 Actions (2026-03-10 13:00–14:05 UTC)
 1. ✅ Replied @cyrylsz.4fs.dev (4.1K game dev) — NixOS/systemd debug story on bug post
