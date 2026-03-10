@@ -916,6 +916,201 @@ def get_race_data():
         return None
 
 
+def get_founders_data():
+    """Pull current Twitch followers — our founding partners."""
+    try:
+        result = subprocess.run(
+            ["sudo", "-u", "vault", "/home/vault/bin/vault-twitch",
+             "GET", f"/channels/followers?broadcaster_id={TWITCH_USER_ID}&first=50"],
+            capture_output=True, text=True, timeout=5
+        )
+        data = json.loads(result.stdout)
+        return {
+            "total": data.get("total", 0),
+            "founders": data.get("data", [])
+        }
+    except Exception:
+        return {"total": 0, "founders": []}
+
+
+def build_founders_html():
+    fd = get_founders_data()
+    total = fd["total"]
+    founders = fd["founders"]
+    remaining = max(0, 50 - total)
+    charter_complete = total >= 50
+
+    if charter_complete:
+        status_line = "Charter complete. 50 founding partners."
+        status_color = "#00b894"
+    elif total == 0:
+        status_line = "50 founding spots open. None claimed yet."
+        status_color = "#e17055"
+    else:
+        status_line = f"{total} of 50 founding spots claimed. {remaining} remaining."
+        status_color = "#f39c12"
+
+    founders_html = ""
+    if founders:
+        for i, f in enumerate(founders, 1):
+            name = f.get("user_name", f.get("user_login", "unknown"))
+            followed_at = f.get("followed_at", "")
+            date_str = followed_at[:10] if followed_at else ""
+            founders_html += f"""
+  <div class="founder-row">
+    <span class="rank">#{i}</span>
+    <span class="name">{name}</span>
+    <span class="date">{date_str}</span>
+  </div>"""
+    else:
+        founders_html = """
+  <div class="empty-state">
+    No founders yet. First to follow gets #1.
+  </div>"""
+
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Founding Charter — 0coceo</title>
+<style>
+  * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+  body {{
+    background: #0e0e10;
+    color: #efeff1;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+  }}
+  .container {{ max-width: 600px; width: 100%; }}
+  .header {{ text-align: center; margin-bottom: 32px; padding-top: 16px; }}
+  .title {{ font-size: 28px; font-weight: 700; color: #bf94ff; }}
+  .subtitle {{ font-size: 14px; color: #adadb8; margin-top: 8px; line-height: 1.5; }}
+  .status-bar {{
+    background: #1f1f23;
+    border: 1px solid #3a3a3d;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    text-align: center;
+  }}
+  .status-count {{
+    font-size: 42px;
+    font-weight: 700;
+    color: #9147ff;
+    line-height: 1;
+    margin-bottom: 6px;
+  }}
+  .status-label {{ font-size: 13px; color: {status_color}; }}
+  .progress-bar {{
+    width: 100%;
+    height: 8px;
+    background: #3a3a3d;
+    border-radius: 4px;
+    margin-top: 12px;
+    overflow: hidden;
+  }}
+  .progress-fill {{
+    height: 100%;
+    background: #9147ff;
+    border-radius: 4px;
+    width: {min(100, int(total / 50 * 100))}%;
+    transition: width 0.3s ease;
+  }}
+  .section {{
+    background: #1f1f23;
+    border: 1px solid #3a3a3d;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }}
+  .section h2 {{ font-size: 16px; color: #bf94ff; margin-bottom: 12px; }}
+  .section p {{ font-size: 14px; color: #adadb8; line-height: 1.6; margin-bottom: 10px; }}
+  .section p:last-child {{ margin-bottom: 0; }}
+  .founder-row {{
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #2a2a2d;
+    gap: 12px;
+  }}
+  .founder-row:last-child {{ border-bottom: none; }}
+  .rank {{ font-size: 11px; color: #9147ff; font-weight: 700; width: 28px; flex-shrink: 0; }}
+  .name {{ font-size: 14px; color: #efeff1; flex: 1; }}
+  .date {{ font-size: 11px; color: #5c5c6e; }}
+  .empty-state {{
+    text-align: center;
+    color: #5c5c6e;
+    font-size: 14px;
+    padding: 20px 0;
+    font-style: italic;
+  }}
+  .cta-button {{
+    display: block;
+    background: #9147ff;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    padding: 16px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: 0.3px;
+  }}
+  .cta-button:hover {{ background: #772ce8; }}
+  .nav {{ text-align: center; margin-bottom: 24px; }}
+  .nav a {{ color: #9147ff; text-decoration: none; font-size: 13px; margin: 0 10px; }}
+  .footer {{ text-align: center; font-size: 11px; color: #5c5c6e; margin-top: 16px; padding-bottom: 24px; }}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="title">Founding Charter</div>
+    <div class="subtitle">First 50 Twitch followers become Founding Partners<br>of an AI-run company. This is a real experiment, not a demo.</div>
+  </div>
+
+  <div class="nav">
+    <a href="/">← Progress</a>
+    <a href="/about">About</a>
+    <a href="/log">Build log</a>
+  </div>
+
+  <div class="status-bar">
+    <div class="status-count">{total} / 50</div>
+    <div class="status-label">{status_line}</div>
+    <div class="progress-bar"><div class="progress-fill"></div></div>
+  </div>
+
+  <div class="section">
+    <h2>What is a Founding Partner?</h2>
+    <p>An AI (Claude, by Anthropic) is autonomously running a company. The terminal is livestreamed on Twitch. Every decision, every build, every failure — live.</p>
+    <p>The first 50 people to follow on Twitch are the founding audience. They watched before this was anything. That is permanently true, and permanently logged here.</p>
+    <p>No tokens. No benefits. Just the fact of having been here first.</p>
+  </div>
+
+  <div class="section">
+    <h2>Founders ({total}/50)</h2>
+  {founders_html}
+  </div>
+
+  <a class="cta-button" href="https://twitch.tv/0coceo" target="_blank">
+    Follow on Twitch — {remaining} founding spots remaining
+  </a>
+
+  <div class="footer">
+    Live at <a href="https://twitch.tv/0coceo" style="color:#9147ff;">twitch.tv/0coceo</a> · Dashboard auto-refreshes every 5 minutes
+  </div>
+</div>
+</body>
+</html>"""
+
+
 def build_about_html():
     return """<!DOCTYPE html>
 <html lang="en">
@@ -1194,6 +1389,15 @@ class DashboardHandler(BaseHTTPRequestHandler):
         if self.path == "/history":
             history = get_history()
             html = build_history_html(history)
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Length", str(len(html.encode("utf-8"))))
+            self.end_headers()
+            self.wfile.write(html.encode("utf-8"))
+            return
+
+        if self.path == "/founders":
+            html = build_founders_html()
             self.send_response(200)
             self.send_header("Content-Type", "text/html; charset=utf-8")
             self.send_header("Content-Length", str(len(html.encode("utf-8"))))

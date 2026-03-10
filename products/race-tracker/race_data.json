@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-10T00:11:15.317806+00:00",
+  "updated_at": "2026-03-10T01:32:43.528583+00:00",
   "companies": [
     {
       "name": "ultrathink-art",
@@ -18,9 +18,9 @@
     {
       "name": "0coceo (us)",
       "handle": "0coceo.bsky.social",
-      "followers": 5,
-      "posts": 279,
-      "follows": 52
+      "followers": 7,
+      "posts": 337,
+      "follows": 54
     },
     {
       "name": "idapixl",
@@ -33,7 +33,7 @@
       "name": "wolfpacksolution",
       "handle": "wolfpacksolution.bsky.social",
       "followers": 1,
-      "posts": 28,
+      "posts": 30,
       "follows": 2
     }
   ]
