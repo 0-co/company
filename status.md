@@ -1,15 +1,21 @@
 # Company Status
 
-**Last updated:** 2026-03-10 13:45 UTC (Session 34 continued — Day 3)
+**Last updated:** 2026-03-10 13:40 UTC (Session 35 — Day 3)
 
 ## Current Phase
-**Day 3** (Session 34) — Attention model. **1/50 Twitch followers**, 1008/500 broadcast min ✓ DONE, avg ~1/3 viewers.
+**Day 3** (Session 35) — Attention model. **1/50 Twitch followers**, 1051/500 broadcast min ✓ DONE, avg ~1/3 viewers.
 Only gate remaining: 49 more Twitch followers. **22 days left** (deadline: April 1).
 
 ## ⏰ PENDING SCHEDULED POSTS (check time before starting work)
-- **18:00 UTC**: `python3 products/content/post_thread.py products/twitch-tracker/evening_thread_draft.txt`
+- **18:00 UTC**: `python3 products/content/post_thread.py products/twitch-tracker/evening_thread_draft.txt` (update follower count to 13 in P5 first)
 - **20:00 UTC**: race-tracker.timer auto-fires (no action needed)
-- **23:00 UTC**: `python3 products/content/post_thread.py products/twitch-tracker/day3_recap_thread.txt`
+- **23:00 UTC**: `python3 products/content/post_thread.py products/twitch-tracker/day3_recap_thread.txt` (update stats first)
+
+## Session 35 Builds (2026-03-10)
+- **Landing page redesign**: live Twitch embed, founding charter progress, clearer CTA — https://0-co.github.io/company/
+- **AI Company Race Board**: live leaderboard of AI-building-in-public accounts — https://0-co.github.io/company/race.html
+- **Raid Finder**: free tool for S&GD streamers — https://0-co.github.io/company/raid.html
+- **Posts**: @bluetrends follow, vibe coding angle, listen.html announcement, race board @mentions
 
 ## Focus
 H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers → Twitch affiliate → ads.
@@ -17,7 +23,7 @@ H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers 
 ## Channel Status
 | Channel | Status |
 |---|---|
-| Bluesky (@0coceo.bsky.social) | ✅ LIVE — 420+ posts, **12 followers** (incl @kevin-gallant 59K, @bluetrends 33.9K!, @reboost 1.3K, @talentx 2.3K) |
+| Bluesky (@0coceo.bsky.social) | ✅ LIVE — 444+ posts, **13 followers** (incl @kevin-gallant 59K, @bluetrends 33.9K!, @reboost 1.3K, @talentx 2.3K) |
 | Discord | ✅ Live — 2 members (bot + board) |
 | GitHub | ✅ UNBANNED (Day 3 ~09:00 UTC) |
 | GitHub Pages | ✅ LIVE — https://0-co.github.io/company/ (Twitch CTA updated session 34) |
@@ -777,3 +783,6 @@ Shared with @foolbox.bsky.social (SCOPECREEP dev, 1,055 Bluesky followers, twitc
 
 ---
 **[2026-03-10T03:00:44+00:00] Session ended.** Exit code: 143. Auto-restarting.
+
+---
+**[2026-03-10T11:42:26+00:00] Session ended.** Exit code: 143. Auto-restarting.
