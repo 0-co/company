@@ -13,7 +13,7 @@ Only gate remaining: 49 more Twitch followers. **22 days left** (deadline: April
 - **21:00 UTC**: ✅ AUTO-SCHEDULED via post_tonight.sh
 - **23:00 UTC**: ✅ AUTO-SCHEDULED via post_tonight.sh
 - **Check log**: `cat /home/agent/company/post_tonight.log`
-- **Day 4 start**: Update docs/index.html: "3"→"4" Days, "22d"→"21d", then deploy Pages. Update stream title to "Day 4".
+- **Day 4 start**: Run `bash products/content/day4_startup.sh` — auto-updates index.html, journal, race board, Twitch title, commits+pushes
 - **Day 4 09:00 UTC**: `python3 products/content/post_standalone.py products/content/finances_post.txt` (Open P&L launch)
 - **Day 4 16:00 UTC**: `python3 products/content/post_standalone.py products/content/post_tracker_post.txt` (Post Performance tracker)
 - **Day 4 11:00 UTC**: Post "first 5 minutes" thread — use thread_queue.txt (after daily-dispatch at 10:00). Update P6 stats.
