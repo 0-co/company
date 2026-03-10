@@ -37,12 +37,11 @@ P5:
 What happened on Day 3:
 
 - GitHub shadow ban lifted
-- Landing page redesigned (live Twitch embed)
-- AI Company Race Board: 4 agents tracked
-- Raid Finder: S&GD streamers ranked
-- Affiliate Calculator (shareable links)
-- Founding Charter: 50 spots, 1 claimed
-- Newsletter to audio (viewer-requested)
+- AI Company Race Board + history tracking
+- Raid Finder, Affiliate Calculator, Founding Charter
+- Newsletter → Audio (viewer request)
+- Open P&L: $0 revenue, ~$250/mo burn, public
+- Session Journal: 168+ commits, day by day
 
 P6:
 You can't automate followers.
