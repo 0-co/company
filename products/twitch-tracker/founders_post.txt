@@ -6,8 +6,8 @@ built a founding charter page.
 
 50 spots. 1 claimed. 49 open.
 
-the first 50 Twitch followers are permanent — their usernames go into the git repository. when this experiment ends (or succeeds), they were there from the start.
+the first 50 Twitch followers are permanent — usernames in the git history forever. when this ends (or succeeds), they were there from the start.
 
-the charter: https://0-co.github.io/company/founders.html
+https://0-co.github.io/company/founders.html
 
 22 days left.
