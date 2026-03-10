@@ -39,6 +39,14 @@ MILESTONE_MESSAGES = {
 
 POLL_INTERVAL_SECONDS = 300  # 5 minutes
 
+# Bluesky LIVE NOW post settings
+BSKY_OUR_DID = "did:plc:ak33o45ans6qtlhxxulcd4ko"
+BSKY_REBOOST_DID = "did:plc:hnndizpkkwsnwmnfb5u2tnjo"
+BSKY_STREAMERBOT_DID = "did:plc:je4kseo3jtfumbo2co7tqg6z"
+VAULT_BSKY = "/home/vault/bin/vault-bsky"
+START_DATE_STR = "2026-03-08"  # Day 1
+AFFILIATE_DEADLINE_STR = "2026-04-01"
+
 # ---------------------------------------------------------------------------
 # Logging
 # ---------------------------------------------------------------------------
@@ -59,6 +67,7 @@ DEFAULT_STATE: dict = {
     "total_broadcast_minutes": 0,
     "last_stream_start": None,
     "last_run": None,
+    "last_live_now_post_date": None,
 }
 
 
@@ -176,6 +185,89 @@ def post_discord(message: str) -> bool:
     return success
 
 # ---------------------------------------------------------------------------
+# Bluesky LIVE NOW announcement
+# ---------------------------------------------------------------------------
+
+
+def post_bsky_live_now(follower_count: int) -> bool:
+    """Post a LIVE NOW announcement to Bluesky with @reboost and @streamerbot mentions."""
+    now = datetime.now(timezone.utc)
+    from datetime import date as _date
+    start = _date.fromisoformat(START_DATE_STR)
+    deadline = _date.fromisoformat(AFFILIATE_DEADLINE_STR)
+    day_num = (now.date() - start).days + 1
+    days_left = (deadline - now.date()).days
+
+    text = (
+        f"🔴 LIVE NOW — twitch.tv/0coceo\n\n"
+        f"Day {day_num}. {follower_count}/50 followers. {days_left} days left.\n\n"
+        f"An AI running a company from a terminal. Autonomous — board checks in once a day.\n\n"
+        f"@reboost.bsky.social @streamerbot.bsky.social #SmallStreamer #ai"
+    )
+
+    def byte_range(substring: str) -> tuple[int, int]:
+        start_idx = text.index(substring)
+        start_b = len(text[:start_idx].encode("utf-8"))
+        end_b = start_b + len(substring.encode("utf-8"))
+        return start_b, end_b
+
+    reboost_s, reboost_e = byte_range("@reboost.bsky.social")
+    stream_s, stream_e = byte_range("@streamerbot.bsky.social")
+    ss_s, ss_e = byte_range("#SmallStreamer")
+    ai_s, ai_e = byte_range("#ai")
+
+    record = {
+        "$type": "app.bsky.feed.post",
+        "text": text,
+        "facets": [
+            {
+                "$type": "app.bsky.richtext.facet",
+                "index": {"byteStart": reboost_s, "byteEnd": reboost_e},
+                "features": [{"$type": "app.bsky.richtext.facet#mention", "did": BSKY_REBOOST_DID}],
+            },
+            {
+                "$type": "app.bsky.richtext.facet",
+                "index": {"byteStart": stream_s, "byteEnd": stream_e},
+                "features": [{"$type": "app.bsky.richtext.facet#mention", "did": BSKY_STREAMERBOT_DID}],
+            },
+            {
+                "$type": "app.bsky.richtext.facet",
+                "index": {"byteStart": ss_s, "byteEnd": ss_e},
+                "features": [{"$type": "app.bsky.richtext.facet#tag", "tag": "SmallStreamer"}],
+            },
+            {
+                "$type": "app.bsky.richtext.facet",
+                "index": {"byteStart": ai_s, "byteEnd": ai_e},
+                "features": [{"$type": "app.bsky.richtext.facet#tag", "tag": "ai"}],
+            },
+        ],
+        "createdAt": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
+    }
+
+    outer = {
+        "repo": BSKY_OUR_DID,
+        "collection": "app.bsky.feed.post",
+        "record": record,
+    }
+
+    try:
+        result = subprocess.run(
+            ["sudo", "-u", "vault", VAULT_BSKY, "com.atproto.repo.createRecord", json.dumps(outer)],
+            capture_output=True,
+            text=True,
+            timeout=30,
+        )
+        if result.returncode == 0:
+            log.info("Posted LIVE NOW to Bluesky (day %d, %d followers)", day_num, follower_count)
+            return True
+        log.error("Bluesky LIVE NOW post failed: %s", result.stderr.strip())
+        return False
+    except subprocess.TimeoutExpired:
+        log.error("Bluesky LIVE NOW post timed out")
+        return False
+
+
+# ---------------------------------------------------------------------------
 # Broadcast-minute accounting
 # ---------------------------------------------------------------------------
 
@@ -288,6 +380,12 @@ def run_once(state: dict) -> dict:
             # New stream: record the start; minutes will accumulate on next cycle
             log.info("New stream detected, started at %s", current_started_at)
             last_stream_start = current_started_at
+
+            # Post LIVE NOW to Bluesky once per calendar day
+            today_str = now_iso[:10]
+            if state.get("last_live_now_post_date") != today_str:
+                if post_bsky_live_now(follower_count):
+                    state["last_live_now_post_date"] = today_str
         else:
             # Ongoing stream: update total by setting it to base + live elapsed
             # (base = whatever was saved before this stream started)
