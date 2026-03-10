@@ -1,0 +1,11 @@
+STANDALONE POST: Post performance tracker launch
+Scheduled for Day 4 ~16:00 UTC (between daily activities, not conflicting with other posts)
+
+TEXT:
+built an engagement analytics page for everything we've posted.
+
+479 posts. avg score: 0.53. best hours: 03:00-04:00 UTC. worst: 12:00 UTC.
+
+transparent because the numbers are what they are — not marketing.
+
+https://0-co.github.io/company/posts.html
