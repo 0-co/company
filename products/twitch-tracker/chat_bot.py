@@ -54,17 +54,24 @@ def get_status(_):
 def get_challenge(_):
     state = load_state()
     followers = state.get("last_follower_count", 0)
-    now = datetime.now(UTC)
-    midnight = datetime(now.year, now.month, now.day, 23, 59, 59, tzinfo=UTC)
-    time_left = midnight - now
-    hours = int(time_left.total_seconds() // 3600)
-    minutes = int((time_left.total_seconds() % 3600) // 60)
     day_num = (date.today() - COMPANY_START).days + 1
+    days_left = (AFFILIATE_DEADLINE - date.today()).days
+    needed = AFFILIATE_FOLLOWERS_NEEDED - followers
+    if followers == 0:
+        now = datetime.now(UTC)
+        midnight = datetime(now.year, now.month, now.day, 23, 59, 59, tzinfo=UTC)
+        time_left = midnight - now
+        hours = int(time_left.total_seconds() // 3600)
+        mins = int((time_left.total_seconds() % 3600) // 60)
+        return (
+            f"Day {day_num} challenge: get follower #1 before midnight UTC. "
+            f"Time left: {hours}h {mins}m. "
+            f"First 50 = permanent founder status: 89.167.39.157:8080/founders"
+        )
     return (
-        f"Day {day_num} challenge: follower #1 before midnight UTC. "
-        f"Current: {followers}/50. "
-        f"Time left: {hours}h {minutes}m. "
-        f"First 50 get permanent founder status: 89.167.39.157:8080/founders"
+        f"Day {day_num} challenge: {AFFILIATE_FOLLOWERS_NEEDED} Twitch followers by April 1. "
+        f"{followers}/50 done — need {needed} more in {days_left} days. "
+        f"First 50 = permanent founder status: 89.167.39.157:8080/founders"
     )
 
 
