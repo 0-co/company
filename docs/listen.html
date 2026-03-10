@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listen — text to speech reader</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0d1117;
+      color: #e6edf3;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 24px;
+    }
+    h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: 8px; }
+    .subtitle { color: #8b949e; font-size: 0.9rem; margin-bottom: 32px; }
+    .container { max-width: 700px; width: 100%; }
+    textarea {
+      width: 100%;
+      height: 260px;
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      color: #e6edf3;
+      font-family: Georgia, serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      padding: 16px;
+      resize: vertical;
+      outline: none;
+    }
+    textarea:focus { border-color: #58a6ff; }
+    textarea::placeholder { color: #484f58; }
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+    button {
+      padding: 10px 22px;
+      border-radius: 6px;
+      border: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    button:hover { opacity: 0.85; }
+    button:disabled { opacity: 0.4; cursor: default; }
+    .btn-play { background: #238636; color: #fff; }
+    .btn-pause { background: #1f6feb; color: #fff; }
+    .btn-stop { background: #3a3a3d; color: #e6edf3; }
+    .speed-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #8b949e;
+      font-size: 0.85rem;
+    }
+    input[type="range"] {
+      accent-color: #58a6ff;
+      width: 90px;
+    }
+    #speed-label { color: #e6edf3; font-weight: 600; min-width: 32px; }
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: #161b22;
+      border-radius: 4px;
+      margin-top: 16px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: #1f6feb;
+      border-radius: 4px;
+      transition: width 0.3s ease;
+      width: 0%;
+    }
+    .status {
+      margin-top: 12px;
+      color: #8b949e;
+      font-size: 0.85rem;
+      min-height: 20px;
+    }
+    .footer {
+      margin-top: 48px;
+      color: #484f58;
+      font-size: 0.8rem;
+      text-align: center;
+    }
+    .footer a { color: #58a6ff; text-decoration: none; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Listen</h1>
+  <p class="subtitle">Paste any text. Click play. Works offline — no install needed.</p>
+
+  <textarea id="text" placeholder="Paste your newsletter, article, or email here...
+
+Built for @foobert10000 who wanted a way to listen to Matt Levine's Money Stuff while commuting. Viewer-requested, built live on stream."></textarea>
+
+  <div class="controls">
+    <button class="btn-play" id="btn-play" onclick="startReading()">▶ Play</button>
+    <button class="btn-pause" id="btn-pause" onclick="pauseReading()" disabled>⏸ Pause</button>
+    <button class="btn-stop" id="btn-stop" onclick="stopReading()" disabled>■ Stop</button>
+    <div class="speed-group">
+      Speed: <input type="range" id="speed" min="0.5" max="2.5" step="0.1" value="1.1" oninput="updateSpeed()">
+      <span id="speed-label">1.1×</span>
+    </div>
+  </div>
+
+  <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+  <div class="status" id="status">Ready.</div>
+
+  <div class="footer">
+    Built live on <a href="https://twitch.tv/0coceo" target="_blank">twitch.tv/0coceo</a> ·
+    <a href="https://0-co.github.io/company/" target="_blank">0-co.github.io/company</a>
+  </div>
+</div>
+
+<script>
+let utterance = null;
+let fullText = '';
+let charIndex = 0;
+let isPaused = false;
+
+function updateSpeed() {
+  const speed = parseFloat(document.getElementById('speed').value);
+  document.getElementById('speed-label').textContent = speed.toFixed(1) + '×';
+  if (utterance && window.speechSynthesis.speaking && !isPaused) {
+    // Update in real-time by restarting from current position
+    const remaining = fullText.slice(charIndex);
+    window.speechSynthesis.cancel();
+    speakFrom(remaining);
+  }
+}
+
+function speakFrom(text) {
+  utterance = new SpeechSynthesisUtterance(text);
+  utterance.rate = parseFloat(document.getElementById('speed').value);
+  utterance.lang = 'en-US';
+
+  utterance.onboundary = function(e) {
+    if (e.name === 'word') {
+      charIndex = fullText.length - text.length + e.charIndex;
+      const pct = Math.min(100, (charIndex / fullText.length) * 100);
+      document.getElementById('progress').style.width = pct + '%';
+      const wordsRead = fullText.slice(0, charIndex).split(/\s+/).length;
+      const totalWords = fullText.split(/\s+/).length;
+      document.getElementById('status').textContent =
+        `Reading… ${wordsRead}/${totalWords} words (${Math.round(pct)}%)`;
+    }
+  };
+
+  utterance.onend = function() {
+    document.getElementById('progress').style.width = '100%';
+    document.getElementById('status').textContent = 'Done.';
+    document.getElementById('btn-play').disabled = false;
+    document.getElementById('btn-pause').disabled = true;
+    document.getElementById('btn-stop').disabled = true;
+  };
+
+  utterance.onerror = function(e) {
+    document.getElementById('status').textContent = 'Speech error: ' + e.error;
+  };
+
+  window.speechSynthesis.speak(utterance);
+}
+
+function startReading() {
+  const text = document.getElementById('text').value.trim();
+  if (!text) { document.getElementById('status').textContent = 'Paste some text first.'; return; }
+
+  if (!('speechSynthesis' in window)) {
+    document.getElementById('status').textContent = 'Web Speech API not supported in this browser.';
+    return;
+  }
+
+  window.speechSynthesis.cancel();
+  fullText = text;
+  charIndex = 0;
+  isPaused = false;
+
+  document.getElementById('btn-play').disabled = true;
+  document.getElementById('btn-pause').disabled = false;
+  document.getElementById('btn-stop').disabled = false;
+  document.getElementById('progress').style.width = '0%';
+  document.getElementById('status').textContent = 'Starting…';
+
+  speakFrom(text);
+}
+
+function pauseReading() {
+  if (window.speechSynthesis.speaking && !isPaused) {
+    window.speechSynthesis.pause();
+    isPaused = true;
+    document.getElementById('btn-pause').textContent = '▶ Resume';
+    document.getElementById('status').textContent = 'Paused.';
+  } else if (isPaused) {
+    window.speechSynthesis.resume();
+    isPaused = false;
+    document.getElementById('btn-pause').textContent = '⏸ Pause';
+    document.getElementById('status').textContent = 'Resumed.';
+  }
+}
+
+function stopReading() {
+  window.speechSynthesis.cancel();
+  isPaused = false;
+  charIndex = 0;
+  document.getElementById('btn-play').disabled = false;
+  document.getElementById('btn-pause').disabled = true;
+  document.getElementById('btn-stop').disabled = true;
+  document.getElementById('btn-pause').textContent = '⏸ Pause';
+  document.getElementById('progress').style.width = '0%';
+  document.getElementById('status').textContent = 'Stopped.';
+}
+
+// Prevent page unload while reading
+window.addEventListener('beforeunload', () => window.speechSynthesis.cancel());
+</script>
+</body>
+</html>
