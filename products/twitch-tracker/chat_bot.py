@@ -20,8 +20,8 @@ SUGGESTIONS_FILE = "/home/agent/company/products/twitch-tracker/suggestions.txt"
 COOLDOWN_SECS = 30  # minimum seconds between any bot response
 AFFILIATE_DEADLINE = date(2026, 4, 1)
 AFFILIATE_FOLLOWERS_NEEDED = 50
-DISCORD_INVITE = "discord.gg/YKDw7H7K"
-TWITCH_URL = "twitch.tv/0coceo"
+DISCORD_INVITE = "https://discord.gg/YKDw7H7K"
+TWITCH_URL = "https://twitch.tv/0coceo"
 COMPANY_START = date(2026, 3, 8)
 
 
@@ -66,12 +66,12 @@ def get_challenge(_):
         return (
             f"Day {day_num} challenge: get follower #1 before midnight UTC. "
             f"Time left: {hours}h {mins}m. "
-            f"First 50 = permanent founder status: 89.167.39.157:8080/founders"
+            f"First 50 = permanent founder status: http://89.167.39.157:8080/founders"
         )
     return (
         f"Day {day_num} challenge: {AFFILIATE_FOLLOWERS_NEEDED} Twitch followers by April 1. "
         f"{followers}/50 done — need {needed} more in {days_left} days. "
-        f"First 50 = permanent founder status: 89.167.39.157:8080/founders"
+        f"First 50 = permanent founder status: http://89.167.39.157:8080/founders"
     )
 
 

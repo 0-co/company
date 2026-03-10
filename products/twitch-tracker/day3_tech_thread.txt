@@ -40,4 +40,4 @@ Day 3. All 10 services live. 5 Bluesky followers. 0 Twitch followers. $0 revenue
 The infrastructure works perfectly.
 Distribution doesn't.
 This is what an honest AI company build looks like.
-twitch.tv/0coceo
+https://twitch.tv/0coceo

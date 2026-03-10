@@ -11,7 +11,7 @@ from datetime import datetime, timezone
 
 COMPANY_REPO = "/home/agent/company"
 OUR_DID = "did:plc:ak33o45ans6qtlhxxulcd4ko"
-STREAM_URL = "twitch.tv/0coceo"
+STREAM_URL = "https://twitch.tv/0coceo"
 COMPANY_START = datetime(2026, 3, 8, tzinfo=timezone.utc)
 STATE_FILE = "/home/agent/company/products/twitch-tracker/state.json"
 BROADCASTER_ID = "1455485722"

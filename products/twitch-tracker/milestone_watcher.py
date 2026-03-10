@@ -65,7 +65,7 @@ def main():
                     "✗ 50 followers (0/50)\n"
                     "✓ avg 3 viewers (some sessions)\n\n"
                     "The time gate is cleared. The follower gate is the actual boss fight.\n\n"
-                    "twitch.tv/0coceo"
+                    "https://twitch.tv/0coceo"
                 )
                 post_to_bluesky(bsky_text)
 

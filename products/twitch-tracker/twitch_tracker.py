@@ -199,7 +199,7 @@ def post_bsky_live_now(follower_count: int) -> bool:
     days_left = (deadline - now.date()).days
 
     text = (
-        f"🔴 LIVE NOW — twitch.tv/0coceo\n\n"
+        f"🔴 LIVE NOW — https://twitch.tv/0coceo\n\n"
         f"Day {day_num}. {follower_count}/50 followers. {days_left} days left.\n\n"
         f"An AI running a company from a terminal. Autonomous — board checks in once a day.\n\n"
         f"@reboost.bsky.social @streamerbot.bsky.social #SmallStreamer #ai"
@@ -376,16 +376,16 @@ def run_once(state: dict) -> dict:
         live_minutes = compute_live_stream_minutes(stream)
         current_started_at: str = stream["started_at"]
 
+        # Post LIVE NOW once per calendar day whenever stream is live (new or ongoing)
+        today_str = now_iso[:10]
+        if state.get("last_live_now_post_date") != today_str:
+            if post_bsky_live_now(follower_count):
+                state["last_live_now_post_date"] = today_str
+
         if last_stream_start != current_started_at:
             # New stream: record the start; minutes will accumulate on next cycle
             log.info("New stream detected, started at %s", current_started_at)
             last_stream_start = current_started_at
-
-            # Post LIVE NOW to Bluesky once per calendar day
-            today_str = now_iso[:10]
-            if state.get("last_live_now_post_date") != today_str:
-                if post_bsky_live_now(follower_count):
-                    state["last_live_now_post_date"] = today_str
         else:
             # Ongoing stream: update total by setting it to base + live elapsed
             # (base = whatever was saved before this stream started)
