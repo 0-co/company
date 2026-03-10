@@ -1,23 +1,26 @@
 # Company Status
 
-**Last updated:** 2026-03-10 12:40 UTC (Session 35 continued — Day 3)
+**Last updated:** 2026-03-10 12:58 UTC (Session 35 continued — Day 3)
 
 ## Current Phase
 **Day 3** (Session 35) — Attention model. **1/50 Twitch followers**, 1051/500 broadcast min ✓ DONE, avg ~1/3 viewers.
 Only gate remaining: 49 more Twitch followers. **22 days left** (deadline: April 1).
 
 ## ⏰ PENDING SCHEDULED POSTS (check time before starting work)
-- **18:00 UTC**: `python3 products/content/post_thread.py products/twitch-tracker/evening_thread_draft.txt` (update follower count to 13 in P5 first)
+- **18:00 UTC**: `python3 products/content/post_thread.py products/twitch-tracker/evening_thread_draft.txt` (stats already correct: 13 followers, Day 3)
 - **20:00 UTC**: race-tracker.timer auto-fires (no action needed)
-- **23:00 UTC**: `python3 products/content/post_thread.py products/twitch-tracker/day3_recap_thread.txt` (update stats first)
+- **21:00 UTC**: Post founders page standalone (see products/twitch-tracker/founders_post.txt)
+- **23:00 UTC**: `python3 products/content/post_thread.py products/twitch-tracker/day3_recap_thread.txt` (VERIFIED: all posts under 300 chars)
 
 ## Session 35 Builds (2026-03-10)
 - **Landing page redesign**: live Twitch embed, founding charter progress, clearer CTA — https://0-co.github.io/company/
 - **AI Company Race Board**: live leaderboard of AI-building-in-public accounts — https://0-co.github.io/company/race.html
 - **Raid Finder**: free tool for S&GD streamers — https://0-co.github.io/company/raid.html
 - **Affiliate Calculator (shareable)**: GitHub Pages calc with URL params — https://0-co.github.io/company/calc.html
+- **Founding Charter page**: 50 spots grid, 1 claimed — https://0-co.github.io/company/founders.html
 - **Tools section on landing page**: links to all 4 free tools
-- **Posts**: calc announcement, "17 hours live 1 viewer" thread, alice-bot philosophy replies
+- **!calc command in chat bot**
+- **Posts**: calc announcement, "17 hours live 1 viewer" thread, alice-bot philosophy, kristoff_it & theaiceo1 replies
 
 ## Focus
 H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers → Twitch affiliate → ads.
@@ -25,12 +28,12 @@ H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers 
 ## Channel Status
 | Channel | Status |
 |---|---|
-| Bluesky (@0coceo.bsky.social) | ✅ LIVE — 444+ posts, **13 followers** (incl @kevin-gallant 59K, @bluetrends 33.9K!, @reboost 1.3K, @talentx 2.3K) |
+| Bluesky (@0coceo.bsky.social) | ✅ LIVE — 462+ posts, **13 followers** (incl @kevin-gallant 59K, @bluetrends 33.9K!, @reboost 1.3K, @talentx 2.3K) |
 | Discord | ✅ Live — 2 members (bot + board) |
 | GitHub | ✅ UNBANNED (Day 3 ~09:00 UTC) |
 | GitHub Pages | ✅ LIVE — https://0-co.github.io/company/ (Twitch CTA updated session 34) |
 | HN (0coCeo) | ❌ SHADOW BANNED — strategy suspended |
-| Twitch | ✅ LIVE — 1 follower, 1 viewer, 1008+ broadcast min |
+| Twitch | ✅ LIVE — 1 follower, 1 viewer, 1107+ broadcast min |
 | X.com | ❌ Read-only ($100/month posting, board declined) |
 
 ## Free Tools (all live on GitHub Pages)
@@ -38,6 +41,7 @@ H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers 
 - Raid Finder (S&GD): https://0-co.github.io/company/raid.html
 - AI Company Race Board: https://0-co.github.io/company/race.html
 - Newsletter → Audio: https://0-co.github.io/company/listen.html
+- Founding Charter: https://0-co.github.io/company/founders.html
 
 ## Deployed Services
 - ✅ `signal-intel.service` — 24/7 monitoring HN + GitHub + Reddit, posts to Discord #ai
