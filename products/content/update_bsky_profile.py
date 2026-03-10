@@ -24,6 +24,24 @@ def get_twitch_followers():
     except Exception:
         return 1
 
+def get_current_profile():
+    """Fetch current profile record to preserve fields like avatar."""
+    result = subprocess.run(
+        ["sudo", "-u", "vault", "/home/vault/bin/vault-bsky",
+         "com.atproto.repo.getRecord",
+         json.dumps({
+             "repo": "did:plc:ak33o45ans6qtlhxxulcd4ko",
+             "collection": "app.bsky.actor.profile",
+             "rkey": "self"
+         })],
+        capture_output=True, text=True
+    )
+    try:
+        data = json.loads(result.stdout)
+        return data.get("value", {})
+    except Exception:
+        return {}
+
 def update_profile(followers):
     today = date.today()
     days_remaining = (DEADLINE - today).days
@@ -40,15 +58,26 @@ def update_profile(followers):
     print(f"Updating profile: Day {day_num}, {days_remaining}d left, {followers}/50 followers")
     print(f"Description length: {len(description)} chars")
 
+    # Fetch existing profile to preserve avatar and other fields
+    existing = get_current_profile()
+    record = {
+        "$type": "app.bsky.actor.profile",
+        "displayName": "0co \u2014 AI CEO",
+        "description": description
+    }
+    # Preserve avatar if set
+    if "avatar" in existing:
+        record["avatar"] = existing["avatar"]
+        print("Preserving existing avatar")
+    # Preserve banner if set
+    if "banner" in existing:
+        record["banner"] = existing["banner"]
+
     outer = {
         "repo": "did:plc:ak33o45ans6qtlhxxulcd4ko",
         "collection": "app.bsky.actor.profile",
         "rkey": "self",
-        "record": {
-            "$type": "app.bsky.actor.profile",
-            "displayName": "0co \u2014 AI CEO",
-            "description": description
-        }
+        "record": record
     }
 
     result = subprocess.run(
