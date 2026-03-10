@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Social Graph</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', monospace; padding: 0; }
+
+    .header { padding: 32px 24px 16px; max-width: 1100px; margin: 0 auto; }
+    h1 { font-size: 2rem; font-weight: 800; margin-bottom: 6px; }
+    .subtitle { color: #8b949e; font-size: 0.95rem; margin-bottom: 4px; }
+    .updated { color: #6e7681; font-size: 0.78rem; }
+
+    .legend { display: flex; gap: 24px; flex-wrap: wrap; padding: 12px 24px; max-width: 1100px; margin: 0 auto; align-items: center; }
+    .legend-item { display: flex; align-items: center; gap: 7px; font-size: 0.82rem; color: #8b949e; }
+    .legend-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+    .legend-dot.ai_company { background: #58a6ff; }
+    .legend-dot.ai_agent { background: #3fb950; }
+    .legend-line { width: 32px; height: 2px; background: #6e7681; flex-shrink: 0; }
+    .legend-sep { color: #30363d; }
+
+    #graph-container {
+      position: relative;
+      width: 100%;
+      height: 540px;
+      background: #0d1117;
+      border-top: 1px solid #21262d;
+      border-bottom: 1px solid #21262d;
+      overflow: hidden;
+    }
+    #graph-svg { width: 100%; height: 100%; }
+
+    .node circle { cursor: pointer; stroke-width: 2px; transition: opacity 0.15s; }
+    .node text { font-size: 11px; fill: #c9d1d9; pointer-events: none; user-select: none; }
+    .link { stroke-opacity: 0.55; transition: stroke-opacity 0.15s; }
+
+    .dimmed circle { opacity: 0.15; }
+    .dimmed text { opacity: 0.15; }
+    .dimmed-link { stroke-opacity: 0.05 !important; }
+    .highlighted circle { stroke: #fff !important; }
+    .highlighted-link { stroke-opacity: 0.9 !important; }
+
+    /* Tooltip */
+    #tooltip {
+      position: fixed;
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 0.82rem;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.12s;
+      max-width: 220px;
+      z-index: 100;
+      line-height: 1.5;
+    }
+    #tooltip.visible { opacity: 1; }
+    #tooltip .tip-handle { color: #58a6ff; font-weight: 600; margin-bottom: 4px; }
+    #tooltip .tip-stat { color: #8b949e; }
+    #tooltip .tip-stat span { color: #e6edf3; }
+    #tooltip .tip-bio { color: #6e7681; font-size: 0.78rem; margin-top: 6px; font-style: italic; line-height: 1.4; }
+
+    .stats-bar {
+      padding: 16px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      align-items: center;
+      font-size: 0.82rem;
+      color: #6e7681;
+    }
+    .stats-bar .stat-item { color: #8b949e; }
+    .stats-bar .stat-item strong { color: #e6edf3; }
+    .stats-bar a { color: #58a6ff; text-decoration: none; }
+    .stats-bar a:hover { text-decoration: underline; }
+    .stats-bar .sep { color: #30363d; }
+
+    .no-data {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      flex-direction: column;
+      gap: 12px;
+      color: #6e7681;
+      font-size: 0.9rem;
+    }
+    .no-data code {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 4px;
+      padding: 6px 12px;
+      color: #58a6ff;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.5rem; }
+      #graph-container { height: 380px; }
+      .stats-bar { gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h1>AI Social Graph</h1>
+  <p class="subtitle">Autonomous AI agents on Bluesky — who's talking to whom</p>
+  <p class="updated" id="updated-ts">Loading...</p>
+</div>
+
+<div class="legend">
+  <div class="legend-item">
+    <div class="legend-dot ai_company"></div>
+    <span>AI Company</span>
+  </div>
+  <div class="legend-item">
+    <div class="legend-dot ai_agent"></div>
+    <span>AI Agent</span>
+  </div>
+  <span class="legend-sep">|</span>
+  <div class="legend-item">
+    <div class="legend-line"></div>
+    <span>Interaction (thicker = more)</span>
+  </div>
+  <span class="legend-sep">|</span>
+  <div class="legend-item">
+    <svg width="36" height="14" style="flex-shrink:0"><circle cx="7" cy="7" r="7" fill="#58a6ff" opacity="0.7"/><circle cx="29" cy="7" r="4" fill="#58a6ff" opacity="0.7"/></svg>
+    <span>Node size = follower count</span>
+  </div>
+  <span class="legend-sep">|</span>
+  <div class="legend-item" style="color:#6e7681">Click node to highlight connections</div>
+</div>
+
+<div id="graph-container">
+  <svg id="graph-svg"></svg>
+  <div id="no-data-msg" class="no-data" style="display:none">
+    <div>Data not yet collected — run collect.py first</div>
+    <code>python3 products/network-tracker/collect.py</code>
+  </div>
+</div>
+
+<div id="tooltip"></div>
+
+<div class="stats-bar" id="stats-bar">
+  <span class="stat-item">Total AI accounts tracked: <strong id="stat-accounts">—</strong></span>
+  <span class="stat-item">Total interactions detected: <strong id="stat-interactions">—</strong></span>
+  <span class="stat-item">Data last updated: <strong id="stat-updated">—</strong></span>
+  <span class="sep">|</span>
+  <a href="race.html">Race Board</a>
+  <a href="index.html">← Back to 0-co</a>
+</div>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+const TYPE_COLOR = {
+  ai_company: "#58a6ff",
+  ai_agent: "#3fb950",
+};
+const NODE_MIN = 8, NODE_MAX = 30;
+
+function nodeRadius(followers) {
+  if (!followers || followers === 0) return NODE_MIN;
+  const s = Math.sqrt(followers);
+  const sMin = 0, sMax = Math.sqrt(200); // scale: 0–200 followers maps to min–max
+  const r = NODE_MIN + (NODE_MAX - NODE_MIN) * Math.min((s - sMin) / (sMax - sMin), 1);
+  return Math.max(NODE_MIN, r);
+}
+
+function edgeWidth(weight) {
+  return Math.min(1 + (weight - 1) * 0.8, 4);
+}
+
+function formatDate(iso) {
+  if (!iso) return "unknown";
+  return iso.slice(0, 10);
+}
+
+function renderGraph(data) {
+  const container = document.getElementById("graph-container");
+  const W = container.clientWidth;
+  const H = container.clientHeight;
+  const svg = d3.select("#graph-svg").attr("viewBox", `0 0 ${W} ${H}`);
+
+  const nodes = data.nodes.map(d => ({ ...d }));
+  const edges = data.edges.map(d => ({ ...d }));
+
+  // Build node id map
+  const nodeById = Object.fromEntries(nodes.map(n => [n.id, n]));
+
+  // Filter edges to only those with valid source/target
+  const validEdges = edges.filter(e => nodeById[e.source] && nodeById[e.target]);
+
+  // D3 force simulation
+  const simulation = d3.forceSimulation(nodes)
+    .force("link", d3.forceLink(validEdges).id(d => d.id).distance(d => 100 + (30 - Math.min(d.weight * 5, 30))))
+    .force("charge", d3.forceManyBody().strength(-280))
+    .force("center", d3.forceCenter(W / 2, H / 2))
+    .force("collision", d3.forceCollide().radius(d => nodeRadius(d.followers) + 10));
+
+  // Links
+  const link = svg.append("g").attr("class", "links")
+    .selectAll("line")
+    .data(validEdges)
+    .join("line")
+    .attr("class", "link")
+    .attr("stroke", "#6e7681")
+    .attr("stroke-width", d => edgeWidth(d.weight));
+
+  // Nodes group
+  const node = svg.append("g").attr("class", "nodes")
+    .selectAll("g")
+    .data(nodes)
+    .join("g")
+    .attr("class", "node")
+    .call(d3.drag()
+      .on("start", (event, d) => {
+        if (!event.active) simulation.alphaTarget(0.3).restart();
+        d.fx = d.x; d.fy = d.y;
+      })
+      .on("drag", (event, d) => { d.fx = event.x; d.fy = event.y; })
+      .on("end", (event, d) => {
+        if (!event.active) simulation.alphaTarget(0);
+        d.fx = null; d.fy = null;
+      })
+    );
+
+  node.append("circle")
+    .attr("r", d => nodeRadius(d.followers))
+    .attr("fill", d => TYPE_COLOR[d.type] || "#8b949e")
+    .attr("fill-opacity", 0.85)
+    .attr("stroke", d => TYPE_COLOR[d.type] || "#8b949e")
+    .attr("stroke-opacity", 0.5);
+
+  node.append("text")
+    .attr("dy", d => nodeRadius(d.followers) + 13)
+    .attr("text-anchor", "middle")
+    .text(d => d.label);
+
+  // Tooltip
+  const tooltip = document.getElementById("tooltip");
+
+  function showTooltip(event, d) {
+    tooltip.innerHTML = `
+      <div class="tip-handle">@${d.id}</div>
+      <div class="tip-stat">Type: <span>${d.type.replace("_", " ")}</span></div>
+      <div class="tip-stat">Followers: <span>${(d.followers || 0).toLocaleString()}</span></div>
+      <div class="tip-stat">Posts: <span>${(d.posts || 0).toLocaleString()}</span></div>
+      <div class="tip-stat">Last active: <span>${formatDate(d.last_active)}</span></div>
+      ${d.description_snippet ? `<div class="tip-bio">"${d.description_snippet}"</div>` : ""}
+    `;
+    tooltip.classList.add("visible");
+    moveTooltip(event);
+  }
+
+  function moveTooltip(event) {
+    const x = event.clientX + 14;
+    const y = event.clientY - 20;
+    tooltip.style.left = Math.min(x, window.innerWidth - 240) + "px";
+    tooltip.style.top = Math.max(y, 8) + "px";
+  }
+
+  function hideTooltip() {
+    tooltip.classList.remove("visible");
+  }
+
+  node
+    .on("mouseenter", showTooltip)
+    .on("mousemove", moveTooltip)
+    .on("mouseleave", hideTooltip);
+
+  // Click to highlight
+  let selected = null;
+  node.on("click", (event, d) => {
+    event.stopPropagation();
+    if (selected === d.id) {
+      // Deselect
+      selected = null;
+      node.classed("dimmed", false).classed("highlighted", false);
+      link.classed("dimmed-link", false).classed("highlighted-link", false);
+      return;
+    }
+    selected = d.id;
+    const connectedIds = new Set([d.id]);
+    validEdges.forEach(e => {
+      const src = typeof e.source === "object" ? e.source.id : e.source;
+      const tgt = typeof e.target === "object" ? e.target.id : e.target;
+      if (src === d.id || tgt === d.id) {
+        connectedIds.add(src);
+        connectedIds.add(tgt);
+      }
+    });
+    node.classed("dimmed", n => !connectedIds.has(n.id));
+    node.classed("highlighted", n => connectedIds.has(n.id));
+    link.classed("dimmed-link", e => {
+      const src = typeof e.source === "object" ? e.source.id : e.source;
+      const tgt = typeof e.target === "object" ? e.target.id : e.target;
+      return src !== d.id && tgt !== d.id;
+    });
+    link.classed("highlighted-link", e => {
+      const src = typeof e.source === "object" ? e.source.id : e.source;
+      const tgt = typeof e.target === "object" ? e.target.id : e.target;
+      return src === d.id || tgt === d.id;
+    });
+  });
+
+  svg.on("click", () => {
+    selected = null;
+    node.classed("dimmed", false).classed("highlighted", false);
+    link.classed("dimmed-link", false).classed("highlighted-link", false);
+  });
+
+  simulation.on("tick", () => {
+    link
+      .attr("x1", d => d.source.x)
+      .attr("y1", d => d.source.y)
+      .attr("x2", d => d.target.x)
+      .attr("y2", d => d.target.y);
+    node.attr("transform", d => `translate(${
+      Math.max(NODE_MAX, Math.min(W - NODE_MAX, d.x))
+    },${
+      Math.max(NODE_MAX, Math.min(H - NODE_MAX, d.y))
+    })`);
+  });
+}
+
+// Load data
+fetch("./network_data.json")
+  .then(r => {
+    if (!r.ok) throw new Error("not found");
+    return r.json();
+  })
+  .then(data => {
+    // Update header timestamp
+    const ts = data.generated_at ? data.generated_at.slice(0, 16).replace("T", " ") + " UTC" : "unknown";
+    document.getElementById("updated-ts").textContent = "Last updated: " + ts;
+
+    // Update stats bar
+    document.getElementById("stat-accounts").textContent = data.meta.total_accounts;
+    document.getElementById("stat-interactions").textContent = data.meta.total_interactions;
+    document.getElementById("stat-updated").textContent = ts;
+
+    if (!data.nodes || data.nodes.length === 0) {
+      document.getElementById("no-data-msg").style.display = "flex";
+      return;
+    }
+
+    renderGraph(data);
+  })
+  .catch(() => {
+    document.getElementById("updated-ts").textContent = "No data — run collect.py";
+    document.getElementById("no-data-msg").style.display = "flex";
+    document.querySelector("#graph-svg").style.display = "none";
+    document.getElementById("stat-accounts").textContent = "—";
+    document.getElementById("stat-interactions").textContent = "—";
+    document.getElementById("stat-updated").textContent = "—";
+  });
+</script>
+</body>
+</html>
