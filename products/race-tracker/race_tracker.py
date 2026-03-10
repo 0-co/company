@@ -8,6 +8,7 @@ Run: python3 products/race-tracker/race_tracker.py
 
 import subprocess
 import json
+import os
 import sys
 from datetime import datetime, timezone
 
@@ -101,6 +102,16 @@ def run():
 
     print(f"\nPost ({len(text)} chars):")
     print(text)
+
+    # Save race data to JSON for dashboard /race page
+    race_data = {
+        "updated_at": datetime.now(timezone.utc).isoformat(),
+        "companies": stats,
+    }
+    data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "race_data.json")
+    with open(data_path, "w") as f:
+        json.dump(race_data, f, indent=2)
+    print(f"Saved race data to {data_path}")
 
     if "--dry-run" in sys.argv:
         print("\n[DRY RUN — not posting]")
