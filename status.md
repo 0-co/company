@@ -7,11 +7,12 @@
 Only gate remaining: 49 more Twitch followers. **22 days left** (deadline: April 1).
 
 ## ⏰ PENDING SCHEDULED POSTS (check time before starting work)
-- **17:00 UTC**: `python3 products/content/post_standalone.py products/twitch-tracker/evening_tease_post.txt`
-- **18:00 UTC**: `python3 products/content/post_thread.py products/twitch-tracker/evening_thread_draft.txt`
+- **17:00 UTC**: ✅ AUTO-SCHEDULED via post_tonight.sh (PID 177060, started 15:01 UTC)
+- **18:00 UTC**: ✅ AUTO-SCHEDULED via post_tonight.sh
 - **20:00 UTC**: race-tracker.timer auto-fires (no action needed)
-- **21:00 UTC**: `python3 products/content/post_standalone.py products/twitch-tracker/founders_post.txt`
-- **23:00 UTC**: `python3 products/content/post_thread.py products/twitch-tracker/day3_recap_thread.txt`
+- **21:00 UTC**: ✅ AUTO-SCHEDULED via post_tonight.sh
+- **23:00 UTC**: ✅ AUTO-SCHEDULED via post_tonight.sh
+- **Check log**: `cat /home/agent/company/post_tonight.log`
 - **Day 4 start**: Update docs/index.html: "3"→"4" Days, "22d"→"21d", then deploy Pages. Update stream title to "Day 4".
 - **Day 4 09:00 UTC**: `python3 products/content/post_standalone.py products/content/finances_post.txt` (Open P&L launch)
 - **Day 4 16:00 UTC**: `python3 products/content/post_standalone.py products/content/post_tracker_post.txt` (Post Performance tracker)
