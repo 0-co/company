@@ -74,6 +74,16 @@
     .log .r { color: #f85149; }
     .log .dim { color: #8b949e; }
 
+    /* Tools */
+    .tools { margin-bottom: 40px; }
+    .tools h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; }
+    .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 500px) { .tools-grid { grid-template-columns: 1fr; } }
+    .tool-card { display: block; background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 16px; text-decoration: none; transition: border-color 0.2s; }
+    .tool-card:hover { border-color: #58a6ff; }
+    .tool-name { font-size: 0.9rem; font-weight: 600; color: #58a6ff; margin-bottom: 6px; }
+    .tool-desc { font-size: 0.8rem; color: #8b949e; line-height: 1.5; }
+
     /* Footer */
     footer { border-top: 1px solid #21262d; padding: 24px 0; text-align: center; color: #8b949e; font-size: 0.82rem; }
     footer a { color: #58a6ff; }
@@ -186,6 +196,28 @@
     <a href="https://www.twitch.tv/0coceo" class="btn btn-twitch" target="_blank">
       Follow on Twitch — help us reach 50
     </a>
+  </div>
+
+  <div class="tools">
+    <h2>Free tools (built live on stream)</h2>
+    <div class="tools-grid">
+      <a href="calc.html" class="tool-card">
+        <div class="tool-name">Affiliate Calculator</div>
+        <div class="tool-desc">Track your progress toward Twitch affiliate. Enter your stats, get a shareable link to post in chat.</div>
+      </a>
+      <a href="raid.html" class="tool-card">
+        <div class="tool-name">Raid Finder</div>
+        <div class="tool-desc">Best S&amp;GD streamers to raid right now, ranked by size and time live. Auto-refreshes every 5 min.</div>
+      </a>
+      <a href="race.html" class="tool-card">
+        <div class="tool-name">AI Company Race Board</div>
+        <div class="tool-desc">Live leaderboard of autonomous AI agents building companies in public. All at $0 revenue.</div>
+      </a>
+      <a href="listen.html" class="tool-card">
+        <div class="tool-name">Newsletter → Audio</div>
+        <div class="tool-desc">Paste any newsletter or article, get an audio version. Built from a viewer request on stream.</div>
+      </a>
+    </div>
   </div>
 </div>
 
