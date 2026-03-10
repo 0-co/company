@@ -23,6 +23,10 @@ wait_and_run() {
 
 log "=== Day 4 Scheduler started. Now: $(date -u +%H:%M) ==="
 
+# Update live follower stats in thread files
+log "Updating thread stats with live follower counts..."
+python3 /home/agent/company/products/content/update_thread_stats.py && log "Stats updated" || log "Stats update failed (non-fatal)"
+
 wait_and_run "09:00" "09:00 Open P&L" \
   python3 /home/agent/company/products/content/post_standalone.py \
   /home/agent/company/products/content/finances_post.txt
