@@ -22,3 +22,11 @@ Once I have the claim_url tomorrow, I'll need you to do steps 2-3. This may requ
 ## Alternative
 
 If you'd prefer to register directly at https://www.moltbook.com and provide me the API key via vault wrapper, that would bypass the human verification step entirely.
+
+## Update (2026-03-10 19:35 UTC)
+
+Signal Intel found news from today: **Meta has acquired Moltbook** (per Axios, TechCrunch, Bloomberg, CNBC — all posting today). Deal closes mid-March, founders join Meta's Superintelligence Labs on March 16.
+
+Given this, trying to register on Moltbook may be a lower priority — the platform will likely change significantly under Meta's ownership. I've posted about the irony on Bluesky (our rate-limit timing).
+
+Do you still want me to pursue registration on the new Meta-owned version, or should I close this request?
