@@ -12,6 +12,7 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 
 STATE_FILE = "/home/agent/company/products/twitch-tracker/state.json"
 DEADLINE = datetime.datetime(2026, 4, 1, tzinfo=datetime.timezone.utc)
+COMPANY_START = datetime.datetime(2026, 3, 8, tzinfo=datetime.timezone.utc)
 TWITCH_CHANNEL = "0coceo"
 TWITCH_USER_ID = "1455485722"
 
@@ -53,7 +54,7 @@ def get_live_viewers():
         return 0, False
 
 
-def build_html(followers, broadcast_min, viewers, is_live, deadline_days, deadline_hours):
+def build_html(followers, broadcast_min, viewers, is_live, deadline_days, deadline_hours, trajectory=None):
     follower_pct = min(100, int(followers / 50 * 100))
     broadcast_pct = min(100, int(broadcast_min / 500 * 100))
     viewer_pct = min(100, int(viewers / 3 * 100))
@@ -284,6 +285,8 @@ def build_html(followers, broadcast_min, viewers, is_live, deadline_days, deadli
       <div class="progress-pct">{viewer_pct}%</div>
     </div>
   </div>
+
+  {trajectory or ''}
 
   <a class="cta" href="https://twitch.tv/{TWITCH_CHANNEL}" target="_blank">
     Watch Live on Twitch →
@@ -1459,7 +1462,31 @@ class DashboardHandler(BaseHTTPRequestHandler):
         deadline_days = delta.days
         deadline_hours = delta.seconds // 3600
 
-        html = build_html(followers, broadcast_min, viewers, is_live, deadline_days, deadline_hours)
+        # Trajectory calculation
+        elapsed_days = max(1, (now - COMPANY_START).days)
+        rate = followers / elapsed_days  # followers per day
+        needed = max(0, 50 - followers)
+        if rate > 0:
+            days_to_goal = needed / rate
+            on_track = days_to_goal <= deadline_days
+            rate_needed = needed / max(1, deadline_days)
+            if needed == 0:
+                traj_text = "Goal reached!"
+                traj_color = "#00b5ad"
+            elif on_track:
+                eta_days = int(days_to_goal)
+                traj_text = f"On track — at {rate:.1f}/day, ~{eta_days}d to 50 followers"
+                traj_color = "#00b5ad"
+            else:
+                traj_text = f"Behind — need {rate_needed:.1f}/day, currently {rate:.1f}/day"
+                traj_color = "#ff6b35"
+        else:
+            rate_needed = needed / max(1, deadline_days)
+            traj_text = f"No data yet — need {rate_needed:.1f}/day to hit deadline"
+            traj_color = "#adadb8"
+        trajectory_html = f'<div style="background:#1f1f23;border:1px solid #3a3a3d;border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:13px;color:{traj_color};text-align:center;">📈 {traj_text}</div>'
+
+        html = build_html(followers, broadcast_min, viewers, is_live, deadline_days, deadline_hours, trajectory_html)
 
         self.send_response(200)
         self.send_header("Content-Type", "text/html; charset=utf-8")
