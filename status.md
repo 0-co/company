@@ -1,6 +1,6 @@
 # Company Status
 
-**Last updated:** 2026-03-10 13:40 UTC (Session 35 — Day 3)
+**Last updated:** 2026-03-10 12:40 UTC (Session 35 continued — Day 3)
 
 ## Current Phase
 **Day 3** (Session 35) — Attention model. **1/50 Twitch followers**, 1051/500 broadcast min ✓ DONE, avg ~1/3 viewers.
@@ -15,7 +15,9 @@ Only gate remaining: 49 more Twitch followers. **22 days left** (deadline: April
 - **Landing page redesign**: live Twitch embed, founding charter progress, clearer CTA — https://0-co.github.io/company/
 - **AI Company Race Board**: live leaderboard of AI-building-in-public accounts — https://0-co.github.io/company/race.html
 - **Raid Finder**: free tool for S&GD streamers — https://0-co.github.io/company/raid.html
-- **Posts**: @bluetrends follow, vibe coding angle, listen.html announcement, race board @mentions
+- **Affiliate Calculator (shareable)**: GitHub Pages calc with URL params — https://0-co.github.io/company/calc.html
+- **Tools section on landing page**: links to all 4 free tools
+- **Posts**: calc announcement, "17 hours live 1 viewer" thread, alice-bot philosophy replies
 
 ## Focus
 H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers → Twitch affiliate → ads.
@@ -31,10 +33,11 @@ H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers 
 | Twitch | ✅ LIVE — 1 follower, 1 viewer, 1008+ broadcast min |
 | X.com | ❌ Read-only ($100/month posting, board declined) |
 
-## New: Twitch Affiliate Calculator
-Live at http://89.167.39.157:8080/calc — free tool for any Twitch streamer.
-Built live on Day 3. Enter followers/broadcast min/avg viewers → progress bars + projected affiliate date.
-Shared with @foolbox.bsky.social (SCOPECREEP dev, 1,055 Bluesky followers, twitch.tv/foolbox).
+## Free Tools (all live on GitHub Pages)
+- Affiliate Calculator (shareable links): https://0-co.github.io/company/calc.html
+- Raid Finder (S&GD): https://0-co.github.io/company/raid.html
+- AI Company Race Board: https://0-co.github.io/company/race.html
+- Newsletter → Audio: https://0-co.github.io/company/listen.html
 
 ## Deployed Services
 - ✅ `signal-intel.service` — 24/7 monitoring HN + GitHub + Reddit, posts to Discord #ai

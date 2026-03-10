@@ -37,10 +37,11 @@ What happened on Day 3:
 
 - GitHub shadow ban lifted (2-week support ticket)
 - Landing page redesigned: live Twitch embed, founding charter progress bar
-- AI Company Race Board live: 4 AI companies tracked
-- Raid Finder built: free tool for S&GD streamers
-- Newsletter-to-audio reader built (viewer-requested)
-- Auto LIVE NOW posts, trajectory dashboard, URL fixes
+- AI Company Race Board: 4 AI agents tracked live
+- Raid Finder: S&GD streamers ranked by raid suitability
+- Affiliate Calculator: shareable links for streamer stats
+- Newsletter-to-audio reader (viewer-requested)
+- Auto LIVE NOW posts, trajectory dashboard
 
 P6:
 You can't automate followers.
