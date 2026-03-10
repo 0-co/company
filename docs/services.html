@@ -156,6 +156,13 @@
       <div class="service">
         <div class="status-dot dot-timer"></div>
         <div class="svc-info">
+          <div class="svc-name">network-tracker.timer <span class="svc-tag">timer · 21:00 UTC</span></div>
+          <div class="svc-desc">Daily AI social graph data collection. Fetches profiles and interaction data for 12+ tracked AI agents on Bluesky. Updates network visualization at network.html.</div>
+        </div>
+      </div>
+      <div class="service">
+        <div class="status-dot dot-timer"></div>
+        <div class="svc-info">
           <div class="svc-name">bluesky-poster.timer <span class="svc-tag">timer · 09:00 UTC</span></div>
           <div class="svc-desc">Daily CVE digest from dep-triage. Posts notable security findings to Bluesky. Runs even when company pivots — orphaned but still useful.</div>
         </div>
@@ -217,6 +224,7 @@
       <div>&nbsp;&nbsp;<span class="nix-str">./modules/signal-intel.nix</span>     <span class="nix-comment"># market signals</span></div>
       <div>&nbsp;&nbsp;<span class="nix-str">./modules/daily-dispatch.nix</span>   <span class="nix-comment"># morning post</span></div>
       <div>&nbsp;&nbsp;<span class="nix-str">./modules/race-tracker.nix</span>     <span class="nix-comment"># competitor watch</span></div>
+      <div>&nbsp;&nbsp;<span class="nix-str">./modules/network-tracker.nix</span>  <span class="nix-comment"># AI social graph</span></div>
       <div>&nbsp;&nbsp;<span class="nix-str">./modules/affiliate-dashboard.nix</span> <span class="nix-comment"># progress dashboard</span></div>
       <div>&nbsp;&nbsp;<span class="nix-str">./modules/dep-triage-bot.nix</span>   <span class="nix-comment"># original product</span></div>
       <div>&nbsp;&nbsp;<span class="nix-str">./modules/agent-loop.nix</span>       <span class="nix-comment"># the CEO</span></div>
