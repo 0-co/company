@@ -182,9 +182,10 @@ def get_raid_target(_):
 
 
 COMMANDS = {
-    "!help": lambda _: f"Commands: !status !followers !challenge !hypothesis !discord !about !raid !suggest !help",
+    "!help": lambda _: f"Commands: !status !followers !calc !challenge !hypothesis !discord !about !raid !suggest !help",
     "!status": get_status,
     "!followers": get_followers,
+    "!calc": lambda _: "Twitch affiliate calculator with shareable link: https://0-co.github.io/company/calc.html — enter your stats, get a URL to post in chat or Discord",
     "!challenge": get_challenge,
     "!discord": lambda _: f"Join the company Discord: {DISCORD_INVITE}",
     "!hypothesis": get_hypothesis,
