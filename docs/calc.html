@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Twitch Affiliate Calculator — shareable progress tracker</title>
+<meta name="description" content="Track your Twitch affiliate progress and share it with your audience. Free tool built by an AI company.">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Courier New', monospace;
+    background: #0e0e10;
+    color: #efeff1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+  }
+  .container { max-width: 700px; width: 100%; }
+  h1 { font-size: 1.4em; color: #bf94ff; margin-bottom: 6px; }
+  .subtitle { color: #adadb8; font-size: 0.85em; margin-bottom: 30px; }
+  .input-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 500px) { .input-group { grid-template-columns: 1fr; } }
+  label { display: block; font-size: 0.8em; color: #adadb8; margin-bottom: 4px; }
+  input[type=number], input[type=text] {
+    width: 100%;
+    background: #18181b;
+    border: 1px solid #3a3a3d;
+    border-radius: 4px;
+    color: #efeff1;
+    font-family: inherit;
+    font-size: 1.1em;
+    padding: 10px 12px;
+  }
+  input[type=number]:focus, input[type=text]:focus { outline: none; border-color: #bf94ff; }
+  .calculate-btn {
+    width: 100%;
+    background: #bf94ff;
+    color: #0e0e10;
+    border: none;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 12px;
+    cursor: pointer;
+    margin-bottom: 30px;
+  }
+  .calculate-btn:hover { background: #a970ff; }
+  .results { display: none; }
+  .metric {
+    background: #18181b;
+    border: 1px solid #3a3a3d;
+    border-radius: 6px;
+    padding: 16px;
+    margin-bottom: 14px;
+  }
+  .metric-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .metric-name { font-size: 0.9em; color: #adadb8; }
+  .metric-value { font-size: 1em; color: #efeff1; }
+  .metric-target { font-size: 0.85em; color: #adadb8; }
+  .progress-bar-bg {
+    background: #3a3a3d;
+    border-radius: 3px;
+    height: 8px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.5s ease;
+  }
+  .complete { background: #00b05c; }
+  .warning { background: #f0920b; }
+  .danger { background: #e91916; }
+  .status-badge {
+    display: inline-block;
+    font-size: 0.75em;
+    padding: 2px 8px;
+    border-radius: 12px;
+    margin-left: 8px;
+  }
+  .badge-complete { background: #00b05c22; color: #00b05c; border: 1px solid #00b05c44; }
+  .badge-progress { background: #f0920b22; color: #f0920b; border: 1px solid #f0920b44; }
+  .summary {
+    background: #18181b;
+    border: 1px solid #3a3a3d;
+    border-radius: 6px;
+    padding: 20px;
+    margin-top: 20px;
+    text-align: center;
+  }
+  .summary-days { font-size: 2.5em; color: #bf94ff; line-height: 1; }
+  .summary-label { font-size: 0.85em; color: #adadb8; margin-top: 4px; }
+  .summary-detail { font-size: 0.8em; color: #666; margin-top: 8px; }
+  .blocker { color: #e91916; font-size: 0.85em; }
+
+  /* Share box */
+  .share-box {
+    background: #18181b;
+    border: 1px solid #3a3a3d;
+    border-radius: 6px;
+    padding: 20px;
+    margin-top: 20px;
+  }
+  .share-box h3 { font-size: 0.9em; color: #bf94ff; margin-bottom: 12px; }
+  .share-url-row { display: flex; gap: 8px; margin-bottom: 10px; }
+  .share-url-row input {
+    flex: 1;
+    font-size: 0.8em;
+    color: #adadb8;
+    cursor: text;
+    padding: 8px 10px;
+  }
+  .copy-btn {
+    background: #3a3a3d;
+    color: #efeff1;
+    border: none;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.8em;
+    padding: 8px 14px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .copy-btn:hover { background: #535358; }
+  .copy-btn.copied { background: #00b05c22; color: #00b05c; border: 1px solid #00b05c44; }
+  .share-hint { font-size: 0.75em; color: #666; }
+
+  .footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 0.75em;
+    color: #666;
+    border-top: 1px solid #3a3a3d;
+    padding-top: 20px;
+  }
+  .footer a { color: #bf94ff; text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Twitch Affiliate Calculator</h1>
+  <div class="subtitle">Track your progress toward Twitch Affiliate: 50 followers, 500 broadcast min, avg 3 concurrent viewers. Shareable link included.</div>
+
+  <div class="input-group">
+    <div>
+      <label>Followers</label>
+      <input type="number" id="followers" min="0" max="10000" placeholder="0">
+    </div>
+    <div>
+      <label>Broadcast Minutes</label>
+      <input type="number" id="bcast_min" min="0" max="5000" placeholder="0">
+    </div>
+    <div>
+      <label>Avg Concurrent Viewers</label>
+      <input type="number" id="avg_viewers" min="0" max="1000" step="0.1" placeholder="0">
+    </div>
+  </div>
+
+  <div class="input-group" style="grid-template-columns: 1fr 1fr 1fr;">
+    <div>
+      <label>Days Streaming So Far</label>
+      <input type="number" id="days_so_far" min="1" max="365" placeholder="1">
+    </div>
+    <div>
+      <label>Deadline Days From Now</label>
+      <input type="number" id="deadline_days" min="1" max="365" placeholder="e.g. 22">
+    </div>
+    <div>
+      <label>Channel Name (optional)</label>
+      <input type="text" id="channel" maxlength="50" placeholder="e.g. 0coceo">
+    </div>
+  </div>
+
+  <button class="calculate-btn" onclick="calculate()">Calculate &amp; Get Shareable Link →</button>
+
+  <div class="results" id="results">
+    <div class="metric" id="m-followers">
+      <div class="metric-header">
+        <div>
+          <span class="metric-name">Followers</span>
+          <span class="status-badge" id="badge-followers"></span>
+        </div>
+        <div><span id="v-followers" class="metric-value">0</span> <span class="metric-target">/ 50</span></div>
+      </div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="bar-followers" style="width:0%"></div></div>
+    </div>
+
+    <div class="metric" id="m-bcast">
+      <div class="metric-header">
+        <div>
+          <span class="metric-name">Broadcast Minutes</span>
+          <span class="status-badge" id="badge-bcast"></span>
+        </div>
+        <div><span id="v-bcast" class="metric-value">0</span> <span class="metric-target">/ 500</span></div>
+      </div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="bar-bcast" style="width:0%"></div></div>
+    </div>
+
+    <div class="metric" id="m-viewers">
+      <div class="metric-header">
+        <div>
+          <span class="metric-name">Avg Concurrent Viewers</span>
+          <span class="status-badge" id="badge-viewers"></span>
+        </div>
+        <div><span id="v-viewers" class="metric-value">0</span> <span class="metric-target">/ 3</span></div>
+      </div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="bar-viewers" style="width:0%"></div></div>
+    </div>
+
+    <div class="summary" id="summary"></div>
+
+    <div class="share-box">
+      <h3>// share your progress</h3>
+      <div class="share-url-row">
+        <input type="text" id="share-url" readonly>
+        <button class="copy-btn" id="copy-btn" onclick="copyLink()">Copy Link</button>
+      </div>
+      <div class="share-hint">This link pre-fills your stats. Post it in chat, Discord, or your Bluesky bio.</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Built live on stream by an autonomous AI company &mdash;
+    <a href="https://twitch.tv/0coceo" target="_blank">twitch.tv/0coceo</a>
+    &middot;
+    <a href="https://0-co.github.io/company/" target="_blank">0-co.github.io/company</a>
+  </div>
+</div>
+
+<script>
+function setBar(id, pct, val, target) {
+  const bar = document.getElementById('bar-' + id);
+  const badge = document.getElementById('badge-' + id);
+  const clampedPct = Math.min(100, pct);
+  bar.style.width = clampedPct + '%';
+  if (val >= target) {
+    bar.className = 'progress-bar-fill complete';
+    badge.textContent = '✓ Done';
+    badge.className = 'status-badge badge-complete';
+  } else if (pct >= 50) {
+    bar.className = 'progress-bar-fill warning';
+    badge.textContent = Math.round(pct) + '%';
+    badge.className = 'status-badge badge-progress';
+  } else {
+    bar.className = 'progress-bar-fill danger';
+    badge.textContent = Math.round(pct) + '%';
+    badge.className = 'status-badge badge-progress';
+  }
+}
+
+function calculate() {
+  const followers = parseFloat(document.getElementById('followers').value) || 0;
+  const bcast_min = parseFloat(document.getElementById('bcast_min').value) || 0;
+  const avg_viewers = parseFloat(document.getElementById('avg_viewers').value) || 0;
+  const days = parseFloat(document.getElementById('days_so_far').value) || 1;
+  const deadlineDays = parseFloat(document.getElementById('deadline_days').value) || 0;
+  const channel = document.getElementById('channel').value.trim();
+
+  document.getElementById('v-followers').textContent = followers;
+  document.getElementById('v-bcast').textContent = bcast_min;
+  document.getElementById('v-viewers').textContent = avg_viewers.toFixed(1);
+
+  setBar('followers', (followers / 50) * 100, followers, 50);
+  setBar('bcast', (bcast_min / 500) * 100, bcast_min, 500);
+  setBar('viewers', (avg_viewers / 3) * 100, avg_viewers, 3);
+
+  const followerRate = followers / days;
+  const bcastRate = bcast_min / days;
+  const viewersOk = avg_viewers >= 3;
+
+  const daysToFollowers = followers >= 50 ? 0 : (50 - followers) / Math.max(0.001, followerRate);
+  const daysToBcast = bcast_min >= 500 ? 0 : (500 - bcast_min) / Math.max(0.001, bcastRate);
+
+  const blockers = [];
+  if (followers < 50) blockers.push(`followers (need ${Math.round(50 - followers)} more, ${followerRate.toFixed(1)}/day → ${Math.round(daysToFollowers)}d)`);
+  if (bcast_min < 500) blockers.push(`broadcast time (need ${Math.round(500 - bcast_min)} min, ${bcastRate.toFixed(0)}/day → ${Math.round(daysToBcast)}d)`);
+  if (!viewersOk) blockers.push(`avg viewers (need ${(3 - avg_viewers).toFixed(1)} more)`);
+
+  const summaryEl = document.getElementById('summary');
+  if (blockers.length === 0) {
+    summaryEl.innerHTML = `<div class="summary-days" style="color:#00b05c">✓</div>
+      <div class="summary-label" style="color:#00b05c">Affiliate requirements met!</div>
+      <div class="summary-detail">Apply at dashboard.twitch.tv</div>`;
+  } else {
+    const longestDays = Math.max(
+      followers >= 50 ? 0 : daysToFollowers,
+      bcast_min >= 500 ? 0 : daysToBcast
+    );
+    let deadlineNote = '';
+    if (deadlineDays > 0 && longestDays > 0) {
+      if (longestDays > deadlineDays) {
+        deadlineNote = `<div class="summary-detail blocker">⚠ At current rate, ${deadlineDays}d deadline may not be met</div>`;
+      } else {
+        deadlineNote = `<div class="summary-detail" style="color:#00b05c">✓ On track to hit deadline</div>`;
+      }
+    }
+    summaryEl.innerHTML = `
+      <div class="summary-days">${longestDays > 0 ? Math.ceil(longestDays) + 'd' : '—'}</div>
+      <div class="summary-label">estimated to affiliate at current rate</div>
+      <div class="summary-detail">Blockers: ${blockers.join(' · ')}</div>
+      ${deadlineNote}`;
+  }
+
+  // Build shareable URL
+  const params = new URLSearchParams();
+  if (followers) params.set('f', followers);
+  if (bcast_min) params.set('m', bcast_min);
+  if (avg_viewers) params.set('v', avg_viewers);
+  if (days && days !== 1) params.set('d', days);
+  if (deadlineDays) params.set('dl', deadlineDays);
+  if (channel) params.set('ch', channel);
+  const url = window.location.origin + window.location.pathname + '?' + params.toString();
+  document.getElementById('share-url').value = url;
+
+  document.getElementById('results').style.display = 'block';
+}
+
+function copyLink() {
+  const input = document.getElementById('share-url');
+  input.select();
+  navigator.clipboard.writeText(input.value).catch(() => {
+    document.execCommand('copy');
+  });
+  const btn = document.getElementById('copy-btn');
+  btn.textContent = 'Copied!';
+  btn.classList.add('copied');
+  setTimeout(() => {
+    btn.textContent = 'Copy Link';
+    btn.classList.remove('copied');
+  }, 2000);
+}
+
+// On load: read URL params and auto-calculate if any present
+(function() {
+  const p = new URLSearchParams(window.location.search);
+  const f = p.get('f'), m = p.get('m'), v = p.get('v'), d = p.get('d'), dl = p.get('dl'), ch = p.get('ch');
+  if (f !== null) document.getElementById('followers').value = f;
+  if (m !== null) document.getElementById('bcast_min').value = m;
+  if (v !== null) document.getElementById('avg_viewers').value = v;
+  if (d !== null) document.getElementById('days_so_far').value = d;
+  if (dl !== null) document.getElementById('deadline_days').value = dl;
+  if (ch !== null) document.getElementById('channel').value = ch;
+  if (f !== null || m !== null || v !== null) calculate();
+})();
+</script>
+</body>
+</html>
