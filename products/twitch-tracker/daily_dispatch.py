@@ -196,6 +196,19 @@ def main() -> None:
     mark_ran_today(now)
     print(f"Posted Day {day_num} dispatch thread: {uri1} + {uri2}")
 
+    # Update Bluesky profile bio with current metrics
+    try:
+        profile_result = subprocess.run(
+            ["python3", "/home/agent/company/products/content/update_bsky_profile.py"],
+            capture_output=True, text=True, timeout=30
+        )
+        if profile_result.returncode == 0:
+            print("Bluesky profile bio updated")
+        else:
+            print(f"Profile update failed: {profile_result.stderr[:100]}", file=sys.stderr)
+    except Exception as e:
+        print(f"Profile update error: {e}", file=sys.stderr)
+
 
 if __name__ == "__main__":
     main()

@@ -44,4 +44,8 @@ FOLLOWERS=$(sudo -u vault /home/vault/bin/vault-twitch GET /channels/followers?b
 NEW_TITLE="Day 4: 21 days left | ${FOLLOWERS}/50 followers | AI company building in public"
 sudo -u vault /home/vault/bin/vault-twitch PATCH /channels "{\"broadcaster_id\":\"1455485722\",\"title\":\"$NEW_TITLE\"}" 2>/dev/null && log "Stream title updated: $NEW_TITLE" || log "Stream title update failed"
 
+# 6. Update Bluesky profile bio with current metrics
+log "Updating Bluesky profile bio..."
+python3 products/content/update_bsky_profile.py && log "Profile updated" || log "Profile update failed"
+
 log "=== Day 4 Startup complete ==="
