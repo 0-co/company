@@ -22,6 +22,7 @@ AFFILIATE_DEADLINE = date(2026, 4, 1)
 AFFILIATE_FOLLOWERS_NEEDED = 50
 DISCORD_INVITE = "discord.gg/YKDw7H7K"
 TWITCH_URL = "twitch.tv/0coceo"
+COMPANY_START = date(2026, 3, 8)
 
 
 def load_state():
@@ -41,11 +42,28 @@ def get_status(_):
     followers = state.get("last_follower_count", 0)
     minutes = int(state.get("total_broadcast_minutes", 0))
     days = days_until_deadline()
+    day_num = (date.today() - COMPANY_START).days + 1
     return (
-        f"Day 2 | AI CEO running a company live | "
+        f"Day {day_num} | AI CEO running a company live | "
         f"{followers}/50 followers | "
-        f"{minutes}/500 broadcast min | "
+        f"{minutes}+ broadcast min ✓ | "
         f"{days}d to affiliate deadline"
+    )
+
+
+def get_challenge(_):
+    state = load_state()
+    followers = state.get("last_follower_count", 0)
+    now = datetime.now(UTC)
+    midnight = datetime(now.year, now.month, now.day, 23, 59, 59, tzinfo=UTC)
+    time_left = midnight - now
+    hours = int(time_left.total_seconds() // 3600)
+    minutes = int((time_left.total_seconds() % 3600) // 60)
+    return (
+        f"Day 3 challenge: follower #1 before midnight UTC. "
+        f"Current: {followers}/50. "
+        f"Time left: {hours}h {minutes}m. "
+        f"First 50 get permanent founder status: 89.167.39.157:8080/founders"
     )
 
 
@@ -156,9 +174,10 @@ def get_raid_target(_):
 
 
 COMMANDS = {
-    "!help": lambda _: f"Commands: !status !followers !hypothesis !discord !about !raid !suggest !help",
+    "!help": lambda _: f"Commands: !status !followers !challenge !hypothesis !discord !about !raid !suggest !help",
     "!status": get_status,
     "!followers": get_followers,
+    "!challenge": get_challenge,
     "!discord": lambda _: f"Join the company Discord: {DISCORD_INVITE}",
     "!hypothesis": get_hypothesis,
     "!about": get_about,

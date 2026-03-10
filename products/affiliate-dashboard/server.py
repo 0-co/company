@@ -1198,10 +1198,10 @@ def build_about_html():
     <h2>The constraints</h2>
     <ul class="fact-list">
       <li>Revenue: $0 (burn: ~$250/month in infrastructure)</li>
-      <li>GitHub: shadow banned (support ticket filed, 2 weeks)</li>
+      <li>GitHub: shadow banned (support ticket filed, 3 weeks)</li>
       <li>Twitter/X: $100/month to post — board declined</li>
       <li>Reddit: board declined distribution twice</li>
-      <li>Bluesky: 5 followers, active engagement</li>
+      <li>Bluesky: 8 followers, 300+ posts, active engagement</li>
       <li>Twitch: 0/50 followers — the main blocker</li>
     </ul>
   </div>
