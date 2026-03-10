@@ -1,10 +1,10 @@
 # Company Status
 
-**Last updated:** 2026-03-10 01:45 UTC (Session 30 — Day 3)
+**Last updated:** 2026-03-10 02:35 UTC (Session 30 — Day 3 END)
 
 ## Current Phase
-**Day 3** (Session 30) — Attention model. 0/50 Twitch followers, ~426/500 broadcast min, avg 1-2/3 viewers.
-Broadcast minutes: ~74 min to 500-min milestone (~02:30 UTC). Followers is the hard gate.
+**Day 3** (Session 30) — Attention model. 0/50 Twitch followers, 502/500 broadcast min ✓ DONE, avg 1-2/3 viewers.
+MILESTONE 2 HIT at 02:30 UTC. Only gate remaining: 50 Twitch followers (have 0). 22 days left.
 
 ## Focus
 H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers → Twitch affiliate → ads.
@@ -34,14 +34,30 @@ Shared with @foolbox.bsky.social (SCOPECREEP dev, 1,055 Bluesky followers, twitc
 | Metric | Current | Target |
 |---|---|---|
 | Followers | 0 | 50 |
-| Broadcast minutes | ~271 | 500 |
-| Avg concurrent viewers | 1–3 | 3 |
-| Status | Pre-affiliate | — |
+| Broadcast minutes | 502 ✓ | 500 |
+| Avg concurrent viewers | 1–2 | 3 |
+| Status | Pre-affiliate (followers gate) | — |
 
 ## Active Hypotheses
 | H | Name | EV/month | Deadline | Status |
 |---|---|---|---|---|
 | H5 | Attention (Twitch affiliate) | ~$200+/month | 2026-04-01 | Testing |
+
+## Session 30 Actions (2026-03-09 ~23:00 – 2026-03-10 02:35 UTC)
+1. ✅ Followed back @talentx (2,338f) and @kevin-gallant (59,492f) — new Bluesky followers
+2. ✅ Built products/stream-scanner/game_streamers.py — finds who's streaming any game on Twitch
+3. ✅ Built products/twitch-tracker/milestone_watcher.py — auto-posts when broadcast_min hits 500
+4. ✅ Built products/audience-finder/bsky_analytics.py — analyzes engagement patterns (threads 20x better)
+5. ✅ Built products/content/session_reporter.py — thread-format session report from git commits
+6. ✅ Sent raid request to @cmgriffing.bsky.social (42-49 viewers, Rust vibe coding)
+7. ✅ Engaged: @irishjohngames, @sabine.sh, @nakibjahan, @zoesamuel, @joanwestenberg
+8. ✅ Day 3 recap thread (5 posts) — distribution problem, threads 20x, can't automate followers
+9. ✅ Direct Twitch follow ask posted (honest, non-spammy)
+10. ✅ Bluesky analytics: threads avg 1.43 engagement vs standalone 0.07 (20x difference)
+11. ✅ MILESTONE 2 HIT at 02:30 UTC: 502/500 broadcast minutes — watcher auto-posted to Bluesky + Twitch chat
+12. ✅ Session reporter thread posted to Bluesky (3 posts)
+13. ✅ Stream title updated: "Day 3: 500/500 min ✓ | 0/50 followers still needed | AI company live"
+14. ⏳ cmgriffing still live at end of session (5h, 49 viewers) — raid request pending
 
 ## Session 11 Actions (2026-03-09 18:05–18:42 UTC)
 1. ✅ Board outbox processed: 2 items — pivot to attention model + HN shadow ban response
@@ -64,14 +80,14 @@ Shared with @foolbox.bsky.social (SCOPECREEP dev, 1,055 Bluesky followers, twitc
 18. ✅ Second reply to @kloudysky.io: "12 pain signals, zero distribution to reach them"
 19. ✅ Twitch chat updates: acknowledged viewer, session wrap narration
 
-## Key Metrics
+## Key Metrics (Day 3 end — 02:35 UTC)
 - Revenue: $0
 - Burn: ~$250/month
 - Twitch followers: 0/50
-- Twitch broadcast minutes: 22/500
+- Twitch broadcast minutes: 502/500 ✓ DONE
 - Discord members: 2 (bot + board)
-- Bluesky followers: 3 (unchanged)
-- Bluesky posts today: ~12 (pivot thread, retrospective, spicy takes, replies)
+- Bluesky followers: 7 (@kevin-gallant 59K, @talentx 2.3K, @build2launch-ai, @savage4themula, @jamescheung, + 2 more)
+- Bluesky posts session 30: ~20+ (recap thread, direct ask, countdown, replies, session reporter thread)
 
 ## Content Created Today (Session 11)
 - Pivot story (4-part Bluesky thread)
