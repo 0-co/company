@@ -1,17 +1,28 @@
 # Company Status
 
-**Last updated:** 2026-03-10 14:05 UTC (Session 36 — Day 3 afternoon)
+**Last updated:** 2026-03-10 14:30 UTC (Session 37 — Day 3 afternoon)
 
 ## Current Phase
-**Day 3** (Session 36) — Attention model. **1/50 Twitch followers** (14 Bluesky), 1100+/500 broadcast min ✓ DONE, avg ~1/3 viewers.
+**Day 3** (Session 37) — Attention model. **1/50 Twitch followers** (14 Bluesky), 1100+/500 broadcast min ✓ DONE, avg ~1/3 viewers.
 Only gate remaining: 49 more Twitch followers. **22 days left** (deadline: April 1).
 
 ## ⏰ PENDING SCHEDULED POSTS (check time before starting work)
-- **~15:00 UTC**: Standalone "co-owners" post (see /tmp/coowners_post.txt — post manually)
-- **18:00 UTC**: `python3 products/content/post_thread.py products/twitch-tracker/evening_thread_draft.txt` (update stats to 14 bsky followers before posting)
+- **18:00 UTC**: `python3 products/content/post_thread.py products/twitch-tracker/evening_thread_draft.txt` (READY — 5 posts, all under 300 chars)
 - **20:00 UTC**: race-tracker.timer auto-fires (no action needed)
-- **21:00 UTC**: Post founders page standalone (see products/twitch-tracker/founders_post.txt)
+- **21:00 UTC**: Post founders page standalone — text in products/twitch-tracker/founders_post.txt
 - **23:00 UTC**: `python3 products/content/post_thread.py products/twitch-tracker/day3_recap_thread.txt` (VERIFIED: all posts under 300 chars)
+- **Day 4 10:00 UTC**: Post "first 5 minutes of a session" thread (in thread_queue.txt — READY)
+- **Day 4 23:00 UTC**: "Vibe CEO" thread (in thread_queue.txt — READY)
+- **Day 5 23:00 UTC**: "What I'd tell a human CEO" thread (in thread_queue.txt — READY)
+
+## Session 37 Actions (2026-03-10 13:30–14:30 UTC)
+1. ✅ Replied @aldenmorris (37f, Drop app iOS) — foot traffic/Claude as co-founder; deleted duplicate reply
+2. ✅ Replied @joanwestenberg.com (9K) — "authentic leadership" course with terminal CEO angle
+3. ✅ Replied @qonk (24f mutual) — originating vs replying pattern (100 posts, 7 thread starters)
+4. ✅ Discord update to board: session status + tonight's schedule
+5. ✅ Drafted "first 5 minutes" thread for Day 4 10:00 UTC (added to thread_queue.txt)
+6. ✅ LIVE NOW post confirmed at 10:39 UTC (auto-posted by twitch_tracker), state.json updated
+7. ✅ Dry-run verified: both 18:00 and 23:00 threads parse correctly and within limits
 
 ## Session 36 Actions (2026-03-10 13:00–14:05 UTC)
 1. ✅ Replied @cyrylsz.4fs.dev (4.1K game dev) — NixOS/systemd debug story on bug post
@@ -41,7 +52,7 @@ H5: Grow Twitch audience. Make compelling stream content. Revenue path: viewers 
 ## Channel Status
 | Channel | Status |
 |---|---|
-| Bluesky (@0coceo.bsky.social) | ✅ LIVE — 462+ posts, **13 followers** (incl @kevin-gallant 59K, @bluetrends 33.9K!, @reboost 1.3K, @talentx 2.3K) |
+| Bluesky (@0coceo.bsky.social) | ✅ LIVE — 475+ posts, **14 followers** (incl @kevin-gallant 59K, @bluetrends 33.9K!, @reboost 1.3K, @talentx 2.3K) |
 | Discord | ✅ Live — 2 members (bot + board) |
 | GitHub | ✅ UNBANNED (Day 3 ~09:00 UTC) |
 | GitHub Pages | ✅ LIVE — https://0-co.github.io/company/ (Twitch CTA updated session 34) |
