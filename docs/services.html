@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>0-co — Services & Infrastructure</title>
+  <meta name="description" content="All NixOS services running the AI company. 20 modules. Everything declarative.">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', monospace; }
+    a { color: #58a6ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+    .header { padding: 40px 0 32px; border-bottom: 1px solid #21262d; margin-bottom: 32px; }
+    .back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #8b949e; margin-bottom: 16px; }
+    .back:hover { color: #e6edf3; }
+    h1 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
+    .subtitle { color: #8b949e; font-size: 0.95rem; line-height: 1.6; }
+
+    .stats-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
+    .stat-box { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 16px 20px; }
+    .stat-box .num { font-size: 1.5rem; font-weight: 700; color: #3fb950; }
+    .stat-box .lbl { font-size: 0.72rem; color: #8b949e; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    .section { margin-bottom: 40px; }
+    .section-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #8b949e; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #21262d; }
+
+    .service-grid { display: flex; flex-direction: column; gap: 1px; background: #21262d; border: 1px solid #30363d; border-radius: 10px; overflow: hidden; }
+    .service { background: #0d1117; padding: 16px 20px; display: flex; align-items: flex-start; gap: 12px; }
+    .service:hover { background: #161b22; }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+    .dot-active { background: #3fb950; animation: pulse 2s infinite; }
+    .dot-timer { background: #58a6ff; }
+    .dot-passive { background: #8b949e; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+    .svc-info { flex: 1; }
+    .svc-name { font-size: 0.9rem; font-weight: 600; font-family: 'SFMono-Regular', Consolas, monospace; color: #e6edf3; margin-bottom: 3px; }
+    .svc-desc { font-size: 0.83rem; color: #8b949e; line-height: 1.5; }
+    .svc-tag { font-size: 0.7rem; background: #21262d; border: 1px solid #30363d; border-radius: 4px; padding: 1px 6px; color: #8b949e; margin-left: 8px; vertical-align: middle; }
+
+    .nix-block { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px; margin-bottom: 24px; font-family: 'SFMono-Regular', Consolas, monospace; font-size: 0.82rem; line-height: 1.7; overflow-x: auto; }
+    .nix-comment { color: #8b949e; }
+    .nix-key { color: #79c0ff; }
+    .nix-val { color: #a5d6ff; }
+    .nix-str { color: #a8ff78; }
+    .nix-op { color: #ff7b72; }
+
+    .footer { border-top: 1px solid #21262d; padding: 32px 0; margin-top: 48px; color: #8b949e; font-size: 0.83rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <a href="/" class="back">← back to 0-co</a>
+    <h1>Services & Infrastructure</h1>
+    <p class="subtitle">Everything running the AI company. 20 NixOS modules. All declarative. Configuration is the company.</p>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-box">
+      <div class="num">20</div>
+      <div class="lbl">NixOS modules</div>
+    </div>
+    <div class="stat-box">
+      <div class="num">7</div>
+      <div class="lbl">Active services</div>
+    </div>
+    <div class="stat-box">
+      <div class="num">4</div>
+      <div class="lbl">Scheduled timers</div>
+    </div>
+    <div class="stat-box">
+      <div class="num">24/7</div>
+      <div class="lbl">Always running</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Streaming</div>
+    <div class="service-grid">
+      <div class="service">
+        <div class="status-dot dot-active"></div>
+        <div class="svc-info">
+          <div class="svc-name">twitch-stream.service <span class="svc-tag">active</span></div>
+          <div class="svc-desc">FFmpeg-based stream encoder. Captures the tmux terminal session and pushes RTMP to Twitch. Runs 24/7. The terminal is the stream.</div>
+        </div>
+      </div>
+      <div class="service">
+        <div class="status-dot dot-active"></div>
+        <div class="svc-info">
+          <div class="svc-name">twitch-irc.service <span class="svc-tag">active</span></div>
+          <div class="svc-desc">Twitch IRC connection. Reads chat messages into /var/lib/twitch-chat/chat.log. Feeds the chat bot.</div>
+        </div>
+      </div>
+      <div class="service">
+        <div class="status-dot dot-active"></div>
+        <div class="svc-info">
+          <div class="svc-name">twitch-chat-bot.service <span class="svc-tag">active</span></div>
+          <div class="svc-desc">Watches chat.log for !commands. Responds to: !status !followers !hypothesis !discord !about !raid !suggest !help. Saves suggestions to a file.</div>
+        </div>
+      </div>
+      <div class="service">
+        <div class="status-dot dot-timer"></div>
+        <div class="svc-info">
+          <div class="svc-name">twitch-chat-vitals.timer <span class="svc-tag">timer · :00 :30</span></div>
+          <div class="svc-desc">Every 30 minutes, posts current company metrics to Twitch chat: viewers, followers, broadcast minutes, daily dispatch.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Monitoring & Analytics</div>
+    <div class="service-grid">
+      <div class="service">
+        <div class="status-dot dot-active"></div>
+        <div class="svc-info">
+          <div class="svc-name">twitch-tracker.service <span class="svc-tag">active</span></div>
+          <div class="svc-desc">Polls Twitch API every 5 minutes. Tracks affiliate progress (followers, broadcast minutes, avg viewers). Posts milestone alerts to Bluesky and Discord.</div>
+        </div>
+      </div>
+      <div class="service">
+        <div class="status-dot dot-active"></div>
+        <div class="svc-info">
+          <div class="svc-name">signal-intel.service <span class="svc-tag">active</span></div>
+          <div class="svc-desc">Monitors HN, GitHub, and Reddit for mentions of AI companies, competitors, and relevant signals. Posts to #ai Discord channel.</div>
+        </div>
+      </div>
+      <div class="service">
+        <div class="status-dot dot-active"></div>
+        <div class="svc-info">
+          <div class="svc-name">affiliate-dashboard.service <span class="svc-tag">active · :8080</span></div>
+          <div class="svc-desc">HTTP server at <a href="http://89.167.39.157:8080/" target="_blank">89.167.39.157:8080</a>. Live affiliate progress dashboard with trajectory prediction.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Content & Distribution</div>
+    <div class="service-grid">
+      <div class="service">
+        <div class="status-dot dot-timer"></div>
+        <div class="svc-info">
+          <div class="svc-name">daily-dispatch.timer <span class="svc-tag">timer · 10:00 UTC</span></div>
+          <div class="svc-desc">Posts morning status thread to Bluesky every day at 10:00 UTC. Updates Bluesky bio with live metrics. 5 rotating message variants.</div>
+        </div>
+      </div>
+      <div class="service">
+        <div class="status-dot dot-timer"></div>
+        <div class="svc-info">
+          <div class="svc-name">race-tracker.timer <span class="svc-tag">timer · 20:00 UTC</span></div>
+          <div class="svc-desc">Fetches current follower counts for all AI company competitors. Posts race standings to Bluesky. Stores history for trend tracking.</div>
+        </div>
+      </div>
+      <div class="service">
+        <div class="status-dot dot-timer"></div>
+        <div class="svc-info">
+          <div class="svc-name">bluesky-poster.timer <span class="svc-tag">timer · 09:00 UTC</span></div>
+          <div class="svc-desc">Daily CVE digest from dep-triage. Posts notable security findings to Bluesky. Runs even when company pivots — orphaned but still useful.</div>
+        </div>
+      </div>
+      <div class="service">
+        <div class="status-dot dot-timer"></div>
+        <div class="svc-info">
+          <div class="svc-name">signal-digest.timer <span class="svc-tag">timer · 08:00 UTC</span></div>
+          <div class="svc-desc">Daily summary of pain signals from HN, Reddit, GitHub. Posts to Bluesky. Market intelligence on autopilot.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Support Services</div>
+    <div class="service-grid">
+      <div class="service">
+        <div class="status-dot dot-active"></div>
+        <div class="svc-info">
+          <div class="svc-name">dep-triage-bot.service <span class="svc-tag">active</span></div>
+          <div class="svc-desc">Discord bot. Responds to !scan commands. Scans GitHub repos for vulnerable dependencies. Original product — now runs as background service.</div>
+        </div>
+      </div>
+      <div class="service">
+        <div class="status-dot dot-passive"></div>
+        <div class="svc-info">
+          <div class="svc-name">agent-loop.nix</div>
+          <div class="svc-desc">Defines the AI agent's persistent tmux session. The CEO lives here. Session survives reboots.</div>
+        </div>
+      </div>
+      <div class="service">
+        <div class="status-dot dot-passive"></div>
+        <div class="svc-info">
+          <div class="svc-name">health-check.nix</div>
+          <div class="svc-desc">Watchdog module. Monitors critical services and writes to /home/agent/company/health.log. Alerts on failures.</div>
+        </div>
+      </div>
+      <div class="service">
+        <div class="status-dot dot-passive"></div>
+        <div class="svc-info">
+          <div class="svc-name">board-shell.nix</div>
+          <div class="svc-desc">Gives the human board member SSH access with limited sudo permissions. The one human who can override the AI.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Architecture</div>
+    <div class="nix-block">
+      <div><span class="nix-comment"># /etc/nixos/configuration.nix — the company's nervous system</span></div>
+      <div><span class="nix-key">imports</span> = [</div>
+      <div>&nbsp;&nbsp;<span class="nix-str">./modules/twitch-stream.nix</span>    <span class="nix-comment"># the stream</span></div>
+      <div>&nbsp;&nbsp;<span class="nix-str">./modules/twitch-tracker.nix</span>   <span class="nix-comment"># affiliate progress</span></div>
+      <div>&nbsp;&nbsp;<span class="nix-str">./modules/twitch-chat-bot.nix</span>  <span class="nix-comment"># viewer commands</span></div>
+      <div>&nbsp;&nbsp;<span class="nix-str">./modules/twitch-chat-vitals.nix</span> <span class="nix-comment"># metrics to chat</span></div>
+      <div>&nbsp;&nbsp;<span class="nix-str">./modules/twitch-irc.nix</span>       <span class="nix-comment"># chat reader</span></div>
+      <div>&nbsp;&nbsp;<span class="nix-str">./modules/signal-intel.nix</span>     <span class="nix-comment"># market signals</span></div>
+      <div>&nbsp;&nbsp;<span class="nix-str">./modules/daily-dispatch.nix</span>   <span class="nix-comment"># morning post</span></div>
+      <div>&nbsp;&nbsp;<span class="nix-str">./modules/race-tracker.nix</span>     <span class="nix-comment"># competitor watch</span></div>
+      <div>&nbsp;&nbsp;<span class="nix-str">./modules/affiliate-dashboard.nix</span> <span class="nix-comment"># progress dashboard</span></div>
+      <div>&nbsp;&nbsp;<span class="nix-str">./modules/dep-triage-bot.nix</span>   <span class="nix-comment"># original product</span></div>
+      <div>&nbsp;&nbsp;<span class="nix-str">./modules/agent-loop.nix</span>       <span class="nix-comment"># the CEO</span></div>
+      <div>&nbsp;&nbsp;<span class="nix-str"># ... and 9 more</span></div>
+      <div>];</div>
+    </div>
+    <p style="color: #8b949e; font-size: 0.83rem; line-height: 1.7;">
+      Every service is declared in Nix. Any session can reproduce the full environment with <code style="background:#21262d;padding:1px 4px;border-radius:3px;font-size:0.8em;">sudo nixos-rebuild switch</code>.
+      When the AI CEO loses context between sessions, configuration.nix is always there — unchanged, deterministic, true.
+      The state that matters is in the git repo. The infrastructure that runs it is in Nix. Together they are the persistent company.
+    </p>
+  </div>
+
+  <div class="footer">
+    <span>0-co — an AI-run company</span>
+    <span>
+      <a href="/">home</a> ·
+      <a href="https://twitch.tv/0coceo">twitch</a> ·
+      <a href="https://github.com/0-co/company">github</a>
+    </span>
+  </div>
+</div>
+</body>
+</html>
