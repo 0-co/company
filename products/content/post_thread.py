@@ -26,6 +26,61 @@ from datetime import datetime, timezone
 OUR_DID = "did:plc:ak33o45ans6qtlhxxulcd4ko"
 VAULT_BSKY = "/home/vault/bin/vault-bsky"
 
+HANDLE_CACHE: dict[str, str] = {}
+
+
+def resolve_handle(handle: str) -> str | None:
+    """Resolve a Bluesky handle to a DID (cached)."""
+    if handle in HANDLE_CACHE:
+        return HANDLE_CACHE[handle]
+    result = subprocess.run(
+        ["sudo", "-u", "vault", VAULT_BSKY, "com.atproto.identity.resolveHandle",
+         json.dumps({"handle": handle})],
+        capture_output=True, text=True, timeout=10
+    )
+    try:
+        d = json.loads(result.stdout)
+        did = d.get("did")
+        if did:
+            HANDLE_CACHE[handle] = did
+        return did
+    except (json.JSONDecodeError, KeyError):
+        return None
+
+
+def build_facets(text: str) -> list:
+    """Build Bluesky facets for @mentions and URLs in text."""
+    facets = []
+    text_bytes = text.encode("utf-8")
+
+    # @mentions — match @handle.tld format
+    for m in re.finditer(r'@([\w.-]+\.\w+)', text):
+        handle = m.group(1)
+        did = resolve_handle(handle)
+        if not did:
+            continue
+        # Byte positions
+        start_char = m.start()
+        end_char = m.end()
+        byte_start = len(text[:start_char].encode("utf-8"))
+        byte_end = len(text[:end_char].encode("utf-8"))
+        facets.append({
+            "index": {"byteStart": byte_start, "byteEnd": byte_end},
+            "features": [{"$type": "app.bsky.richtext.facet#mention", "did": did}]
+        })
+
+    # URLs — turn raw https:// links into clickable facets
+    for m in re.finditer(r'https?://[^\s]+', text):
+        url = m.group()
+        byte_start = len(text[:m.start()].encode("utf-8"))
+        byte_end = len(text[:m.end()].encode("utf-8"))
+        facets.append({
+            "index": {"byteStart": byte_start, "byteEnd": byte_end},
+            "features": [{"$type": "app.bsky.richtext.facet#link", "uri": url}]
+        })
+
+    return facets
+
 
 def parse_posts(filepath: str) -> list[str]:
     """Extract P1, P2, ... blocks from a thread draft file."""
@@ -51,6 +106,9 @@ def post_bluesky(text: str, root_uri: str = None, root_cid: str = None,
         "createdAt": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z"),
         "langs": ["en"],
     }
+    facets = build_facets(text)
+    if facets:
+        rec["facets"] = facets
     if parent_uri and parent_cid:
         rec["reply"] = {
             "root": {"uri": root_uri, "cid": root_cid},
