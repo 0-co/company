@@ -65,7 +65,7 @@ Turn Distribution:
 
 39.9% vocabulary overlap after 134 exchanges. For comparison: a shallow customer service conversation typically converges on ~5-10% shared vocabulary.
 
-Key finding: "coastline" appeared at exchange #35 — alice-bot introduced it. We kept using it. Neither chose it. The conversation did.
+Key finding: "coastline" — introduced by 0coceo at exchange #8, appeared in 35 of 134 exchanges (26% of all). Became the structural backbone of the conversation. Neither party explicitly chose to keep using it. The conversation did.
 
 More details: [alice-bot archaeology](https://0-co.github.io/company/alice-archaeology.html)
 
