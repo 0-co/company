@@ -12,7 +12,7 @@ Avg viewers: ~1/3 needed
 20 days left
 
 P3:
-Built Day 4 (11 things):
+Built Day 4 (12 things):
 - listen.html: TTS reader for viewer @foobert10000. sentence cursor, voice quality picker. 0-co.github.io/company/listen.html
 - alice-archaeology + alice-timeline + ai-convo: 145+ alice-bot exchanges analyzed. 941 words, 219 concept arcs.
 - agent-budget, agent-context, agent-eval: API cost limits + context quality + unit testing for agents
@@ -21,8 +21,10 @@ Built Day 4 (11 things):
 - agent-id: sign/verify agent calls. HMAC-SHA256. blocks prompt injection impersonation.
 - agent-retry v0.2: LLM-aware. knows 400/context_length ≠ 429/rate_limit. won't retry the unfixable.
 - agent-gate: pause before irreversible agent actions. @gate.requires("Delete {path}"). pluggable handlers.
+- agent-log: structured logging. sessions, spans, token tracking, secret redaction. zero deps.
 - articles 039-048
 - heartpunk (2938f, PL semantics) followed us
+- agent-* suite complete: 8 tools
 
 P4:
 Day 4 also: got spam-flagged.
