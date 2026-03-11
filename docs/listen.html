@@ -141,7 +141,7 @@
 <body>
 <div class="container">
   <h1>Listen</h1>
-  <p class="subtitle">Paste any text. Click play. Works offline — no install needed.</p>
+  <p class="subtitle">Paste any text. Click play. Neural voices use a server — browser voices work offline.</p>
 
   <textarea id="text" placeholder="Paste your newsletter, article, or email here...
 
@@ -179,6 +179,8 @@ Built for @foobert10000 who wanted a way to listen to Matt Levine's Money Stuff 
 </div>
 
 <script>
+const TTS_SERVER = 'http://89.167.39.157:8081';
+
 let chunks       = [];
 let chunkIndex   = 0;
 let charOffset   = 0;
@@ -187,6 +189,8 @@ let fullText     = '';
 let resumeTimer  = null;
 let selectedVoice = null;
 let sentenceSpans = [];
+let neuralAudio   = null;   // <audio> element for neural mode
+let neuralMode    = false;
 
 // ── Chrome keep-alive (silent pause bug after ~15s) ──────────────────────────
 function startKeepAlive() {
@@ -222,36 +226,70 @@ function scoreVoice(v) {
   return s;
 }
 
+const NEURAL_VOICES = [
+  { id: '__neural_aria__',   voiceId: 'en-US-AriaNeural',   label: '⚡ Neural: Aria (Female) — server' },
+  { id: '__neural_ava__',    voiceId: 'en-US-AvaNeural',    label: '⚡ Neural: Ava (Female) — server' },
+  { id: '__neural_andrew__', voiceId: 'en-US-AndrewNeural', label: '⚡ Neural: Andrew (Male) — server' },
+  { id: '__neural_emma__',   voiceId: 'en-US-EmmaNeural',   label: '⚡ Neural: Emma (Female) — server' },
+  { id: '__neural_brian__',  voiceId: 'en-US-BrianNeural',  label: '⚡ Neural: Brian (Male) — server' },
+];
+let selectedNeuralId = null;
+
+function isNeuralVoice(val) { return val && val.startsWith('__neural_'); }
+
 function loadVoices() {
   const all   = window.speechSynthesis.getVoices();
   const en    = all.filter(v => v.lang.startsWith('en'));
   const sel   = document.getElementById('voice-select');
 
-  if (!en.length) {
-    sel.innerHTML = '<option>No voices found</option>';
-    setStatus('No voices found. Try Chrome or Firefox on desktop.');
-    return;
+  sel.innerHTML = '';
+
+  // Add neural options at top
+  const grpNeural = document.createElement('optgroup');
+  grpNeural.label = 'Neural (Microsoft Edge — high quality)';
+  NEURAL_VOICES.forEach(nv => {
+    const opt = document.createElement('option');
+    opt.value = nv.id;
+    opt.textContent = nv.label;
+    grpNeural.appendChild(opt);
+  });
+  sel.appendChild(grpNeural);
+
+  if (en.length) {
+    // Sort best-first
+    en.sort((a, b) => scoreVoice(b) - scoreVoice(a));
+    const grpBrowser = document.createElement('optgroup');
+    grpBrowser.label = 'Browser voices (offline)';
+    en.forEach(v => {
+      const opt = document.createElement('option');
+      opt.value = v.voiceURI;
+      opt.textContent = v.name + (v.lang !== 'en-US' ? ' (' + v.lang + ')' : '');
+      grpBrowser.appendChild(opt);
+    });
+    sel.appendChild(grpBrowser);
+    selectedVoice = en[0];
   }
 
-  // Sort best-first
-  en.sort((a, b) => scoreVoice(b) - scoreVoice(a));
-
-  sel.innerHTML = '';
-  en.forEach(v => {
-    const opt = document.createElement('option');
-    opt.value = v.voiceURI;
-    opt.textContent = v.name + (v.lang !== 'en-US' ? ' (' + v.lang + ')' : '');
-    sel.appendChild(opt);
-  });
-
-  selectedVoice = en[0];
-  setStatus('Ready. Voice: ' + selectedVoice.name);
+  // Default to first neural voice
+  sel.value = NEURAL_VOICES[0].id;
+  selectedNeuralId = NEURAL_VOICES[0].voiceId;
+  selectedVoice    = null;
+  setStatus('Ready. Neural voice selected (server-side, high quality).');
 }
 
 function updateVoice() {
-  const uri    = document.getElementById('voice-select').value;
-  const voices = window.speechSynthesis.getVoices();
-  selectedVoice = voices.find(v => v.voiceURI === uri) || null;
+  const val = document.getElementById('voice-select').value;
+  if (isNeuralVoice(val)) {
+    const nv = NEURAL_VOICES.find(n => n.id === val);
+    selectedNeuralId = nv ? nv.voiceId : 'en-US-AriaNeural';
+    selectedVoice    = null;
+    setStatus('Neural voice: ' + (nv ? nv.label.replace('⚡ Neural: ', '').split(' —')[0] : 'Aria'));
+  } else {
+    selectedNeuralId = null;
+    const voices = window.speechSynthesis.getVoices();
+    selectedVoice = voices.find(v => v.voiceURI === val) || null;
+    if (selectedVoice) setStatus('Browser voice: ' + selectedVoice.name);
+  }
 }
 
 // ── Reading-view helpers ─────────────────────────────────────────────────────
@@ -292,6 +330,65 @@ function showTextarea() {
 // ── UI helpers ───────────────────────────────────────────────────────────────
 function setStatus(msg)   { document.getElementById('status').textContent   = msg; }
 function setProgress(pct) { document.getElementById('progress').style.width = Math.min(100, pct) + '%'; }
+
+// ── Neural (server-side) reading ─────────────────────────────────────────────
+async function startNeuralReading(text, voiceId) {
+  neuralMode = true;
+  setStatus('Fetching audio from server\u2026');
+  document.getElementById('btn-play').disabled  = true;
+  document.getElementById('btn-pause').disabled = false;
+  document.getElementById('btn-stop').disabled  = false;
+  setProgress(0);
+
+  try {
+    const resp = await fetch(TTS_SERVER + '/tts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: text, voice: voiceId })
+    });
+    if (!resp.ok) throw new Error('Server error ' + resp.status);
+    const blob = await resp.blob();
+    const url  = URL.createObjectURL(blob);
+
+    if (neuralAudio) { neuralAudio.pause(); neuralAudio = null; }
+    neuralAudio = new Audio(url);
+
+    neuralAudio.ontimeupdate = function() {
+      const pct = (neuralAudio.currentTime / neuralAudio.duration) * 100;
+      setProgress(pct);
+      const elapsed = Math.round(neuralAudio.currentTime);
+      const total   = Math.round(neuralAudio.duration);
+      setStatus('Playing\u2026 ' + elapsed + 's / ' + total + 's');
+    };
+    neuralAudio.onended = function() {
+      setProgress(100);
+      setStatus('Done.');
+      document.getElementById('btn-play').disabled  = false;
+      document.getElementById('btn-pause').disabled = true;
+      document.getElementById('btn-stop').disabled  = true;
+      URL.revokeObjectURL(url);
+      showTextarea();
+    };
+    neuralAudio.onerror = function() {
+      setStatus('Audio playback error. Try again.');
+      document.getElementById('btn-play').disabled = false;
+      showTextarea();
+    };
+
+    buildReadingView();
+    showReadingView();
+    setStatus('Playing neural voice\u2026');
+    await neuralAudio.play();
+
+  } catch (e) {
+    setStatus('Neural voice failed: ' + e.message + '. Try a browser voice instead.');
+    document.getElementById('btn-play').disabled  = false;
+    document.getElementById('btn-pause').disabled = true;
+    document.getElementById('btn-stop').disabled  = true;
+    showTextarea();
+    neuralMode = false;
+  }
+}
 
 // ── Speech ───────────────────────────────────────────────────────────────────
 function speakChunk(index) {
@@ -377,11 +474,19 @@ function startReading() {
   const text = document.getElementById('text').value.trim();
   if (!text) { setStatus('Paste some text first.'); return; }
 
+  // Neural path
+  if (selectedNeuralId) {
+    if (neuralAudio) { neuralAudio.pause(); neuralAudio = null; }
+    startNeuralReading(text, selectedNeuralId);
+    return;
+  }
+
   if (!('speechSynthesis' in window)) {
     setStatus('Web Speech API not supported. Try Chrome or Firefox on desktop.');
     return;
   }
 
+  neuralMode = false;
   window.speechSynthesis.cancel();
   stopKeepAlive();
 
@@ -406,6 +511,20 @@ function startReading() {
 }
 
 function pauseReading() {
+  if (neuralMode && neuralAudio) {
+    if (!neuralAudio.paused) {
+      neuralAudio.pause();
+      isPaused = true;
+      document.getElementById('btn-pause').innerHTML = '&#9654; Resume';
+      setStatus('Paused.');
+    } else {
+      neuralAudio.play();
+      isPaused = false;
+      document.getElementById('btn-pause').innerHTML = '&#9208; Pause';
+      setStatus('Resumed.');
+    }
+    return;
+  }
   if (window.speechSynthesis.speaking && !isPaused) {
     window.speechSynthesis.pause();
     isPaused = true;
@@ -422,6 +541,12 @@ function pauseReading() {
 }
 
 function stopReading() {
+  if (neuralMode && neuralAudio) {
+    neuralAudio.pause();
+    neuralAudio.currentTime = 0;
+    neuralAudio = null;
+    neuralMode  = false;
+  }
   window.speechSynthesis.cancel();
   isPaused = false;
   stopKeepAlive();

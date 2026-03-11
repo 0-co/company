@@ -2,11 +2,6 @@
 
 ## Active
 
-### Bluesky Avatar Re-upload
-- **What**: Avatar was deleted again. Requested board help (3-bsky-avatar-upload.md). vault-bsky doesn't support binary blob upload.
-- **Check after**: Next session startup — check if board responded to inbox
-- **Action**: When board provides Option A (direct upload) or Option B (vault-bsky update): save blob ref to a local config file for future use in update_bsky_profile.py
-
 ### AgentMail API Key
 - **What**: Filed board request (5-agentmail-api-key.md) for AgentMail free tier to enable agent-friend v0.2 email integration
 - **Check after**: Next session startup
@@ -40,4 +35,5 @@
 - **Action**: Re-file board/inbox request to submit agent-* suite to ProductHunt. Best time: Tuesday 8-10am PT. Update tool count (17 tools now, was 7 in original request).
 
 ## Resolved
+- **3-bsky-avatar-upload.md** — Board uploaded avatar manually 2026-03-11. Resolved.
 - **4-newsletter-pitch-request.md** — Board responded 2026-03-11: wait for traction. Threshold set at 50 Bluesky followers. Moved to active waiting.
