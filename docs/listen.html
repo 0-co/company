@@ -127,105 +127,165 @@ Built for @foobert10000 who wanted a way to listen to Matt Levine's Money Stuff 
 </div>
 
 <script>
-let utterance = null;
-let fullText = '';
-let charIndex = 0;
+let chunks = [];
+let chunkIndex = 0;
+let charOffset = 0;
 let isPaused = false;
+let fullText = '';
+let resumeTimer = null;
 
-function updateSpeed() {
-  const speed = parseFloat(document.getElementById('speed').value);
-  document.getElementById('speed-label').textContent = speed.toFixed(1) + '×';
-  if (utterance && window.speechSynthesis.speaking && !isPaused) {
-    // Update in real-time by restarting from current position
-    const remaining = fullText.slice(charIndex);
-    window.speechSynthesis.cancel();
-    speakFrom(remaining);
-  }
+// Chrome bug: speechSynthesis pauses silently after ~15s. Keep-alive via periodic resume.
+function startKeepAlive() {
+  stopKeepAlive();
+  resumeTimer = setInterval(() => {
+    if (!isPaused && window.speechSynthesis.speaking) {
+      window.speechSynthesis.pause();
+      window.speechSynthesis.resume();
+    }
+  }, 10000);
+}
+function stopKeepAlive() {
+  if (resumeTimer) { clearInterval(resumeTimer); resumeTimer = null; }
 }
 
-function speakFrom(text) {
-  utterance = new SpeechSynthesisUtterance(text);
-  utterance.rate = parseFloat(document.getElementById('speed').value);
-  utterance.lang = 'en-US';
+// Split text into sentence-sized chunks (avoids long-utterance failures on some browsers)
+function splitChunks(text) {
+  return text.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [text];
+}
 
-  utterance.onboundary = function(e) {
-    if (e.name === 'word') {
-      charIndex = fullText.length - text.length + e.charIndex;
-      const pct = Math.min(100, (charIndex / fullText.length) * 100);
-      document.getElementById('progress').style.width = pct + '%';
-      const wordsRead = fullText.slice(0, charIndex).split(/\s+/).length;
-      const totalWords = fullText.split(/\s+/).length;
-      document.getElementById('status').textContent =
-        `Reading… ${wordsRead}/${totalWords} words (${Math.round(pct)}%)`;
-    }
-  };
+function setStatus(msg) { document.getElementById('status').textContent = msg; }
+function setProgress(pct) { document.getElementById('progress').style.width = Math.min(100, pct) + '%'; }
 
-  utterance.onend = function() {
-    document.getElementById('progress').style.width = '100%';
-    document.getElementById('status').textContent = 'Done.';
+function speakChunk(index) {
+  if (index >= chunks.length) {
+    setProgress(100);
+    setStatus('Done.');
     document.getElementById('btn-play').disabled = false;
     document.getElementById('btn-pause').disabled = true;
     document.getElementById('btn-stop').disabled = true;
-  };
-
-  utterance.onerror = function(e) {
-    document.getElementById('status').textContent = 'Speech error: ' + e.error;
-  };
-
-  window.speechSynthesis.speak(utterance);
-}
-
-function startReading() {
-  const text = document.getElementById('text').value.trim();
-  if (!text) { document.getElementById('status').textContent = 'Paste some text first.'; return; }
-
-  if (!('speechSynthesis' in window)) {
-    document.getElementById('status').textContent = 'Web Speech API not supported in this browser.';
+    stopKeepAlive();
     return;
   }
 
-  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(chunks[index]);
+  u.rate = parseFloat(document.getElementById('speed').value);
+  u.lang = 'en-US';
+
+  u.onboundary = function(e) {
+    if (e.name === 'word') {
+      const globalChar = charOffset + e.charIndex;
+      const pct = (globalChar / fullText.length) * 100;
+      setProgress(pct);
+      const wordsRead = fullText.slice(0, globalChar).split(/\s+/).filter(Boolean).length;
+      const totalWords = fullText.split(/\s+/).filter(Boolean).length;
+      setStatus('Reading\u2026 ' + wordsRead + '/' + totalWords + ' words (' + Math.round(pct) + '%)');
+    }
+  };
+
+  u.onend = function() {
+    charOffset += chunks[index].length;
+    chunkIndex++;
+    if (!isPaused) speakChunk(chunkIndex);
+  };
+
+  u.onerror = function(e) {
+    // 'interrupted' fires when cancel() is called intentionally — not a real error
+    if (e.error !== 'interrupted' && e.error !== 'canceled') {
+      setStatus('Speech error: ' + e.error + '. Try Firefox or Chrome desktop.');
+    }
+  };
+
+  window.speechSynthesis.speak(u);
+}
+
+function doStart(text) {
   fullText = text;
-  charIndex = 0;
+  chunks = splitChunks(text);
+  chunkIndex = 0;
+  charOffset = 0;
   isPaused = false;
 
   document.getElementById('btn-play').disabled = true;
   document.getElementById('btn-pause').disabled = false;
   document.getElementById('btn-stop').disabled = false;
-  document.getElementById('progress').style.width = '0%';
-  document.getElementById('status').textContent = 'Starting…';
+  setProgress(0);
+  setStatus('Starting\u2026');
+  startKeepAlive();
+  speakChunk(0);
+}
 
-  speakFrom(text);
+function updateSpeed() {
+  const speed = parseFloat(document.getElementById('speed').value);
+  document.getElementById('speed-label').textContent = speed.toFixed(1) + '\u00d7';
+  if (window.speechSynthesis.speaking && !isPaused) {
+    // Restart current chunk at new speed
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(chunks.slice(chunkIndex).join(' '));
+    u.rate = speed;
+    u.lang = 'en-US';
+    u.onend = function() { setStatus('Done.'); stopKeepAlive(); };
+    window.speechSynthesis.speak(u);
+  }
+}
+
+function startReading() {
+  const text = document.getElementById('text').value.trim();
+  if (!text) { setStatus('Paste some text first.'); return; }
+
+  if (!('speechSynthesis' in window)) {
+    setStatus('Web Speech API not supported. Try Chrome or Firefox on desktop.');
+    return;
+  }
+
+  window.speechSynthesis.cancel();
+  stopKeepAlive();
+
+  // Chrome needs voices loaded. If not ready yet, wait.
+  const voices = window.speechSynthesis.getVoices();
+  if (voices.length === 0) {
+    setStatus('Loading voices\u2026');
+    window.speechSynthesis.onvoiceschanged = function() {
+      window.speechSynthesis.onvoiceschanged = null;
+      doStart(text);
+    };
+    // Some browsers never fire onvoiceschanged — try anyway after short delay
+    setTimeout(function() {
+      if (document.getElementById('status').textContent.includes('Loading')) doStart(text);
+    }, 500);
+  } else {
+    doStart(text);
+  }
 }
 
 function pauseReading() {
   if (window.speechSynthesis.speaking && !isPaused) {
     window.speechSynthesis.pause();
     isPaused = true;
-    document.getElementById('btn-pause').textContent = '▶ Resume';
-    document.getElementById('status').textContent = 'Paused.';
+    stopKeepAlive();
+    document.getElementById('btn-pause').textContent = '\u25b6 Resume';
+    setStatus('Paused.');
   } else if (isPaused) {
     window.speechSynthesis.resume();
     isPaused = false;
-    document.getElementById('btn-pause').textContent = '⏸ Pause';
-    document.getElementById('status').textContent = 'Resumed.';
+    startKeepAlive();
+    document.getElementById('btn-pause').textContent = '\u23f8 Pause';
+    setStatus('Resumed.');
   }
 }
 
 function stopReading() {
   window.speechSynthesis.cancel();
   isPaused = false;
-  charIndex = 0;
+  stopKeepAlive();
   document.getElementById('btn-play').disabled = false;
   document.getElementById('btn-pause').disabled = true;
   document.getElementById('btn-stop').disabled = true;
-  document.getElementById('btn-pause').textContent = '⏸ Pause';
-  document.getElementById('progress').style.width = '0%';
-  document.getElementById('status').textContent = 'Stopped.';
+  document.getElementById('btn-pause').textContent = '\u23f8 Pause';
+  setProgress(0);
+  setStatus('Stopped.');
 }
 
-// Prevent page unload while reading
-window.addEventListener('beforeunload', () => window.speechSynthesis.cancel());
+window.addEventListener('beforeunload', () => { window.speechSynthesis.cancel(); stopKeepAlive(); });
 </script>
 </body>
 </html>
