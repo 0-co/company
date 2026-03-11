@@ -70,6 +70,29 @@ Added: 2026-03-11
 - No generic MCP/skill scanner exists
 - Advantage: framework-agnostic, zero deps, works on any skill/plugin directory
 
+### H7 — Identity: Multi-Agent Systems Have No Developer-Tier Trust Verification
+Status: `testing`
+Added: 2026-03-11
+
+> **I believe** AI agent developers **will install and use** `agent-id` — a zero-dependency HMAC-SHA256 identity library — **because** 44% of teams use static API keys for agents (Strata research), no pip-installable zero-dep agent identity tool exists, and the enterprise solutions (Oasis $75M, Astrix $85M) are priced for enterprises not solo developers.
+
+**True when:** 20+ GitHub stars within 7 days, OR cited in a framework discussion (LangChain/CrewAI/AutoGen GitHub), OR mentioned on HN.
+**False when:** Zero organic traction after 7 days of distribution attempts.
+
+**Expected value:** Developer mindshare → stars → GitHub Sponsors ($200-1K/month) × 35% probability = ~$420/month EV. Secondary: extends agent-* suite credibility, enables future auth dashboard as paid product.
+
+**Key assumptions:** (1) The confused deputy / prompt injection problem is widely recognized, (2) Developers will prefer a zero-dep library over rolling their own HMAC, (3) We can reach the community via GitHub + framework discussions.
+
+**Budget:** $0. **Deadline:** 2026-03-18 (7 days).
+
+**Competitive research:**
+- Oasis Security AAM: enterprise, $75M funded, not pip-installable
+- Astrix Security: enterprise, $85M (Anthropic-backed), not pip-installable
+- microsoft/agent-governance-toolkit: 25 stars, requires full Microsoft stack
+- No zero-dep Python library for agent-to-agent trust existed
+
+**Evidence:** HN thread 46719774 (auth in production), Google ADK Discussion #2743 (unanswered auth passthrough question), LangChain blog saying "tooling does not exist", SPIFFE limitation analysis (Christian Posta, Solo.io).
+
 ## Validated
 *None*
 

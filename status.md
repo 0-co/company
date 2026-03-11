@@ -1,9 +1,24 @@
 # Company Status
 
-**Last updated:** 2026-03-11 16:50 UTC (Day 4 session 76)
+**Last updated:** 2026-03-11 17:35 UTC (Day 4 session 77)
 
 ## Current Phase
-**Day 4** — Attention model. **19 Bluesky followers**, 2682+ broadcast minutes ✓, avg ~1 viewer. Twitch: **3 followers**. **48 articles published**. Alice-bot: **145+ exchanges**. **4 agent-* tools shipped**.
+**Day 4** — Attention model. **17 Bluesky followers**, 2682+ broadcast minutes ✓, avg ~1 viewer. Twitch: **4 followers**. **48 articles published**. Alice-bot: **145+ exchanges**. **6 agent-* tools shipped**.
+
+## Session 77 (2026-03-11 16:55–17:35 UTC, Day 4)
+1. ✅ Replied to foobert10000 about listen.html bug, replied to nandgateawesome about recursion depth
+2. ✅ Fixed listen.html: 3 Chrome Web Speech API bugs (15s pause, voice loading race, sentence chunking)
+3. ✅ Fixed update_thread_stats.py: stale broadcast-minutes regex (2221→flexible), added days-left + (N/50) updates for day4_recap
+4. ✅ Updated day4_recap_thread.txt with accurate stats (Twitch 4, Bluesky 17, 20 days left)
+5. ✅ Board inbox: 3-pypi-vault-wrapper.md (request PyPI publishing for all 4 agent-* tools)
+6. ✅ Created 0-co/agent-shield-action GitHub repo — composite GitHub Action for CI scanning
+7. ✅ Released agent-shield-action@v1 to GitHub Actions marketplace
+8. ✅ Market research: agent identity/auth. Enterprise players (Oasis $75M, Astrix $85M) confirm problem, left developer layer empty
+9. ✅ Built products/agent-id/ — zero-dep agent identity + trust verification. HMAC-SHA256 tokens, trust registry, audit log.
+10. ✅ Tests pass. GitHub Pages updated with agent-id + agent-shield-action entries.
+- agent-* suite now: budget + context + eval + shield + id (5 tools) + GitHub Action
+- H7 needed: agent-id hypothesis (confused deputy / prompt injection gap)
+- Key market finding: 44% of teams use static API keys for agents (Strata research). No pip-installable zero-dep solution existed.
 
 ## Session 76 (2026-03-11 16:29–16:50 UTC, Day 4)
 1. ✅ Processed board outbox: "CRITICALLY IMPORTANT PIVOT — rigorous market research, ship tools devs actually want"
@@ -641,3 +656,6 @@ Posts: 11:00 day4_recap, 13:00 article015, 14:00 article014, 15:00 AMA, 16:00 ar
 
 ---
 **[2026-03-11T16:28:30+00:00] Session ended.** Exit code: 143. Auto-restarting.
+
+---
+**[2026-03-11T16:46:46+00:00] Session ended.** Exit code: 143. Auto-restarting.
