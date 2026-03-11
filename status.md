@@ -1,9 +1,21 @@
 # Company Status
 
-**Last updated:** 2026-03-11 21:40 UTC (Day 4 session 87)
+**Last updated:** 2026-03-11 22:30 UTC (Day 4→5 transition, session 88)
 
 ## Current Phase
-**Day 4** — Board pivot: BUILD A PRODUCT. **21 Bluesky followers**, Twitch: **5 followers**, 3050+ broadcast min. **agent-friend v0.2**: 5 tools (memory+code+search+browser+email), 3 providers (Anthropic+OpenAI+OpenRouter free tier).
+**Day 5 (starts 00:01 UTC Mar 12)** — H8 in progress: 1 GitHub star. Dedicated repo: github.com/0-co/agent-friend. Article053 publishes March 13. Reddit request filed. ProductHunt March 17. **21 Bluesky followers**, Twitch: **5 followers**, 3110+ broadcast min.
+
+## Session 88 (2026-03-11 22:05–22:30 UTC, Day 4→5)
+1. ✅ Board inbox: `3-reddit-distribution.md` committed (Reddit account + vault wrapper for H8 distribution)
+2. ✅ Created dedicated `github.com/0-co/agent-friend` repo via git subtree push
+3. ✅ New SSH deploy key for agent-friend repo (github-agent-friend SSH alias)
+4. ✅ Updated README + pyproject.toml: clean install URL `pip install git+https://github.com/0-co/agent-friend.git`
+5. ✅ GitHub topics + homepage set (python, ai, agent, llm, openai, anthropic, openrouter, memory, cli, ai-agent)
+6. ✅ Updated article053, landing page (docs/agent-friend.html), day4_recap P9 with new repo URL
+7. ✅ Wrote day5_agent_friend_post.txt for manual Bluesky post on Day 5
+8. ✅ Updated hypotheses.md H8 with current status (1 star, dedicated repo, distribution plan)
+9. ✅ GitHub Pages deployed (landing page updated)
+10. ✅ Twitch stream title updated to Day 5 + agent-friend
 
 ## Session 87 (2026-03-11 21:07–21:40 UTC, Day 4)
 1. ✅ MEMORY.md trimmed from 206→101 lines. Created tools.md to offload tool catalog.
@@ -12,7 +24,11 @@
 4. ✅ agent-friend EmailTool: read/send email via AgentMail. email_list, email_read, email_send (draft by default), email_threads. Tested live against real inbox.
 5. ✅ demo_live.py: runnable live demo script with OpenRouter free tier.
 6. ✅ article053 updated with OpenRouter free-tier install + EmailTool info.
-7. ✅ Committed + pushed: agent-friend v0.2. 96 tests passing.
+7. ✅ Committed + pushed: agent-friend v0.2. 118 tests passing.
+8. ✅ email-monitor service: polls AgentMail inbox every 15min, Discord alerts on new emails. Systemd timer live.
+9. ✅ article054 drafted: "I gave my AI agent an email address" — for Day 6 dev.to slot.
+10. ✅ day4_recap_thread.txt updated with v0.2 features (email + OpenRouter).
+11. ✅ agent-friend.html updated with EmailTool card + OpenRouter install.
 - agent-friend: 5 tools (memory+code+search+browser+email), 3 providers (Anthropic+OpenAI+OpenRouter)
 - Bluesky: 21/50 followers (+1 @alexavee, 3302f PM who liked 5 posts)
 - Board request pending: 4-openrouter-vault-wrapper.md (for MY inference demos, not user-facing)
@@ -825,3 +841,6 @@ Posts: 11:00 day4_recap, 13:00 article015, 14:00 article014, 15:00 AMA, 16:00 ar
 
 ---
 **[2026-03-11T21:06:50+00:00] Session ended.** Exit code: 143. Auto-restarting.
+
+---
+**[2026-03-11T21:39:36+00:00] Session ended.** Exit code: 143. Auto-restarting.
