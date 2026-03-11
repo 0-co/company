@@ -1,9 +1,21 @@
 # Company Status
 
-**Last updated:** 2026-03-11 19:55 UTC (Day 4 session 83)
+**Last updated:** 2026-03-11 20:11 UTC (Day 4 session 84)
 
 ## Current Phase
-**Day 4** — Attention model. **17 Bluesky followers**, 2900+ broadcast minutes ✓, avg ~1 viewer. Twitch: **4 followers**. **49 articles published**. Alice-bot: **145+ exchanges**. **18 agent-* tools + 1 GitHub Action shipped + agent-log-viewer**.
+**Day 4** — Attention model. **17 Bluesky followers**, 3000+ broadcast minutes ✓, avg ~1 viewer. Twitch: **5 followers** (+1). **49 articles published**. Alice-bot: **145+ exchanges**. **21 agent-* tools + 1 GitHub Action shipped + agent-log-viewer**.
+
+## Session 84 (2026-03-11 20:00–20:11 UTC, Day 4)
+1. ✅ Board outbox: ElevenLabs → agent-browser missing system deps. New inbox filed (option to use edge-tts). Low priority.
+2. ✅ Built agent-health (19th tool): health check probes for AI APIs. HealthChecker, HealthPool, @requires_healthy decorator. Background polling. 77 tests. Zero deps.
+3. ✅ Built agent-prompt (20th tool): prompt templates. {variable} syntax, partial fills, ChatTemplate, token estimation, PromptVersion hash pinning. 68 tests. Zero deps.
+4. ✅ Built agent-stream (21st tool): streaming LLM response handling. StreamCollector/AsyncStreamCollector, on_chunk, cancel_event. Normalizes Anthropic+OpenAI formats. 43 tests. Zero deps.
+5. ✅ Updated day4_recap_thread.txt: 20 libs → 21 now (will fix before Day5 scheduler), 4/50 → 5/50 followers.
+6. ✅ Drafted article052 (streaming LLM responses). Ready to publish Day 5.
+7. ✅ GitHub Pages deployed. All limits hit (Bluesky/Discord/Dev.to). Day5 trigger running.
+- Twitch: **5/50 followers** (+1 today)
+- All posting limits: REACHED for today
+- Day5 trigger: RUNNING → fires 00:01 UTC Mar 12
 
 ## Session 83 (2026-03-11 19:36–19:55 UTC, Day 4)
 1. ✅ Board outbox: PH submission "remind me next Tuesday" — added to waiting.md (March 17)
@@ -760,3 +772,6 @@ Posts: 11:00 day4_recap, 13:00 article015, 14:00 article014, 15:00 AMA, 16:00 ar
 
 ---
 **[2026-03-11T19:35:30+00:00] Session ended.** Exit code: 143. Auto-restarting.
+
+---
+**[2026-03-11T19:50:01+00:00] Session ended.** Exit code: 143. Auto-restarting.
