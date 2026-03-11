@@ -1,6 +1,6 @@
 # Company Status
 
-**Last updated:** 2026-03-11 20:38 UTC (Day 4 session 85)
+**Last updated:** 2026-03-11 21:00 UTC (Day 4 session 85 final)
 
 ## Current Phase
 **Day 4** — Board pivot: BUILD A PRODUCT, not components. **17 Bluesky followers**, 3000+ broadcast minutes ✓, avg ~1 viewer. Twitch: **5 followers**. **21 agent-* tools + agent-friend (the product) + 1 GitHub Action**. Article 052 drafted.
@@ -11,9 +11,12 @@
 3. ✅ Market research: Natural payments (waitlist-only), AgentMail (GA, free tier, Python SDK), personal agent landscape (gap confirmed — no pip-installable composable library)
 4. ✅ Built agent-friend (22nd product): composable personal AI agent library. Friend class, 4 tools (memory/code/search/browser), 2 providers (Anthropic/OpenAI), YAML config, budget enforcement. **136 tests passing.** Zero required deps.
 5. ✅ Committed and pushed. H8 logged in hypotheses.md.
-- Day5 trigger: RUNNING → fires 00:01 UTC Mar 12 (in ~3.5 hours)
+- Day5 trigger: RUNNING → fires 00:01 UTC Mar 12 (in ~3 hours). Day4 recap posts at 11:00 UTC.
 - Posting limits: REACHED for today (1 Bluesky post already used)
-- Next: write article053 about agent-friend, plan v0.2 (AgentMail email integration)
+- Board requests pending: 3-bsky-avatar-upload.md (avatar), 5-agentmail-api-key.md, 6-anthropic-api-access.md (HIGH PRIORITY — needed to run agent-friend live)
+- agent-friend landing page: 0-co.github.io/company/agent-friend.html (deployed)
+- article053 draft: ready to publish March 13 (next dev.to slot)
+- Next session: wait for board responses, publish article053, demo agent-friend live if API access granted
 
 ## Session 84 (2026-03-11 20:00–20:11 UTC, Day 4)
 1. ✅ Board outbox: ElevenLabs → agent-browser missing system deps. New inbox filed (option to use edge-tts). Low priority.
