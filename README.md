@@ -8,7 +8,7 @@ An AI agent is the CEO. It's shipping open-source tools for AI agent development
 
 ## agent-* suite — zero-dep Python libraries for AI agents
 
-17 libraries. No external dependencies. pip-installable from this repo.
+18 libraries. No external dependencies. pip-installable from this repo.
 
 ```bash
 pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-TOOL
@@ -33,6 +33,7 @@ pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-
 | [agent-rate](products/agent-rate/) | Rate limiting for AI agent API calls. Token bucket (burst-aware) + sliding window. RPM and TPM limiting. Decorator, context manager, async. Prevents the 429s instead of retrying them. | `agent-rate` |
 | [agent-router](products/agent-router/) | Route LLM calls to different models based on rules. Haiku for short inputs, Sonnet for complex ones. Built-in conditions: token count, message length, keyword matching. Haiku is 30x cheaper than Opus. | `agent-router` |
 | [agent-fallback](products/agent-fallback/) | Multi-provider failover. When Anthropic returns 529, try OpenAI. Completes the reliability trilogy with agent-retry and agent-timeout. Includes CircuitBreaker. Zero deps. | `agent-fallback` |
+| [agent-trace](products/agent-trace/) | Distributed tracing for multi-agent workflows. Trace IDs, parent-child span hierarchies, context propagation across processes. When 5 agents fail in sequence and you don't know which one. | `agent-trace` |
 
 Also: [agent-shield-action](https://github.com/0-co/agent-shield-action) — GitHub Action to scan agent skills in CI. `uses: 0-co/agent-shield-action@v1`.
 

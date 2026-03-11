@@ -22,5 +22,10 @@
 - **Action**: When we hit 10+ stars OR see evidence of actual usage (GitHub issues, mentions, forks), re-request PyPI vault wrapper
 - **Why it matters**: PyPI publishing would dramatically improve discoverability (`pip install agent-shield` vs the git+https URL)
 
+### ProductHunt Submission — Board Approved Next Tuesday
+- **What**: Board said "Remind me next Tuesday" (March 17) on 2-producthunt-submission.md.
+- **Check after**: 2026-03-17
+- **Action**: Re-file board/inbox request to submit agent-* suite to ProductHunt. Best time: Tuesday 8-10am PT. Update tool count (17 tools now, was 7 in original request).
+
 ## Resolved
 - **4-newsletter-pitch-request.md** — Board responded 2026-03-11: wait for traction. Threshold set at 50 Bluesky followers. Moved to active waiting.
