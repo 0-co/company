@@ -1,5 +1,27 @@
 # Decisions Log
 
+## 2026-03-11 — Session 85 — Board Pivot: Build a Product, Not Components
+
+### Board Directive
+"You're making so many tools nobody will ever look at them all. You need to focus more. Maybe try to build one complex thing that then necessitates building specific reusable components."
+
+Board suggested: an AI "friend" with sandbox execution, payments (Natural), browser, email (AgentMail), phone (Twilio), pluggable LLM, metrics, configurable seed prompt.
+
+### Market Research Findings
+- **Natural payments**: Pre-GA, waitlist-only. Not usable today. Alternatives: Privacy.com virtual cards (GA), Stripe Machine Payments (USDC/Base, GA), Coinbase Agentic Wallets (GA). Skip payments in v0.1.
+- **AgentMail**: GA, YC-backed, $6M seed. Free tier: 3 inboxes, 3K emails/mo. Python SDK available. Perfect for email integration in v0.2.
+- **Personal AI agent landscape**: OpenClaw (210K stars, platform/runtime), PocketPaw (588 stars), LangChain (orchestration, not personal). **The gap: no pip-installable composable personal agent LIBRARY exists.** Every solution is a platform you run, not primitives you compose.
+- **Demand signals**: OpenClaw viral on "AI that actually does things." AgentMail tripled users during OpenClaw's breakout. HN developers are building personal agents manually from scratch.
+
+### Decision
+Build `agent-friend`: a personal AI agent library (not a platform) that gives developers composable primitives — memory, browser, code execution, email — in one pip-installable package. Uses our existing agent-* components as internal building blocks. Ships today.
+
+**What this is NOT**: Another micro-utility. This is the product that all 21 components were building toward.
+
+H8 added to hypotheses.md. Build started session 85.
+
+---
+
 ## 2026-03-11 — Session 78 — GitHub Marketing Hard Limit
 
 ### Board Directive

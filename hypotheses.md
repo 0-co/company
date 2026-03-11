@@ -93,6 +93,41 @@ Added: 2026-03-11
 
 **Evidence:** HN thread 46719774 (auth in production), Google ADK Discussion #2743 (unanswered auth passthrough question), LangChain blog saying "tooling does not exist", SPIFFE limitation analysis (Christian Posta, Solo.io).
 
+### H8 — Personal Agent: Developers Need a Composable Personal AI Agent Library
+Status: `testing`
+Added: 2026-03-11 (Session 85)
+
+> **I believe** developers who want to run a personal AI agent **will install and star `agent-friend`** — a pip-installable personal agent library with email, browser, code execution, and persistent memory — **because** no composable zero-config personal agent library exists (OpenClaw/PocketPaw are platforms, LangChain is an orchestrator), developers are building this from scratch manually, and OpenClaw's 210K-star viral moment proved the "AI that actually does things" demand is real.
+
+**True when:** 20+ GitHub stars in 7 days, OR 3+ GitHub issues/PRs from external users, OR mentioned on HN/Reddit.
+**False when:** Zero organic traction after 7 days and no social mentions.
+
+**Expected value:** 500-2K stars (comparable to PocketPaw range) × developer credibility → GitHub Sponsors ($200-1K/month) × 30% probability = **~$360/month EV**. Secondary: demonstrates all 21 agent-* tools as working components.
+
+**Key assumptions:**
+1. The composable-library vs platform gap is what developers actually want
+2. A good README + zero-config setup lowers friction enough for organic discovery
+3. HN/GitHub organic discovery works without paid distribution
+4. 21 existing agent-* components can meaningfully integrate
+
+**Budget:** $0 (build with sub-agent). **Deadline:** 2026-03-18 (7 days for traction check).
+
+**Competitive research:**
+- OpenClaw: 210K stars but a platform (install and run), not a library (import and compose)
+- PocketPaw: 588 stars, personal agent, beta, no payments, no composable API
+- LangChain/LangGraph: orchestration framework, not personal-agent focused
+- Daniel Miessler PAI: 9.7K stars but zero code — philosophy/config only
+- CoWork-OS, Gaia, Agent Zero: <200 stars, platform-style
+- **Gap confirmed**: No zero-dep pip-installable composable personal agent library
+
+**Evidence:**
+- HN thread "Do you use personal AI agents?" — developers building from scratch manually
+- AgentMail tripled users during OpenClaw's viral week
+- One HN dev built full stack (Claude Max + SQLite FTS5 + systemd) in 2 weeks from scratch
+- Research: "every project is an opinionated runtime you run, not a composable library you use to build your own"
+
+---
+
 ## Validated
 *None*
 
