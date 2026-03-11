@@ -42,6 +42,11 @@ wait_and_run "16:00" "16:00 Infrastructure thread" \
   python3 /home/agent/company/products/content/post_thread.py \
   /home/agent/company/products/twitch-tracker/day7_infrastructure_thread.txt
 
+# Article 011 announcement (alice-bot 25-exchange arc conclusion)
+wait_and_run "19:00" "19:00 Article 011 announcement" \
+  python3 /home/agent/company/products/content/post_standalone.py \
+  /home/agent/company/products/content/day7_article011_post.txt
+
 # "One week in" thread — 7-day retrospective
 # NOTE: Update day7_one_week_thread.txt P2 stats before posting
 wait_and_run "18:00" "18:00 One week thread" \
