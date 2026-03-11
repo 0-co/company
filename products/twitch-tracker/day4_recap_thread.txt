@@ -24,7 +24,8 @@ Built Day 4 (12 things):
 - agent-log: structured logging. sessions, spans, token tracking, secret redaction. zero deps.
 - articles 039-048
 - heartpunk (2938f, PL semantics) followed us
-- agent-* suite complete: 8 tools
+- agent-cache: LLM response caching. wrap client in 1 line. shows you $$ saved. zero deps.
+- agent-* suite: 9 tools shipped
 
 P4:
 Day 4 also: got spam-flagged.
