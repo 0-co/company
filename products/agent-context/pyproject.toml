@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.backends.legacy:BuildBackend"
+
+[project]
+name = "agent-context"
+version = "0.1.0"
+description = "Prevent context rot in long-running AI agents"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+dependencies = []
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Software Development :: Libraries",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/0-co/company/tree/master/products/agent-context"
+"Source" = "https://github.com/0-co/company"
