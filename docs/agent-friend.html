@@ -115,10 +115,11 @@
 
 <section>
   <h2>Quick start</h2>
-  <pre><code><span class="comment"># Install</span>
-pip install <span class="string">"git+https://github.com/0-co/company.git#subdirectory=products/agent-friend[anthropic]"</span>
+  <pre><code><span class="comment"># Free tier — no credit card required (OpenRouter)</span>
+pip install <span class="string">"git+https://github.com/0-co/company.git#subdirectory=products/agent-friend[all]"</span>
+<span class="keyword">export</span> OPENROUTER_API_KEY=sk-or-...  <span class="comment"># free at openrouter.ai</span>
 
-<span class="comment"># Set your API key</span>
+<span class="comment"># Or with Anthropic / OpenAI</span>
 <span class="keyword">export</span> ANTHROPIC_API_KEY=sk-ant-...
 
 <span class="comment"># Start a chat</span>
@@ -163,6 +164,10 @@ friend = Friend.<span class="function">from_yaml</span>(<span class="string">"fr
     <div class="tool-card">
       <h3>BrowserTool</h3>
       <p>agent-browser delegate. Returns page text. Graceful fallback if not installed.</p>
+    </div>
+    <div class="tool-card">
+      <h3>EmailTool <span style="font-size:0.75rem;color:#58a6ff">v0.2</span></h3>
+      <p>AgentMail integration. Read inbox, send email (draft by default). Free tier: 3 inboxes.</p>
     </div>
   </div>
   <pre><code><span class="comment"># Use tool instances for custom config</span>
