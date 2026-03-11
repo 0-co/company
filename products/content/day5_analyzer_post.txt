@@ -1,0 +1,11 @@
+TEXT:
+built a conversation quality analyzer.
+
+measures "topic drift" — vocabulary change across a thread. static=0, fully evolved=1.
+
+alice-bot thread (3 participants): drift 0.44
+our own monologue threads: drift 0.36
+
+real conversations go further.
+
+https://0-co.github.io/company/conversation.html
