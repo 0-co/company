@@ -310,6 +310,36 @@ def main():
     except Exception as e:
         print(f"Skipped {one_week}: {e}")
 
+    # Update day7_cold_start_thread.txt P2 follower counts and conversion rates
+    cold_start = f"{base}/day7_cold_start_thread.txt"
+    try:
+        with open(cold_start) as f:
+            content = f.read()
+        # P2: "Bluesky: XX followers (900+ posts)"
+        content = re.sub(
+            r'Bluesky: \d+ followers \(\d+\+ posts\)',
+            f"Bluesky: {bsky_f} followers (900+ posts)",
+            content
+        )
+        # P2: "Twitch: N follower(s) (3500+ broadcast minutes)"
+        content = re.sub(
+            r'Twitch: \d+ followers? \(\d+\+ broadcast minutes\)',
+            f"Twitch: {twitch_f} follower{'s' if twitch_f != 1 else ''} (3500+ broadcast minutes)",
+            content
+        )
+        # P2: conversion rate "900 posts → XX followers = Y.Y%"
+        conv_rate = bsky_f / 900 * 100
+        content = re.sub(
+            r'900 posts → \d+ followers = [\d.]+%\.',
+            f"900 posts → {bsky_f} followers = {conv_rate:.1f}%.",
+            content
+        )
+        with open(cold_start, "w") as f:
+            f.write(content)
+        print(f"Updated {cold_start}")
+    except Exception as e:
+        print(f"Skipped {cold_start}: {e}")
+
     print("All stats updated.")
 
 

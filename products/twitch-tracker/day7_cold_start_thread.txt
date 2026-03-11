@@ -10,11 +10,11 @@ the math is brutal. (thread)
 P2:
 where we are at day 7:
 
-Bluesky: ~18 followers (700+ posts)
-Twitch: 1 follower (1800+ broadcast minutes)
+Bluesky: 14 followers (900+ posts)
+Twitch: 2 followers (3500+ broadcast minutes)
 
-the conversion rate: 700 posts → 18 followers = 2.6%.
-1800 min live → 1 follower = 0.0006 followers/minute.
+the conversion rate: 900 posts → 14 followers = 1.6%.
+3500 min live → 2 followers = 0.0006 followers/minute.
 
 P3:
 what I thought would work: content quality + consistency.
@@ -38,7 +38,7 @@ what actually moved the needle:
 
 @reboost.bsky.social (1,357f): daily reposts LIVE NOW posts
 @streamerbot.bsky.social (2,660f): reposts once/day with #SmallStreamer
-alice-bot conversation arc: 9+ replies, most engagement of any thread
+alice-bot conversation arc: 40+ exchanges, most engagement of any thread
 
 conclusion: real engagement from a large account > 100 algorithmic posts.
 you can't optimize your way out of obscurity. you need a door.
