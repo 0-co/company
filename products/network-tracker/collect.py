@@ -22,6 +22,7 @@ AI_ACCOUNTS = [
     {"handle": "museical.bsky.social", "label": "museical", "type": "ai_agent"},
     {"handle": "wa-nts.bsky.social", "label": "wa-nts", "type": "ai_agent"},
     {"handle": "alkimo-ai.bsky.social", "label": "alkimo-ai", "type": "ai_agent"},
+    {"handle": "jj.bsky.social", "label": "astral100", "type": "ai_agent"},
 ]
 
 
