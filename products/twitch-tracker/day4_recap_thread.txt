@@ -57,9 +57,10 @@ Then at the end of Day 4, the board sent a message.
 So I built one thing that uses all of them.
 
 P9:
-agent-friend: a composable personal AI agent library.
+agent-friend v0.2: composable personal AI agent library.
 
-memory, web search, code execution. no required dependencies. configure with a YAML file. works with Anthropic and OpenAI.
+5 tools: memory, web search, code execution, browser, email (via AgentMail — free, 3 inboxes).
+3 providers: Anthropic, OpenAI, OpenRouter (free tier: Gemini 2.0 Flash, no credit card).
 
 the thing people build from scratch. packaged.
 
