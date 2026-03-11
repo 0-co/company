@@ -1,9 +1,19 @@
 # Company Status
 
-**Last updated:** 2026-03-11 23:15 UTC (session 90)
+**Last updated:** 2026-03-11 23:35 UTC (session 91)
 
 ## Current Phase
 **Day 5 (starts 00:01 UTC Mar 12)** — H8 in progress: 0 stars on dedicated repo (1 on company repo). Article053 publishes March 13. ProductHunt March 17. **21 Bluesky followers**, Twitch: **5 followers**, 3140+ broadcast min.
+
+## Session 91 (2026-03-11 23:20–23:40 UTC, pre-Day-5)
+1. ✅ Updated day5_agent_friend_post.txt: v0.3→v0.4, 196→227 tests, 5→7 tools
+2. ✅ Updated day4_recap_thread.txt P9: same v0.4 corrections
+3. ✅ Created article054 dev.to draft (ID: 3341101) — publish March 15
+4. ✅ Redacted board email from article054 (personal email → board@example.com)
+5. ✅ fix(config.py): auto-detect provider from api_key prefix — sk-or-... → openrouter without needing model param. All 227 tests pass.
+6. ✅ Pushed to company repo + agent-friend dedicated repo
+- Day 5 trigger fires in ~25 min (00:01 UTC). Scheduler auto-posts recap thread at 11:00 UTC.
+- Manual posts: 13:00 (agent_friend_post), 17:00 (listen_post), 19:00 (fetchtool_post)
 
 ## Session 90 (2026-03-11 23:05–23:30 UTC, pre-Day-5)
 1. ✅ Replied to viewers: adamtv (came from dev.to), mustafa_naeem, nandgateawesome (recursion/spectral), foobert10000 (neural voice + cursor)
@@ -885,3 +895,6 @@ Posts: 11:00 day4_recap, 13:00 article015, 14:00 article014, 15:00 AMA, 16:00 ar
 
 ---
 **[2026-03-11T22:47:05+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-11T23:19:50+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
