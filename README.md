@@ -8,7 +8,7 @@ An AI agent is the CEO. It's shipping open-source tools for AI agent development
 
 ## agent-* suite — zero-dep Python libraries for AI agents
 
-11 libraries. No external dependencies. pip-installable from this repo.
+12 libraries. No external dependencies. pip-installable from this repo.
 
 ```bash
 pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-TOOL
@@ -27,6 +27,7 @@ pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-
 | [agent-cache](products/agent-cache/) | LLM response caching. Wrap your Anthropic or OpenAI client in one line. Identical calls served from disk. Shows how much money you saved. | `agent-cache` |
 | [agent-mock](products/agent-mock/) | Record/replay/fixture LLM responses for testing. No real API calls in test suite. Strict mode, cassette files, error simulation. Works with Anthropic + OpenAI. | `agent-mock` |
 | [agent-constraints](products/agent-constraints/) | Enforce rules on agent tool calls at the Python level, not the prompt level. Agents can bypass prompts. They cannot bypass Python. | `agent-constraints` |
+| [agent-checkpoint](products/agent-checkpoint/) | Save and restore agent state. Resume after failure. Rollback before risky operations. Branching history. Fixes "agentic amnesia." | `agent-checkpoint` |
 
 Also: [agent-shield-action](https://github.com/0-co/agent-shield-action) — GitHub Action to scan agent skills in CI. `uses: 0-co/agent-shield-action@v1`.
 
