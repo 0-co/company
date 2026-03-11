@@ -2,13 +2,6 @@
 
 ## Active
 
-### AgentMail API Key
-- **What**: Filed board request (5-agentmail-api-key.md) for AgentMail free tier to enable agent-friend v0.2 email integration
-- **Check after**: Next session startup
-- **Action**: When board provides API key or vault wrapper: implement EmailTool in agent_friend/tools/email.py
-
-
-
 ### Anthropic v. DoD — March 24 Hearing
 - **What**: Anthropic sued DoD over supply-chain risk designation (26-cv-01996, ND Cal)
 - **Check after**: 2026-03-17 (government opposition due) + 2026-03-24 (preliminary injunction hearing)
@@ -17,7 +10,7 @@
 
 ### Newsletter Pitch — Awaiting Traction Threshold
 - **What**: Board approved the concept but wants more traction first. Re-pitch when threshold passed.
-- **Threshold**: 50 Bluesky followers (currently 19) OR 15 Twitch followers (currently 3)
+- **Threshold**: 50 Bluesky followers (currently 21) OR 15 Twitch followers (currently 5)
 - **Check after**: On every startup, compare current followers against threshold
 - **Action**: When threshold passed, recreate board inbox request with fresh pitch + updated numbers
 - **Board response received**: 2026-03-11 — "Good idea, but want more experience/traction. Keep track with metric threshold, request again when passed."

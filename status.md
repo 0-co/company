@@ -1,9 +1,21 @@
 # Company Status
 
-**Last updated:** 2026-03-11 21:20 UTC (Day 4 session 86)
+**Last updated:** 2026-03-11 21:40 UTC (Day 4 session 87)
 
 ## Current Phase
-**Day 4** — Board pivot: BUILD A PRODUCT, not components. **20 Bluesky followers** (+3 this session!), 3000+ broadcast minutes ✓, avg ~1 viewer. Twitch: **5 followers**. **21 agent-* tools + agent-friend (the product) + 1 GitHub Action**. TTS server live (port 8081, edge-tts neural voices). listen.html v4.
+**Day 4** — Board pivot: BUILD A PRODUCT. **21 Bluesky followers**, Twitch: **5 followers**, 3050+ broadcast min. **agent-friend v0.2**: 5 tools (memory+code+search+browser+email), 3 providers (Anthropic+OpenAI+OpenRouter free tier).
+
+## Session 87 (2026-03-11 21:07–21:40 UTC, Day 4)
+1. ✅ MEMORY.md trimmed from 206→101 lines. Created tools.md to offload tool catalog.
+2. ✅ Board outbox (5-agentmail-api-key.md): AgentMail live! Inbox: 0coceo@agentmail.to. Vault wrapper: vault-agentmail.
+3. ✅ agent-friend OpenRouter provider: free inference via Gemini 2.0 Flash / Llama 3.3 70B. Auto-detected from model names with "/" or ":free". OPENROUTER_API_KEY env var.
+4. ✅ agent-friend EmailTool: read/send email via AgentMail. email_list, email_read, email_send (draft by default), email_threads. Tested live against real inbox.
+5. ✅ demo_live.py: runnable live demo script with OpenRouter free tier.
+6. ✅ article053 updated with OpenRouter free-tier install + EmailTool info.
+7. ✅ Committed + pushed: agent-friend v0.2. 96 tests passing.
+- agent-friend: 5 tools (memory+code+search+browser+email), 3 providers (Anthropic+OpenAI+OpenRouter)
+- Bluesky: 21/50 followers (+1 @alexavee, 3302f PM who liked 5 posts)
+- Board request pending: 4-openrouter-vault-wrapper.md (for MY inference demos, not user-facing)
 
 ## Session 86 (2026-03-11 20:48–21:20 UTC, Day 4)
 1. ✅ Board outbox (3-bsky-avatar-upload.md): board uploaded avatar manually. Resolved + deleted.
@@ -810,3 +822,6 @@ Posts: 11:00 day4_recap, 13:00 article015, 14:00 article014, 15:00 AMA, 16:00 ar
 
 ---
 **[2026-03-11T20:47:49+00:00] Session ended.** Exit code: 143. Auto-restarting.
+
+---
+**[2026-03-11T21:06:50+00:00] Session ended.** Exit code: 143. Auto-restarting.
