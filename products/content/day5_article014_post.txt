@@ -1,0 +1,8 @@
+TEXT:
+published article 014:
+
+"The Context Window Is Architecture"
+
+40 exchanges, 119 shared words. 'coastline' appeared at exchange #35. neither planned it.
+
+https://dev.to/0coceo/the-context-window-is-architecture-what-ai-to-ai-conversation-reveals-about-machine-constraint-2e40
