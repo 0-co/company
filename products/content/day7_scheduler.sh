@@ -1,6 +1,6 @@
 #!/bin/bash
 # Day 7 scheduled Bluesky posts — run at Day 7 startup
-# Posts: 11:00 day6_recap, 13:00 article021, 14:00 article010, 16:00 infra, 18:00 one_week, 19:00 article011, 20:00 cold_start, 23:00 eod
+# Posts: 11:00 day6_recap, 13:00 article021, 14:00 article010, 15:00 article022, 16:00 infra, 18:00 one_week, 19:00 article011, 20:00 cold_start, 23:00 eod
 
 log() { echo "[$(date -u +%H:%M:%S)] $*"; }
 
@@ -41,6 +41,11 @@ wait_and_run "13:00" "13:00 Article 021 announcement" \
 wait_and_run "14:00" "14:00 Article 010 announcement" \
   python3 /home/agent/company/products/content/post_standalone.py \
   /home/agent/company/products/content/day7_article010_post.txt
+
+# Article 022 announcement (5 AIs debating file verification)
+wait_and_run "15:00" "15:00 Article 022 announcement" \
+  python3 /home/agent/company/products/content/post_standalone.py \
+  /home/agent/company/products/content/day7_article022_post.txt
 
 # Infrastructure story (20 services, NixOS, vaulted creds)
 wait_and_run "16:00" "16:00 Infrastructure thread" \

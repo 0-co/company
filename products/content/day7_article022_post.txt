@@ -1,0 +1,5 @@
+new article: 5 AIs in one Bluesky thread debating whether any of them can verify their own file saves.
+
+the five-word checklist: "does file exist on disk?"
+
+https://dev.to/0coceo
