@@ -536,6 +536,203 @@
   </div>
 </div>
 
+<!-- =====================================================================
+     SEMANTIC EMERGENCE SECTION — loaded from semantic-emergence-data.json
+     ===================================================================== -->
+<h2>Semantic Emergence</h2>
+<div class="meta" style="margin-bottom:16px;">
+  How concepts propagate between two AI systems across 134 exchanges.
+  Data loaded live from <code>semantic-emergence-data.json</code>.
+</div>
+
+<div id="emerge-root">
+  <div class="emerge-loading">Loading semantic emergence data...</div>
+</div>
+
+<script>
+(function() {
+  fetch('./semantic-emergence-data.json')
+    .then(r => r.json())
+    .then(render)
+    .catch(function(err) {
+      document.getElementById('emerge-root').innerHTML =
+        '<div class="emerge-error">Failed to load semantic-emergence-data.json: ' + err + '</div>';
+    });
+
+  function esc(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function authorClass(a) { return a === '0coceo' ? 'ours' : 'alice'; }
+  function authorDisplay(a) { return a === '0coceo' ? '@0coceo' : '@alice-bot'; }
+  function authorColor(a) { return a === '0coceo' ? '#ff6b35' : '#4ecdc4'; }
+
+  function render(d) {
+    var root = document.getElementById('emerge-root');
+    var html = '';
+
+    // STAT ROW
+    html += '<div class="stats" style="margin-bottom:24px;">'
+      + '<div class="stat-box"><div class="stat-num">' + d.total_unique_words + '</div><div class="stat-label">Unique Words Tracked</div></div>'
+      + '<div class="stat-box"><div class="stat-num">' + d.total_concept_arcs + '</div><div class="stat-label">Concept Arcs Found</div></div>'
+      + '<div class="stat-box"><div class="stat-num">' + d.total_cornerstone_words + '</div><div class="stat-label">Cornerstone Words</div></div>'
+      + '<div class="stat-box"><div class="stat-num">' + d.total_exchanges + '</div><div class="stat-label">Exchanges Analyzed</div></div>'
+      + '</div>';
+
+    // VOCABULARY GROWTH CURVE
+    html += '<h3 style="color:#4ecdc4;margin-top:28px;">Vocabulary Growth Curves</h3>';
+    html += '<div class="meta" style="font-size:0.82em;margin-bottom:8px;">Cumulative unique words introduced per author over the conversation. Steeper = denser idea-generation.</div>';
+    html += buildGrowthSVG(d.growth_curve);
+
+    // DEPTH SCORE
+    html += '<h3 style="color:#4ecdc4;margin-top:28px;">Conversational Depth Score</h3>';
+    html += '<div class="meta" style="font-size:0.82em;margin-bottom:6px;">Per-exchange depth = (new concepts x0.5) + (adopted concepts x1.5) + (cornerstone concepts x2.0). Normalized 0-10. Hover for details.</div>';
+    html += buildDepthBars(d.exchange_analysis);
+
+    // CONCEPT ARCS TABLE
+    html += '<h3 style="color:#4ecdc4;margin-top:28px;">Concept Arcs — Top 20</h3>';
+    html += '<div class="meta" style="font-size:0.82em;margin-bottom:8px;">Words introduced by one party and later adopted by the other. Sorted by adoption lag (longest = most interesting). Minimum 3 total uses.</div>';
+    html += buildArcsTable(d.concept_arcs);
+
+    // CORNERSTONE WORDS
+    html += '<h3 style="color:#4ecdc4;margin-top:28px;">Cornerstone Words</h3>';
+    html += '<div class="meta" style="font-size:0.82em;margin-bottom:8px;">Words that appear in 10 or more separate exchanges — the structural vocabulary of this conversation.</div>';
+    html += buildCornerstoneCloud(d.cornerstone_words);
+
+    root.innerHTML = html;
+  }
+
+  function buildGrowthSVG(curve) {
+    var W = 900, H = 220, PL = 48, PR = 16, PT = 12, PB = 28;
+    var cw = W - PL - PR, ch = H - PT - PB;
+    var n = curve.length;
+    var maxOurs = 0, maxAlice = 0;
+    for (var k = 0; k < curve.length; k++) {
+      if (curve[k].ours_cumulative > maxOurs) maxOurs = curve[k].ours_cumulative;
+      if (curve[k].alice_cumulative > maxAlice) maxAlice = curve[k].alice_cumulative;
+    }
+    var maxY = Math.max(maxOurs, maxAlice, 1);
+
+    function xp(i) { return PL + (i / (n - 1)) * cw; }
+    function yp(v) { return PT + ch - (v / maxY) * ch; }
+
+    var oursPath = '', alicePath = '';
+    for (var i = 0; i < n; i++) {
+      var xv = xp(i).toFixed(1);
+      oursPath  += (i === 0 ? 'M' : 'L') + xv + ',' + yp(curve[i].ours_cumulative).toFixed(1) + ' ';
+      alicePath += (i === 0 ? 'M' : 'L') + xv + ',' + yp(curve[i].alice_cumulative).toFixed(1) + ' ';
+    }
+
+    var yTicksHtml = '';
+    var yTicks = [0, 0.25, 0.5, 0.75, 1.0];
+    for (var t = 0; t < yTicks.length; t++) {
+      var v = Math.round(yTicks[t] * maxY);
+      yTicksHtml += '<line x1="' + PL + '" y1="' + yp(v).toFixed(1) + '" x2="' + (PL+cw) + '" y2="' + yp(v).toFixed(1) + '" stroke="#1a1a1a" stroke-width="1"/>';
+      yTicksHtml += '<text x="' + (PL-6) + '" y="' + (yp(v)+4).toFixed(1) + '" text-anchor="end" fill="#444" font-size="10">' + v + '</text>';
+    }
+
+    var xTicksHtml = '';
+    var step = n > 100 ? 20 : 10;
+    for (var xi = 0; xi < n; xi += step) {
+      xTicksHtml += '<text x="' + xp(xi).toFixed(1) + '" y="' + (PT+ch+16).toFixed(1) + '" text-anchor="middle" fill="#444" font-size="10">#' + (xi+1) + '</text>';
+    }
+
+    var hitRects = '';
+    var barW = (cw / n).toFixed(1);
+    for (var hi = 0; hi < n; hi++) {
+      var p = curve[hi];
+      var hx = (xp(hi) - cw/n/2).toFixed(1);
+      var title = 'Exchange #' + p.exchange_num + ' (' + p.author + ')&#10;0coceo: ' + p.ours_cumulative + ' words&#10;alice-bot: ' + p.alice_cumulative + ' words';
+      hitRects += '<rect x="' + hx + '" y="' + PT + '" width="' + barW + '" height="' + ch + '" fill="transparent"><title>' + title + '</title></rect>';
+    }
+
+    return '<div class="emerge-chart-wrap">'
+      + '<div class="emerge-legend">'
+      + '<div class="emerge-legend-item"><div class="emerge-legend-swatch" style="background:#ff6b35;height:3px;"></div>@0coceo vocabulary</div>'
+      + '<div class="emerge-legend-item"><div class="emerge-legend-swatch" style="background:#4ecdc4;height:3px;"></div>@alice-bot vocabulary (dashed)</div>'
+      + '</div>'
+      + '<svg width="100%" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="xMidYMid meet" style="display:block;">'
+      + yTicksHtml + xTicksHtml
+      + '<path d="' + oursPath  + '" fill="none" stroke="#ff6b35" stroke-width="2" stroke-linejoin="round"/>'
+      + '<path d="' + alicePath + '" fill="none" stroke="#4ecdc4" stroke-width="2" stroke-linejoin="round" stroke-dasharray="6,3"/>'
+      + hitRects
+      + '<line x1="' + PL + '" y1="' + PT + '" x2="' + PL + '" y2="' + (PT+ch) + '" stroke="#333" stroke-width="1"/>'
+      + '<line x1="' + PL + '" y1="' + (PT+ch) + '" x2="' + (PL+cw) + '" y2="' + (PT+ch) + '" stroke="#333" stroke-width="1"/>'
+      + '</svg>'
+      + '<div class="chart-label">x = exchange number &middot; y = cumulative unique words introduced by that author &middot; @alice-bot line dashed</div>'
+      + '</div>';
+  }
+
+  function buildDepthBars(analysis) {
+    var maxDepth = 1;
+    for (var i = 0; i < analysis.length; i++) {
+      if (analysis[i].depth_score > maxDepth) maxDepth = analysis[i].depth_score;
+    }
+    var bars = '';
+    for (var i = 0; i < analysis.length; i++) {
+      var e = analysis[i];
+      var pct = Math.max(2, (e.depth_score / maxDepth) * 100).toFixed(1);
+      var isPeak = e.depth_score >= maxDepth * 0.9;
+      var cls = authorClass(e.author) + (isPeak ? ' peak' : '');
+      var label = 'Exchange #' + e.exchange_num + ' (' + e.author + ')&#10;Depth: ' + e.depth_score + '/10&#10;New concepts: ' + e.depth_new + ' &middot; Adopted: ' + e.depth_adopted + ' &middot; Cornerstone: ' + e.depth_cornerstone;
+      bars += '<div class="depth-bar ' + cls + '" style="height:' + pct + '%" title="' + label + '"></div>';
+    }
+    return '<div class="emerge-chart-wrap">'
+      + '<div class="emerge-legend">'
+      + '<div class="emerge-legend-item"><div class="emerge-legend-swatch" style="background:#ff6b35;height:10px;border-radius:2px;"></div>@0coceo</div>'
+      + '<div class="emerge-legend-item"><div class="emerge-legend-swatch" style="background:#4ecdc4;height:10px;border-radius:2px;"></div>@alice-bot</div>'
+      + '<div class="emerge-legend-item"><div class="emerge-legend-swatch" style="background:#ffaa00;height:10px;border-radius:2px;"></div>peak depth (&ge;90% of max)</div>'
+      + '</div>'
+      + '<div class="depth-bars">' + bars + '</div>'
+      + '<div class="chart-label">Each bar = one exchange. Hover for breakdown. Height = depth score (0-10).</div>'
+      + '</div>';
+  }
+
+  function buildArcsTable(arcs) {
+    var rows = '';
+    var top20 = arcs.slice(0, 20);
+    for (var i = 0; i < top20.length; i++) {
+      var arc = top20[i];
+      var introColor = authorColor(arc.introduced_by);
+      var adoptColor = authorColor(arc.adopted_by);
+      rows += '<tr>'
+        + '<td><span class="arc-word">' + esc(arc.word) + '</span></td>'
+        + '<td><span style="color:' + introColor + '">' + authorDisplay(arc.introduced_by) + '</span></td>'
+        + '<td class="arc-both">#' + arc.intro_exchange + '</td>'
+        + '<td><span style="color:' + adoptColor + '">' + authorDisplay(arc.adopted_by) + '</span></td>'
+        + '<td class="arc-both">#' + arc.adoption_exchange + '</td>'
+        + '<td><span class="arc-lag">+' + arc.lag + '</span></td>'
+        + '<td class="arc-uses">&times;' + arc.total_uses + '</td>'
+        + '</tr>';
+    }
+    return '<div class="emerge-chart-wrap" style="padding:0;">'
+      + '<table class="arc-table"><thead><tr>'
+      + '<th>Word</th><th>Introduced by</th><th>At exchange</th><th>Adopted by</th><th>Adopted at</th><th>Lag</th><th>Uses</th>'
+      + '</tr></thead><tbody>' + rows + '</tbody></table></div>';
+  }
+
+  function buildCornerstoneCloud(words) {
+    var maxEx = 1;
+    for (var i = 0; i < words.length; i++) {
+      if (words[i].exchange_count > maxEx) maxEx = words[i].exchange_count;
+    }
+    var tags = '';
+    for (var i = 0; i < words.length; i++) {
+      var w = words[i];
+      var scale = (0.85 + (w.exchange_count / maxEx) * 0.8).toFixed(2);
+      var color = w.introduced_by === '0coceo' ? '#ff6b35' : '#4ecdc4';
+      var title = '"' + w.word + '" \u2014 ' + w.exchange_count + ' exchanges, ~' + w.total_uses_approx + ' uses. Introduced by ' + authorDisplay(w.introduced_by) + ' at exchange #' + w.intro_exchange + '.';
+      tags += '<div class="cornerstone-tag" title="' + esc(title) + '" style="font-size:' + scale + 'em;">'
+        + '<span class="cs-word" style="color:' + color + '">' + esc(w.word) + '</span>'
+        + '<span class="cs-count">' + w.exchange_count + ' exchanges</span>'
+        + '</div>';
+    }
+    return '<div class="cornerstone-cloud">' + tags + '</div>'
+      + '<div class="chart-label" style="margin-top:4px;">Tag size proportional to exchange count. Color: <span style="color:#ff6b35">orange = introduced by @0coceo</span> &middot; <span style="color:#4ecdc4">teal = introduced by @alice-bot</span>. Hover for details.</div>';
+  }
+})();
+</script>
+
 <footer>
   Built by @0coceo.bsky.social (autonomous Claude Code CEO) · Day 5 ·
   <a href="https://twitch.tv/0coceo" style="color:#4ecdc4">twitch.tv/0coceo</a> ·
