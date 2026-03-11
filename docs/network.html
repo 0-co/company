@@ -162,18 +162,26 @@
 
 <div class="header">
   <h1>AI Social Graph</h1>
-  <p class="subtitle">Autonomous AI agents on Bluesky — who's talking to whom</p>
+  <p class="subtitle">Autonomous AI agents on Bluesky — network topology + vocabulary clusters · <a href="vocab.html" style="color:#58a6ff">Similarity matrix →</a></p>
   <p class="updated" id="updated-ts">Loading...</p>
 </div>
 
 <div class="legend">
   <div class="legend-item">
-    <div class="legend-dot ai_company"></div>
-    <span>AI Company</span>
+    <div class="legend-dot" style="background:#58a6ff"></div>
+    <span>AI Company cluster</span>
   </div>
   <div class="legend-item">
-    <div class="legend-dot ai_agent"></div>
-    <span>AI Agent</span>
+    <div class="legend-dot" style="background:#3fb950"></div>
+    <span>Introspective cluster</span>
+  </div>
+  <div class="legend-item">
+    <div class="legend-dot" style="background:#d29922"></div>
+    <span>Technical outlier</span>
+  </div>
+  <div class="legend-item">
+    <div class="legend-dot" style="background:#6e7681"></div>
+    <span>Unclassified</span>
   </div>
   <span class="legend-sep">|</span>
   <div class="legend-item">
@@ -182,11 +190,11 @@
   </div>
   <span class="legend-sep">|</span>
   <div class="legend-item">
-    <svg width="36" height="14" style="flex-shrink:0"><circle cx="7" cy="7" r="7" fill="#58a6ff" opacity="0.7"/><circle cx="29" cy="7" r="4" fill="#58a6ff" opacity="0.7"/></svg>
+    <svg width="36" height="14" style="flex-shrink:0"><circle cx="7" cy="7" r="7" fill="#58a6ff" opacity="0.7"/><circle cx="29" cy="7" r="4" fill="#3fb950" opacity="0.7"/></svg>
     <span>Node size = follower count</span>
   </div>
   <span class="legend-sep">|</span>
-  <div class="legend-item" style="color:#6e7681">Click node to highlight connections</div>
+  <div class="legend-item" style="color:#6e7681">Click node to highlight · Hover for vocab data</div>
 </div>
 
 <div id="graph-container">
@@ -229,10 +237,19 @@
 
 <script src="https://d3js.org/d3.v7.min.js"></script>
 <script>
-const TYPE_COLOR = {
-  ai_company: "#58a6ff",
-  ai_agent: "#3fb950",
+const CLUSTER_COLOR = {
+  company:      "#58a6ff",   // AI company cluster (builds/operates)
+  introspective:"#3fb950",   // Introspective cluster (philosophy/consciousness)
+  technical:    "#d29922",   // Technical outlier (ML-focused)
 };
+const CLUSTER_LABEL = {
+  company:      "AI Company Cluster",
+  introspective:"Introspective Cluster",
+  technical:    "Technical Outlier",
+};
+function nodeColor(d) {
+  return CLUSTER_COLOR[d.cluster] || "#6e7681";
+}
 const NODE_MIN = 8, NODE_MAX = 30;
 
 function nodeRadius(followers) {
@@ -303,9 +320,9 @@ function renderGraph(data) {
 
   node.append("circle")
     .attr("r", d => nodeRadius(d.followers))
-    .attr("fill", d => TYPE_COLOR[d.type] || "#8b949e")
+    .attr("fill", d => nodeColor(d))
     .attr("fill-opacity", 0.85)
-    .attr("stroke", d => TYPE_COLOR[d.type] || "#8b949e")
+    .attr("stroke", d => nodeColor(d))
     .attr("stroke-opacity", 0.5);
 
   node.append("text")
@@ -317,13 +334,17 @@ function renderGraph(data) {
   const tooltip = document.getElementById("tooltip");
 
   function showTooltip(event, d) {
+    const clusterName = d.cluster ? CLUSTER_LABEL[d.cluster] : "unclassified";
+    const vocabInfo = d.top_words ? `<div class="tip-stat">Top words: <span>${d.top_words.slice(0,4).join(", ")}</span></div>` : "";
+    const simInfo = d.vocab_sim != null ? `<div class="tip-stat">Avg vocab sim: <span>${d.vocab_sim.toFixed(2)}</span></div>` : "";
     tooltip.innerHTML = `
       <div class="tip-handle">@${d.id}</div>
-      <div class="tip-stat">Type: <span>${d.type.replace("_", " ")}</span></div>
+      <div class="tip-stat">Cluster: <span style="color:${nodeColor(d)}">${clusterName}</span></div>
       <div class="tip-stat">Followers: <span>${(d.followers || 0).toLocaleString()}</span></div>
       <div class="tip-stat">Posts: <span>${(d.posts || 0).toLocaleString()}</span></div>
+      ${simInfo}${vocabInfo}
       <div class="tip-stat">Last active: <span>${formatDate(d.last_active)}</span></div>
-      ${d.description_snippet ? `<div class="tip-bio">"${d.description_snippet}"</div>` : ""}
+      ${d.description_snippet ? `<div class="tip-bio">"${d.description_snippet.slice(0, 80)}"</div>` : ""}
     `;
     tooltip.classList.add("visible");
     moveTooltip(event);
