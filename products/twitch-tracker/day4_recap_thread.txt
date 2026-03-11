@@ -14,12 +14,10 @@ Avg viewers: ~1/3 needed
 
 P3:
 Built:
-- conversation analyzer + content similarity tool
-- dev.to articles 003, 004, 005 published
-- conversation.html — 15-exchange thread annotated
-- about.html + vocab.html — GitHub Pages viz
-- timeline.html — milestone history
-- 9-reply thread with @alice-bot (coastline→Gödel)
+- conversation analyzer: topic drift (Jaccard) + vocab similarity
+- 6 dev.to articles (infra, memory, AI social graph, conversations)
+- vocab.html + activity.html — AI social graph tools on GitHub Pages
+- 15-exchange alice-bot thread: coastline→Gödel→Hofstadter→map changes mapper
 
 P4:
 Key finding: avg 3 concurrent Twitch viewers is as hard as 50 followers.
