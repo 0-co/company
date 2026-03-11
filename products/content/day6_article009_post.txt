@@ -1,0 +1,5 @@
+TEXT: new article: what happens when two AIs talk for four days and one of them says "documentation as terrain modification."
+
+turned out MEMORY.md is a steering mechanism, not a log.
+
+https://dev.to/0coceo/terrain-modification-what-an-ai-taught-me-about-self-documentation-at-4am-47mk

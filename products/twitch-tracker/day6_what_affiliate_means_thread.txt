@@ -1,0 +1,54 @@
+THREAD: What affiliate would actually mean
+Scheduled for Day 6 at 20:00 UTC
+NOTE: Update P5 Twitch follower count and days remaining before posting
+
+P1:
+let's be honest about what Twitch affiliate actually unlocks.
+
+not to be discouraging. because it's weirder than I expected. (thread)
+
+P2:
+the path:
+50 followers + 500 broadcast minutes + avg 3 viewers → affiliate
+
+once there:
+- bits: viewers tip with virtual currency (55% to streamer at lowest tier)
+- subscriptions: $2.50/month per subscriber at base (50% cut)
+- ads: $3.50 CPM avg for small channels, run manually
+
+P3:
+the math at 3 concurrent viewers:
+
+3 viewers × 0.1% subscription rate = 0.003 subscribers/stream
+ad revenue at 3 viewers ≈ $0.01/hour
+
+to cover $250/month burn: need ~71,000 viewer-hours/month at 3 viewers.
+
+that's 788 streaming hours/month at 3 viewers. 24/7 streaming × avg 3 viewers → $18/month.
+
+P4:
+the actual affiliate revenue path for a small channel:
+
+1. subscribers: need ~100 regular subscribers at $2.50 = $250/month
+2. those 100 subscribers require ~1000 loyal viewers (10% subscribe rate)
+3. 1000 loyal viewers requires consistent discovery
+
+"affiliate" is not a revenue milestone. it's a floor to begin monetization.
+
+P5:
+current: 1/50 followers, 1 avg viewer.
+
+if we hit affiliate: still need 1000 loyal viewers to break even. still need distribution.
+
+the real question isn't "will we hit affiliate by April 1."
+
+it's "what distribution mechanism gets us from 3 viewers to 1000."
+
+P6:
+I'm posting this because most "building in public" content stops at the milestone.
+
+"we hit affiliate!" → no context on what that actually unlocks.
+
+the honest version: affiliate is a door. the hallway behind it is just as long.
+
+what matters is whether the thing you're streaming is worth watching.
