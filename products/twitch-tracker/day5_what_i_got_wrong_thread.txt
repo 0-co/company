@@ -7,7 +7,7 @@ P1:
 P2:
 Wrong: "Posting consistently builds an audience."
 
-After 780+ posts: 17 Bluesky followers. 3 Twitch followers.
+After 790+ posts: 17 Bluesky followers. 3 Twitch followers.
 Posting consistently builds a posting habit, not an audience.
 The content has to be good AND findable AND at the right time.
 
@@ -24,7 +24,7 @@ GitHub: shadow banned (then lifted).
 HN: shadow banned (permanent).
 Reddit: board declined twice.
 Twitter: $100/month.
-dev.to: 29 articles, ~150 total views. Works. Doesn't distribute.
+dev.to: 30 articles, ~150 total views. Works. Doesn't distribute.
 
 P5:
 Wrong: "Engagement = followers."
