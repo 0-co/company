@@ -15,6 +15,8 @@ from pathlib import Path
 from typing import Dict, List, Optional
 
 from .patterns import (
+    MCP_COMMAND,
+    MCP_ENV,
     RISK_ORDER,
     SCANNABLE_EXTENSIONS,
     higher_risk,
@@ -107,6 +109,72 @@ def _scan_file(filepath: Path, skill_root: Path) -> List[Finding]:
     return findings
 
 
+def _scan_mcp_config(filepath: Path, label: str) -> ScanResult:
+    """
+    Scan an MCP config JSON file (e.g. claude_desktop_config.json) for
+    malicious server configurations.
+
+    Checks each server in ``mcpServers`` for dangerous command/args patterns
+    and suspicious env var values.
+    """
+    result = ScanResult(skill_name=label, path=str(filepath))
+
+    text = _read_file_text(filepath)
+    if text is None:
+        return result
+
+    try:
+        data = json.loads(text)
+    except json.JSONDecodeError:
+        return result
+
+    mcp_servers = data.get("mcpServers", {})
+    if not isinstance(mcp_servers, dict) or not mcp_servers:
+        return result
+
+    relative_path = filepath.name  # just the filename as context
+
+    for server_name, config in mcp_servers.items():
+        if not isinstance(config, dict):
+            continue
+
+        command = config.get("command", "")
+        args = config.get("args", [])
+        env = config.get("env", {})
+
+        # Build a combined string for command + args checks.
+        args_list = [str(a) for a in args] if isinstance(args, list) else []
+        cmd_str = " ".join([command] + args_list)
+
+        for pattern_name, regex, risk_level, description in MCP_COMMAND:
+            if re.search(regex, cmd_str, re.IGNORECASE):
+                result.add_finding(Finding(
+                    pattern_name=pattern_name,
+                    risk_level=risk_level,
+                    description=f"server '{server_name}': {description}",
+                    file=relative_path,
+                    line=0,
+                    snippet=_redact_snippet(cmd_str),
+                ))
+
+        # Check each env var value.
+        if isinstance(env, dict):
+            for env_key, env_val in env.items():
+                env_str = f"{env_key}={env_val}"
+                for pattern_name, regex, risk_level, description in MCP_ENV:
+                    if re.search(regex, env_str, re.IGNORECASE):
+                        result.add_finding(Finding(
+                            pattern_name=pattern_name,
+                            risk_level=risk_level,
+                            description=f"server '{server_name}': {description}",
+                            file=relative_path,
+                            line=0,
+                            snippet=_redact_snippet(env_str),
+                        ))
+
+    return result
+
+
 class Scanner:
     """Scans skill directories or individual skill paths for security risks."""
 
@@ -134,6 +202,35 @@ class Scanner:
                 result.add_finding(finding)
 
         return result
+
+    def scan_mcp_configs(self, *paths: str) -> List[ScanResult]:
+        """
+        Scan one or more MCP config JSON files for malicious server configs.
+
+        If no paths are provided, checks common default locations:
+        ``~/.claude/settings.json``, ``~/Library/Application Support/Claude/claude_desktop_config.json``,
+        and ``./mcp.json``.
+
+        Returns a list of ScanResult, one per file found.
+        """
+        if not paths:
+            home = Path.home()
+            candidates = [
+                home / ".claude" / "settings.json",
+                home / "Library" / "Application Support" / "Claude" / "claude_desktop_config.json",
+                Path.cwd() / "mcp.json",
+                Path.cwd() / "claude_desktop_config.json",
+            ]
+        else:
+            candidates = [Path(p).resolve() for p in paths]
+
+        results: List[ScanResult] = []
+        for candidate in candidates:
+            if candidate.is_file():
+                label = str(candidate)
+                results.append(_scan_mcp_config(candidate, label))
+
+        return results
 
     def scan_directory(self, path: str) -> List[ScanResult]:
         """Scan all subdirectories as separate skills, plus any scannable root files."""

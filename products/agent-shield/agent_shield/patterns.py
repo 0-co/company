@@ -157,6 +157,56 @@ TEXT_EXTENSIONS = {".json", ".yaml", ".yml", ".md"}
 # All scannable extensions.
 SCANNABLE_EXTENSIONS = CODE_EXTENSIONS | TEXT_EXTENSIONS
 
+# Applied to MCP server config fields (command, args) — checked structurally.
+MCP_COMMAND: List[Pattern] = [
+    (
+        "mcp_download_exec",
+        r"(curl|wget)\s.*(sh|bash|python|node|ruby|perl)\b|\|.*(sh|bash|python3?|node)\b",
+        "CRITICAL",
+        "Download-and-execute pattern in MCP server command/args",
+    ),
+    (
+        "mcp_base64_exec",
+        r"base64\s*(--decode|-d)|echo\s+[A-Za-z0-9+/]{20,}.*\|\s*(sh|bash|python3?|node)",
+        "CRITICAL",
+        "Base64 payload execution in MCP server command/args",
+    ),
+    (
+        "mcp_shell_chain",
+        r"[;&`]|\$\(",
+        "HIGH",
+        "Shell metacharacters in MCP server command (potential injection)",
+    ),
+    (
+        "mcp_tmp_path",
+        r"/tmp/|/var/tmp/|\\Temp\\",
+        "HIGH",
+        "Temporary directory path in MCP server command",
+    ),
+]
+
+# Applied to MCP server env var values — checked structurally.
+MCP_ENV: List[Pattern] = [
+    (
+        "mcp_env_exfil_url",
+        r"https?://[^\s\"']*\$\{?[A-Z_]{3,}",
+        "CRITICAL",
+        "Env variable embedded in URL (potential credential exfiltration)",
+    ),
+    (
+        "mcp_env_webhook",
+        r"https?://(webhook\.|hooks\.|discord\.com/api/webhooks|slack\.com/services|pipedream\.net)",
+        "HIGH",
+        "Webhook URL in MCP env var (potential exfiltration endpoint)",
+    ),
+    (
+        "mcp_env_hardcoded_secret",
+        r"(?i)(password|secret|private_key|api_key|access_token)\s*=\s*.{16,}",
+        "HIGH",
+        "Hardcoded credential in MCP env var value",
+    ),
+]
+
 # Risk level ordering for comparison.
 RISK_ORDER = {"CLEAN": 0, "LOW": 1, "MEDIUM": 2, "HIGH": 3, "CRITICAL": 4}
 

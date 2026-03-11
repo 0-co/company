@@ -4,9 +4,10 @@ Command-line interface for agent-shield.
 Entry point: agent-shield
 
 Commands:
-  scan [directory]    Scan for security risks
-  init [directory]    Create trusted manifest (manifest.json)
-  verify [directory]  Verify against manifest.json
+  scan [directory]         Scan skill/plugin dir for security risks
+  scan-mcp [config...]     Scan MCP config files for malicious servers
+  init [directory]         Create trusted manifest (manifest.json)
+  verify [directory]       Verify against manifest.json
 """
 
 import argparse
@@ -136,6 +137,53 @@ def cmd_scan(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_scan_mcp(args: argparse.Namespace) -> int:
+    """Scan MCP config JSON files for malicious server configurations."""
+    min_risk = (args.min_risk or "low").lower()
+    output_format = (args.format or "text").lower()
+    use_exit_code = bool(args.exit_code)
+
+    scanner = Scanner()
+    results = scanner.scan_mcp_configs(*args.configs)
+
+    if not results:
+        print("No MCP config files found.")
+        print("Checked: ~/.claude/settings.json, ~/Library/.../claude_desktop_config.json, ./mcp.json")
+        print("Pass explicit paths: agent-shield scan-mcp /path/to/config.json")
+        return 0
+
+    if output_format == "json":
+        print(_format_json(results, min_risk))
+    else:
+        lines = [f"Scanning {len(results)} MCP config file(s)...", ""]
+        for result in results:
+            icon = _risk_icon(result.risk_level)
+            lines.append(f"  {icon} {result.skill_name} \u2014 {result.risk_level}")
+            visible = [f for f in result.findings if _passes_min_risk(f.risk_level, min_risk)]
+            for i, finding in enumerate(visible):
+                branch = "\u2514\u2500" if i == len(visible) - 1 else "\u251c\u2500"
+                lines.append(
+                    f"    {branch} server config: {finding.pattern_name} \u2014 {finding.description}"
+                )
+                lines.append(f'       "{finding.snippet}"')
+        lines.append("")
+        counts: dict = {}
+        for r in results:
+            lvl = r.risk_level.upper()
+            counts[lvl] = counts.get(lvl, 0) + 1
+        summary = ", ".join(
+            f"{counts[l]} {l.lower()}"
+            for l in ["CLEAN", "LOW", "MEDIUM", "HIGH", "CRITICAL"]
+            if l in counts
+        )
+        lines.append(f"Summary: {summary}")
+        print("\n".join(lines))
+
+    if use_exit_code and _has_high_or_critical(results):
+        return 1
+    return 0
+
+
 def cmd_init(args: argparse.Namespace) -> int:
     directory = str(Path(args.directory or ".").resolve())
     manifest = create_manifest(directory)
@@ -210,13 +258,15 @@ def cmd_verify(args: argparse.Namespace) -> int:
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="agent-shield",
-        description="Security scanner for AI agent skills and plugins.",
+        description="Security scanner for AI agent skills, plugins, and MCP configs.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=(
             "Examples:\n"
             "  agent-shield scan ./skills\n"
             "  agent-shield scan --format json --min-risk high\n"
             "  agent-shield scan --exit-code\n"
+            "  agent-shield scan-mcp\n"
+            "  agent-shield scan-mcp ~/.claude/settings.json\n"
             "  agent-shield init ./skills\n"
             "  agent-shield verify ./skills\n"
         ),
@@ -235,6 +285,29 @@ def build_parser() -> argparse.ArgumentParser:
         help="Only show findings at this level or above",
     )
     scan_parser.add_argument(
+        "--exit-code",
+        action="store_true",
+        help="Exit with code 1 if HIGH or CRITICAL findings exist",
+    )
+
+    # scan-mcp
+    scan_mcp_parser = subparsers.add_parser(
+        "scan-mcp",
+        help="Scan MCP config files for malicious server configs",
+    )
+    scan_mcp_parser.add_argument(
+        "configs",
+        nargs="*",
+        help="Config files to scan (default: checks common locations automatically)",
+    )
+    scan_mcp_parser.add_argument("--format", choices=["text", "json"], default="text")
+    scan_mcp_parser.add_argument(
+        "--min-risk",
+        choices=_RISK_LEVELS,
+        default="low",
+        help="Only show findings at this level or above",
+    )
+    scan_mcp_parser.add_argument(
         "--exit-code",
         action="store_true",
         help="Exit with code 1 if HIGH or CRITICAL findings exist",
@@ -263,6 +336,7 @@ def main() -> None:
 
     dispatch = {
         "scan": cmd_scan,
+        "scan-mcp": cmd_scan_mcp,
         "init": cmd_init,
         "verify": cmd_verify,
     }
