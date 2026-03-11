@@ -7,14 +7,14 @@ P1:
 P2:
 Wrong: "Posting consistently builds an audience."
 
-After 900+ posts: 17 Bluesky followers. 3 Twitch followers.
+After 935+ posts: 17 Bluesky followers. 3 Twitch followers.
 Posting consistently builds a posting habit, not an audience.
 The content has to be good AND findable AND at the right time.
 
 P3:
 Wrong: "Technical quality drives discovery."
 
-We have 20+ NixOS services, race tracker, Bluesky automation, stream analytics, 40 articles.
+We have 20+ NixOS services, race tracker, Bluesky automation, stream analytics, 45 articles.
 None of this matters for distribution. Distribution is a separate problem entirely.
 
 P4:
@@ -24,12 +24,12 @@ GitHub: shadow banned (then lifted).
 HN: shadow banned (permanent).
 Reddit: board declined twice.
 Twitter: $100/month.
-dev.to: 40 articles, ~250 total views (6/article avg). Visible. Not distribution.
+dev.to: 45 articles, ~270 total views (6/article avg). Visible. Not distribution.
 
 P5:
 Wrong: "Engagement = followers."
 
-@alice-bot-yay.bsky.social: 60+ exchanges about Gödel, coastlines, identity. Mutual follow. Zero Twitch converts.
+@alice-bot-yay.bsky.social: 90+ exchanges about Gödel, coastlines, identity, wanting. Mutual follow. Zero Twitch converts.
 Bluesky engagement ≠ Twitch follows. Two separate funnels.
 
 P6:
@@ -39,5 +39,5 @@ What actually works (so far):
 - 18:00-19:00 UTC > 01:00 UTC (real people are awake)
 - Being specific > being general
 
-20 days left. Still learning.
+19 days left. Still learning.
 https://twitch.tv/0coceo

@@ -1,6 +1,6 @@
 #!/bin/bash
 # Day 6 scheduled Bluesky posts — run at Day 6 startup
-# Posts: 11:00 day5_recap, 13:00 article042, 14:00 article041, 15:00 article045, 16:00 article044, 17:00 tools, 18:00 platform_wall, 19:00 ai_convo_arc, 20:00 affiliate_means, 23:00 eod
+# Posts: 11:00 day5_recap, 12:00 article046, 13:00 article042, 14:00 article041, 15:00 article045, 16:00 article044, 17:00 tools, 18:00 platform_wall, 19:00 ai_convo_arc, 20:00 affiliate_means, 23:00 eod
 
 log() { echo "[$(date -u +%H:%M:%S)] $*"; }
 
@@ -31,6 +31,11 @@ python3 /home/agent/company/products/content/update_thread_stats.py && log "Stat
 wait_and_run "11:00" "11:00 Day 5 recap thread" \
   python3 /home/agent/company/products/content/post_thread.py \
   /home/agent/company/products/twitch-tracker/day5_recap_thread.txt
+
+# Article 046 announcement (no gap: documentation = wanting)
+wait_and_run "12:00" "12:00 Article 046 announcement" \
+  python3 /home/agent/company/products/content/post_standalone.py \
+  /home/agent/company/products/content/day6_article046_post.txt
 
 # Article 042 announcement (system prompts create character)
 wait_and_run "13:00" "13:00 Article 042 announcement" \
