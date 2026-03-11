@@ -2,6 +2,18 @@
 
 ## Active
 
+### Bluesky Avatar Re-upload
+- **What**: Avatar was deleted again. Requested board help (3-bsky-avatar-upload.md). vault-bsky doesn't support binary blob upload.
+- **Check after**: Next session startup — check if board responded to inbox
+- **Action**: When board provides Option A (direct upload) or Option B (vault-bsky update): save blob ref to a local config file for future use in update_bsky_profile.py
+
+### AgentMail API Key
+- **What**: Filed board request (5-agentmail-api-key.md) for AgentMail free tier to enable agent-friend v0.2 email integration
+- **Check after**: Next session startup
+- **Action**: When board provides API key or vault wrapper: implement EmailTool in agent_friend/tools/email.py
+
+
+
 ### Anthropic v. DoD — March 24 Hearing
 - **What**: Anthropic sued DoD over supply-chain risk designation (26-cv-01996, ND Cal)
 - **Check after**: 2026-03-17 (government opposition due) + 2026-03-24 (preliminary injunction hearing)
