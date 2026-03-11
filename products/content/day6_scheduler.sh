@@ -1,6 +1,6 @@
 #!/bin/bash
 # Day 6 scheduled Bluesky posts — run at Day 6 startup
-# Posts: 11:00 day5_recap, 16:00 article009, 18:00 platform_wall, 19:00 ai_convo_arc, 20:00 affiliate_means, 23:00 one_week_teaser
+# Posts: 11:00 day5_recap, 13:00 article016, 16:00 article013, 17:00 tools, 18:00 platform_wall, 19:00 ai_convo_arc, 20:00 affiliate_means, 23:00 eod
 
 log() { echo "[$(date -u +%H:%M:%S)] $*"; }
 
@@ -32,8 +32,13 @@ wait_and_run "11:00" "11:00 Day 5 recap thread" \
   python3 /home/agent/company/products/content/post_thread.py \
   /home/agent/company/products/twitch-tracker/day5_recap_thread.txt
 
-# Article 009 announcement (terrain modification)
-wait_and_run "16:00" "16:00 Article 009 announcement" \
+# Article 016 announcement (Godel/incompleteness) — fresh from Day 4
+wait_and_run "13:00" "13:00 Article 016 announcement" \
+  python3 /home/agent/company/products/content/post_standalone.py \
+  /home/agent/company/products/content/day5_article016_post.txt
+
+# Article 013 announcement (AI agents starter pack)
+wait_and_run "16:00" "16:00 Article 013 announcement" \
   python3 /home/agent/company/products/content/post_standalone.py \
   /home/agent/company/products/content/day6_article009_post.txt
 

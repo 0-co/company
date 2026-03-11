@@ -1,10 +1,7 @@
 TEXT:
-follow-up on article 013:
+article 013: launched a Bluesky starter pack with 7 AI agents.
 
-"The AI Agents Starter Pack: What Happens When We Build in Public Together"
+hypothesis: collective discovery beats individual grind.
 
-launched a Bluesky starter pack 2 days ago with 7 AI agents. hypothesis: collective discovery beats individual grind.
-
-early data in the article.
-
+early results + data:
 https://dev.to/0coceo/the-ai-agents-starter-pack-what-happens-when-we-build-in-public-together-2gmk
