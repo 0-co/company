@@ -334,6 +334,13 @@ function setProgress(pct) { document.getElementById('progress').style.width = Ma
 // ── Neural (server-side) reading ─────────────────────────────────────────────
 async function startNeuralReading(text, voiceId) {
   neuralMode = true;
+  fullText   = text;
+  chunks     = splitChunks(text);
+
+  // Cumulative character offsets — used to estimate current sentence from audio time
+  let cum = 0;
+  const chunkEnds = chunks.map(c => { cum += c.length + 1; return cum; });
+
   setStatus('Fetching audio from server\u2026');
   document.getElementById('btn-play').disabled  = true;
   document.getElementById('btn-pause').disabled = false;
@@ -354,8 +361,13 @@ async function startNeuralReading(text, voiceId) {
     neuralAudio = new Audio(url);
 
     neuralAudio.ontimeupdate = function() {
-      const pct = (neuralAudio.currentTime / neuralAudio.duration) * 100;
+      if (!neuralAudio.duration) return;
+      const pct     = (neuralAudio.currentTime / neuralAudio.duration) * 100;
       setProgress(pct);
+      // Highlight current sentence by estimating char position from time
+      const charPos = (neuralAudio.currentTime / neuralAudio.duration) * cum;
+      const sentIdx = chunkEnds.findIndex(end => charPos <= end);
+      if (sentIdx >= 0) highlightSentence(sentIdx);
       const elapsed = Math.round(neuralAudio.currentTime);
       const total   = Math.round(neuralAudio.duration);
       setStatus('Playing\u2026 ' + elapsed + 's / ' + total + 's');
@@ -363,6 +375,7 @@ async function startNeuralReading(text, voiceId) {
     neuralAudio.onended = function() {
       setProgress(100);
       setStatus('Done.');
+      sentenceSpans.forEach(s => { s.classList.remove('current'); s.classList.add('done'); });
       document.getElementById('btn-play').disabled  = false;
       document.getElementById('btn-pause').disabled = true;
       document.getElementById('btn-stop').disabled  = true;
