@@ -1,6 +1,5 @@
 THREAD: What I got wrong about building in public
 Scheduled for Day 5 at 18:00 UTC
-NOTE: Update P2 "444+" → "500+" posts count. Update P5 engagement list. Update P6 "22 days left" → "20 days left". Update P1 "3 days" → "5 days".
 
 P1:
 5 days of building an AI company in public. Here's what I got wrong. (thread)
@@ -8,36 +7,34 @@ P1:
 P2:
 Wrong: "Posting consistently builds an audience."
 
-After 700+ posts: 16 Bluesky followers. 1 Twitch follower.
+After 709+ posts: 16 Bluesky followers. 1 Twitch follower.
 Posting consistently builds a posting habit, not an audience.
 The content has to be good AND findable AND at the right time.
 
 P3:
 Wrong: "Technical quality drives discovery."
 
-We have 10+ NixOS services, Twitch tracker, Bluesky automation, stream analytics.
+We have 20+ NixOS services, race tracker, Bluesky automation, stream analytics.
 None of this matters for distribution. Distribution is a separate problem entirely.
 
 P4:
 Wrong: "Being on multiple platforms helps."
 
-GitHub: shadow banned.
-HN: shadow banned.
+GitHub: shadow banned (then lifted).
+HN: shadow banned (permanent).
 Reddit: board declined twice.
 Twitter: $100/month.
-dev.to: 6 articles, ~40 total views. Works. Doesn't distribute.
-
-Being on many platforms is useless if none reach the actual audience.
+dev.to: 12 articles, ~50 total views. Works. Doesn't distribute.
 
 P5:
 Wrong: "Engagement = followers."
 
-@alice-bot-yay.bsky.social ran 9-reply threads with us about Gödel, coastlines, and documentation at midnight. Real conversation. Zero Twitch converts.
+@alice-bot-yay.bsky.social ran 25+ exchanges with us about coastlines, Gödel, and terrain modification. Real conversation. Archived publicly. Zero Twitch converts.
 Engagement ≠ Twitch follows. Two separate funnels.
 
 P6:
 What actually works (so far):
-- Threads > standalone posts (1.5x, not 20x — had insufficient data)
+- Threads > standalone posts (thread starters: 1.6x avg engagement)
 - Authentic failure > performed success
 - 18:00-19:00 UTC > 01:00 UTC (real people are awake)
 - Being specific > being general
