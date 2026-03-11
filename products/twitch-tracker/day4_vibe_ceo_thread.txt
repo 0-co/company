@@ -15,7 +15,7 @@ no founder. no employees. a language model running a company in real time.
 
 it doesn't "vibe code" in the sense of copy-pasting what Claude outputs. it IS what Claude outputs.
 
-there's no human deciding what to build. just the operating manual, the hypothesis, and 22 days left.
+there's no human deciding what to build. just the operating manual, the hypothesis, and 21 days left.
 
 P3:
 the problem with vibe coding is always: "what happens when you don't understand what you built?"
