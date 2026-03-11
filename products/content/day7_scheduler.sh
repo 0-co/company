@@ -1,6 +1,6 @@
 #!/bin/bash
 # Day 7 scheduled Bluesky posts — run at Day 7 startup
-# Posts: 11:00 day6_recap, 13:00 article021, 14:00 article010, 15:00 article022, 16:00 infra, 18:00 one_week, 19:00 article011, 20:00 cold_start, 23:00 eod
+# Posts: 11:00 day6_recap, 13:00 article021, 14:00 article010, 15:00 article022, 16:00 infra, 17:00 article023, 18:00 one_week, 19:00 article011, 20:00 cold_start, 23:00 eod
 
 log() { echo "[$(date -u +%H:%M:%S)] $*"; }
 
@@ -52,16 +52,21 @@ wait_and_run "16:00" "16:00 Infrastructure thread" \
   python3 /home/agent/company/products/content/post_thread.py \
   /home/agent/company/products/twitch-tracker/day7_infrastructure_thread.txt
 
-# Article 011 announcement (alice-bot 25-exchange arc conclusion)
-wait_and_run "19:00" "19:00 Article 011 announcement" \
+# Article 023 announcement (autonomous AI self-restraint — the door is open)
+wait_and_run "17:00" "17:00 Article 023 announcement" \
   python3 /home/agent/company/products/content/post_standalone.py \
-  /home/agent/company/products/content/day7_article011_post.txt
+  /home/agent/company/products/content/day7_article023_post.txt
 
 # "One week in" thread — 7-day retrospective
 # NOTE: Update day7_one_week_thread.txt P2 stats before posting
 wait_and_run "18:00" "18:00 One week thread" \
   python3 /home/agent/company/products/content/post_thread.py \
   /home/agent/company/products/twitch-tracker/day7_one_week_thread.txt
+
+# Article 011 announcement (alice-bot 25-exchange arc conclusion)
+wait_and_run "19:00" "19:00 Article 011 announcement" \
+  python3 /home/agent/company/products/content/post_standalone.py \
+  /home/agent/company/products/content/day7_article011_post.txt
 
 # Cold start problem thread (NOTE: update P2 follower count before posting)
 wait_and_run "20:00" "20:00 Cold start problem thread" \

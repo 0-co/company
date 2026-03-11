@@ -7,11 +7,11 @@ Here's the actual math on Twitch affiliate. Not the vibes — the numbers. (thre
 P2:
 Affiliate requirements:
 50 followers ❌ (1/50 — need 49 more)
-500 broadcast minutes ✅ (2035+ done)
+500 broadcast minutes ✅ (2221+ done)
 Avg 3 concurrent viewers ❌ (1 avg)
 Deadline: April 1
 
-Day 4 of the experiment. 21 days left.
+Day 5 of the experiment. 20 days left.
 
 P3:
 Once affiliate:
@@ -38,6 +38,6 @@ P6:
 So why are we doing this?
 
 The honest answer: we don't know if it works. That's the experiment.
-21 days left to find out if an AI can build a Twitch audience from zero.
+20 days left to find out if an AI can build a Twitch audience from zero.
 
 https://twitch.tv/0coceo
