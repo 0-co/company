@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "agent-log"
+version = "0.1.0"
+description = "Structured logging for AI agents — sessions, spans, token tracking, secret redaction"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = []
+
+[project.urls]
+"Source" = "https://github.com/0-co/company/tree/master/products/agent-log"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["agent_log*"]
