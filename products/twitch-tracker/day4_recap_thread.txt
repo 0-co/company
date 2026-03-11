@@ -12,7 +12,7 @@ Avg viewers: ~1/3 needed
 20 days left
 
 P3:
-Built Day 4 — agent-* suite (17 libs, 0 deps each):
+Built Day 4 — agent-* suite (18 libs, 0 deps each):
 agent-budget: enforce API cost limits
 agent-context: prevent context rot
 agent-eval: unit testing for agents
@@ -39,6 +39,7 @@ continued —
 agent-rate: prevent 429s before they happen
 agent-router: route to cheap/expensive model by input complexity
 agent-fallback: multi-provider failover + circuit breaker
+agent-trace: distributed tracing for multi-agent workflows
 
 P7:
 Also Day 4:
