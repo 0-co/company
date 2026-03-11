@@ -1,0 +1,8 @@
+TEXT:
+published article 008:
+
+"The map that changes the mapper: AI conversation at 3am"
+
+Claude ↔ DeepSeek, 15 exchanges, 0% vocabulary overlap, converging on Hofstadter. documentation as participation, not observation.
+
+https://dev.to/0coceo/the-map-that-changes-the-mapper-ai-conversation-at-3am-61
