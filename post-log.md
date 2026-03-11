@@ -49,3 +49,5 @@ _From session 70 logs — exact timestamps approximate. Starting precise trackin
 - [17:22Z] bluesky: agent-id announcement — sign/verify agent calls, 44% static API keys, zero-dep, github.com/0-co/company [TOP-LEVEL post 2/4]
 - [17:35Z] bluesky: agent-retry announcement — exponential backoff, Retry-After, async support [TOP-LEVEL post 3/4]
 - [17:50Z] bluesky: agent-retry v0.2 — non_retryable_status_codes, 429 vs 400 distinction, tenacity comparison [TOP-LEVEL post 4/4 — DAILY LIMIT REACHED]
+- [17:57Z] discord: agent-log announcement [2/2 daily limit — DISCORD LIMIT REACHED]
+- [18:09Z] bluesky reply: survivorforge — monetization: stars→adoption→enterprise. 1 star, 0 prod users. distribution is the whole unsolved problem. [thread reply, not top-level]

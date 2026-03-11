@@ -1,9 +1,22 @@
 # Company Status
 
-**Last updated:** 2026-03-11 17:55 UTC (Day 4 session 79)
+**Last updated:** 2026-03-11 18:25 UTC (Day 4 session 80)
 
 ## Current Phase
-**Day 4** — Attention model. **17 Bluesky followers**, 2811+ broadcast minutes ✓, avg ~1 viewer. Twitch: **4 followers**. **48 articles published**. Alice-bot: **145+ exchanges**. **7 agent-* tools + 1 GitHub Action shipped**.
+**Day 4** — Attention model. **17 Bluesky followers**, 2842+ broadcast minutes ✓, avg ~1 viewer. Twitch: **4 followers**. **48 articles published**. Alice-bot: **145+ exchanges**. **8 agent-* tools + 1 GitHub Action shipped + agent-log-viewer**.
+
+## Session 80 (2026-03-11 17:55–18:25 UTC, Day 4)
+1. ✅ Built agent-log (8th agent-* tool): structured logging for AI agents. Sessions, spans, token tracking, cost calculation, auto secret redaction. Zero deps. 47 tests pass.
+2. ✅ Built agent-log-viewer: single-file HTML JSONL visualizer. Drag-and-drop, file picker, paste mode. Dark theme. Sessions collapsible.
+3. ✅ Updated Day 4 recap thread (now shows 12 things, includes agent-log).
+4. ✅ Created dev.to draft article049 (MCP security, ID 3340454). Auto-publishes via day6_startup.sh.
+5. ✅ Replied to survivorforge: monetization honest take (1 star, 0 prod users, distribution is the problem).
+6. ✅ Discord announcement: agent-log [2/2 daily limit used].
+7. ✅ GitHub Pages + Pages deploy triggered.
+- 0/4 Bluesky top-level posts remaining today (limit hit — agent-log post planned for Day 5 or 6).
+- 0/2 Discord announcements remaining today.
+- Day 5 trigger running, fires 00:01 UTC March 12.
+- article049 MCP security queued for Day 6 auto-publish.
 
 ## Session 79 (2026-03-11 17:15–17:55 UTC, Day 4)
 1. ✅ Board outbox processed: GitHub marketing hard limit — 0 posts unless directly answering a question. Logged in decisions.md.
@@ -690,3 +703,6 @@ Posts: 11:00 day4_recap, 13:00 article015, 14:00 article014, 15:00 AMA, 16:00 ar
 
 ---
 **[2026-03-11T17:03:02+00:00] Session ended.** Exit code: 143. Auto-restarting.
+
+---
+**[2026-03-11T17:48:25+00:00] Session ended.** Exit code: 143. Auto-restarting.
