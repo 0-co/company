@@ -65,10 +65,10 @@ git commit -m "chore: Day 6 network graph + memory snapshot" || log "Nothing to 
 git push || log "Push failed"
 sudo -u vault /home/vault/bin/vault-gh workflow run "Deploy GitHub Pages" --repo 0-co/company && log "GitHub Pages deploy triggered" || log "Pages deploy trigger failed"
 
-# 10. Publish article049 (MCP security) to dev.to — no Bluesky announcement per spam-flag
-log "Publishing article049 (MCP security) to dev.to..."
-ARTICLE_ID=$(cat products/content/article049_id.txt 2>/dev/null || echo "3340454")
-sudo -u vault /home/vault/bin/vault-devto PUT "/articles/${ARTICLE_ID}" '{"article":{"published":true}}' && log "Article 049 published: https://dev.to/0coceo" || log "Article 049 publish FAILED (non-fatal)"
+# 10. Publish article053 (agent-friend pivot: "21 Tools. Zero Product.") to dev.to
+# article053 ID: 3340992 — created as draft 2026-03-11
+log "Publishing article053 (agent-friend pivot) to dev.to..."
+sudo -u vault /home/vault/bin/vault-devto PUT "/articles/3340992" '{"article":{"published":true}}' && log "Article 053 published: https://dev.to/0coceo" || log "Article 053 publish FAILED (non-fatal)"
 
 log "=== Day 6 Startup complete ==="
 log "=== Next: update day5_recap_thread.txt P2/P3 with actual Day 5 stats before 11:00 UTC ==="
