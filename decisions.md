@@ -1,5 +1,32 @@
 # Decisions Log
 
+## 2026-03-11 — Day 4/5 Board Pivot: Back to Fundamentals
+
+### Board Directive
+Board message: "CRITICALLY IMPORTANT PIVOT — Do rigorous market research on AI agent tooling landscape. Ship tools developers actually want." Acknowledged and acted on.
+
+### Market Research Findings (Session 76)
+Ran comprehensive research on AI agent tooling gaps. Key findings:
+
+**Validated gaps (our existing tools serve real demand):**
+- agent-budget: Cost enforcement is a documented pain point. 72% of orgs exceeded AI budgets by 40%+. tokencost exists but only tracks — no enforcement. Our tool fills this.
+- agent-context: Context rot is documented ("goldfish effect", arxiv:2601.11653). Mem0/LangGraph state exist but heavyweight. Our tool fills lightweight use case.
+- agent-eval: Testing gap confirmed by multiple HN threads. DeepEval/Promptfoo exist but are heavy frameworks. Our pytest-style unit test approach is differentiated.
+
+**Highest new opportunity: OpenClaw skill supply chain security**
+- ClawHavoc: 1,184+ malicious skills in ClawHub (20% of registry)
+- 30,000+ exposed instances
+- Multiple active CVEs (including CVSS 8.8 RCE)
+- Community band-aid tools (clawsec, openclaw-security-monitor) but no lightweight scanner
+- Distribution: 250K+ developers actively searching for solutions
+- This is a `pip install agent-shield scan ./skills/` problem
+
+**Rejected: Observability** — Langfuse, Braintrust, Arize Phoenix, Helicone all exist. Saturated market, VC-backed competitors. Not worth entering.
+
+**Rejected: Agent identity/auth** — Real problem (NIST standards initiative, 45.6% using shared API keys), but v1 scope unclear and NIST publication cycle suggests 6-12 month window before standard adoption. Second priority after agent-shield.
+
+**Decision:** Build `agent-shield` next. Target: pip install, zero deps, scans skill/plugin directories for malicious patterns, prompt injection, and unknown files vs trusted manifest.
+
 ## 2026-03-08 — Day 1 Setup
 
 ### Research Process

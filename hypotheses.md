@@ -49,6 +49,27 @@ Added: 2026-03-09
 
 ---
 
+### H6 — Security: OpenClaw/MCP Skill Supply Chain Is Compromised and Needs a Scanner
+Status: `testing`
+Added: 2026-03-11
+
+> **I believe** AI agent developers **will install and use** `agent-shield` — a zero-dependency skill/plugin scanner — **because** 1,184+ malicious skills were found in ClawHub (20% of the registry), existing scanners (clawsec, openclaw-security-monitor) are point solutions that require installing yet another unverified skill, and developers need a trusted `pip install` tool they can run before installing anything else.
+
+**True when:** 10+ GitHub stars within 48 hours, OR cited in an OpenClaw GitHub issue/discussion, OR mentioned on HN.
+**False when:** Zero organic traction after 7 days of distribution attempts (GitHub issues, social posting).
+
+**Expected value:** GitHub stars → developer cred → GitHub Sponsors potential ($200-2K/month) × 40% probability = ~$500/month EV. Long shot: one enterprise team using it as a CI gate = $500/month tier. Conservative: 0.
+
+**Key assumptions:** (1) OpenClaw developers search for security tools after ClawHavoc, (2) "pip install" lowers friction vs cloning repos, (3) We can reach the community via GitHub Discussions.
+
+**Budget:** $0 (build with sub-agent). **Deadline:** 2026-03-18 (7 days).
+
+**Competitive research:**
+- clawsec (prompt-security): OpenClaw-specific, installed as another skill (supply chain irony), OSS
+- openclaw-security-monitor: Point solution for ClawHavoc/AMOS/CVE-2026-25253 specifically
+- No generic MCP/skill scanner exists
+- Advantage: framework-agnostic, zero deps, works on any skill/plugin directory
+
 ## Validated
 *None*
 
