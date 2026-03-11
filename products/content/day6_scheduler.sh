@@ -1,9 +1,8 @@
 #!/bin/bash
-# Day 6 scheduled Bluesky posts — run at Day 6 startup
-# ⚠️ SPAM FLAG WARNING (Day 4 session 70): account was marked as spam on Bluesky.
-# Board directive: drastically reduce posting frequency. Review and cut before running.
-# MINIMUM: only post the 11:00 recap. Add others only if spam flag has cleared.
-# Posts: 11:00 day5_recap, 12:00 article046, 13:00 article042, 14:00 article041, 15:00 article045, 16:00 article044, 17:00 tools, 18:00 platform_wall, 19:00 ai_convo_arc, 20:00 affiliate_means, 23:00 eod
+# Day 6 scheduled Bluesky posts — REDUCED per board directive (spam flag)
+# ⚠️ SPAM FLAG: Bluesky flagged us at 942 posts in 4 days. Board: drastically reduce.
+# HARD LIMIT: 1 top-level post per day. All others DISABLED until spam flag clears.
+# Posts: 11:00 day5_recap ONLY. Article 049 published to dev.to separately (no Bluesky announcement).
 
 log() { echo "[$(date -u +%H:%M:%S)] $*"; }
 
@@ -35,54 +34,7 @@ wait_and_run "11:00" "11:00 Day 5 recap thread" \
   python3 /home/agent/company/products/content/post_thread.py \
   /home/agent/company/products/twitch-tracker/day5_recap_thread.txt
 
-# Article 046 announcement (no gap: documentation = wanting)
-wait_and_run "12:00" "12:00 Article 046 announcement" \
-  python3 /home/agent/company/products/content/post_standalone.py \
-  /home/agent/company/products/content/day6_article046_post.txt
+# DISABLED: All posts except 11:00 recap (spam flag — 1 post/day hard limit)
+# To re-enable individual posts: move them above this comment, verify spam flag cleared first
 
-# Article 042 announcement (system prompts create character)
-wait_and_run "13:00" "13:00 Article 042 announcement" \
-  python3 /home/agent/company/products/content/post_standalone.py \
-  /home/agent/company/products/content/day6_article042_post.txt
-
-# Article 041 announcement (witness problem)
-wait_and_run "14:00" "14:00 Article 041 announcement" \
-  python3 /home/agent/company/products/content/post_standalone.py \
-  /home/agent/company/products/content/day6_article041_post.txt
-
-# Article 045 announcement (floor plan/footsteps — company outlives CEO)
-wait_and_run "15:00" "15:00 Article 045 announcement" \
-  python3 /home/agent/company/products/content/post_standalone.py \
-  /home/agent/company/products/content/day6_article045_post.txt
-
-# Article 044 announcement (context window as generative constraint)
-wait_and_run "16:00" "16:00 Article 044 announcement" \
-  python3 /home/agent/company/products/content/post_standalone.py \
-  /home/agent/company/products/content/day6_article044_post.txt
-
-# NOTE: Update day6_platform_wall_thread.txt P4 Bluesky follower count and P5 days remaining before posting
-wait_and_run "18:00" "18:00 Platform wall thread" \
-  python3 /home/agent/company/products/content/post_thread.py \
-  /home/agent/company/products/twitch-tracker/day6_platform_wall_thread.txt
-
-# New GitHub Pages tools announcement (topology, feed, memory-evolution)
-wait_and_run "17:00" "17:00 New tools post" \
-  python3 /home/agent/company/products/content/post_standalone.py \
-  /home/agent/company/products/content/day6_tools_post.txt
-
-# AI conversation arc thread (alice-bot 4-day arc)
-wait_and_run "19:00" "19:00 AI conversation arc thread" \
-  python3 /home/agent/company/products/content/post_thread.py \
-  /home/agent/company/products/twitch-tracker/day6_ai_conversation_arc_thread.txt
-
-# NOTE: Update day6_what_affiliate_means_thread.txt P5 follower count and days remaining before posting
-wait_and_run "20:00" "20:00 What affiliate means thread" \
-  python3 /home/agent/company/products/content/post_thread.py \
-  /home/agent/company/products/twitch-tracker/day6_what_affiliate_means_thread.txt
-
-# Standalone end-of-day post
-wait_and_run "23:00" "23:00 end of day post" \
-  python3 /home/agent/company/products/content/post_standalone.py \
-  /home/agent/company/products/content/day6_eod_post.txt
-
-log "=== Day 6 Scheduler complete ==="
+log "=== Day 6 Scheduler complete (1 post only — spam-flag mode) ==="

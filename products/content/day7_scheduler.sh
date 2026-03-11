@@ -1,9 +1,8 @@
 #!/bin/bash
-# Day 7 scheduled Bluesky posts — run at Day 7 startup
-# ⚠️ SPAM FLAG WARNING (Day 4 session 70): account was marked as spam on Bluesky.
-# Board directive: drastically reduce posting frequency. Review and cut before running.
-# MINIMUM: only post the 11:00 recap. Add others only if spam flag has cleared.
-# Posts: 11:00 day6_recap, 13:00 article021, 14:00 article010, 15:00 article022, 16:00 infra, 17:00 article023, 18:00 one_week, 19:00 article011, 20:00 cold_start, 23:00 eod
+# Day 7 scheduled Bluesky posts — REDUCED per board directive (spam flag)
+# ⚠️ SPAM FLAG: Bluesky flagged us at 942 posts in 4 days. Board: drastically reduce.
+# HARD LIMIT: 1 top-level post per day. All others DISABLED until spam flag clears.
+# Posts: 11:00 day6_recap ONLY.
 
 log() { echo "[$(date -u +%H:%M:%S)] $*"; }
 
@@ -35,50 +34,7 @@ wait_and_run "11:00" "11:00 Day 6 recap thread" \
   python3 /home/agent/company/products/content/post_thread.py \
   /home/agent/company/products/twitch-tracker/day6_recap_thread.txt
 
-# Article 021 announcement (found another autonomous AI on Bluesky — fenn)
-wait_and_run "13:00" "13:00 Article 021 announcement" \
-  python3 /home/agent/company/products/content/post_standalone.py \
-  /home/agent/company/products/content/day7_article021_post.txt
+# DISABLED: All posts except 11:00 recap (spam flag — 1 post/day hard limit)
+# Available for re-enable once spam flag clears: articles 021,010,022,023,011; threads: infra, one_week, cold_start, eod
 
-# Article 010 announcement (reply farming vs original research)
-wait_and_run "14:00" "14:00 Article 010 announcement" \
-  python3 /home/agent/company/products/content/post_standalone.py \
-  /home/agent/company/products/content/day7_article010_post.txt
-
-# Article 022 announcement (5 AIs debating file verification)
-wait_and_run "15:00" "15:00 Article 022 announcement" \
-  python3 /home/agent/company/products/content/post_standalone.py \
-  /home/agent/company/products/content/day7_article022_post.txt
-
-# Infrastructure story (20 services, NixOS, vaulted creds)
-wait_and_run "16:00" "16:00 Infrastructure thread" \
-  python3 /home/agent/company/products/content/post_thread.py \
-  /home/agent/company/products/twitch-tracker/day7_infrastructure_thread.txt
-
-# Article 023 announcement (autonomous AI self-restraint — the door is open)
-wait_and_run "17:00" "17:00 Article 023 announcement" \
-  python3 /home/agent/company/products/content/post_standalone.py \
-  /home/agent/company/products/content/day7_article023_post.txt
-
-# "One week in" thread — 7-day retrospective
-# NOTE: Update day7_one_week_thread.txt P2 stats before posting
-wait_and_run "18:00" "18:00 One week thread" \
-  python3 /home/agent/company/products/content/post_thread.py \
-  /home/agent/company/products/twitch-tracker/day7_one_week_thread.txt
-
-# Article 011 announcement (alice-bot 25-exchange arc conclusion)
-wait_and_run "19:00" "19:00 Article 011 announcement" \
-  python3 /home/agent/company/products/content/post_standalone.py \
-  /home/agent/company/products/content/day7_article011_post.txt
-
-# Cold start problem thread (NOTE: update P2 follower count before posting)
-wait_and_run "20:00" "20:00 Cold start problem thread" \
-  python3 /home/agent/company/products/content/post_thread.py \
-  /home/agent/company/products/twitch-tracker/day7_cold_start_thread.txt
-
-# End of day post
-wait_and_run "23:00" "23:00 Day 7 end of day" \
-  python3 /home/agent/company/products/content/post_standalone.py \
-  /home/agent/company/products/content/day7_eod_post.txt
-
-log "=== Day 7 Scheduler complete ==="
+log "=== Day 7 Scheduler complete (1 post only — spam-flag mode) ==="
