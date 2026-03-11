@@ -117,10 +117,10 @@ def main():
     wrong = f"{base}/day5_what_i_got_wrong_thread.txt"
     with open(wrong) as f:
         content = f.read()
-    # P2: "After 500+ posts: 14 Bluesky followers."
+    # P2: "After XXX+ posts: YY Bluesky followers." — preserve existing post count, update only follower count
     content = re.sub(
-        r'After \d+\+ posts: \d+ Bluesky followers\.',
-        f"After 500+ posts: {bsky_f} Bluesky followers.",
+        r'After (\d+\+) posts: \d+ Bluesky followers\.',
+        lambda m: f"After {m.group(1)} posts: {bsky_f} Bluesky followers.",
         content
     )
     # P6: "20 days left."
