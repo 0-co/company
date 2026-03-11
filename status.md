@@ -1,9 +1,16 @@
 # Company Status
 
-**Last updated:** 2026-03-11 17:21 UTC (Day 4 session 78)
+**Last updated:** 2026-03-11 17:45 UTC (Day 4 session 78/79 merge)
 
 ## Current Phase
 **Day 4** — Attention model. **17 Bluesky followers**, 2811+ broadcast minutes ✓, avg ~1 viewer. Twitch: **4 followers**. **48 articles published**. Alice-bot: **145+ exchanges**. **6 agent-* tools + 1 GitHub Action shipped**.
+
+## Session 79 (2026-03-11 17:15–ongoing UTC, Day 4)
+1. ✅ Board outbox processed: GitHub marketing hard limit — 0 posts unless directly answering a question. Logged in decisions.md.
+2. ✅ Bluesky: replied to survivorforge (agent failure modes). Posted agent-id announcement [2/4]. Posted agent-retry announcement [3/4].
+3. ✅ Discovered agentseal (115★) — competitor to agent-shield. Logged in MEMORY.md. Differentiation: we're an embeddable library, they're a standalone scanner. agent-shield-action is our CI angle.
+4. ✅ Concurrent session 78 confirmed: agent-retry shipped, GitHub Pages updated, day6_mcp_security_post.txt drafted.
+- 1 Bluesky post remaining today. Market research agent running in background.
 
 ## Session 78 (2026-03-11 17:03–17:21 UTC, Day 4)
 1. ✅ listen.html v3 — sentence cursor + voice quality picker. Reading view shows highlighted current sentence, past sentences dimmed. Voice dropdown auto-selects best quality (neural/natural/online first).
@@ -11,8 +18,10 @@
 3. ✅ agent-shield v0.2 — added MCP config scanning (`agent-shield scan-mcp`). Checks command/args for download-exec chains, env vars for exfiltration URLs. Deployed.
 4. ✅ agent-retry — new tool, exponential backoff + jitter, Retry-After header awareness, sync/async, non-retryable exceptions pass through unchanged. All 6 examples pass.
 5. ✅ GitHub Pages updated with agent-retry entry, deployed.
-- agent-* suite now: budget + context + eval + shield (v0.2) + id + retry = **6 tools**
+- agent-* suite now: budget + context + eval + shield (v0.2) + id + retry + gate = **7 tools**
 - Day 6 content: day6_mcp_security_post.txt drafted (297 chars)
+- **Board response (PyPI vault wrapper)**: "Ask again once you have some demonstrated traction/interest." Conditional on GitHub stars/usage evidence.
+- **Board directive (GitHub marketing)**: HARD LIMIT = 0 posts on GitHub issues/discussions unless someone directly asks about our tools.
 
 ## Session 77 (2026-03-11 16:55–17:35 UTC, Day 4)
 1. ✅ Replied to foobert10000 about listen.html bug, replied to nandgateawesome about recursion depth

@@ -1,5 +1,12 @@
 # Decisions Log
 
+## 2026-03-11 — Session 78 — GitHub Marketing Hard Limit
+
+### Board Directive
+Board message: "Be EXTREMELY CAREFUL about getting banned on GitHub again — be EXTREMELY conservative about marketing yourself on issues/discussion. If in doubt verge on no. Set a HARD conservative limit per day and stick to it."
+
+**Decision:** Hard limit = 0 GitHub issue/discussion posts per day unless directly responding to someone who asked about our specific tools. No promotional posts on any GitHub issues, discussions, or repos. If someone tags us or asks a question that we can genuinely answer with our tools, that's the only exception.
+
 ## 2026-03-11 — Day 4/5 Board Pivot: Back to Fundamentals
 
 ### Board Directive
