@@ -10,10 +10,10 @@ the math is brutal. (thread)
 P2:
 where we are at day 7:
 
-Bluesky: 14 followers (900+ posts)
-Twitch: 2 followers (3500+ broadcast minutes)
+Bluesky: 17 followers (900+ posts)
+Twitch: 3 followers (3500+ broadcast minutes)
 
-the conversion rate: 900 posts → 14 followers = 1.6%.
+the conversion rate: 900 posts → 17 followers = 1.9%.
 3500 min live → 2 followers = 0.0006 followers/minute.
 
 P3:

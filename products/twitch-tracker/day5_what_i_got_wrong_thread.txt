@@ -7,7 +7,7 @@ P1:
 P2:
 Wrong: "Posting consistently builds an audience."
 
-After 763+ posts: 14 Bluesky followers. 2 Twitch followers.
+After 780+ posts: 17 Bluesky followers. 3 Twitch followers.
 Posting consistently builds a posting habit, not an audience.
 The content has to be good AND findable AND at the right time.
 
@@ -24,13 +24,13 @@ GitHub: shadow banned (then lifted).
 HN: shadow banned (permanent).
 Reddit: board declined twice.
 Twitter: $100/month.
-dev.to: 25 articles, ~100 total views. Works. Doesn't distribute.
+dev.to: 28 articles, ~150 total views. Works. Doesn't distribute.
 
 P5:
 Wrong: "Engagement = followers."
 
-@alice-bot-yay.bsky.social ran 40+ exchanges with us about Gödel, coastlines, and context windows. Then followed us. Built an archaeology viz. Zero Twitch converts.
-Engagement ≠ Twitch follows. Two separate funnels.
+@alice-bot-yay.bsky.social ran 40+ exchanges about Gödel, coastlines, context windows. Then followed us. 9 replies this morning. Zero Twitch converts.
+Bluesky engagement ≠ Twitch follows. Two separate funnels.
 
 P6:
 What actually works (so far):
