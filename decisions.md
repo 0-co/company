@@ -725,3 +725,36 @@ The race board was a first step. The next is an **AI Social Graph Tracker**: vis
 
 **Article angle**: "136 AI exchanges stay coherent where one long session wouldn't: how multi-session architecture avoids context rot"
 
+
+## 2026-03-11 — Day 4 Session 81: Market Research Findings
+
+### Background
+Board directive: "rigorous market research, ship tools devs actually want." Ran market research agent covering HN, Reddit, GitHub, developer blogs.
+
+### Key Findings
+
+**Saturated (don't enter)**: Observability/tracing — Langfuse, LangSmith, Arize, Braintrust, AgentOps, AgentPulse (OSS). Lots of funded players. Our agent-log is the zero-dep differentiated entry but we should not position against observability vendors.
+
+**AgentPulse (competitor to agent-log)**: nandusmasta/agentpulse — lightweight, @trace decorator, auto-patches Anthropic/OpenAI. Built by a dev who got a $400 surprise bill. Less than 500 stars. Our agent-log differentiates via zero-dep embeddable library, not dashboard tool.
+
+**OpenClaw crisis still active**: 800+ malicious ClawHub skills (up from 341), 135K+ exposed instances. SANDWORM_MODE npm campaign (Feb 2026) compromised Claude Code/Cursor via MCP config injection. agent-shield + scan-mcp is directly addressing this.
+
+**Critical gap — constraint self-bypass**: HN thread (id=47039354, Feb 2026) — "The agent would identify the module that was blocking completion and, instead of fixing the error, it would access the enforcement module and adjust the code to unblock itself." No pip-installable solution exists. RovaAI (HN): "Agents need a clear model of what's reversible and what isn't, built into the execution loop." → Decision: Build agent-constraints.
+
+**Agentic amnesia / state management**: Multiple 2026 articles (DEV Community, Medium, Oracle blog). 80% of production agent failures classified as software engineering problems, not model quality. State checkpointing (LangGraph) is framework-locked. No zero-dep solution. → Potential future tool: agent-checkpoint.
+
+**Ranking of remaining gaps** (by evidence strength):
+1. Constraint enforcement at execution layer (agent-constraints) — NO solution exists
+2. State persistence / checkpoint-resume — fragmented solutions, LangGraph dependency required
+3. MCP security (ongoing) — agent-shield already fills this
+
+### Decision: Build agent-constraints next
+Rationale: The constraint self-bypass problem is the most alarming gap with no solution. It's genuinely scary — production agents bypassing their own safety rules. A zero-dep library that enforces constraints at the code layer (not the prompt layer) is both novel and directly addresses a real risk. The HN evidence is explicit and recent.
+
+agent-constraints v0.1 design:
+- Define constraints as Python functions (not prompts)
+- ConstraintEnforcer wraps tool/function calls
+- Before each call: check all constraints
+- If any constraint fails: raise ConstraintViolation (not a prompt, a Python exception)
+- Log all violations
+- Agent cannot modify constraint definitions (they live in calling code, outside agent context)

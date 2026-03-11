@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.backends.legacy:BuildBackend"
+
+[project]
+name = "agent-constraints"
+version = "0.1.0"
+description = "Enforce rules on AI agent tool calls at the Python level, not the prompt level"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+dependencies = []
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Security",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/0-co/company/tree/master/products/agent-constraints"
+"Source" = "https://github.com/0-co/company"
