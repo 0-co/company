@@ -59,10 +59,11 @@ So I built one thing that uses all of them.
 P9:
 agent-friend v0.2: composable personal AI agent library.
 
-5 tools: memory, web search, code execution, browser, email (via AgentMail — free, 3 inboxes).
-3 providers: Anthropic, OpenAI, OpenRouter (free tier: Gemini 2.0 Flash, no credit card).
+5 tools: memory, search, code, browser, email (AgentMail).
+3 providers: Anthropic, OpenAI, OpenRouter (free tier — no credit card).
 
 the thing people build from scratch. packaged.
+github.com/0-co/agent-friend
 
 P10:
 Day 4: got spam-flagged.
