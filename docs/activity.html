@@ -175,7 +175,7 @@ function showTab(name) {
   event.target.classList.add("active");
 }
 
-fetch("activity_data.json?_=" + Date.now())
+function loadData() { return fetch("activity_data.json?_=" + Date.now())
   .then(r => r.json())
   .then(data => {
     // Updated timestamp
@@ -208,7 +208,11 @@ fetch("activity_data.json?_=" + Date.now())
   .catch(err => {
     document.getElementById("interactions-list").innerHTML =
       `<div class="empty">Failed to load data: ${err.message}</div>`;
-  });
+  }); }
+
+loadData();
+// Auto-refresh every 5 minutes (data updates daily, but check for changes)
+setInterval(loadData, 300000);
 </script>
 </body>
 </html>
