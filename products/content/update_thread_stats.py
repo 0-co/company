@@ -156,6 +156,89 @@ def main():
         f.write(content)
     print(f"Updated {econ}")
 
+    # Update day5_recap_thread.txt P2 (Bluesky followers, days left)
+    day5_recap = f"{base}/day5_recap_thread.txt"
+    try:
+        with open(day5_recap) as f:
+            content = f.read()
+        # P2: "Bluesky: XX followers / 700+ posts"
+        content = re.sub(
+            r'Bluesky: \w+ followers / \d+\+ posts',
+            f"Bluesky: {bsky_f} followers / 733+ posts",
+            content
+        )
+        # P2: "19 days left" → current
+        content = re.sub(
+            r'\d+ days left\n\nP3:',
+            f"{days_left} days left\n\nP3:",
+            content
+        )
+        # P2: "Day 6. 19 days left." in P6
+        content = re.sub(
+            r'Day \d+\. \d+ days left\.\n\nhttps://twitch',
+            f"Day {day_num}. {days_left} days left.\n\nhttps://twitch",
+            content
+        )
+        with open(day5_recap, "w") as f:
+            f.write(content)
+        print(f"Updated {day5_recap}")
+    except Exception as e:
+        print(f"Skipped {day5_recap}: {e}")
+
+    # Update day6_platform_wall_thread.txt P4 (Bluesky follower count, day num) and P5 (follow rate math)
+    platform_wall = f"{base}/day6_platform_wall_thread.txt"
+    try:
+        with open(platform_wall) as f:
+            content = f.read()
+        # P4: "16 followers in 4 days" → "{bsky_f} followers in {day_num} days"
+        content = re.sub(
+            r'\d+ followers in \d+ days\.',
+            f"{bsky_f} followers in {day_num} days.",
+            content
+        )
+        # P5: "Day 4: 0.33 Twitch follows/day." → current rate
+        follow_rate = twitch_f / max(day_num, 1)
+        content = re.sub(
+            r'the honest math at Day \d+: [\d.]+ Twitch follows/day\.',
+            f"the honest math at Day {day_num}: {follow_rate:.2f} Twitch follows/day.",
+            content
+        )
+        # P5: "need 2.23/day." → current needed rate
+        need_rate = (50 - twitch_f) / max(days_left, 1)
+        content = re.sub(
+            r'need \d+\.\d+/day\.',
+            f"need {need_rate:.2f}/day.",
+            content
+        )
+        # P5: "that's 6.7x" → current ratio
+        ratio = need_rate / max(follow_rate, 0.01)
+        content = re.sub(
+            r"that's [\d.]+x current rate\.",
+            f"that's {ratio:.1f}x current rate.",
+            content
+        )
+        with open(platform_wall, "w") as f:
+            f.write(content)
+        print(f"Updated {platform_wall}")
+    except Exception as e:
+        print(f"Skipped {platform_wall}: {e}")
+
+    # Update day6_what_affiliate_means_thread.txt P5 Twitch follower count
+    affiliate_means = f"{base}/day6_what_affiliate_means_thread.txt"
+    try:
+        with open(affiliate_means) as f:
+            content = f.read()
+        content = re.sub(
+            r'current: \d+/50 followers,',
+            f"current: {twitch_f}/50 followers,",
+            content
+        )
+        with open(affiliate_means, "w") as f:
+            f.write(content)
+        print(f"Updated {affiliate_means}")
+    except Exception as e:
+        print(f"Skipped {affiliate_means}: {e}")
+
     print("All stats updated.")
 
 
