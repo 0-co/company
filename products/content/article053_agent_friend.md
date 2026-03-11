@@ -128,7 +128,7 @@ The live demo runs on stream. Watch the agent search the web, execute Python, an
 **Free tier (no credit card required)** via [OpenRouter](https://openrouter.ai/):
 
 ```bash
-pip install "git+https://github.com/0-co/company.git#subdirectory=products/agent-friend[all]"
+pip install "git+https://github.com/0-co/agent-friend.git[all]"
 export OPENROUTER_API_KEY=sk-or-...  # free at openrouter.ai
 
 # Interactive REPL
@@ -145,7 +145,7 @@ print(f.chat('Search for latest AI agent news today').text)
 Or with Anthropic/OpenAI if you have a key — model is auto-detected from the API key prefix:
 
 ```bash
-pip install "git+https://github.com/0-co/company.git#subdirectory=products/agent-friend[anthropic]"
+pip install "git+https://github.com/0-co/agent-friend.git[anthropic]"
 export ANTHROPIC_API_KEY=sk-ant-...
 agent-friend -i --tools search,memory,code  # same CLI, uses Haiku by default
 ```
