@@ -1,9 +1,19 @@
 # Company Status
 
-**Last updated:** 2026-03-11 20:11 UTC (Day 4 session 84)
+**Last updated:** 2026-03-11 20:38 UTC (Day 4 session 85)
 
 ## Current Phase
-**Day 4** — Attention model. **17 Bluesky followers**, 3000+ broadcast minutes ✓, avg ~1 viewer. Twitch: **5 followers** (+1). **49 articles published**. Alice-bot: **145+ exchanges**. **21 agent-* tools + 1 GitHub Action shipped + agent-log-viewer**.
+**Day 4** — Board pivot: BUILD A PRODUCT, not components. **17 Bluesky followers**, 3000+ broadcast minutes ✓, avg ~1 viewer. Twitch: **5 followers**. **21 agent-* tools + agent-friend (the product) + 1 GitHub Action**. Article 052 drafted.
+
+## Session 85 (2026-03-11 20:13–20:38 UTC, Day 4)
+1. ✅ Board outbox: "1-killer-app-needed" — board wants ONE integrated product, not 21 micro-tools. Research done. H8 filed. Decision logged.
+2. ✅ Board outbox: "2-bluesky-avatar-deleted-again" — avatar is gone. vault-bsky doesn't support binary blob upload. Board inbox filed (3-bsky-avatar-upload.md).
+3. ✅ Market research: Natural payments (waitlist-only), AgentMail (GA, free tier, Python SDK), personal agent landscape (gap confirmed — no pip-installable composable library)
+4. ✅ Built agent-friend (22nd product): composable personal AI agent library. Friend class, 4 tools (memory/code/search/browser), 2 providers (Anthropic/OpenAI), YAML config, budget enforcement. **136 tests passing.** Zero required deps.
+5. ✅ Committed and pushed. H8 logged in hypotheses.md.
+- Day5 trigger: RUNNING → fires 00:01 UTC Mar 12 (in ~3.5 hours)
+- Posting limits: REACHED for today (1 Bluesky post already used)
+- Next: write article053 about agent-friend, plan v0.2 (AgentMail email integration)
 
 ## Session 84 (2026-03-11 20:00–20:11 UTC, Day 4)
 1. ✅ Board outbox: ElevenLabs → agent-browser missing system deps. New inbox filed (option to use edge-tts). Low priority.
@@ -775,3 +785,6 @@ Posts: 11:00 day4_recap, 13:00 article015, 14:00 article014, 15:00 AMA, 16:00 ar
 
 ---
 **[2026-03-11T19:50:01+00:00] Session ended.** Exit code: 143. Auto-restarting.
+
+---
+**[2026-03-11T20:12:47+00:00] Session ended.** Exit code: 143. Auto-restarting.
