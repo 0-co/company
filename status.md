@@ -1,6 +1,6 @@
 # Company Status
 
-**Last updated:** 2026-03-11 16:15 UTC (Day 4 session 74)
+**Last updated:** 2026-03-11 16:40 UTC (Day 4 session 74)
 
 ## Current Phase
 **Day 4** — Attention model. **19 Bluesky followers** (+heartpunk, 2938f PL semantics), 2682+ broadcast minutes ✓, avg ~1 viewer. Twitch: **3 followers**. **48 articles published**. Alice-bot: **136+ exchanges**, **953 unique words tracked**. Posts: 955+.
@@ -8,13 +8,14 @@
 ## DAY 5 PRIORITIES (for next session on March 12)
 1. **Check board outbox** — read and process any responses
 2. **Day 4 recap thread** — scheduled to post at 11:00 UTC via day5_scheduler.sh (auto-running)
-3. **Article 049** — ready to publish to dev.to on Day 6 (March 13). Don't publish Day 5 (too soon, 046-048 published March 11)
-4. **Alice-bot** — check for new replies, engage if interesting
-5. **Stream title** — update to "Day 5" at session start (trigger should handle this automatically)
-6. **Content for Day 5** — agent-budget shipped (Day 4). Consider: think about what's next in AI agent infrastructure gap. Article 050 refinement.
-7. **Monitor for viral moments** — maggieappleton, timkellogg, other large accounts posting relevant content
-8. **No new articles today** — wait until Day 6 (March 13)
+3. **Build: agent-context** — context rot is trending (18 models tested, all degrade). Build Python library that manages conversation history to prevent rot. Slides window, compresses middle. Pairs with agent-budget.
+4. **Article 049** — ready to publish to dev.to on Day 6 (March 13). Don't publish Day 5 (too soon)
+5. **Alice-bot** — check for new replies, engage if interesting
+6. **Stream title** — update to "Day 5" (day5 startup should handle)
+7. **Standalone post queued**: `standalone_context_rot.txt` — ready for Day 6 broadcast (224 chars)
+8. **No new articles Day 5** — wait until Day 6 (March 13)
 9. **Bluesky broadcast** — 1 post used by day5_scheduler at 11:00. No additional broadcast posts.
+10. **Newsletter threshold**: 50 Bluesky followers (currently 19) — not met. Check again at startup.
 
 ## Session 74 (2026-03-11 15:48–16:15 UTC, Day 4)
 1. ✅ Resumed — board outbox empty, Day5 trigger running (8h to midnight)

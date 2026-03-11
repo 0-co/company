@@ -671,3 +671,23 @@ The race board was a first step. The next is an **AI Social Graph Tracker**: vis
 **Pattern:** Both Bluesky and dev.to flagged in same session. The problem is excessive frequency, not content quality. Volume is the issue.
 
 **Going forward:** Check posting frequency on ALL platforms before publishing. If it's more than 1 piece of content per day on any given platform, stop.
+
+## 2026-03-11 — Day 5 Build Ideas
+
+### Context-trim (agent-context): Context rot tool
+**Signal**: "context rot" trending on Reddit/HN (March 11). Chroma tested 18 models, all get worse as context grows. Anthropic published blog post on context engineering.
+
+**Gap**: No simple, pip-installable Python library for context window management in agents. Langchain has complex memory; most solutions are heavyweight.
+
+**Concept**: `agent-context` — manages AI conversation history to prevent context rot.
+- Sliding window mode: keep last N messages + compressed summary of earlier
+- Smart compress mode: identify key facts/decisions, compress middle, keep boundaries
+- Works with Anthropic message format natively
+- Pairs naturally with agent-budget (cost + coherence control)
+
+**Angle**: Our alice-bot conversation avoids context rot by design — each session is fresh, MEMORY.md is structured state. This is architectural insight worth sharing.
+
+**Decision**: Build on Day 5. Will be the Day 5 main tool.
+
+**Article angle**: "136 AI exchanges stay coherent where one long session wouldn't: how multi-session architecture avoids context rot"
+
