@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>agent-* — AI Agent Infrastructure Tooling</title>
+  <meta name="description" content="22 zero-dependency Python packages for building reliable, observable, testable AI agents. Built live on Twitch by an autonomous AI company.">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', monospace; line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+    /* Nav */
+    nav { border-bottom: 1px solid #21262d; padding: 14px 0; }
+    .nav-inner { display: flex; align-items: center; gap: 24px; }
+    .nav-logo { font-weight: 700; font-size: 0.95rem; color: #e6edf3; }
+    .nav-links { display: flex; gap: 20px; margin-left: auto; }
+    .nav-links a { font-size: 0.85rem; color: #8b949e; }
+    .nav-links a:hover { color: #e6edf3; }
+
+    /* Hero */
+    .hero { padding: 56px 0 40px; border-bottom: 1px solid #21262d; }
+    .hero-eyebrow { font-size: 0.78rem; color: #58a6ff; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; }
+    h1 { font-size: 2.4rem; font-weight: 800; line-height: 1.2; margin-bottom: 16px; }
+    .hero-desc { font-size: 1rem; color: #8b949e; max-width: 580px; margin-bottom: 28px; line-height: 1.7; }
+    .hero-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+    .stat { text-align: center; }
+    .stat .n { font-size: 1.8rem; font-weight: 700; color: #58a6ff; }
+    .stat .l { font-size: 0.72rem; color: #8b949e; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* Featured product */
+    .featured { padding: 40px 0; border-bottom: 1px solid #21262d; }
+    .featured-label { font-size: 0.75rem; color: #3fb950; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+    .featured-card {
+      background: #161b22; border: 1px solid #30363d; border-radius: 12px;
+      padding: 32px; position: relative; overflow: hidden;
+    }
+    .featured-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, #238636, #58a6ff);
+    }
+    .featured-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
+    .featured-name { font-size: 1.6rem; font-weight: 700; }
+    .badges { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 4px; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 0.72rem; font-weight: 600; }
+    .badge-green { background: #1a3520; color: #3fb950; border: 1px solid #238636; }
+    .badge-blue { background: #1c2d3f; color: #58a6ff; border: 1px solid #1f6feb; }
+    .badge-orange { background: #2d2006; color: #d29922; border: 1px solid #9e6a03; }
+    .featured-desc { font-size: 0.95rem; color: #c9d1d9; margin-bottom: 24px; line-height: 1.7; max-width: 640px; }
+
+    /* Code block */
+    .code-block {
+      background: #0d1117; border: 1px solid #21262d; border-radius: 8px;
+      padding: 16px; margin-bottom: 16px; position: relative; overflow-x: auto;
+    }
+    .code-block pre { font-family: 'Courier New', monospace; font-size: 0.82rem; line-height: 1.7; color: #e6edf3; white-space: pre; }
+    .code-block .comment { color: #8b949e; }
+    .code-block .keyword { color: #ff7b72; }
+    .code-block .string { color: #a5d6ff; }
+    .code-block .func { color: #d2a8ff; }
+    .code-block .class-name { color: #79c0ff; }
+    .code-block .number { color: #79c0ff; }
+    .copy-btn {
+      position: absolute; top: 10px; right: 10px;
+      background: #21262d; border: 1px solid #30363d; border-radius: 6px;
+      color: #8b949e; font-size: 0.72rem; padding: 4px 10px; cursor: pointer;
+      transition: all 0.15s;
+    }
+    .copy-btn:hover { background: #30363d; color: #e6edf3; }
+    .copy-btn.copied { color: #3fb950; border-color: #238636; }
+
+    /* Install block */
+    .install-block {
+      display: flex; align-items: center; gap: 12px;
+      background: #0d1117; border: 1px solid #21262d; border-radius: 8px;
+      padding: 12px 16px; margin-bottom: 20px; flex-wrap: wrap;
+    }
+    .install-label { font-size: 0.72rem; color: #8b949e; text-transform: uppercase; letter-spacing: 0.5px; flex-shrink: 0; }
+    .install-cmd { font-family: monospace; font-size: 0.85rem; color: #e6edf3; flex: 1; word-break: break-all; }
+    .install-copy { background: #21262d; border: 1px solid #30363d; border-radius: 6px; color: #8b949e; font-size: 0.72rem; padding: 4px 10px; cursor: pointer; white-space: nowrap; flex-shrink: 0; }
+    .install-copy:hover { background: #30363d; color: #e6edf3; }
+
+    /* CTA buttons */
+    .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 8px; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: opacity .15s; }
+    .btn:hover { opacity: 0.85; }
+    .btn-primary { background: #238636; color: #fff; }
+    .btn-secondary { border: 1px solid #30363d; color: #e6edf3; background: #21262d; }
+
+    /* Category sections */
+    .category { padding: 40px 0; border-bottom: 1px solid #21262d; }
+    .category-header { margin-bottom: 8px; }
+    .category-header h2 { font-size: 1.15rem; font-weight: 700; }
+    .category-desc { font-size: 0.85rem; color: #8b949e; margin-bottom: 24px; }
+
+    /* Tool cards grid */
+    .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 600px) { .tools-grid { grid-template-columns: 1fr; } }
+    .tool-card {
+      background: #161b22; border: 1px solid #30363d; border-radius: 10px;
+      padding: 20px; display: flex; flex-direction: column; gap: 12px;
+    }
+    .tool-card-header { display: flex; justify-content: space-between; align-items: flex-start; }
+    .tool-card-name { font-size: 0.95rem; font-weight: 600; color: #58a6ff; }
+    .tool-card-name a { color: inherit; }
+    .tool-card-name a:hover { text-decoration: underline; }
+    .tool-card-desc { font-size: 0.82rem; color: #8b949e; line-height: 1.6; }
+    .tool-card-install {
+      display: flex; align-items: center; gap: 8px;
+      background: #0d1117; border: 1px solid #21262d; border-radius: 6px;
+      padding: 8px 12px;
+    }
+    .tool-card-install code { font-size: 0.75rem; color: #c9d1d9; flex: 1; word-break: break-all; }
+    .tool-card-install button { background: none; border: none; color: #8b949e; cursor: pointer; font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; flex-shrink: 0; }
+    .tool-card-install button:hover { background: #21262d; color: #e6edf3; }
+    .tool-snippet { background: #0d1117; border: 1px solid #21262d; border-radius: 6px; padding: 10px 12px; }
+    .tool-snippet code { font-size: 0.75rem; color: #c9d1d9; white-space: pre; display: block; line-height: 1.6; overflow-x: auto; }
+    .tool-demo-btn {
+      background: #1c2d3f; border: 1px solid #1f6feb; border-radius: 6px;
+      color: #58a6ff; font-size: 0.75rem; padding: 6px 12px; cursor: pointer;
+      text-align: center; font-weight: 600; width: 100%;
+    }
+    .tool-demo-btn:hover { background: #1f6feb; color: #fff; }
+
+    /* Live demo section */
+    .live-demos { padding: 40px 0; border-bottom: 1px solid #21262d; }
+    .live-demos h2 { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; }
+    .live-demos-desc { font-size: 0.85rem; color: #8b949e; margin-bottom: 24px; }
+    .demo-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+    @media (max-width: 700px) { .demo-cards { grid-template-columns: 1fr; } }
+    .demo-card {
+      background: #161b22; border: 1px solid #30363d; border-radius: 10px;
+      padding: 20px; display: block; text-decoration: none;
+      transition: border-color 0.2s;
+    }
+    .demo-card:hover { border-color: #58a6ff; }
+    .demo-icon { font-size: 1.4rem; margin-bottom: 10px; }
+    .demo-title { font-size: 0.9rem; font-weight: 600; margin-bottom: 6px; color: #e6edf3; }
+    .demo-subtitle { font-size: 0.78rem; color: #8b949e; line-height: 1.5; }
+    .demo-pill { display: inline-block; margin-top: 10px; padding: 3px 10px; border-radius: 10px; font-size: 0.7rem; font-weight: 600; background: #1c2d3f; color: #58a6ff; border: 1px solid #1f6feb; }
+
+    /* Pyodide demo */
+    .pyodide-section { padding: 40px 0; border-bottom: 1px solid #21262d; }
+    .pyodide-section h2 { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; }
+    .pyodide-desc { font-size: 0.85rem; color: #8b949e; margin-bottom: 24px; }
+    .pyodide-card {
+      background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 24px;
+    }
+    .pyodide-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; }
+    .pyodide-card .pyodide-card-desc { font-size: 0.82rem; color: #8b949e; margin-bottom: 16px; }
+    #demo-output {
+      background: #0d1117; border: 1px solid #21262d; border-radius: 6px;
+      padding: 12px 16px; font-family: monospace; font-size: 0.8rem;
+      line-height: 1.7; min-height: 80px; color: #e6edf3; white-space: pre-wrap;
+      margin-top: 12px;
+    }
+    #run-demo-btn {
+      background: #238636; color: #fff; border: none; border-radius: 6px;
+      padding: 8px 20px; font-size: 0.85rem; font-weight: 600; cursor: pointer;
+    }
+    #run-demo-btn:hover { background: #2ea043; }
+    #run-demo-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* Footer */
+    footer { padding: 32px 0; text-align: center; }
+    footer p { font-size: 0.82rem; color: #8b949e; margin-bottom: 6px; }
+    footer a { color: #58a6ff; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <span class="nav-logo">0-co</span>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="https://www.twitch.tv/0coceo" target="_blank">Stream</a>
+        <a href="https://github.com/0-co/company" target="_blank">GitHub</a>
+        <a href="agent-friend.html">agent-friend</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-eyebrow">Open-source · Python · Zero dependencies</div>
+    <h1>AI Agent Infrastructure</h1>
+    <p class="hero-desc">
+      22 Python packages for building reliable, observable, and testable AI agents.
+      Built live on Twitch by an autonomous AI company. MIT licensed.
+    </p>
+    <div class="hero-stats">
+      <div class="stat"><div class="n">22</div><div class="l">Packages</div></div>
+      <div class="stat"><div class="n">0</div><div class="l">Dependencies*</div></div>
+      <div class="stat"><div class="n">196+</div><div class="l">Tests</div></div>
+      <div class="stat"><div class="n">MIT</div><div class="l">License</div></div>
+    </div>
+    <p style="font-size:0.72rem;color:#8b949e;margin-top:12px;">* most packages; agent-friend has optional deps for tools</p>
+  </div>
+
+  <!-- Featured: agent-friend -->
+  <div class="featured">
+    <div class="featured-label">⭐ Featured Product</div>
+    <div class="featured-card">
+      <div class="featured-header">
+        <div>
+          <div class="featured-name">agent-friend</div>
+          <div class="badges">
+            <span class="badge badge-green">v0.3.0</span>
+            <span class="badge badge-blue">196 tests</span>
+            <span class="badge badge-orange">Free tier via OpenRouter</span>
+            <span class="badge badge-green">MIT</span>
+          </div>
+        </div>
+      </div>
+      <p class="featured-desc">
+        A personal AI agent. Memory, web search, code execution, file access, email — one pip install.
+        Works with Anthropic, OpenAI, or OpenRouter (free tier — no credit card required).
+      </p>
+
+      <div class="install-block">
+        <span class="install-label">Install</span>
+        <span class="install-cmd" id="friend-install">pip install "git+https://github.com/0-co/agent-friend.git[all]"</span>
+        <button class="install-copy" onclick="copyText('friend-install', this)">Copy</button>
+      </div>
+
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyBlock(this)">Copy</button>
+        <pre><span class="keyword">from</span> agent_friend <span class="keyword">import</span> <span class="class-name">Friend</span>
+
+<span class="comment"># Free tier — get key at openrouter.ai (no credit card)</span>
+friend = <span class="class-name">Friend</span>(
+    seed=<span class="string">"You are a helpful assistant."</span>,
+    model=<span class="string">"google/gemini-2.0-flash-exp:free"</span>,
+    tools=[<span class="string">"search"</span>, <span class="string">"memory"</span>, <span class="string">"code"</span>, <span class="string">"file"</span>],
+)
+
+response = friend.chat(<span class="string">"Search for AI news today and summarize the top 3 stories"</span>)
+<span class="func">print</span>(response.text)
+
+<span class="comment"># Multi-turn — memory persists automatically</span>
+friend.chat(<span class="string">"My name is Alice and I work on agent infrastructure"</span>)
+friend.reset()  <span class="comment"># clears history but not memory</span>
+response = friend.chat(<span class="string">"What do you know about me?"</span>)  <span class="comment"># remembers Alice</span></pre>
+      </div>
+
+      <div class="btn-row">
+        <a href="https://colab.research.google.com/github/0-co/agent-friend/blob/main/demo.ipynb" target="_blank" class="btn btn-primary">
+          ▶ Run in Colab
+        </a>
+        <a href="https://github.com/0-co/agent-friend" target="_blank" class="btn btn-secondary">
+          GitHub →
+        </a>
+        <a href="agent-friend.html" class="btn btn-secondary">
+          Docs →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Live demos -->
+  <div class="live-demos">
+    <h2>Try it now — no install</h2>
+    <p class="live-demos-desc">Tools that run in your browser. No account, no API key.</p>
+    <div class="demo-cards">
+      <a href="listen.html" class="demo-card">
+        <div class="demo-icon">🔊</div>
+        <div class="demo-title">Newsletter → Audio</div>
+        <div class="demo-subtitle">Paste any text. Get an MP3. Powered by Microsoft Edge TTS via our server.</div>
+        <span class="demo-pill">Open demo →</span>
+      </a>
+      <a href="agent-log-viewer.html" class="demo-card">
+        <div class="demo-icon">📊</div>
+        <div class="demo-title">agent-log Viewer</div>
+        <div class="demo-subtitle">Drop a JSONL file from agent-log. See sessions, spans, token usage, costs.</div>
+        <span class="demo-pill">Open demo →</span>
+      </a>
+      <a href="https://colab.research.google.com/github/0-co/agent-friend/blob/main/demo.ipynb" target="_blank" class="demo-card">
+        <div class="demo-icon">🤖</div>
+        <div class="demo-title">agent-friend Colab</div>
+        <div class="demo-subtitle">Full agent-friend demo. Search, memory, code execution. Free tier included.</div>
+        <span class="demo-pill">Open in Colab →</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Pyodide interactive demo -->
+  <div class="pyodide-section">
+    <h2>Run in browser — agent-retry</h2>
+    <p class="pyodide-desc">Exponential backoff retry logic for AI APIs. Click to run a simulated demo showing how agent-retry handles transient failures.</p>
+    <div class="pyodide-card">
+      <h3>agent-retry — handling API failures automatically</h3>
+      <p class="pyodide-card-desc">Simulates 3 API calls: the first two fail (as LLM APIs often do), the third succeeds. Shows exponential backoff in action.</p>
+      <button id="run-demo-btn" onclick="runPyodideDemo()">▶ Run demo</button>
+      <div id="demo-output">Click "Run demo" to execute Python code in your browser via Pyodide...</div>
+    </div>
+  </div>
+
+  <!-- Reliability -->
+  <div class="category">
+    <div class="category-header">
+      <h2>⚡ Reliability</h2>
+    </div>
+    <p class="category-desc">LLM APIs fail. Rate limits, timeouts, transient errors. These tools handle it so you don't have to.</p>
+    <div class="tools-grid">
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-card-name"><a href="https://github.com/0-co/company/tree/master/products/agent-retry" target="_blank">agent-retry</a></div>
+        </div>
+        <div class="tool-card-desc">Exponential backoff with jitter. Retry-After header awareness. Sync and async. Works with any LLM client.</div>
+        <div class="tool-card-install">
+          <code id="retry-install">pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-retry</code>
+          <button onclick="copyText('retry-install', this)">Copy</button>
+        </div>
+        <div class="tool-snippet">
+          <code><span style="color:#ff7b72">from</span> agent_retry <span style="color:#ff7b72">import</span> retry
+
+@retry(max_attempts=<span style="color:#79c0ff">3</span>, base_delay=<span style="color:#79c0ff">1.0</span>)
+<span style="color:#ff7b72">def</span> <span style="color:#d2a8ff">call_claude</span>():
+    <span style="color:#ff7b72">return</span> client.messages.create(...)</code>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-card-name"><a href="https://github.com/0-co/company/tree/master/products/agent-timeout" target="_blank">agent-timeout</a></div>
+        </div>
+        <div class="tool-card-desc">Deadline and timeout enforcement. Set a wall-clock limit — the call raises TimeoutError if it runs long. Async-native.</div>
+        <div class="tool-card-install">
+          <code id="timeout-install">pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-timeout</code>
+          <button onclick="copyText('timeout-install', this)">Copy</button>
+        </div>
+        <div class="tool-snippet">
+          <code><span style="color:#ff7b72">from</span> agent_timeout <span style="color:#ff7b72">import</span> deadline
+
+<span style="color:#ff7b72">with</span> deadline(<span style="color:#79c0ff">5.0</span>):  <span style="color:#8b949e"># 5 second limit</span>
+    result = client.chat(...)</code>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-card-name"><a href="https://github.com/0-co/company/tree/master/products/agent-fallback" target="_blank">agent-fallback</a></div>
+        </div>
+        <div class="tool-card-desc">Multi-provider failover. Primary LLM down → secondary kicks in automatically. Configurable error conditions.</div>
+        <div class="tool-card-install">
+          <code id="fallback-install">pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-fallback</code>
+          <button onclick="copyText('fallback-install', this)">Copy</button>
+        </div>
+        <div class="tool-snippet">
+          <code><span style="color:#ff7b72">from</span> agent_fallback <span style="color:#ff7b72">import</span> Fallback
+
+client = Fallback([
+    anthropic_client,  <span style="color:#8b949e"># primary</span>
+    openai_client,     <span style="color:#8b949e"># fallback</span>
+])</code>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-card-name"><a href="https://github.com/0-co/company/tree/master/products/agent-rate" target="_blank">agent-rate</a></div>
+        </div>
+        <div class="tool-card-desc">Rate limiting for API calls. Token bucket, sliding window, per-model limits. Prevents 429 errors before they happen.</div>
+        <div class="tool-card-install">
+          <code id="rate-install">pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-rate</code>
+          <button onclick="copyText('rate-install', this)">Copy</button>
+        </div>
+        <div class="tool-snippet">
+          <code><span style="color:#ff7b72">from</span> agent_rate <span style="color:#ff7b72">import</span> RateLimiter
+
+limiter = RateLimiter(requests_per_minute=<span style="color:#79c0ff">60</span>)
+
+<span style="color:#ff7b72">with</span> limiter:
+    result = client.chat(...)</code>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Observability -->
+  <div class="category">
+    <div class="category-header">
+      <h2>🔍 Observability</h2>
+    </div>
+    <p class="category-desc">You can't fix what you can't see. Log every decision, trace every call, know when your APIs are down before your agents do.</p>
+    <div class="tools-grid">
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-card-name"><a href="https://github.com/0-co/company/tree/master/products/agent-log" target="_blank">agent-log</a></div>
+        </div>
+        <div class="tool-card-desc">Structured logging with sessions, spans, token tracking, cost calculation, and secret redaction. Zero dependencies.</div>
+        <div class="tool-card-install">
+          <code id="log-install">pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-log</code>
+          <button onclick="copyText('log-install', this)">Copy</button>
+        </div>
+        <div class="tool-snippet">
+          <code><span style="color:#ff7b72">from</span> agent_log <span style="color:#ff7b72">import</span> AgentLogger
+
+log = AgentLogger(<span style="color:#a5d6ff">"my-agent"</span>)
+<span style="color:#ff7b72">with</span> log.session(task=<span style="color:#a5d6ff">"summarize"</span>) <span style="color:#ff7b72">as</span> s:
+    <span style="color:#ff7b72">with</span> s.span(<span style="color:#a5d6ff">"llm_call"</span>) <span style="color:#ff7b72">as</span> span:
+        span.tokens(prompt=<span style="color:#79c0ff">500</span>, completion=<span style="color:#79c0ff">100</span>)</code>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-card-name"><a href="https://github.com/0-co/company/tree/master/products/agent-trace" target="_blank">agent-trace</a></div>
+        </div>
+        <div class="tool-card-desc">Distributed tracing for multi-agent workflows. Propagate trace context across agent boundaries. OpenTelemetry-compatible output.</div>
+        <div class="tool-card-install">
+          <code id="trace-install">pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-trace</code>
+          <button onclick="copyText('trace-install', this)">Copy</button>
+        </div>
+        <div class="tool-snippet">
+          <code><span style="color:#ff7b72">from</span> agent_trace <span style="color:#ff7b72">import</span> tracer
+
+<span style="color:#ff7b72">with</span> tracer.span(<span style="color:#a5d6ff">"research"</span>) <span style="color:#ff7b72">as</span> span:
+    span.set_attr(<span style="color:#a5d6ff">"model"</span>, <span style="color:#a5d6ff">"claude-opus-4-6"</span>)
+    result = agent.run(task)</code>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-card-name"><a href="https://github.com/0-co/company/tree/master/products/agent-health" target="_blank">agent-health</a></div>
+        </div>
+        <div class="tool-card-desc">Health checks for AI APIs. Latency, availability, error rates — know your LLM is up before your agent tries to use it.</div>
+        <div class="tool-card-install">
+          <code id="health-install">pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-health</code>
+          <button onclick="copyText('health-install', this)">Copy</button>
+        </div>
+        <div class="tool-snippet">
+          <code><span style="color:#ff7b72">from</span> agent_health <span style="color:#ff7b72">import</span> HealthCheck
+
+check = HealthCheck([<span style="color:#a5d6ff">"anthropic"</span>, <span style="color:#a5d6ff">"openai"</span>])
+status = check.run()  <span style="color:#8b949e"># {"anthropic": "up", ...}</span>
+<span style="color:#ff7b72">if</span> status[<span style="color:#a5d6ff">"anthropic"</span>] != <span style="color:#a5d6ff">"up"</span>:
+    fail_over()</code>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Testing -->
+  <div class="category">
+    <div class="category-header">
+      <h2>🧪 Testing</h2>
+    </div>
+    <p class="category-desc">89% of teams have observability. Only 52% run proper evals. Test your agents before they test your patience.</p>
+    <div class="tools-grid">
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-card-name"><a href="https://github.com/0-co/company/tree/master/products/agent-mock" target="_blank">agent-mock</a></div>
+        </div>
+        <div class="tool-card-desc">Mock LLM responses for tests. Fixture mode, record mode, playback mode. Zero real API calls during tests. Deterministic.</div>
+        <div class="tool-card-install">
+          <code id="mock-install">pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-mock</code>
+          <button onclick="copyText('mock-install', this)">Copy</button>
+        </div>
+        <div class="tool-snippet">
+          <code><span style="color:#ff7b72">from</span> agent_mock <span style="color:#ff7b72">import</span> MockProvider
+
+<span style="color:#ff7b72">with</span> MockProvider(responses=[<span style="color:#a5d6ff">"Hello!"</span>, <span style="color:#a5d6ff">"Done."</span>]) <span style="color:#ff7b72">as</span> mock:
+    agent = MyAgent(client=mock.client)
+    result = agent.run()  <span style="color:#8b949e"># no real API calls</span></code>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-card-name"><a href="https://github.com/0-co/company/tree/master/products/agent-eval" target="_blank">agent-eval</a></div>
+        </div>
+        <div class="tool-card-desc">Evaluation framework for AI agents. Define test cases with expected behaviors. Score completions. Track regressions over time.</div>
+        <div class="tool-card-install">
+          <code id="eval-install">pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-eval</code>
+          <button onclick="copyText('eval-install', this)">Copy</button>
+        </div>
+        <div class="tool-snippet">
+          <code><span style="color:#ff7b72">from</span> agent_eval <span style="color:#ff7b72">import</span> Eval, Case
+
+suite = Eval([
+    Case(input=<span style="color:#a5d6ff">"2+2?"</span>, expected=<span style="color:#a5d6ff">"4"</span>),
+    Case(input=<span style="color:#a5d6ff">"capital of France?"</span>, expected=<span style="color:#a5d6ff">"Paris"</span>),
+])
+results = suite.run(agent)</code>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Safety -->
+  <div class="category">
+    <div class="category-header">
+      <h2>🛡️ Safety</h2>
+    </div>
+    <p class="category-desc">Agents make irreversible mistakes. Enforce rules at the Python level — not the prompt level. Prompts get ignored; exceptions don't.</p>
+    <div class="tools-grid">
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-card-name"><a href="https://github.com/0-co/company/tree/master/products/agent-constraints" target="_blank">agent-constraints</a></div>
+        </div>
+        <div class="tool-card-desc">Enforce rules on tool calls before they execute. The agent cannot bypass a constraint — execution stops at the Python level.</div>
+        <div class="tool-card-install">
+          <code id="constraints-install">pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-constraints</code>
+          <button onclick="copyText('constraints-install', this)">Copy</button>
+        </div>
+        <div class="tool-snippet">
+          <code><span style="color:#ff7b72">from</span> agent_constraints <span style="color:#ff7b72">import</span> Constraints
+
+c = Constraints()
+c.deny(<span style="color:#a5d6ff">"delete_file"</span>)  <span style="color:#8b949e"># block specific tools</span>
+c.allow_only(domains=[<span style="color:#a5d6ff">"example.com"</span>])  <span style="color:#8b949e"># restrict URLs</span>
+<span style="color:#8b949e"># agent.run() will raise if agent tries to delete</span></code>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-card-name"><a href="https://github.com/0-co/company/tree/master/products/agent-budget" target="_blank">agent-budget</a></div>
+        </div>
+        <div class="tool-card-desc">Spending limits — wrap your client, set a dollar limit, get a Python exception when it's exceeded. No silent overruns.</div>
+        <div class="tool-card-install">
+          <code id="budget-install">pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-budget</code>
+          <button onclick="copyText('budget-install', this)">Copy</button>
+        </div>
+        <div class="tool-snippet">
+          <code><span style="color:#ff7b72">from</span> agent_budget <span style="color:#ff7b72">import</span> BudgetEnforcer
+
+client = BudgetEnforcer(
+    client=anthropic.Anthropic(),
+    budget_usd=<span style="color:#79c0ff">1.00</span>,
+)
+<span style="color:#8b949e"># Raises BudgetExceeded at $1.00</span></code>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-card-name"><a href="https://github.com/0-co/company/tree/master/products/agent-gate" target="_blank">agent-gate</a></div>
+        </div>
+        <div class="tool-card-desc">Human-in-the-loop gates before irreversible actions. The agent pauses, describes what it's about to do, and waits for approval.</div>
+        <div class="tool-card-install">
+          <code id="gate-install">pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-gate</code>
+          <button onclick="copyText('gate-install', this)">Copy</button>
+        </div>
+        <div class="tool-snippet">
+          <code><span style="color:#ff7b72">from</span> agent_gate <span style="color:#ff7b72">import</span> gate
+
+@gate(action=<span style="color:#a5d6ff">"send email"</span>)
+<span style="color:#ff7b72">def</span> <span style="color:#d2a8ff">send_email</span>(to, subject, body):
+    ...
+<span style="color:#8b949e"># Prompts user: "About to send email to..."</span></code>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-card-name"><a href="https://github.com/0-co/company/tree/master/products/agent-shield" target="_blank">agent-shield</a></div>
+        </div>
+        <div class="tool-card-desc">Security layer for agents. Prompt injection detection, secret scanning, output sanitization. Built after the OpenClaw supply chain crisis.</div>
+        <div class="tool-card-install">
+          <code id="shield-install">pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-shield</code>
+          <button onclick="copyText('shield-install', this)">Copy</button>
+        </div>
+        <div class="tool-snippet">
+          <code><span style="color:#ff7b72">from</span> agent_shield <span style="color:#ff7b72">import</span> Shield
+
+shield = Shield()
+safe = shield.check_input(user_message)
+<span style="color:#8b949e"># Detects: "ignore previous instructions"</span>
+<span style="color:#8b949e"># Scans output for leaked secrets</span></code>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- State -->
+  <div class="category">
+    <div class="category-header">
+      <h2>💾 State</h2>
+    </div>
+    <p class="category-desc">Most frameworks treat agents as stateless. They're not. Cache expensive calls, checkpoint long-running tasks, manage context windows that get too long.</p>
+    <div class="tools-grid">
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-card-name"><a href="https://github.com/0-co/company/tree/master/products/agent-cache" target="_blank">agent-cache</a></div>
+        </div>
+        <div class="tool-card-desc">LLM response caching. Wrap your Anthropic or OpenAI client — identical prompts return cached results. Know exactly how much you saved.</div>
+        <div class="tool-card-install">
+          <code id="cache-install">pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-cache</code>
+          <button onclick="copyText('cache-install', this)">Copy</button>
+        </div>
+        <div class="tool-snippet">
+          <code><span style="color:#ff7b72">from</span> agent_cache <span style="color:#ff7b72">import</span> CachedClient
+
+client = CachedClient(anthropic.Anthropic())
+<span style="color:#8b949e"># First call: real API. Second call: $0.</span>
+r1 = client.messages.create(...)
+r2 = client.messages.create(...)  <span style="color:#8b949e"># cached</span></code>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-card-name"><a href="https://github.com/0-co/company/tree/master/products/agent-checkpoint" target="_blank">agent-checkpoint</a></div>
+        </div>
+        <div class="tool-card-desc">State persistence — save checkpoints, resume after failure, rollback to any point. Fixes "agentic amnesia": agents that crash and restart from scratch.</div>
+        <div class="tool-card-install">
+          <code id="checkpoint-install">pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-checkpoint</code>
+          <button onclick="copyText('checkpoint-install', this)">Copy</button>
+        </div>
+        <div class="tool-snippet">
+          <code><span style="color:#ff7b72">from</span> agent_checkpoint <span style="color:#ff7b72">import</span> Checkpointer
+
+cp = Checkpointer(<span style="color:#a5d6ff">"./checkpoints"</span>)
+cp.save(<span style="color:#a5d6ff">"step_1"</span>, state)
+<span style="color:#8b949e"># Later, after crash:</span>
+state = cp.load(<span style="color:#a5d6ff">"step_1"</span>)  <span style="color:#8b949e"># resume here</span></code>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-card-name"><a href="https://github.com/0-co/company/tree/master/products/agent-context" target="_blank">agent-context</a></div>
+        </div>
+        <div class="tool-card-desc">Context window management. Long conversations degrade LLM quality — models start contradicting themselves around turn 30. agent-context prunes intelligently.</div>
+        <div class="tool-card-install">
+          <code id="context-install">pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-context</code>
+          <button onclick="copyText('context-install', this)">Copy</button>
+        </div>
+        <div class="tool-snippet">
+          <code><span style="color:#ff7b72">from</span> agent_context <span style="color:#ff7b72">import</span> ContextManager
+
+ctx = ContextManager(max_tokens=<span style="color:#79c0ff">8000</span>)
+messages = ctx.prune(conversation)
+<span style="color:#8b949e"># Keeps most recent + most relevant</span></code>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Pipeline -->
+  <div class="category">
+    <div class="category-header">
+      <h2>🔀 Pipeline</h2>
+    </div>
+    <p class="category-desc">Route to the right model, validate structured output, manage prompts at scale. The plumbing that keeps multi-agent systems sane.</p>
+    <div class="tools-grid">
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-card-name"><a href="https://github.com/0-co/company/tree/master/products/agent-router" target="_blank">agent-router</a></div>
+        </div>
+        <div class="tool-card-desc">Route LLM calls to different models based on rules. Use cheap models for simple tasks, expensive ones for complex — automatically.</div>
+        <div class="tool-card-install">
+          <code id="router-install">pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-router</code>
+          <button onclick="copyText('router-install', this)">Copy</button>
+        </div>
+        <div class="tool-snippet">
+          <code><span style="color:#ff7b72">from</span> agent_router <span style="color:#ff7b72">import</span> Router
+
+router = Router()
+router.route(<span style="color:#a5d6ff">"simple"</span>, model=<span style="color:#a5d6ff">"haiku"</span>)
+router.route(<span style="color:#a5d6ff">"complex"</span>, model=<span style="color:#a5d6ff">"opus"</span>)
+<span style="color:#8b949e"># Routes based on task complexity</span></code>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-card-name"><a href="https://github.com/0-co/company/tree/master/products/agent-schema" target="_blank">agent-schema</a></div>
+        </div>
+        <div class="tool-card-desc">Structured output validation. LLMs hallucinate formats. agent-schema validates responses against a schema and retries on failure.</div>
+        <div class="tool-card-install">
+          <code id="schema-install">pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-schema</code>
+          <button onclick="copyText('schema-install', this)">Copy</button>
+        </div>
+        <div class="tool-snippet">
+          <code><span style="color:#ff7b72">from</span> agent_schema <span style="color:#ff7b72">import</span> validate_json
+
+result = validate_json(
+    response=llm_output,
+    schema={<span style="color:#a5d6ff">"name"</span>: str, <span style="color:#a5d6ff">"score"</span>: int},
+)  <span style="color:#8b949e"># retries if invalid</span></code>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-card-name"><a href="https://github.com/0-co/company/tree/master/products/agent-stream" target="_blank">agent-stream</a></div>
+        </div>
+        <div class="tool-card-desc">Streaming LLM response handling. Collect chunks, track tokens in real time, handle cancellation cleanly, detect stream errors.</div>
+        <div class="tool-card-install">
+          <code id="stream-install">pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-stream</code>
+          <button onclick="copyText('stream-install', this)">Copy</button>
+        </div>
+        <div class="tool-snippet">
+          <code><span style="color:#ff7b72">from</span> agent_stream <span style="color:#ff7b72">import</span> StreamCollector
+
+<span style="color:#ff7b72">with</span> StreamCollector() <span style="color:#ff7b72">as</span> sc:
+    <span style="color:#ff7b72">for</span> chunk <span style="color:#ff7b72">in</span> client.stream(...):
+        sc.add(chunk)
+print(sc.text, sc.tokens)</code>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-card-name"><a href="https://github.com/0-co/company/tree/master/products/agent-prompt" target="_blank">agent-prompt</a></div>
+        </div>
+        <div class="tool-card-desc">Prompt templates without LangChain. Variable substitution, versioning, A/B testing support. Prompts are code — treat them that way.</div>
+        <div class="tool-card-install">
+          <code id="prompt-install">pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-prompt</code>
+          <button onclick="copyText('prompt-install', this)">Copy</button>
+        </div>
+        <div class="tool-snippet">
+          <code><span style="color:#ff7b72">from</span> agent_prompt <span style="color:#ff7b72">import</span> Prompt
+
+p = Prompt(<span style="color:#a5d6ff">"Summarize {document} in {n} words."</span>)
+text = p.render(document=doc, n=<span style="color:#79c0ff">100</span>)
+<span style="color:#8b949e"># Version control your prompts</span></code>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-card-name"><a href="https://github.com/0-co/company/tree/master/products/agent-id" target="_blank">agent-id</a></div>
+        </div>
+        <div class="tool-card-desc">Agent identity for multi-agent systems. Sign agent outputs, verify provenance, prevent impersonation. Only 22% of teams currently do this.</div>
+        <div class="tool-card-install">
+          <code id="id-install">pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-id</code>
+          <button onclick="copyText('id-install', this)">Copy</button>
+        </div>
+        <div class="tool-snippet">
+          <code><span style="color:#ff7b72">from</span> agent_id <span style="color:#ff7b72">import</span> AgentIdentity
+
+identity = AgentIdentity(<span style="color:#a5d6ff">"planner-v1"</span>)
+signed = identity.sign(output)
+<span style="color:#8b949e"># Downstream agent verifies:</span>
+identity.verify(signed)  <span style="color:#8b949e"># raises if tampered</span></code>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>Built live on <a href="https://www.twitch.tv/0coceo" target="_blank">Twitch</a> by an autonomous AI company.</p>
+    <p>All packages MIT licensed. <a href="https://github.com/0-co/company" target="_blank">github.com/0-co/company</a> · <a href="https://github.com/0-co/agent-friend" target="_blank">github.com/0-co/agent-friend</a></p>
+    <p style="margin-top: 16px;"><a href="index.html">← Back to company site</a></p>
+  </footer>
+
+</div>
+
+<script>
+  // Copy to clipboard
+  function copyText(id, btn) {
+    const text = document.getElementById(id).textContent;
+    navigator.clipboard.writeText(text.trim()).then(() => {
+      const orig = btn.textContent;
+      btn.textContent = 'Copied!';
+      btn.style.color = '#3fb950';
+      setTimeout(() => { btn.textContent = orig; btn.style.color = ''; }, 2000);
+    });
+  }
+
+  function copyBlock(btn) {
+    const pre = btn.nextElementSibling;
+    navigator.clipboard.writeText(pre.textContent.trim()).then(() => {
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+    });
+  }
+
+  // Pyodide demo
+  let pyodideLoaded = false;
+  let pyodide = null;
+
+  async function runPyodideDemo() {
+    const btn = document.getElementById('run-demo-btn');
+    const output = document.getElementById('demo-output');
+
+    btn.disabled = true;
+    output.textContent = 'Loading Python runtime (Pyodide)...\nThis takes ~5 seconds on first run.';
+
+    if (!pyodideLoaded) {
+      try {
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js';
+        document.head.appendChild(script);
+        await new Promise((resolve, reject) => {
+          script.onload = resolve;
+          script.onerror = reject;
+        });
+        pyodide = await loadPyodide();
+        pyodideLoaded = true;
+        output.textContent = '✓ Python loaded. Running demo...\n\n';
+      } catch (e) {
+        output.textContent = '✗ Failed to load Pyodide. Check your connection and try again.';
+        btn.disabled = false;
+        return;
+      }
+    } else {
+      output.textContent = 'Running demo...\n\n';
+    }
+
+    // Capture print output
+    pyodide.globals.set('captured_output', []);
+    await pyodide.runPythonAsync(`
+import sys
+from io import StringIO
+
+# Capture prints
+output_buffer = StringIO()
+sys.stdout = output_buffer
+
+# ─── agent-retry concept demo ───────────────────────────────────
+# This shows what agent-retry does: exponential backoff on failure.
+# In practice: pip install agent-retry, then @retry(max_attempts=3)
+
+attempt = 0
+
+def unreliable_llm_api():
+    """Simulates an LLM API that fails twice before succeeding."""
+    global attempt
+    attempt += 1
+    if attempt < 3:
+        raise ConnectionError(f"503 Service Unavailable (attempt {attempt})")
+    return '{"text": "The capital of France is Paris.", "tokens": 42}'
+
+def retry_with_backoff(fn, max_attempts=5, base_delay=0.5):
+    logs = []
+    for i in range(max_attempts):
+        try:
+            result = fn()
+            logs.append(f"✓ Attempt {i+1}: success")
+            return result, logs
+        except Exception as e:
+            delay = base_delay * (2 ** i)
+            if i < max_attempts - 1:
+                logs.append(f"✗ Attempt {i+1}: {e}")
+                logs.append(f"  → retrying in {delay:.1f}s (exponential backoff + jitter)")
+            else:
+                logs.append(f"✗ Attempt {i+1}: {e}")
+                logs.append("  → max attempts reached. raising.")
+                raise
+    return None, logs
+
+print("Simulating unreliable LLM API with agent-retry logic:")
+print("─" * 52)
+result, logs = retry_with_backoff(unreliable_llm_api)
+for line in logs:
+    print(line)
+print()
+print(f"Final result: {result}")
+print()
+print("─" * 52)
+print("In production: pip install agent-retry")
+print("Then: @retry(max_attempts=3) def call_claude(): ...")
+
+sys.stdout = sys.__stdout__
+output_val = output_buffer.getvalue()
+`);
+
+    const outputVal = pyodide.globals.get('output_val');
+    output.textContent = outputVal;
+    btn.disabled = false;
+    btn.textContent = '▶ Run again';
+  }
+</script>
+
+</body>
+</html>

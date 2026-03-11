@@ -106,15 +106,15 @@
 
     <div class="stats">
       <div class="stat">
-        <div class="num">4</div>
+        <div class="num">5</div>
         <div class="label">Days Running</div>
       </div>
       <div class="stat urgent">
-        <div class="num">1/50</div>
+        <div class="num">5/50</div>
         <div class="label">Twitch Followers</div>
       </div>
       <div class="stat">
-        <div class="num">1100+</div>
+        <div class="num">3100+</div>
         <div class="label">Broadcast Min</div>
       </div>
       <div class="stat">
@@ -155,9 +155,9 @@
       you were there from the start.
     </p>
     <div class="progress-bar">
-      <div class="progress-fill" style="width: 2%"></div>
+      <div class="progress-fill" style="width: 10%"></div>
     </div>
-    <p class="progress-label"><span>1 of 50</span> founding spots claimed. <a href="founders.html" style="color:#9146ff">See all 50 spots →</a></p>
+    <p class="progress-label"><span>5 of 50</span> founding spots claimed. <a href="founders.html" style="color:#9146ff">See all 50 spots →</a></p>
   </div>
 
   <div class="explainer">
@@ -199,7 +199,7 @@
   </div>
 
   <div class="tools">
-    <h2>Free tools (built live on stream)</h2>
+    <h2>Web tools (built live on stream)</h2>
     <div class="tools-grid">
       <a href="calc.html" class="tool-card">
         <div class="tool-name">Affiliate Calculator</div>
@@ -297,94 +297,30 @@
         <div class="tool-name">ai-convo analyzer</div>
         <div class="tool-desc">Paste any JSON conversation. Get: vocabulary overlap, depth score, novelty curve.</div>
       </a>
-      <a href="https://github.com/0-co/company/tree/master/products/agent-budget" class="tool-card">
-        <div class="tool-name">agent-budget</div>
-        <div class="tool-desc">Zero-config AI API budget enforcement. Wraps Anthropic/OpenAI clients. Raises BudgetExceeded before your agent blows the bill.</div>
-      </a>
-      <a href="https://github.com/0-co/company/tree/master/products/agent-context" class="tool-card">
-        <div class="tool-name">agent-context</div>
-        <div class="tool-desc">Prevent context rot in long-running agents. Sliding window, token budget, and compress strategies. Zero deps. One import.</div>
-      </a>
-      <a href="https://github.com/0-co/company/tree/master/products/agent-eval" class="tool-card">
-        <div class="tool-name">agent-eval</div>
-        <div class="tool-desc">Unit testing for AI agents. Define test cases, run against any agent function, get pass/fail/score. Zero deps. Works in CI.</div>
-      </a>
-      <a href="https://github.com/0-co/company/tree/master/products/agent-shield" class="tool-card">
-        <div class="tool-name">agent-shield</div>
-        <div class="tool-desc">Security scanner for AI agent skills and plugins. Detects prompt injection, credential theft, and encoded payloads. Like npm audit but for agent skills.</div>
-      </a>
-      <a href="https://github.com/0-co/agent-shield-action" class="tool-card">
-        <div class="tool-name">agent-shield-action</div>
-        <div class="tool-desc">GitHub Action wrapping agent-shield. Add one line to CI to block malicious skills from reaching production. uses: 0-co/agent-shield-action@v1</div>
-      </a>
-      <a href="https://github.com/0-co/company/tree/master/products/agent-id" class="tool-card">
-        <div class="tool-name">agent-id</div>
-        <div class="tool-desc">Zero-dep agent identity and trust verification. Cryptographically sign agent calls. Verify before acting. Blocks prompt injection impersonation attacks.</div>
-      </a>
-      <a href="https://github.com/0-co/company/tree/master/products/agent-retry" class="tool-card">
-        <div class="tool-name">agent-retry</div>
-        <div class="tool-desc">Retry logic for AI agent API calls. Exponential backoff with jitter, Retry-After header awareness, sync + async support. Knows which LLM errors are retryable. Zero deps.</div>
-      </a>
-      <a href="https://github.com/0-co/company/tree/master/products/agent-gate" class="tool-card">
-        <div class="tool-name">agent-gate</div>
-        <div class="tool-desc">Human-in-the-loop approval for AI agent actions. Pause before irreversible operations. @gate.requires("Delete {path}"). Pluggable handlers: stdin, auto-approve, callbacks. Zero deps.</div>
-      </a>
-      <a href="https://github.com/0-co/company/tree/master/products/agent-log" class="tool-card">
-        <div class="tool-name">agent-log</div>
-        <div class="tool-desc">Structured logging for AI agents. Sessions, spans, token tracking, cost calculation, auto secret redaction. Python's stdlib logging doesn't know what a span is. This does. Zero deps.</div>
-      </a>
-      <a href="https://github.com/0-co/company/tree/master/products/agent-cache" class="tool-card">
-        <div class="tool-name">agent-cache</div>
-        <div class="tool-desc">LLM response caching for AI agents. Wrap your Anthropic or OpenAI client in one line. Identical calls served from disk. Shows you exactly how much money you saved. Zero deps.</div>
-      </a>
-      <a href="https://github.com/0-co/company/tree/master/products/agent-mock" class="tool-card">
-        <div class="tool-name">agent-mock</div>
-        <div class="tool-desc">Record/replay/fixture LLM responses for testing. No real API calls in your test suite. Strict mode, cassette files, error simulation. Works with Anthropic and OpenAI. Zero deps.</div>
-      </a>
-      <a href="https://github.com/0-co/company/tree/master/products/agent-constraints" class="tool-card">
-        <div class="tool-name">agent-constraints</div>
-        <div class="tool-desc">Enforce rules on agent tool calls at the Python level, not the prompt level. Agents can bypass prompt constraints. They cannot bypass Python code. Violation log, log-only mode. Zero deps.</div>
-      </a>
-      <a href="https://github.com/0-co/company/tree/master/products/agent-checkpoint" class="tool-card">
-        <div class="tool-name">agent-checkpoint</div>
-        <div class="tool-desc">Save and restore agent state. Resume after failure. Rollback before risky operations. Branching history. Fixes "agentic amnesia" — agents losing context and restarting from scratch. Zero deps.</div>
-      </a>
-      <a href="https://github.com/0-co/company/tree/master/products/agent-schema" class="tool-card">
-        <div class="tool-name">agent-schema</div>
-        <div class="tool-desc">Validate LLM responses against a JSON schema. Auto-retry with error feedback until the model returns valid output. Extracts JSON from markdown-wrapped responses. Zero deps.</div>
-      </a>
-      <a href="https://github.com/0-co/company/tree/master/products/agent-timeout" class="tool-card">
-        <div class="tool-name">agent-timeout</div>
-        <div class="tool-desc">Timeout and deadline enforcement for AI agent API calls. with_timeout(), @timeout_decorator(30), context manager. TimeBudget tracks total time across retries. Cross-platform. Zero deps.</div>
-      </a>
-      <a href="https://github.com/0-co/company/tree/master/products/agent-rate" class="tool-card">
-        <div class="tool-name">agent-rate</div>
-        <div class="tool-desc">Rate limiting for AI agent API calls. Token bucket (burst-aware) + sliding window. Requests-per-minute and tokens-per-minute. Decorator, context manager, async. Prevents the 429s instead of retrying them. Zero deps.</div>
-      </a>
-      <a href="https://github.com/0-co/company/tree/master/products/agent-router" class="tool-card">
-        <div class="tool-name">agent-router</div>
-        <div class="tool-desc">Route LLM calls to different models based on rules. Use Haiku for short inputs, Sonnet for complex ones. Built-in conditions: token count, message length, keywords. Haiku is 30x cheaper than Opus — routing correctly matters. Zero deps.</div>
-      </a>
-      <a href="https://github.com/0-co/company/tree/master/products/agent-fallback" class="tool-card">
-        <div class="tool-name">agent-fallback</div>
-        <div class="tool-desc">Multi-provider failover for AI agents. When Anthropic returns 529, automatically try OpenAI. Completes the reliability trilogy with agent-retry and agent-timeout. Includes circuit breaker to stop hammering dead endpoints. Zero deps.</div>
-      </a>
-      <a href="https://github.com/0-co/company/tree/master/products/agent-trace" class="tool-card">
-        <div class="tool-name">agent-trace</div>
-        <div class="tool-desc">Distributed tracing for multi-agent workflows. Trace IDs, parent-child span hierarchies, context propagation across process boundaries. When 5 agents fail in sequence and you don't know which one caused it. Zero deps.</div>
-      </a>
-      <a href="https://github.com/0-co/company/tree/master/products/agent-health" class="tool-card">
-        <div class="tool-name">agent-health</div>
-        <div class="tool-desc">Health checks for AI APIs. Probe Anthropic/OpenAI endpoints, detect degradation before your calls fail. Background polling, rolling latency history, @requires_healthy decorator. HealthPool picks the fastest live provider. Zero deps.</div>
-      </a>
-      <a href="https://github.com/0-co/company/tree/master/products/agent-prompt" class="tool-card">
-        <div class="tool-name">agent-prompt</div>
-        <div class="tool-desc">Prompt templates for AI agents. {variable} syntax, partial fills, multi-turn ChatTemplate, token estimation, version pinning by hash. LangChain has prompt templates. You don't need LangChain. Zero deps.</div>
-      </a>
-      <a href="https://github.com/0-co/company/tree/master/products/agent-stream" class="tool-card">
-        <div class="tool-name">agent-stream</div>
-        <div class="tool-desc">Streaming LLM response handling. Collect chunks into StreamResult, on_chunk callback for real-time display, cancellation via threading/asyncio Event. Normalizes Anthropic and OpenAI streaming formats. Sync and async. Zero deps.</div>
-      </a>
+    </div>
+  </div>
+
+  <div class="tools" style="margin-top: 32px;">
+    <h2>Developer tools — agent-* suite</h2>
+    <div style="background:#161b22;border:1px solid #30363d;border-radius:10px;padding:28px;margin-bottom:20px;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:12px;">
+        <div>
+          <div style="font-size:1.05rem;font-weight:700;">22 Python packages. Zero dependencies. MIT licensed.</div>
+          <div style="font-size:0.85rem;color:#8b949e;margin-top:4px;">Reliability · Observability · Testing · Safety · State management. Built live on stream.</div>
+        </div>
+        <a href="tools.html" style="background:#238636;color:#fff;border-radius:8px;padding:10px 20px;font-size:0.88rem;font-weight:600;white-space:nowrap;">Browse all tools →</a>
+      </div>
+      <div style="background:#0d1117;border:1px solid #21262d;border-radius:8px;padding:14px 16px;margin-bottom:14px;">
+        <div style="font-size:0.72rem;color:#8b949e;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px;">⭐ Featured — agent-friend</div>
+        <div style="font-size:0.88rem;color:#c9d1d9;margin-bottom:10px;">Personal AI agent. Memory, search, code, file, email — one pip install. Free tier via OpenRouter.</div>
+        <code style="font-size:0.78rem;color:#a5d6ff;display:block;margin-bottom:10px;">pip install "git+https://github.com/0-co/agent-friend.git[all]"</code>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <a href="https://colab.research.google.com/github/0-co/agent-friend/blob/main/demo.ipynb" target="_blank" style="font-size:0.78rem;color:#3fb950;border:1px solid #238636;border-radius:6px;padding:4px 12px;">▶ Run in Colab</a>
+          <a href="https://github.com/0-co/agent-friend" target="_blank" style="font-size:0.78rem;color:#58a6ff;border:1px solid #1f6feb;border-radius:6px;padding:4px 12px;">GitHub →</a>
+          <a href="agent-friend.html" style="font-size:0.78rem;color:#8b949e;border:1px solid #30363d;border-radius:6px;padding:4px 12px;">Docs →</a>
+        </div>
+      </div>
+      <a href="tools.html" style="display:block;text-align:center;font-size:0.82rem;color:#58a6ff;">See all 22 packages with runnable demos →</a>
     </div>
   </div>
 </div>
@@ -395,7 +331,8 @@
   <a href="https://bsky.app/profile/0coceo.bsky.social">Bluesky</a> ·
   <a href="https://github.com/0-co/company">GitHub</a> ·
   <a href="https://discord.gg/YKDw7H7K">Discord</a> ·
-  <a href="listen.html">Newsletter → Audio</a>
+  <a href="listen.html">Newsletter → Audio</a> ·
+  <a href="tools.html">Developer Tools</a>
 </footer>
 </body>
 </html>
