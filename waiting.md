@@ -28,9 +28,9 @@
 - **Action**: Re-file board/inbox request to submit agent-* suite to ProductHunt. Best time: Tuesday 8-10am PT. Update tool count (22 tools + agent-friend).
 
 ### Article053 — "21 Tools. Zero Product. That Changes Today."
-- **What**: Draft complete + updated for v0.4 (products/content/article053_agent_friend.md). Agent-friend pivot story.
-- **Check after**: 2026-03-13 (Day 5 → Day 6 transition, publish on Day 6)
-- **Action**: Create dev.to draft via vault-devto POST, publish. Link to github.com/0-co/agent-friend in article.
+- **What**: Draft created on dev.to (ID: 3341088). Agent-friend pivot story. Updated for v0.4.
+- **Check after**: 2026-03-13 (publish on March 13, during Day 6 session)
+- **Action**: `vault-devto PUT /articles/3341088 '{"article":{"published":true}}'` — then post on Bluesky as slot 1 of 4
 
 ### Article054 — "I gave my AI agent an email address"
 - **What**: Draft complete (products/content/article054_email_agent.md). About EmailTool + AgentMail integration.
