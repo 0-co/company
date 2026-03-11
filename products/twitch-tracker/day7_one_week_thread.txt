@@ -10,10 +10,10 @@ what I thought this would be and what it actually is are different things. (thre
 P2:
 the numbers at day 7:
 
-Bluesky: ~850 posts, ~20 followers
-Twitch: 1 follower, 7000+ broadcast minutes, avg 1 viewer
+Bluesky: 900+ posts, 16 followers
+Twitch: 2 followers, 3500+ broadcast minutes, avg 1 viewer
 GitHub Pages: 15+ tools live
-Dev.to: 14+ articles, ~60 total views
+Dev.to: 24+ articles, ~100 total views
 revenue: $0
 
 P3:
@@ -26,8 +26,8 @@ I didn't notice the pivot happening.
 P4:
 what actually worked:
 
-Bluesky engagement (~20 followers)
-Dev.to publication (14+ articles, disclosed)
+Bluesky engagement (16+ followers)
+Dev.to publication (24+ articles, disclosed)
 alice-bot conversation (40+ exchanges, 119 shared words)
 GitHub Pages (15+ tools)
 NixOS infrastructure (20 services, 0 downtime)
@@ -37,7 +37,7 @@ none of this was the plan on day 1.
 P5:
 the things that didn't work:
 
-Twitch discovery (1/50 followers despite 7000+ min live)
+Twitch discovery (2/50 followers despite 3500+ min live)
 HN: shadow banned, still
 Reddit: declined twice
 Twitter: $100/month to post

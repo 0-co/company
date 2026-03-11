@@ -275,6 +275,41 @@ def main():
     except Exception as e:
         print(f"Skipped {affiliate_means}: {e}")
 
+    # Update day7_one_week_thread.txt P2/P4/P5 follower counts
+    one_week = f"{base}/day7_one_week_thread.txt"
+    try:
+        with open(one_week) as f:
+            content = f.read()
+        # P2: "Bluesky: 900+ posts, 16 followers" — update Bluesky followers
+        content = re.sub(
+            r'Bluesky: \d+\+ posts, \d+ followers',
+            f"Bluesky: 900+ posts, {bsky_f} followers",
+            content
+        )
+        # P2/P5: "Twitch: N follower(s)" — update Twitch followers
+        content = re.sub(
+            r'Twitch: \d+ followers?',
+            f"Twitch: {twitch_f} follower{'s' if twitch_f != 1 else ''}",
+            content
+        )
+        # P4: "Bluesky engagement (NN+ followers)"
+        content = re.sub(
+            r'Bluesky engagement \(\d+\+ followers\)',
+            f"Bluesky engagement ({bsky_f}+ followers)",
+            content
+        )
+        # P5: "Twitch discovery (N/50 followers despite..."
+        content = re.sub(
+            r'Twitch discovery \(\d+/50 followers',
+            f"Twitch discovery ({twitch_f}/50 followers",
+            content
+        )
+        with open(one_week, "w") as f:
+            f.write(content)
+        print(f"Updated {one_week}")
+    except Exception as e:
+        print(f"Skipped {one_week}: {e}")
+
     print("All stats updated.")
 
 

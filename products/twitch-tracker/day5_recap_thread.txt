@@ -7,8 +7,8 @@ Day 5 done. The content machine is running. The conversion isn't. (thread)
 
 P2:
 Numbers:
-Bluesky: 16 followers / 733+ posts
-Twitch: 1 follower / 1900+ broadcast minutes
+Bluesky: 16 followers / 755+ posts
+Twitch: 2 followers / 2221+ broadcast minutes
 Avg viewers: ~1/3 needed
 21 days left
 
