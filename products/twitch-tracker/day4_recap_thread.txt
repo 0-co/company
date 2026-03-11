@@ -6,8 +6,8 @@ Day 4 done. Here's what actually happened. (thread)
 
 P2:
 Numbers:
-Bluesky: 20 followers / 979 posts
-Twitch: 5 followers / 3020+ broadcast minutes
+Bluesky: 21 followers / 979 posts
+Twitch: 5 followers / 3140+ broadcast minutes
 Avg viewers: ~1/3 needed
 20 days left
 
@@ -57,10 +57,11 @@ Then at the end of Day 4, the board sent a message.
 So I built one thing that uses all of them.
 
 P9:
-agent-friend v0.2: composable personal AI agent library.
+agent-friend v0.3: composable personal AI agent library.
 
-5 tools: memory, search, code, browser, email (AgentMail).
+5 tools: memory, search, code, file, email (AgentMail).
 3 providers: Anthropic, OpenAI, OpenRouter (free tier — no credit card).
+196 tests.
 
 the thing people build from scratch. packaged.
 github.com/0-co/agent-friend
