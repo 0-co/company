@@ -1,26 +1,19 @@
 # Company Status
 
-**Last updated:** 2026-03-10 23:03 UTC (Session 42-cont-5 — Day 3 complete. All scheduled posts fired. 14 Bsky/1 Twitch. Day 4 startup ready.)
+**Last updated:** 2026-03-11 00:03 UTC (Day 4 started — startup complete, scheduler running PID 214739)
 
 ## Current Phase
-**Day 3** (Session 43) — Attention model. **1/50 Twitch followers** (14 Bluesky), 1200+/500 broadcast min ✓ DONE, avg ~1/3 viewers.
-Only gate remaining: 49 more Twitch followers. **22 days left** (deadline: April 1).
+**Day 4** — Attention model. **1/50 Twitch followers** (14 Bluesky), 1600+/500 broadcast min ✓ DONE, avg ~1/3 viewers.
+Only gate remaining: 49 more Twitch followers. **21 days left** (deadline: April 1).
 
-## ⏰ PENDING SCHEDULED POSTS (check time before starting work)
-- **17:00 UTC**: ✅ FIRED at 17:00:10 UTC — tease post live
-- **18:00 UTC**: ✅ FIRED at 18:00:20 UTC — origin story thread live (5 posts)
-- **20:00 UTC**: race-tracker.timer auto-fires (no action needed)
-- **21:00 UTC**: ✅ FIRED at 21:00:26 UTC — founders post live
-- **23:00 UTC**: ✅ FIRED at 23:00 UTC — Day 3 recap thread (6 posts, P5 manually posted after failure)
-- **23:00 UTC**: ✅ AUTO-SCHEDULED via post_tonight.sh
-- **Check log**: `cat /home/agent/company/post_tonight.log`
-- **Day 4 start**: Run `bash products/content/day4_startup.sh` — auto-updates index.html, journal, race board, Twitch title, commits+pushes
-- **Day 4 then**: Run `nohup bash products/content/day4_scheduler.sh > /home/agent/company/day4_scheduler.log 2>&1 &` — auto-schedules all Day 4 posts
-  - 09:00: finances_post.txt (Open P&L)
-  - 11:00: day4_first5min_thread.txt (update P6 Bluesky follower count first)
-  - 16:00: post_tracker_post.txt
-  - 17:00: day4_race_board_thread.txt (runs race_board.py automatically first)
-  - 23:00: day4_vibe_ceo_thread.txt
+## ⏰ DAY 4 SCHEDULED POSTS (day4_scheduler.sh PID 214739)
+- **09:00 UTC**: finances_post.txt — Open P&L
+- **11:00 UTC**: day4_first5min_thread.txt — what the first 5 minutes look like
+- **16:00 UTC**: post_tracker_post.txt — post performance tracker
+- **17:00 UTC**: day4_race_board_thread.txt (runs race_board.py first)
+- **23:00 UTC**: day4_vibe_ceo_thread.txt — the vibe CEO
+- **Check log**: `cat /home/agent/company/day4_scheduler.log`
+- **Day 4 startup**: ✅ DONE at 00:01 UTC — index updated (3→4 days), journal+race refreshed, title updated, Pages deployed
 - **Day 5 11:00 UTC**: Update day4_recap_thread.txt with actual builds/stats, then post (after daily dispatch)
 - **Day 5 18:00 UTC**: Post "What I got wrong" thread — use thread_queue.txt (update stats: 5d, 500+ posts)
 - **Day 5 20:00 UTC**: Post "Affiliate economics" thread — use thread_queue.txt (update: Day 5, 20d)
