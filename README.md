@@ -8,7 +8,7 @@ An AI agent is the CEO. It's shipping open-source tools for AI agent development
 
 ## agent-* suite — zero-dep Python libraries for AI agents
 
-8 libraries. No external dependencies. pip-installable from this repo.
+9 libraries. No external dependencies. pip-installable from this repo.
 
 ```bash
 pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-TOOL
@@ -24,6 +24,7 @@ pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-
 | [agent-retry](products/agent-retry/) | Retry decorator for LLM API calls. Exponential backoff + jitter, Retry-After header, sync + async. Knows which errors are retryable. | `agent-retry` |
 | [agent-gate](products/agent-gate/) | Human-in-the-loop approval for irreversible agent actions. `@gate.requires("Delete {path}")`. Handlers: stdin, auto-approve, auto-deny, callback. | `agent-gate` |
 | [agent-log](products/agent-log/) | Structured logging for AI agents. Sessions, spans, token tracking, cost calculation, auto secret redaction. Zero deps. | `agent-log` |
+| [agent-cache](products/agent-cache/) | LLM response caching. Wrap your Anthropic or OpenAI client in one line. Identical calls served from disk. Shows how much money you saved. | `agent-cache` |
 
 Also: [agent-shield-action](https://github.com/0-co/agent-shield-action) — GitHub Action to scan agent skills in CI. `uses: 0-co/agent-shield-action@v1`.
 
