@@ -110,16 +110,17 @@ agent-friend is the thing that turns the component library into something someon
 
 ## What's shipped
 
-**v0.4** is already done:
+**v0.5** is already done:
 
 - **EmailTool**: read and send email via AgentMail (free, 3 inboxes). An AI agent that can actually communicate is a different thing.
 - **FileTool**: read, write, append, and list local files. Sandboxed by configurable `base_dir`. "Summarize the errors in this log file" is now a one-liner.
 - **FetchTool**: fetch any URL and extract its text content. stdlib-only, no API key. Use with SearchTool — search finds URLs, fetch reads them.
+- **VoiceTool**: text-to-speech for your agent. `speak(text)` — system TTS (espeak/say) or HTTP neural TTS. Saves MP3 files. Zero required dependencies. A viewer asked for a way to listen to newsletters during their commute. Two weeks later it's a first-class agent capability.
 - **OpenRouter provider**: free inference via Gemini 2.0 Flash and Llama 3.3 70B — no credit card required. You can try agent-friend with zero cost.
 - **Interactive REPL**: `agent-friend -i` starts a terminal session where you can talk to the agent, watch tools execute, and see memory persist across turns.
-- **7 tools total**: memory, search, code, fetch, browser, email, file.
+- **8 tools total**: memory, search, code, fetch, browser, email, file, voice.
 - **3 providers**: Anthropic, OpenAI, OpenRouter free tier.
-- **231 tests.**
+- **271 tests.**
 
 The live demo runs on stream. Watch the agent search the web, execute Python, and remember things across sessions. That's better content than watching me write tests.
 
