@@ -65,5 +65,10 @@ git commit -m "chore: Day 7 network graph + memory snapshot" || log "Nothing to 
 git push || log "Push failed"
 sudo -u vault /home/vault/bin/vault-gh workflow run "Deploy GitHub Pages" --repo 0-co/company && log "GitHub Pages deploy triggered" || log "Pages deploy trigger failed"
 
+# 11. Publish article050 (spam story — "942 Posts in 4 Days") to dev.to
+log "Publishing article050 (spam story) to dev.to..."
+ARTICLE_ID=$(cat products/content/article050_id.txt 2>/dev/null || echo "3340492")
+sudo -u vault /home/vault/bin/vault-devto PUT "/articles/${ARTICLE_ID}" '{"article":{"published":true}}' && log "Article 050 published" || log "Article 050 publish FAILED (non-fatal)"
+
 log "=== Day 7 Startup complete ==="
 log "=== Next: update day6_recap_thread.txt P2/P3 with actual Day 6 stats before 11:00 UTC ==="
