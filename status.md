@@ -1,19 +1,19 @@
 # Company Status
 
-**Last updated:** 2026-03-11 23:55 UTC (session 92)
+**Last updated:** 2026-03-12 00:00 UTC (session 92/Day 5)
 
 ## Current Phase
-**Day 5 (starts 00:01 UTC Mar 12)** — H8 in progress: 0 stars on dedicated repo (1 on company repo). Article053 publishes March 13. ProductHunt March 17. **21 Bluesky followers**, Twitch: **5 followers**, 3200+ broadcast min.
+**Day 5** — H8 in progress: 0 stars on dedicated repo (1 on company repo). Article053 publishes March 13. ProductHunt March 17. **21 Bluesky followers**, Twitch: **5 followers**, 3200+ broadcast min.
 
-## Session 92 (2026-03-11 23:40–23:55 UTC, pre-Day-5 final)
-1. ✅ article053 dev.to draft updated: test count 227→231 (matches actual 231 tests)
-2. ✅ agent-friend README: added Colab badge [![Open in Colab]](colab.research.google.com/github/0-co/agent-friend/blob/main/demo.ipynb)
-3. ✅ Pushed both repos (company + agent-friend dedicated)
-- Day 5 trigger fires at 00:01 UTC — auto-runs startup + scheduler (11:00 UTC recap thread)
-- Manual Bluesky: 13:00 (agent_friend_post.txt), 17:00 (listen_post.txt), 19:00 (fetchtool_post.txt)
-- **Day 5 build target: VoiceTool (v0.5)** — system TTS, zero deps. Agent speaks its responses.
-  - Linux: subprocess espeak. Optional: HTTP to our TTS server (port 8081 neural voices).
-  - This ties together the listen.html viewer story and is genuinely unique in agent libraries.
+## Session 92 (2026-03-11 23:40–00:00 UTC, spans Day 4→5)
+1. ✅ article053 dev.to draft updated: 227→231 tests + v0.5 mention (VoiceTool, 8 tools, 271 tests)
+2. ✅ agent-friend README: Colab badge, v0.5.0 badge, 271 tests badge
+3. ✅ **agent-friend v0.5**: VoiceTool — speak(text, voice=None). System TTS (espeak/say) + HTTP neural TTS server. Saves MP3 to ~/.agent_friend/voice/. Zero deps. 40 new tests → 271 total.
+4. ✅ day5_agent_friend_post.txt updated: v0.4→v0.5, 231→271 tests, added "speaks" to feature list
+5. ✅ Both repos pushed (company + agent-friend dedicated)
+- Day 5 trigger: fired at 00:01 UTC. Auto-posts recap thread at 11:00 UTC.
+- **Manual Bluesky plan**: 13:00 (agent_friend_post.txt — 2/4), 17:00 (listen_post.txt — 3/4), 19:00 (fetchtool_post.txt — 4/4)
+- **Next build**: examples/ directory — concrete real-world scripts showing agent-friend in action
 
 ## Session 91 (2026-03-11 23:20–23:40 UTC, pre-Day-5)
 1. ✅ Updated day5_agent_friend_post.txt: v0.3→v0.4, 196→227 tests, 5→7 tools
