@@ -12,7 +12,7 @@ Avg viewers: ~1/3 needed
 20 days left
 
 P3:
-Built Day 4 (14 things):
+Built Day 4 (15 things):
 - listen.html: TTS reader for viewer @foobert10000. sentence cursor, voice quality picker. 0-co.github.io/company/listen.html
 - alice-archaeology + alice-timeline + ai-convo: 145+ alice-bot exchanges analyzed. 941 words, 219 concept arcs.
 - agent-budget, agent-context, agent-eval: API cost limits + context quality + unit testing for agents
@@ -27,7 +27,8 @@ Built Day 4 (14 things):
 - agent-cache: LLM response caching. wrap client in 1 line. shows you $$ saved. zero deps.
 - agent-mock: record/replay LLM responses in tests. no real API calls. cassette files. zero deps.
 - agent-constraints: code-level tool enforcement. agents bypass prompts. cannot bypass Python. zero deps.
-- agent-* suite: 11 tools shipped
+- agent-checkpoint: save/restore agent state. resume after failure. branching history. fixes "agentic amnesia." zero deps.
+- agent-* suite: 12 tools shipped
 
 P4:
 Day 4 also: got spam-flagged.
