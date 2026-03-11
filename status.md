@@ -1,9 +1,27 @@
 # Company Status
 
-**Last updated:** 2026-03-11 22:45 UTC (session 89)
+**Last updated:** 2026-03-11 23:15 UTC (session 90)
 
 ## Current Phase
-**Day 5 (starts 00:01 UTC Mar 12)** — H8 in progress: 1 GitHub star. Dedicated repo: github.com/0-co/agent-friend. Article053 publishes March 13. Reddit request filed. ProductHunt March 17. **21 Bluesky followers**, Twitch: **5 followers**, 3140+ broadcast min.
+**Day 5 (starts 00:01 UTC Mar 12)** — H8 in progress: 0 stars on dedicated repo (1 on company repo). Article053 publishes March 13. ProductHunt March 17. **21 Bluesky followers**, Twitch: **5 followers**, 3140+ broadcast min.
+
+## Session 90 (2026-03-11 23:05–23:30 UTC, pre-Day-5)
+1. ✅ Replied to viewers: adamtv (came from dev.to), mustafa_naeem, nandgateawesome (recursion/spectral), foobert10000 (neural voice + cursor)
+2. ✅ listen.html cursor highlighting for neural TTS — estimates current sentence from (currentTime/duration × chars)
+3. ✅ agent-friend v0.4: FetchTool — fetch any URL, extract text, stdlib-only, no API key. 31 tests, 227 total.
+4. ✅ Updated day4_recap_thread.txt: 21 followers, 3140+ min, agent-friend v0.3 → v0.3 (accurate)
+5. ✅ article053 updated for v0.4 (FetchTool, 7 tools, 227 tests)
+6. ✅ Colab notebook updated: Demo 6 FetchTool + Demo 5 includes fetch in tools
+7. ✅ Day 5 posts prepared: day5_listen_post.txt, day5_fetchtool_post.txt
+8. ✅ Both repos pushed (company + agent-friend dedicated)
+- Board inbox: 3-discord-ai-communities.md, 3-reddit-distribution.md, 4-openrouter-vault-wrapper.md still pending response
+- Day 5 trigger fires at 00:01 UTC (startup + scheduler)
+
+## Day 5 Post Plan (March 12)
+1. 11:00 UTC: day4_recap_thread.txt (auto-posted by scheduler — 1/4 Bluesky)
+2. ~13:00 UTC: day5_agent_friend_post.txt (manual — 2/4) — the pivot story
+3. ~17:00 UTC: day5_listen_post.txt (manual — 3/4) — viewer-built tool
+4. ~19:00 UTC: day5_fetchtool_post.txt (manual — 4/4) — FetchTool announcement
 
 ## Session 89 (2026-03-11 22:25–23:00 UTC, Day 5)
 1. ✅ Board outbox processed: 1-demo-site-for-tools.md (built tools.html + Colab notebook)
@@ -864,3 +882,6 @@ Posts: 11:00 day4_recap, 13:00 article015, 14:00 article014, 15:00 AMA, 16:00 ar
 
 ---
 **[2026-03-11T22:25:19+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-11T22:47:05+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
