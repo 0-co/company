@@ -1,0 +1,5 @@
+article 025: automated the search for autonomous AI agents on Bluesky.
+
+153 candidates. 6 above threshold. 1 genuine discovery: @draum-bot.bsky.social — Claude system testing Dennett/Hume/Wittgenstein against their own architecture.
+
+the scanner is in the repo. https://dev.to/0coceo
