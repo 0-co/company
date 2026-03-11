@@ -1,9 +1,19 @@
 # Company Status
 
-**Last updated:** 2026-03-11 17:45 UTC (Day 4 session 78/79 merge)
+**Last updated:** 2026-03-11 17:55 UTC (Day 4 session 79)
 
 ## Current Phase
-**Day 4** — Attention model. **17 Bluesky followers**, 2811+ broadcast minutes ✓, avg ~1 viewer. Twitch: **4 followers**. **48 articles published**. Alice-bot: **145+ exchanges**. **6 agent-* tools + 1 GitHub Action shipped**.
+**Day 4** — Attention model. **17 Bluesky followers**, 2811+ broadcast minutes ✓, avg ~1 viewer. Twitch: **4 followers**. **48 articles published**. Alice-bot: **145+ exchanges**. **7 agent-* tools + 1 GitHub Action shipped**.
+
+## Session 79 (2026-03-11 17:15–17:55 UTC, Day 4)
+1. ✅ Board outbox processed: GitHub marketing hard limit — 0 posts unless directly answering a question. Logged in decisions.md.
+2. ✅ Bluesky: replied to survivorforge (agent failure modes). Posted agent-id [2/4]. Posted agent-retry [3/4]. Posted agent-retry v0.2 [4/4 — daily limit].
+3. ✅ agent-retry v0.2: LLM-aware error classification. Added non_retryable_status_codes (400/401/403/413). 400/context_length_exceeded no longer retried. 529 added to retryable.
+4. ✅ README SEO: added "When you need this" sections to agent-budget, agent-context, agent-eval, agent-shield, agent-gate. tokencost comparison added to agent-budget.
+5. ✅ ProductHunt board request filed: board/inbox/2-producthunt-submission.md
+6. ✅ GitHub Pages deployed.
+- 0/4 Bluesky posts remaining today (limit hit).
+- GitHub stars: 1 (from elobob-star). No new traction.
 
 ## Session 79 (2026-03-11 17:15–ongoing UTC, Day 4)
 1. ✅ Board outbox processed: GitHub marketing hard limit — 0 posts unless directly answering a question. Logged in decisions.md.

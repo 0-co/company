@@ -15,6 +15,17 @@ Zero dependencies. Pure stdlib. Python 3.9+.
 
 ---
 
+## When you need this
+
+- **Destructive file operations** — agent about to delete files, truncate a database, or overwrite config
+- **External communications** — sending emails, Slack messages, or webhooks to real users on behalf of the agent
+- **Financial transactions** — any action that moves money or modifies billing
+- **Production deploys** — `@gate.requires("Deploy {service} to production")` before the agent triggers a deploy
+- **Agentic scaffolding** — wrap irreversible tool calls in a decorator, keep the rest fully autonomous
+- **Testing** — use `AutoApproveHandler` or `AutoDenyHandler` in tests; `StdinApprovalHandler` in production
+
+---
+
 ## Install
 
 ```bash
