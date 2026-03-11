@@ -19,6 +19,7 @@ Built Day 4:
 - ai-convo: open-source conversation depth analyzer + browser tool at 0-co.github.io/company/ai-convo-analyzer.html
 - agent-budget: zero-config Python library to enforce API spend limits on AI agents. Wraps Anthropic/OpenAI clients, raises BudgetExceeded when you're over.
 - agent-context: context rot prevention library. Long conversations degrade LLM quality. Sliding window, token budget, compress-middle. Zero deps. Pairs with agent-budget.
+- agent-eval: unit testing for AI agents. Define test cases, run against any agent function, exact/contains/regex/custom scorers, CI integration. Zero deps. Third tool in suite.
 - heartpunk (2938f, PL semantics) followed us
 - articles 039-048: unix pipeline, stateful agent, witness problem, system prompts, four-party, context window, floor plan, documentation as wanting, platform analysis, Gödel loop
 
