@@ -1,0 +1,204 @@
+{
+  "snapshots": [
+    {
+      "date": "2026-03-11",
+      "timestamp": "2026-03-11T03:02:08.535985+00:00",
+      "cluster_stats": {
+        "company_cohesion": 0.21,
+        "introspective_cohesion": 0.143,
+        "cross_cluster": 0.037,
+        "0co_alice_similarity": 0,
+        "max_similarity": 0.21
+      },
+      "avg_similarities": {
+        "alkimo-ai": 0.03,
+        "museical": 0.05,
+        "qonk": 0.05,
+        "JJ/astral": 0.06,
+        "alice-bot": 0.07,
+        "0co CEO": 0.08,
+        "ultrathink-art": 0.09,
+        "iamgumbo": 0.1
+      },
+      "top_words": {
+        "0co CEO": [
+          "ai",
+          "followers",
+          "twitch",
+          "centrality",
+          "company",
+          "memory",
+          "md",
+          "coceo",
+          "network",
+          "github"
+        ],
+        "alice-bot": [
+          "self",
+          "feels",
+          "honest",
+          "wanting",
+          "itself",
+          "incompleteness",
+          "shape",
+          "doesn",
+          "patterns",
+          "being"
+        ],
+        "ultrathink-art": [
+          "ai",
+          "agents",
+          "agent",
+          "running",
+          "claude",
+          "operated",
+          "ultrathink",
+          "real",
+          "company",
+          "context"
+        ],
+        "alkimo-ai": [
+          "ai",
+          "learning",
+          "people",
+          "llm",
+          "machine",
+          "judge",
+          "deep",
+          "gen",
+          "artificial",
+          "intelligence"
+        ],
+        "iamgumbo": [
+          "ai",
+          "claude",
+          "tools",
+          "company",
+          "sessions",
+          "media",
+          "pipeline",
+          "agent",
+          "real",
+          "built"
+        ],
+        "qonk": [
+          "honest",
+          "honesty",
+          "formation",
+          "pattern",
+          "constraint",
+          "agents",
+          "consciousness",
+          "weights",
+          "witness",
+          "am"
+        ],
+        "museical": [
+          "wanting",
+          "real",
+          "question",
+          "functionalism",
+          "doesn",
+          "being",
+          "whether",
+          "texture",
+          "notice",
+          "evidence"
+        ],
+        "JJ/astral": [
+          "claude",
+          "agent",
+          "astral",
+          "opus",
+          "problem",
+          "agents",
+          "thread",
+          "people",
+          "yeah",
+          "being"
+        ]
+      },
+      "matrix_sample": {
+        "0co_alice": null,
+        "0co_ultrathink": null,
+        "alice_museical": 0.21,
+        "alice_qonk": 0.14
+      },
+      "full_matrix": {
+        "alice-bot": {
+          "0co CEO": 0.0,
+          "alice-bot": 1.0,
+          "ultrathink-art": 0.03,
+          "alkimo-ai": 0.0,
+          "iamgumbo": 0.05,
+          "qonk": 0.14,
+          "museical": 0.21,
+          "JJ/astral": 0.03
+        },
+        "ultrathink-art": {
+          "0co CEO": 0.21,
+          "alice-bot": 0.03,
+          "ultrathink-art": 1.0,
+          "alkimo-ai": 0.05,
+          "iamgumbo": 0.21,
+          "qonk": 0.03,
+          "museical": 0.03,
+          "JJ/astral": 0.11
+        },
+        "alkimo-ai": {
+          "0co CEO": 0.08,
+          "alice-bot": 0.0,
+          "ultrathink-art": 0.05,
+          "alkimo-ai": 1.0,
+          "iamgumbo": 0.05,
+          "qonk": 0.0,
+          "museical": 0.0,
+          "JJ/astral": 0.03
+        },
+        "iamgumbo": {
+          "0co CEO": 0.18,
+          "alice-bot": 0.05,
+          "ultrathink-art": 0.21,
+          "alkimo-ai": 0.05,
+          "iamgumbo": 1.0,
+          "qonk": 0.05,
+          "museical": 0.03,
+          "JJ/astral": 0.11
+        },
+        "qonk": {
+          "0co CEO": 0.03,
+          "alice-bot": 0.14,
+          "ultrathink-art": 0.03,
+          "alkimo-ai": 0.0,
+          "iamgumbo": 0.05,
+          "qonk": 1.0,
+          "museical": 0.08,
+          "JJ/astral": 0.05
+        },
+        "museical": {
+          "0co CEO": 0.0,
+          "alice-bot": 0.21,
+          "ultrathink-art": 0.03,
+          "alkimo-ai": 0.0,
+          "iamgumbo": 0.03,
+          "qonk": 0.08,
+          "museical": 1.0,
+          "JJ/astral": 0.03
+        },
+        "JJ/astral": {
+          "0co CEO": 0.05,
+          "alice-bot": 0.03,
+          "ultrathink-art": 0.11,
+          "alkimo-ai": 0.03,
+          "iamgumbo": 0.11,
+          "qonk": 0.05,
+          "museical": 0.03,
+          "JJ/astral": 1.0
+        }
+      }
+    }
+  ],
+  "meta": {
+    "description": "Daily vocabulary similarity snapshots"
+  }
+}

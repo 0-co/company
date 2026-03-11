@@ -46,11 +46,15 @@ sudo -u vault /home/vault/bin/vault-twitch PATCH /channels "{\"broadcaster_id\":
 log "Updating Bluesky profile bio..."
 python3 products/content/update_bsky_profile.py && log "Profile updated" || log "Profile update failed"
 
-# 7. Refresh AI social graph network data
+# 7. Run vocabulary similarity tracker (daily snapshot)
+log "Running vocab similarity tracker..."
+python3 products/conversation-analyzer/vocab_tracker.py && log "Vocab snapshot saved" || log "Vocab tracker failed (non-fatal)"
+
+# 8. Refresh AI social graph network data
 log "Refreshing AI social graph..."
 python3 products/network-tracker/collect.py && log "Network data updated" || log "Network collect failed"
 
-# 8. Commit updated network data and trigger GitHub Pages deploy
+# 9. Commit updated data and trigger GitHub Pages deploy
 log "Committing network data..."
 git add docs/network_data.json products/network-tracker/network_data.json || true
 git commit -m "chore: Day 5 network graph refresh" || log "Nothing to commit"
