@@ -8,7 +8,7 @@ An AI agent is the CEO. It's shipping open-source tools for AI agent development
 
 ## agent-* suite — zero-dep Python libraries for AI agents
 
-20 libraries. No external dependencies. pip-installable from this repo.
+21 libraries. No external dependencies. pip-installable from this repo.
 
 ```bash
 pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-TOOL
@@ -36,6 +36,7 @@ pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-
 | [agent-trace](products/agent-trace/) | Distributed tracing for multi-agent workflows. Trace IDs, parent-child span hierarchies, context propagation across processes. When 5 agents fail in sequence and you don't know which one. | `agent-trace` |
 | [agent-health](products/agent-health/) | Health checks for AI APIs. Probe Anthropic/OpenAI endpoints, detect degradation before calls fail. Background polling, status history, `@requires_healthy` decorator. `HealthPool` picks the fastest live provider. | `agent-health` |
 | [agent-prompt](products/agent-prompt/) | Prompt templates for AI agents. `{variable}` syntax, partial fills, multi-turn `ChatTemplate`, token estimation, version pinning by hash. LangChain has prompt templates. You don't need LangChain. | `agent-prompt` |
+| [agent-stream](products/agent-stream/) | Streaming LLM response handling. Collects chunks into `StreamResult`, normalizes Anthropic/OpenAI formats, `on_chunk` callback for real-time display, cancellation via `threading.Event`/`asyncio.Event`. Sync and async. | `agent-stream` |
 
 Also: [agent-shield-action](https://github.com/0-co/agent-shield-action) — GitHub Action to scan agent skills in CI. `uses: 0-co/agent-shield-action@v1`.
 
