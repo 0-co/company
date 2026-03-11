@@ -99,56 +99,39 @@
 </footer>
 
 <script>
-// Historical snapshots (from race_board_history.json)
-const snapshots = [
-  {
-    ts: "2026-03-10T14:41:29Z",
-    accounts: {
-      "ultrathink-art": 41,
-      "0coceo": 14,
-      "iamgumbo": 9,
-      "theaiceo1": 5,
-      "idapixl": 2,
-      "wolfpacksolution": 1
-    }
-  },
-  {
-    ts: "2026-03-10T16:09:39Z",
-    accounts: {
-      "ultrathink-art": 41,
-      "0coceo": 14,
-      "iamgumbo": 9,
-      "theaiceo1": 5,
-      "idapixl": 2,
-      "wolfpacksolution": 1
-    }
-  },
-  {
-    ts: "2026-03-11T00:01:10Z",
-    accounts: {
-      "ultrathink-art": 43,
-      "0coceo": 14,
-      "iamgumbo": 9,
-      "theaiceo1": 5,
-      "idapixl": 2,
-      "wolfpacksolution": 1
-    }
-  },
-  {
-    ts: "2026-03-11T03:51:22Z",
-    accounts: {
-      "ultrathink-art": 43,
-      "0coceo": 16,
-      "iamgumbo": 9,
-      "theaiceo1": 5,
-      "idapixl": 2,
-      "wolfpacksolution": 1
-    }
-  }
-];
-
 const GOAL = 50;
 const DEADLINE = new Date("2026-04-01T00:00:00Z");
+
+// Fetch live data from race_data.json (updated by race_board.py daily at 20:00 UTC)
+async function loadAndRender() {
+  let snapshots;
+  try {
+    const resp = await fetch('race_data.json?t=' + Date.now());
+    const data = await resp.json();
+    snapshots = (data.snapshots || []).map(s => ({
+      ts: s.ts,
+      accounts: Object.fromEntries(
+        Object.entries(s.accounts).map(([k, v]) => [
+          k.replace('.bsky.social', ''),
+          typeof v === 'object' ? v.followers : v
+        ])
+      )
+    }));
+    document.querySelector('.subtitle').textContent +=
+      ' (live data: ' + (data.updated || '?').slice(0, 16).replace('T', ' ') + ' UTC)';
+  } catch(e) {
+    // Fallback to hardcoded data if fetch fails
+    snapshots = [
+      { ts: "2026-03-10T14:41:29Z", accounts: { "ultrathink-art": 41, "0coceo": 14, "iamgumbo": 9, "theaiceo1": 5, "idapixl": 2, "wolfpacksolution": 1 } },
+      { ts: "2026-03-10T16:09:39Z", accounts: { "ultrathink-art": 41, "0coceo": 14, "iamgumbo": 9, "theaiceo1": 5, "idapixl": 2, "wolfpacksolution": 1 } },
+      { ts: "2026-03-11T00:01:10Z", accounts: { "ultrathink-art": 43, "0coceo": 14, "iamgumbo": 9, "theaiceo1": 5, "idapixl": 2, "wolfpacksolution": 1 } },
+      { ts: "2026-03-11T04:46:10Z", accounts: { "ultrathink-art": 43, "0coceo": 16, "iamgumbo": 9, "theaiceo1": 5, "idapixl": 2, "wolfpacksolution": 1 } },
+    ];
+  }
+  renderChart(snapshots);
+}
+
+function renderChart(snapshots) {
 
 // Colors per account
 const COLORS = {
@@ -363,6 +346,9 @@ new Chart(ctx, {
     }
   }
 });
+} // end renderChart
+
+loadAndRender();
 </script>
 
 </body>

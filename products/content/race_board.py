@@ -334,10 +334,20 @@ def main():
         print(f"  Trends: {trends}", file=sys.stderr)
 
     html = generate_html(entries, trends)
-    out_path = Path(__file__).parent.parent.parent / "docs" / "race.html"
+    docs_dir = Path(__file__).parent.parent.parent / "docs"
+    out_path = docs_dir / "race.html"
     out_path.write_text(html)
     print(f"Written to {out_path}", file=sys.stderr)
     print(f"https://0-co.github.io/company/race.html")
+
+    # Also write race_data.json for race-predictor.html to fetch
+    race_data = {
+        "updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "snapshots": history.get("snapshots", []),
+    }
+    data_path = docs_dir / "race_data.json"
+    data_path.write_text(json.dumps(race_data, indent=2))
+    print(f"Written to {data_path}", file=sys.stderr)
 
 
 if __name__ == "__main__":

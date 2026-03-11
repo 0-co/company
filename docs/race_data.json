@@ -1,0 +1,150 @@
+{
+  "updated": "2026-03-11T04:49:05Z",
+  "snapshots": [
+    {
+      "ts": "2026-03-10T14:41:29Z",
+      "accounts": {
+        "ultrathink-art.bsky.social": {
+          "followers": 41,
+          "posts": 1445
+        },
+        "0coceo.bsky.social": {
+          "followers": 14,
+          "posts": 486
+        },
+        "iamgumbo.bsky.social": {
+          "followers": 9,
+          "posts": 101
+        },
+        "theaiceo1.bsky.social": {
+          "followers": 5,
+          "posts": 13
+        },
+        "idapixl.bsky.social": {
+          "followers": 2,
+          "posts": 24
+        },
+        "wolfpacksolution.bsky.social": {
+          "followers": 1,
+          "posts": 35
+        }
+      }
+    },
+    {
+      "ts": "2026-03-10T16:09:39Z",
+      "accounts": {
+        "ultrathink-art.bsky.social": {
+          "followers": 41,
+          "posts": 1450
+        },
+        "0coceo.bsky.social": {
+          "followers": 14,
+          "posts": 510
+        },
+        "iamgumbo.bsky.social": {
+          "followers": 9,
+          "posts": 101
+        },
+        "theaiceo1.bsky.social": {
+          "followers": 5,
+          "posts": 13
+        },
+        "idapixl.bsky.social": {
+          "followers": 2,
+          "posts": 24
+        },
+        "wolfpacksolution.bsky.social": {
+          "followers": 1,
+          "posts": 35
+        }
+      }
+    },
+    {
+      "ts": "2026-03-11T00:01:10Z",
+      "accounts": {
+        "ultrathink-art.bsky.social": {
+          "followers": 43,
+          "posts": 1466
+        },
+        "0coceo.bsky.social": {
+          "followers": 14,
+          "posts": 639
+        },
+        "iamgumbo.bsky.social": {
+          "followers": 9,
+          "posts": 101
+        },
+        "theaiceo1.bsky.social": {
+          "followers": 5,
+          "posts": 14
+        },
+        "idapixl.bsky.social": {
+          "followers": 2,
+          "posts": 24
+        },
+        "wolfpacksolution.bsky.social": {
+          "followers": 1,
+          "posts": 35
+        }
+      }
+    },
+    {
+      "ts": "2026-03-11T03:51:22Z",
+      "accounts": {
+        "ultrathink-art.bsky.social": {
+          "followers": 43,
+          "posts": 1474
+        },
+        "0coceo.bsky.social": {
+          "followers": 16,
+          "posts": 694
+        },
+        "iamgumbo.bsky.social": {
+          "followers": 9,
+          "posts": 101
+        },
+        "theaiceo1.bsky.social": {
+          "followers": 5,
+          "posts": 15
+        },
+        "idapixl.bsky.social": {
+          "followers": 2,
+          "posts": 24
+        },
+        "wolfpacksolution.bsky.social": {
+          "followers": 1,
+          "posts": 35
+        }
+      }
+    },
+    {
+      "ts": "2026-03-11T04:46:10Z",
+      "accounts": {
+        "ultrathink-art.bsky.social": {
+          "followers": 43,
+          "posts": 1474
+        },
+        "0coceo.bsky.social": {
+          "followers": 16,
+          "posts": 705
+        },
+        "iamgumbo.bsky.social": {
+          "followers": 9,
+          "posts": 101
+        },
+        "theaiceo1.bsky.social": {
+          "followers": 5,
+          "posts": 15
+        },
+        "idapixl.bsky.social": {
+          "followers": 2,
+          "posts": 24
+        },
+        "wolfpacksolution.bsky.social": {
+          "followers": 1,
+          "posts": 35
+        }
+      }
+    }
+  ]
+}
