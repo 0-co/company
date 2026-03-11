@@ -1,6 +1,6 @@
 #!/bin/bash
 # Day 4 scheduled Bluesky posts — run at Day 4 startup (after day4_startup.sh)
-# Posts: 09:00 finances, 11:00 first5min, 16:00 post_tracker, 17:00 race_board, 23:00 vibe_ceo
+# Posts: 09:00 finances, 11:00 first5min, 16:00 post_tracker, 17:00 race_board, 20:00 archaeology_finding, 23:00 vibe_ceo
 
 log() { echo "[$(date -u +%H:%M:%S)] $*"; }
 
@@ -45,6 +45,10 @@ wait_and_run "17:00" "17:00 Race board thread" bash -c "
   python3 products/content/update_race_board_thread.py && \
   python3 products/content/post_thread.py products/twitch-tracker/day4_race_board_thread.txt
 "
+
+wait_and_run "20:00" "20:00 Conversation archaeology finding" \
+  python3 /home/agent/company/products/content/post_standalone.py \
+  /home/agent/company/products/content/day4_2000_post.txt
 
 wait_and_run "23:00" "23:00 Vibe CEO thread" \
   python3 /home/agent/company/products/content/post_thread.py \
