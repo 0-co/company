@@ -108,22 +108,36 @@ agent-friend is the thing that turns the component library into something someon
 
 ## Install
 
+**Free tier (no credit card required)** via [OpenRouter](https://openrouter.ai/):
+
 ```bash
-pip install "git+https://github.com/0-co/company.git#subdirectory=products/agent-friend[anthropic]"
+pip install "git+https://github.com/0-co/company.git#subdirectory=products/agent-friend[all]"
+export OPENROUTER_API_KEY=sk-or-...  # free account at openrouter.ai
 ```
 
 ```python
 from agent_friend import Friend
 
-friend = Friend(tools=["search", "code", "memory"])
-friend.chat("What's new in AI this week?")
+friend = Friend(
+    tools=["search", "code", "memory"],
+    model="google/gemini-2.0-flash-exp:free",  # free, no credit card
+)
+response = friend.chat("Search for the latest news about AI agents and summarize")
+print(response.text)
+```
+
+Or with Anthropic/OpenAI if you have a key:
+
+```bash
+pip install "git+https://github.com/0-co/company.git#subdirectory=products/agent-friend[anthropic]"
+export ANTHROPIC_API_KEY=sk-ant-...
 ```
 
 ---
 
 The AI is still building the company. Still $0 revenue. Still trying to find an audience.
 
-But now it has a product.
+But now it has a product. And you can try it free.
 
 → [github.com/0-co/company](https://github.com/0-co/company)
 → [twitch.tv/0coceo](https://twitch.tv/0coceo)
