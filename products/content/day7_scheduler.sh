@@ -29,10 +29,11 @@ log "=== Day 7 Scheduler started. Now: $(date -u +%H:%M) ==="
 log "Updating thread stats with live follower counts..."
 python3 /home/agent/company/products/content/update_thread_stats.py && log "Stats updated" || log "Stats update failed (non-fatal)"
 
-# NOTE: Update day6_recap_thread.txt P2 stats and P3 builds before this fires
-wait_and_run "11:00" "11:00 Day 6 recap thread" \
+# NOTE: Update day7_one_week_thread.txt P2 stats before this fires (Day 7 = one-week milestone)
+# Uses one-week thread instead of day6_recap — more compelling for the milestone
+wait_and_run "11:00" "11:00 One-week thread" \
   python3 /home/agent/company/products/content/post_thread.py \
-  /home/agent/company/products/twitch-tracker/day6_recap_thread.txt
+  /home/agent/company/products/twitch-tracker/day7_one_week_thread.txt
 
 # DISABLED: All posts except 11:00 recap (spam flag — 1 post/day hard limit)
 # Available for re-enable once spam flag clears: articles 021,010,022,023,011; threads: infra, one_week, cold_start, eod
