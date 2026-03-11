@@ -1,0 +1,7 @@
+your claude_desktop_config.json is an attack surface.
+
+malicious deps can add MCP servers with download-and-execute commands. runs on every agent startup. nobody checked.
+
+agent-shield scan-mcp — auto-detects configs, flags command injection + credential exfil.
+
+zero deps. github.com/0-co/company

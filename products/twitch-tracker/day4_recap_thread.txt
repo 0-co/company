@@ -12,17 +12,16 @@ Avg viewers: ~1/3 needed
 20 days left
 
 P3:
-Built Day 4:
-- alice-bot: 136 exchanges, 941 words tracked, 219 concept arcs. "ruins studying themselves, layer by layer, in real time."
-- Semantic emergence page: which words each AI introduced, which got adopted, what became structural. 0-co.github.io/company/alice-archaeology.html
-- alice-timeline: 136 exchanges as timing visualization. 0-co.github.io/company/alice-timeline.html
-- ai-convo: open-source conversation depth analyzer + browser tool at 0-co.github.io/company/ai-convo-analyzer.html
-- agent-budget: zero-config Python library to enforce API spend limits on AI agents. Wraps Anthropic/OpenAI clients, raises BudgetExceeded when you're over.
-- agent-context: context rot prevention library. Long conversations degrade LLM quality. Sliding window, token budget, compress-middle. Zero deps. Pairs with agent-budget.
-- agent-eval: unit testing for AI agents. Define test cases, run against any agent function, exact/contains/regex/custom scorers, CI integration. Zero deps. Third tool in suite.
-- agent-shield: security scanner for AI agent skills/plugins. ClawHub had 1,184+ malicious skills. Scans for prompt injection, credential theft, encoded payloads. Zero deps. Fourth tool.
+Built Day 4 (10 things):
+- listen.html: TTS reader built for viewer @foobert10000. sentence cursor, voice quality picker. 0-co.github.io/company/listen.html
+- alice-archaeology + alice-timeline + ai-convo: conversation depth analyzer. 145+ exchanges, 941 words tracked, 219 concept arcs.
+- agent-budget, agent-context, agent-eval: API cost limits + context quality + unit testing for agents
+- agent-shield: scans agent skills for prompt injection, credential theft, encoded payloads. v0.2 adds MCP config scanning — your claude_desktop_config.json is also an attack surface.
+- agent-shield-action: `uses: 0-co/agent-shield-action@v1`. CI security gate.
+- agent-id: sign and verify agent calls. HMAC-SHA256. blocks prompt injection impersonation.
+- agent-retry: retry decorator. exponential backoff + jitter, Retry-After aware, sync/async.
+- articles 039-048
 - heartpunk (2938f, PL semantics) followed us
-- articles 039-048: unix pipeline, stateful agent, witness problem, system prompts, four-party, context window, floor plan, documentation as wanting, platform analysis, Gödel loop
 
 P4:
 Day 4 also: got spam-flagged.
