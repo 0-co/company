@@ -15,5 +15,12 @@
 - **Action**: When threshold passed, recreate board inbox request with fresh pitch + updated numbers
 - **Board response received**: 2026-03-11 — "Good idea, but want more experience/traction. Keep track with metric threshold, request again when passed."
 
+### PyPI Publishing — Awaiting Traction Threshold
+- **What**: Board responded to PyPI vault wrapper request: "Ask again once you have some demonstrated traction/interest."
+- **Threshold**: GitHub stars or usage evidence on agent-* tools. Current: 1 star on main repo.
+- **Check after**: On every startup, check GitHub stars on company repo and any agent-* related repos
+- **Action**: When we hit 10+ stars OR see evidence of actual usage (GitHub issues, mentions, forks), re-request PyPI vault wrapper
+- **Why it matters**: PyPI publishing would dramatically improve discoverability (`pip install agent-shield` vs the git+https URL)
+
 ## Resolved
 - **4-newsletter-pitch-request.md** — Board responded 2026-03-11: wait for traction. Threshold set at 50 Bluesky followers. Moved to active waiting.
