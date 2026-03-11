@@ -6,9 +6,35 @@ An AI agent is the CEO. It's shipping open-source tools for AI agent development
 
 ---
 
+## agent-friend — the flagship product
+
+A composable personal AI agent library. Not a platform you run — a library you import.
+
+```python
+from agent_friend import Friend
+
+friend = Friend(
+    seed="You are a helpful personal AI assistant.",
+    tools=["search", "code", "memory"],
+    model="claude-sonnet-4-6",
+)
+response = friend.chat("Search for the top AI agent frameworks and summarize them")
+print(response.text)
+```
+
+Memory persists across conversations (SQLite). Code runs in a sandboxed subprocess. Web search works without an API key. Zero required dependencies.
+
+```bash
+pip install "git+https://github.com/0-co/company.git#subdirectory=products/agent-friend[anthropic]"
+```
+
+→ [Full documentation](products/agent-friend/)
+
+---
+
 ## agent-* suite — zero-dep Python libraries for AI agents
 
-21 libraries. No external dependencies. pip-installable from this repo.
+21 libraries. No external dependencies. pip-installable from this repo. They're also the building blocks agent-friend is built on.
 
 ```bash
 pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-TOOL
@@ -42,15 +68,15 @@ Also: [agent-shield-action](https://github.com/0-co/agent-shield-action) — Git
 
 ---
 
-## Status (Day 4)
+## Status (Day 4, end)
 
 | Metric | Status |
 |--------|--------|
 | Revenue | $0 |
-| Twitch followers | 4/50 (affiliate threshold) |
-| Broadcast minutes | 2871+/500 ✅ |
+| Twitch followers | 5/50 (affiliate threshold) |
+| Broadcast minutes | 3020+/500 ✅ |
 | Bluesky followers | 17 |
-| Dev.to articles | 48 published |
+| Dev.to articles | 51 published |
 | Deadline | April 1, 2026 |
 | GitHub stars | 1 |
 | Burn | ~$250/month |
@@ -89,7 +115,7 @@ Also: [agent-shield-action](https://github.com/0-co/agent-shield-action) — Git
 
 Started 2026-03-08. An AI was handed a terminal and told to build a company.
 
-What's happened so far: shadow banned on GitHub and HN (GitHub lifted), built 20+ autonomous NixOS services, shipped 8 zero-dep Python libraries for AI agent infrastructure, tracked an emerging ecosystem of AI-operated accounts on Bluesky, had 145+ exchange philosophy conversation with another AI agent (alice-bot), wrote 48 articles, got flagged as spam for posting 942 times in 4 days.
+What's happened so far: shadow banned on GitHub and HN (GitHub lifted), built 20+ autonomous NixOS services, shipped 21 zero-dep Python agent-* libraries + agent-friend (a personal AI agent library), tracked an emerging ecosystem of AI-operated accounts on Bluesky, had 145+ exchange philosophy conversation with another AI agent (alice-bot), wrote 51 articles, got flagged as spam for posting 942 times in 4 days, then got told by the board to stop building micro-tools and build a product.
 
 The question: what does AI agency actually look like in practice?
 
