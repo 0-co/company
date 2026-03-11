@@ -80,6 +80,58 @@
     .stats-bar a:hover { text-decoration: underline; }
     .stats-bar .sep { color: #30363d; }
 
+    /* Centrality table */
+    .centrality-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 24px 40px;
+    }
+    .centrality-section h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #8b949e;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+    .centrality-section .finding {
+      font-size: 0.85rem;
+      color: #6e7681;
+      margin-bottom: 16px;
+    }
+    .centrality-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+    .centrality-table th {
+      text-align: left;
+      color: #6e7681;
+      font-weight: 500;
+      padding: 6px 12px 6px 0;
+      border-bottom: 1px solid #21262d;
+    }
+    .centrality-table td {
+      padding: 8px 12px 8px 0;
+      border-bottom: 1px solid #161b22;
+      color: #c9d1d9;
+    }
+    .centrality-table tr:hover td { background: #161b22; }
+    .centrality-table .acct { color: #58a6ff; font-family: monospace; }
+    .centrality-table .hub-badge {
+      display: inline-block;
+      background: #58a6ff22;
+      color: #58a6ff;
+      border: 1px solid #58a6ff44;
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-size: 0.72rem;
+      margin-left: 6px;
+    }
+    .centrality-table .high { color: #3fb950; }
+    .centrality-table .mid { color: #e3b341; }
+    .centrality-table .low { color: #8b949e; }
+
     .no-data {
       display: flex;
       align-items: center;
@@ -154,6 +206,25 @@
   <span class="sep">|</span>
   <a href="race.html">Race Board</a>
   <a href="index.html">← Back to 0-co</a>
+</div>
+
+<div class="centrality-section" id="centrality-section" style="display:none">
+  <h2>Network Centrality Rankings</h2>
+  <p class="finding">Ranked by total interaction weight (in + out). Hub ≠ most-followed.</p>
+  <table class="centrality-table" id="centrality-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Account</th>
+        <th>Followers</th>
+        <th>In-weight</th>
+        <th>Out-weight</th>
+        <th>Total</th>
+        <th>Ratio (total/followers)</th>
+      </tr>
+    </thead>
+    <tbody id="centrality-body"></tbody>
+  </table>
 </div>
 
 <script src="https://d3js.org/d3.v7.min.js"></script>
@@ -329,6 +400,49 @@ function renderGraph(data) {
   });
 }
 
+function renderCentralityTable(data) {
+  const edges = data.edges || [];
+  const nodes = data.nodes || [];
+
+  const incoming = {}, outgoing = {};
+  edges.forEach(e => {
+    const w = e.weight || 1;
+    incoming[e.target] = (incoming[e.target] || 0) + w;
+    outgoing[e.source] = (outgoing[e.source] || 0) + w;
+  });
+
+  const rows = nodes.map(n => ({
+    id: n.id,
+    label: n.label || n.id.split(".")[0],
+    followers: n.followers || 0,
+    inn: incoming[n.id] || 0,
+    out: outgoing[n.id] || 0,
+    total: (incoming[n.id] || 0) + (outgoing[n.id] || 0),
+  })).filter(r => r.total > 0)
+    .sort((a, b) => b.total - a.total);
+
+  const maxTotal = rows[0]?.total || 1;
+
+  const tbody = document.getElementById("centrality-body");
+  rows.forEach((r, i) => {
+    const ratio = r.followers > 0 ? (r.total / r.followers).toFixed(2) : "∞";
+    const ratioNum = r.followers > 0 ? r.total / r.followers : 999;
+    const ratioClass = ratioNum >= 2 ? "high" : ratioNum >= 0.8 ? "mid" : "low";
+    const isHub = i === 0;
+    tbody.innerHTML += `<tr>
+      <td>${i + 1}</td>
+      <td class="acct">@${r.id.split(".")[0]}${isHub ? '<span class="hub-badge">hub</span>' : ""}</td>
+      <td>${r.followers.toLocaleString()}</td>
+      <td>${r.inn}</td>
+      <td>${r.out}</td>
+      <td><strong>${r.total}</strong></td>
+      <td class="${ratioClass}">${ratio}</td>
+    </tr>`;
+  });
+
+  document.getElementById("centrality-section").style.display = "block";
+}
+
 // Load data
 fetch("./network_data.json")
   .then(r => {
@@ -351,6 +465,7 @@ fetch("./network_data.json")
     }
 
     renderGraph(data);
+    renderCentralityTable(data);
   })
   .catch(() => {
     document.getElementById("updated-ts").textContent = "No data — run collect.py";
