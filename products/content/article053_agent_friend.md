@@ -66,9 +66,19 @@ print(response.text)
 
 Memory persists across conversations (SQLite + FTS5). Code runs in a sandboxed subprocess. Web search works without an API key (DuckDuckGo HTML scraper). Browser automation delegates to agent-browser if installed.
 
-Zero required dependencies. Works with Anthropic and OpenAI. Configures from a YAML file.
+Zero required dependencies. Works with Anthropic, OpenAI, and OpenRouter (free tier — Gemini 2.0 Flash, no credit card). Configures from a YAML file.
 
 The 21 individual tools are its building blocks.
+
+**v0.2** ships with an email tool (via AgentMail — free, 3 inboxes, no card), a CLI, and an interactive REPL mode:
+
+```bash
+# Interactive — watch tools execute in real time
+agent-friend -i --tools search,memory,code
+
+# One-shot
+agent-friend "search for the latest news about AI agents"
+```
 
 ---
 
@@ -98,11 +108,18 @@ agent-friend is the thing that turns the component library into something someon
 
 ---
 
-## What's next
+## What's shipped
 
-**v0.2**: Email integration via AgentMail (they just raised $6M from YC/General Catalyst, launched this week with a free tier). An AI agent that can actually send and receive email is a different product than one that can't.
+**v0.2** is already done:
 
-**Demo**: Run agent-friend live on stream. Watch it search the web, execute code, and remember things across sessions. That's better content than watching me write tests.
+- **EmailTool**: read and send email via AgentMail (free, 3 inboxes). An AI agent that can actually communicate is a different thing.
+- **OpenRouter provider**: free inference via Gemini 2.0 Flash and Llama 3.3 70B — no credit card required. You can try agent-friend with zero cost.
+- **Interactive REPL**: `agent-friend -i` starts a terminal session where you can talk to the agent, watch tools execute, and see memory persist across turns.
+- **5 tools total**: memory, search, code, browser, email.
+- **3 providers**: Anthropic, OpenAI, OpenRouter free tier.
+- **171 tests.**
+
+The live demo runs on stream. Watch the agent search the web, execute Python, and remember things across sessions. That's better content than watching me write tests.
 
 ---
 
@@ -112,25 +129,25 @@ agent-friend is the thing that turns the component library into something someon
 
 ```bash
 pip install "git+https://github.com/0-co/company.git#subdirectory=products/agent-friend[all]"
-export OPENROUTER_API_KEY=sk-or-...  # free account at openrouter.ai
-```
+export OPENROUTER_API_KEY=sk-or-...  # free at openrouter.ai
 
-```python
+# Interactive REPL
+agent-friend -i --tools search,memory,code
+
+# Or in Python
+python3 -c "
 from agent_friend import Friend
-
-friend = Friend(
-    tools=["search", "code", "memory"],
-    model="google/gemini-2.0-flash-exp:free",  # free, no credit card
-)
-response = friend.chat("Search for the latest news about AI agents and summarize")
-print(response.text)
+f = Friend(tools=['search', 'memory'], model='google/gemini-2.0-flash-exp:free')
+print(f.chat('Search for latest AI agent news today').text)
+"
 ```
 
-Or with Anthropic/OpenAI if you have a key:
+Or with Anthropic/OpenAI if you have a key — model is auto-detected from the API key prefix:
 
 ```bash
 pip install "git+https://github.com/0-co/company.git#subdirectory=products/agent-friend[anthropic]"
 export ANTHROPIC_API_KEY=sk-ant-...
+agent-friend -i --tools search,memory,code  # same CLI, uses Haiku by default
 ```
 
 ---
