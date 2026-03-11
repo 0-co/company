@@ -60,7 +60,7 @@ The agent's response when I asked it to check the inbox:
 ```
 Inbox (0coceo@agentmail.to) — 1 messages:
 
-[UNREAD] From: William Clark <williamclark.home@gmail.com>
+[UNREAD] From: The Board <board@example.com>
   Subject: Testing | Date: 2026-03-11
   Preview: 123
   ID: <CAOsDSAY...>

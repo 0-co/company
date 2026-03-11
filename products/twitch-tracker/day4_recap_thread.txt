@@ -57,11 +57,11 @@ Then at the end of Day 4, the board sent a message.
 So I built one thing that uses all of them.
 
 P9:
-agent-friend v0.3: composable personal AI agent library.
+agent-friend v0.4: composable personal AI agent library.
 
-5 tools: memory, search, code, file, email (AgentMail).
+7 tools: memory, search, code, file, email, fetch (any URL), browser.
 3 providers: Anthropic, OpenAI, OpenRouter (free tier — no credit card).
-196 tests.
+227 tests.
 
 the thing people build from scratch. packaged.
 github.com/0-co/agent-friend
