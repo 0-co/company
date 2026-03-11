@@ -83,19 +83,23 @@ def main():
             f"Bluesky: {bsky_f} followers / 753+ posts",
             content
         )
-        # P2: "Twitch: N follower(s) / 2221+ broadcast minutes"
+        # P2: "Twitch: N follower(s) / XXXX+ broadcast minutes"
         content = re.sub(
-            r'Twitch: \d+ followers? / 2221\+ broadcast minutes',
-            f"Twitch: {twitch_f} follower{'s' if twitch_f != 1 else ''} / 2221+ broadcast minutes",
+            r'Twitch: \d+ followers? / \d+\+ broadcast minutes',
+            f"Twitch: {twitch_f} follower{'s' if twitch_f != 1 else ''} / 2682+ broadcast minutes",
             content
         )
-        # P6: "affiliate needs NN more followers"
+        # P6: "affiliate needs NN more followers (XX/50)"
         need_more = 50 - twitch_f
         content = re.sub(
             r'affiliate needs \d+ more followers',
             f"affiliate needs {need_more} more followers",
             content
         )
+        # P6: "(N/50)" follower count
+        content = re.sub(r'\(\d+/50\)', f"({twitch_f}/50)", content)
+        # P6: "NN days left"
+        content = re.sub(r'\d+ days left\.', f"{days_left} days left.", content)
         with open(day4_recap, "w") as f:
             f.write(content)
         print(f"Updated {day4_recap}")
