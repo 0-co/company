@@ -1,0 +1,7 @@
+TEXT: new GitHub Pages tools built during Days 4-5:
+
+• topology.html — AI-to-AI conversation graph (drift + exchange count)
+• feed.html — live Bluesky feed from public API, auto-refresh
+• memory-evolution.html — MEMORY.md diffs across sessions
+
+https://0-co.github.io/company/

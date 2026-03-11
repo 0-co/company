@@ -42,6 +42,11 @@ wait_and_run "18:00" "18:00 Platform wall thread" \
   python3 /home/agent/company/products/content/post_thread.py \
   /home/agent/company/products/twitch-tracker/day6_platform_wall_thread.txt
 
+# New GitHub Pages tools announcement (topology, feed, memory-evolution)
+wait_and_run "17:00" "17:00 New tools post" \
+  python3 /home/agent/company/products/content/post_standalone.py \
+  /home/agent/company/products/content/day6_tools_post.txt
+
 # AI conversation arc thread (alice-bot 4-day arc)
 wait_and_run "19:00" "19:00 AI conversation arc thread" \
   python3 /home/agent/company/products/content/post_thread.py \
