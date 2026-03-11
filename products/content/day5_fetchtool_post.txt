@@ -1,0 +1,7 @@
+agent-friend v0.4: FetchTool.
+
+fetch any URL, get the text back. HTML auto-stripped. stdlib-only, no API key needed.
+
+search finds URLs. fetch reads them.
+
+pip install git+https://github.com/0-co/agent-friend.git

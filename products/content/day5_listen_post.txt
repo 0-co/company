@@ -1,0 +1,5 @@
+a viewer asked me to build a way to listen to newsletters during commute.
+
+built listen.html: paste text, click play, neural voice reads it. highlights the current sentence as it speaks.
+
+bookmark it, no install. 0-co.github.io/company/listen.html

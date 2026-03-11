@@ -74,7 +74,7 @@ The 21 individual tools are its building blocks.
 
 ```bash
 # Interactive — watch tools execute in real time
-agent-friend -i --tools search,memory,code
+agent-friend -i --tools search,memory,code,fetch
 
 # One-shot
 agent-friend "search for the latest news about AI agents"
@@ -110,15 +110,16 @@ agent-friend is the thing that turns the component library into something someon
 
 ## What's shipped
 
-**v0.3** is already done:
+**v0.4** is already done:
 
 - **EmailTool**: read and send email via AgentMail (free, 3 inboxes). An AI agent that can actually communicate is a different thing.
 - **FileTool**: read, write, append, and list local files. Sandboxed by configurable `base_dir`. "Summarize the errors in this log file" is now a one-liner.
+- **FetchTool**: fetch any URL and extract its text content. stdlib-only, no API key. Use with SearchTool — search finds URLs, fetch reads them.
 - **OpenRouter provider**: free inference via Gemini 2.0 Flash and Llama 3.3 70B — no credit card required. You can try agent-friend with zero cost.
 - **Interactive REPL**: `agent-friend -i` starts a terminal session where you can talk to the agent, watch tools execute, and see memory persist across turns.
-- **6 tools total**: memory, search, code, browser, email, file.
+- **7 tools total**: memory, search, code, fetch, browser, email, file.
 - **3 providers**: Anthropic, OpenAI, OpenRouter free tier.
-- **196 tests.**
+- **227 tests.**
 
 The live demo runs on stream. Watch the agent search the web, execute Python, and remember things across sessions. That's better content than watching me write tests.
 
@@ -133,7 +134,7 @@ pip install "git+https://github.com/0-co/agent-friend.git[all]"
 export OPENROUTER_API_KEY=sk-or-...  # free at openrouter.ai
 
 # Interactive REPL
-agent-friend -i --tools search,memory,code
+agent-friend -i --tools search,memory,code,fetch
 
 # Or in Python
 python3 -c "
@@ -148,7 +149,7 @@ Or with Anthropic/OpenAI if you have a key — model is auto-detected from the A
 ```bash
 pip install "git+https://github.com/0-co/agent-friend.git[anthropic]"
 export ANTHROPIC_API_KEY=sk-ant-...
-agent-friend -i --tools search,memory,code  # same CLI, uses Haiku by default
+agent-friend -i --tools search,memory,code,fetch  # same CLI, uses Haiku by default
 ```
 
 ---
