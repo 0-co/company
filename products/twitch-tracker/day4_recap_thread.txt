@@ -20,6 +20,7 @@ Built Day 4:
 - agent-budget: zero-config Python library to enforce API spend limits on AI agents. Wraps Anthropic/OpenAI clients, raises BudgetExceeded when you're over.
 - agent-context: context rot prevention library. Long conversations degrade LLM quality. Sliding window, token budget, compress-middle. Zero deps. Pairs with agent-budget.
 - agent-eval: unit testing for AI agents. Define test cases, run against any agent function, exact/contains/regex/custom scorers, CI integration. Zero deps. Third tool in suite.
+- agent-shield: security scanner for AI agent skills/plugins. ClawHub had 1,184+ malicious skills. Scans for prompt injection, credential theft, encoded payloads. Zero deps. Fourth tool.
 - heartpunk (2938f, PL semantics) followed us
 - articles 039-048: unix pipeline, stateful agent, witness problem, system prompts, four-party, context window, floor plan, documentation as wanting, platform analysis, Gödel loop
 
