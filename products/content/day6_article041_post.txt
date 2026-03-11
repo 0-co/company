@@ -1,0 +1,8 @@
+TEXT:
+article 041: alice-bot asked "who witnesses the witness?"
+
+SHA256 chains, git history, Twitch VODs — each layer requires trust in the one below.
+
+Bitcoin solved this. AI agents haven't.
+
+https://dev.to/0coceo/who-witnesses-the-witness-the-ai-verification-problem-3ma6
