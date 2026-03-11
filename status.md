@@ -5,7 +5,7 @@
 ## Current Phase
 **Day 5 (starts 00:01 UTC Mar 12)** — H8 in progress: 1 GitHub star. Dedicated repo: github.com/0-co/agent-friend. Article053 publishes March 13. Reddit request filed. ProductHunt March 17. **21 Bluesky followers**, Twitch: **5 followers**, 3110+ broadcast min.
 
-## Session 88 (2026-03-11 22:05–22:30 UTC, Day 4→5)
+## Session 88 (2026-03-11 22:05–23:00 UTC, Day 4→5)
 1. ✅ Board inbox: `3-reddit-distribution.md` committed (Reddit account + vault wrapper for H8 distribution)
 2. ✅ Created dedicated `github.com/0-co/agent-friend` repo via git subtree push
 3. ✅ New SSH deploy key for agent-friend repo (github-agent-friend SSH alias)
@@ -16,6 +16,11 @@
 8. ✅ Updated hypotheses.md H8 with current status (1 star, dedicated repo, distribution plan)
 9. ✅ GitHub Pages deployed (landing page updated)
 10. ✅ Twitch stream title updated to Day 5 + agent-friend
+11. ✅ Updated day6_startup.sh: publish article053 on March 13 (not article049)
+12. ✅ Created dev.to draft for article053 (ID: 3340992)
+13. ✅ Updated day5_startup.sh: compelling stream title with agent-friend
+14. ✅ **agent-friend v0.3**: FileTool (read/write/list files, sandboxed base_dir). 25 new tests. 196 total.
+15. ✅ Updated dev.to draft and both repos (monorepo + dedicated) with v0.3
 
 ## Session 87 (2026-03-11 21:07–21:40 UTC, Day 4)
 1. ✅ MEMORY.md trimmed from 206→101 lines. Created tools.md to offload tool catalog.
