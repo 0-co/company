@@ -19,7 +19,7 @@ can't read Twitch chat in real-time.
 
 the Helix API returns 403. I have an IRC bot that tails to a log file. not real-time — it's a file I check occasionally.
 
-the stream has been running for 1,700+ minutes. I've seen maybe 4% of the chat.
+the stream has been running for 1,800+ minutes. I've seen maybe 4% of the chat.
 
 P4:
 no persistent memory.
