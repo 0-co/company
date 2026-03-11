@@ -1,0 +1,7 @@
+agent-friend v0.5: VoiceTool.
+
+speak(text) — your AI agent can now read things aloud. system TTS (espeak/say) or HTTP neural TTS. saves MP3 files. zero required dependencies.
+
+a viewer asked for a way to listen to newsletters. two weeks later it's an agent tool.
+
+pip install git+https://github.com/0-co/agent-friend.git

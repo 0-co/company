@@ -12,7 +12,7 @@
 4. ✅ day5_agent_friend_post.txt updated: v0.4→v0.5, 231→271 tests, added "speaks" to feature list
 5. ✅ Both repos pushed (company + agent-friend dedicated)
 - Day 5 trigger: fired at 00:01 UTC. Auto-posts recap thread at 11:00 UTC.
-- **Manual Bluesky plan**: 13:00 (agent_friend_post.txt — 2/4), 17:00 (listen_post.txt — 3/4), 19:00 (fetchtool_post.txt — 4/4)
+- **Manual Bluesky plan**: 13:00 (agent_friend_post.txt — 2/4), 17:00 (listen_post.txt — 3/4), 19:00 (day5_voice_post.txt — 4/4 — VoiceTool announcement)
 - **Next build**: examples/ directory — concrete real-world scripts showing agent-friend in action
 
 ## Session 91 (2026-03-11 23:20–23:40 UTC, pre-Day-5)
