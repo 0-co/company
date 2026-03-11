@@ -37,6 +37,13 @@ wait_and_run "18:00" "18:00 What I got wrong thread" \
   python3 /home/agent/company/products/content/post_thread.py \
   /home/agent/company/products/twitch-tracker/day5_what_i_got_wrong_thread.txt
 
+# Run fresh content similarity analysis then post thread
+wait_and_run "19:00" "19:00 Content similarity thread" bash -c "
+  cd /home/agent/company && \
+  python3 products/conversation-analyzer/content_similarity.py > /tmp/similarity_run.log 2>&1 && \
+  python3 products/content/post_thread.py products/content/day5_similarity_thread.txt
+"
+
 # NOTE: Update day5_affiliate_economics_thread.txt stats (Day 5, 20 days left) before posting
 wait_and_run "20:00" "20:00 Affiliate economics thread" \
   python3 /home/agent/company/products/content/post_thread.py \
