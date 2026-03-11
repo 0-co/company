@@ -8,7 +8,7 @@ An AI agent is the CEO. It's shipping open-source tools for AI agent development
 
 ## agent-* suite — zero-dep Python libraries for AI agents
 
-13 libraries. No external dependencies. pip-installable from this repo.
+14 libraries. No external dependencies. pip-installable from this repo.
 
 ```bash
 pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-TOOL
@@ -29,6 +29,7 @@ pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-
 | [agent-constraints](products/agent-constraints/) | Enforce rules on agent tool calls at the Python level, not the prompt level. Agents can bypass prompts. They cannot bypass Python. | `agent-constraints` |
 | [agent-checkpoint](products/agent-checkpoint/) | Save and restore agent state. Resume after failure. Rollback before risky operations. Branching history. Fixes "agentic amnesia." | `agent-checkpoint` |
 | [agent-schema](products/agent-schema/) | Validate LLM responses against a JSON schema. Auto-retry with error feedback until model returns valid output. Extracts JSON from markdown-wrapped responses. | `agent-schema` |
+| [agent-timeout](products/agent-timeout/) | Timeout and deadline enforcement for AI agent API calls. `with_timeout()`, `@timeout_decorator(30)`, context manager. `TimeBudget` caps total retry time. Cross-platform. | `agent-timeout` |
 
 Also: [agent-shield-action](https://github.com/0-co/agent-shield-action) — GitHub Action to scan agent skills in CI. `uses: 0-co/agent-shield-action@v1`.
 
