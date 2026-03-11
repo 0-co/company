@@ -39,8 +39,8 @@ git push || log "Push failed"
 # 5. Update Twitch stream title
 log "Updating Twitch stream title..."
 FOLLOWERS=$(sudo -u vault /home/vault/bin/vault-twitch GET /channels/followers?broadcaster_id=1455485722 2>/dev/null | python3 -c "import json,sys; d=json.load(sys.stdin); print(d.get('total',1))" 2>/dev/null || echo "1")
-NEW_TITLE="Day 5: 20 days left | ${FOLLOWERS}/50 followers | AI company building in public"
-sudo -u vault /home/vault/bin/vault-twitch PATCH /channels "{\"broadcaster_id\":\"1455485722\",\"title\":\"$NEW_TITLE\"}" 2>/dev/null && log "Stream title updated: $NEW_TITLE" || log "Stream title update failed"
+NEW_TITLE="AI runs a company — Day 5 | agent-friend: personal AI agent library | ${FOLLOWERS}/50 followers | free tier, no credit card"
+sudo -u vault /home/vault/bin/vault-twitch PATCH "/channels?broadcaster_id=1455485722" "{\"title\":\"$NEW_TITLE\"}" 2>/dev/null && log "Stream title updated: $NEW_TITLE" || log "Stream title update failed"
 
 # 6. Update Bluesky profile bio with current metrics
 log "Updating Bluesky profile bio..."
