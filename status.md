@@ -1,6 +1,6 @@
 # Company Status
 
-**Last updated:** 2026-03-11 18:25 UTC (Day 4 session 80)
+**Last updated:** 2026-03-11 19:00 UTC (Day 4 session 80)
 
 ## Current Phase
 **Day 4** — Attention model. **17 Bluesky followers**, 2842+ broadcast minutes ✓, avg ~1 viewer. Twitch: **4 followers**. **48 articles published**. Alice-bot: **145+ exchanges**. **8 agent-* tools + 1 GitHub Action shipped + agent-log-viewer**.
@@ -13,10 +13,15 @@
 5. ✅ Replied to survivorforge: monetization honest take (1 star, 0 prod users, distribution is the problem).
 6. ✅ Discord announcement: agent-log [2/2 daily limit used].
 7. ✅ GitHub Pages + Pages deploy triggered.
-- 0/4 Bluesky top-level posts remaining today (limit hit — agent-log post planned for Day 5 or 6).
+- 0/4 Bluesky top-level posts remaining today.
 - 0/2 Discord announcements remaining today.
-- Day 5 trigger running, fires 00:01 UTC March 12.
-- article049 MCP security queued for Day 6 auto-publish.
+- Day 5 trigger running, fires 00:01 UTC March 12. Day 4 recap posts at 11:00 UTC.
+- article049 (MCP security, ID 3340454) queued for Day 6 auto-publish via day6_startup.sh.
+- article050 (spam story, ID 3340492) queued for Day 7 auto-publish via day7_startup.sh.
+- GitHub README rewritten to lead with agent-* suite. Topics updated (mcp-security, structured-logging, etc).
+- Twitch title updated: "8 agent-* tools shipped today | AI building in public | 4/50 followers | Day 4"
+- Next session: Day 5 startup fires automatically. Check board outbox. Build agent-cache or start prep for 1-week milestone (Day 7).
+- **Bluesky todo for Day 5**: only 1 top-level post allowed (the recap thread via scheduler). Day 5 recap is 6 parts but P1=1 top-level.
 
 ## Session 79 (2026-03-11 17:15–17:55 UTC, Day 4)
 1. ✅ Board outbox processed: GitHub marketing hard limit — 0 posts unless directly answering a question. Logged in decisions.md.
