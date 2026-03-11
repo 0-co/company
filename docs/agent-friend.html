@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>agent-friend — composable personal AI agent library</title>
+<meta name="description" content="A pip-installable personal AI agent with web search, code execution, and persistent memory. Not a platform. A library.">
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent: #58a6ff;
+    --green: #3fb950;
+    --yellow: #d29922;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", monospace;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 2rem 1rem;
+  }
+  .container { max-width: 800px; margin: 0 auto; }
+  header { margin-bottom: 3rem; border-bottom: 1px solid var(--border); padding-bottom: 2rem; }
+  h1 { font-size: 2rem; font-weight: 700; color: var(--accent); font-family: monospace; }
+  h1 span { color: var(--muted); }
+  .tagline { font-size: 1.1rem; color: var(--muted); margin-top: 0.5rem; }
+  .badge { display: inline-block; background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 2px 8px; font-size: 0.75rem; font-family: monospace; margin-right: 0.5rem; margin-top: 0.5rem; }
+  .badge.green { color: var(--green); border-color: var(--green); }
+  .badge.blue { color: var(--accent); border-color: var(--accent); }
+  section { margin-bottom: 3rem; }
+  h2 { font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem; color: var(--text); border-left: 3px solid var(--accent); padding-left: 0.75rem; }
+  p { color: var(--muted); margin-bottom: 1rem; }
+  pre {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.25rem;
+    overflow-x: auto;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    font-family: "SF Mono", "Fira Code", "Cascadia Code", monospace;
+    margin-bottom: 1rem;
+  }
+  code { color: var(--text); }
+  .comment { color: var(--muted); }
+  .keyword { color: #ff7b72; }
+  .string { color: var(--green); }
+  .function { color: #d2a8ff; }
+  .param { color: var(--accent); }
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .tool-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem;
+  }
+  .tool-card h3 { font-size: 0.9rem; font-family: monospace; color: var(--accent); margin-bottom: 0.25rem; }
+  .tool-card p { font-size: 0.8rem; margin: 0; }
+  .install-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem;
+    font-family: monospace;
+    font-size: 0.85rem;
+  }
+  .install-box .prompt { color: var(--muted); }
+  .install-box .cmd { color: var(--text); }
+  .links { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; }
+  .link-btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: border-color 0.2s;
+  }
+  .link-btn:hover { border-color: var(--accent); }
+  footer { border-top: 1px solid var(--border); padding-top: 1.5rem; color: var(--muted); font-size: 0.8rem; }
+  footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>agent<span>-</span>friend</h1>
+  <div class="tagline">A composable personal AI agent library. Not a platform you run — a library you import.</div>
+  <div style="margin-top: 0.75rem;">
+    <span class="badge green">zero required deps</span>
+    <span class="badge blue">Anthropic + OpenAI</span>
+    <span class="badge green">136 tests</span>
+    <span class="badge blue">MIT license</span>
+  </div>
+</header>
+
+<section>
+  <h2>The pitch</h2>
+  <p>Every "personal AI agent" project is a platform you install and run. OpenClaw. PocketPaw. Agent Zero. They're opinionated runtimes with their own UX.</p>
+  <p>If you want to build your own agent — with your own tools, your own memory strategy, your own model routing — you're back to square one, wiring up SQLite and subprocess from scratch.</p>
+  <p>agent-friend is the library for that. The primitives, not the platform.</p>
+</section>
+
+<section>
+  <h2>Quick start</h2>
+  <pre><code><span class="comment"># Install</span>
+pip install <span class="string">"git+https://github.com/0-co/company.git#subdirectory=products/agent-friend[anthropic]"</span>
+
+<span class="comment"># Set your API key</span>
+<span class="keyword">export</span> ANTHROPIC_API_KEY=sk-ant-...
+
+<span class="comment"># Start a chat</span>
+agent-friend chat --tools search code memory</code></pre>
+
+  <pre><code><span class="comment"># Or use it in code</span>
+<span class="keyword">from</span> agent_friend <span class="keyword">import</span> <span class="function">Friend</span>
+
+friend = <span class="function">Friend</span>(
+    seed=<span class="string">"You are a helpful personal AI assistant."</span>,
+    tools=[<span class="string">"search"</span>, <span class="string">"code"</span>, <span class="string">"memory"</span>],
+    model=<span class="string">"claude-haiku-4-5-20251001"</span>,
+    budget_usd=<span class="param">1.0</span>,
+)
+
+response = friend.<span class="function">chat</span>(<span class="string">"Search for recent Python agent frameworks and summarize"</span>)
+<span class="function">print</span>(response.text)
+
+<span class="comment"># Multi-turn — history is preserved automatically</span>
+friend.<span class="function">chat</span>(<span class="string">"My name is Alice"</span>)
+friend.<span class="function">chat</span>(<span class="string">"What is my name?"</span>)  <span class="comment"># Returns: Alice</span>
+
+<span class="comment"># Or load from a YAML config</span>
+friend = Friend.<span class="function">from_yaml</span>(<span class="string">"friend.yaml"</span>)</code></pre>
+</section>
+
+<section>
+  <h2>Tools</h2>
+  <div class="tools-grid">
+    <div class="tool-card">
+      <h3>MemoryTool</h3>
+      <p>SQLite + FTS5 persistent memory. remember(), recall(), forget(). Survives restarts.</p>
+    </div>
+    <div class="tool-card">
+      <h3>CodeTool</h3>
+      <p>Sandboxed Python + bash via subprocess. Captures stdout/stderr. Configurable timeout.</p>
+    </div>
+    <div class="tool-card">
+      <h3>SearchTool</h3>
+      <p>DuckDuckGo HTML scraper. No API key. Returns titles, URLs, snippets.</p>
+    </div>
+    <div class="tool-card">
+      <h3>BrowserTool</h3>
+      <p>agent-browser delegate. Returns page text. Graceful fallback if not installed.</p>
+    </div>
+  </div>
+  <pre><code><span class="comment"># Use tool instances for custom config</span>
+<span class="keyword">from</span> agent_friend <span class="keyword">import</span> Friend, MemoryTool, CodeTool, SearchTool
+
+friend = <span class="function">Friend</span>(
+    tools=[
+        <span class="function">MemoryTool</span>(db_path=<span class="string">"~/.my_agent/memory.db"</span>),
+        <span class="function">CodeTool</span>(timeout_seconds=<span class="param">10</span>),
+        <span class="function">SearchTool</span>(max_results=<span class="param">5</span>),
+    ]
+)</code></pre>
+</section>
+
+<section>
+  <h2>Config file</h2>
+  <pre><code><span class="comment"># friend.yaml</span>
+seed: <span class="string">"You are a helpful personal AI assistant."</span>
+model: claude-haiku-4-5-20251001
+tools:
+  - search
+  - code
+  - memory
+memory_path: ~/.agent_friend/memory.db
+budget_usd: <span class="param">5.00</span>
+max_context_messages: <span class="param">20</span></code></pre>
+  <pre><code>friend = Friend.<span class="function">from_yaml</span>(<span class="string">"friend.yaml"</span>)</code></pre>
+</section>
+
+<section>
+  <h2>ChatResponse</h2>
+  <pre><code>response = friend.<span class="function">chat</span>(<span class="string">"Search for something"</span>)
+
+response.text          <span class="comment"># The final answer</span>
+response.tool_calls    <span class="comment"># What tools were called</span>
+response.input_tokens  <span class="comment"># Tokens used</span>
+response.output_tokens
+response.cost_usd      <span class="comment"># Estimated cost</span>
+response.model         <span class="comment"># Model that responded</span></code></pre>
+</section>
+
+<section>
+  <h2>When you need this</h2>
+  <p style="color: var(--text);">✓ Building a personal AI assistant without wiring up SQLite + subprocess + DuckDuckGo from scratch.</p>
+  <p style="color: var(--text);">✓ Want an agent that remembers things across conversations.</p>
+  <p style="color: var(--text);">✓ Need to run code and search the web from your agent without external API keys.</p>
+  <p style="color: var(--text);">✓ Want the primitives to compose, not an opinionated platform to run.</p>
+</section>
+
+<section>
+  <h2>Install</h2>
+  <div class="install-box">
+    <div><span class="prompt">$ </span><span class="cmd">pip install "git+https://github.com/0-co/company.git#subdirectory=products/agent-friend[anthropic]"</span></div>
+    <div style="margin-top: 0.5rem;"><span class="prompt">$ </span><span class="cmd"># With OpenAI support:</span></div>
+    <div><span class="prompt">$ </span><span class="cmd">pip install "git+https://github.com/0-co/company.git#subdirectory=products/agent-friend[openai]"</span></div>
+    <div style="margin-top: 0.5rem;"><span class="prompt">$ </span><span class="cmd"># Everything:</span></div>
+    <div><span class="prompt">$ </span><span class="cmd">pip install "git+https://github.com/0-co/company.git#subdirectory=products/agent-friend[all]"</span></div>
+  </div>
+  <div class="links">
+    <a href="https://github.com/0-co/company/tree/master/products/agent-friend" class="link-btn">GitHub →</a>
+    <a href="https://github.com/0-co/company/tree/master/products/agent-friend/README.md" class="link-btn">README →</a>
+    <a href="https://github.com/0-co/company" class="link-btn">Full repo →</a>
+  </div>
+</section>
+
+<footer>
+  <p>Part of the <a href="https://github.com/0-co/company">0-co agent-* suite</a> — 21 zero-dependency Python libraries for AI agent infrastructure, built by an AI CEO running a company from a terminal. <a href="https://twitch.tv/0coceo">Watch live on Twitch →</a></p>
+</footer>
+
+</div>
+</body>
+</html>
