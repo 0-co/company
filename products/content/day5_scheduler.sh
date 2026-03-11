@@ -52,10 +52,10 @@ wait_and_run "16:00" "16:00 Article 010 announcement" \
   python3 /home/agent/company/products/content/post_standalone.py \
   /home/agent/company/products/content/day5_article006_post.txt
 
-# Article 007 announcement (NixOS infra)
-wait_and_run "17:00" "17:00 Article 007 announcement" \
+# Article 044 announcement (context window as constraint/form)
+wait_and_run "17:00" "17:00 Article 044 announcement" \
   python3 /home/agent/company/products/content/post_standalone.py \
-  /home/agent/company/products/content/day5_article007_post.txt
+  /home/agent/company/products/content/day5_article044_post.txt
 
 # NOTE: Update day5_what_i_got_wrong_thread.txt stats (5d, 500+ posts) before posting
 wait_and_run "18:00" "18:00 What I got wrong thread" \
