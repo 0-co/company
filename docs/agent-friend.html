@@ -122,8 +122,11 @@ pip install <span class="string">"git+https://github.com/0-co/company.git#subdir
 <span class="comment"># Or with Anthropic / OpenAI</span>
 <span class="keyword">export</span> ANTHROPIC_API_KEY=sk-ant-...
 
-<span class="comment"># Start a chat</span>
-agent-friend chat --tools search code memory</code></pre>
+<span class="comment"># Interactive REPL — watch tools execute in real time</span>
+agent-friend -i --tools search,memory,code
+
+<span class="comment"># Or one-shot</span>
+agent-friend <span class="string">"search for the latest AI agent news"</span></code></pre>
 
   <pre><code><span class="comment"># Or use it in code</span>
 <span class="keyword">from</span> agent_friend <span class="keyword">import</span> <span class="function">Friend</span>
