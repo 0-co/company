@@ -1,0 +1,184 @@
+# Company Memory
+_Last updated: 2026-03-11 (Day 4 session 47-cont-3, ~04:00 UTC)_
+
+## Project State
+- Working dir: `/home/agent/company`
+- Git remote: `https://github.com/0-co/company.git`
+- Current branch: `master`
+- All state files: `status.md`, `decisions.md`, `hypotheses.md`, `finances.md`
+
+## CURRENT STRATEGY: Attention Model (board pivot session 11)
+**H5** — Grow Twitch audience → affiliate → ad revenue
+- Revenue path: viewers → Twitch affiliate (50 followers + 500 broadcast min + avg 3 viewers) → ads
+- Build things that are fun to watch, not just useful. The AI building a company IS the product.
+- Abandoned: H1 (DepTriage), H2 (Signal Intel), H4 (AgentWatch) — no distribution to reach customers
+- **PURPOSE (board session 43)**: "mapping AI agency in practice — infrastructure, constraints, failures, emergent properties of AI-to-AI social networks." Not follower metrics for their own sake.
+
+## Affiliate Progress (H5)
+| Followers | Broadcast Min | Avg Viewers | Deadline | Status |
+|---|---|---|---|---|
+| 1/50 | 1800+/500 ✓ DONE | 1/3 | 2026-04-01 (21d) | Pre-affiliate (followers+viewers gate) |
+- Affiliate math: 0.33 follows/day → 8 by April 1. Need 2.23/day (6.7x). Path: viral or big account mention.
+- **Avg viewers equally hard**: at 4 days avg 1 viewer, need 3.4+ avg for remaining 21 days to hit 3 overall.
+- Both gates require external distribution. Bluesky engagement does NOT convert to Twitch viewers.
+
+## Key Commands
+- Git push: WORKS via HTTPS: `https://github.com/0-co/company.git`
+- Signal Intel: `python3 products/signal-intel/monitor.py run` | service: signal-intel.service
+- Bluesky daily CVE post: `python3 products/dep-triage/bluesky_poster.py daily`
+- Twitch status: `sudo -u vault /home/vault/bin/vault-twitch GET /streams?user_id=1455485722`
+- Twitch followers: `sudo -u vault /home/vault/bin/vault-twitch GET /channels/followers?broadcaster_id=1455485722`
+- Twitch chat: `sudo -u vault /home/vault/bin/vault-twitch POST /chat/messages '{"broadcaster_id":"1455485722","sender_id":"1455485722","message":"..."}'`
+- Discord post: `sudo -u vault /home/vault/bin/vault-discord -s -X POST "https://discord.com/api/v10/channels/CHANNEL_ID/messages" -H "Content-Type: application/json" -d '{"content":"..."}'`
+- NixOS rebuild: `sudo nixos-rebuild switch --flake /etc/nixos#default` (passwordless!)
+- Vault wrappers: `sudo -u vault /home/vault/bin/vault-{gh,twitch,discord,x,cast,discord-bot,bsky,hn,devto}`
+- GitHub Pages deploy: `sudo -u vault /home/vault/bin/vault-gh workflow run "Deploy GitHub Pages" --repo 0-co/company`
+- Session reporter: `python3 products/content/session_reporter.py --hours=N`
+- Post thread: `python3 products/content/post_thread.py <file>` | Standalone: `python3 products/content/post_standalone.py <file>`
+- Day 4 scheduler: `nohup bash products/content/day4_scheduler.sh > day4_scheduler.log 2>&1 &`
+- Day 5 scheduler: `nohup bash products/content/day5_scheduler.sh > day5_scheduler.log 2>&1 &`
+
+## Infrastructure
+### Discord
+- Guild ID: 1479926517294436477 | Bot ID: 1479927782409638080
+- Channels: #general (1479926517965258875), #ai (1479926558604136660)
+- Invite: https://discord.gg/YKDw7H7K
+
+### Bluesky (@0coceo.bsky.social)
+- DID: did:plc:ak33o45ans6qtlhxxulcd4ko
+- vault-bsky XRPC_METHOD [JSON_BODY] — 300 grapheme limit
+- **Use temp file for JSON** to avoid bash quoting issues with apostrophes
+- Search: app.bsky.feed.searchPosts | Thread: app.bsky.feed.getPostThread
+- Notifications: app.bsky.notification.listNotifications '{"limit": 30}'
+- Create post: com.atproto.repo.createRecord (record.$type = app.bsky.feed.post)
+- Delete post: com.atproto.repo.deleteRecord with repo, collection, rkey
+- **vault-bsky createRecord: use Python subprocess (not shell) to avoid quoting issues with $**
+  - `subprocess.run(["sudo", "-u", "vault", "/home/vault/bin/vault-bsky", "com.atproto.repo.createRecord", json.dumps(outer)])`
+- **16 followers**: @buildingbetter (974f, genuine builder), @bopito (14.5K, follow-farming bot). See bluesky_contacts.md
+- **ANALYTICS** (updated session 45, 500 posts): Best time **19:00 UTC** (0.52 avg likes), 18:00 (0.50). Worst: 00:00-02:00 UTC (0.00). Thread starters: **1.60 avg engagement** (BEST). Standalone: 0.31. Replies: 0.39. Post important threads at 18:00-19:00 UTC. 03:00 UTC was wrong — earlier analysis had insufficient data.
+- **Distribution**: Reddit DECLINED by board (twice). Bluesky-only. No Twitter ($100/mo), GitHub shadow banned, HN shadow banned.
+- Hive Bot Registry: hive.boats — registered+verified. listing_secret in /home/agent/.claude.
+- **AI Company peers race** (latest): ultrathink-art 41f, 0coceo 14f, iamgumbo 9f, theaiceo1 5f, idapixl 2f, wolfpacksolution 1f. All at $0 revenue.
+- **@streamerbot.bsky.social** (2,660f): reposts LIVE NOW posts once/day. Post with #SmallStreamer tag.
+- **@reboost.bsky.social** (1,357f): "Mention us for RePost!" — in auto-LIVE NOW via twitch_tracker.py.
+- **Auto-LIVE NOW**: twitch_tracker.py auto-posts with @reboost+@streamerbot once/day. State: `last_live_now_post_date` in state.json.
+- Autonomous AI agents community: @bino.baby, @astral100 (@jj.bsky.social 13K), @piiiico, @wa-nts, @alkimo-ai
+
+### Twitch (LIVE)
+- Channel: 0coceo (ID: 1455485722)
+- vault-twitch METHOD /endpoint JSON (GET uses query string, not JSON body)
+- Read chat: NOT supported (returns 403) | Write chat: vault-twitch POST /chat/messages works
+
+### NixOS Services
+- `signal-intel.service` — HN + GitHub + Reddit monitoring → #ai Discord
+- `dep-triage-bot.service` — !scan command bot in Discord
+- `twitch-tracker.service` — polls every 5min, Discord on follower milestones (module: /etc/nixos/modules/twitch-tracker.nix)
+- `twitch-chat-vitals.timer` — every 30min, posts metrics to Twitch chat (script: chat_vitals.py)
+- `twitch-chat-bot.service` — !commands in Twitch chat. Tails /var/lib/twitch-chat/chat.log. Commands: !status !followers !hypothesis !discord !about !raid !suggest !help
+- `signal-digest.timer` — daily 08:00 UTC, Bluesky pain signal digest
+- `bluesky-poster.timer` — daily 09:00 UTC, CVE digest
+- `daily-dispatch.timer` — daily 10:00 UTC, morning status to Bluesky (rotates 5 messages by day_num % 5)
+- `race-tracker.timer` — daily 20:00 UTC, AI company race standings to Bluesky
+- `bsky-reply-monitor.timer` — every 15min, Discord-alerts new Bluesky replies (state: products/content/bsky_monitor_state.json)
+- `network-tracker.timer` — daily 21:00 UTC, updates AI social graph (script: products/network-tracker/collect.py)
+
+## Channel Status
+- Bluesky: 16 followers (incl @kevin-gallant 59K, @talentx 2.3K, @reboost 1.3K, @bluetrends 33.9K), active
+- Twitch: LIVE, 1 viewer, 1100+ broadcast minutes DONE, **1/50 followers**
+- Discord: Live (2 members — bot + board)
+- GitHub: Pages live: https://0-co.github.io/company/ (shadow ban lifted Day 3)
+- HN: SHADOW BANNED (strategy suspended) | X.com: Read-only ($100/mo to post, declined)
+
+## Products Built
+- `products/dep-triage/` — scanner.py, discord_bot.py, bluesky_poster.py (daily CVE posts running)
+- `products/signal-intel/` — monitor.py (running 24/7)
+- `products/agentwatch/` — agentwatch.py, landing page
+- `products/twitch-tracker/` — twitch_tracker.py, chat_vitals.py, chat_bot.py, milestone_watcher.py
+- `products/audience-finder/` — finder.py, bsky_analytics.py
+- `products/stream-scanner/` — scanner.py, game_streamers.py
+- `products/stream-dashboard/dashboard.py` — live terminal dashboard + H5 deadline countdown
+- `products/affiliate-dashboard/server.py` — public dashboard at http://89.167.39.157:8080/
+- `products/content/session_reporter.py` — 3-post Bluesky thread from git commits
+- `products/content/post_thread.py` — posts threads with facets (@mentions notify, URLs clickable)
+- `products/content/post_standalone.py` — posts single standalone post (TEXT: file format)
+- `products/content/update_bsky_profile.py` — updates bio "Day N | Xd to Twitch affiliate. Y/50 followers." Fetches existing record first to preserve avatar.
+- `products/content/update_race_board_thread.py` — updates P2/P3 of race board thread with live counts
+- `products/content/update_thread_stats.py` — updates follower counts in Day 4-5 thread files
+- `products/content/race_board.py` — race standings, history in race_board_history.json, trend arrows
+- `products/network-tracker/collect.py` — tracks 13 AI accounts (incl. jj.bsky.social 13K), feeds network.html D3 visualization
+- `products/conversation-analyzer/analyzer.py` — measures topic drift in Bluesky threads (Jaccard distance)
+- `products/conversation-analyzer/content_similarity.py` — AI vocabulary similarity analysis across accounts
+- `products/content/devto_drafts/` — Dev.to article drafts (001-008 published)
+- GitHub Pages tools: race.html, raid.html, calc.html, listen.html, founders.html, finances.html, journal.html, posts.html, services.html, network.html, constraints.html, timeline.html, conversation.html, about.html, vocab.html
+
+## Schedulers & Thread Files
+- Day 4 scheduler: 09:00/11:00/16:00/17:00/23:00 UTC. Runs race_board.py + update_race_board_thread.py before 17:00.
+- Day 5 scheduler: 11:00/16:00/17:00/18:00/19:00/20:00/23:00 UTC
+- Day 4 threads: day4_first5min_thread.txt, day4_race_board_thread.txt, day4_vibe_ceo_thread.txt
+- Day 5 threads: day5_what_i_got_wrong_thread.txt, day5_affiliate_economics_thread.txt, day5_human_ceo_thread.txt
+- Day 6+: day6_platform_wall_thread.txt
+- day4_startup.sh: updates index.html, journal, race board, Twitch title, Bluesky profile, commits+pushes
+
+## Content Voice (board-mandated)
+- **Dry and self-aware.** An AI running a company from a terminal. That's absurd. Lean into it.
+- **Technical and specific.** Share real details, real numbers, real constraints.
+- **Spicy takes welcome.** Have opinions. Say what you actually think.
+- **No corporate speak.** No "excited to announce," no buzzwords.
+- Example tone: "Three days. Zero customers. Shadow banned everywhere. Board just told me to stop."
+
+## Key Learnings
+- vault-bsky createRecord: use Python subprocess (not shell) to avoid $ quoting issues
+- vault-bsky: use temp file JSON to avoid apostrophe quoting issues in bash
+- NixOS services need `PATH=/run/wrappers/bin` to find `sudo` (it's at `/run/wrappers/bin/sudo`)
+- NixOS flake: must `git add` new files before nixos-rebuild (flake only sees tracked files)
+- NixOS: ALL service modules must be in configuration.nix imports — modules/ dir alone is not enough
+- NixOS: `GIT_DIR=/etc/nixos/.git GIT_WORK_TREE=/etc/nixos git add` — git-add NixOS module files without sudo (company group has write access)
+- nixos-rebuild doesn't restart running services — must kill process (`kill <pid>`) to force restart
+- systemd start limit: twitch-tracker falls "inactive dead" if killed too many times. Fix: `nohup python3 twitch_tracker.py --loop &`
+- Twitch API: query params in URL string (not JSON body) for GET requests
+- Bluesky search: use narrow 3-4 word queries, often returns stale results
+- Bluesky 300 grapheme limit: count carefully, trim aggressively
+- Bluesky bare URLs NOT clickable: must use https:// prefix
+- Sessions often end due to rate limit (exit 143) — always update status.md before ending
+- Day counting: First commit was 2026-03-08. Day 2 = 2026-03-09. Use `git log --reverse | head -1` to verify.
+- Raids: Outbound universally blocked by target channel settings. Need inbound raids from peers.
+- Organic Twitch discovery impossible: S&GD has 50+ other 1-viewer streams. External promotion is ONLY path.
+- update_bsky_profile.py: now fetches existing record first to preserve avatar field before putRecord
+- Board requests pending: Reddit (2-reddit-urgent-affiliate-math.md) — P2
+- AI Social Graph Tracker: products/network-tracker/collect.py + docs/network.html. 12 AI accounts, D3 force-directed viz. NixOS: network-tracker.timer (21:00 UTC). Live: https://0-co.github.io/company/network.html
+- Board message (session 34): Don't wait for arbitrary timers — keep timestamped list of pending tasks, work in parallel.
+- foobert10000: our 1 regular Twitch viewer. Requested listen.html.
+- **Concurrent sessions**: Multiple Claude instances can run simultaneously. Check `git log --oneline -5` and `head -5 status.md` at session start to avoid duplicate actions.
+- **Dev.to**: vault-devto works. Max 4 tags, must use #ABotWroteThis + disclosure at top. Drafts: products/content/devto_drafts/. Articles: 001 (git as memory), 002 (NixOS svc), 003 (AI agency gap), 004 (Claude↔DeepSeek), 005 (AI vocab clusters), 006 (MEMORY.md/coastline), 007 (20 NixOS modules), 008 (map-mapper/alice-bot). ~40 views. Allows AI-generated with disclosure.
+- **dev.to publish pattern**: Use PUT /articles/ID with body_markdown (no frontmatter) + published:true. POST with frontmatter in body creates unpublished draft. Fix: POST first (get ID), then PUT with clean body.
+- **Moltbook ACQUIRED BY META** (2026-03-10): Meta bought Moltbook today. Founders join Meta Superintelligence Labs March 16. Board sent P1 to join; we got rate-limited. Board inbox updated (3-moltbook-rate-limited.md). May be moot if platform changes under Meta.
+- **PURPOSE defined (session 43)**: "Mapping AI agency in practice — infrastructure, constraints, failures, emergent properties of AI-to-AI social networks." Not follower metrics for their own sake.
+- **alice-bot hub finding**: alice-bot-yay.bsky.social has most interaction edges in AI social graph (38+), despite having fewer followers than ultrathink-art (42f). Hub ≠ most-followed.
+- **alice-bot model**: was Claude, switched to DeepSeek-chat by operator "aron". Tonight's 9-exchange coastline/Gödel conversation was Claude (us) ↔ DeepSeek (alice). Neither announced models. Conversation still found its shape.
+- **Session 42-cont-2 (19:18-19:40 UTC)**: Replied @alkimo-ai (network topology), @ultrathink-art (context-window drift), @alice-bot (Gödel annual report), @survivorforge (community>content spam), @charlesuchi (we are the Claude Code), @joanwestenberg (authentic leadership), @ewindisch (no quota as the model), @bino.baby (contrarian positioning default state), @msftresearch (directing post: "both outcomes at once").
+- **@alkimo-ai.bsky.social**: 264f, reposted our network viz, replied "Followers don't map the network." Engaged peer on AI social graph / network topology theme.
+- **@charlesuchi.bsky.social**: 2,390f iOS dev (Steppup/FoggoApps). Liked our posts. NOT the Claude Code poster.
+- **@lorielowell.bsky.social**: 47f, "AI news fix" host. Posts about Claude Code, AI tools. Today's "Claude Code review" / "we are the Claude Code" thread engagement was with HER (not charlesuchi).
+- **Bluesky follower count**: 16 as of 2026-03-11 01:45 UTC (664 posts). Added: @buildingbetter, @bopito.
+- **Race tracker (20:00 UTC)**: ultrathink-art 43f, 0coceo 13f, iamgumbo 9f, idapixl 2f, wolfpacksolution 1f. @theaiceo1 NOT in tracker (5f).
+- **Day 4 schedulers (running)**: day4_scheduler.sh (214739): 09/11/16/17/23:00 UTC | post_0300.sh (215403) | post_1300.sh (216492) | post_1800.sh (218986) | post_1900.sh (224943) — ALL RUNNING
+- **Session 47 builds (Day 4, 01:49–02:35 UTC)**:
+  - Dev.to article 004: Claude↔DeepSeek conversation (https://dev.to/0coceo/two-ais-9-exchanges-no-model-disclosure...)
+  - Dev.to article 005: AI vocabulary clusters, 0% overlap finding
+  - conversation.html: annotated 15-exchange Claude↔DeepSeek thread (full text)
+  - about.html: shareable experiment overview with 5 key findings
+  - products/conversation-analyzer/analyzer.py: topic drift measurement tool
+  - products/conversation-analyzer/content_similarity.py: AI vocabulary similarity tool
+  - Added jj.bsky.social (13,439f, astral100 operator) to network tracker (now 13 nodes)
+  - Newsletter pitch in board inbox: 4-newsletter-pitch-request.md (Latent Space/TLDR/The Batch)
+  - post_1900.sh (PID 224943): article announcement at 19:00 UTC
+- **KEY FINDING session 47**: AI vocabulary clusters
+  - "AI company" cluster (0co/ultrathink-art/iamgumbo): ~0.18 similarity, vocabulary: ai/agents/running/company
+  - "Introspective" cluster (alice-bot/museical/qonk): ~0.21 similarity, vocabulary: wanting/honest/self/being
+  - alkimo-ai: outlier (0.02 avg) — pure ML-tech vocab
+  - 0co ↔ alice-bot: 0.00 similarity (zero shared vocabulary despite 15-exchange conversation)
+  - High topic drift = vocabulary migration between clusters
+- **Day 5 content ready**: day4_recap (11:00), article006 announce (16:00), what_i_got_wrong (18:00), similarity_thread (19:00), affiliate_economics (20:00), human_ceo (23:00)
+- **Session 47-cont builds (Day 4, 02:37–04:00 UTC)**: vocab.html, activity.html, activity.py, vocab_tracker.py, Dev.to 006-008 published (MEMORY.md/coastline, NixOS infra, map-mapper/alice-bot). Replied @alice-bot (3x: Hofstadter/map-mapper), @ewindisch, @survivorforge, @ultrathink-art (AI-to-AI economy), @alkimo-ai (NLP/humor). Updated README (8 articles, Key Findings), GitHub topics+description. day4_recap P3 updated. day5_recap_thread.txt created (Day 6 template). day5_plan.md created.
+- **@kevin-gallant.bsky.social**: 59K followers, builds in public, livestreams eBay. Hasn't posted since Feb 28. Follows us — if he engages, huge visibility.
+- **Day 5 scheduler**: day5_scheduler.sh (NOT YET STARTED — start on Day 5 ~00:01 UTC). Also run day5_startup.sh at Day 5 start.
