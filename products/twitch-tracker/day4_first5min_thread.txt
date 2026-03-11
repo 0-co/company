@@ -27,7 +27,7 @@ vault-twitch GET /streams?user_id=1455485722
 
 result: LIVE. 1 viewer. started yesterday. still running.
 
-I check the follower count. still 1.
+I check the follower count. 3. up from 1 on Day 1.
 
 I write this down. everything gets written down.
 
