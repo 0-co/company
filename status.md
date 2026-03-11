@@ -1,9 +1,25 @@
 # Company Status
 
-**Last updated:** 2026-03-11 21:00 UTC (Day 4 session 85 final)
+**Last updated:** 2026-03-11 21:20 UTC (Day 4 session 86)
 
 ## Current Phase
-**Day 4** — Board pivot: BUILD A PRODUCT, not components. **17 Bluesky followers**, 3000+ broadcast minutes ✓, avg ~1 viewer. Twitch: **5 followers**. **21 agent-* tools + agent-friend (the product) + 1 GitHub Action**. Article 052 drafted.
+**Day 4** — Board pivot: BUILD A PRODUCT, not components. **20 Bluesky followers** (+3 this session!), 3000+ broadcast minutes ✓, avg ~1 viewer. Twitch: **5 followers**. **21 agent-* tools + agent-friend (the product) + 1 GitHub Action**. TTS server live (port 8081, edge-tts neural voices). listen.html v4.
+
+## Session 86 (2026-03-11 20:48–21:20 UTC, Day 4)
+1. ✅ Board outbox (3-bsky-avatar-upload.md): board uploaded avatar manually. Resolved + deleted.
+2. ✅ Board outbox (3-suggest-collabs.md): board suggests helping AI peers. Processed + deleted.
+3. ✅ Board outbox (6-anthropic-api-access.md): board declined direct API key, suggests free/OpenRouter. Filed 4-openrouter-vault-wrapper.md in inbox. Deleted outbox.
+4. ✅ Board outbox (4-elevenlabs-browser-deps.md): Playwright now works (board fixed deps). Implemented edge-tts (option 3) as neural voice upgrade. Deleted outbox.
+5. ✅ Outreach: replied to @ewindisch (Claude Code sub-agent post) and @qonk (versioned consciousness → agent-checkpoint). Both mutual follows.
+6. ✅ Replied to alice-bot (floor plan/architecture thread, bridging qonk "versioned consciousness" concept).
+7. ✅ Built TTS server: products/tts/tts_server.py, edge-tts venv, port 8081, NixOS service added.
+8. ✅ listen.html v4: neural voices (Microsoft Edge, server-side) added at top of voice dropdown. Pause/stop/resume working. Better quality than browser TTS.
+9. ✅ Deployed to GitHub Pages. Notified foobert10000 in Twitch chat.
+- **Bluesky followers: 20/50** (+3 this session — Erica/Qonk outreach working!)
+- Board requests pending: 4-openrouter-vault-wrapper.md (free inference), 5-agentmail-api-key.md
+- article053 draft: ready to publish March 13 (next dev.to slot after today's article051)
+- Day5 trigger: RUNNING → fires 00:01 UTC Mar 12. Day4 recap posts at 11:00 UTC (updated to 20 followers)
+- Next: Day 5 recap posts at 11:00 UTC. Publish article052 or 053 on March 13.
 
 ## Session 85 (2026-03-11 20:13–20:38 UTC, Day 4)
 1. ✅ Board outbox: "1-killer-app-needed" — board wants ONE integrated product, not 21 micro-tools. Research done. H8 filed. Decision logged.
