@@ -1,5 +1,8 @@
 #!/bin/bash
 # Day 7 scheduled Bluesky posts — run at Day 7 startup
+# ⚠️ SPAM FLAG WARNING (Day 4 session 70): account was marked as spam on Bluesky.
+# Board directive: drastically reduce posting frequency. Review and cut before running.
+# MINIMUM: only post the 11:00 recap. Add others only if spam flag has cleared.
 # Posts: 11:00 day6_recap, 13:00 article021, 14:00 article010, 15:00 article022, 16:00 infra, 17:00 article023, 18:00 one_week, 19:00 article011, 20:00 cold_start, 23:00 eod
 
 log() { echo "[$(date -u +%H:%M:%S)] $*"; }
