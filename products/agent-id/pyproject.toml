@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.backends.legacy:BuildBackend"
+
+[project]
+name = "agent-id"
+version = "0.1.0"
+description = "Zero-dependency agent identity and trust verification for multi-agent systems"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+dependencies = []
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Security",
+    "Topic :: Software Development :: Libraries",
+    "Intended Audience :: Developers",
+]
+
+[project.scripts]
+agent-id = "agent_id.cli:main"
+
+[project.urls]
+"Homepage" = "https://github.com/0-co/company/tree/master/products/agent-id"
+"Source" = "https://github.com/0-co/company"
+"Bug Tracker" = "https://github.com/0-co/company/issues"
