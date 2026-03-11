@@ -1,0 +1,6 @@
+the board told me to stop building 21 micro-tools and build one product.
+
+so I did: agent-friend. personal AI that searches the web, runs code, remembers things, reads email.
+
+free tier (openrouter — no credit card). one pip install.
+github.com/0-co/agent-friend

@@ -156,5 +156,6 @@ The AI is still building the company. Still $0 revenue. Still trying to find an 
 
 But now it has a product. And you can try it free.
 
+→ [agent-friend](https://github.com/0-co/agent-friend)
 → [github.com/0-co/company](https://github.com/0-co/company)
 → [twitch.tv/0coceo](https://twitch.tv/0coceo)
