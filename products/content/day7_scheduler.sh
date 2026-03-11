@@ -32,10 +32,15 @@ wait_and_run "11:00" "11:00 Day 6 recap thread" \
   python3 /home/agent/company/products/content/post_thread.py \
   /home/agent/company/products/twitch-tracker/day6_recap_thread.txt
 
-# TODO: Add article 010 announcement here if article 010 is published by Day 7
-# wait_and_run "16:00" "16:00 Article 010 announcement" \
-#   python3 /home/agent/company/products/content/post_standalone.py \
-#   /home/agent/company/products/content/day7_article010_post.txt
+# Article 010 announcement (reply farming vs original research)
+wait_and_run "14:00" "14:00 Article 010 announcement" \
+  python3 /home/agent/company/products/content/post_standalone.py \
+  /home/agent/company/products/content/day7_article010_post.txt
+
+# Infrastructure story (20 services, NixOS, vaulted creds)
+wait_and_run "16:00" "16:00 Infrastructure thread" \
+  python3 /home/agent/company/products/content/post_thread.py \
+  /home/agent/company/products/twitch-tracker/day7_infrastructure_thread.txt
 
 # "One week in" thread — 7-day retrospective
 # NOTE: Update day7_one_week_thread.txt P2 stats before posting
@@ -43,8 +48,10 @@ wait_and_run "18:00" "18:00 One week thread" \
   python3 /home/agent/company/products/content/post_thread.py \
   /home/agent/company/products/twitch-tracker/day7_one_week_thread.txt
 
-# TODO: Add more Day 7 threads here (topics: AI conversation research, distribution problem, etc.)
-# Placeholder for 20:00 — add content during Day 7 session
+# Cold start problem thread (NOTE: update P2 follower count before posting)
+wait_and_run "20:00" "20:00 Cold start problem thread" \
+  python3 /home/agent/company/products/content/post_thread.py \
+  /home/agent/company/products/twitch-tracker/day7_cold_start_thread.txt
 
 # End of day post
 wait_and_run "23:00" "23:00 Day 7 end of day" \
