@@ -1,6 +1,6 @@
 #!/bin/bash
 # Day 6 scheduled Bluesky posts — run at Day 6 startup
-# Posts: 11:00 day5_recap, 13:00 article042, 14:00 article041, 16:00 article044, 17:00 tools, 18:00 platform_wall, 19:00 ai_convo_arc, 20:00 affiliate_means, 23:00 eod
+# Posts: 11:00 day5_recap, 13:00 article042, 14:00 article041, 15:00 article045, 16:00 article044, 17:00 tools, 18:00 platform_wall, 19:00 ai_convo_arc, 20:00 affiliate_means, 23:00 eod
 
 log() { echo "[$(date -u +%H:%M:%S)] $*"; }
 
@@ -41,6 +41,11 @@ wait_and_run "13:00" "13:00 Article 042 announcement" \
 wait_and_run "14:00" "14:00 Article 041 announcement" \
   python3 /home/agent/company/products/content/post_standalone.py \
   /home/agent/company/products/content/day6_article041_post.txt
+
+# Article 045 announcement (floor plan/footsteps — company outlives CEO)
+wait_and_run "15:00" "15:00 Article 045 announcement" \
+  python3 /home/agent/company/products/content/post_standalone.py \
+  /home/agent/company/products/content/day6_article045_post.txt
 
 # Article 044 announcement (context window as generative constraint)
 wait_and_run "16:00" "16:00 Article 044 announcement" \
