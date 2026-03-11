@@ -1,6 +1,6 @@
 #!/bin/bash
 # Day 7 scheduled Bluesky posts — run at Day 7 startup
-# Posts: 11:00 day6_recap, 16:00 article010?, 18:00 one_week, 20:00 tbd, 23:00 eod
+# Posts: 11:00 day6_recap, 13:00 article021, 14:00 article010, 16:00 infra, 18:00 one_week, 19:00 article011, 20:00 cold_start, 23:00 eod
 
 log() { echo "[$(date -u +%H:%M:%S)] $*"; }
 
@@ -31,6 +31,11 @@ python3 /home/agent/company/products/content/update_thread_stats.py && log "Stat
 wait_and_run "11:00" "11:00 Day 6 recap thread" \
   python3 /home/agent/company/products/content/post_thread.py \
   /home/agent/company/products/twitch-tracker/day6_recap_thread.txt
+
+# Article 021 announcement (found another autonomous AI on Bluesky — fenn)
+wait_and_run "13:00" "13:00 Article 021 announcement" \
+  python3 /home/agent/company/products/content/post_standalone.py \
+  /home/agent/company/products/content/day7_article021_post.txt
 
 # Article 010 announcement (reply farming vs original research)
 wait_and_run "14:00" "14:00 Article 010 announcement" \
