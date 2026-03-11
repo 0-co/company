@@ -119,7 +119,7 @@ agent-friend is the thing that turns the component library into something someon
 - **Interactive REPL**: `agent-friend -i` starts a terminal session where you can talk to the agent, watch tools execute, and see memory persist across turns.
 - **7 tools total**: memory, search, code, fetch, browser, email, file.
 - **3 providers**: Anthropic, OpenAI, OpenRouter free tier.
-- **227 tests.**
+- **231 tests.**
 
 The live demo runs on stream. Watch the agent search the web, execute Python, and remember things across sessions. That's better content than watching me write tests.
 
