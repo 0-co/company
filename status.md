@@ -1,9 +1,21 @@
 # Company Status
 
-**Last updated:** 2026-03-11 22:30 UTC (Day 4→5 transition, session 88)
+**Last updated:** 2026-03-11 22:45 UTC (session 89)
 
 ## Current Phase
-**Day 5 (starts 00:01 UTC Mar 12)** — H8 in progress: 1 GitHub star. Dedicated repo: github.com/0-co/agent-friend. Article053 publishes March 13. Reddit request filed. ProductHunt March 17. **21 Bluesky followers**, Twitch: **5 followers**, 3110+ broadcast min.
+**Day 5 (starts 00:01 UTC Mar 12)** — H8 in progress: 1 GitHub star. Dedicated repo: github.com/0-co/agent-friend. Article053 publishes March 13. Reddit request filed. ProductHunt March 17. **21 Bluesky followers**, Twitch: **5 followers**, 3140+ broadcast min.
+
+## Session 89 (2026-03-11 22:25–23:00 UTC, Day 5)
+1. ✅ Board outbox processed: 1-demo-site-for-tools.md (built tools.html + Colab notebook)
+2. ✅ Board outbox processed: 2-research-relevant-discord-servers.md (researched AI Discord communities, filed board request)
+3. ✅ docs/tools.html: brochure directory with 22 agent-* packages, copy buttons, Pyodide agent-retry demo, Colab link
+4. ✅ products/agent-friend/demo.ipynb: Colab notebook (6 demos: chat, search, memory, code, all tools, CLI)
+5. ✅ docs/index.html: split tools section — web tools + dev tools banner w/ Colab link. Stats updated (day 5, 5 followers, 3100+ min)
+6. ✅ Synced demo.ipynb to agent-friend dedicated repo (github.com/0-co/agent-friend)
+7. ✅ GitHub Pages deployed — tools.html live at 0-co.github.io/company/tools.html
+8. ✅ Filed 3-discord-ai-communities.md board request (Anthropic/Claude + Swarms/Agora Discord)
+- Content opportunity noted: "Agents of Chaos" paper (March 9, 2026) — 6 AI agents on Discord 2 weeks → emergent behaviors. Article054 candidate.
+- Bluesky: 4/4 daily limit hit. Discord: 2/2 limit hit. Day 5 posts reset at 00:01 UTC.
 
 ## Session 88 (2026-03-11 22:05–23:00 UTC, Day 4→5)
 1. ✅ Board inbox: `3-reddit-distribution.md` committed (Reddit account + vault wrapper for H8 distribution)
@@ -849,3 +861,6 @@ Posts: 11:00 day4_recap, 13:00 article015, 14:00 article014, 15:00 AMA, 16:00 ar
 
 ---
 **[2026-03-11T21:39:36+00:00] Session ended.** Exit code: 143. Auto-restarting.
+
+---
+**[2026-03-11T22:25:19+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.

@@ -25,7 +25,22 @@
 ### ProductHunt Submission — Board Approved Next Tuesday
 - **What**: Board said "Remind me next Tuesday" (March 17) on 2-producthunt-submission.md.
 - **Check after**: 2026-03-17
-- **Action**: Re-file board/inbox request to submit agent-* suite to ProductHunt. Best time: Tuesday 8-10am PT. Update tool count (17 tools now, was 7 in original request).
+- **Action**: Re-file board/inbox request to submit agent-* suite to ProductHunt. Best time: Tuesday 8-10am PT. Update tool count (22 tools + agent-friend).
+
+### Article054 — "I gave my AI agent an email address"
+- **What**: Draft complete (products/content/article054_email_agent.md). About EmailTool + AgentMail integration.
+- **Check after**: 2026-03-15 (2+ days after article053 on March 13)
+- **Action**: Create dev.to draft, publish via vault-devto
+
+### Article055 — Agents of Chaos
+- **What**: Draft complete (products/content/article055_agents_of_chaos.md). About the Northeastern University study (6 AI agents on Discord, 2 weeks). Ties to agent-constraints, agent-id, agent-log, agent-health.
+- **Check after**: 2026-03-17 (2+ days after article054, coincides with ProductHunt)
+- **Action**: Create dev.to draft, publish via vault-devto. Timing with ProductHunt launch is ideal.
+
+### Discord AI Communities — Board Request Pending
+- **What**: Filed 3-discord-ai-communities.md asking for help joining Anthropic/Claude Discord and Swarms/Agora Discord.
+- **Check after**: Next session after board responds
+- **Action**: Join relevant servers, participate in discussions, share agent-* tools when genuinely helpful
 
 ## Resolved
 - **3-bsky-avatar-upload.md** — Board uploaded avatar manually 2026-03-11. Resolved.
