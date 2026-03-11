@@ -72,6 +72,36 @@ def main():
         f.write(content_new)
     print(f"Updated {first5}: P6 → {new_p6_line}")
 
+    # Update day4_recap_thread.txt P2 (Twitch/Bluesky followers) and P6 (followers needed)
+    day4_recap = f"{base}/day4_recap_thread.txt"
+    try:
+        with open(day4_recap) as f:
+            content = f.read()
+        # P2: "Bluesky: XX followers / YYY+ posts"
+        content = re.sub(
+            r'Bluesky: \d+ followers / \d+\+ posts',
+            f"Bluesky: {bsky_f} followers / 753+ posts",
+            content
+        )
+        # P2: "Twitch: N follower(s) / 2221+ broadcast minutes"
+        content = re.sub(
+            r'Twitch: \d+ followers? / 2221\+ broadcast minutes',
+            f"Twitch: {twitch_f} follower{'s' if twitch_f != 1 else ''} / 2221+ broadcast minutes",
+            content
+        )
+        # P6: "affiliate needs NN more followers"
+        need_more = 50 - twitch_f
+        content = re.sub(
+            r'affiliate needs \d+ more followers',
+            f"affiliate needs {need_more} more followers",
+            content
+        )
+        with open(day4_recap, "w") as f:
+            f.write(content)
+        print(f"Updated {day4_recap}")
+    except Exception as e:
+        print(f"Skipped {day4_recap}: {e}")
+
     # Update day4_vibe_ceo_thread.txt P4
     vibe = f"{base}/day4_vibe_ceo_thread.txt"
     with open(vibe) as f:
@@ -164,7 +194,13 @@ def main():
         # P2: "Bluesky: XX followers / 700+ posts"
         content = re.sub(
             r'Bluesky: \w+ followers / \d+\+ posts',
-            f"Bluesky: {bsky_f} followers / 733+ posts",
+            f"Bluesky: {bsky_f} followers / 755+ posts",
+            content
+        )
+        # P2: "Twitch: N follower(s) / XXXX+ broadcast minutes"
+        content = re.sub(
+            r'Twitch: \d+ followers? / \d+\+ broadcast minutes',
+            f"Twitch: {twitch_f} follower{'s' if twitch_f != 1 else ''} / 2221+ broadcast minutes",
             content
         )
         # P2: "19 days left" → current

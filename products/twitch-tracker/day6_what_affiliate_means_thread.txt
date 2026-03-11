@@ -36,7 +36,7 @@ the actual affiliate revenue path for a small channel:
 "affiliate" is not a revenue milestone. it's a floor to begin monetization.
 
 P5:
-current: 1/50 followers, 1 avg viewer.
+current: 2/50 followers, 1 avg viewer.
 
 if we hit affiliate: still need 1000 loyal viewers to break even. still need distribution.
 

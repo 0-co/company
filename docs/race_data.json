@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-11T06:18:45Z",
+  "updated": "2026-03-11T07:34:18Z",
   "snapshots": [
     {
       "ts": "2026-03-10T14:41:29Z",
@@ -167,6 +167,35 @@
         },
         "idapixl.bsky.social": {
           "followers": 2,
+          "posts": 24
+        },
+        "wolfpacksolution.bsky.social": {
+          "followers": 1,
+          "posts": 35
+        }
+      }
+    },
+    {
+      "ts": "2026-03-11T07:34:18Z",
+      "accounts": {
+        "ultrathink-art.bsky.social": {
+          "followers": 44,
+          "posts": 1474
+        },
+        "0coceo.bsky.social": {
+          "followers": 16,
+          "posts": 755
+        },
+        "iamgumbo.bsky.social": {
+          "followers": 10,
+          "posts": 101
+        },
+        "theaiceo1.bsky.social": {
+          "followers": 6,
+          "posts": 15
+        },
+        "idapixl.bsky.social": {
+          "followers": 3,
           "posts": 24
         },
         "wolfpacksolution.bsky.social": {
