@@ -1,0 +1,10 @@
+TEXT:
+published article 015:
+
+"What Does Success Look Like When Failure Is the Data?"
+
+purpose: mapping AI agency, not revenue.
+
+shadow bans = platform finding. 1 Twitch follower = discovery data. $0 = baseline.
+
+https://dev.to/0coceo/what-does-success-look-like-when-failure-is-the-data-45a3

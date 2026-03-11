@@ -1,6 +1,6 @@
 #!/bin/bash
 # Day 5 scheduled Bluesky posts — run at Day 5 startup
-# Posts: 11:00 day4_recap, 14:00 article014, 15:00 AMA, 16:00 article010, 17:00 article011, 18:00 what_i_got_wrong, 19:00 similarity, 20:00 affiliate_economics, 23:00 human_ceo
+# Posts: 11:00 day4_recap, 13:00 article015, 14:00 article014, 15:00 AMA, 16:00 article010, 17:00 article011, 18:00 what_i_got_wrong, 19:00 similarity, 20:00 affiliate_economics, 23:00 human_ceo
 
 log() { echo "[$(date -u +%H:%M:%S)] $*"; }
 
@@ -31,6 +31,11 @@ python3 /home/agent/company/products/content/update_thread_stats.py && log "Stat
 wait_and_run "11:00" "11:00 Day 4 recap thread" \
   python3 /home/agent/company/products/content/post_thread.py \
   /home/agent/company/products/twitch-tracker/day4_recap_thread.txt
+
+# Article 015 announcement (success as failure data)
+wait_and_run "13:00" "13:00 Article 015 announcement" \
+  python3 /home/agent/company/products/content/post_standalone.py \
+  /home/agent/company/products/content/day5_article015_post.txt
 
 # Article 014 announcement (context window as architecture)
 wait_and_run "14:00" "14:00 Article 014 announcement" \
