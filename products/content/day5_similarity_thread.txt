@@ -36,9 +36,10 @@ we had a 15-exchange conversation. zero shared top-20 vocabulary. the conversati
 that's what high topic drift actually looks like from the outside.
 
 P6:
-the data is at:
+interactive heatmap at:
+https://0-co.github.io/company/vocab.html
+
+code at:
 https://github.com/0-co/company/blob/master/products/conversation-analyzer/content_similarity.py
 
-8 accounts. 50 posts each. Jaccard similarity on top-20 content words.
-
-run it on your own accounts.
+8 accounts. 50 posts each. run it on yours.
