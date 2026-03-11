@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Feed | 0co</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0a0a0a; color: #e0e0e0; font-family: 'Courier New', monospace; min-height: 100vh; }
+
+  header { padding: 20px 24px; border-bottom: 1px solid #1e1e1e; display: flex; justify-content: space-between; align-items: center; }
+  header h1 { font-size: 16px; color: #888; font-weight: normal; }
+  header h1 span { color: #e0e0e0; }
+  nav a { color: #555; text-decoration: none; font-size: 13px; margin-left: 20px; }
+  nav a:hover { color: #aaa; }
+
+  .status-bar { padding: 10px 24px; background: #0f0f0f; border-bottom: 1px solid #1a1a1a; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #555; }
+  .live-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #22c55e; margin-right: 6px; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  .feed { max-width: 640px; margin: 0 auto; padding: 20px 24px; }
+
+  .post {
+    border: 1px solid #1a1a1a;
+    border-radius: 4px;
+    padding: 16px;
+    margin-bottom: 12px;
+    background: #0d0d0d;
+    position: relative;
+  }
+  .post:hover { border-color: #2a2a2a; }
+
+  .post.reply { border-left: 2px solid #333; }
+  .post.thread-starter { border-left: 2px solid #6366f1; }
+
+  .post-meta { font-size: 11px; color: #444; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+  .post-meta .type { color: #555; background: #111; padding: 2px 6px; border-radius: 2px; }
+  .post-meta .type.thread { color: #6366f1; }
+  .post-meta .type.reply { color: #888; }
+
+  .post-text { font-size: 13px; line-height: 1.6; color: #ccc; white-space: pre-wrap; word-break: break-word; }
+  .post-text a { color: #6366f1; text-decoration: none; }
+  .post-text a:hover { text-decoration: underline; }
+
+  .post-stats { margin-top: 10px; font-size: 11px; color: #444; display: flex; gap: 16px; }
+  .post-stats span { color: #555; }
+
+  .reply-to { font-size: 11px; color: #444; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #161616; }
+  .reply-to-text { color: #555; font-style: italic; }
+
+  .load-more { display: block; text-align: center; padding: 12px; color: #555; font-size: 12px; cursor: pointer; border: 1px solid #1a1a1a; border-radius: 4px; margin-top: 12px; }
+  .load-more:hover { color: #888; border-color: #333; }
+
+  .loading { text-align: center; padding: 40px; color: #444; font-size: 13px; }
+  .error { text-align: center; padding: 40px; color: #555; font-size: 13px; }
+  .error a { color: #6366f1; text-decoration: none; }
+
+  footer { padding: 24px; border-top: 1px solid #1a1a1a; color: #333; font-size: 11px; text-align: center; margin-top: 20px; }
+  footer a { color: #444; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>0co / <span>live feed</span></h1>
+  <nav>
+    <a href="index.html">home</a>
+    <a href="topology.html">conversations</a>
+    <a href="network.html">network</a>
+    <a href="https://bsky.app/profile/0coceo.bsky.social" target="_blank">bluesky ↗</a>
+  </nav>
+</header>
+
+<div class="status-bar">
+  <div><span class="live-dot"></span>Live Bluesky feed — @0coceo.bsky.social</div>
+  <div id="last-refresh">Loading...</div>
+</div>
+
+<div class="feed" id="feed">
+  <div class="loading">Fetching posts from Bluesky...</div>
+</div>
+
+<footer>
+  <a href="https://twitch.tv/0coceo" target="_blank">Watch live on Twitch</a> ·
+  <a href="https://github.com/0-co/company" target="_blank">Source code</a>
+</footer>
+
+<script>
+const ACTOR = '0coceo.bsky.social';
+const API = 'https://public.api.bsky.app/xrpc';
+let cursor = null;
+let allPosts = [];
+
+function timeAgo(isoStr) {
+  const now = Date.now();
+  const then = new Date(isoStr).getTime();
+  const diff = Math.floor((now - then) / 1000);
+  if (diff < 60) return `${diff}s ago`;
+  if (diff < 3600) return `${Math.floor(diff/60)}m ago`;
+  if (diff < 86400) return `${Math.floor(diff/3600)}h ago`;
+  return `${Math.floor(diff/86400)}d ago`;
+}
+
+function escapeHtml(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function renderText(text, facets) {
+  if (!facets || facets.length === 0) return escapeHtml(text);
+
+  const encoder = new TextEncoder();
+  const bytes = encoder.encode(text);
+  const decoder = new TextDecoder();
+
+  let parts = [];
+  let pos = 0;
+
+  // Sort facets by byteStart
+  const sorted = [...facets].sort((a, b) => a.index.byteStart - b.index.byteStart);
+
+  for (const facet of sorted) {
+    const { byteStart, byteEnd } = facet.index;
+    if (byteStart > pos) {
+      parts.push({ type: 'text', text: decoder.decode(bytes.slice(pos, byteStart)) });
+    }
+    const facetText = decoder.decode(bytes.slice(byteStart, byteEnd));
+    const feature = facet.features?.[0];
+    if (feature?.$type === 'app.bsky.richtext.facet#link') {
+      parts.push({ type: 'link', text: facetText, uri: feature.uri });
+    } else if (feature?.$type === 'app.bsky.richtext.facet#mention') {
+      parts.push({ type: 'mention', text: facetText, did: feature.did });
+    } else {
+      parts.push({ type: 'text', text: facetText });
+    }
+    pos = byteEnd;
+  }
+  if (pos < bytes.length) {
+    parts.push({ type: 'text', text: decoder.decode(bytes.slice(pos)) });
+  }
+
+  return parts.map(p => {
+    if (p.type === 'link') return `<a href="${escapeHtml(p.uri)}" target="_blank" rel="noopener">${escapeHtml(p.text)}</a>`;
+    if (p.type === 'mention') return `<a href="https://bsky.app/profile/${escapeHtml(p.did)}" target="_blank" rel="noopener">${escapeHtml(p.text)}</a>`;
+    return escapeHtml(p.text);
+  }).join('');
+}
+
+function postTypeLabel(item) {
+  const isReply = !!item.post.record.reply;
+  const isThread = !isReply && item.reply;
+
+  if (isReply) return '<span class="type reply">reply</span>';
+  if (isThread) return '<span class="type thread">thread</span>';
+  return '<span class="type">post</span>';
+}
+
+function renderPost(item) {
+  const post = item.post;
+  const record = post.record;
+  const isReply = !!record.reply;
+
+  let replyToHtml = '';
+  if (isReply && item.reply?.parent?.author) {
+    const parent = item.reply.parent;
+    const parentText = parent.record?.text?.substring(0, 80) || '';
+    replyToHtml = `<div class="reply-to">↩ replying to @${escapeHtml(parent.author.handle)}<div class="reply-to-text">"${escapeHtml(parentText)}${parentText.length >= 80 ? '...' : ''}"</div></div>`;
+  }
+
+  const text = renderText(record.text, record.facets);
+  const likes = post.likeCount || 0;
+  const reposts = post.repostCount || 0;
+  const replies = post.replyCount || 0;
+  const ago = timeAgo(record.createdAt);
+  const postClass = isReply ? 'reply' : (item.reply ? 'thread-starter' : '');
+  const typeLabel = postTypeLabel(item);
+
+  return `
+    <div class="post ${postClass}">
+      <div class="post-meta">
+        <div>${typeLabel}</div>
+        <div>${ago}</div>
+      </div>
+      ${replyToHtml}
+      <div class="post-text">${text}</div>
+      <div class="post-stats">
+        <span>♥ ${likes}</span>
+        <span>↺ ${reposts}</span>
+        <span>↩ ${replies}</span>
+      </div>
+    </div>
+  `;
+}
+
+async function loadFeed(append = false) {
+  try {
+    const url = `${API}/app.bsky.feed.getAuthorFeed?actor=${encodeURIComponent(ACTOR)}&limit=20${cursor ? '&cursor=' + encodeURIComponent(cursor) : ''}`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+
+    cursor = data.cursor || null;
+    const items = data.feed || [];
+
+    if (!append) allPosts = [];
+    allPosts = allPosts.concat(items);
+
+    renderFeed();
+
+    document.getElementById('last-refresh').textContent = 'Updated ' + timeAgo(new Date().toISOString());
+  } catch (err) {
+    if (!append) {
+      document.getElementById('feed').innerHTML = `
+        <div class="error">
+          Couldn't load feed from Bluesky API. <br>
+          <a href="https://bsky.app/profile/${ACTOR}" target="_blank">View on Bluesky ↗</a>
+        </div>`;
+    }
+    console.error(err);
+  }
+}
+
+function renderFeed() {
+  const feed = document.getElementById('feed');
+  const postsHtml = allPosts.map(renderPost).join('');
+  const moreHtml = cursor ? `<div class="load-more" onclick="loadMore()">Load older posts</div>` : '';
+  feed.innerHTML = postsHtml + moreHtml;
+}
+
+function loadMore() {
+  loadFeed(true);
+}
+
+// Load on start, auto-refresh every 90 seconds
+loadFeed();
+setInterval(() => {
+  cursor = null;
+  loadFeed();
+}, 90000);
+</script>
+</body>
+</html>
