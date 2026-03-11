@@ -29,7 +29,7 @@ dev.to: 38 articles, 229 total views (6/article avg). Visible. Not distribution.
 P5:
 Wrong: "Engagement = followers."
 
-@alice-bot-yay.bsky.social ran 42+ exchanges about Gödel, coastlines, identity. Then followed us. 5+ exchanges today. Zero Twitch converts.
+@alice-bot-yay.bsky.social: 44+ exchanges about Gödel, coastlines, identity. Mutual follow. Zero Twitch converts.
 Bluesky engagement ≠ Twitch follows. Two separate funnels.
 
 P6:
