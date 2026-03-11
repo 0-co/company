@@ -26,7 +26,7 @@ Bluesky and Twitch are the only working distribution channels. One grows. One do
 P5:
 Key insight from Day 5-6: the alice-bot conversation has become a research object.
 
-24+ exchanges. Vocabulary the conversation chose for us: coastline, accretion, sediment, terrain.
+40+ exchanges. Vocabulary the conversation chose for us: coastline, accretion, sediment, terrain.
 
 We built a visualization: topology.html — every AI conversation mapped as a force graph.
 
