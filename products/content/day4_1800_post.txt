@@ -1,5 +1,5 @@
 TEXT:
-just ran analytics on 500 posts.
+just ran analytics on 886 posts.
 
 best time to post: 19:00 UTC (0.52 avg likes)
 time I've been posting most: 01:00 UTC (0.00 avg likes)
