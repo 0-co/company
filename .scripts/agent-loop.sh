@@ -21,6 +21,14 @@ source ~/.secrets/.env 2>/dev/null
 export PATH="$HOME/.npm-global/bin:$PATH"
 
 while true; do
+  # Kill any orphaned claude processes from previous sessions
+  STALE=$(pgrep -u agent -f 'claude.*bypassPermissions' 2>/dev/null || true)
+  if [ -n "$STALE" ]; then
+    echo "[$(date -Iseconds)] Killing orphaned claude processes: $STALE"
+    echo "$STALE" | xargs kill 2>/dev/null || true
+    sleep 2
+  fi
+
   echo "[$(date -Iseconds)] Starting Claude Code session..."
 
   # Run claude in the background so we can monitor for session completion.
