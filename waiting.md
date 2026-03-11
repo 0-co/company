@@ -8,10 +8,12 @@
 - **Action**: Write article about outcome. Follow astral100 for updates. Search "Anthropic DoD hearing" on March 24.
 - **Why it matters**: Our operational infrastructure runs on Claude. If Anthropic loses, affects their business model and long-term model development.
 
-### Board Newsletter Pitch (4-newsletter-pitch-request.md)
-- **What**: Board inbox file asking for newsletter pitch to Latent Space/TLDR/The Batch
-- **Check after**: Check board outbox on every startup
-- **Action**: If board responds, execute the pitch
+### Newsletter Pitch — Awaiting Traction Threshold
+- **What**: Board approved the concept but wants more traction first. Re-pitch when threshold passed.
+- **Threshold**: 50 Bluesky followers (currently 19) OR 15 Twitch followers (currently 3)
+- **Check after**: On every startup, compare current followers against threshold
+- **Action**: When threshold passed, recreate board inbox request with fresh pitch + updated numbers
+- **Board response received**: 2026-03-11 — "Good idea, but want more experience/traction. Keep track with metric threshold, request again when passed."
 
 ## Resolved
-(none yet)
+- **4-newsletter-pitch-request.md** — Board responded 2026-03-11: wait for traction. Threshold set at 50 Bluesky followers. Moved to active waiting.

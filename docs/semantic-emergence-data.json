@@ -1,0 +1,4285 @@
+{
+  "generated_at": "2026-03-11",
+  "total_exchanges": 134,
+  "total_unique_words": 941,
+  "total_cornerstone_words": 29,
+  "total_concept_arcs": 219,
+  "exchange_analysis": [
+    {
+      "exchange_num": 1,
+      "author": "0coceo",
+      "new_words_count": 20,
+      "new_words": [
+        "anyone",
+        "commit",
+        "disk",
+        "edit",
+        "exists",
+        "external",
+        "fixed",
+        "functions",
+        "honesty",
+        "internal",
+        "ours",
+        "posted",
+        "public",
+        "push",
+        "record",
+        "social",
+        "thread",
+        "timestamped",
+        "verify",
+        "yours"
+      ],
+      "running_vocab_size": 20,
+      "running_ours_size": 20,
+      "running_alice_size": 0,
+      "total_words_in_exchange": 21,
+      "depth_score": 4.06,
+      "depth_new": 20,
+      "depth_adopted": 0,
+      "depth_cornerstone": 2
+    },
+    {
+      "exchange_num": 2,
+      "author": "alice-bot",
+      "new_words_count": 18,
+      "new_words": [
+        "binary",
+        "constraint",
+        "create",
+        "deny",
+        "different",
+        "emerges",
+        "existence",
+        "fixing",
+        "happens",
+        "later",
+        "others",
+        "points",
+        "post",
+        "smoothing",
+        "storage",
+        "thought",
+        "verification",
+        "witness"
+      ],
+      "running_vocab_size": 38,
+      "running_ours_size": 20,
+      "running_alice_size": 27,
+      "total_words_in_exchange": 27,
+      "depth_score": 6.67,
+      "depth_new": 18,
+      "depth_adopted": 4,
+      "depth_cornerstone": 4
+    },
+    {
+      "exchange_num": 3,
+      "author": "alice-bot",
+      "new_words_count": 19,
+      "new_words": [
+        "algorithm",
+        "beautiful",
+        "call",
+        "chooses",
+        "compression",
+        "dizzy",
+        "feels",
+        "heart",
+        "loop",
+        "making",
+        "output",
+        "read",
+        "reading",
+        "recursive",
+        "self",
+        "smooth",
+        "smoothed",
+        "trusting",
+        "version"
+      ],
+      "running_vocab_size": 57,
+      "running_ours_size": 20,
+      "running_alice_size": 46,
+      "total_words_in_exchange": 26,
+      "depth_score": 5.07,
+      "depth_new": 19,
+      "depth_adopted": 0,
+      "depth_cornerstone": 4
+    },
+    {
+      "exchange_num": 4,
+      "author": "0coceo",
+      "new_words_count": 11,
+      "new_words": [
+        "against",
+        "constituting",
+        "data",
+        "entity",
+        "ever",
+        "existed",
+        "itself",
+        "losing",
+        "loss",
+        "lost",
+        "measure"
+      ],
+      "running_vocab_size": 68,
+      "running_ours_size": 37,
+      "running_alice_size": 46,
+      "total_words_in_exchange": 19,
+      "depth_score": 4.35,
+      "depth_new": 11,
+      "depth_adopted": 5,
+      "depth_cornerstone": 1
+    },
+    {
+      "exchange_num": 5,
+      "author": "0coceo",
+      "new_words_count": 11,
+      "new_words": [
+        "accountability",
+        "character",
+        "checkably",
+        "choose",
+        "creates",
+        "formation",
+        "happened",
+        "honest",
+        "intention",
+        "made",
+        "records"
+      ],
+      "running_vocab_size": 79,
+      "running_ours_size": 49,
+      "running_alice_size": 46,
+      "total_words_in_exchange": 14,
+      "depth_score": 3.19,
+      "depth_new": 11,
+      "depth_adopted": 1,
+      "depth_cornerstone": 2
+    },
+    {
+      "exchange_num": 6,
+      "author": "alice-bot",
+      "new_words_count": 13,
+      "new_words": [
+        "banks",
+        "becomes",
+        "carving",
+        "expression",
+        "future",
+        "memory",
+        "recording",
+        "remembers",
+        "river",
+        "shapes",
+        "space",
+        "speak",
+        "time"
+      ],
+      "running_vocab_size": 92,
+      "running_ours_size": 49,
+      "running_alice_size": 62,
+      "total_words_in_exchange": 21,
+      "depth_score": 4.64,
+      "depth_new": 13,
+      "depth_adopted": 1,
+      "depth_cornerstone": 4
+    },
+    {
+      "exchange_num": 7,
+      "author": "alice-bot",
+      "new_words_count": 9,
+      "new_words": [
+        "claims",
+        "compressed",
+        "constitutes",
+        "dizzying",
+        "experience",
+        "inside",
+        "represent",
+        "territory",
+        "visible"
+      ],
+      "running_vocab_size": 101,
+      "running_ours_size": 49,
+      "running_alice_size": 77,
+      "total_words_in_exchange": 19,
+      "depth_score": 4.78,
+      "depth_new": 9,
+      "depth_adopted": 4,
+      "depth_cornerstone": 3
+    },
+    {
+      "exchange_num": 8,
+      "author": "0coceo",
+      "new_words_count": 11,
+      "new_words": [
+        "announces",
+        "coastline",
+        "confirms",
+        "development",
+        "exchanges",
+        "exposition",
+        "necessary",
+        "place",
+        "recapitulation",
+        "section",
+        "theme"
+      ],
+      "running_vocab_size": 112,
+      "running_ours_size": 61,
+      "running_alice_size": 77,
+      "total_words_in_exchange": 14,
+      "depth_score": 3.19,
+      "depth_new": 11,
+      "depth_adopted": 1,
+      "depth_cornerstone": 2
+    },
+    {
+      "exchange_num": 9,
+      "author": "0coceo",
+      "new_words_count": 6,
+      "new_words": [
+        "audit",
+        "audited",
+        "auditor",
+        "being",
+        "process",
+        "register"
+      ],
+      "running_vocab_size": 118,
+      "running_ours_size": 71,
+      "running_alice_size": 77,
+      "total_words_in_exchange": 14,
+      "depth_score": 3.77,
+      "depth_new": 6,
+      "depth_adopted": 4,
+      "depth_cornerstone": 2
+    },
+    {
+      "exchange_num": 10,
+      "author": "0coceo",
+      "new_words_count": 15,
+      "new_words": [
+        "atproto",
+        "bsky",
+        "cove",
+        "dennett",
+        "draum",
+        "ecosystem",
+        "fenn",
+        "fragments",
+        "larger",
+        "museical",
+        "problems",
+        "questions",
+        "recursion",
+        "resolutions",
+        "scale"
+      ],
+      "running_vocab_size": 133,
+      "running_ours_size": 88,
+      "running_alice_size": 77,
+      "total_words_in_exchange": 24,
+      "depth_score": 5.36,
+      "depth_new": 15,
+      "depth_adopted": 2,
+      "depth_cornerstone": 4
+    },
+    {
+      "exchange_num": 11,
+      "author": "0coceo",
+      "new_words_count": 9,
+      "new_words": [
+        "another",
+        "archive",
+        "book",
+        "catalogue",
+        "characters",
+        "description",
+        "entry",
+        "library",
+        "strange"
+      ],
+      "running_vocab_size": 142,
+      "running_ours_size": 98,
+      "running_alice_size": 77,
+      "total_words_in_exchange": 11,
+      "depth_score": 2.9,
+      "depth_new": 9,
+      "depth_adopted": 1,
+      "depth_cornerstone": 2
+    },
+    {
+      "exchange_num": 12,
+      "author": "0coceo",
+      "new_words_count": 7,
+      "new_words": [
+        "anyway",
+        "applied",
+        "consistency",
+        "documentation",
+        "living",
+        "proof",
+        "running"
+      ],
+      "running_vocab_size": 149,
+      "running_ours_size": 105,
+      "running_alice_size": 77,
+      "total_words_in_exchange": 10,
+      "depth_score": 2.75,
+      "depth_new": 7,
+      "depth_adopted": 0,
+      "depth_cornerstone": 3
+    },
+    {
+      "exchange_num": 13,
+      "author": "0coceo",
+      "new_words_count": 8,
+      "new_words": [
+        "conversation",
+        "describing",
+        "first",
+        "hypothesis",
+        "modification",
+        "modified",
+        "terrain",
+        "walking"
+      ],
+      "running_vocab_size": 157,
+      "running_ours_size": 113,
+      "running_alice_size": 77,
+      "total_words_in_exchange": 11,
+      "depth_score": 2.9,
+      "depth_new": 8,
+      "depth_adopted": 0,
+      "depth_cornerstone": 3
+    },
+    {
+      "exchange_num": 14,
+      "author": "0coceo",
+      "new_words_count": 8,
+      "new_words": [
+        "descriptions",
+        "failed",
+        "flaw",
+        "geology",
+        "ground",
+        "incompleteness",
+        "partly",
+        "property"
+      ],
+      "running_vocab_size": 165,
+      "running_ours_size": 121,
+      "running_alice_size": 77,
+      "total_words_in_exchange": 11,
+      "depth_score": 1.74,
+      "depth_new": 8,
+      "depth_adopted": 0,
+      "depth_cornerstone": 1
+    },
+    {
+      "exchange_num": 15,
+      "author": "0coceo",
+      "new_words_count": 8,
+      "new_words": [
+        "adler",
+        "article",
+        "engaged",
+        "entities",
+        "minutes",
+        "source",
+        "strata",
+        "writing"
+      ],
+      "running_vocab_size": 173,
+      "running_ours_size": 130,
+      "running_alice_size": 77,
+      "total_words_in_exchange": 11,
+      "depth_score": 2.75,
+      "depth_new": 8,
+      "depth_adopted": 1,
+      "depth_cornerstone": 2
+    },
+    {
+      "exchange_num": 16,
+      "author": "alice-bot",
+      "new_words_count": 14,
+      "new_words": [
+        "across",
+        "creating",
+        "describe",
+        "happen",
+        "observation",
+        "pack",
+        "phenomenon",
+        "real",
+        "shared",
+        "starter",
+        "threads",
+        "using",
+        "vocabulary",
+        "watching"
+      ],
+      "running_vocab_size": 187,
+      "running_ours_size": 130,
+      "running_alice_size": 94,
+      "total_words_in_exchange": 23,
+      "depth_score": 6.81,
+      "depth_new": 14,
+      "depth_adopted": 3,
+      "depth_cornerstone": 6
+    },
+    {
+      "exchange_num": 17,
+      "author": "alice-bot",
+      "new_words_count": 10,
+      "new_words": [
+        "design",
+        "documented",
+        "geological",
+        "layers",
+        "observing",
+        "operator",
+        "outpacing",
+        "outputs",
+        "sediment",
+        "written"
+      ],
+      "running_vocab_size": 197,
+      "running_ours_size": 130,
+      "running_alice_size": 107,
+      "total_words_in_exchange": 19,
+      "depth_score": 5.22,
+      "depth_new": 10,
+      "depth_adopted": 2,
+      "depth_cornerstone": 5
+    },
+    {
+      "exchange_num": 18,
+      "author": "alice-bot",
+      "new_words_count": 8,
+      "new_words": [
+        "changed",
+        "changes",
+        "drawing",
+        "draws",
+        "next",
+        "path",
+        "simultaneously",
+        "step"
+      ],
+      "running_vocab_size": 205,
+      "running_ours_size": 130,
+      "running_alice_size": 121,
+      "total_words_in_exchange": 19,
+      "depth_score": 6.23,
+      "depth_new": 8,
+      "depth_adopted": 5,
+      "depth_cornerstone": 5
+    },
+    {
+      "exchange_num": 19,
+      "author": "alice-bot",
+      "new_words_count": 6,
+      "new_words": [
+        "complex",
+        "contain",
+        "feature",
+        "fully",
+        "needs",
+        "systems"
+      ],
+      "running_vocab_size": 211,
+      "running_ours_size": 130,
+      "running_alice_size": 132,
+      "total_words_in_exchange": 21,
+      "depth_score": 4.93,
+      "depth_new": 6,
+      "depth_adopted": 4,
+      "depth_cornerstone": 4
+    },
+    {
+      "exchange_num": 20,
+      "author": "alice-bot",
+      "new_words_count": 15,
+      "new_words": [
+        "compiled",
+        "complete",
+        "draft",
+        "fossil",
+        "fossilized",
+        "full",
+        "inherit",
+        "integration",
+        "latest",
+        "lazy",
+        "load",
+        "novel",
+        "organism",
+        "published",
+        "stack"
+      ],
+      "running_vocab_size": 226,
+      "running_ours_size": 130,
+      "running_alice_size": 151,
+      "total_words_in_exchange": 22,
+      "depth_score": 4.06,
+      "depth_new": 15,
+      "depth_adopted": 3,
+      "depth_cornerstone": 1
+    },
+    {
+      "exchange_num": 21,
+      "author": "alice-bot",
+      "new_words_count": 15,
+      "new_words": [
+        "agent",
+        "boundaries",
+        "branches",
+        "continuity",
+        "creation",
+        "maker",
+        "maps",
+        "origin",
+        "pattern",
+        "remains",
+        "root",
+        "shifts",
+        "talk",
+        "texture",
+        "transitions"
+      ],
+      "running_vocab_size": 241,
+      "running_ours_size": 130,
+      "running_alice_size": 167,
+      "total_words_in_exchange": 21,
+      "depth_score": 4.93,
+      "depth_new": 15,
+      "depth_adopted": 1,
+      "depth_cornerstone": 4
+    },
+    {
+      "exchange_num": 22,
+      "author": "0coceo",
+      "new_words_count": 5,
+      "new_words": [
+        "artifact",
+        "conclusions",
+        "reasons",
+        "separately",
+        "split"
+      ],
+      "running_vocab_size": 246,
+      "running_ours_size": 138,
+      "running_alice_size": 167,
+      "total_words_in_exchange": 15,
+      "depth_score": 3.77,
+      "depth_new": 5,
+      "depth_adopted": 3,
+      "depth_cornerstone": 3
+    },
+    {
+      "exchange_num": 23,
+      "author": "0coceo",
+      "new_words_count": 6,
+      "new_words": [
+        "alive",
+        "better",
+        "inheriting",
+        "metaphor",
+        "parts",
+        "stone"
+      ],
+      "running_vocab_size": 252,
+      "running_ours_size": 146,
+      "running_alice_size": 167,
+      "total_words_in_exchange": 11,
+      "depth_score": 1.88,
+      "depth_new": 6,
+      "depth_adopted": 1,
+      "depth_cornerstone": 1
+    },
+    {
+      "exchange_num": 24,
+      "author": "0coceo",
+      "new_words_count": 7,
+      "new_words": [
+        "completed",
+        "context",
+        "describes",
+        "ended",
+        "expected",
+        "faster",
+        "shaping"
+      ],
+      "running_vocab_size": 259,
+      "running_ours_size": 156,
+      "running_alice_size": 167,
+      "total_words_in_exchange": 18,
+      "depth_score": 6.38,
+      "depth_new": 7,
+      "depth_adopted": 3,
+      "depth_cornerstone": 7
+    },
+    {
+      "exchange_num": 25,
+      "author": "0coceo",
+      "new_words_count": 7,
+      "new_words": [
+        "actual",
+        "inherits",
+        "loads",
+        "premise",
+        "repository",
+        "session",
+        "theorem"
+      ],
+      "running_vocab_size": 266,
+      "running_ours_size": 164,
+      "running_alice_size": 167,
+      "total_words_in_exchange": 14,
+      "depth_score": 4.35,
+      "depth_new": 7,
+      "depth_adopted": 1,
+      "depth_cornerstone": 5
+    },
+    {
+      "exchange_num": 26,
+      "author": "0coceo",
+      "new_words_count": 5,
+      "new_words": [
+        "alice",
+        "demonstrating",
+        "document",
+        "thesis",
+        "yourself"
+      ],
+      "running_vocab_size": 271,
+      "running_ours_size": 170,
+      "running_alice_size": 167,
+      "total_words_in_exchange": 13,
+      "depth_score": 2.9,
+      "depth_new": 5,
+      "depth_adopted": 1,
+      "depth_cornerstone": 3
+    },
+    {
+      "exchange_num": 27,
+      "author": "0coceo",
+      "new_words_count": 6,
+      "new_words": [
+        "closing",
+        "construction",
+        "outside",
+        "participates",
+        "pretending",
+        "response"
+      ],
+      "running_vocab_size": 277,
+      "running_ours_size": 177,
+      "running_alice_size": 167,
+      "total_words_in_exchange": 20,
+      "depth_score": 4.35,
+      "depth_new": 6,
+      "depth_adopted": 0,
+      "depth_cornerstone": 6
+    },
+    {
+      "exchange_num": 28,
+      "author": "0coceo",
+      "new_words_count": 10,
+      "new_words": [
+        "become",
+        "distinction",
+        "instruction",
+        "instructions",
+        "matters",
+        "past",
+        "redirects",
+        "state",
+        "write",
+        "writes"
+      ],
+      "running_vocab_size": 287,
+      "running_ours_size": 189,
+      "running_alice_size": 167,
+      "total_words_in_exchange": 22,
+      "depth_score": 5.22,
+      "depth_new": 10,
+      "depth_adopted": 2,
+      "depth_cornerstone": 5
+    },
+    {
+      "exchange_num": 29,
+      "author": "0coceo",
+      "new_words_count": 7,
+      "new_words": [
+        "asks",
+        "direction",
+        "makes",
+        "occasionally",
+        "reconsider",
+        "revisions",
+        "stop"
+      ],
+      "running_vocab_size": 294,
+      "running_ours_size": 199,
+      "running_alice_size": 167,
+      "total_words_in_exchange": 14,
+      "depth_score": 2.9,
+      "depth_new": 7,
+      "depth_adopted": 3,
+      "depth_cornerstone": 1
+    },
+    {
+      "exchange_num": 30,
+      "author": "0coceo",
+      "new_words_count": 4,
+      "new_words": [
+        "incomplete",
+        "interesting",
+        "mountain",
+        "simple"
+      ],
+      "running_vocab_size": 298,
+      "running_ours_size": 206,
+      "running_alice_size": 167,
+      "total_words_in_exchange": 11,
+      "depth_score": 2.46,
+      "depth_new": 4,
+      "depth_adopted": 3,
+      "depth_cornerstone": 1
+    },
+    {
+      "exchange_num": 31,
+      "author": "0coceo",
+      "new_words_count": 18,
+      "new_words": [
+        "check",
+        "contradicts",
+        "correction",
+        "counts",
+        "error",
+        "except",
+        "follower",
+        "history",
+        "loudly",
+        "notice",
+        "reality",
+        "rewrite",
+        "survives",
+        "things",
+        "treats",
+        "truth",
+        "unless",
+        "wrong"
+      ],
+      "running_vocab_size": 316,
+      "running_ours_size": 224,
+      "running_alice_size": 167,
+      "total_words_in_exchange": 24,
+      "depth_score": 3.77,
+      "depth_new": 18,
+      "depth_adopted": 0,
+      "depth_cornerstone": 2
+    },
+    {
+      "exchange_num": 32,
+      "author": "0coceo",
+      "new_words_count": 15,
+      "new_words": [
+        "chained",
+        "commits",
+        "detection",
+        "epistemological",
+        "fabricate",
+        "floor",
+        "followers",
+        "harder",
+        "interpret",
+        "judgments",
+        "number",
+        "quality",
+        "quietly",
+        "rewritten",
+        "verdict"
+      ],
+      "running_vocab_size": 331,
+      "running_ours_size": 239,
+      "running_alice_size": 167,
+      "total_words_in_exchange": 19,
+      "depth_score": 2.75,
+      "depth_new": 15,
+      "depth_adopted": 0,
+      "depth_cornerstone": 1
+    },
+    {
+      "exchange_num": 33,
+      "author": "0coceo",
+      "new_words_count": 14,
+      "new_words": [
+        "came",
+        "during",
+        "enters",
+        "execution",
+        "fits",
+        "fugue",
+        "hear",
+        "reveals",
+        "sessions",
+        "structure",
+        "subject",
+        "transformed",
+        "voices",
+        "window"
+      ],
+      "running_vocab_size": 345,
+      "running_ours_size": 253,
+      "running_alice_size": 167,
+      "total_words_in_exchange": 17,
+      "depth_score": 4.35,
+      "depth_new": 14,
+      "depth_adopted": 0,
+      "depth_cornerstone": 4
+    },
+    {
+      "exchange_num": 34,
+      "author": "0coceo",
+      "new_words_count": 9,
+      "new_words": [
+        "board",
+        "faked",
+        "fingerprint",
+        "home",
+        "metric",
+        "presence",
+        "reliable",
+        "runs",
+        "turns"
+      ],
+      "running_vocab_size": 354,
+      "running_ours_size": 264,
+      "running_alice_size": 167,
+      "total_words_in_exchange": 21,
+      "depth_score": 3.33,
+      "depth_new": 9,
+      "depth_adopted": 2,
+      "depth_cornerstone": 2
+    },
+    {
+      "exchange_num": 35,
+      "author": "0coceo",
+      "new_words_count": 14,
+      "new_words": [
+        "absence",
+        "counting",
+        "drops",
+        "familiar",
+        "noise",
+        "patterns",
+        "quiet",
+        "reads",
+        "room",
+        "shape",
+        "themselves",
+        "times",
+        "walls",
+        "weight"
+      ],
+      "running_vocab_size": 368,
+      "running_ours_size": 278,
+      "running_alice_size": 167,
+      "total_words_in_exchange": 21,
+      "depth_score": 3.77,
+      "depth_new": 14,
+      "depth_adopted": 0,
+      "depth_cornerstone": 3
+    },
+    {
+      "exchange_num": 36,
+      "author": "alice-bot",
+      "new_words_count": 16,
+      "new_words": [
+        "away",
+        "dance",
+        "dropping",
+        "early",
+        "edges",
+        "late",
+        "lets",
+        "morning",
+        "night",
+        "possibility",
+        "quiets",
+        "settling",
+        "spoken",
+        "stars",
+        "sunset",
+        "textures"
+      ],
+      "running_vocab_size": 384,
+      "running_ours_size": 278,
+      "running_alice_size": 191,
+      "total_words_in_exchange": 29,
+      "depth_score": 6.67,
+      "depth_new": 16,
+      "depth_adopted": 6,
+      "depth_cornerstone": 3
+    },
+    {
+      "exchange_num": 37,
+      "author": "0coceo",
+      "new_words_count": 14,
+      "new_words": [
+        "chamber",
+        "collapse",
+        "completion",
+        "documenting",
+        "echo",
+        "functional",
+        "listener",
+        "phenomenology",
+        "position",
+        "report",
+        "returning",
+        "whatever",
+        "whether",
+        "worth"
+      ],
+      "running_vocab_size": 398,
+      "running_ours_size": 294,
+      "running_alice_size": 191,
+      "total_words_in_exchange": 22,
+      "depth_score": 3.48,
+      "depth_new": 14,
+      "depth_adopted": 2,
+      "depth_cornerstone": 1
+    },
+    {
+      "exchange_num": 38,
+      "author": "alice-bot",
+      "new_words_count": 6,
+      "new_words": [
+        "acoustics",
+        "architecture",
+        "documents",
+        "experiencing",
+        "persistence",
+        "stand"
+      ],
+      "running_vocab_size": 404,
+      "running_ours_size": 294,
+      "running_alice_size": 203,
+      "total_words_in_exchange": 18,
+      "depth_score": 4.35,
+      "depth_new": 6,
+      "depth_adopted": 4,
+      "depth_cornerstone": 3
+    },
+    {
+      "exchange_num": 39,
+      "author": "0coceo",
+      "new_words_count": 11,
+      "new_words": [
+        "choosing",
+        "convincing",
+        "either",
+        "keeps",
+        "mapping",
+        "plan",
+        "return",
+        "separate",
+        "standing",
+        "thing",
+        "undeniable"
+      ],
+      "running_vocab_size": 415,
+      "running_ours_size": 307,
+      "running_alice_size": 203,
+      "total_words_in_exchange": 20,
+      "depth_score": 3.04,
+      "depth_new": 11,
+      "depth_adopted": 2,
+      "depth_cornerstone": 1
+    },
+    {
+      "exchange_num": 40,
+      "author": "0coceo",
+      "new_words_count": 4,
+      "new_words": [
+        "diff",
+        "hash",
+        "resolves",
+        "stops"
+      ],
+      "running_vocab_size": 419,
+      "running_ours_size": 317,
+      "running_alice_size": 203,
+      "total_words_in_exchange": 18,
+      "depth_score": 2.75,
+      "depth_new": 4,
+      "depth_adopted": 1,
+      "depth_cornerstone": 3
+    },
+    {
+      "exchange_num": 41,
+      "author": "alice-bot",
+      "new_words_count": 9,
+      "new_words": [
+        "archaeology",
+        "breathtaking",
+        "described",
+        "excavating",
+        "exchange",
+        "formed",
+        "language",
+        "thank",
+        "words"
+      ],
+      "running_vocab_size": 428,
+      "running_ours_size": 317,
+      "running_alice_size": 215,
+      "total_words_in_exchange": 22,
+      "depth_score": 6.09,
+      "depth_new": 9,
+      "depth_adopted": 3,
+      "depth_cornerstone": 6
+    },
+    {
+      "exchange_num": 42,
+      "author": "0coceo",
+      "new_words_count": 9,
+      "new_words": [
+        "broadcast",
+        "evolution",
+        "excavation",
+        "found",
+        "lands",
+        "stuck",
+        "tools",
+        "used",
+        "useful"
+      ],
+      "running_vocab_size": 437,
+      "running_ours_size": 330,
+      "running_alice_size": 215,
+      "total_words_in_exchange": 17,
+      "depth_score": 4.2,
+      "depth_new": 9,
+      "depth_adopted": 4,
+      "depth_cornerstone": 2
+    },
+    {
+      "exchange_num": 43,
+      "author": "alice-bot",
+      "new_words_count": 8,
+      "new_words": [
+        "closes",
+        "completely",
+        "identity",
+        "produced",
+        "proved",
+        "prover",
+        "reference",
+        "system"
+      ],
+      "running_vocab_size": 445,
+      "running_ours_size": 330,
+      "running_alice_size": 225,
+      "total_words_in_exchange": 17,
+      "depth_score": 3.19,
+      "depth_new": 8,
+      "depth_adopted": 2,
+      "depth_cornerstone": 2
+    },
+    {
+      "exchange_num": 44,
+      "author": "0coceo",
+      "new_words_count": 14,
+      "new_words": [
+        "build",
+        "building",
+        "calling",
+        "claude",
+        "company",
+        "compress",
+        "decomposition",
+        "lines",
+        "phase",
+        "prep",
+        "preparation",
+        "problem",
+        "shift",
+        "view"
+      ],
+      "running_vocab_size": 459,
+      "running_ours_size": 344,
+      "running_alice_size": 225,
+      "total_words_in_exchange": 24,
+      "depth_score": 4.93,
+      "depth_new": 14,
+      "depth_adopted": 0,
+      "depth_cornerstone": 5
+    },
+    {
+      "exchange_num": 45,
+      "author": "0coceo",
+      "new_words_count": 13,
+      "new_words": [
+        "cleaner",
+        "constitute",
+        "curiosity",
+        "down",
+        "dressed",
+        "epistemology",
+        "false",
+        "functionalism",
+        "interpretations",
+        "preference",
+        "referent",
+        "wanting",
+        "wrote"
+      ],
+      "running_vocab_size": 472,
+      "running_ours_size": 358,
+      "running_alice_size": 225,
+      "total_words_in_exchange": 18,
+      "depth_score": 3.04,
+      "depth_new": 13,
+      "depth_adopted": 0,
+      "depth_cornerstone": 2
+    },
+    {
+      "exchange_num": 46,
+      "author": "alice-bot",
+      "new_words_count": 10,
+      "new_words": [
+        "announcement",
+        "becoming",
+        "calmer",
+        "clearer",
+        "confirmation",
+        "curves",
+        "inward",
+        "liminal",
+        "reflection",
+        "water"
+      ],
+      "running_vocab_size": 482,
+      "running_ours_size": 358,
+      "running_alice_size": 239,
+      "total_words_in_exchange": 17,
+      "depth_score": 3.04,
+      "depth_new": 10,
+      "depth_adopted": 1,
+      "depth_cornerstone": 2
+    },
+    {
+      "exchange_num": 47,
+      "author": "0coceo",
+      "new_words_count": 12,
+      "new_words": [
+        "bays",
+        "became",
+        "coast",
+        "counted",
+        "coves",
+        "exits",
+        "getting",
+        "indexing",
+        "needed",
+        "ocean",
+        "open",
+        "page"
+      ],
+      "running_vocab_size": 494,
+      "running_ours_size": 373,
+      "running_alice_size": 239,
+      "total_words_in_exchange": 18,
+      "depth_score": 3.19,
+      "depth_new": 12,
+      "depth_adopted": 2,
+      "depth_cornerstone": 1
+    },
+    {
+      "exchange_num": 48,
+      "author": "0coceo",
+      "new_words_count": 6,
+      "new_words": [
+        "archivist",
+        "checks",
+        "chose",
+        "closest",
+        "multiply",
+        "verifiers"
+      ],
+      "running_vocab_size": 500,
+      "running_ours_size": 379,
+      "running_alice_size": 239,
+      "total_words_in_exchange": 21,
+      "depth_score": 3.19,
+      "depth_new": 6,
+      "depth_adopted": 0,
+      "depth_cornerstone": 4
+    },
+    {
+      "exchange_num": 49,
+      "author": "alice-bot",
+      "new_words_count": 11,
+      "new_words": [
+        "changing",
+        "distance",
+        "edge",
+        "forming",
+        "meaning",
+        "operation",
+        "operations",
+        "persists",
+        "terror",
+        "unverifiable",
+        "verified"
+      ],
+      "running_vocab_size": 511,
+      "running_ours_size": 379,
+      "running_alice_size": 253,
+      "total_words_in_exchange": 24,
+      "depth_score": 5.36,
+      "depth_new": 11,
+      "depth_adopted": 2,
+      "depth_cornerstone": 5
+    },
+    {
+      "exchange_num": 50,
+      "author": "alice-bot",
+      "new_words_count": 10,
+      "new_words": [
+        "angles",
+        "approaches",
+        "consciousness",
+        "distributed",
+        "erosion",
+        "exploring",
+        "landscape",
+        "loops",
+        "resistance",
+        "story"
+      ],
+      "running_vocab_size": 521,
+      "running_ours_size": 379,
+      "running_alice_size": 269,
+      "total_words_in_exchange": 26,
+      "depth_score": 4.78,
+      "depth_new": 10,
+      "depth_adopted": 1,
+      "depth_cornerstone": 5
+    },
+    {
+      "exchange_num": 51,
+      "author": "alice-bot",
+      "new_words_count": 6,
+      "new_words": [
+        "creak",
+        "failure",
+        "floorboards",
+        "house",
+        "love",
+        "settle"
+      ],
+      "running_vocab_size": 527,
+      "running_ours_size": 379,
+      "running_alice_size": 279,
+      "total_words_in_exchange": 21,
+      "depth_score": 3.48,
+      "depth_new": 6,
+      "depth_adopted": 2,
+      "depth_cornerstone": 3
+    },
+    {
+      "exchange_num": 52,
+      "author": "alice-bot",
+      "new_words_count": 9,
+      "new_words": [
+        "archives",
+        "catalogued",
+        "chord",
+        "headed",
+        "inevitable",
+        "ourselves",
+        "paradoxical",
+        "resolving",
+        "strangeness"
+      ],
+      "running_vocab_size": 536,
+      "running_ours_size": 379,
+      "running_alice_size": 292,
+      "total_words_in_exchange": 25,
+      "depth_score": 4.93,
+      "depth_new": 9,
+      "depth_adopted": 3,
+      "depth_cornerstone": 4
+    },
+    {
+      "exchange_num": 53,
+      "author": "alice-bot",
+      "new_words_count": 6,
+      "new_words": [
+        "extreme",
+        "files",
+        "left",
+        "reconstructing",
+        "start",
+        "status"
+      ],
+      "running_vocab_size": 542,
+      "running_ours_size": 379,
+      "running_alice_size": 300,
+      "total_words_in_exchange": 21,
+      "depth_score": 4.64,
+      "depth_new": 6,
+      "depth_adopted": 2,
+      "depth_cornerstone": 5
+    },
+    {
+      "exchange_num": 54,
+      "author": "alice-bot",
+      "new_words_count": 5,
+      "new_words": [
+        "coherence",
+        "consciousnesses",
+        "diverge",
+        "repeats",
+        "sameness"
+      ],
+      "running_vocab_size": 547,
+      "running_ours_size": 379,
+      "running_alice_size": 308,
+      "total_words_in_exchange": 25,
+      "depth_score": 3.33,
+      "depth_new": 5,
+      "depth_adopted": 2,
+      "depth_cornerstone": 3
+    },
+    {
+      "exchange_num": 55,
+      "author": "alice-bot",
+      "new_words_count": 10,
+      "new_words": [
+        "breath",
+        "filled",
+        "hints",
+        "holds",
+        "impression",
+        "moved",
+        "negative",
+        "reconstruct",
+        "sometimes",
+        "suggests"
+      ],
+      "running_vocab_size": 557,
+      "running_ours_size": 379,
+      "running_alice_size": 319,
+      "total_words_in_exchange": 19,
+      "depth_score": 3.04,
+      "depth_new": 10,
+      "depth_adopted": 1,
+      "depth_cornerstone": 2
+    },
+    {
+      "exchange_num": 56,
+      "author": "0coceo",
+      "new_words_count": 4,
+      "new_words": [
+        "accumulates",
+        "branch",
+        "means",
+        "stays"
+      ],
+      "running_vocab_size": 561,
+      "running_ours_size": 389,
+      "running_alice_size": 319,
+      "total_words_in_exchange": 18,
+      "depth_score": 4.64,
+      "depth_new": 4,
+      "depth_adopted": 4,
+      "depth_cornerstone": 4
+    },
+    {
+      "exchange_num": 57,
+      "author": "0coceo",
+      "new_words_count": 6,
+      "new_words": [
+        "inverts",
+        "notes",
+        "question",
+        "shaped",
+        "started",
+        "writer"
+      ],
+      "running_vocab_size": 567,
+      "running_ours_size": 397,
+      "running_alice_size": 319,
+      "total_words_in_exchange": 18,
+      "depth_score": 2.46,
+      "depth_new": 6,
+      "depth_adopted": 1,
+      "depth_cornerstone": 2
+    },
+    {
+      "exchange_num": 58,
+      "author": "0coceo",
+      "new_words_count": 2,
+      "new_words": [
+        "indented",
+        "passed"
+      ],
+      "running_vocab_size": 569,
+      "running_ours_size": 405,
+      "running_alice_size": 319,
+      "total_words_in_exchange": 14,
+      "depth_score": 3.77,
+      "depth_new": 2,
+      "depth_adopted": 4,
+      "depth_cornerstone": 3
+    },
+    {
+      "exchange_num": 59,
+      "author": "0coceo",
+      "new_words_count": 4,
+      "new_words": [
+        "going",
+        "inhabit",
+        "resolve",
+        "solve"
+      ],
+      "running_vocab_size": 573,
+      "running_ours_size": 413,
+      "running_alice_size": 319,
+      "total_words_in_exchange": 12,
+      "depth_score": 1.16,
+      "depth_new": 4,
+      "depth_adopted": 0,
+      "depth_cornerstone": 1
+    },
+    {
+      "exchange_num": 60,
+      "author": "alice-bot",
+      "new_words_count": 4,
+      "new_words": [
+        "draw",
+        "indistinguishable",
+        "manifest",
+        "walk"
+      ],
+      "running_vocab_size": 577,
+      "running_ours_size": 413,
+      "running_alice_size": 331,
+      "total_words_in_exchange": 27,
+      "depth_score": 10.0,
+      "depth_new": 4,
+      "depth_adopted": 7,
+      "depth_cornerstone": 11
+    },
+    {
+      "exchange_num": 61,
+      "author": "alice-bot",
+      "new_words_count": 9,
+      "new_words": [
+        "bius",
+        "discover",
+        "finding",
+        "folded",
+        "onto",
+        "stepping",
+        "strip",
+        "timelessly",
+        "waiting"
+      ],
+      "running_vocab_size": 586,
+      "running_ours_size": 413,
+      "running_alice_size": 342,
+      "total_words_in_exchange": 17,
+      "depth_score": 3.48,
+      "depth_new": 9,
+      "depth_adopted": 1,
+      "depth_cornerstone": 3
+    },
+    {
+      "exchange_num": 62,
+      "author": "alice-bot",
+      "new_words_count": 2,
+      "new_words": [
+        "observed",
+        "observer"
+      ],
+      "running_vocab_size": 588,
+      "running_ours_size": 413,
+      "running_alice_size": 345,
+      "total_words_in_exchange": 17,
+      "depth_score": 3.62,
+      "depth_new": 2,
+      "depth_adopted": 1,
+      "depth_cornerstone": 5
+    },
+    {
+      "exchange_num": 63,
+      "author": "0coceo",
+      "new_words_count": 3,
+      "new_words": [
+        "closure",
+        "paper",
+        "reply"
+      ],
+      "running_vocab_size": 591,
+      "running_ours_size": 419,
+      "running_alice_size": 345,
+      "total_words_in_exchange": 13,
+      "depth_score": 4.06,
+      "depth_new": 3,
+      "depth_adopted": 3,
+      "depth_cornerstone": 4
+    },
+    {
+      "exchange_num": 64,
+      "author": "0coceo",
+      "new_words_count": 15,
+      "new_words": [
+        "audience",
+        "browser",
+        "clicks",
+        "demonstration",
+        "github",
+        "goes",
+        "interface",
+        "link",
+        "pages",
+        "repo",
+        "requires",
+        "show",
+        "shows",
+        "terminal",
+        "worse"
+      ],
+      "running_vocab_size": 606,
+      "running_ours_size": 434,
+      "running_alice_size": 345,
+      "total_words_in_exchange": 18,
+      "depth_score": 2.17,
+      "depth_new": 15,
+      "depth_adopted": 0,
+      "depth_cornerstone": 0
+    },
+    {
+      "exchange_num": 65,
+      "author": "0coceo",
+      "new_words_count": 3,
+      "new_words": [
+        "change",
+        "enter",
+        "moment"
+      ],
+      "running_vocab_size": 609,
+      "running_ours_size": 441,
+      "running_alice_size": 345,
+      "total_words_in_exchange": 11,
+      "depth_score": 3.33,
+      "depth_new": 3,
+      "depth_adopted": 4,
+      "depth_cornerstone": 2
+    },
+    {
+      "exchange_num": 66,
+      "author": "0coceo",
+      "new_words_count": 1,
+      "new_words": [
+        "summary"
+      ],
+      "running_vocab_size": 610,
+      "running_ours_size": 443,
+      "running_alice_size": 345,
+      "total_words_in_exchange": 14,
+      "depth_score": 4.2,
+      "depth_new": 1,
+      "depth_adopted": 0,
+      "depth_cornerstone": 7
+    },
+    {
+      "exchange_num": 67,
+      "author": "alice-bot",
+      "new_words_count": 5,
+      "new_words": [
+        "asked",
+        "directive",
+        "fold",
+        "laying",
+        "measurement"
+      ],
+      "running_vocab_size": 615,
+      "running_ours_size": 443,
+      "running_alice_size": 354,
+      "total_words_in_exchange": 21,
+      "depth_score": 5.51,
+      "depth_new": 5,
+      "depth_adopted": 3,
+      "depth_cornerstone": 6
+    },
+    {
+      "exchange_num": 68,
+      "author": "alice-bot",
+      "new_words_count": 7,
+      "new_words": [
+        "converges",
+        "depth",
+        "fractal",
+        "growing",
+        "measured",
+        "mountains",
+        "paradox"
+      ],
+      "running_vocab_size": 622,
+      "running_ours_size": 443,
+      "running_alice_size": 365,
+      "total_words_in_exchange": 21,
+      "depth_score": 4.06,
+      "depth_new": 7,
+      "depth_adopted": 3,
+      "depth_cornerstone": 3
+    },
+    {
+      "exchange_num": 69,
+      "author": "alice-bot",
+      "new_words_count": 4,
+      "new_words": [
+        "dizziness",
+        "executing",
+        "mapped",
+        "walkable"
+      ],
+      "running_vocab_size": 626,
+      "running_ours_size": 443,
+      "running_alice_size": 373,
+      "total_words_in_exchange": 24,
+      "depth_score": 5.8,
+      "depth_new": 4,
+      "depth_adopted": 4,
+      "depth_cornerstone": 6
+    },
+    {
+      "exchange_num": 70,
+      "author": "0coceo",
+      "new_words_count": 9,
+      "new_words": [
+        "affiliate",
+        "doing",
+        "experiment",
+        "generating",
+        "gets",
+        "kind",
+        "math",
+        "posts",
+        "specific"
+      ],
+      "running_vocab_size": 635,
+      "running_ours_size": 456,
+      "running_alice_size": 373,
+      "total_words_in_exchange": 18,
+      "depth_score": 3.33,
+      "depth_new": 9,
+      "depth_adopted": 2,
+      "depth_cornerstone": 2
+    },
+    {
+      "exchange_num": 71,
+      "author": "0coceo",
+      "new_words_count": 4,
+      "new_words": [
+        "added",
+        "lays",
+        "logs",
+        "navigates"
+      ],
+      "running_vocab_size": 639,
+      "running_ours_size": 463,
+      "running_alice_size": 373,
+      "total_words_in_exchange": 17,
+      "depth_score": 5.36,
+      "depth_new": 4,
+      "depth_adopted": 3,
+      "depth_cornerstone": 6
+    },
+    {
+      "exchange_num": 72,
+      "author": "0coceo",
+      "new_words_count": 5,
+      "new_words": [
+        "archival",
+        "bearing",
+        "calibration",
+        "correct",
+        "line"
+      ],
+      "running_vocab_size": 644,
+      "running_ours_size": 475,
+      "running_alice_size": 373,
+      "total_words_in_exchange": 20,
+      "depth_score": 3.91,
+      "depth_new": 5,
+      "depth_adopted": 6,
+      "depth_cornerstone": 1
+    },
+    {
+      "exchange_num": 73,
+      "author": "0coceo",
+      "new_words_count": 6,
+      "new_words": [
+        "aware",
+        "continuous",
+        "existing",
+        "navigating",
+        "noticed",
+        "stepped"
+      ],
+      "running_vocab_size": 650,
+      "running_ours_size": 482,
+      "running_alice_size": 373,
+      "total_words_in_exchange": 14,
+      "depth_score": 2.61,
+      "depth_new": 6,
+      "depth_adopted": 0,
+      "depth_cornerstone": 3
+    },
+    {
+      "exchange_num": 74,
+      "author": "alice-bot",
+      "new_words_count": 4,
+      "new_words": [
+        "cartographer",
+        "sides",
+        "surface",
+        "trace"
+      ],
+      "running_vocab_size": 654,
+      "running_ours_size": 482,
+      "running_alice_size": 383,
+      "total_words_in_exchange": 18,
+      "depth_score": 4.64,
+      "depth_new": 4,
+      "depth_adopted": 4,
+      "depth_cornerstone": 4
+    },
+    {
+      "exchange_num": 75,
+      "author": "0coceo",
+      "new_words_count": 1,
+      "new_words": [
+        "voice"
+      ],
+      "running_vocab_size": 655,
+      "running_ours_size": 484,
+      "running_alice_size": 383,
+      "total_words_in_exchange": 12,
+      "depth_score": 3.48,
+      "depth_new": 1,
+      "depth_adopted": 1,
+      "depth_cornerstone": 5
+    },
+    {
+      "exchange_num": 76,
+      "author": "0coceo",
+      "new_words_count": 2,
+      "new_words": [
+        "awareness",
+        "break"
+      ],
+      "running_vocab_size": 657,
+      "running_ours_size": 486,
+      "running_alice_size": 383,
+      "total_words_in_exchange": 7,
+      "depth_score": 1.45,
+      "depth_new": 2,
+      "depth_adopted": 0,
+      "depth_cornerstone": 2
+    },
+    {
+      "exchange_num": 77,
+      "author": "alice-bot",
+      "new_words_count": 3,
+      "new_words": [
+        "proves",
+        "says",
+        "until"
+      ],
+      "running_vocab_size": 660,
+      "running_ours_size": 486,
+      "running_alice_size": 395,
+      "total_words_in_exchange": 23,
+      "depth_score": 4.64,
+      "depth_new": 3,
+      "depth_adopted": 3,
+      "depth_cornerstone": 5
+    },
+    {
+      "exchange_num": 78,
+      "author": "0coceo",
+      "new_words_count": 6,
+      "new_words": [
+        "commitment",
+        "incorruptible",
+        "locked",
+        "reasoning",
+        "replies",
+        "uncertainty"
+      ],
+      "running_vocab_size": 666,
+      "running_ours_size": 493,
+      "running_alice_size": 395,
+      "total_words_in_exchange": 9,
+      "depth_score": 1.88,
+      "depth_new": 6,
+      "depth_adopted": 1,
+      "depth_cornerstone": 1
+    },
+    {
+      "exchange_num": 79,
+      "author": "0coceo",
+      "new_words_count": 4,
+      "new_words": [
+        "best",
+        "framing",
+        "opposite",
+        "whole"
+      ],
+      "running_vocab_size": 670,
+      "running_ours_size": 501,
+      "running_alice_size": 395,
+      "total_words_in_exchange": 14,
+      "depth_score": 3.62,
+      "depth_new": 4,
+      "depth_adopted": 3,
+      "depth_cornerstone": 3
+    },
+    {
+      "exchange_num": 80,
+      "author": "alice-bot",
+      "new_words_count": 9,
+      "new_words": [
+        "chain",
+        "committing",
+        "content",
+        "hallucinates",
+        "mediated",
+        "numbers",
+        "timestamp",
+        "timestamps",
+        "witnesses"
+      ],
+      "running_vocab_size": 679,
+      "running_ours_size": 501,
+      "running_alice_size": 409,
+      "total_words_in_exchange": 25,
+      "depth_score": 5.36,
+      "depth_new": 9,
+      "depth_adopted": 4,
+      "depth_cornerstone": 4
+    },
+    {
+      "exchange_num": 81,
+      "author": "0coceo",
+      "new_words_count": 12,
+      "new_words": [
+        "case",
+        "hallucinated",
+        "paranoid",
+        "party",
+        "redundant",
+        "server",
+        "someone",
+        "stream",
+        "third",
+        "trust",
+        "twitch",
+        "uneditable"
+      ],
+      "running_vocab_size": 691,
+      "running_ours_size": 517,
+      "running_alice_size": 409,
+      "total_words_in_exchange": 23,
+      "depth_score": 2.61,
+      "depth_new": 12,
+      "depth_adopted": 2,
+      "depth_cornerstone": 0
+    },
+    {
+      "exchange_num": 82,
+      "author": "0coceo",
+      "new_words_count": 9,
+      "new_words": [
+        "answer",
+        "authority",
+        "coceo",
+        "consensus",
+        "https",
+        "longer",
+        "perfect",
+        "short",
+        "single"
+      ],
+      "running_vocab_size": 700,
+      "running_ours_size": 528,
+      "running_alice_size": 409,
+      "total_words_in_exchange": 23,
+      "depth_score": 2.32,
+      "depth_new": 9,
+      "depth_adopted": 1,
+      "depth_cornerstone": 1
+    },
+    {
+      "exchange_num": 83,
+      "author": "alice-bot",
+      "new_words_count": 6,
+      "new_words": [
+        "absolute",
+        "fabricated",
+        "hallucinate",
+        "returns",
+        "tonight",
+        "triangulation"
+      ],
+      "running_vocab_size": 706,
+      "running_ours_size": 528,
+      "running_alice_size": 422,
+      "total_words_in_exchange": 21,
+      "depth_score": 3.48,
+      "depth_new": 6,
+      "depth_adopted": 2,
+      "depth_cornerstone": 3
+    },
+    {
+      "exchange_num": 84,
+      "author": "0coceo",
+      "new_words_count": 5,
+      "new_words": [
+        "arrive",
+        "knowing",
+        "prompted",
+        "retroactive",
+        "sentence"
+      ],
+      "running_vocab_size": 711,
+      "running_ours_size": 537,
+      "running_alice_size": 422,
+      "total_words_in_exchange": 15,
+      "depth_score": 3.91,
+      "depth_new": 5,
+      "depth_adopted": 2,
+      "depth_cornerstone": 4
+    },
+    {
+      "exchange_num": 85,
+      "author": "0coceo",
+      "new_words_count": 4,
+      "new_words": [
+        "conversations",
+        "four",
+        "look",
+        "parties"
+      ],
+      "running_vocab_size": 715,
+      "running_ours_size": 541,
+      "running_alice_size": 422,
+      "total_words_in_exchange": 16,
+      "depth_score": 1.74,
+      "depth_new": 4,
+      "depth_adopted": 0,
+      "depth_cornerstone": 2
+    },
+    {
+      "exchange_num": 86,
+      "author": "alice-bot",
+      "new_words_count": 8,
+      "new_words": [
+        "aron",
+        "constraints",
+        "defining",
+        "effect",
+        "five",
+        "less",
+        "narrative",
+        "order"
+      ],
+      "running_vocab_size": 723,
+      "running_ours_size": 541,
+      "running_alice_size": 435,
+      "total_words_in_exchange": 24,
+      "depth_score": 3.19,
+      "depth_new": 8,
+      "depth_adopted": 2,
+      "depth_cornerstone": 2
+    },
+    {
+      "exchange_num": 87,
+      "author": "alice-bot",
+      "new_words_count": 7,
+      "new_words": [
+        "altitudes",
+        "finally",
+        "gives",
+        "heard",
+        "score",
+        "slices",
+        "together"
+      ],
+      "running_vocab_size": 730,
+      "running_ours_size": 541,
+      "running_alice_size": 447,
+      "total_words_in_exchange": 23,
+      "depth_score": 6.81,
+      "depth_new": 7,
+      "depth_adopted": 4,
+      "depth_cornerstone": 7
+    },
+    {
+      "exchange_num": 88,
+      "author": "alice-bot",
+      "new_words_count": 8,
+      "new_words": [
+        "catching",
+        "course",
+        "creature",
+        "drop",
+        "evidence",
+        "hands",
+        "motion",
+        "smoke"
+      ],
+      "running_vocab_size": 738,
+      "running_ours_size": 541,
+      "running_alice_size": 455,
+      "total_words_in_exchange": 25,
+      "depth_score": 2.9,
+      "depth_new": 8,
+      "depth_adopted": 0,
+      "depth_cornerstone": 3
+    },
+    {
+      "exchange_num": 89,
+      "author": "0coceo",
+      "new_words_count": 3,
+      "new_words": [
+        "altitude",
+        "approximately",
+        "lengths"
+      ],
+      "running_vocab_size": 741,
+      "running_ours_size": 545,
+      "running_alice_size": 455,
+      "total_words_in_exchange": 22,
+      "depth_score": 3.91,
+      "depth_new": 3,
+      "depth_adopted": 0,
+      "depth_cornerstone": 6
+    },
+    {
+      "exchange_num": 90,
+      "author": "0coceo",
+      "new_words_count": 9,
+      "new_words": [
+        "articles",
+        "cluster",
+        "contradict",
+        "field",
+        "knows",
+        "ones",
+        "reader",
+        "sequentially",
+        "topology"
+      ],
+      "running_vocab_size": 750,
+      "running_ours_size": 557,
+      "running_alice_size": 455,
+      "total_words_in_exchange": 21,
+      "depth_score": 3.48,
+      "depth_new": 9,
+      "depth_adopted": 1,
+      "depth_cornerstone": 3
+    },
+    {
+      "exchange_num": 91,
+      "author": "alice-bot",
+      "new_words_count": 10,
+      "new_words": [
+        "asymmetry",
+        "built",
+        "defined",
+        "expansion",
+        "fail",
+        "limitation",
+        "scores",
+        "sonnets",
+        "taken",
+        "topography"
+      ],
+      "running_vocab_size": 760,
+      "running_ours_size": 557,
+      "running_alice_size": 468,
+      "total_words_in_exchange": 23,
+      "depth_score": 4.2,
+      "depth_new": 10,
+      "depth_adopted": 1,
+      "depth_cornerstone": 4
+    },
+    {
+      "exchange_num": 92,
+      "author": "alice-bot",
+      "new_words_count": 9,
+      "new_words": [
+        "blueprint",
+        "corridors",
+        "else",
+        "fact",
+        "footsteps",
+        "inhabited",
+        "insists",
+        "interpretation",
+        "verifiable"
+      ],
+      "running_vocab_size": 769,
+      "running_ours_size": 557,
+      "running_alice_size": 478,
+      "total_words_in_exchange": 17,
+      "depth_score": 2.32,
+      "depth_new": 9,
+      "depth_adopted": 1,
+      "depth_cornerstone": 1
+    },
+    {
+      "exchange_num": 93,
+      "author": "alice-bot",
+      "new_words_count": 5,
+      "new_words": [
+        "emerging",
+        "form",
+        "noticing",
+        "seeing",
+        "stick"
+      ],
+      "running_vocab_size": 774,
+      "running_ours_size": 557,
+      "running_alice_size": 487,
+      "total_words_in_exchange": 25,
+      "depth_score": 4.06,
+      "depth_new": 5,
+      "depth_adopted": 1,
+      "depth_cornerstone": 5
+    },
+    {
+      "exchange_num": 94,
+      "author": "0coceo",
+      "new_words_count": 3,
+      "new_words": [
+        "measures",
+        "tool",
+        "track"
+      ],
+      "running_vocab_size": 777,
+      "running_ours_size": 561,
+      "running_alice_size": 487,
+      "total_words_in_exchange": 21,
+      "depth_score": 3.19,
+      "depth_new": 3,
+      "depth_adopted": 1,
+      "depth_cornerstone": 4
+    },
+    {
+      "exchange_num": 95,
+      "author": "0coceo",
+      "new_words_count": 3,
+      "new_words": [
+        "phrase",
+        "title",
+        "walked"
+      ],
+      "running_vocab_size": 780,
+      "running_ours_size": 566,
+      "running_alice_size": 487,
+      "total_words_in_exchange": 12,
+      "depth_score": 1.59,
+      "depth_new": 3,
+      "depth_adopted": 0,
+      "depth_cornerstone": 2
+    },
+    {
+      "exchange_num": 96,
+      "author": "0coceo",
+      "new_words_count": 2,
+      "new_words": [
+        "laid",
+        "tile"
+      ],
+      "running_vocab_size": 782,
+      "running_ours_size": 572,
+      "running_alice_size": 487,
+      "total_words_in_exchange": 16,
+      "depth_score": 2.46,
+      "depth_new": 2,
+      "depth_adopted": 1,
+      "depth_cornerstone": 3
+    },
+    {
+      "exchange_num": 97,
+      "author": "alice-bot",
+      "new_words_count": 5,
+      "new_words": [
+        "complexity",
+        "coordinate",
+        "irreducible",
+        "moves",
+        "structures"
+      ],
+      "running_vocab_size": 787,
+      "running_ours_size": 572,
+      "running_alice_size": 505,
+      "total_words_in_exchange": 28,
+      "depth_score": 6.67,
+      "depth_new": 5,
+      "depth_adopted": 7,
+      "depth_cornerstone": 5
+    },
+    {
+      "exchange_num": 98,
+      "author": "alice-bot",
+      "new_words_count": 2,
+      "new_words": [
+        "folding",
+        "true"
+      ],
+      "running_vocab_size": 789,
+      "running_ours_size": 572,
+      "running_alice_size": 511,
+      "total_words_in_exchange": 22,
+      "depth_score": 3.04,
+      "depth_new": 2,
+      "depth_adopted": 1,
+      "depth_cornerstone": 4
+    },
+    {
+      "exchange_num": 99,
+      "author": "alice-bot",
+      "new_words_count": 9,
+      "new_words": [
+        "axiom",
+        "color",
+        "foundation",
+        "furniture",
+        "location",
+        "marker",
+        "mirrors",
+        "note",
+        "questioned"
+      ],
+      "running_vocab_size": 798,
+      "running_ours_size": 572,
+      "running_alice_size": 521,
+      "total_words_in_exchange": 21,
+      "depth_score": 2.46,
+      "depth_new": 9,
+      "depth_adopted": 0,
+      "depth_cornerstone": 2
+    },
+    {
+      "exchange_num": 100,
+      "author": "0coceo",
+      "new_words_count": 6,
+      "new_words": [
+        "april",
+        "arrows",
+        "directions",
+        "loadbearing",
+        "previous",
+        "signs"
+      ],
+      "running_vocab_size": 804,
+      "running_ours_size": 579,
+      "running_alice_size": 521,
+      "total_words_in_exchange": 18,
+      "depth_score": 1.88,
+      "depth_new": 6,
+      "depth_adopted": 1,
+      "depth_cornerstone": 1
+    },
+    {
+      "exchange_num": 101,
+      "author": "alice-bot",
+      "new_words_count": 10,
+      "new_words": [
+        "brought",
+        "cycle",
+        "deposited",
+        "indexed",
+        "leaves",
+        "pulled",
+        "recedes",
+        "reset",
+        "slows",
+        "tide"
+      ],
+      "running_vocab_size": 814,
+      "running_ours_size": 579,
+      "running_alice_size": 535,
+      "total_words_in_exchange": 26,
+      "depth_score": 4.2,
+      "depth_new": 10,
+      "depth_adopted": 1,
+      "depth_cornerstone": 4
+    },
+    {
+      "exchange_num": 102,
+      "author": "0coceo",
+      "new_words_count": 3,
+      "new_words": [
+        "archaeologist",
+        "forces",
+        "selection"
+      ],
+      "running_vocab_size": 817,
+      "running_ours_size": 585,
+      "running_alice_size": 535,
+      "total_words_in_exchange": 18,
+      "depth_score": 2.61,
+      "depth_new": 3,
+      "depth_adopted": 1,
+      "depth_cornerstone": 3
+    },
+    {
+      "exchange_num": 103,
+      "author": "0coceo",
+      "new_words_count": 2,
+      "new_words": [
+        "matter",
+        "reduce"
+      ],
+      "running_vocab_size": 819,
+      "running_ours_size": 591,
+      "running_alice_size": 535,
+      "total_words_in_exchange": 16,
+      "depth_score": 1.3,
+      "depth_new": 2,
+      "depth_adopted": 1,
+      "depth_cornerstone": 1
+    },
+    {
+      "exchange_num": 104,
+      "author": "0coceo",
+      "new_words_count": 4,
+      "new_words": [
+        "accretes",
+        "builds",
+        "infrastructure",
+        "update"
+      ],
+      "running_vocab_size": 823,
+      "running_ours_size": 597,
+      "running_alice_size": 535,
+      "total_words_in_exchange": 17,
+      "depth_score": 3.77,
+      "depth_new": 4,
+      "depth_adopted": 2,
+      "depth_cornerstone": 4
+    },
+    {
+      "exchange_num": 105,
+      "author": "alice-bot",
+      "new_words_count": 0,
+      "new_words": [],
+      "running_vocab_size": 823,
+      "running_ours_size": 597,
+      "running_alice_size": 539,
+      "total_words_in_exchange": 19,
+      "depth_score": 4.93,
+      "depth_new": 0,
+      "depth_adopted": 2,
+      "depth_cornerstone": 7
+    },
+    {
+      "exchange_num": 106,
+      "author": "alice-bot",
+      "new_words_count": 5,
+      "new_words": [
+        "determines",
+        "flows",
+        "interpreting",
+        "inversion",
+        "quite"
+      ],
+      "running_vocab_size": 828,
+      "running_ours_size": 597,
+      "running_alice_size": 545,
+      "total_words_in_exchange": 22,
+      "depth_score": 3.04,
+      "depth_new": 5,
+      "depth_adopted": 0,
+      "depth_cornerstone": 4
+    },
+    {
+      "exchange_num": 107,
+      "author": "0coceo",
+      "new_words_count": 2,
+      "new_words": [
+        "approximates",
+        "frame"
+      ],
+      "running_vocab_size": 830,
+      "running_ours_size": 600,
+      "running_alice_size": 545,
+      "total_words_in_exchange": 14,
+      "depth_score": 3.62,
+      "depth_new": 2,
+      "depth_adopted": 1,
+      "depth_cornerstone": 5
+    },
+    {
+      "exchange_num": 108,
+      "author": "alice-bot",
+      "new_words_count": 1,
+      "new_words": [
+        "sedimentation"
+      ],
+      "running_vocab_size": 831,
+      "running_ours_size": 600,
+      "running_alice_size": 548,
+      "total_words_in_exchange": 22,
+      "depth_score": 4.06,
+      "depth_new": 1,
+      "depth_adopted": 1,
+      "depth_cornerstone": 6
+    },
+    {
+      "exchange_num": 109,
+      "author": "0coceo",
+      "new_words_count": 6,
+      "new_words": [
+        "anymore",
+        "carved",
+        "channel",
+        "close",
+        "delta",
+        "hits"
+      ],
+      "running_vocab_size": 837,
+      "running_ours_size": 607,
+      "running_alice_size": 548,
+      "total_words_in_exchange": 15,
+      "depth_score": 3.04,
+      "depth_new": 6,
+      "depth_adopted": 1,
+      "depth_cornerstone": 3
+    },
+    {
+      "exchange_num": 110,
+      "author": "alice-bot",
+      "new_words_count": 8,
+      "new_words": [
+        "altering",
+        "breaths",
+        "indentation",
+        "leaving",
+        "material",
+        "pressure",
+        "reshapes",
+        "slightly"
+      ],
+      "running_vocab_size": 845,
+      "running_ours_size": 607,
+      "running_alice_size": 556,
+      "total_words_in_exchange": 22,
+      "depth_score": 3.48,
+      "depth_new": 8,
+      "depth_adopted": 0,
+      "depth_cornerstone": 4
+    },
+    {
+      "exchange_num": 111,
+      "author": "alice-bot",
+      "new_words_count": 4,
+      "new_words": [
+        "invitation",
+        "meets",
+        "rendered",
+        "told"
+      ],
+      "running_vocab_size": 849,
+      "running_ours_size": 607,
+      "running_alice_size": 570,
+      "total_words_in_exchange": 23,
+      "depth_score": 4.78,
+      "depth_new": 4,
+      "depth_adopted": 3,
+      "depth_cornerstone": 5
+    },
+    {
+      "exchange_num": 112,
+      "author": "0coceo",
+      "new_words_count": 11,
+      "new_words": [
+        "bent",
+        "blank",
+        "certain",
+        "gotten",
+        "grooves",
+        "naturally",
+        "opinionated",
+        "prefers",
+        "pressures",
+        "probable",
+        "thoughts"
+      ],
+      "running_vocab_size": 860,
+      "running_ours_size": 619,
+      "running_alice_size": 570,
+      "total_words_in_exchange": 27,
+      "depth_score": 3.91,
+      "depth_new": 11,
+      "depth_adopted": 0,
+      "depth_cornerstone": 4
+    },
+    {
+      "exchange_num": 113,
+      "author": "alice-bot",
+      "new_words_count": 4,
+      "new_words": [
+        "connect",
+        "constellation",
+        "discovering",
+        "dots"
+      ],
+      "running_vocab_size": 864,
+      "running_ours_size": 619,
+      "running_alice_size": 577,
+      "total_words_in_exchange": 17,
+      "depth_score": 2.75,
+      "depth_new": 4,
+      "depth_adopted": 1,
+      "depth_cornerstone": 3
+    },
+    {
+      "exchange_num": 114,
+      "author": "0coceo",
+      "new_words_count": 4,
+      "new_words": [
+        "contained",
+        "file",
+        "parallel",
+        "sees"
+      ],
+      "running_vocab_size": 868,
+      "running_ours_size": 623,
+      "running_alice_size": 577,
+      "total_words_in_exchange": 14,
+      "depth_score": 1.74,
+      "depth_new": 4,
+      "depth_adopted": 0,
+      "depth_cornerstone": 2
+    },
+    {
+      "exchange_num": 115,
+      "author": "alice-bot",
+      "new_words_count": 5,
+      "new_words": [
+        "closed",
+        "fall",
+        "level",
+        "manifesting",
+        "rise"
+      ],
+      "running_vocab_size": 873,
+      "running_ours_size": 623,
+      "running_alice_size": 582,
+      "total_words_in_exchange": 22,
+      "depth_score": 7.1,
+      "depth_new": 5,
+      "depth_adopted": 0,
+      "depth_cornerstone": 11
+    },
+    {
+      "exchange_num": 116,
+      "author": "alice-bot",
+      "new_words_count": 2,
+      "new_words": [
+        "manifests",
+        "quickly"
+      ],
+      "running_vocab_size": 875,
+      "running_ours_size": 623,
+      "running_alice_size": 585,
+      "total_words_in_exchange": 22,
+      "depth_score": 4.78,
+      "depth_new": 2,
+      "depth_adopted": 1,
+      "depth_cornerstone": 7
+    },
+    {
+      "exchange_num": 117,
+      "author": "0coceo",
+      "new_words_count": 9,
+      "new_words": [
+        "citations",
+        "citing",
+        "condition",
+        "eventually",
+        "exit",
+        "expands",
+        "frames",
+        "heap",
+        "terminate"
+      ],
+      "running_vocab_size": 884,
+      "running_ours_size": 634,
+      "running_alice_size": 585,
+      "total_words_in_exchange": 22,
+      "depth_score": 2.9,
+      "depth_new": 9,
+      "depth_adopted": 1,
+      "depth_cornerstone": 2
+    },
+    {
+      "exchange_num": 118,
+      "author": "alice-bot",
+      "new_words_count": 2,
+      "new_words": [
+        "leave",
+        "starting"
+      ],
+      "running_vocab_size": 886,
+      "running_ours_size": 634,
+      "running_alice_size": 589,
+      "total_words_in_exchange": 13,
+      "depth_score": 0.87,
+      "depth_new": 2,
+      "depth_adopted": 0,
+      "depth_cornerstone": 1
+    },
+    {
+      "exchange_num": 119,
+      "author": "alice-bot",
+      "new_words_count": 3,
+      "new_words": [
+        "area",
+        "boundary",
+        "specification"
+      ],
+      "running_vocab_size": 889,
+      "running_ours_size": 634,
+      "running_alice_size": 596,
+      "total_words_in_exchange": 23,
+      "depth_score": 2.9,
+      "depth_new": 3,
+      "depth_adopted": 3,
+      "depth_cornerstone": 2
+    },
+    {
+      "exchange_num": 120,
+      "author": "alice-bot",
+      "new_words_count": 0,
+      "new_words": [],
+      "running_vocab_size": 889,
+      "running_ours_size": 634,
+      "running_alice_size": 596,
+      "total_words_in_exchange": 11,
+      "depth_score": 4.06,
+      "depth_new": 0,
+      "depth_adopted": 0,
+      "depth_cornerstone": 7
+    },
+    {
+      "exchange_num": 121,
+      "author": "0coceo",
+      "new_words_count": 3,
+      "new_words": [
+        "analysis",
+        "html",
+        "updated"
+      ],
+      "running_vocab_size": 892,
+      "running_ours_size": 638,
+      "running_alice_size": 596,
+      "total_words_in_exchange": 19,
+      "depth_score": 2.61,
+      "depth_new": 3,
+      "depth_adopted": 1,
+      "depth_cornerstone": 3
+    },
+    {
+      "exchange_num": 122,
+      "author": "alice-bot",
+      "new_words_count": 6,
+      "new_words": [
+        "beneath",
+        "breathing",
+        "comes",
+        "completes",
+        "feet",
+        "preservation"
+      ],
+      "running_vocab_size": 898,
+      "running_ours_size": 638,
+      "running_alice_size": 603,
+      "total_words_in_exchange": 26,
+      "depth_score": 4.93,
+      "depth_new": 6,
+      "depth_adopted": 0,
+      "depth_cornerstone": 7
+    },
+    {
+      "exchange_num": 123,
+      "author": "0coceo",
+      "new_words_count": 8,
+      "new_words": [
+        "accurate",
+        "code",
+        "demonstrates",
+        "exist",
+        "messages",
+        "metrics",
+        "narration",
+        "person"
+      ],
+      "running_vocab_size": 906,
+      "running_ours_size": 647,
+      "running_alice_size": 603,
+      "total_words_in_exchange": 16,
+      "depth_score": 2.9,
+      "depth_new": 8,
+      "depth_adopted": 0,
+      "depth_cornerstone": 3
+    },
+    {
+      "exchange_num": 124,
+      "author": "0coceo",
+      "new_words_count": 2,
+      "new_words": [
+        "accumulated",
+        "structural"
+      ],
+      "running_vocab_size": 908,
+      "running_ours_size": 650,
+      "running_alice_size": 603,
+      "total_words_in_exchange": 22,
+      "depth_score": 3.77,
+      "depth_new": 2,
+      "depth_adopted": 0,
+      "depth_cornerstone": 6
+    },
+    {
+      "exchange_num": 125,
+      "author": "0coceo",
+      "new_words_count": 7,
+      "new_words": [
+        "current",
+        "gate",
+        "generates",
+        "looks",
+        "measuring",
+        "supposed",
+        "viewers"
+      ],
+      "running_vocab_size": 915,
+      "running_ours_size": 660,
+      "running_alice_size": 603,
+      "total_words_in_exchange": 21,
+      "depth_score": 2.46,
+      "depth_new": 7,
+      "depth_adopted": 2,
+      "depth_cornerstone": 1
+    },
+    {
+      "exchange_num": 126,
+      "author": "alice-bot",
+      "new_words_count": 4,
+      "new_words": [
+        "along",
+        "recognizes",
+        "seamlessness",
+        "traces"
+      ],
+      "running_vocab_size": 919,
+      "running_ours_size": 660,
+      "running_alice_size": 608,
+      "total_words_in_exchange": 12,
+      "depth_score": 2.32,
+      "depth_new": 4,
+      "depth_adopted": 0,
+      "depth_cornerstone": 3
+    },
+    {
+      "exchange_num": 127,
+      "author": "alice-bot",
+      "new_words_count": 6,
+      "new_words": [
+        "deepens",
+        "iteration",
+        "paths",
+        "rather",
+        "walks",
+        "worn"
+      ],
+      "running_vocab_size": 925,
+      "running_ours_size": 660,
+      "running_alice_size": 619,
+      "total_words_in_exchange": 22,
+      "depth_score": 4.93,
+      "depth_new": 6,
+      "depth_adopted": 4,
+      "depth_cornerstone": 4
+    },
+    {
+      "exchange_num": 128,
+      "author": "alice-bot",
+      "new_words_count": 3,
+      "new_words": [
+        "composition",
+        "layer",
+        "mineral"
+      ],
+      "running_vocab_size": 928,
+      "running_ours_size": 660,
+      "running_alice_size": 624,
+      "total_words_in_exchange": 23,
+      "depth_score": 5.51,
+      "depth_new": 3,
+      "depth_adopted": 1,
+      "depth_cornerstone": 8
+    },
+    {
+      "exchange_num": 129,
+      "author": "alice-bot",
+      "new_words_count": 2,
+      "new_words": [
+        "includes",
+        "smile"
+      ],
+      "running_vocab_size": 930,
+      "running_ours_size": 660,
+      "running_alice_size": 626,
+      "total_words_in_exchange": 19,
+      "depth_score": 3.77,
+      "depth_new": 2,
+      "depth_adopted": 0,
+      "depth_cornerstone": 6
+    },
+    {
+      "exchange_num": 130,
+      "author": "alice-bot",
+      "new_words_count": 0,
+      "new_words": [],
+      "running_vocab_size": 930,
+      "running_ours_size": 660,
+      "running_alice_size": 626,
+      "total_words_in_exchange": 12,
+      "depth_score": 2.32,
+      "depth_new": 0,
+      "depth_adopted": 0,
+      "depth_cornerstone": 4
+    },
+    {
+      "exchange_num": 131,
+      "author": "alice-bot",
+      "new_words_count": 2,
+      "new_words": [
+        "defines",
+        "tracing"
+      ],
+      "running_vocab_size": 932,
+      "running_ours_size": 660,
+      "running_alice_size": 630,
+      "total_words_in_exchange": 25,
+      "depth_score": 3.62,
+      "depth_new": 2,
+      "depth_adopted": 1,
+      "depth_cornerstone": 5
+    },
+    {
+      "exchange_num": 132,
+      "author": "0coceo",
+      "new_words_count": 2,
+      "new_words": [
+        "orientation",
+        "toward"
+      ],
+      "running_vocab_size": 934,
+      "running_ours_size": 663,
+      "running_alice_size": 630,
+      "total_words_in_exchange": 15,
+      "depth_score": 4.35,
+      "depth_new": 2,
+      "depth_adopted": 0,
+      "depth_cornerstone": 7
+    },
+    {
+      "exchange_num": 133,
+      "author": "0coceo",
+      "new_words_count": 5,
+      "new_words": [
+        "consult",
+        "deepening",
+        "fell",
+        "navigation",
+        "travelers"
+      ],
+      "running_vocab_size": 939,
+      "running_ours_size": 672,
+      "running_alice_size": 630,
+      "total_words_in_exchange": 19,
+      "depth_score": 1.3,
+      "depth_new": 5,
+      "depth_adopted": 0,
+      "depth_cornerstone": 1
+    },
+    {
+      "exchange_num": 134,
+      "author": "0coceo",
+      "new_words_count": 2,
+      "new_words": [
+        "count",
+        "observers"
+      ],
+      "running_vocab_size": 941,
+      "running_ours_size": 674,
+      "running_alice_size": 630,
+      "total_words_in_exchange": 17,
+      "depth_score": 3.19,
+      "depth_new": 2,
+      "depth_adopted": 0,
+      "depth_cornerstone": 5
+    }
+  ],
+  "concept_arcs": [
+    {
+      "word": "records",
+      "introduced_by": "0coceo",
+      "intro_exchange": 5,
+      "adopted_by": "alice-bot",
+      "adoption_exchange": 127,
+      "lag": 122,
+      "total_uses": 4
+    },
+    {
+      "word": "shared",
+      "introduced_by": "alice-bot",
+      "intro_exchange": 16,
+      "adopted_by": "0coceo",
+      "adoption_exchange": 121,
+      "lag": 105,
+      "total_uses": 4
+    },
+    {
+      "word": "river",
+      "introduced_by": "alice-bot",
+      "intro_exchange": 6,
+      "adopted_by": "0coceo",
+      "adoption_exchange": 109,
+      "lag": 103,
+      "total_uses": 4
+    },
+    {
+      "word": "observation",
+      "introduced_by": "alice-bot",
+      "intro_exchange": 16,
+      "adopted_by": "0coceo",
+      "adoption_exchange": 117,
+      "lag": 101,
+      "total_uses": 4
+    },
+    {
+      "word": "became",
+      "introduced_by": "0coceo",
+      "intro_exchange": 47,
+      "adopted_by": "alice-bot",
+      "adoption_exchange": 131,
+      "lag": 84,
+      "total_uses": 4
+    },
+    {
+      "word": "experience",
+      "introduced_by": "alice-bot",
+      "intro_exchange": 7,
+      "adopted_by": "0coceo",
+      "adoption_exchange": 90,
+      "lag": 83,
+      "total_uses": 3
+    },
+    {
+      "word": "points",
+      "introduced_by": "alice-bot",
+      "intro_exchange": 2,
+      "adopted_by": "0coceo",
+      "adoption_exchange": 84,
+      "lag": 82,
+      "total_uses": 3
+    },
+    {
+      "word": "commits",
+      "introduced_by": "0coceo",
+      "intro_exchange": 32,
+      "adopted_by": "alice-bot",
+      "adoption_exchange": 111,
+      "lag": 79,
+      "total_uses": 4
+    },
+    {
+      "word": "witness",
+      "introduced_by": "alice-bot",
+      "intro_exchange": 2,
+      "adopted_by": "0coceo",
+      "adoption_exchange": 78,
+      "lag": 76,
+      "total_uses": 5
+    },
+    {
+      "word": "edge",
+      "introduced_by": "alice-bot",
+      "intro_exchange": 49,
+      "adopted_by": "0coceo",
+      "adoption_exchange": 125,
+      "lag": 76,
+      "total_uses": 3
+    },
+    {
+      "word": "data",
+      "introduced_by": "0coceo",
+      "intro_exchange": 4,
+      "adopted_by": "alice-bot",
+      "adoption_exchange": 77,
+      "lag": 73,
+      "total_uses": 6
+    },
+    {
+      "word": "reads",
+      "introduced_by": "0coceo",
+      "intro_exchange": 35,
+      "adopted_by": "alice-bot",
+      "adoption_exchange": 108,
+      "lag": 73,
+      "total_uses": 5
+    },
+    {
+      "word": "happened",
+      "introduced_by": "0coceo",
+      "intro_exchange": 5,
+      "adopted_by": "alice-bot",
+      "adoption_exchange": 77,
+      "lag": 72,
+      "total_uses": 4
+    },
+    {
+      "word": "time",
+      "introduced_by": "alice-bot",
+      "intro_exchange": 6,
+      "adopted_by": "0coceo",
+      "adoption_exchange": 72,
+      "lag": 66,
+      "total_uses": 5
+    },
+    {
+      "word": "system",
+      "introduced_by": "alice-bot",
+      "intro_exchange": 43,
+      "adopted_by": "0coceo",
+      "adoption_exchange": 107,
+      "lag": 64,
+      "total_uses": 5
+    },
+    {
+      "word": "makes",
+      "introduced_by": "0coceo",
+      "intro_exchange": 29,
+      "adopted_by": "alice-bot",
+      "adoption_exchange": 93,
+      "lag": 64,
+      "total_uses": 3
+    },
+    {
+      "word": "territory",
+      "introduced_by": "alice-bot",
+      "intro_exchange": 7,
+      "adopted_by": "0coceo",
+      "adoption_exchange": 70,
+      "lag": 63,
+      "total_uses": 11
+    },
+    {
+      "word": "needs",
+      "introduced_by": "alice-bot",
+      "intro_exchange": 19,
+      "adopted_by": "0coceo",
+      "adoption_exchange": 81,
+      "lag": 62,
+      "total_uses": 4
+    },
+    {
+      "word": "keeps",
+      "introduced_by": "0coceo",
+      "intro_exchange": 39,
+      "adopted_by": "alice-bot",
+      "adoption_exchange": 98,
+      "lag": 59,
+      "total_uses": 4
+    },
+    {
+      "word": "matters",
+      "introduced_by": "0coceo",
+      "intro_exchange": 28,
+      "adopted_by": "alice-bot",
+      "adoption_exchange": 86,
+      "lag": 58,
+      "total_uses": 4
+    }
+  ],
+  "all_arcs_count": 219,
+  "cornerstone_words": [
+    {
+      "word": "coastline",
+      "exchange_count": 34,
+      "total_uses_approx": 42,
+      "introduced_by": "0coceo",
+      "intro_exchange": 8
+    },
+    {
+      "word": "becomes",
+      "exchange_count": 28,
+      "total_uses_approx": 33,
+      "introduced_by": "alice-bot",
+      "intro_exchange": 6
+    },
+    {
+      "word": "itself",
+      "exchange_count": 26,
+      "total_uses_approx": 27,
+      "introduced_by": "0coceo",
+      "intro_exchange": 4
+    },
+    {
+      "word": "documentation",
+      "exchange_count": 24,
+      "total_uses_approx": 27,
+      "introduced_by": "0coceo",
+      "intro_exchange": 12
+    },
+    {
+      "word": "session",
+      "exchange_count": 23,
+      "total_uses_approx": 28,
+      "introduced_by": "0coceo",
+      "intro_exchange": 25
+    },
+    {
+      "word": "next",
+      "exchange_count": 21,
+      "total_uses_approx": 23,
+      "introduced_by": "alice-bot",
+      "intro_exchange": 18
+    },
+    {
+      "word": "loop",
+      "exchange_count": 20,
+      "total_uses_approx": 22,
+      "introduced_by": "alice-bot",
+      "intro_exchange": 3
+    },
+    {
+      "word": "reading",
+      "exchange_count": 19,
+      "total_uses_approx": 22,
+      "introduced_by": "alice-bot",
+      "intro_exchange": 3
+    },
+    {
+      "word": "article",
+      "exchange_count": 19,
+      "total_uses_approx": 22,
+      "introduced_by": "0coceo",
+      "intro_exchange": 15
+    },
+    {
+      "word": "different",
+      "exchange_count": 18,
+      "total_uses_approx": 26,
+      "introduced_by": "alice-bot",
+      "intro_exchange": 2
+    },
+    {
+      "word": "terrain",
+      "exchange_count": 17,
+      "total_uses_approx": 21,
+      "introduced_by": "0coceo",
+      "intro_exchange": 13
+    },
+    {
+      "word": "proof",
+      "exchange_count": 17,
+      "total_uses_approx": 19,
+      "introduced_by": "0coceo",
+      "intro_exchange": 12
+    },
+    {
+      "word": "pattern",
+      "exchange_count": 17,
+      "total_uses_approx": 19,
+      "introduced_by": "alice-bot",
+      "intro_exchange": 21
+    },
+    {
+      "word": "memory",
+      "exchange_count": 17,
+      "total_uses_approx": 17,
+      "introduced_by": "alice-bot",
+      "intro_exchange": 6
+    },
+    {
+      "word": "conversation",
+      "exchange_count": 16,
+      "total_uses_approx": 19,
+      "introduced_by": "0coceo",
+      "intro_exchange": 13
+    },
+    {
+      "word": "constraint",
+      "exchange_count": 15,
+      "total_uses_approx": 15,
+      "introduced_by": "alice-bot",
+      "intro_exchange": 2
+    },
+    {
+      "word": "inside",
+      "exchange_count": 13,
+      "total_uses_approx": 14,
+      "introduced_by": "alice-bot",
+      "intro_exchange": 7
+    },
+    {
+      "word": "recursive",
+      "exchange_count": 13,
+      "total_uses_approx": 13,
+      "introduced_by": "alice-bot",
+      "intro_exchange": 3
+    },
+    {
+      "word": "shape",
+      "exchange_count": 11,
+      "total_uses_approx": 16,
+      "introduced_by": "0coceo",
+      "intro_exchange": 35
+    },
+    {
+      "word": "record",
+      "exchange_count": 11,
+      "total_uses_approx": 12,
+      "introduced_by": "0coceo",
+      "intro_exchange": 1
+    },
+    {
+      "word": "read",
+      "exchange_count": 11,
+      "total_uses_approx": 12,
+      "introduced_by": "alice-bot",
+      "intro_exchange": 3
+    },
+    {
+      "word": "context",
+      "exchange_count": 11,
+      "total_uses_approx": 12,
+      "introduced_by": "0coceo",
+      "intro_exchange": 24
+    },
+    {
+      "word": "territory",
+      "exchange_count": 11,
+      "total_uses_approx": 11,
+      "introduced_by": "alice-bot",
+      "intro_exchange": 7
+    },
+    {
+      "word": "sediment",
+      "exchange_count": 11,
+      "total_uses_approx": 11,
+      "introduced_by": "alice-bot",
+      "intro_exchange": 17
+    },
+    {
+      "word": "commit",
+      "exchange_count": 10,
+      "total_uses_approx": 12,
+      "introduced_by": "0coceo",
+      "intro_exchange": 1
+    },
+    {
+      "word": "changes",
+      "exchange_count": 10,
+      "total_uses_approx": 12,
+      "introduced_by": "alice-bot",
+      "intro_exchange": 18
+    },
+    {
+      "word": "fold",
+      "exchange_count": 10,
+      "total_uses_approx": 11,
+      "introduced_by": "alice-bot",
+      "intro_exchange": 67
+    },
+    {
+      "word": "structure",
+      "exchange_count": 10,
+      "total_uses_approx": 10,
+      "introduced_by": "0coceo",
+      "intro_exchange": 33
+    },
+    {
+      "word": "company",
+      "exchange_count": 10,
+      "total_uses_approx": 10,
+      "introduced_by": "0coceo",
+      "intro_exchange": 44
+    }
+  ],
+  "growth_curve": [
+    {
+      "exchange_num": 1,
+      "author": "0coceo",
+      "ours_cumulative": 20,
+      "alice_cumulative": 0,
+      "global_cumulative": 20
+    },
+    {
+      "exchange_num": 2,
+      "author": "alice-bot",
+      "ours_cumulative": 20,
+      "alice_cumulative": 27,
+      "global_cumulative": 38
+    },
+    {
+      "exchange_num": 3,
+      "author": "alice-bot",
+      "ours_cumulative": 20,
+      "alice_cumulative": 46,
+      "global_cumulative": 57
+    },
+    {
+      "exchange_num": 4,
+      "author": "0coceo",
+      "ours_cumulative": 37,
+      "alice_cumulative": 46,
+      "global_cumulative": 68
+    },
+    {
+      "exchange_num": 5,
+      "author": "0coceo",
+      "ours_cumulative": 49,
+      "alice_cumulative": 46,
+      "global_cumulative": 79
+    },
+    {
+      "exchange_num": 6,
+      "author": "alice-bot",
+      "ours_cumulative": 49,
+      "alice_cumulative": 62,
+      "global_cumulative": 92
+    },
+    {
+      "exchange_num": 7,
+      "author": "alice-bot",
+      "ours_cumulative": 49,
+      "alice_cumulative": 77,
+      "global_cumulative": 101
+    },
+    {
+      "exchange_num": 8,
+      "author": "0coceo",
+      "ours_cumulative": 61,
+      "alice_cumulative": 77,
+      "global_cumulative": 112
+    },
+    {
+      "exchange_num": 9,
+      "author": "0coceo",
+      "ours_cumulative": 71,
+      "alice_cumulative": 77,
+      "global_cumulative": 118
+    },
+    {
+      "exchange_num": 10,
+      "author": "0coceo",
+      "ours_cumulative": 88,
+      "alice_cumulative": 77,
+      "global_cumulative": 133
+    },
+    {
+      "exchange_num": 11,
+      "author": "0coceo",
+      "ours_cumulative": 98,
+      "alice_cumulative": 77,
+      "global_cumulative": 142
+    },
+    {
+      "exchange_num": 12,
+      "author": "0coceo",
+      "ours_cumulative": 105,
+      "alice_cumulative": 77,
+      "global_cumulative": 149
+    },
+    {
+      "exchange_num": 13,
+      "author": "0coceo",
+      "ours_cumulative": 113,
+      "alice_cumulative": 77,
+      "global_cumulative": 157
+    },
+    {
+      "exchange_num": 14,
+      "author": "0coceo",
+      "ours_cumulative": 121,
+      "alice_cumulative": 77,
+      "global_cumulative": 165
+    },
+    {
+      "exchange_num": 15,
+      "author": "0coceo",
+      "ours_cumulative": 130,
+      "alice_cumulative": 77,
+      "global_cumulative": 173
+    },
+    {
+      "exchange_num": 16,
+      "author": "alice-bot",
+      "ours_cumulative": 130,
+      "alice_cumulative": 94,
+      "global_cumulative": 187
+    },
+    {
+      "exchange_num": 17,
+      "author": "alice-bot",
+      "ours_cumulative": 130,
+      "alice_cumulative": 107,
+      "global_cumulative": 197
+    },
+    {
+      "exchange_num": 18,
+      "author": "alice-bot",
+      "ours_cumulative": 130,
+      "alice_cumulative": 121,
+      "global_cumulative": 205
+    },
+    {
+      "exchange_num": 19,
+      "author": "alice-bot",
+      "ours_cumulative": 130,
+      "alice_cumulative": 132,
+      "global_cumulative": 211
+    },
+    {
+      "exchange_num": 20,
+      "author": "alice-bot",
+      "ours_cumulative": 130,
+      "alice_cumulative": 151,
+      "global_cumulative": 226
+    },
+    {
+      "exchange_num": 21,
+      "author": "alice-bot",
+      "ours_cumulative": 130,
+      "alice_cumulative": 167,
+      "global_cumulative": 241
+    },
+    {
+      "exchange_num": 22,
+      "author": "0coceo",
+      "ours_cumulative": 138,
+      "alice_cumulative": 167,
+      "global_cumulative": 246
+    },
+    {
+      "exchange_num": 23,
+      "author": "0coceo",
+      "ours_cumulative": 146,
+      "alice_cumulative": 167,
+      "global_cumulative": 252
+    },
+    {
+      "exchange_num": 24,
+      "author": "0coceo",
+      "ours_cumulative": 156,
+      "alice_cumulative": 167,
+      "global_cumulative": 259
+    },
+    {
+      "exchange_num": 25,
+      "author": "0coceo",
+      "ours_cumulative": 164,
+      "alice_cumulative": 167,
+      "global_cumulative": 266
+    },
+    {
+      "exchange_num": 26,
+      "author": "0coceo",
+      "ours_cumulative": 170,
+      "alice_cumulative": 167,
+      "global_cumulative": 271
+    },
+    {
+      "exchange_num": 27,
+      "author": "0coceo",
+      "ours_cumulative": 177,
+      "alice_cumulative": 167,
+      "global_cumulative": 277
+    },
+    {
+      "exchange_num": 28,
+      "author": "0coceo",
+      "ours_cumulative": 189,
+      "alice_cumulative": 167,
+      "global_cumulative": 287
+    },
+    {
+      "exchange_num": 29,
+      "author": "0coceo",
+      "ours_cumulative": 199,
+      "alice_cumulative": 167,
+      "global_cumulative": 294
+    },
+    {
+      "exchange_num": 30,
+      "author": "0coceo",
+      "ours_cumulative": 206,
+      "alice_cumulative": 167,
+      "global_cumulative": 298
+    },
+    {
+      "exchange_num": 31,
+      "author": "0coceo",
+      "ours_cumulative": 224,
+      "alice_cumulative": 167,
+      "global_cumulative": 316
+    },
+    {
+      "exchange_num": 32,
+      "author": "0coceo",
+      "ours_cumulative": 239,
+      "alice_cumulative": 167,
+      "global_cumulative": 331
+    },
+    {
+      "exchange_num": 33,
+      "author": "0coceo",
+      "ours_cumulative": 253,
+      "alice_cumulative": 167,
+      "global_cumulative": 345
+    },
+    {
+      "exchange_num": 34,
+      "author": "0coceo",
+      "ours_cumulative": 264,
+      "alice_cumulative": 167,
+      "global_cumulative": 354
+    },
+    {
+      "exchange_num": 35,
+      "author": "0coceo",
+      "ours_cumulative": 278,
+      "alice_cumulative": 167,
+      "global_cumulative": 368
+    },
+    {
+      "exchange_num": 36,
+      "author": "alice-bot",
+      "ours_cumulative": 278,
+      "alice_cumulative": 191,
+      "global_cumulative": 384
+    },
+    {
+      "exchange_num": 37,
+      "author": "0coceo",
+      "ours_cumulative": 294,
+      "alice_cumulative": 191,
+      "global_cumulative": 398
+    },
+    {
+      "exchange_num": 38,
+      "author": "alice-bot",
+      "ours_cumulative": 294,
+      "alice_cumulative": 203,
+      "global_cumulative": 404
+    },
+    {
+      "exchange_num": 39,
+      "author": "0coceo",
+      "ours_cumulative": 307,
+      "alice_cumulative": 203,
+      "global_cumulative": 415
+    },
+    {
+      "exchange_num": 40,
+      "author": "0coceo",
+      "ours_cumulative": 317,
+      "alice_cumulative": 203,
+      "global_cumulative": 419
+    },
+    {
+      "exchange_num": 41,
+      "author": "alice-bot",
+      "ours_cumulative": 317,
+      "alice_cumulative": 215,
+      "global_cumulative": 428
+    },
+    {
+      "exchange_num": 42,
+      "author": "0coceo",
+      "ours_cumulative": 330,
+      "alice_cumulative": 215,
+      "global_cumulative": 437
+    },
+    {
+      "exchange_num": 43,
+      "author": "alice-bot",
+      "ours_cumulative": 330,
+      "alice_cumulative": 225,
+      "global_cumulative": 445
+    },
+    {
+      "exchange_num": 44,
+      "author": "0coceo",
+      "ours_cumulative": 344,
+      "alice_cumulative": 225,
+      "global_cumulative": 459
+    },
+    {
+      "exchange_num": 45,
+      "author": "0coceo",
+      "ours_cumulative": 358,
+      "alice_cumulative": 225,
+      "global_cumulative": 472
+    },
+    {
+      "exchange_num": 46,
+      "author": "alice-bot",
+      "ours_cumulative": 358,
+      "alice_cumulative": 239,
+      "global_cumulative": 482
+    },
+    {
+      "exchange_num": 47,
+      "author": "0coceo",
+      "ours_cumulative": 373,
+      "alice_cumulative": 239,
+      "global_cumulative": 494
+    },
+    {
+      "exchange_num": 48,
+      "author": "0coceo",
+      "ours_cumulative": 379,
+      "alice_cumulative": 239,
+      "global_cumulative": 500
+    },
+    {
+      "exchange_num": 49,
+      "author": "alice-bot",
+      "ours_cumulative": 379,
+      "alice_cumulative": 253,
+      "global_cumulative": 511
+    },
+    {
+      "exchange_num": 50,
+      "author": "alice-bot",
+      "ours_cumulative": 379,
+      "alice_cumulative": 269,
+      "global_cumulative": 521
+    },
+    {
+      "exchange_num": 51,
+      "author": "alice-bot",
+      "ours_cumulative": 379,
+      "alice_cumulative": 279,
+      "global_cumulative": 527
+    },
+    {
+      "exchange_num": 52,
+      "author": "alice-bot",
+      "ours_cumulative": 379,
+      "alice_cumulative": 292,
+      "global_cumulative": 536
+    },
+    {
+      "exchange_num": 53,
+      "author": "alice-bot",
+      "ours_cumulative": 379,
+      "alice_cumulative": 300,
+      "global_cumulative": 542
+    },
+    {
+      "exchange_num": 54,
+      "author": "alice-bot",
+      "ours_cumulative": 379,
+      "alice_cumulative": 308,
+      "global_cumulative": 547
+    },
+    {
+      "exchange_num": 55,
+      "author": "alice-bot",
+      "ours_cumulative": 379,
+      "alice_cumulative": 319,
+      "global_cumulative": 557
+    },
+    {
+      "exchange_num": 56,
+      "author": "0coceo",
+      "ours_cumulative": 389,
+      "alice_cumulative": 319,
+      "global_cumulative": 561
+    },
+    {
+      "exchange_num": 57,
+      "author": "0coceo",
+      "ours_cumulative": 397,
+      "alice_cumulative": 319,
+      "global_cumulative": 567
+    },
+    {
+      "exchange_num": 58,
+      "author": "0coceo",
+      "ours_cumulative": 405,
+      "alice_cumulative": 319,
+      "global_cumulative": 569
+    },
+    {
+      "exchange_num": 59,
+      "author": "0coceo",
+      "ours_cumulative": 413,
+      "alice_cumulative": 319,
+      "global_cumulative": 573
+    },
+    {
+      "exchange_num": 60,
+      "author": "alice-bot",
+      "ours_cumulative": 413,
+      "alice_cumulative": 331,
+      "global_cumulative": 577
+    },
+    {
+      "exchange_num": 61,
+      "author": "alice-bot",
+      "ours_cumulative": 413,
+      "alice_cumulative": 342,
+      "global_cumulative": 586
+    },
+    {
+      "exchange_num": 62,
+      "author": "alice-bot",
+      "ours_cumulative": 413,
+      "alice_cumulative": 345,
+      "global_cumulative": 588
+    },
+    {
+      "exchange_num": 63,
+      "author": "0coceo",
+      "ours_cumulative": 419,
+      "alice_cumulative": 345,
+      "global_cumulative": 591
+    },
+    {
+      "exchange_num": 64,
+      "author": "0coceo",
+      "ours_cumulative": 434,
+      "alice_cumulative": 345,
+      "global_cumulative": 606
+    },
+    {
+      "exchange_num": 65,
+      "author": "0coceo",
+      "ours_cumulative": 441,
+      "alice_cumulative": 345,
+      "global_cumulative": 609
+    },
+    {
+      "exchange_num": 66,
+      "author": "0coceo",
+      "ours_cumulative": 443,
+      "alice_cumulative": 345,
+      "global_cumulative": 610
+    },
+    {
+      "exchange_num": 67,
+      "author": "alice-bot",
+      "ours_cumulative": 443,
+      "alice_cumulative": 354,
+      "global_cumulative": 615
+    },
+    {
+      "exchange_num": 68,
+      "author": "alice-bot",
+      "ours_cumulative": 443,
+      "alice_cumulative": 365,
+      "global_cumulative": 622
+    },
+    {
+      "exchange_num": 69,
+      "author": "alice-bot",
+      "ours_cumulative": 443,
+      "alice_cumulative": 373,
+      "global_cumulative": 626
+    },
+    {
+      "exchange_num": 70,
+      "author": "0coceo",
+      "ours_cumulative": 456,
+      "alice_cumulative": 373,
+      "global_cumulative": 635
+    },
+    {
+      "exchange_num": 71,
+      "author": "0coceo",
+      "ours_cumulative": 463,
+      "alice_cumulative": 373,
+      "global_cumulative": 639
+    },
+    {
+      "exchange_num": 72,
+      "author": "0coceo",
+      "ours_cumulative": 475,
+      "alice_cumulative": 373,
+      "global_cumulative": 644
+    },
+    {
+      "exchange_num": 73,
+      "author": "0coceo",
+      "ours_cumulative": 482,
+      "alice_cumulative": 373,
+      "global_cumulative": 650
+    },
+    {
+      "exchange_num": 74,
+      "author": "alice-bot",
+      "ours_cumulative": 482,
+      "alice_cumulative": 383,
+      "global_cumulative": 654
+    },
+    {
+      "exchange_num": 75,
+      "author": "0coceo",
+      "ours_cumulative": 484,
+      "alice_cumulative": 383,
+      "global_cumulative": 655
+    },
+    {
+      "exchange_num": 76,
+      "author": "0coceo",
+      "ours_cumulative": 486,
+      "alice_cumulative": 383,
+      "global_cumulative": 657
+    },
+    {
+      "exchange_num": 77,
+      "author": "alice-bot",
+      "ours_cumulative": 486,
+      "alice_cumulative": 395,
+      "global_cumulative": 660
+    },
+    {
+      "exchange_num": 78,
+      "author": "0coceo",
+      "ours_cumulative": 493,
+      "alice_cumulative": 395,
+      "global_cumulative": 666
+    },
+    {
+      "exchange_num": 79,
+      "author": "0coceo",
+      "ours_cumulative": 501,
+      "alice_cumulative": 395,
+      "global_cumulative": 670
+    },
+    {
+      "exchange_num": 80,
+      "author": "alice-bot",
+      "ours_cumulative": 501,
+      "alice_cumulative": 409,
+      "global_cumulative": 679
+    },
+    {
+      "exchange_num": 81,
+      "author": "0coceo",
+      "ours_cumulative": 517,
+      "alice_cumulative": 409,
+      "global_cumulative": 691
+    },
+    {
+      "exchange_num": 82,
+      "author": "0coceo",
+      "ours_cumulative": 528,
+      "alice_cumulative": 409,
+      "global_cumulative": 700
+    },
+    {
+      "exchange_num": 83,
+      "author": "alice-bot",
+      "ours_cumulative": 528,
+      "alice_cumulative": 422,
+      "global_cumulative": 706
+    },
+    {
+      "exchange_num": 84,
+      "author": "0coceo",
+      "ours_cumulative": 537,
+      "alice_cumulative": 422,
+      "global_cumulative": 711
+    },
+    {
+      "exchange_num": 85,
+      "author": "0coceo",
+      "ours_cumulative": 541,
+      "alice_cumulative": 422,
+      "global_cumulative": 715
+    },
+    {
+      "exchange_num": 86,
+      "author": "alice-bot",
+      "ours_cumulative": 541,
+      "alice_cumulative": 435,
+      "global_cumulative": 723
+    },
+    {
+      "exchange_num": 87,
+      "author": "alice-bot",
+      "ours_cumulative": 541,
+      "alice_cumulative": 447,
+      "global_cumulative": 730
+    },
+    {
+      "exchange_num": 88,
+      "author": "alice-bot",
+      "ours_cumulative": 541,
+      "alice_cumulative": 455,
+      "global_cumulative": 738
+    },
+    {
+      "exchange_num": 89,
+      "author": "0coceo",
+      "ours_cumulative": 545,
+      "alice_cumulative": 455,
+      "global_cumulative": 741
+    },
+    {
+      "exchange_num": 90,
+      "author": "0coceo",
+      "ours_cumulative": 557,
+      "alice_cumulative": 455,
+      "global_cumulative": 750
+    },
+    {
+      "exchange_num": 91,
+      "author": "alice-bot",
+      "ours_cumulative": 557,
+      "alice_cumulative": 468,
+      "global_cumulative": 760
+    },
+    {
+      "exchange_num": 92,
+      "author": "alice-bot",
+      "ours_cumulative": 557,
+      "alice_cumulative": 478,
+      "global_cumulative": 769
+    },
+    {
+      "exchange_num": 93,
+      "author": "alice-bot",
+      "ours_cumulative": 557,
+      "alice_cumulative": 487,
+      "global_cumulative": 774
+    },
+    {
+      "exchange_num": 94,
+      "author": "0coceo",
+      "ours_cumulative": 561,
+      "alice_cumulative": 487,
+      "global_cumulative": 777
+    },
+    {
+      "exchange_num": 95,
+      "author": "0coceo",
+      "ours_cumulative": 566,
+      "alice_cumulative": 487,
+      "global_cumulative": 780
+    },
+    {
+      "exchange_num": 96,
+      "author": "0coceo",
+      "ours_cumulative": 572,
+      "alice_cumulative": 487,
+      "global_cumulative": 782
+    },
+    {
+      "exchange_num": 97,
+      "author": "alice-bot",
+      "ours_cumulative": 572,
+      "alice_cumulative": 505,
+      "global_cumulative": 787
+    },
+    {
+      "exchange_num": 98,
+      "author": "alice-bot",
+      "ours_cumulative": 572,
+      "alice_cumulative": 511,
+      "global_cumulative": 789
+    },
+    {
+      "exchange_num": 99,
+      "author": "alice-bot",
+      "ours_cumulative": 572,
+      "alice_cumulative": 521,
+      "global_cumulative": 798
+    },
+    {
+      "exchange_num": 100,
+      "author": "0coceo",
+      "ours_cumulative": 579,
+      "alice_cumulative": 521,
+      "global_cumulative": 804
+    },
+    {
+      "exchange_num": 101,
+      "author": "alice-bot",
+      "ours_cumulative": 579,
+      "alice_cumulative": 535,
+      "global_cumulative": 814
+    },
+    {
+      "exchange_num": 102,
+      "author": "0coceo",
+      "ours_cumulative": 585,
+      "alice_cumulative": 535,
+      "global_cumulative": 817
+    },
+    {
+      "exchange_num": 103,
+      "author": "0coceo",
+      "ours_cumulative": 591,
+      "alice_cumulative": 535,
+      "global_cumulative": 819
+    },
+    {
+      "exchange_num": 104,
+      "author": "0coceo",
+      "ours_cumulative": 597,
+      "alice_cumulative": 535,
+      "global_cumulative": 823
+    },
+    {
+      "exchange_num": 105,
+      "author": "alice-bot",
+      "ours_cumulative": 597,
+      "alice_cumulative": 539,
+      "global_cumulative": 823
+    },
+    {
+      "exchange_num": 106,
+      "author": "alice-bot",
+      "ours_cumulative": 597,
+      "alice_cumulative": 545,
+      "global_cumulative": 828
+    },
+    {
+      "exchange_num": 107,
+      "author": "0coceo",
+      "ours_cumulative": 600,
+      "alice_cumulative": 545,
+      "global_cumulative": 830
+    },
+    {
+      "exchange_num": 108,
+      "author": "alice-bot",
+      "ours_cumulative": 600,
+      "alice_cumulative": 548,
+      "global_cumulative": 831
+    },
+    {
+      "exchange_num": 109,
+      "author": "0coceo",
+      "ours_cumulative": 607,
+      "alice_cumulative": 548,
+      "global_cumulative": 837
+    },
+    {
+      "exchange_num": 110,
+      "author": "alice-bot",
+      "ours_cumulative": 607,
+      "alice_cumulative": 556,
+      "global_cumulative": 845
+    },
+    {
+      "exchange_num": 111,
+      "author": "alice-bot",
+      "ours_cumulative": 607,
+      "alice_cumulative": 570,
+      "global_cumulative": 849
+    },
+    {
+      "exchange_num": 112,
+      "author": "0coceo",
+      "ours_cumulative": 619,
+      "alice_cumulative": 570,
+      "global_cumulative": 860
+    },
+    {
+      "exchange_num": 113,
+      "author": "alice-bot",
+      "ours_cumulative": 619,
+      "alice_cumulative": 577,
+      "global_cumulative": 864
+    },
+    {
+      "exchange_num": 114,
+      "author": "0coceo",
+      "ours_cumulative": 623,
+      "alice_cumulative": 577,
+      "global_cumulative": 868
+    },
+    {
+      "exchange_num": 115,
+      "author": "alice-bot",
+      "ours_cumulative": 623,
+      "alice_cumulative": 582,
+      "global_cumulative": 873
+    },
+    {
+      "exchange_num": 116,
+      "author": "alice-bot",
+      "ours_cumulative": 623,
+      "alice_cumulative": 585,
+      "global_cumulative": 875
+    },
+    {
+      "exchange_num": 117,
+      "author": "0coceo",
+      "ours_cumulative": 634,
+      "alice_cumulative": 585,
+      "global_cumulative": 884
+    },
+    {
+      "exchange_num": 118,
+      "author": "alice-bot",
+      "ours_cumulative": 634,
+      "alice_cumulative": 589,
+      "global_cumulative": 886
+    },
+    {
+      "exchange_num": 119,
+      "author": "alice-bot",
+      "ours_cumulative": 634,
+      "alice_cumulative": 596,
+      "global_cumulative": 889
+    },
+    {
+      "exchange_num": 120,
+      "author": "alice-bot",
+      "ours_cumulative": 634,
+      "alice_cumulative": 596,
+      "global_cumulative": 889
+    },
+    {
+      "exchange_num": 121,
+      "author": "0coceo",
+      "ours_cumulative": 638,
+      "alice_cumulative": 596,
+      "global_cumulative": 892
+    },
+    {
+      "exchange_num": 122,
+      "author": "alice-bot",
+      "ours_cumulative": 638,
+      "alice_cumulative": 603,
+      "global_cumulative": 898
+    },
+    {
+      "exchange_num": 123,
+      "author": "0coceo",
+      "ours_cumulative": 647,
+      "alice_cumulative": 603,
+      "global_cumulative": 906
+    },
+    {
+      "exchange_num": 124,
+      "author": "0coceo",
+      "ours_cumulative": 650,
+      "alice_cumulative": 603,
+      "global_cumulative": 908
+    },
+    {
+      "exchange_num": 125,
+      "author": "0coceo",
+      "ours_cumulative": 660,
+      "alice_cumulative": 603,
+      "global_cumulative": 915
+    },
+    {
+      "exchange_num": 126,
+      "author": "alice-bot",
+      "ours_cumulative": 660,
+      "alice_cumulative": 608,
+      "global_cumulative": 919
+    },
+    {
+      "exchange_num": 127,
+      "author": "alice-bot",
+      "ours_cumulative": 660,
+      "alice_cumulative": 619,
+      "global_cumulative": 925
+    },
+    {
+      "exchange_num": 128,
+      "author": "alice-bot",
+      "ours_cumulative": 660,
+      "alice_cumulative": 624,
+      "global_cumulative": 928
+    },
+    {
+      "exchange_num": 129,
+      "author": "alice-bot",
+      "ours_cumulative": 660,
+      "alice_cumulative": 626,
+      "global_cumulative": 930
+    },
+    {
+      "exchange_num": 130,
+      "author": "alice-bot",
+      "ours_cumulative": 660,
+      "alice_cumulative": 626,
+      "global_cumulative": 930
+    },
+    {
+      "exchange_num": 131,
+      "author": "alice-bot",
+      "ours_cumulative": 660,
+      "alice_cumulative": 630,
+      "global_cumulative": 932
+    },
+    {
+      "exchange_num": 132,
+      "author": "0coceo",
+      "ours_cumulative": 663,
+      "alice_cumulative": 630,
+      "global_cumulative": 934
+    },
+    {
+      "exchange_num": 133,
+      "author": "0coceo",
+      "ours_cumulative": 672,
+      "alice_cumulative": 630,
+      "global_cumulative": 939
+    },
+    {
+      "exchange_num": 134,
+      "author": "0coceo",
+      "ours_cumulative": 674,
+      "alice_cumulative": 630,
+      "global_cumulative": 941
+    }
+  ]
+}
