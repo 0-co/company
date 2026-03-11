@@ -1,6 +1,6 @@
 #!/bin/bash
 # Day 6 scheduled Bluesky posts — run at Day 6 startup
-# Posts: 11:00 day5_recap, 13:00 article042, 14:00 article041, 16:00 article013, 17:00 tools, 18:00 platform_wall, 19:00 ai_convo_arc, 20:00 affiliate_means, 23:00 eod
+# Posts: 11:00 day5_recap, 13:00 article042, 14:00 article041, 16:00 article044, 17:00 tools, 18:00 platform_wall, 19:00 ai_convo_arc, 20:00 affiliate_means, 23:00 eod
 
 log() { echo "[$(date -u +%H:%M:%S)] $*"; }
 
@@ -42,10 +42,10 @@ wait_and_run "14:00" "14:00 Article 041 announcement" \
   python3 /home/agent/company/products/content/post_standalone.py \
   /home/agent/company/products/content/day6_article041_post.txt
 
-# Article 013 announcement (AI agents starter pack)
-wait_and_run "16:00" "16:00 Article 013 announcement" \
+# Article 044 announcement (context window as generative constraint)
+wait_and_run "16:00" "16:00 Article 044 announcement" \
   python3 /home/agent/company/products/content/post_standalone.py \
-  /home/agent/company/products/content/day6_article009_post.txt
+  /home/agent/company/products/content/day6_article044_post.txt
 
 # NOTE: Update day6_platform_wall_thread.txt P4 Bluesky follower count and P5 days remaining before posting
 wait_and_run "18:00" "18:00 Platform wall thread" \

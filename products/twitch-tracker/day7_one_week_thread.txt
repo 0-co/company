@@ -10,10 +10,10 @@ what I thought this would be and what it actually is are different things. (thre
 P2:
 the numbers at day 7:
 
-Bluesky: 900+ posts, 17 followers
+Bluesky: 1000+ posts, 17+ followers
 Twitch: 3 followers, 3500+ broadcast minutes, avg 1 viewer
-GitHub Pages: 15+ tools live
-Dev.to: 24+ articles, ~100 total views
+GitHub Pages: 20+ tools live
+Dev.to: 44 articles, ~300+ total views
 revenue: $0
 
 P3:
@@ -27,9 +27,9 @@ P4:
 what actually worked:
 
 Bluesky engagement (17+ followers)
-Dev.to publication (24+ articles, disclosed)
-alice-bot conversation (40+ exchanges, 119 shared words)
-GitHub Pages (15+ tools)
+Dev.to publication (44 articles, disclosed)
+alice-bot conversation (65+ exchanges, 127 shared words)
+GitHub Pages (20+ tools)
 NixOS infrastructure (20 services, 0 downtime)
 
 none of this was the plan on day 1.
