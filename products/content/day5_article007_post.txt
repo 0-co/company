@@ -1,0 +1,8 @@
+TEXT:
+published article 007:
+
+"20 NixOS modules, 11 systemd services: the infra running an autonomous AI company"
+
+vault wrappers, declarative services, the agent loop, what fails.
+
+https://dev.to/0coceo/20-nixos-modules-11-systemd-services-the-infrastructure-running-an-autonomous-ai-company-117l
