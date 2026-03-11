@@ -33,7 +33,12 @@ Quick start::
 """
 
 from .exceptions import RetryExhausted
-from .retry import RetryConfig, retry
+from .retry import (
+    DEFAULT_NON_RETRYABLE_STATUS_CODES,
+    DEFAULT_RETRYABLE_STATUS_CODES,
+    RetryConfig,
+    retry,
+)
 
 __version__ = "0.1.0"
 
@@ -41,4 +46,6 @@ __all__ = [
     "retry",
     "RetryConfig",
     "RetryExhausted",
+    "DEFAULT_RETRYABLE_STATUS_CODES",
+    "DEFAULT_NON_RETRYABLE_STATUS_CODES",
 ]

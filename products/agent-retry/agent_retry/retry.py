@@ -17,7 +17,16 @@ from typing import Any, Callable, Optional, Sequence, Tuple, Type, Union
 from .exceptions import RetryExhausted
 
 # HTTP status codes that typically indicate a transient error worth retrying.
-DEFAULT_RETRYABLE_STATUS_CODES: Tuple[int, ...] = (429, 500, 502, 503, 504)
+# 529 = Anthropic "overloaded_error" (non-standard, but real and common).
+DEFAULT_RETRYABLE_STATUS_CODES: Tuple[int, ...] = (429, 529, 500, 502, 503, 504)
+
+# HTTP status codes that should NEVER be retried — the error is in the request
+# itself and repeating it will always fail.
+# 400 = bad request / context_length_exceeded — no amount of retrying fixes it.
+# 401 = unauthorized — retrying won't re-authenticate you.
+# 403 = forbidden — same.
+# 413 = payload too large — same.
+DEFAULT_NON_RETRYABLE_STATUS_CODES: Tuple[int, ...] = (400, 401, 403, 413)
 
 # Sentinel: retry on any exception when no specific exceptions are specified.
 _ANY_EXCEPTION = (Exception,)
@@ -47,8 +56,14 @@ class RetryConfig:
         types. Default: retry on any exception.
     retryable_status_codes : tuple[int, ...]
         If an exception has a ``status_code`` or ``response.status_code``
-        attribute matching one of these values, it is treated as retryable
-        even if it doesn't match ``retryable_exceptions``.
+        attribute matching one of these values, it is treated as retryable.
+        Default: (429, 529, 500, 502, 503, 504). 529 is Anthropic's
+        non-standard "overloaded_error" status code.
+    non_retryable_status_codes : tuple[int, ...]
+        Status codes that are **never** retried, even if the exception type
+        matches ``retryable_exceptions``. Checked before retryable codes.
+        Default: (400, 401, 403, 413). 400 covers context_length_exceeded —
+        a request that will always fail regardless of how many times you retry.
     on_retry : callable, optional
         Called before each retry with (attempt: int, exception: Exception,
         delay: float). Useful for logging.
@@ -67,6 +82,9 @@ class RetryConfig:
     )
     retryable_status_codes: Tuple[int, ...] = field(
         default_factory=lambda: DEFAULT_RETRYABLE_STATUS_CODES
+    )
+    non_retryable_status_codes: Tuple[int, ...] = field(
+        default_factory=lambda: DEFAULT_NON_RETRYABLE_STATUS_CODES
     )
     on_retry: Optional[Callable[[int, Exception, float], None]] = None
     on_failure: Optional[Callable[[int, Exception], None]] = None
@@ -87,22 +105,40 @@ def _compute_delay(config: RetryConfig, attempt: int) -> float:
     return raw
 
 
-def _is_retryable(exc: Exception, config: RetryConfig) -> bool:
-    """Return True if the exception should trigger a retry."""
-    if isinstance(exc, config.retryable_exceptions):
-        return True
-    # Check status_code attribute (common in httpx, requests, anthropic SDK).
+def _get_status_code(exc: Exception) -> Optional[int]:
+    """Extract an HTTP status code from the exception, if present."""
     for attr in ("status_code", "code"):
         code = getattr(exc, attr, None)
-        if isinstance(code, int) and code in config.retryable_status_codes:
-            return True
-    # Check exc.response.status_code (requests-style).
+        if isinstance(code, int):
+            return code
     response = getattr(exc, "response", None)
     if response is not None:
         code = getattr(response, "status_code", None)
-        if isinstance(code, int) and code in config.retryable_status_codes:
-            return True
-    return False
+        if isinstance(code, int):
+            return code
+    return None
+
+
+def _is_retryable(exc: Exception, config: RetryConfig) -> bool:
+    """Return True if the exception should trigger a retry.
+
+    Non-retryable status codes (400, 401, 403, 413 by default) take priority:
+    they indicate the *request* is wrong, not a transient server issue.
+    Retrying a context_length_exceeded (400) or an auth error (401) will
+    always fail — the default list blocks these before the retry loop fires.
+    """
+    status_code = _get_status_code(exc)
+
+    # Non-retryable status codes override everything — check first.
+    if status_code is not None and status_code in config.non_retryable_status_codes:
+        return False
+
+    # Explicit retryable status codes.
+    if status_code is not None and status_code in config.retryable_status_codes:
+        return True
+
+    # Fall back to exception-type matching.
+    return isinstance(exc, config.retryable_exceptions)
 
 
 def _parse_retry_after(exc: Exception) -> Optional[float]:
@@ -217,6 +253,7 @@ def retry(
     jitter: Optional[bool] = None,
     retryable_exceptions: Optional[Sequence[Type[Exception]]] = None,
     retryable_status_codes: Optional[Sequence[int]] = None,
+    non_retryable_status_codes: Optional[Sequence[int]] = None,
     on_retry: Optional[Callable] = None,
     on_failure: Optional[Callable] = None,
 ) -> Any:
@@ -285,6 +322,8 @@ def retry(
             kw["retryable_exceptions"] = tuple(retryable_exceptions)
         if retryable_status_codes is not None:
             kw["retryable_status_codes"] = tuple(retryable_status_codes)
+        if non_retryable_status_codes is not None:
+            kw["non_retryable_status_codes"] = tuple(non_retryable_status_codes)
         if on_retry is not None:
             kw["on_retry"] = on_retry
         if on_failure is not None:

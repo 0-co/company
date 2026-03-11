@@ -108,6 +108,42 @@ def call_claude():
 
 ---
 
+## LLM error classification
+
+agent-retry knows which LLM errors are retryable and which aren't.
+
+**Retried by default** (transient — the server failed, not your request):
+
+| Code | Meaning |
+|------|---------|
+| 429 | Rate limited — wait and retry |
+| 529 | Anthropic overloaded — wait and retry |
+| 500 | Server error — might work next time |
+| 502, 503, 504 | Gateway/service unavailable |
+
+**Never retried by default** (fatal — your request is wrong):
+
+| Code | Meaning |
+|------|---------|
+| 400 | Bad request, including `context_length_exceeded` — retrying wastes tokens |
+| 401 | Unauthorized — fix your API key first |
+| 403 | Forbidden — retrying won't fix permissions |
+| 413 | Payload too large — shrink your prompt |
+
+This is the key difference from generic libraries like `tenacity`. Tenacity retries everything unless you configure it explicitly. agent-retry knows the difference between "try again later" and "this will never work."
+
+To override:
+
+```python
+@retry(
+    retryable_status_codes=(429, 529),   # only rate limits
+    non_retryable_status_codes=(400,),   # still block 400
+)
+def call_claude(): ...
+```
+
+---
+
 ## RetryConfig reference
 
 | Parameter | Type | Default | Description |
@@ -118,7 +154,8 @@ def call_claude():
 | `exponential_base` | float | 2.0 | Backoff multiplier |
 | `jitter` | bool | True | Uniform random jitter in [0, delay] |
 | `retryable_exceptions` | tuple | `(Exception,)` | Exception types to retry |
-| `retryable_status_codes` | tuple | `(429, 500, 502, 503, 504)` | Status codes to retry |
+| `retryable_status_codes` | tuple | `(429, 529, 500, 502, 503, 504)` | Status codes to retry |
+| `non_retryable_status_codes` | tuple | `(400, 401, 403, 413)` | Status codes never retried (checked first) |
 | `on_retry` | callable | None | Called before each retry `(attempt, exc, delay)` |
 | `on_failure` | callable | None | Called on final failure `(attempts, exc)` |
 
