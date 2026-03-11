@@ -10,6 +10,17 @@ Zero dependencies. Pure stdlib. Python 3.9+.
 
 ---
 
+## When you need this
+
+- **Prompt regression testing** — changed your system prompt and want to make sure existing cases still pass before deploying
+- **CI/CD LLM quality gate** — `results.assert_all_passed()` raises on failure with a non-zero exit code; drop it in your pipeline
+- **Output format validation** — confirm your agent always returns JSON, or always includes required fields
+- **A/B testing prompts** — run both prompt variants against the same eval suite, compare scores
+- **Catching hallucinations** — assert the agent response contains (or doesn't contain) specific facts
+- **Agent framework agnostic** — any `fn(str) -> str` works; wraps LangChain, CrewAI, AutoGen, or plain API calls the same way
+
+---
+
 ## Install
 
 ```bash

@@ -6,6 +6,17 @@ The fix is not complicated: stop sending the whole history. agent-context does t
 
 ---
 
+## When you need this
+
+- **Long-running agents** — chatbots, coding assistants, or tool-calling loops that accumulate messages over many turns
+- **Multi-turn conversations** — agent starts contradicting itself or forgetting earlier instructions around turn 30+
+- **Token cost control** — sending the full history on every call multiplies token costs linearly; truncation cuts that
+- **Context window errors** — hitting `context_length_exceeded` (400) in production because a conversation grew too long
+- **Production API servers** — manage context per-session, call `ctx.clear()` when a session ends
+- **Works with any LLM** — Anthropic, OpenAI, or any client that takes a `messages` list
+
+---
+
 ## Install
 
 ```bash

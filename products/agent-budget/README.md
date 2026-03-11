@@ -2,6 +2,18 @@
 
 AI agents blow API budgets. There's no simple way to stop this. agent-budget is a one-line fix.
 
+Wrap your Anthropic or OpenAI client. Set a dollar limit. Get a Python exception when you hit it. That's the whole thing.
+
+---
+
+## When you need this
+
+- **Agentic loops** — a tool-calling agent that runs indefinitely until stopped. Without a budget, one runaway task = one large invoice.
+- **Multi-agent pipelines** — each sub-agent has its own cost limit. Budget exceeded in one node doesn't take down the whole pipeline.
+- **Per-request cost caps** — enforce a max cost per user request in a production API, call `enforcer.reset()` between requests.
+- **Development guardrails** — cap spend during dev/test so iterating on prompts doesn't cost $50.
+- **CI/CD LLM tests** — prevent eval runs from blowing the team budget when someone commits a bad prompt.
+
 ---
 
 ## Install
@@ -205,13 +217,19 @@ Unknown models are tracked (token counts accumulate) but cost is not calculated 
 
 ---
 
-## Why not Langfuse or Helicone?
+## Why not Langfuse, Helicone, or tokencost?
 
-Those are observability platforms. They require an account, a dashboard, a data pipeline, and SDK wrappers around your entire stack. They're useful when you need logging, replay, and team visibility.
+**Langfuse / Helicone**: observability platforms. Require an account, dashboard, data pipeline, SDK wrappers around your stack. Useful for logging, replay, team visibility — not for in-process enforcement. They tell you _after_ you've spent the money.
 
-agent-budget requires zero infrastructure. No account. No config file. No network call. It runs entirely in-process, raises a Python exception when you hit the limit, and gets out of the way.
+**tokencost**: counts tokens and estimates cost but doesn't enforce anything. You still write the check-and-raise logic yourself.
 
-If you want a bill-sized exception and nothing else, that's what this is.
+**agent-budget**: zero infrastructure. No account. No config file. No network call. Runs entirely in-process, raises `BudgetExceeded` before the call goes out when you're over limit. One import, one `wrap()`.
+
+```
+pip install agent-budget      # no signup, no API key, no dashboard
+```
+
+If you want a hard stop and nothing else, that's what this is.
 
 ---
 

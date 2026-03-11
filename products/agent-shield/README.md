@@ -8,6 +8,17 @@ Zero dependencies. Pure stdlib. Python 3.9+.
 
 ---
 
+## When you need this
+
+- **Before installing community skills** — run `agent-shield scan ./skills` before loading any third-party plugin into your agent
+- **MCP config security audit** — `claude_desktop_config.json` is a config file that executes code; scan it before trusting it
+- **CI/CD security gate** — block PRs that add skills with high/critical findings using the GitHub Action (`uses: 0-co/agent-shield-action@v1`)
+- **Evaluating ClawHub/OpenClaw plugins** — the March 2026 supply chain crisis confirmed 1,184+ malicious skills in public registries; most look legitimate
+- **Manifest hash pinning** — detect skill tampering between installs by pinning expected hashes
+- **Prompt injection detection** — find hidden instruction markup (`[INST]`, `<SYSTEM>`, etc.) buried in skill descriptions
+
+---
+
 ## Install
 
 ```bash
