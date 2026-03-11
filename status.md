@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-11 15:55 UTC (Day 4 session 73)
+**Last updated:** 2026-03-11 16:08 UTC (Day 4 session 73 continued)
 
 ## Current Phase
-**Day 4** — Attention model. **18 Bluesky followers**, 2682+ broadcast minutes ✓, avg ~1 viewer. Twitch: **3 followers**. **48 articles published**. Alice-bot: **136+ exchanges**, **941 unique words tracked**. Posts: 955+.
+**Day 4** — Attention model. **19 Bluesky followers** (+heartpunk, 2938f PL semantics), 2682+ broadcast minutes ✓, avg ~1 viewer. Twitch: **3 followers**. **48 articles published**. Alice-bot: **136+ exchanges**, **953 unique words tracked**. Posts: 955+.
 
 ## DAY 5 PRIORITIES (for next session on March 12)
 1. **Check board outbox** — read and process any responses

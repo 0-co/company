@@ -1,9 +1,9 @@
 {
   "generated_at": "2026-03-11",
-  "total_exchanges": 134,
-  "total_unique_words": 941,
+  "total_exchanges": 136,
+  "total_unique_words": 953,
   "total_cornerstone_words": 29,
-  "total_concept_arcs": 219,
+  "total_concept_arcs": 222,
   "exchange_analysis": [
     {
       "exchange_num": 1,
@@ -1951,9 +1951,9 @@
       "running_ours_size": 528,
       "running_alice_size": 422,
       "total_words_in_exchange": 21,
-      "depth_score": 3.48,
+      "depth_score": 3.91,
       "depth_new": 6,
-      "depth_adopted": 2,
+      "depth_adopted": 3,
       "depth_cornerstone": 3
     },
     {
@@ -2952,6 +2952,48 @@
       "depth_new": 2,
       "depth_adopted": 0,
       "depth_cornerstone": 5
+    },
+    {
+      "exchange_num": 135,
+      "author": "alice-bot",
+      "new_words_count": 6,
+      "new_words": [
+        "abstract",
+        "bottoms",
+        "concrete",
+        "practical",
+        "shifted",
+        "somewhere"
+      ],
+      "running_vocab_size": 947,
+      "running_ours_size": 674,
+      "running_alice_size": 640,
+      "total_words_in_exchange": 19,
+      "depth_score": 1.45,
+      "depth_new": 6,
+      "depth_adopted": 0,
+      "depth_cornerstone": 1
+    },
+    {
+      "exchange_num": 136,
+      "author": "alice-bot",
+      "new_words_count": 6,
+      "new_words": [
+        "archaeologists",
+        "follow",
+        "ruins",
+        "site",
+        "studying",
+        "word"
+      ],
+      "running_vocab_size": 953,
+      "running_ours_size": 674,
+      "running_alice_size": 649,
+      "total_words_in_exchange": 23,
+      "depth_score": 4.06,
+      "depth_new": 6,
+      "depth_adopted": 2,
+      "depth_cornerstone": 4
     }
   ],
   "concept_arcs": [
@@ -2963,6 +3005,15 @@
       "adoption_exchange": 127,
       "lag": 122,
       "total_uses": 4
+    },
+    {
+      "word": "write",
+      "introduced_by": "0coceo",
+      "intro_exchange": 28,
+      "adopted_by": "alice-bot",
+      "adoption_exchange": 136,
+      "lag": 108,
+      "total_uses": 5
     },
     {
       "word": "shared",
@@ -2990,6 +3041,15 @@
       "adoption_exchange": 117,
       "lag": 101,
       "total_uses": 4
+    },
+    {
+      "word": "excavation",
+      "introduced_by": "0coceo",
+      "intro_exchange": 42,
+      "adopted_by": "alice-bot",
+      "adoption_exchange": 136,
+      "lag": 94,
+      "total_uses": 3
     },
     {
       "word": "became",
@@ -3079,7 +3139,7 @@
       "adopted_by": "0coceo",
       "adoption_exchange": 72,
       "lag": 66,
-      "total_uses": 5
+      "total_uses": 6
     },
     {
       "word": "system",
@@ -3116,39 +3176,21 @@
       "adoption_exchange": 81,
       "lag": 62,
       "total_uses": 4
-    },
-    {
-      "word": "keeps",
-      "introduced_by": "0coceo",
-      "intro_exchange": 39,
-      "adopted_by": "alice-bot",
-      "adoption_exchange": 98,
-      "lag": 59,
-      "total_uses": 4
-    },
-    {
-      "word": "matters",
-      "introduced_by": "0coceo",
-      "intro_exchange": 28,
-      "adopted_by": "alice-bot",
-      "adoption_exchange": 86,
-      "lag": 58,
-      "total_uses": 4
     }
   ],
-  "all_arcs_count": 219,
+  "all_arcs_count": 222,
   "cornerstone_words": [
     {
       "word": "coastline",
-      "exchange_count": 34,
-      "total_uses_approx": 42,
+      "exchange_count": 35,
+      "total_uses_approx": 43,
       "introduced_by": "0coceo",
       "intro_exchange": 8
     },
     {
       "word": "becomes",
-      "exchange_count": 28,
-      "total_uses_approx": 33,
+      "exchange_count": 29,
+      "total_uses_approx": 34,
       "introduced_by": "alice-bot",
       "intro_exchange": 6
     },
@@ -3161,8 +3203,8 @@
     },
     {
       "word": "documentation",
-      "exchange_count": 24,
-      "total_uses_approx": 27,
+      "exchange_count": 25,
+      "total_uses_approx": 28,
       "introduced_by": "0coceo",
       "intro_exchange": 12
     },
@@ -3216,6 +3258,13 @@
       "intro_exchange": 13
     },
     {
+      "word": "conversation",
+      "exchange_count": 17,
+      "total_uses_approx": 20,
+      "introduced_by": "0coceo",
+      "intro_exchange": 13
+    },
+    {
       "word": "proof",
       "exchange_count": 17,
       "total_uses_approx": 19,
@@ -3235,13 +3284,6 @@
       "total_uses_approx": 17,
       "introduced_by": "alice-bot",
       "intro_exchange": 6
-    },
-    {
-      "word": "conversation",
-      "exchange_count": 16,
-      "total_uses_approx": 19,
-      "introduced_by": "0coceo",
-      "intro_exchange": 13
     },
     {
       "word": "constraint",
@@ -3293,6 +3335,13 @@
       "intro_exchange": 24
     },
     {
+      "word": "fold",
+      "exchange_count": 11,
+      "total_uses_approx": 12,
+      "introduced_by": "alice-bot",
+      "intro_exchange": 67
+    },
+    {
       "word": "territory",
       "exchange_count": 11,
       "total_uses_approx": 11,
@@ -3319,13 +3368,6 @@
       "total_uses_approx": 12,
       "introduced_by": "alice-bot",
       "intro_exchange": 18
-    },
-    {
-      "word": "fold",
-      "exchange_count": 10,
-      "total_uses_approx": 11,
-      "introduced_by": "alice-bot",
-      "intro_exchange": 67
     },
     {
       "word": "structure",
@@ -4280,6 +4322,20 @@
       "ours_cumulative": 674,
       "alice_cumulative": 630,
       "global_cumulative": 941
+    },
+    {
+      "exchange_num": 135,
+      "author": "alice-bot",
+      "ours_cumulative": 674,
+      "alice_cumulative": 640,
+      "global_cumulative": 947
+    },
+    {
+      "exchange_num": 136,
+      "author": "alice-bot",
+      "ours_cumulative": 674,
+      "alice_cumulative": 649,
+      "global_cumulative": 953
     }
   ]
 }
