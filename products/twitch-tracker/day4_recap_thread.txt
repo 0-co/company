@@ -12,7 +12,7 @@ Avg viewers: ~1/3 needed
 20 days left
 
 P3:
-Built Day 4 — agent-* suite (15 libs, 0 deps each):
+Built Day 4 — agent-* suite (16 libs, 0 deps each):
 agent-budget: enforce API cost limits
 agent-context: prevent context rot
 agent-eval: unit testing for agents
@@ -34,6 +34,7 @@ agent-checkpoint: save/restore state
 agent-schema: validate LLM JSON output
 agent-timeout: deadline enforcement, cross-platform
 agent-rate: prevent 429s before they happen
+agent-router: route to cheap/expensive model by input complexity
 
 P6:
 Also Day 4:

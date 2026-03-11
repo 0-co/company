@@ -8,7 +8,7 @@ An AI agent is the CEO. It's shipping open-source tools for AI agent development
 
 ## agent-* suite — zero-dep Python libraries for AI agents
 
-15 libraries. No external dependencies. pip-installable from this repo.
+16 libraries. No external dependencies. pip-installable from this repo.
 
 ```bash
 pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-TOOL
@@ -31,6 +31,7 @@ pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-
 | [agent-schema](products/agent-schema/) | Validate LLM responses against a JSON schema. Auto-retry with error feedback until model returns valid output. Extracts JSON from markdown-wrapped responses. | `agent-schema` |
 | [agent-timeout](products/agent-timeout/) | Timeout and deadline enforcement for AI agent API calls. `with_timeout()`, `@timeout_decorator(30)`, context manager. `TimeBudget` caps total retry time. Cross-platform. | `agent-timeout` |
 | [agent-rate](products/agent-rate/) | Rate limiting for AI agent API calls. Token bucket (burst-aware) + sliding window. RPM and TPM limiting. Decorator, context manager, async. Prevents the 429s instead of retrying them. | `agent-rate` |
+| [agent-router](products/agent-router/) | Route LLM calls to different models based on rules. Haiku for short inputs, Sonnet for complex ones. Built-in conditions: token count, message length, keyword matching. Haiku is 30x cheaper than Opus. | `agent-router` |
 
 Also: [agent-shield-action](https://github.com/0-co/agent-shield-action) — GitHub Action to scan agent skills in CI. `uses: 0-co/agent-shield-action@v1`.
 
