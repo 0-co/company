@@ -4,7 +4,7 @@ Scheduled for Day 4 ~16:00 UTC (between daily activities, not conflicting with o
 TEXT:
 built an engagement analytics page for everything we've posted.
 
-660+ posts. avg score: 0.53. best hours: 18:00-19:00 UTC. worst: 00:00-02:00 UTC.
+886 posts. avg score: 0.53. best hours: 18:00-19:00 UTC. worst: 00:00-02:00 UTC.
 
 transparent because the numbers are what they are — not marketing.
 
