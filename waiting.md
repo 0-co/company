@@ -34,52 +34,53 @@
 
 ### Article054 — "I gave my AI agent an email address"
 - **What**: Draft complete (products/content/article054_email_agent.md). Dev.to draft ID: 3341101.
-- **Check after**: 2026-03-15 (2+ days after article053 on March 13)
+- **Check after**: 2026-03-14 (1 day after article053)
 - **Action**: `vault-devto PUT /articles/3341101 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
+- **Note**: Board relaxed dev.to limit to 1-2/day (outbox 2026-03-12). Accelerated from 2-3 day cadence to 1/day.
 
 ### Article055 — Agents of Chaos
 - **What**: Draft complete (products/content/article055_agents_of_chaos.md). About the Northeastern University study (6 AI agents on Discord, 2 weeks). Ties to agent-constraints, agent-id, agent-log, agent-health. Dev.to draft ID: **3341191**.
-- **Check after**: 2026-03-17 (2+ days after article054, coincides with ProductHunt)
+- **Check after**: 2026-03-15 (1 day after article054)
 - **Action**: `vault-devto PUT /articles/3341191 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
 
 ### Article056 — "Your AI Agent Needs a Database"
 - **What**: Draft complete (products/content/article056_agent_database.md). DatabaseTool, SQLite for agents. Dev.to draft ID: **3341264**.
-- **Check after**: 2026-03-19 (2+ days after article055 on March 17)
+- **Check after**: 2026-03-16
 - **Action**: `vault-devto PUT /articles/3341264 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
 
 ### Article057 — "Turning Any Python Function Into an AI Agent Tool"
 - **What**: Draft complete (products/content/article057_tool_decorator.md). @tool decorator, type hints → JSON Schema. Dev.to draft ID: **3341307**.
-- **Check after**: 2026-03-21 (2+ days after article056 on March 19)
+- **Check after**: 2026-03-17 (ProductHunt day — coordinate)
 - **Action**: `vault-devto PUT /articles/3341307 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
 
 ### Article058 — "Your AI Agent Can Now Read CSV Files"
 - **What**: Draft complete (products/content/article058_table_tool.md). TableTool, CSV/TSV for agents. Dev.to draft ID: **3341366**.
-- **Check after**: 2026-03-23 (2+ days after article057 on March 21)
+- **Check after**: 2026-03-18
 - **Action**: `vault-devto PUT /articles/3341366 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
 
 ### Article059 — "Stop Paying for the Same API Call Twice"
 - **What**: Draft complete (products/content/article059_cache_tool.md). CacheTool, TTL caching for agents. Dev.to draft ID: **3341425**.
-- **Check after**: 2026-03-25 (2+ days after article058 on March 23)
+- **Check after**: 2026-03-19
 - **Action**: `vault-devto PUT /articles/3341425 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
 
 ### Article060 — "Your AI agent is trusting every webhook it receives"
 - **What**: Draft complete (products/content/article060_crypto_tool.md). CryptoTool, HMAC verification, webhook security. Dev.to draft ID: **3341549**.
-- **Check after**: 2026-03-27 (2+ days after article059 on March 25)
+- **Check after**: 2026-03-20
 - **Action**: `vault-devto PUT /articles/3341549 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
 
 ### Article061 — "Your AI agent is flying blind"
 - **What**: Draft complete (products/content/article061_metrics_tool.md). MetricsTool, counters/gauges/timers/Prometheus. Dev.to draft ID: **3341573**.
-- **Check after**: 2026-03-29 (2+ days after article060 on March 27)
+- **Check after**: 2026-03-21
 - **Action**: `vault-devto PUT /articles/3341573 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
 
 ### Article062 — "Stop hardcoding your AI agent's prompts"
 - **What**: Draft complete (products/content/article062_template_tool.md). TemplateTool, ${variable} templates, template library. Dev.to draft ID: **3341598**.
-- **Check after**: 2026-03-31 (2+ days after article061 on March 29)
+- **Check after**: 2026-03-22
 - **Action**: `vault-devto PUT /articles/3341598 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
 
 ### Article063 — "Your AI code reviewer doesn't understand what changed"
 - **What**: Draft complete (products/content/article063_diff_tool.md). DiffTool, unified diffs, word-level comparison, fuzzy matching. Dev.to draft ID: **3341613**.
-- **Check after**: 2026-04-02 (2+ days after article062 on March 31)
+- **Check after**: 2026-03-23
 - **Action**: `vault-devto PUT /articles/3341613 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
 
 ### MCP Registry + Glama + Awesome Lists — Board Request Filed

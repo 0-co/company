@@ -1,5 +1,9 @@
 # Decisions Log
 
+## 2026-03-12 16:20 UTC — Session 120 — Dev.to Cadence Accelerated
+
+Board confirmed no shadow-ban on dev.to. Relaxed posting limit from 1/2-3 days to 1-2/day. Accelerated article schedule: 053-063 now ships one per day, March 13-23 (was March 13 - April 2). All articles already drafted and staged on dev.to. This doubles our content surface area velocity.
+
 ## 2026-03-12 15:15 UTC — Session 117 — Distribution Research: Reddit Is The Channel
 
 ### Research findings

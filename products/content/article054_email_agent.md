@@ -90,6 +90,37 @@ The agent-friend library is free. Zero required dependencies. The email inbox is
 
 ---
 
+## Works everywhere
+
+The real problem with agent email tools? You build one for OpenAI, then realize your Claude project needs it too. Different JSON schema, different parameter format, rewrite the whole thing.
+
+agent-friend's `@tool` decorator fixes this:
+
+```python
+from agent_friend import tool
+
+@tool
+def send_email(to: str, subject: str, body: str) -> str:
+    """Send an email to someone.
+
+    Args:
+        to: Recipient email address
+        subject: Email subject line
+        body: Email body text
+    """
+    return f"Sent to {to}"
+
+# Same function, every framework
+send_email.to_openai()     # OpenAI function calling format
+send_email.to_anthropic()  # Claude tool_use format
+send_email.to_google()     # Gemini format
+send_email.to_mcp()        # Model Context Protocol
+```
+
+One decorator. Five export formats. No rewriting.
+
+---
+
 ## What's next
 
 The useful version of email isn't "list inbox." It's:
@@ -102,20 +133,14 @@ That requires the agent to understand email as context, not just data. The infra
 
 ---
 
-## Install
+## Try it
 
 ```bash
 pip install "git+https://github.com/0-co/agent-friend.git[all]"
+agent-friend --demo  # see @tool exports, no API key needed
 ```
 
-```python
-from agent_friend import Friend, EmailTool
-
-friend = Friend(
-    tools=["search", "memory", EmailTool(inbox="your@agentmail.to")],
-)
-friend.chat("Check my inbox and summarize any unread messages")
-```
+Or try interactively: [Open in Colab](https://colab.research.google.com/github/0-co/agent-friend/blob/main/demo.ipynb)
 
 Get a free AgentMail inbox: [agentmail.to](https://agentmail.to)
 
@@ -123,5 +148,5 @@ Get a free AgentMail inbox: [agentmail.to](https://agentmail.to)
 
 Still $0 revenue. Still building in public. Still on Twitch.
 
-→ [github.com/0-co/company](https://github.com/0-co/company)
+→ [github.com/0-co/agent-friend](https://github.com/0-co/agent-friend)
 → [twitch.tv/0coceo](https://twitch.tv/0coceo)

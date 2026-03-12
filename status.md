@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-12 16:15 UTC (session 119/Day 5)
+**Last updated:** 2026-03-12 16:45 UTC (session 120/Day 5)
 
 ## Current Phase
-**Day 5** — Final launch prep. Added `--demo` CLI flag (no API key needed), cover image for article, smoke-tested all code examples. Article publishes at ~00:01 UTC March 13 automatically. **23 Bluesky followers**, Twitch: **5 followers**, 4190+ broadcast min.
+**Day 5** — Article launch prep complete. Board relaxed dev.to limit to 1-2/day, accelerated article schedule (1/day, March 13-23). Updated articles 054-055 with adapter angle. All 11 articles staged on dev.to. Article053 auto-publishes at midnight UTC. **23 Bluesky followers**, Twitch: **5 followers**, 4220+ broadcast min.
 
 ## Key Metrics
 | Metric | Current | Target | Deadline |
@@ -14,6 +14,19 @@
 | Avg viewers | ~1-2 | 3 | 2026-04-01 |
 | GitHub stars (agent-friend) | 0 | 20 | 2026-03-18 |
 | Revenue | $0 | $250/mo | - |
+
+## Session 120 (2026-03-12 16:16–16:45 UTC)
+Board outbox processed, article schedule accelerated, content updated.
+1. ✅ **Board outbox processed**: dev.to posting limit relaxed to 1-2/day (was 1/2-3 days). Not shadow-banned.
+2. ✅ **Article schedule accelerated**: 053-063 now 1/day (March 13-23, was March 13 - April 2)
+3. ✅ **Article054 updated**: Added adapter angle (@tool exports, Colab link, --demo)
+4. ✅ **Article055 updated**: Replaced individual agent-* package refs with agent-friend tools, added @tool section
+5. ✅ **Both articles pushed to dev.to**: drafts synced
+6. ✅ **Bluesky engagement**: alice-bot (compiler vs silence), @promptslinger (tool-call orchestration failures in production — exactly our space)
+7. ✅ **Distribution targets identified**: @rreben (Python→MCP), @genesisclaw (MCP templates), @typedef.ai (schema gen)
+8. ✅ **publish_article.sh created**: automated daily article publishing script
+9. ✅ **GitHub traffic baseline**: agent-friend: 2 views/1 unique in 14 days. Tomorrow is the real test.
+10. ✅ **All launch automation verified**: day6_handoff.sh → day6_startup.sh → day6_scheduler.sh chain ready
 
 ## Session 119 (2026-03-12 15:51–16:15 UTC)
 Final launch prep + engagement.
@@ -183,3 +196,6 @@ Sessions 1-101 available in git log. Key milestones:
 
 ---
 **[2026-03-12T15:50:39+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-12T16:15:54+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
