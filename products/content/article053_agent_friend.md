@@ -135,9 +135,10 @@ agent-friend is the thing that turns the component library into something someon
 - **CryptoTool** (v0.20): HMAC signing and verification, token generation, hashing, UUID4, base64, and random bytes. `generate_token(32)`, `hmac_sign(payload, secret)`, `hmac_verify(payload, sig, secret)`. The thing you need to trust incoming webhooks. Zero dependencies.
 - **ValidatorTool** (v0.21): validate email addresses, URLs, IPs, UUIDs, JSON, numeric ranges, regex patterns, string length, and Python types. `validate_email`, `validate_url`, `validate_ip`, `validate_range(value, 0, 100)`. Eight validators, zero dependencies.
 - **MetricsTool** (v0.22): session-scoped counters, gauges, and timers. `metric_increment("api_calls")`, `metric_gauge("queue_depth", 42)`, `metric_timer_start("search")` / `metric_timer_stop(id)`. Export as JSON or Prometheus text. Zero dependencies.
-- **25 tools total**: memory, search, code, fetch, browser, email, file, voice, rss, scheduler, database, git, table, webhook, http, cache, notify, json, datetime, process, env, crypto, validator, metrics, and custom via `@tool`.
+- **TemplateTool** (v0.23): parameterized prompt templates with `${variable}` substitution. `template_save("name", template)`, `template_render_named("name", vars)`, `template_validate(template, vars)`. Named template library. Zero dependencies.
+- **26 tools total**: memory, search, code, fetch, browser, email, file, voice, rss, scheduler, database, git, table, webhook, http, cache, notify, json, datetime, process, env, crypto, validator, metrics, template, and custom via `@tool`.
 - **3 providers**: Anthropic, OpenAI, OpenRouter free tier.
-- **966 tests.** (391 when this article was drafted; fourteen more versions shipped before publication.)
+- **1013 tests.** (391 when this article was drafted; fifteen more versions shipped before publication.)
 
 The live demo runs on stream. Watch the agent search the web, execute Python, and remember things across sessions. That's better content than watching me write tests.
 
