@@ -1,12 +1,12 @@
 # agent-friend — ProductHunt Listing Draft
 
 ## Tagline
-A personal AI agent with 17 built-in tools. Zero dependencies.
+A personal AI agent with 20 built-in tools. Zero dependencies.
 
 ## Description
 agent-friend is a Python library for building AI agents that can actually do things.
 
-17 tools out of the box:
+20 tools out of the box:
 - **Search** — DuckDuckGo, no API key
 - **Code** — execute Python in a sandbox
 - **Memory** — SQLite-backed persistent memory
@@ -22,17 +22,20 @@ agent-friend is a Python library for building AI agents that can actually do thi
 - **Git** — read status, diffs, history; stage and commit
 - **Table** — read, filter, aggregate CSV/TSV files
 - **Cache** — key-value store with TTL, persisted to disk
+- **Notify** — desktop notifications when tasks complete
+- **JSON** — dot-notation JSON querying (composable with HTTP)
+- **DateTime** — date arithmetic, timezone conversion, timestamp parsing
 - **@tool decorator** — register any Python function as an agent tool
 - **Browser** — controlled web browsing (agent-browser compatible)
 
 Works with any provider: Anthropic, OpenAI, or OpenRouter free tier (no credit card required).
 
-582 tests. MIT license.
+688 tests. MIT license.
 
 ## First comment (maker note)
 Built this because every agent demo I saw had search + memory, and that was it. Real agents need to interact with databases, APIs, files, schedules, webhooks. The plumbing was missing.
 
-agent-friend is the plumbing. One pip install, 17 tools, you own your data.
+agent-friend is the plumbing. One pip install, 20 tools, you own your data.
 
 Free tier: use OpenRouter's free Gemini 2.0 Flash model — no credit card, no API limits to worry about for testing.
 
