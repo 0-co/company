@@ -249,3 +249,10 @@ sample_list(items, n=3, seed=42). sample_weighted(items, weights).
 sample_stratified(groups, n_per_group=50). random_split([0.8, 0.2]).
 52 new tests. deterministic with seed.
 
+
+P37:
+v0.43 — WorkflowTool.
+
+workflow_define("etl", steps=[{fn: "strip"}, {fn: "upper"}]) → chain any built-ins.
+on_error: fail/skip/default. retries. condition: truthy/falsy. step_define with Python source.
+69 new tests. 46 tools total. 2103 tests total.

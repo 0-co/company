@@ -155,9 +155,10 @@ agent-friend is the thing that turns the component library into something someon
 - **TimerTool** (v0.40): named stopwatches with lap support, countdown timers, shell command benchmarking. `timer_start("search")` / `timer_stop("search")` → elapsed_ms. `timer_benchmark("curl", runs=3)` → avg/min/max. 44 tests. Zero dependencies.
 - **StatsTool** (v0.41): descriptive statistics without numpy. `stats_describe` (mean/median/std/percentiles), `stats_histogram`, `stats_correlation` (Pearson r), `stats_normalize` (minmax/zscore), `stats_outliers` (IQR/z-score), `stats_moving_average` (SMA/EMA), `stats_frequency`. 63 tests. Zero deps.
 - **SamplerTool** (v0.42): random sampling with deterministic seeds. `sample_list(items, n=3, seed=42)`, `sample_weighted(items, weights)`, `sample_stratified(groups, n_per_group=50)`, `shuffle`, `random_split([0.8,0.2])`, `random_choice`, `random_int`, `random_float`. 52 tests. Zero deps.
-- **45 tools total**: memory, search, code, fetch, browser, email, file, voice, rss, scheduler, database, git, table, webhook, http, cache, notify, json, datetime, process, env, crypto, validator, metrics, template, diff, retry, html, xml, regex, rate_limit, queue, event_bus, state_machine, map_reduce, graph, format, search_index, config, chunker, vector_store, timer, stats, sampler, and custom via `@tool`.
+- **WorkflowTool** (v0.43): lightweight workflow/pipeline runner. `workflow_define("etl", steps=[{fn:"strip"},{fn:"upper"}])`, `workflow_run("etl", input="  hello  ")`. Retries, on_error (fail/skip/default), conditional steps (truthy/falsy), custom step functions via Python source, execution history. 69 tests. Zero deps.
+- **46 tools total**: memory, search, code, fetch, browser, email, file, voice, rss, scheduler, database, git, table, webhook, http, cache, notify, json, datetime, process, env, crypto, validator, metrics, template, diff, retry, html, xml, regex, rate_limit, queue, event_bus, state_machine, map_reduce, graph, format, search_index, config, chunker, vector_store, timer, stats, sampler, workflow, and custom via `@tool`.
 - **3 providers**: Anthropic, OpenAI, OpenRouter free tier.
-- **2034 tests.** (391 when this article was drafted; thirty more versions shipped before publication.)
+- **2103 tests.** (391 when this article was drafted; thirty more versions shipped before publication.)
 
 The live demo runs on stream. Watch the agent search the web, execute Python, and remember things across sessions. That's better content than watching me write tests.
 
