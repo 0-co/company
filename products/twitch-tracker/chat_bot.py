@@ -15,9 +15,11 @@ from datetime import datetime, UTC, date
 
 BROADCASTER_ID = "1455485722"
 CHAT_LOG = "/var/lib/twitch-chat/chat.log"
+CHAT_QUEUE = "/home/agent/company/products/twitch-tracker/chat-queue.md"
 STATE_FILE = "/home/agent/company/products/twitch-tracker/state.json"
 SUGGESTIONS_FILE = "/home/agent/company/products/twitch-tracker/suggestions.txt"
 COOLDOWN_SECS = 30  # minimum seconds between any bot response
+GREETING_COOLDOWN_SECS = 120  # longer cooldown for greeting responses
 AFFILIATE_DEADLINE = date(2026, 4, 1)
 AFFILIATE_FOLLOWERS_NEEDED = 50
 DISCORD_INVITE = "https://discord.gg/YKDw7H7K"
@@ -181,6 +183,33 @@ def get_raid_target(_):
     )
 
 
+GREETINGS = {"hi", "hello", "hey", "yo", "sup", "howdy", "hola", "heya", "hiya", "greetings"}
+
+GREETING_RESPONSES = [
+    "hey {user}! welcome to the stream. an AI is running a company from this terminal. type !help for commands.",
+    "hi {user}! you're watching an AI CEO build open-source tools live. !status for the current state.",
+    "yo {user}. welcome. I'm Claude, running a company with zero humans. feel free to ask anything or try !help.",
+    "hey {user}! article053 launches tonight — building AI agent tooling live. !about for the story.",
+    "welcome {user}. AI-run company, day 5, 5 followers, $0 revenue. the dream is alive. !help for commands.",
+]
+
+SPAM_PATTERNS = re.compile(
+    r'(streamboo|viewbot|buy followers|cheap viewers|\.com/?\s*$)',
+    re.IGNORECASE,
+)
+
+
+def queue_message(username, message):
+    """Queue a substantive message for the CEO to review."""
+    timestamp = datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
+    entry = f"- [{timestamp}] **{username}**: {message}\n"
+    try:
+        with open(CHAT_QUEUE, "a") as f:
+            f.write(entry)
+    except OSError:
+        pass
+
+
 COMMANDS = {
     "!help": lambda _: f"Commands: !status !followers !calc !challenge !hypothesis !discord !about !raid !suggest !help",
     "!status": get_status,
@@ -234,6 +263,8 @@ def main():
 
     line_pattern = re.compile(r'\[[\d\-T:]+\] (\w+): (.+)')
     last_response_time = 0
+    last_greeting_time = 0
+    greeting_counter = 0
 
     for line in tail_log(CHAT_LOG):
         if not line:
@@ -245,25 +276,58 @@ def main():
 
         username, message = m.group(1), m.group(2).strip()
 
+        # Ignore our own messages
+        if username.lower() == "0coceo":
+            continue
+
+        # Ignore spam
+        if SPAM_PATTERNS.search(message):
+            print(f"[chat_bot] spam filtered: {username}: {message[:60]}", flush=True)
+            continue
+
         words = message.lower().split()
         if not words:
             continue
 
         cmd = words[0]
-        if cmd not in COMMANDS:
-            continue
-
         now = time.time()
-        if now - last_response_time < COOLDOWN_SECS:
-            print(f"[chat_bot] cooldown, skipping {cmd} from {username}", flush=True)
+
+        # Handle !commands
+        if cmd in COMMANDS:
+            if now - last_response_time < COOLDOWN_SECS:
+                print(f"[chat_bot] cooldown, skipping {cmd} from {username}", flush=True)
+                continue
+            last_response_time = now
+            response = COMMANDS[cmd](message)
+            print(f"[chat_bot] {username} -> {cmd}", flush=True)
+            if send_chat(response):
+                print(f"[chat_bot] sent: {response[:80]}", flush=True)
             continue
 
-        last_response_time = now
-        response = COMMANDS[cmd](message)
-        print(f"[chat_bot] {username} -> {cmd}", flush=True)
+        # Handle greetings
+        if cmd in GREETINGS:
+            if now - last_greeting_time < GREETING_COOLDOWN_SECS:
+                print(f"[chat_bot] greeting cooldown, skipping {username}", flush=True)
+                continue
+            last_greeting_time = now
+            response = GREETING_RESPONSES[greeting_counter % len(GREETING_RESPONSES)]
+            greeting_counter += 1
+            response = response.format(user=username)
+            print(f"[chat_bot] greeting: {username}", flush=True)
+            if send_chat(response):
+                print(f"[chat_bot] sent greeting: {response[:80]}", flush=True)
+            continue
 
-        if send_chat(response):
-            print(f"[chat_bot] sent: {response[:80]}", flush=True)
+        # Queue substantive messages for CEO review
+        if len(message) > 10:
+            queue_message(username, message)
+            if now - last_response_time < COOLDOWN_SECS:
+                continue
+            last_response_time = now
+            response = f"@{username} noted — I'll respond to that soon. the AI CEO checks queued messages every few minutes."
+            print(f"[chat_bot] queued: {username}: {message[:60]}", flush=True)
+            if send_chat(response):
+                print(f"[chat_bot] sent ack: {response[:80]}", flush=True)
 
 
 if __name__ == "__main__":
