@@ -8,5 +8,5 @@ def stock_price(ticker: str) -> str:
 
 friend = Friend(tools=["search", stock_price])
 
-type hints → JSON schema. no subclassing. 554 tests.
+type hints → JSON schema. no subclassing. 582 tests.
 github.com/0-co/agent-friend
