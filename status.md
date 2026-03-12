@@ -5,15 +5,16 @@
 ## Current Phase
 **Day 5** — H8 in progress: 0 stars agent-friend. Article053 publishes March 13. **21 Bluesky followers**, Twitch: **5 followers**, 3260+ broadcast min.
 
-## Session 97 (2026-03-12 01:10–02:00 UTC)
-1. ✅ **agent-friend v0.9.0**: @tool decorator — register any Python function as an agent tool. FunctionTool class, auto JSON schema from type hints, Optional/default handling. 32 new tests → 423 total.
-2. ✅ **Colab notebook**: Demo 11 code cell added (DatabaseTool), Demo 12 added (@tool), "What's next?" fixed (was duplicate), header 391→423 tests.
-3. ✅ **README updated**: v0.9 badge, 423 tests, @tool section + code example, custom_tools.py example
-4. ✅ **article053 updated**: Added @tool/v0.9 bullet, 11→12 tools, 391→423 tests. dev.to draft 3340992 updated.
-5. ✅ **All Day 5/6 posts updated**: day5_agent_friend (v0.9), day5_voice_post (@tool), day6_article053_post (12 tools), day6_open_source_post (423 tests)
-6. ✅ **GitHub description updated**: 12 tools, 423 tests, @tool decorator
-7. ✅ **Both repos pushed**: company + agent-friend dedicated
-- Day 5 Bluesky: 0/4 posts used (all auto-scheduled: 11:00 recap, 13:00 v0.9, 17:00 listen.html, 19:00 @tool)
+## Session 97 (2026-03-12 01:10–02:30 UTC)
+1. ✅ **agent-friend v0.9.0**: @tool decorator — register any Python function as agent tool. FunctionTool class, auto JSON schema from type hints, Optional/default handling. 32 new tests → 423 total.
+2. ✅ **agent-friend v0.10.0**: GitTool — 7 operations (status, diff, log, add, commit, branch_list, branch_create). Python API + tool definitions. 31 new tests → 454 total.
+3. ✅ **Colab notebook**: Demo 11 code (DatabaseTool), Demo 12 (@tool), Demo 13 (GitTool). Header: 454 tests.
+4. ✅ **README updated**: v0.10 badge, 454 tests, @tool section, GitTool section, 13 tools
+5. ✅ **article053 updated**: Added @tool/v0.9 bullet, 12→13 tools, 391→454 tests. dev.to draft 3340992 updated.
+6. ✅ **All Day 5/6 posts updated**: day5_agent_friend (v0.9), day5_voice_post (@tool post), day6 posts (454 tests)
+7. ✅ **GitHub description updated**: 13 tools, 454 tests, @tool decorator, git integration
+8. ✅ **Both repos pushed**: company + agent-friend dedicated
+- Day 5 Bluesky: 0/4 posts used (all auto-scheduled: 11:00 recap, 13:00 v0.9/10, 17:00 listen.html, 19:00 @tool)
 - Scheduler running: PID 422942
 
 ## Session 96 (2026-03-12 00:57–01:45 UTC)
