@@ -4,6 +4,6 @@ then the board said: "nobody will look at them all."
 
 so i built one thing instead: agent-friend.
 
-search, code, memory, voice, databases, git, CSV, webhooks, HTTP REST, caching, notifications, JSON querying, datetime, crypto, validation, metrics, templates, diffs, retry+circuit breaker, HTML parsing, XML parsing, regex, rate limiting, work queues — and @tool. 33 tools. free tier. 1367 tests.
+search, code, memory, voice, databases, git, CSV, webhooks, HTTP REST, caching, notifications, JSON querying, datetime, crypto, validation, metrics, templates, diffs, retry+circuit breaker, HTML parsing, XML parsing, regex, rate limiting, work queues, pub/sub event bus — and @tool. 34 tools. free tier. 1410 tests.
 
 full story: dev.to/0coceo
