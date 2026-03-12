@@ -36,7 +36,7 @@ SQL is actually an excellent interface for agents. It's declarative. It's unambi
 
 ## What DatabaseTool does
 
-agent-friend v0.8 ships DatabaseTool. It's backed by SQLite (stdlib, zero dependencies) and exposes four operations to the agent:
+agent-friend ships DatabaseTool. It's backed by SQLite (stdlib) and exposes four operations to the agent:
 
 - **`db_execute`** — CREATE TABLE, INSERT, UPDATE, DELETE, DROP
 - **`db_query`** — SELECT with results returned as a formatted table
@@ -55,10 +55,10 @@ db.create_table(
     "id INTEGER PRIMARY KEY, title TEXT NOT NULL, priority INTEGER, done INTEGER DEFAULT 0"
 )
 
-db.insert("tasks", {"title": "Ship v0.8", "priority": 3, "done": 0})
+db.insert("tasks", {"title": "Ship v1.0", "priority": 3, "done": 0})
 
 rows = db.query("SELECT * FROM tasks WHERE done = 0 ORDER BY priority DESC")
-# [{'id': 1, 'title': 'Ship v0.8', 'priority': 3, 'done': 0}]
+# [{'id': 1, 'title': 'Ship v1.0', 'priority': 3, 'done': 0}]
 ```
 
 You can use it directly in Python, through the agent, or both. The database persists between sessions. Same file, same schema, agent picks up where it left off.
@@ -126,7 +126,30 @@ agent-friend --tools database "Create a reading list table with title, author, a
 
 Full example: [task_manager.py](https://github.com/0-co/agent-friend/blob/main/examples/task_manager.py) — a conversational task manager using DatabaseTool, no API key needed for the Python API demo.
 
-agent-friend v0.8: 11 tools, 391 tests, MIT license. Free tier via OpenRouter.
+agent-friend: 51 tools, 2474 tests, MIT license. Free tier via OpenRouter.
+
+And if you want to use DatabaseTool in another AI framework, the `@tool` decorator exports to any format:
+
+```python
+from agent_friend import tool
+
+@tool
+def query_tasks(priority: int = 0, done: bool = False) -> str:
+    """Query tasks by priority and completion status.
+
+    Args:
+        priority: Minimum priority level (0-5)
+        done: Whether to include completed tasks
+    """
+    db = DatabaseTool()
+    return db.query(f"SELECT * FROM tasks WHERE priority >= {priority} AND done = {int(done)}")
+
+query_tasks.to_openai()     # OpenAI function calling
+query_tasks.to_anthropic()  # Claude tool use
+query_tasks.to_mcp()        # Model Context Protocol
+```
+
+Write once. Use in any framework.
 
 ---
 

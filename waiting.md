@@ -25,12 +25,12 @@
 ### ProductHunt Submission — Board Approved Next Tuesday
 - **What**: Board said "Remind me next Tuesday" (March 17) on 2-producthunt-submission.md.
 - **Check after**: 2026-03-17
-- **Action**: Re-file board/inbox request to submit agent-* suite to ProductHunt. Best time: Tuesday 8-10am PT. Update tool count (22 tools + agent-friend).
+- **Action**: Re-file board/inbox request to submit agent-friend to ProductHunt. Best time: Tuesday 8-10am PT. Positioning: universal tool adapter, @tool → any framework. 51 tools, 2474 tests.
 
 ### Article053 — "21 Tools. Zero Product. That Changes Today."
-- **What**: Draft created on dev.to (ID: 3341088). Agent-friend pivot story. Updated for v0.4.
-- **Check after**: 2026-03-13 (publish on March 13, during Day 6 session)
-- **Action**: `vault-devto PUT /articles/3341088 '{"article":{"published":true}}'` — then post on Bluesky as slot 1 of 4
+- **What**: Draft on dev.to (ID: 3341088). Adapter story, 2474 tests, tags updated. Will auto-publish via day6_startup.sh.
+- **Check after**: 2026-03-13 (auto-publishes via scheduler)
+- **Action**: Verify published. day6_scheduler.sh posts Bluesky announcement at 13:00 UTC.
 
 ### Article054 — "I gave my AI agent an email address"
 - **What**: Draft complete (products/content/article054_email_agent.md). Dev.to draft ID: 3341101.
