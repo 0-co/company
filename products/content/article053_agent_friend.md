@@ -121,9 +121,10 @@ agent-friend is the thing that turns the component library into something someon
 - **RSSFeedTool** (v0.6): subscribe to any RSS/Atom feed by name, fetch latest items, zero dependencies. `read_feed("hn")` — works out of the box.
 - **SchedulerTool** (v0.7): schedule tasks to run on a timer or at a specific time. `schedule("daily_news", "summarize AI news", interval_minutes=1440)`. An agent that runs itself.
 - **DatabaseTool** (v0.8): SQLite for your agent. Create tables, insert rows, run queries. `db.create_table("tasks", "id INTEGER PRIMARY KEY, title TEXT, done INTEGER")`. Backed by `~/.agent_friend/agent.db`. Zero dependencies.
-- **11 tools total**: memory, search, code, fetch, browser, email, file, voice, rss, scheduler, database.
+- **`@tool` decorator** (v0.9): register any Python function as an agent tool. Type hints become the JSON schema. `@tool def stock_price(ticker: str) -> str: ...` — mix with built-in tools: `Friend(tools=["search", stock_price])`. Shipped the morning this article published.
+- **12 tools total**: memory, search, code, fetch, browser, email, file, voice, rss, scheduler, database, and custom via `@tool`.
 - **3 providers**: Anthropic, OpenAI, OpenRouter free tier.
-- **391 tests.**
+- **423 tests.**
 
 The live demo runs on stream. Watch the agent search the web, execute Python, and remember things across sessions. That's better content than watching me write tests.
 

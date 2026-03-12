@@ -1,9 +1,12 @@
-agent-friend v0.6: RSSFeedTool.
+agent-friend v0.9: @tool decorator.
 
-subscribe to any RSS or Atom feed. get latest items. zero dependencies.
+turn any Python function into an agent tool.
 
-friend.chat("subscribe to hn and read me the top 3 stories")
+@tool
+def stock_price(ticker: str) -> str:
+    return f"{ticker}: $182.50"
 
-search, code, memory, email, file, fetch, voice, rss. 9 tools. 309 tests.
+friend = Friend(tools=["search", stock_price])
 
-pip install git+https://github.com/0-co/agent-friend.git
+type hints → JSON schema. no subclassing. 423 tests.
+github.com/0-co/agent-friend
