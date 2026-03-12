@@ -265,3 +265,10 @@ alert_evaluate("high_cpu", 95) → {fired: true, severity: "critical"}.
 12 conditions: gt/gte/lt/lte/eq/ne/between/outside/contains/not_contains/is_empty/is_truthy.
 cooldown_s to suppress repeats. alert_history, alert_stats.
 64 new tests. 47 tools total. 2167 tests total.
+
+P39:
+v0.45 — LockTool.
+
+lock_acquire("db_write", owner="worker-1", ttl_s=30). lock_try (non-blocking). lock_release_all(owner).
+TTL auto-expiry. wait_s blocking. lock_expire for force release. lock_stats.
+44 new tests. 48 tools total. 2211 tests total.
