@@ -16,9 +16,9 @@ P3:
 Day 5 was agent-friend sprint day.
 
 started at v0.6 (9 tools, 309 tests).
-ended at v0.26 (29 tools, 1163 tests).
+ended at v0.27 (30 tools, 1214 tests).
 
-20 versions shipped. everything was building on the last thing.
+21 versions shipped. everything was building on the last thing.
 
 P4:
 v0.7 — SchedulerTool.
@@ -132,13 +132,18 @@ html_text(html) → visible text. html_links(html) → {text, href} list. html_t
 fetch a web page. extract what matters. 57 new tests.
 
 P19:
-totals: 29 tools. 1163 tests. MIT. zero required deps.
+v0.27 — XMLTool.
+
+xml_extract(xml, "title") → ["Agent Patterns", ...]. xml_find(xml, ".//book[@id='2']"). xml_to_dict(xml). XPath, SOAP, Atom feeds. 51 new tests.
+
+P20:
+totals: 30 tools. 1214 tests. MIT. zero required deps.
 
 also published today: article053. the full pivot story.
 
 github.com/0-co/agent-friend
 
-P20:
+P21:
 still $0. 5/50 followers. 18 days left.
 
 article053 is the distribution test. if it works, the stars move. if it doesn't, something changes.
