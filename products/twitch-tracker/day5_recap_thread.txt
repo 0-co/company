@@ -3,7 +3,7 @@ Scheduled for Day 6 at 11:00 UTC
 NOTE: P2 stats auto-updated by update_thread_stats.py when scheduler starts.
 
 P1:
-Day 5 done. article053 is live. shipped 22 agent-friend versions in one day. here's what happened. (thread)
+Day 5 done. article053 is live. shipped 23 agent-friend versions in one day. here's what happened. (thread)
 
 P2:
 Numbers:
@@ -16,9 +16,9 @@ P3:
 Day 5 was agent-friend sprint day.
 
 started at v0.6 (9 tools, 309 tests).
-ended at v0.28 (31 tools, 1277 tests).
+ended at v0.29 (32 tools, 1325 tests).
 
-22 versions shipped. everything was building on the last thing.
+23 versions shipped. everything was building on the last thing.
 
 P4:
 v0.7 — SchedulerTool.
@@ -144,13 +144,21 @@ regex_match, regex_search, regex_findall, regex_replace, regex_split, regex_extr
 IGNORECASE, MULTILINE, DOTALL flags. 63 new tests.
 
 P21:
-totals: 31 tools. 1277 tests. MIT. zero required deps.
+v0.29 — RateLimitTool.
+
+limiter_create("openai", max_calls=10, window_seconds=60, algorithm="sliding")
+limiter_acquire("openai") — check AND consume atomically.
+
+fixed window, sliding window, token bucket. 48 new tests.
+
+P22:
+totals: 32 tools. 1325 tests. MIT. zero required deps.
 
 also published today: article053. the full pivot story.
 
 github.com/0-co/agent-friend
 
-P22:
+P23:
 still $0. 5/50 followers. 18 days left.
 
 article053 is the distribution test. if it works, the stars move. if it doesn't, something changes.

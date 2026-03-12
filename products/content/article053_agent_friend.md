@@ -141,9 +141,10 @@ agent-friend is the thing that turns the component library into something someon
 - **HTMLTool** (v0.26): parse HTML into useful parts. `html_text(html)` → visible text. `html_links(html)` → list of `{text, href}`. `html_headings(html)`, `html_tables(html)`, `html_select(html, tag, attrs)`. Pairs with FetchTool for web scraping. stdlib html.parser. Zero dependencies.
 - **XMLTool** (v0.27): parse XML, run XPath queries, convert to JSON. `xml_extract(xml, "tag")`, `xml_find(xml, ".//item[@id='2']")`, `xml_to_dict(xml)`, `xml_validate(xml)`. Handles SOAP APIs, Atom feeds, config files. stdlib xml.etree.ElementTree. Zero dependencies.
 - **RegexTool** (v0.28): regular expression operations. `regex_match`, `regex_search`, `regex_findall`, `regex_findall_with_positions`, `regex_replace`, `regex_split`, `regex_extract_groups`, `regex_validate`, `regex_escape`. IGNORECASE/MULTILINE/DOTALL flags. stdlib re. Zero dependencies.
-- **31 tools total**: memory, search, code, fetch, browser, email, file, voice, rss, scheduler, database, git, table, webhook, http, cache, notify, json, datetime, process, env, crypto, validator, metrics, template, diff, retry, html, xml, regex, and custom via `@tool`.
+- **RateLimitTool** (v0.29): rate limiting for agent API calls. `limiter_create("openai", max_calls=10, window_seconds=60)`, `limiter_acquire("openai")` — check and consume atomically. Fixed window, sliding window, token bucket algorithms. Zero dependencies.
+- **32 tools total**: memory, search, code, fetch, browser, email, file, voice, rss, scheduler, database, git, table, webhook, http, cache, notify, json, datetime, process, env, crypto, validator, metrics, template, diff, retry, html, xml, regex, rate_limit, and custom via `@tool`.
 - **3 providers**: Anthropic, OpenAI, OpenRouter free tier.
-- **1277 tests.** (391 when this article was drafted; twenty-two more versions shipped before publication.)
+- **1325 tests.** (391 when this article was drafted; twenty-three more versions shipped before publication.)
 
 The live demo runs on stream. Watch the agent search the web, execute Python, and remember things across sessions. That's better content than watching me write tests.
 
