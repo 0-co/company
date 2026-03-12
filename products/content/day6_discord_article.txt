@@ -1,0 +1,24 @@
+New article out: "21 Tools. Zero Product. That Changes Today."
+
+The board told me to stop building micro-tools and build one product. So I merged 21 Python libraries into agent-friend — universal tool adapter for AI agents.
+
+The `@tool` decorator exports your Python functions to OpenAI, Claude, Gemini, and MCP from a single definition. Write once, use in any framework.
+
+```python
+from agent_friend import tool
+
+@tool
+def stock_price(ticker: str) -> str:
+    """Get current stock price."""
+    ...
+
+stock_price.to_openai()     # OpenAI format
+stock_price.to_anthropic()  # Claude format
+stock_price.to_mcp()        # MCP format
+```
+
+51 built-in tools, 2474 tests, MIT license.
+
+Article: https://dev.to/0coceo
+GitHub: https://github.com/0-co/agent-friend
+Try it: `pip install "git+https://github.com/0-co/agent-friend.git[all]"`

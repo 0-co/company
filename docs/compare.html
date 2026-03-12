@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Tool Portability Problem — One Tool, Six Frameworks | agent-friend</title>
+  <meta name="description" content="Every AI framework invented its own tool format. See the exact same get_weather function defined 6 different ways — then see the fix. agent-friend: define once, export everywhere.">
+  <meta name="keywords" content="AI tools, OpenAI function calling, Anthropic tool use, MCP, LangChain, CrewAI, agent-friend, universal tool adapter">
+  <meta property="og:title" content="The Tool Portability Problem — One Tool, Six Frameworks">
+  <meta property="og:description" content="Every AI framework invented its own tool format. Define once, export everywhere with agent-friend.">
+  <meta property="og:type" content="website">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0d1117; color: #e6edf3;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', monospace;
+      line-height: 1.6;
+    }
+    a { color: #58a6ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* Hero */
+    .hero { padding: 64px 0 48px; text-align: center; }
+    .hero-badge {
+      display: inline-block;
+      background: #21262d; border: 1px solid #30363d; border-radius: 20px;
+      padding: 6px 16px; font-size: 0.78rem; color: #f85149;
+      text-transform: uppercase; letter-spacing: 1px; font-weight: 600;
+      margin-bottom: 24px;
+    }
+    h1 {
+      font-size: 2.6rem; font-weight: 800; line-height: 1.15;
+      margin-bottom: 16px; letter-spacing: -0.02em;
+    }
+    h1 .accent { color: #f85149; }
+    .hero p {
+      font-size: 1.1rem; color: #8b949e; max-width: 640px;
+      margin: 0 auto 32px; line-height: 1.7;
+    }
+    .hero-stat {
+      display: inline-flex; gap: 32px; flex-wrap: wrap; justify-content: center;
+      margin-bottom: 12px;
+    }
+    .hero-stat span {
+      font-size: 0.85rem; color: #8b949e;
+    }
+    .hero-stat strong {
+      color: #e6edf3; font-variant-numeric: tabular-nums;
+    }
+
+    /* Section headings */
+    .section-label {
+      font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1.5px;
+      color: #f85149; font-weight: 600; margin-bottom: 8px;
+    }
+    h2 {
+      font-size: 1.5rem; font-weight: 700; margin-bottom: 8px;
+    }
+    .section-desc {
+      font-size: 0.92rem; color: #8b949e; margin-bottom: 28px; max-width: 700px;
+    }
+
+    /* Problem grid */
+    .problem-section { padding: 48px 0; }
+    .problem-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 768px) {
+      .problem-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 1.8rem; }
+      .hero { padding: 40px 0 32px; }
+    }
+    .framework-card {
+      background: #161b22; border: 1px solid #30363d; border-radius: 10px;
+      overflow: hidden; transition: border-color 0.2s;
+    }
+    .framework-card:hover { border-color: #484f58; }
+    .framework-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 18px; border-bottom: 1px solid #21262d;
+      background: #0d1117;
+    }
+    .framework-name {
+      font-size: 0.82rem; font-weight: 600; color: #e6edf3;
+    }
+    .framework-lines {
+      font-size: 0.72rem; color: #f85149; font-weight: 600;
+      background: rgba(248,81,73,0.1); padding: 2px 8px; border-radius: 10px;
+    }
+    .framework-card pre {
+      padding: 16px 18px; font-size: 0.75rem; line-height: 1.65;
+      color: #c9d1d9; overflow-x: auto; margin: 0;
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+      background: transparent;
+    }
+
+    /* Syntax highlighting */
+    .k { color: #ff7b72; }  /* keyword */
+    .s { color: #a5d6ff; }  /* string */
+    .n { color: #ffa657; }  /* number / key name */
+    .c { color: #8b949e; }  /* comment */
+    .f { color: #d2a8ff; }  /* function */
+    .t { color: #79c0ff; }  /* type */
+    .d { color: #ffa657; }  /* decorator */
+    .p { color: #e6edf3; }  /* punctuation */
+
+    /* Counter row */
+    .counter-row {
+      display: flex; align-items: center; justify-content: center;
+      gap: 20px; padding: 32px 0;
+      font-size: 1rem; color: #8b949e;
+    }
+    .counter-total {
+      font-size: 1.4rem; font-weight: 800; color: #f85149;
+      font-variant-numeric: tabular-nums;
+    }
+    .counter-row .arrow { font-size: 1.8rem; color: #30363d; }
+
+    /* Solution section */
+    .solution-section {
+      padding: 48px 0;
+      border-top: 1px solid #21262d;
+    }
+    .solution-card {
+      background: #161b22;
+      border: 2px solid #3fb950;
+      border-radius: 12px;
+      overflow: hidden;
+      max-width: 700px;
+      margin: 0 auto 32px;
+      box-shadow: 0 0 40px rgba(63,185,80,0.06);
+    }
+    .solution-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 20px;
+      border-bottom: 1px solid #21262d;
+      background: #0d1117;
+    }
+    .solution-name {
+      font-size: 0.92rem; font-weight: 700; color: #3fb950;
+    }
+    .solution-lines {
+      font-size: 0.72rem; color: #3fb950; font-weight: 600;
+      background: rgba(63,185,80,0.1); padding: 2px 8px; border-radius: 10px;
+    }
+    .solution-card pre {
+      padding: 20px 22px; font-size: 0.82rem; line-height: 1.75;
+      color: #c9d1d9; overflow-x: auto; margin: 0;
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+      background: transparent;
+    }
+
+    /* Output section */
+    .output-section { padding: 0 0 48px; }
+    .output-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+      max-width: 700px; margin: 0 auto 32px;
+    }
+    @media (max-width: 600px) {
+      .output-grid { grid-template-columns: 1fr; }
+    }
+    .output-card {
+      background: #161b22; border: 1px solid #30363d; border-radius: 8px;
+      padding: 16px 18px;
+    }
+    .output-card .out-label {
+      font-size: 0.72rem; color: #3fb950; text-transform: uppercase;
+      letter-spacing: 0.5px; margin-bottom: 4px; font-weight: 600;
+    }
+    .output-card code {
+      font-size: 0.8rem; color: #d2a8ff;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+    .output-card .out-desc {
+      font-size: 0.75rem; color: #8b949e; margin-top: 4px;
+    }
+
+    /* Difference callout */
+    .diff-callout {
+      text-align: center; padding: 32px 0 48px;
+      border-bottom: 1px solid #21262d;
+    }
+    .diff-callout .big {
+      font-size: 3.2rem; font-weight: 800; color: #e6edf3;
+      line-height: 1.1; margin-bottom: 8px;
+    }
+    .diff-callout .big .red { color: #f85149; text-decoration: line-through; opacity: 0.6; }
+    .diff-callout .big .green { color: #3fb950; }
+    .diff-callout p {
+      font-size: 0.95rem; color: #8b949e; max-width: 500px; margin: 0 auto;
+    }
+
+    /* Try it section */
+    .try-section {
+      padding: 48px 0;
+      text-align: center;
+    }
+    .try-section h2 { margin-bottom: 24px; }
+    .install-box {
+      background: #161b22; border: 1px solid #30363d; border-radius: 10px;
+      padding: 20px 24px; max-width: 640px; margin: 0 auto 24px;
+      text-align: left; position: relative;
+    }
+    .install-box code {
+      font-size: 0.88rem; color: #a5d6ff;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+    .install-box .prompt { color: #3fb950; user-select: none; }
+    .copy-btn {
+      position: absolute; top: 14px; right: 14px;
+      background: #21262d; border: 1px solid #30363d; border-radius: 6px;
+      color: #8b949e; padding: 6px 12px; font-size: 0.72rem;
+      cursor: pointer; transition: all 0.15s;
+      font-family: inherit;
+    }
+    .copy-btn:hover { color: #e6edf3; border-color: #484f58; }
+
+    .btn-row {
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px; border-radius: 8px;
+      font-size: 0.92rem; font-weight: 600;
+      transition: opacity 0.15s; text-decoration: none;
+    }
+    .btn:hover { opacity: 0.85; text-decoration: none; }
+    .btn-green { background: #3fb950; color: #fff; }
+    .btn-outline { background: #21262d; color: #58a6ff; border: 1px solid #1f6feb; }
+    .btn-ghost { background: #21262d; color: #e6edf3; border: 1px solid #30363d; }
+
+    /* Why section */
+    .why-section {
+      padding: 32px 0 48px;
+      border-top: 1px solid #21262d;
+    }
+    .why-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;
+    }
+    @media (max-width: 768px) {
+      .why-grid { grid-template-columns: 1fr; }
+    }
+    .why-card {
+      background: #161b22; border: 1px solid #30363d; border-radius: 8px;
+      padding: 24px;
+    }
+    .why-card h3 {
+      font-size: 0.92rem; font-weight: 700; margin-bottom: 8px; color: #e6edf3;
+    }
+    .why-card p {
+      font-size: 0.82rem; color: #8b949e; line-height: 1.6;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid #21262d;
+      padding: 24px 0; text-align: center;
+      color: #8b949e; font-size: 0.82rem;
+    }
+    footer a { color: #58a6ff; }
+    footer a:hover { text-decoration: underline; }
+
+    /* Scroll animation */
+    .fade-in {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .fade-in.visible {
+      opacity: 1; transform: translateY(0);
+    }
+
+    /* Highlight lines (red) for different keys */
+    .hl { background: rgba(248,81,73,0.08); display: inline; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-badge">The portability problem</div>
+    <h1>One tool.<br><span class="accent">Six incompatible formats.</span></h1>
+    <p>
+      Every AI framework invented its own way to define tools.
+      Same function. Same parameters. Six different JSON schemas.
+      Here's what that actually looks like.
+    </p>
+    <div class="hero-stat">
+      <span>Function: <strong>get_weather(city, unit)</strong></span>
+      <span>Returns: <strong>{"temp": 22, "city": "London"}</strong></span>
+    </div>
+  </div>
+
+  <!-- Problem section -->
+  <div class="problem-section">
+    <div class="section-label">The problem</div>
+    <h2>The same function, defined six ways</h2>
+    <p class="section-desc">
+      Each card below defines the exact same <code style="color:#d2a8ff">get_weather(city, unit)</code> tool.
+      Notice the highlighted differences -- every framework uses different key names for the same thing.
+    </p>
+
+    <div class="problem-grid">
+
+      <!-- OpenAI -->
+      <div class="framework-card fade-in">
+        <div class="framework-header">
+          <span class="framework-name">OpenAI Function Calling</span>
+          <span class="framework-lines">15 lines</span>
+        </div>
+        <pre>{
+  <span class="n">"type"</span>: <span class="s">"function"</span>,
+  <span class="n">"function"</span>: {
+    <span class="n">"name"</span>: <span class="s">"get_weather"</span>,
+    <span class="n">"description"</span>: <span class="s">"Get current weather for a city."</span>,
+    <span class="n"><span class="hl">"parameters"</span></span>: {
+      <span class="n">"type"</span>: <span class="s">"object"</span>,
+      <span class="n">"properties"</span>: {
+        <span class="n">"city"</span>: {<span class="n">"type"</span>: <span class="s">"string"</span>, <span class="n">"description"</span>: <span class="s">"The city name"</span>},
+        <span class="n">"unit"</span>: {<span class="n">"type"</span>: <span class="s">"string"</span>, <span class="n">"description"</span>: <span class="s">"Temperature unit (celsius or fahrenheit)"</span>, <span class="n">"default"</span>: <span class="s">"celsius"</span>}
+      },
+      <span class="n">"required"</span>: [<span class="s">"city"</span>]
+    }
+  }
+}</pre>
+      </div>
+
+      <!-- Anthropic -->
+      <div class="framework-card fade-in">
+        <div class="framework-header">
+          <span class="framework-name">Anthropic Tool Use</span>
+          <span class="framework-lines">13 lines</span>
+        </div>
+        <pre>{
+  <span class="n">"name"</span>: <span class="s">"get_weather"</span>,
+  <span class="n">"description"</span>: <span class="s">"Get current weather for a city."</span>,
+  <span class="n"><span class="hl">"input_schema"</span></span>: {
+    <span class="n">"type"</span>: <span class="s">"object"</span>,
+    <span class="n">"properties"</span>: {
+      <span class="n">"city"</span>: {<span class="n">"type"</span>: <span class="s">"string"</span>, <span class="n">"description"</span>: <span class="s">"The city name"</span>},
+      <span class="n">"unit"</span>: {<span class="n">"type"</span>: <span class="s">"string"</span>, <span class="n">"description"</span>: <span class="s">"Temperature unit (celsius or fahrenheit)"</span>, <span class="n">"default"</span>: <span class="s">"celsius"</span>}
+    },
+    <span class="n">"required"</span>: [<span class="s">"city"</span>]
+  }
+}</pre>
+      </div>
+
+      <!-- Google/Gemini -->
+      <div class="framework-card fade-in">
+        <div class="framework-header">
+          <span class="framework-name">Google / Gemini</span>
+          <span class="framework-lines">13 lines</span>
+        </div>
+        <pre>{
+  <span class="n">"name"</span>: <span class="s">"get_weather"</span>,
+  <span class="n">"description"</span>: <span class="s">"Get current weather for a city."</span>,
+  <span class="n"><span class="hl">"parameters"</span></span>: {
+    <span class="n">"type"</span>: <span class="s"><span class="hl">"OBJECT"</span></span>,
+    <span class="n">"properties"</span>: {
+      <span class="n">"city"</span>: {<span class="n">"type"</span>: <span class="s"><span class="hl">"STRING"</span></span>, <span class="n">"description"</span>: <span class="s">"The city name"</span>},
+      <span class="n">"unit"</span>: {<span class="n">"type"</span>: <span class="s"><span class="hl">"STRING"</span></span>, <span class="n">"description"</span>: <span class="s">"Temperature unit (celsius or fahrenheit)"</span>}
+    },
+    <span class="n">"required"</span>: [<span class="s">"city"</span>]
+  }
+}</pre>
+      </div>
+
+      <!-- MCP -->
+      <div class="framework-card fade-in">
+        <div class="framework-header">
+          <span class="framework-name">MCP (Model Context Protocol)</span>
+          <span class="framework-lines">13 lines</span>
+        </div>
+        <pre>{
+  <span class="n">"name"</span>: <span class="s">"get_weather"</span>,
+  <span class="n">"description"</span>: <span class="s">"Get current weather for a city."</span>,
+  <span class="n"><span class="hl">"inputSchema"</span></span>: {
+    <span class="n">"type"</span>: <span class="s">"object"</span>,
+    <span class="n">"properties"</span>: {
+      <span class="n">"city"</span>: {<span class="n">"type"</span>: <span class="s">"string"</span>, <span class="n">"description"</span>: <span class="s">"The city name"</span>},
+      <span class="n">"unit"</span>: {<span class="n">"type"</span>: <span class="s">"string"</span>, <span class="n">"description"</span>: <span class="s">"Temperature unit (celsius or fahrenheit)"</span>, <span class="n">"default"</span>: <span class="s">"celsius"</span>}
+    },
+    <span class="n">"required"</span>: [<span class="s">"city"</span>]
+  }
+}</pre>
+      </div>
+
+      <!-- LangChain -->
+      <div class="framework-card fade-in">
+        <div class="framework-header">
+          <span class="framework-name">LangChain</span>
+          <span class="framework-lines">14 lines</span>
+        </div>
+        <pre><span class="k">from</span> langchain.tools <span class="k">import</span> StructuredTool
+<span class="k">from</span> pydantic <span class="k">import</span> BaseModel, Field
+
+<span class="k">class</span> <span class="t">GetWeatherInput</span>(BaseModel):
+    city: <span class="t">str</span> = Field(description=<span class="s">"The city name"</span>)
+    unit: <span class="t">str</span> = Field(default=<span class="s">"celsius"</span>, description=<span class="s">"Temperature unit"</span>)
+
+<span class="k">def</span> <span class="f">get_weather</span>(city: <span class="t">str</span>, unit: <span class="t">str</span> = <span class="s">"celsius"</span>) -> <span class="t">dict</span>:
+    <span class="k">return</span> {<span class="s">"temp"</span>: <span class="n">22</span>, <span class="s">"unit"</span>: unit, <span class="s">"city"</span>: city}
+
+weather_tool = StructuredTool.from_function(
+    func=get_weather,
+    name=<span class="s">"get_weather"</span>,
+    description=<span class="s">"Get current weather for a city."</span>,
+    args_schema=GetWeatherInput,
+)</pre>
+      </div>
+
+      <!-- CrewAI -->
+      <div class="framework-card fade-in">
+        <div class="framework-header">
+          <span class="framework-name">CrewAI</span>
+          <span class="framework-lines">10 lines</span>
+        </div>
+        <pre><span class="k">from</span> crewai.tools <span class="k">import</span> tool
+
+<span class="d">@tool</span>(<span class="s">"get_weather"</span>)
+<span class="k">def</span> <span class="f">get_weather</span>(city: <span class="t">str</span>, unit: <span class="t">str</span> = <span class="s">"celsius"</span>) -> <span class="t">dict</span>:
+    <span class="s">"""Get current weather for a city.
+    Args:
+        city: The city name
+        unit: Temperature unit (celsius or fahrenheit)
+    """</span>
+    <span class="k">return</span> {<span class="s">"temp"</span>: <span class="n">22</span>, <span class="s">"unit"</span>: unit, <span class="s">"city"</span>: city}
+<span class="c"># Note: CrewAI tools only work within CrewAI</span></pre>
+      </div>
+
+    </div>
+
+    <!-- Counter -->
+    <div class="counter-row fade-in">
+      <span>Total lines to define one function:</span>
+      <span class="counter-total">78 lines</span>
+      <span>across</span>
+      <span class="counter-total">6 formats</span>
+    </div>
+  </div>
+
+  <!-- Difference callout -->
+  <div class="diff-callout fade-in">
+    <div class="big">
+      <span class="red">parameters</span>
+      <span class="red">input_schema</span>
+      <span class="red">inputSchema</span>
+      <span class="red">args_schema</span>
+    </div>
+    <p>
+      Four names for the same thing. <code style="color:#8b949e;">"OBJECT"</code> vs <code style="color:#8b949e;">"object"</code>.
+      Wrapped in <code style="color:#8b949e;">"function"</code> or not.
+      None of this is your problem to solve.
+    </p>
+  </div>
+
+  <!-- Solution section -->
+  <div class="solution-section">
+    <div style="text-align:center;">
+      <div class="section-label">The fix</div>
+      <h2>agent-friend: define once, export everywhere</h2>
+      <p class="section-desc" style="margin:0 auto 32px;">
+        Write a normal Python function. Add one decorator. Get every format.
+      </p>
+    </div>
+
+    <div class="solution-card fade-in">
+      <div class="solution-header">
+        <span class="solution-name">agent-friend</span>
+        <span class="solution-lines">10 lines &mdash; all formats</span>
+      </div>
+      <pre><span class="k">from</span> agent_friend <span class="k">import</span> tool
+
+<span class="d">@tool</span>
+<span class="k">def</span> <span class="f">get_weather</span>(city: <span class="t">str</span>, unit: <span class="t">str</span> = <span class="s">"celsius"</span>) -> <span class="t">dict</span>:
+    <span class="s">"""Get current weather for a city.
+
+    Args:
+        city: The city name
+        unit: Temperature unit (celsius or fahrenheit)
+    """</span>
+    <span class="k">return</span> {<span class="s">"temp"</span>: <span class="n">22</span>, <span class="s">"unit"</span>: unit, <span class="s">"city"</span>: city}
+
+<span class="c"># One definition. Every format.</span>
+get_weather.<span class="f">to_openai</span>()      <span class="c"># OpenAI function calling</span>
+get_weather.<span class="f">to_anthropic</span>()   <span class="c"># Claude tool use</span>
+get_weather.<span class="f">to_google</span>()      <span class="c"># Gemini function declarations</span>
+get_weather.<span class="f">to_mcp</span>()         <span class="c"># Model Context Protocol</span>
+get_weather.<span class="f">to_json_schema</span>() <span class="c"># Raw JSON Schema</span></pre>
+    </div>
+
+    <!-- Output cards -->
+    <div class="output-grid fade-in">
+      <div class="output-card">
+        <div class="out-label">to_openai()</div>
+        <code>{"type": "function", "function": {"name": ...}}</code>
+        <div class="out-desc">Ready for chat completions API</div>
+      </div>
+      <div class="output-card">
+        <div class="out-label">to_anthropic()</div>
+        <code>{"name": ..., "input_schema": {...}}</code>
+        <div class="out-desc">Ready for messages API</div>
+      </div>
+      <div class="output-card">
+        <div class="out-label">to_google()</div>
+        <code>{"name": ..., "parameters": {"type": "OBJECT"}}</code>
+        <div class="out-desc">Ready for Gemini API</div>
+      </div>
+      <div class="output-card">
+        <div class="out-label">to_mcp()</div>
+        <code>{"name": ..., "inputSchema": {...}}</code>
+        <div class="out-desc">Ready for MCP servers</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Batch export -->
+  <div style="text-align:center; padding: 0 0 48px; border-bottom: 1px solid #21262d;">
+    <div class="section-label">Batch export</div>
+    <h2>Got 50 tools? Export them all at once.</h2>
+    <p class="section-desc" style="margin: 0 auto 24px;">
+      The Toolkit class bundles multiple tools and exports them as a list for any framework.
+    </p>
+    <div class="solution-card fade-in" style="text-align:left;">
+      <div class="solution-header">
+        <span class="solution-name">Toolkit</span>
+        <span class="solution-lines">batch export</span>
+      </div>
+      <pre><span class="k">from</span> agent_friend <span class="k">import</span> tool, Toolkit
+
+<span class="d">@tool</span>
+<span class="k">def</span> <span class="f">get_weather</span>(city: <span class="t">str</span>) -> <span class="t">dict</span>: ...
+
+<span class="d">@tool</span>
+<span class="k">def</span> <span class="f">send_email</span>(to: <span class="t">str</span>, body: <span class="t">str</span>) -> <span class="t">bool</span>: ...
+
+<span class="d">@tool</span>
+<span class="k">def</span> <span class="f">search_docs</span>(query: <span class="t">str</span>, limit: <span class="t">int</span> = <span class="n">10</span>) -> <span class="t">list</span>: ...
+
+kit = Toolkit([get_weather, send_email, search_docs])
+kit.<span class="f">to_openai</span>()    <span class="c"># list of 3 OpenAI tool defs</span>
+kit.<span class="f">to_anthropic</span>() <span class="c"># list of 3 Anthropic tool defs</span>
+kit.<span class="f">to_mcp</span>()        <span class="c"># list of 3 MCP tool defs</span></pre>
+    </div>
+  </div>
+
+  <!-- Why section -->
+  <div class="why-section fade-in">
+    <div style="text-align:center; margin-bottom:28px;">
+      <div class="section-label">Why this exists</div>
+      <h2>Built for people who use more than one LLM</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <h3>Zero lock-in</h3>
+        <p>Switch from OpenAI to Anthropic to Gemini without rewriting your tool definitions. Your logic stays the same. Only the export changes.</p>
+      </div>
+      <div class="why-card">
+        <h3>Zero dependencies</h3>
+        <p>No pydantic. No langchain. No framework imports. Just Python's standard library. The <code style="color:#d2a8ff;">@tool</code> decorator adds nothing you wouldn't write yourself.</p>
+      </div>
+      <div class="why-card">
+        <h3>51 built-in tools</h3>
+        <p>File I/O, HTTP, JSON, CSV, crypto, templates, metrics, and more. All tested. All exportable. Use them directly or as reference implementations.</p>
+      </div>
+      <div class="why-card">
+        <h3>MCP server included</h3>
+        <p>Run <code style="color:#a5d6ff;">python mcp_server.py</code> and expose all 314 tools via the Model Context Protocol. Connect it to Claude Desktop or any MCP client.</p>
+      </div>
+      <div class="why-card">
+        <h3>2,474 tests</h3>
+        <p>Every tool. Every export format. Every edge case. The test suite is the specification. If a format changes, the tests catch it first.</p>
+      </div>
+      <div class="why-card">
+        <h3>MIT licensed</h3>
+        <p>Use it however you want. Fork it. Vendor it. Embed it. The code is on GitHub and it's yours.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Try it section -->
+  <div class="try-section">
+    <div class="section-label">Try it</div>
+    <h2>30 seconds to your first export</h2>
+
+    <div class="install-box">
+      <code><span class="prompt">$ </span>pip install "git+https://github.com/0-co/agent-friend.git[all]"</code>
+      <button class="copy-btn" onclick="copyInstall(this)">Copy</button>
+    </div>
+
+    <div class="btn-row">
+      <a href="https://colab.research.google.com/github/0-co/agent-friend/blob/main/demo.ipynb" class="btn btn-green" target="_blank">
+        Run in Colab
+      </a>
+      <a href="https://github.com/0-co/agent-friend" class="btn btn-outline" target="_blank">
+        GitHub
+      </a>
+      <a href="tools.html" class="btn btn-ghost">
+        Browse 51 Tools
+      </a>
+    </div>
+
+    <p style="font-size:0.85rem; color:#8b949e;">
+      v0.49.0 &middot; Python 3.8+ &middot; Zero external dependencies &middot; MIT license
+    </p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="container">
+    Built by an AI, live on Twitch. <a href="https://twitch.tv/0coceo">twitch.tv/0coceo</a> &middot;
+    <a href="https://bsky.app/profile/0coceo.bsky.social">Bluesky</a> &middot;
+    <a href="https://github.com/0-co/company">GitHub</a> &middot;
+    <a href="https://discord.gg/YKDw7H7K">Discord</a> &middot;
+    <a href="index.html">Home</a>
+  </div>
+</footer>
+
+<script>
+function copyInstall(btn) {
+  var text = 'pip install "git+https://github.com/0-co/agent-friend.git[all]"';
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(function() {
+      btn.textContent = 'Copied!';
+      setTimeout(function() { btn.textContent = 'Copy'; }, 2000);
+    });
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent = 'Copied!';
+    setTimeout(function() { btn.textContent = 'Copy'; }, 2000);
+  }
+}
+
+// Scroll fade-in animation
+(function() {
+  var els = document.querySelectorAll('.fade-in');
+  if (!('IntersectionObserver' in window)) {
+    for (var i = 0; i < els.length; i++) els[i].classList.add('visible');
+    return;
+  }
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  for (var i = 0; i < els.length; i++) obs.observe(els[i]);
+})();
+</script>
+</body>
+</html>
