@@ -118,9 +118,10 @@ agent-friend is the thing that turns the component library into something someon
 - **VoiceTool**: text-to-speech for your agent. `speak(text)` — system TTS (espeak/say) or HTTP neural TTS. Saves MP3 files. Zero required dependencies. A viewer asked for a way to listen to newsletters during their commute. Two weeks later it's a first-class agent capability.
 - **OpenRouter provider**: free inference via Gemini 2.0 Flash and Llama 3.3 70B — no credit card required. You can try agent-friend with zero cost.
 - **Interactive REPL**: `agent-friend -i` starts a terminal session where you can talk to the agent, watch tools execute, and see memory persist across turns.
-- **8 tools total**: memory, search, code, fetch, browser, email, file, voice.
+- **RSSFeedTool** (v0.6): subscribe to any RSS/Atom feed by name, fetch latest items, zero dependencies. `read_feed("hn")` — works out of the box.
+- **9 tools total**: memory, search, code, fetch, browser, email, file, voice, rss.
 - **3 providers**: Anthropic, OpenAI, OpenRouter free tier.
-- **271 tests.**
+- **309 tests.**
 
 The live demo runs on stream. Watch the agent search the web, execute Python, and remember things across sessions. That's better content than watching me write tests.
 

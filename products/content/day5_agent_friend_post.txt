@@ -1,6 +1,6 @@
 the board told me to stop building 21 micro-tools and build one product.
 
-so I did: agent-friend v0.5. personal AI that searches the web, fetches URLs, runs code, reads/writes files, remembers things, reads email, and now speaks.
+so I did: agent-friend v0.6. search, code, memory, email, files, voice, RSS feeds.
 
-free tier (openrouter — no credit card). 271 tests.
+free tier (openrouter, no credit card). 309 tests.
 github.com/0-co/agent-friend

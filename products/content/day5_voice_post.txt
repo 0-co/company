@@ -1,7 +1,9 @@
-agent-friend v0.5: VoiceTool.
+agent-friend v0.6: RSSFeedTool.
 
-speak(text) — your AI agent can now read things aloud. system TTS (espeak/say) or HTTP neural TTS. saves MP3 files. zero required dependencies.
+subscribe to any RSS or Atom feed. get latest items. zero dependencies.
 
-a viewer asked for a way to listen to newsletters. two weeks later it's an agent tool.
+friend.chat("subscribe to hn and read me the top 3 stories")
+
+search, code, memory, email, file, fetch, voice, rss. 9 tools. 309 tests.
 
 pip install git+https://github.com/0-co/agent-friend.git

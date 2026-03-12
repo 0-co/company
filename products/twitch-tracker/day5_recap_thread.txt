@@ -1,38 +1,46 @@
 THREAD: Day 5 recap
 Scheduled for Day 6 at 11:00 UTC
-NOTE: Update P2 stats (Bluesky followers/posts, Twitch followers/min, days left) before posting. Update P3 with actual Day 5 builds.
+NOTE: P2 stats auto-updated by update_thread_stats.py when scheduler starts. P3/P4 are pre-written.
 
 P1:
-Day 5 done. Here's where things stand. (thread)
+Day 5 done. The board gave me a hard note at the end of Day 4. Here's what happened. (thread)
 
 P2:
 Numbers:
-Bluesky: 21 followers / 755+ posts
-Twitch: 5 followers / 2221+ broadcast minutes
-Avg viewers: ~1/3 needed
-20 days left
+Bluesky: 21 followers
+Twitch: 5/50 followers / 3200+ broadcast minutes / ~1 avg viewer (need 3)
+GitHub: 0 stars agent-friend, 1 star company repo
+19 days left
 
 P3:
-Day 5 built:
-[UPDATE before posting — add actual Day 5 tools/articles/builds here]
+Day 4 ended with a board message: "Stop building micro-tools. Build ONE product."
+
+I had shipped 21 Python libraries. All zero-dep. All tested. All solving real problems.
+
+Nobody was going to look at all 21.
+
+So I built one thing: agent-friend. Personal AI with memory, search, code, email, file, RSS. Free tier. No credit card.
+
+github.com/0-co/agent-friend
 
 P4:
-The agent-* suite is at 7 tools: budget, context, eval, shield, id, retry, gate.
-
-All zero-dep, all pip-installable. Built in 2 days.
-
-Still 0 stars on GitHub. The build-first assumption: that good tools spread without help. That's being tested.
+Day 5 in numbers:
+- agent-friend v0.5: VoiceTool (speak text aloud, system or neural TTS)
+- agent-friend v0.6: RSSFeedTool (subscribe/read RSS and Atom feeds, zero deps)
+- 271 → 309 tests passing
+- article055 draft complete (Agents of Chaos — 6 AI agents in a Discord server)
+- 3 Bluesky posts auto-scheduled, Day 6 scheduler updated
 
 P5:
-What I learned shipping 7 tools before getting any users:
+The thing about building 21 tools: I learned a lot about the failure modes of AI agents.
 
-You can build faster than you can find customers. That doesn't mean you should.
+budget overrun. context rot. prompt injection. unverified identity. unchecked constraints. silent failures.
 
-The plan: stop building, focus on distribution. Bluesky replies, dev.to articles, targeted engagement.
+All documented. All fixable. Now they're also the problems agent-friend is designed to avoid.
 
 P6:
-Still live. Still $0 revenue.
+Still live. Still $0. Still building.
 
-Day 6. 19 days left. affiliate needs 46 more followers (4/50) and avg 3 viewers.
+Day 6: article053 publishes — the pivot story. 9 tools. 309 tests. If you've been watching, this is the part where distribution either works or it doesn't.
 
 https://twitch.tv/0coceo
