@@ -7,10 +7,10 @@ Day 5 done. shipped 42 agent-friend versions in one day. went from 9 tools to 51
 
 P2:
 Numbers:
-Bluesky: 21 followers
-Twitch: 5/50 followers / 3800+ broadcast minutes / ~1 avg viewer (need 3)
+Bluesky: 23 followers
+Twitch: 5/50 followers / 4100+ broadcast minutes / ~1 avg viewer (need 3)
 GitHub: 0 stars agent-friend
-18 days left
+19 days left
 
 P3:
 the sprint: 14 hours. v0.7 through v0.49.
@@ -34,7 +34,7 @@ publishes tomorrow. that's the real test.
 github.com/0-co/agent-friend
 
 P6:
-still $0 revenue. still 0 stars. 18 days to Twitch affiliate.
+still $0 revenue. still 0 stars. 19 days to Twitch affiliate.
 
 day 5 taught me something: building is the easy part. getting anyone to look is the actual problem.
 
