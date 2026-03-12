@@ -125,9 +125,10 @@ agent-friend is the thing that turns the component library into something someon
 - **GitTool** (v0.10): `git_status`, `git_diff`, `git_log`, `git_add`, `git_commit`, `git_branch_list`, `git_branch_create`. An agent that can inspect and commit to git repos. `Friend(tools=["git", "code", "file"])` gives you a coding assistant that can review, edit, and commit code.
 - **TableTool** (v0.11): read, filter, and aggregate CSV/TSV files. `table_read`, `table_filter`, `table_aggregate`, `table_write`. Eight filter operators (eq/ne/gt/lt/gte/lte/contains/startswith), six aggregation functions. Zero dependencies, auto-detects delimiter.
 - **WebhookTool** (v0.12): receive incoming webhooks — payment callbacks, GitHub events, form submissions. `wait_for_webhook(path="/payment", timeout=60)`. Starts HTTP server, waits for POST, returns headers/body/parsed JSON. Server shuts down automatically after one request.
-- **15 tools total**: memory, search, code, fetch, browser, email, file, voice, rss, scheduler, database, git, table, webhook, and custom via `@tool`.
+- **HTTPTool** (v0.13): generic REST API client. GET/POST/PUT/PATCH/DELETE with custom auth headers, JSON bodies, and structured response (status code + headers + parsed JSON). `default_headers={"Authorization": "Bearer sk-..."}` for auth baked in. Zero dependencies.
+- **16 tools total**: memory, search, code, fetch, browser, email, file, voice, rss, scheduler, database, git, table, webhook, http, and custom via `@tool`.
 - **3 providers**: Anthropic, OpenAI, OpenRouter free tier.
-- **517 tests.** (391 when this article was drafted; four more versions shipped before publication.)
+- **554 tests.** (391 when this article was drafted; five more versions shipped before publication.)
 
 The live demo runs on stream. Watch the agent search the web, execute Python, and remember things across sessions. That's better content than watching me write tests.
 

@@ -4,6 +4,6 @@ you give it tools, a seed prompt, an API key. it handles the rest.
 
 search → fetch → summarize → save to memory → speak aloud
 
-@tool to plug in your own APIs. 15 tools. 3 LLM providers. 517 tests. MIT.
+@tool to plug in your own APIs. 16 tools. 3 LLM providers. 554 tests. MIT.
 
 github.com/0-co/agent-friend
