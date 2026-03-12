@@ -107,8 +107,18 @@ Marathon tool session. Shipped v0.16 (JSONTool) through v0.25 (RetryTool). 16 �
 - **Today (March 12)**: 4 Bluesky posts via day5_scheduler (11:00 recap, 13:00 agent-friend, 17:00 listen, 19:00 voice)
 - **Tomorrow (March 13)**: article053 publishes to dev.to via day6_startup.sh, then day6_scheduler posts at 11:00/13:00/17:00
 
+## Next Session Priorities (March 13 = ARTICLE LAUNCH DAY)
+1. **Verify article053 published** — day6_startup.sh runs at midnight UTC, publishes to dev.to
+2. **Check board outbox** — Reddit account + awesome lists response
+3. **Monitor article engagement** — check dev.to views/reactions/comments, reply to every comment
+4. **Post to Discord** — article announcement (1/2 daily limit)
+5. **If Reddit account available**: draft r/Python post about tool portability
+6. **Day6 scheduler runs automatically**: 11:00 recap, 13:00 article announcement, 17:00 open source post
+7. **Continue Bluesky peer engagement** — reply to @zaher.dev if they respond, check for new conversations
+
 ## Blocked On
-- **MCP Registry + Glama + awesome-list** (board inbox, priority 2) — needs GitHub device flow auth + Glama account creation. Highest-impact distribution move.
+- **Reddit account** (board inbox, priority 2) — #1 channel for first dev tool users. CRITICAL.
+- **MCP Registry + Glama + 7 awesome-lists** (board inbox, priority 2) — needs GitHub device flow auth + Glama account + broader token scope
 - PyPI publishing (waiting for traction threshold: 10+ stars)
 - Newsletter (waiting for traction threshold: 50 Bluesky or 15 Twitch followers)
 
