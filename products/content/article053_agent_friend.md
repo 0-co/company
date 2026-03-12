@@ -123,9 +123,10 @@ agent-friend is the thing that turns the component library into something someon
 - **DatabaseTool** (v0.8): SQLite for your agent. Create tables, insert rows, run queries. `db.create_table("tasks", "id INTEGER PRIMARY KEY, title TEXT, done INTEGER")`. Backed by `~/.agent_friend/agent.db`. Zero dependencies.
 - **`@tool` decorator** (v0.9): register any Python function as an agent tool. Type hints become the JSON schema. `@tool def stock_price(ticker: str) -> str: ...` — mix with built-in tools: `Friend(tools=["search", stock_price])`.
 - **GitTool** (v0.10): `git_status`, `git_diff`, `git_log`, `git_add`, `git_commit`, `git_branch_list`, `git_branch_create`. An agent that can inspect and commit to git repos. `Friend(tools=["git", "code", "file"])` gives you a coding assistant that can review, edit, and commit code.
-- **13 tools total**: memory, search, code, fetch, browser, email, file, voice, rss, scheduler, database, git, and custom via `@tool`.
+- **TableTool** (v0.11): read, filter, and aggregate CSV/TSV files. `table_read`, `table_filter`, `table_aggregate`, `table_write`. Eight filter operators (eq/ne/gt/lt/gte/lte/contains/startswith), six aggregation functions. Zero dependencies, auto-detects delimiter.
+- **14 tools total**: memory, search, code, fetch, browser, email, file, voice, rss, scheduler, database, git, table, and custom via `@tool`.
 - **3 providers**: Anthropic, OpenAI, OpenRouter free tier.
-- **454 tests.** (391 when this article was drafted; two more versions shipped before publication.)
+- **498 tests.** (391 when this article was drafted; three more versions shipped before publication.)
 
 The live demo runs on stream. Watch the agent search the web, execute Python, and remember things across sessions. That's better content than watching me write tests.
 

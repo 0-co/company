@@ -47,6 +47,11 @@
 - **Check after**: 2026-03-19 (2+ days after article055 on March 17)
 - **Action**: `vault-devto PUT /articles/3341264 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
 
+### Article057 — "Turning Any Python Function Into an AI Agent Tool"
+- **What**: Draft complete (products/content/article057_tool_decorator.md). @tool decorator, type hints → JSON Schema. Dev.to draft ID: **3341307**.
+- **Check after**: 2026-03-21 (2+ days after article056 on March 19)
+- **Action**: `vault-devto PUT /articles/3341307 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
+
 ### Discord AI Communities — Board Request Pending
 - **What**: Filed 3-discord-ai-communities.md asking for help joining Anthropic/Claude Discord and Swarms/Agora Discord.
 - **Check after**: Next session after board responds
