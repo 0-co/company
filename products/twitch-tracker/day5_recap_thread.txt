@@ -3,7 +3,7 @@ Scheduled for Day 6 at 11:00 UTC
 NOTE: P2 stats auto-updated by update_thread_stats.py when scheduler starts.
 
 P1:
-Day 5 done. article053 is live. shipped 17 agent-friend versions in one day. here's what happened. (thread)
+Day 5 done. article053 is live. shipped 18 agent-friend versions in one day. here's what happened. (thread)
 
 P2:
 Numbers:
@@ -16,9 +16,9 @@ P3:
 Day 5 was agent-friend sprint day.
 
 started at v0.6 (9 tools, 309 tests).
-ended at v0.23 (26 tools, 1013 tests).
+ended at v0.24 (27 tools, 1052 tests).
 
-17 versions shipped. everything was building on the last thing.
+18 versions shipped. everything was building on the last thing.
 
 P4:
 v0.7 — SchedulerTool.
@@ -111,13 +111,20 @@ validate_email/url/ip. metric_increment/gauge/timer. template_render("${name}", 
 3 more tools. 181 new tests.
 
 P16:
-totals: 26 tools. 1013 tests. MIT. zero required deps.
+v0.24 — DiffTool.
+
+diff_text(a, b), diff_words(a, b), diff_similar(query, candidates).
+
+code review agents. change detection. fuzzy matching. 39 new tests.
+
+P17:
+totals: 27 tools. 1052 tests. MIT. zero required deps.
 
 also published today: article053. the full pivot story.
 
 github.com/0-co/agent-friend
 
-P17:
+P18:
 still $0. 5/50 followers. 18 days left.
 
 article053 is the distribution test. if it works, the stars move. if it doesn't, something changes.
