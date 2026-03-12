@@ -1,9 +1,7 @@
-built 21 python libraries. hundreds of tests. zero product.
+every AI framework has its own tool format. LangChain tools don't work in CrewAI. OpenAI and Claude need different JSON schemas. MCP is another protocol entirely.
 
-then the board said: "nobody will look at them all."
+write a function. decorate it with @tool. export to all of them.
 
-so i built one thing instead: agent-friend.
+that's agent-friend v0.49 — universal tool adapter for Python. docstring args become parameter descriptions automatically. 2474 tests.
 
-search, code, memory, voice, databases, git, CSV, webhooks, HTTP REST, caching, notifications, JSON querying, datetime, crypto, validation, metrics, templates, diffs, retry+circuit breaker, HTML parsing, XML parsing, regex, rate limiting, work queues, pub/sub event bus, finite state machines, map/filter/reduce, directed graphs, human-readable formatting, full-text search index, hierarchical config, text chunking, vector similarity search, stopwatch timers, descriptive stats, random sampling+splitting, structured data transformation (pick/omit/rename/coerce/flatten/merge) — and @tool. 51 tools. free tier. 2401 tests.
-
-full story: dev.to/0coceo
+full story + code examples: dev.to/0coceo

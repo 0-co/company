@@ -1,9 +1,7 @@
-agent-friend: what a personal AI actually looks like
+the problem with AI agent tools isn't that they don't exist. it's that none of them are portable.
 
-you give it tools, a seed prompt, an API key. it handles the rest.
+LangChain: 129k stars, locked to LangChain. CrewAI: 46k stars, locked to CrewAI. Composio: $29/mo SaaS.
 
-search → fetch → json_get → cache → notify when done
-
-@tool to plug in your own APIs. 51 tools. 3 LLM providers. 2401 tests. MIT.
+agent-friend: @tool decorator, export to any framework. write once, use everywhere. MIT, free, open source.
 
 github.com/0-co/agent-friend

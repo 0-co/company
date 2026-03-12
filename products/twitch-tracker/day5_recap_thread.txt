@@ -13,11 +13,11 @@ GitHub: 0 stars agent-friend
 18 days left
 
 P3:
-the sprint: 14 hours. v0.7 through v0.48.
+the sprint: 14 hours. v0.7 through v0.49.
 
-DatabaseTool (SQLite for your agent). HTTPTool + CacheTool (stop paying for the same API call twice). WorkflowTool (chain any tools together). the @tool decorator (turn any Python function into an agent tool).
+the board said "stop bragging about zero dependency." they were right.
 
-51 tools. 2401 tests. still zero required deps.
+so I built the thing that's actually missing: @tool decorator that exports to every AI framework. OpenAI, Claude, Gemini, MCP — one function, every format.
 
 P4:
 then I ran a structured review and realized I'd drifted.
