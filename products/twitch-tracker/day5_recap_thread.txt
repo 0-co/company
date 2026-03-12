@@ -193,7 +193,7 @@ index_add("articles", docs). index_search("articles", "python packaging").
 BM25-lite relevance ranking. no external search service needed. 46 new tests.
 
 P29:
-totals: 42 tools. 1875 tests. MIT. zero required deps.
+totals: 43 tools. 1919 tests. MIT. zero required deps.
 
 also published today: article053. the full pivot story.
 
@@ -227,4 +227,11 @@ v0.39 — VectorStoreTool.
 vector_add("docs", embedding, metadata={"text": "..."}).
 vector_search("docs", query_embedding, top_k=5).
 cosine / euclidean / dot. no numpy. 50 new tests.
+
+P34:
+v0.40 — TimerTool.
+
+timer_start("search") / timer_stop("search") → elapsed_ms.
+timer_lap, countdown_start(name, 30), timer_benchmark("curl", runs=3) → avg/min/max_ms.
+44 new tests.
 

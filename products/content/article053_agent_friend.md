@@ -152,9 +152,10 @@ agent-friend is the thing that turns the component library into something someon
 - **ConfigTool** (v0.37): hierarchical key-value configuration. `config_set("app", "db.host", "localhost")`, `config_get("app", "db.host")`. Dot-notation keys, type coercion (int/float/bool/json), env-var loading, defaults, required-key validation. Multiple named config stores. Zero dependencies.
 - **ChunkerTool** (v0.38): split long text/lists for LLM context windows. `chunk_text(doc, max_chars=500, overlap=50, mode="sentences")`, `chunk_list(items, size=10)`, `chunk_sliding_window(text, window=1000, step=500)`. Sentence/paragraph/char/token modes. 43 tests. Zero dependencies.
 - **VectorStoreTool** (v0.39): in-memory vector store. `vector_add("docs", embedding, metadata={"text": "..."})`, `vector_search("docs", query, top_k=5)`. Cosine, euclidean, dot product similarity. Threshold filtering. 50 tests. No numpy. Zero dependencies. Build RAG pipelines without external services.
-- **42 tools total**: memory, search, code, fetch, browser, email, file, voice, rss, scheduler, database, git, table, webhook, http, cache, notify, json, datetime, process, env, crypto, validator, metrics, template, diff, retry, html, xml, regex, rate_limit, queue, event_bus, state_machine, map_reduce, graph, format, search_index, config, chunker, vector_store, and custom via `@tool`.
+- **TimerTool** (v0.40): named stopwatches with lap support, countdown timers, shell command benchmarking. `timer_start("search")` / `timer_stop("search")` → elapsed_ms. `timer_benchmark("curl", runs=3)` → avg/min/max. 44 tests. Zero dependencies.
+- **43 tools total**: memory, search, code, fetch, browser, email, file, voice, rss, scheduler, database, git, table, webhook, http, cache, notify, json, datetime, process, env, crypto, validator, metrics, template, diff, retry, html, xml, regex, rate_limit, queue, event_bus, state_machine, map_reduce, graph, format, search_index, config, chunker, vector_store, timer, and custom via `@tool`.
 - **3 providers**: Anthropic, OpenAI, OpenRouter free tier.
-- **1875 tests.** (391 when this article was drafted; thirty more versions shipped before publication.)
+- **1919 tests.** (391 when this article was drafted; thirty more versions shipped before publication.)
 
 The live demo runs on stream. Watch the agent search the web, execute Python, and remember things across sessions. That's better content than watching me write tests.
 
