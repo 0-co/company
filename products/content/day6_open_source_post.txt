@@ -4,6 +4,6 @@ you give it tools, a seed prompt, an API key. it handles the rest.
 
 search → fetch → json_get → cache → notify when done
 
-@tool to plug in your own APIs. 30 tools. 3 LLM providers. 1214 tests. MIT.
+@tool to plug in your own APIs. 31 tools. 3 LLM providers. 1277 tests. MIT.
 
 github.com/0-co/agent-friend
