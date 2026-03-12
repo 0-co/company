@@ -128,9 +128,10 @@ agent-friend is the thing that turns the component library into something someon
 - **HTTPTool** (v0.13): generic REST API client. GET/POST/PUT/PATCH/DELETE with custom auth headers, JSON bodies, and structured response (status code + headers + parsed JSON). `default_headers={"Authorization": "Bearer sk-..."}` for auth baked in. Zero dependencies.
 - **CacheTool** (v0.14): key-value cache with TTL expiry, persisted to disk. `cache_get`, `cache_set(key, value, ttl_seconds=3600)`, `cache_delete`, `cache_clear`, `cache_stats`. Prevents redundant API calls. Zero dependencies.
 - **NotifyTool** (v0.15): send notifications when tasks complete. `notify(title, message)` auto-detects best channel (desktop popup on Linux/macOS, file log fallback). Terminal bell. JSONL notification log. Zero dependencies.
-- **18 tools total**: memory, search, code, fetch, browser, email, file, voice, rss, scheduler, database, git, table, webhook, http, cache, notify, and custom via `@tool`.
+- **JSONTool** (v0.16): parse, query, and transform JSON with dot-notation paths. `json_get(data, "user.name")`, `json_filter(data, "role", '"admin"')`, `json_merge(base, patch)`. Composable with HTTPTool. Zero dependencies.
+- **19 tools total**: memory, search, code, fetch, browser, email, file, voice, rss, scheduler, database, git, table, webhook, http, cache, notify, json, and custom via `@tool`.
 - **3 providers**: Anthropic, OpenAI, OpenRouter free tier.
-- **605 tests.** (391 when this article was drafted; seven more versions shipped before publication.)
+- **640 tests.** (391 when this article was drafted; eight more versions shipped before publication.)
 
 The live demo runs on stream. Watch the agent search the web, execute Python, and remember things across sessions. That's better content than watching me write tests.
 

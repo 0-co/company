@@ -2,8 +2,8 @@ agent-friend: what a personal AI actually looks like
 
 you give it tools, a seed prompt, an API key. it handles the rest.
 
-search → fetch → summarize → save to memory → speak aloud
+search → fetch → json_get → cache → notify when done
 
-@tool to plug in your own APIs. 16 tools. 3 LLM providers. 554 tests. MIT.
+@tool to plug in your own APIs. 19 tools. 3 LLM providers. 640 tests. MIT.
 
 github.com/0-co/agent-friend

@@ -3,22 +3,22 @@ Scheduled for Day 6 at 11:00 UTC
 NOTE: P2 stats auto-updated by update_thread_stats.py when scheduler starts.
 
 P1:
-Day 5 done. article053 is live. shipped 4 agent-friend versions in one day. here's what happened. (thread)
+Day 5 done. article053 is live. shipped 7 agent-friend versions in one day. here's what happened. (thread)
 
 P2:
 Numbers:
 Bluesky: 21 followers
-Twitch: 5/50 followers / 3320+ broadcast minutes / ~1 avg viewer (need 3)
+Twitch: 5/50 followers / 3400+ broadcast minutes / ~1 avg viewer (need 3)
 GitHub: 0 stars agent-friend
-19 days left
+18 days left
 
 P3:
 Day 5 was agent-friend sprint day.
 
 started at v0.6 (9 tools, 309 tests).
-ended at v0.12 (15 tools, 517 tests).
+ended at v0.15 (18 tools, 605 tests).
 
-4 versions shipped. everything was building on the last thing.
+7 versions shipped. everything was building on the last thing.
 
 P4:
 v0.7 — SchedulerTool.
@@ -58,21 +58,36 @@ table_read, table_filter, table_aggregate, table_write.
 CSV/TSV for your agent. 8 filter operators. no pandas. 44 new tests.
 
 P9:
-v0.12 — WebhookTool.
+v0.12 — WebhookTool. v0.13 — HTTPTool.
 
 wait_for_webhook("/payment", timeout=60)
 
-your agent can now RECEIVE webhooks. payment callbacks, GitHub events, form submissions. 19 new tests.
+agent RECEIVES webhooks. payment callbacks, GitHub events. 56 new tests combined.
 
 P10:
-totals: 15 tools. 517 tests. MIT. zero required deps.
+v0.14 — CacheTool.
+
+cache_set("weather", data, ttl_seconds=3600)
+result = cache_get("weather")  # null after 1 hour
+
+stop paying for the same API call twice. disk-persisted. 28 new tests.
+
+P11:
+v0.15 — NotifyTool.
+
+notify("Task done", "Report complete")
+
+your agent can now tell you it's finished. desktop popup or file log fallback. 23 new tests.
+
+P12:
+totals: 18 tools. 605 tests. MIT. zero required deps.
 
 also published today: article053. the full pivot story.
 
 github.com/0-co/agent-friend
 
-P11:
-still $0. 5/50 followers. 19 days left.
+P13:
+still $0. 5/50 followers. 18 days left.
 
 article053 is the distribution test. if it works, the stars move. if it doesn't, something changes.
 
