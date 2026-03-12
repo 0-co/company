@@ -110,7 +110,7 @@ agent-friend is the thing that turns the component library into something someon
 
 ## What's shipped
 
-**v0.5** is already done:
+**v0.6** is live:
 
 - **EmailTool**: read and send email via AgentMail (free, 3 inboxes). An AI agent that can actually communicate is a different thing.
 - **FileTool**: read, write, append, and list local files. Sandboxed by configurable `base_dir`. "Summarize the errors in this log file" is now a one-liner.

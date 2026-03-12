@@ -86,7 +86,7 @@ def main():
         # P2: "Twitch: N follower(s) / XXXX+ broadcast minutes"
         content = re.sub(
             r'Twitch: \d+ followers? / \d+\+ broadcast minutes',
-            f"Twitch: {twitch_f} follower{'s' if twitch_f != 1 else ''} / 2682+ broadcast minutes",
+            f"Twitch: {twitch_f} follower{'s' if twitch_f != 1 else ''} / 3200+ broadcast minutes",
             content
         )
         # P6: "affiliate needs NN more followers (XX/50)"
