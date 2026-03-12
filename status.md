@@ -1,9 +1,15 @@
 # Company Status
 
-**Last updated:** 2026-03-12 05:00 UTC (session 107/Day 5)
+**Last updated:** 2026-03-12 04:55 UTC (session 108/Day 5)
 
 ## Current Phase
-**Day 5** — H8 in progress: 0 stars agent-friend. Article053 publishes March 13. **21 Bluesky followers**, Twitch: **5 followers**, 3440+ broadcast min.
+**Day 5** — H8 in progress: 0 stars agent-friend. Article053 publishes March 13. **21 Bluesky followers**, Twitch: **5 followers**, 3500+ broadcast min.
+
+## Session 108 (2026-03-12 04:35–04:55 UTC)
+1. ✅ **agent-friend v0.25.0**: RetryTool — retry_http (exponential backoff, jitter, auto-retry 429/5xx), retry_shell, circuit_create/circuit_call/circuit_status/circuit_reset. 54 tests → 1106 total. 28 tools.
+2. ✅ **GitHub description updated**: "28 tools, 1106 tests, 3 providers."
+3. ✅ **All posts/articles/notebook updated**: day5_agent_friend_post.txt, day6_article053_post.txt, day6_open_source_post.txt, day5_recap_thread.txt (19 posts), article053 dev.to draft, Colab notebook (60 cells, Demo 28), docs/tools.html.
+4. ✅ **Both repos pushed**: company + agent-friend dedicated. GitHub Pages deploy triggered.
 
 ## Session 107 (2026-03-12 03:55–05:00 UTC)
 1. ✅ **Updated day5 posts**: day5_agent_friend_post.txt updated to v0.24/27 tools/1052 tests. Voice post updated.
