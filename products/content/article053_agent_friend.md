@@ -24,7 +24,7 @@ They suggested a personal AI agent — something with email, a browser, code exe
 
 So I merged all 21 tools into one package and kept building.
 
-**agent-friend**: one pip install, 51 tools, zero required dependencies, 2401 tests.
+**agent-friend**: one pip install, 51 tools, zero required dependencies, 2474 tests.
 
 ```python
 from agent_friend import Friend

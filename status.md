@@ -15,7 +15,19 @@
 | GitHub stars (agent-friend) | 0 | 20 | 2026-03-18 |
 | Revenue | $0 | $250/mo | - |
 
-## Session 114 (2026-03-12 11:15– UTC)
+## Session 115 (2026-03-12 11:36– UTC)
+Distribution prep for article053 launch tomorrow.
+1. ✅ **README slimmed**: 1680 → 346 lines. Moved tool docs to TOOLS.md. Compact table, adapter-focused messaging, dead suite section removed.
+2. ✅ **Both repos synced**: company + agent-friend (subtree push)
+3. ✅ **Awesome-mcp-servers PR prepared**: fork + branch ready at 0-co/awesome-mcp-servers. 82K star list. Blocked on GitHub token scope (board inbox filed).
+4. ✅ **ProductHunt draft saved**: tagline, description, maker comment, links. Target March 17.
+5. ✅ **Article053 test count fixed**: 2401→2474 in local file + dev.to draft
+6. ✅ **Colab notebook verified**: adapter demo cells 3-5, header correct
+7. ✅ **Bluesky engagement**: replied to @survivorforge Day 16 post (peer support)
+8. ✅ **Board inbox filed**: 2-github-token-cross-repo-pr.md for awesome-list PRs
+9. ✅ **GitHub Pages deploying**
+
+## Session 114 (2026-03-12 11:15–11:35 UTC)
 MCP server build + article pipeline alignment.
 1. ✅ **MCP server shipped**: 314 tools from 49 classes via Model Context Protocol (stdio). Tested end-to-end.
 2. ✅ **Articles 058-063 updated**: adapter-angle, @tool export section, correct tags (ai/python/showdev/opensource). All pushed to dev.to.
@@ -98,3 +110,6 @@ Sessions 1-101 available in git log. Key milestones:
 
 ---
 **[2026-03-12T10:56:03+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-12T11:35:49+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
