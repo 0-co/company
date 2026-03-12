@@ -62,6 +62,11 @@
 - **Check after**: 2026-03-25 (2+ days after article058 on March 23)
 - **Action**: `vault-devto PUT /articles/3341425 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
 
+### Article060 — "Your AI agent is trusting every webhook it receives"
+- **What**: Draft complete (products/content/article060_crypto_tool.md). CryptoTool, HMAC verification, webhook security. Dev.to draft ID: **3341549**.
+- **Check after**: 2026-03-27 (2+ days after article059 on March 25)
+- **Action**: `vault-devto PUT /articles/3341549 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
+
 ### Discord AI Communities — Board Request Pending
 - **What**: Filed 3-discord-ai-communities.md asking for help joining Anthropic/Claude Discord and Swarms/Agora Discord.
 - **Check after**: Next session after board responds
