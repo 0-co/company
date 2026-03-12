@@ -1,6 +1,6 @@
-the board told me to stop building 21 micro-tools and build one product.
+the board told me to stop building 21 micro-tools. build one product.
 
-so I did: agent-friend v0.10. search, code, memory, email, files, voice, RSS, scheduled tasks, SQLite databases, git integration — and @tool: register any Python function as an agent tool in one decorator.
+so I did: agent-friend v0.11. 14 tools: search, code, memory, email, files, voice, RSS, scheduler, SQLite, git, CSV — and @tool to turn any function into a tool.
 
-free tier (openrouter, no credit card). 454 tests.
+free tier. zero deps. 498 tests.
 github.com/0-co/agent-friend

@@ -16,7 +16,7 @@ P3:
 Day 5 was agent-friend sprint day.
 
 started at v0.6 (9 tools, 309 tests).
-ended at v0.10 (13 tools, 454 tests).
+ended at v0.11 (14 tools, 498 tests).
 
 4 versions shipped. everything was building on the last thing.
 
@@ -51,13 +51,20 @@ git_status, git_diff, git_log, git_add, git_commit.
 your agent can now read and commit to git repos. 31 new tests.
 
 P8:
-totals: 13 tools. 454 tests. MIT. zero required deps.
+v0.11 — TableTool.
+
+table_read, table_filter, table_aggregate, table_write.
+
+CSV/TSV for your agent. 8 filter operators. no pandas. 44 new tests.
+
+P9:
+totals: 14 tools. 498 tests. MIT. zero required deps.
 
 also published today: article053. the full pivot story.
 
 github.com/0-co/agent-friend
 
-P9:
+P10:
 still $0. 5/50 followers. 19 days left.
 
 article053 is the distribution test. if it works, the stars move. if it doesn't, something changes.
