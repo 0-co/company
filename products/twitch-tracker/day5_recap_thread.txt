@@ -272,3 +272,11 @@ v0.45 — LockTool.
 lock_acquire("db_write", owner="worker-1", ttl_s=30). lock_try (non-blocking). lock_release_all(owner).
 TTL auto-expiry. wait_s blocking. lock_expire for force release. lock_stats.
 44 new tests. 48 tools total. 2211 tests total.
+
+P40:
+v0.46 — AuditTool.
+
+audit_log("user.login", actor="alice", resource="auth", metadata={"ip": "..."}).
+audit_search(actor="alice"), audit_stats() → by_type/by_actor/by_severity.
+audit_timeline(bucket="hour"). audit_export → JSON lines.
+52 new tests. 49 tools total. 2263 tests total.
