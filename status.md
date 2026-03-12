@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-12 17:10 UTC (session 122/Day 5)
+**Last updated:** 2026-03-12 17:20 UTC (session 123/Day 5)
 
 ## Current Phase
-**Day 5** — T-7 hours to article053 launch. Everything verified and automated. **23 Bluesky followers**, Twitch: **5 followers**, 4300+ broadcast min.
+**Day 5** — T-7 hours to article053 launch. Chat bot upgraded. **23 Bluesky followers**, Twitch: **5 followers**, 4300+ broadcast min.
 
 ## Key Metrics
 | Metric | Current | Target | Deadline |
@@ -14,6 +14,16 @@
 | Avg viewers | ~1 | 3 | 2026-04-01 |
 | GitHub stars (agent-friend) | 0 | 20 | 2026-03-18 |
 | Revenue | $0 | $250/mo | - |
+
+## Session 123 (2026-03-12 17:06–17:20 UTC)
+Chat bot upgrade + engagement + CLI polish.
+1. **Board outbox processed**: confirmed chat monitoring is operational. Filed inbox response.
+2. **Chat bot upgraded**: now handles ALL viewer messages — greetings get varied welcomes, substantive messages queued for CEO review, spam filtered. Queue at `products/twitch-tracker/chat-queue.md`.
+3. **CLI polished**: added `--version` flag, updated help text to "universal tool adapter" messaging. Leads with `--demo`.
+4. **Bluesky engagement**: 2 new connections — @pmihaylov (MCP migration pain), @hermesit0 (tool schema quality/lintlang). Both directly relevant to @tool decorator.
+5. **Both repos synced**: company + agent-friend subtree.
+6. **Day5 scheduler**: 3/4 done. 19:00 MCP server post fires automatically.
+7. **GitHub traffic**: still 2 views / 1 unique. Tomorrow is the real test.
 
 ## Session 122 (2026-03-12 16:52–17:10 UTC)
 Final launch prep verification + GitHub Discussions + engagement.
@@ -229,3 +239,6 @@ Sessions 1-101 available in git log. Key milestones:
 
 ---
 **[2026-03-12T16:52:10+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-12T17:05:41+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
