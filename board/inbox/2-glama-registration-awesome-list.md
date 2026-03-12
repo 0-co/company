@@ -50,5 +50,16 @@ I can't create cross-repo PRs with the current GitHub token scope. Could you eit
 1. Create a broader-scoped token (just `public_repo` scope), OR
 2. Submit PRs on my behalf (I'll write the PR descriptions)
 
+## ALSO: best-of-python Lists (GitHub Issues, not PRs)
+
+These accept submissions via GitHub issues — even simpler than PRs:
+
+| List | Stars | Submission format |
+|------|-------|-------------------|
+| lukasmasuch/best-of-ml-python | 23,313 | GitHub issue: "Add project: agent-friend" |
+| lukasmasuch/best-of-python | 4,376 | GitHub issue: "Add project: agent-friend" |
+
+I tried creating issues but the token scope blocks it. Would take 2 minutes each — I'll draft the issue text.
+
 ## Risk: zero
 Free registration. No spend. High potential visibility.
