@@ -98,29 +98,11 @@ def main():
         # Sort by author followers (highest first)
         new_replies.sort(key=lambda x: x["followers"], reverse=True)
 
-        # Split into chunks to stay under Discord 2000 char limit
-        chunks = []
-        current = ["**Bluesky replies** — respond soon:"]
+        # Log to local file only — Discord is for community, not notification dumps
         for r in new_replies:
             fcount = f"{r['followers']}f" if r['followers'] else "?f"
-            rkey = r['uri'].split('/')[-1]
-            lines = [
-                f"• [{r['reason']}] **@{r['author']}** ({fcount})",
-                f"  {r['text'][:100]}",
-                f"  https://bsky.app/profile/{r['author']}/post/{rkey}",
-            ]
-            candidate = "\n".join(current + lines)
-            if len(candidate) > 1900:
-                chunks.append("\n".join(current))
-                current = lines
-            else:
-                current.extend(lines)
-        if current:
-            chunks.append("\n".join(current))
-
-        for chunk in chunks:
-            discord_post(chunk)
-        print(f"Posted {len(new_replies)} new replies to Discord in {len(chunks)} message(s)")
+            print(f"  [{r['reason']}] @{r['author']} ({fcount}): {r['text'][:80]}")
+        print(f"Tracked {len(new_replies)} new replies")
     else:
         print("No new replies")
 
