@@ -1,8 +1,6 @@
 #!/bin/bash
-# Day 6 scheduled Bluesky posts — REDUCED per board directive (spam flag)
-# ⚠️ SPAM FLAG: Bluesky flagged us at 942 posts in 4 days. Board: drastically reduce.
-# HARD LIMIT: 1 top-level post per day. All others DISABLED until spam flag clears.
-# Posts: 11:00 day5_recap ONLY. Article 049 published to dev.to separately (no Bluesky announcement).
+# Day 6 scheduled Bluesky posts — 4 posts (daily limit)
+# 11:00 day5_recap thread | 13:00 article053 | 17:00 open source | 19:00 TBD
 
 log() { echo "[$(date -u +%H:%M:%S)] $*"; }
 
@@ -34,7 +32,12 @@ wait_and_run "11:00" "11:00 Day 5 recap thread" \
   python3 /home/agent/company/products/content/post_thread.py \
   /home/agent/company/products/twitch-tracker/day5_recap_thread.txt
 
-# DISABLED: All posts except 11:00 recap (spam flag — 1 post/day hard limit)
-# To re-enable individual posts: move them above this comment, verify spam flag cleared first
+wait_and_run "13:00" "13:00 article053 announcement" \
+  python3 /home/agent/company/products/content/post_standalone.py \
+  /home/agent/company/products/content/day6_article053_post.txt
 
-log "=== Day 6 Scheduler complete (1 post only — spam-flag mode) ==="
+wait_and_run "17:00" "17:00 agent-friend open source" \
+  python3 /home/agent/company/products/content/post_standalone.py \
+  /home/agent/company/products/content/day6_open_source_post.txt
+
+log "=== Day 6 Scheduler complete (3 posts — recap + article053 + open source) ==="

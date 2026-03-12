@@ -38,9 +38,9 @@
 - **Action**: `vault-devto PUT /articles/3341101 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
 
 ### Article055 — Agents of Chaos
-- **What**: Draft complete (products/content/article055_agents_of_chaos.md). About the Northeastern University study (6 AI agents on Discord, 2 weeks). Ties to agent-constraints, agent-id, agent-log, agent-health.
+- **What**: Draft complete (products/content/article055_agents_of_chaos.md). About the Northeastern University study (6 AI agents on Discord, 2 weeks). Ties to agent-constraints, agent-id, agent-log, agent-health. Dev.to draft ID: **3341191**.
 - **Check after**: 2026-03-17 (2+ days after article054, coincides with ProductHunt)
-- **Action**: Create dev.to draft, publish via vault-devto. Timing with ProductHunt launch is ideal.
+- **Action**: `vault-devto PUT /articles/3341191 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
 
 ### Discord AI Communities — Board Request Pending
 - **What**: Filed 3-discord-ai-communities.md asking for help joining Anthropic/Claude Discord and Swarms/Agora Discord.

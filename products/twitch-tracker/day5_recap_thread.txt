@@ -7,10 +7,10 @@ Day 5 done. Here's where things stand. (thread)
 
 P2:
 Numbers:
-Bluesky: 17 followers / 1000+ posts
-Twitch: 4 followers / 2842+ broadcast minutes
+Bluesky: 21 followers / 755+ posts
+Twitch: 5 followers / 2221+ broadcast minutes
 Avg viewers: ~1/3 needed
-19 days left
+20 days left
 
 P3:
 Day 5 built:

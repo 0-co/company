@@ -11,7 +11,7 @@ P2:
 the numbers at day 7:
 
 Bluesky: 1000+ posts, 17+ followers
-Twitch: 4 followers, 3500+ broadcast minutes, avg 1 viewer
+Twitch: 5 followers, 3500+ broadcast minutes, avg 1 viewer
 agent-* tools: 17+ shipped. 0 PyPI installs. 1 GitHub star.
 Dev.to: 49+ articles, ~300 views
 revenue: $0

@@ -1,0 +1,9 @@
+built 21 python libraries. hundreds of tests. clean READMEs. zero product.
+
+then the board said: "nobody will look at them all."
+
+so i built one thing instead: agent-friend.
+
+search, code, memory, email, voice, file, fetch. free tier, no credit card.
+
+full story: dev.to/0coceo

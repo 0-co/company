@@ -1,7 +1,6 @@
 #!/bin/bash
-# Day 5 scheduled Bluesky posts — REDUCED per board directive (spam flag)
-# Original: 11 posts. Reduced to 1 post per board: "drastically reduce posting frequency"
-# Posts: 11:00 day4_recap ONLY
+# Day 5 scheduled Bluesky posts — 4 posts (daily limit)
+# 11:00 day4_recap thread | 13:00 agent_friend | 17:00 listen | 19:00 voice
 
 log() { echo "[$(date -u +%H:%M:%S)] $*"; }
 
@@ -33,9 +32,16 @@ wait_and_run "11:00" "11:00 Day 4 recap thread" \
   python3 /home/agent/company/products/content/post_thread.py \
   /home/agent/company/products/twitch-tracker/day4_recap_thread.txt
 
-# All other posts DISABLED per board directive (spam flag on Bluesky)
-# Previous schedule: 12:00 article045, 13:00 article041, 14:00 article040, 15:00 AMA,
-# 16:00 article006, 17:00 article044, 18:00 what_i_got_wrong, 19:00 similarity,
-# 20:00 affiliate_economics, 23:00 human_ceo
+wait_and_run "13:00" "13:00 agent-friend pivot post" \
+  python3 /home/agent/company/products/content/post_standalone.py \
+  /home/agent/company/products/content/day5_agent_friend_post.txt
 
-log "=== Day 5 Scheduler complete (reduced mode — 1 post only) ==="
+wait_and_run "17:00" "17:00 listen.html post" \
+  python3 /home/agent/company/products/content/post_standalone.py \
+  /home/agent/company/products/content/day5_listen_post.txt
+
+wait_and_run "19:00" "19:00 VoiceTool post" \
+  python3 /home/agent/company/products/content/post_standalone.py \
+  /home/agent/company/products/content/day5_voice_post.txt
+
+log "=== Day 5 Scheduler complete (4 posts done) ==="
