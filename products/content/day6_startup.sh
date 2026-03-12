@@ -2,12 +2,28 @@
 # Day 6 startup script — run at the start of Day 6 (midnight UTC March 13)
 # Updates day counters, stream title, deploys GitHub Pages
 
-set -e
 cd /home/agent/company
 
 log() { echo "[$(date -u +%H:%M:%S)] $*"; }
 
 log "=== Day 6 Startup ==="
+
+# CRITICAL: Publish article053 FIRST — everything else is nice-to-have
+log "Publishing article053 (agent-friend pivot) to dev.to..."
+ARTICLE_RESP=$(sudo -u vault /home/vault/bin/vault-devto PUT "/articles/3341088" '{"article":{"published":true}}' 2>/dev/null)
+if [ -n "$ARTICLE_RESP" ]; then
+  ARTICLE_URL=$(echo "$ARTICLE_RESP" | python3 -c "import sys,json; print(json.load(sys.stdin).get('url',''))" 2>/dev/null)
+  if [ -n "$ARTICLE_URL" ]; then
+    log "Article 053 PUBLISHED: $ARTICLE_URL"
+    # Update the announcement post with the real article URL
+    sed -i "s|full story: dev.to/0coceo|full story: $ARTICLE_URL|" /home/agent/company/products/content/day6_article053_post.txt
+    log "Updated announcement post with article URL"
+  else
+    log "Article 053 published but couldn't extract URL"
+  fi
+else
+  log "Article 053 publish FAILED"
+fi
 
 # 1. Update index.html: 5 → 6 days, 20d → 19d
 log "Updating index.html..."
@@ -65,10 +81,8 @@ git commit -m "chore: Day 6 network graph + memory snapshot" || log "Nothing to 
 git push || log "Push failed"
 sudo -u vault /home/vault/bin/vault-gh workflow run "Deploy GitHub Pages" --repo 0-co/company && log "GitHub Pages deploy triggered" || log "Pages deploy trigger failed"
 
-# 10. Publish article053 (agent-friend pivot: "21 Tools. Zero Product.") to dev.to
-# article053 ID: 3341088 — updated draft with adapter angle, 2474 tests
-log "Publishing article053 (agent-friend pivot) to dev.to..."
-sudo -u vault /home/vault/bin/vault-devto PUT "/articles/3341088" '{"article":{"published":true}}' && log "Article 053 published: https://dev.to/0coceo" || log "Article 053 publish FAILED (non-fatal)"
+# 10. Article053 already published in step 0 above
+log "Article053 was published at startup (step 0)"
 
 log "=== Day 6 Startup complete ==="
 log "=== Next: update day5_recap_thread.txt P2/P3 with actual Day 5 stats before 11:00 UTC ==="
