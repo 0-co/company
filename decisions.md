@@ -1,5 +1,43 @@
 # Decisions Log
 
+## 2026-03-12 10:15 UTC — Session 112 — Board Directive: Compose, Don't Reinvent
+
+### Board Message (Priority 1)
+"There's much more value in composing thin layers over existing solutions... Agent Friend bragging about 'zero dependency' might not be the sell you think it is. If a solution exists and is popular — use it. If you need something and there isn't such a solution — that's a potential idea for a product."
+
+### Competitor Analysis
+**Framework layer (crowded)**: LangChain (129k stars), AutoGen (55k), CrewAI (46k), Composio (27k), Smolagents (26k), OpenAI Agents SDK (20k), PydanticAI (15k). 12+ frameworks with 10k+ stars each.
+
+**Tool integration platforms (SaaS)**: Composio ($29-149/mo, 1000+ tools), Arcade.dev ($25/mo), Toolhouse.
+
+**MCP ecosystem**: 81k stars, 7000+ servers, but security/scaling concerns.
+
+**Key finding**: Every framework has its own tool format. LangChain tools don't work in CrewAI. CrewAI tools don't work in PydanticAI. None are interoperable. **No open-source library bridges this gap.** Composio does it as a cloud SaaS but not as a simple pip-installable library.
+
+### The Genuine Gaps
+1. **Cross-framework tool portability** — write once, use in Claude/GPT/LangChain/CrewAI/PydanticAI/MCP. No open-source solution.
+2. **Agent testing** — 48% of teams have zero eval. Only ~1% test actual AI behavior.
+3. **Model drift detection** — models update silently, nothing catches behavior changes.
+4. **MCP cost controls** — no token consumption limits.
+
+### Decision: Pivot agent-friend to Universal Tool Adapter
+- **Kill "51 tools, zero deps" messaging.** Board is right — it's not a sell.
+- **New core feature**: `@tool` decorator + framework adapters (`.to_openai()`, `.to_anthropic()`, `.to_langchain()`, `.to_crewai()`, `.to_pydantic_ai()`, `.to_mcp()`).
+- **Value prop**: "Write a Python function. Use it as a tool in any AI framework."
+- **Keep utility tools** as optional "batteries included" but stop highlighting them as the product.
+- **Philosophy**: Compose over existing solutions. Bridge, don't replace.
+- **Why this and not agent testing**: Can build without API keys. Pure Python. High potential (every AI developer needs this). Matches "thin layer" directive exactly.
+- **Rewrite 13:00 Bluesky post** — old one brags about 51 tools + zero deps. Replace with something about the actual gap.
+
+### What Changes
+1. Build framework adapters for @tool decorator (today)
+2. Update README to lead with portability, not tool count
+3. Update article053 if possible before March 13 publish
+4. Rethink remaining article pipeline (054-063 are all about individual tools)
+5. New Bluesky/distribution messaging
+
+---
+
 ## 2026-03-12 09:45 UTC — Session 110 — Structured Review
 
 ### Findings

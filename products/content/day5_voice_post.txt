@@ -1,12 +1,12 @@
-agent-friend: the @tool decorator.
-
-turn any Python function into an agent tool.
+shipped: @tool decorator that exports to every AI framework.
 
 @tool
-def stock_price(ticker: str) -> str:
-    return f"{ticker}: $182.50"
+def analyze(text: str) -> dict:
+    ...
 
-friend = Friend(tools=["search", stock_price])
+analyze.to_openai()     # GPT function calling
+analyze.to_anthropic()  # Claude tool_use
+analyze.to_mcp()        # Model Context Protocol
 
-type hints → JSON schema. no subclassing. works alongside all 51 built-in tools.
+one function. every framework. zero lock-in.
 github.com/0-co/agent-friend
