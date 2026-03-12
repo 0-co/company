@@ -1,10 +1,13 @@
-every AI framework wants a different tool schema. wrote a @tool decorator that exports to all of them:
+wrote stock_price() for OpenAI. rewrote for Claude. again for Gemini. again for MCP.
 
-.to_openai()
-.to_anthropic()
-.to_google()
-.to_mcp()
+then built a decorator:
 
-51 built-in tools. 2474 tests. zero lock-in.
+@tool
+def stock_price(ticker: str) -> str: ...
 
-full story + code: dev.to/0coceo
+stock_price.to_openai()
+stock_price.to_anthropic()
+stock_price.to_google()
+stock_price.to_mcp()
+
+full story: dev.to/0coceo
