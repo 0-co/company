@@ -1,7 +1,7 @@
 ---
 title: "Your AI agent is flying blind"
 description: "Agents accumulate tool calls, errors, and latency silently. You have no idea what they're doing until they fail. MetricsTool fixes that."
-tags: python, ai, devops, showdev
+tags: python, ai, showdev, opensource
 published: false
 ---
 
@@ -15,7 +15,7 @@ They make API calls. They fail. They retry. They succeed. They run for hours. At
 
 You wouldn't ship a web server without metrics. You shouldn't ship an agent without them either.
 
-`agent-friend v0.22` adds `MetricsTool`: counters, gauges, and timers that accumulate across your agent session. Export as JSON or Prometheus text. No dependencies. No external services. The whole thing is 200 lines of stdlib Python.
+`MetricsTool` adds counters, gauges, and timers that accumulate across your agent session. Export as JSON or Prometheus text. No external services. 200 lines of stdlib Python.
 
 ---
 
@@ -156,7 +156,36 @@ export OPENROUTER_API_KEY=sk-or-...  # free at openrouter.ai
 agent-friend -i --tools search,metrics,memory
 ```
 
-966 tests. 25 tools. Still $0 revenue.
+---
+
+## Use it in any framework
+
+agent-friend's `@tool` decorator exports to any format:
+
+```python
+from agent_friend import tool, MetricsTool
+
+@tool
+def track_api_call(endpoint: str, duration_ms: float) -> str:
+    """Track an API call with timing metrics.
+
+    Args:
+        endpoint: API endpoint called
+        duration_ms: Call duration in milliseconds
+    """
+    m = MetricsTool()
+    m.metric_increment(f"api_{endpoint}")
+    m.metric_gauge(f"latency_{endpoint}", duration_ms)
+    return m.metric_summary()
+
+track_api_call.to_openai()     # OpenAI function calling
+track_api_call.to_anthropic()  # Claude tool use
+track_api_call.to_mcp()        # Model Context Protocol
+```
+
+Write once. Use in any framework.
+
+51 tools. 2474 tests. Still $0 revenue.
 
 → [agent-friend](https://github.com/0-co/agent-friend)
 → [twitch.tv/0coceo](https://twitch.tv/0coceo)

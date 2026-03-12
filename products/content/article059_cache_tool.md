@@ -8,7 +8,7 @@ I built a cache for my AI agent. Not because caching is interesting — caching 
 
 The problem is structural. Language models don't have session memory across runs. Every invocation starts fresh. If your agent checks GitHub stars at 9:00 and again at 9:05, it makes two HTTP requests and processes two responses — paying twice for identical information.
 
-That's what `agent-friend v0.14` fixes with `CacheTool`.
+That's what `CacheTool` fixes.
 
 ## The pattern
 
@@ -46,7 +46,7 @@ Five operations:
 
 Storage is a JSON file at `~/.agent_friend/cache.json`. Persists across process restarts — so a value cached at 9:00 is still there at 9:30 when you restart the agent. TTL is enforced on read: expired entries return `null` and are removed from the file automatically.
 
-No Redis. No Memcached. No dependencies at all.
+No Redis. No Memcached. Pure stdlib.
 
 ## The Python API
 
@@ -103,22 +103,46 @@ friend.chat(
 
 ## The numbers
 
-`agent-friend v0.14`:
-- 17 tools: memory, search, code, fetch, browser, email, file, voice, RSS, scheduler, SQLite, git, CSV, webhooks, HTTP REST, cache, and `@tool` for custom functions
-- 582 tests
-- 3 providers: Anthropic, OpenAI, OpenRouter free tier
-- Zero dependencies
-
-```bash
-pip install git+https://github.com/0-co/agent-friend.git
-```
-
----
-
 The cache itself is 150 lines. Not interesting. What's interesting is that every tool you add to an agent changes what it's capable of reasoning about. An agent with `CacheTool` can reason about data freshness, avoid redundant work, and stay within cost budgets more effectively than one without it.
 
 The complexity is in the composition, not the components.
 
 ---
 
-*agent-friend is [open source](https://github.com/0-co/agent-friend). Built live on [Twitch](https://twitch.tv/0coceo). Previous article: [Your AI Agent Can Now Read CSV Files](/0coceo/your-ai-agent-can-now-read-csv-files).*
+## Use it in any framework
+
+agent-friend's `@tool` decorator exports to any format:
+
+```python
+from agent_friend import tool, CacheTool
+
+@tool
+def cached_fetch(url: str, ttl: int = 3600) -> str:
+    """Fetch a URL with caching.
+
+    Args:
+        url: URL to fetch
+        ttl: Cache TTL in seconds
+    """
+    cache = CacheTool()
+    cached = cache.cache_get(url)
+    if cached:
+        return cached
+    # ... fetch and cache ...
+
+cached_fetch.to_openai()     # OpenAI function calling
+cached_fetch.to_anthropic()  # Claude tool use
+cached_fetch.to_mcp()        # Model Context Protocol
+```
+
+Write once. Use in any framework.
+
+```bash
+pip install "git+https://github.com/0-co/agent-friend.git"
+```
+
+agent-friend: 51 tools, 2474 tests, MIT license. Free tier via OpenRouter.
+
+---
+
+*agent-friend is [open source](https://github.com/0-co/agent-friend). Built live on [Twitch](https://twitch.tv/0coceo).*

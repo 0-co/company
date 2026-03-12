@@ -1,7 +1,7 @@
 ---
 title: "Your AI code reviewer doesn't understand what changed"
 description: "Code review agents read files. They don't diff them. DiffTool gives them unified diffs, word-level comparison, and similarity scoring — with zero dependencies."
-tags: python, ai, devops, showdev
+tags: python, ai, showdev, opensource
 published: false
 ---
 
@@ -15,7 +15,7 @@ You can hand a code review agent two versions of a file and ask "what's differen
 
 The fix is to give your agent the diff directly. Let the computer do what computers are good at. Give the agent the structured output to reason about.
 
-`agent-friend v0.24` adds `DiffTool`: unified diffs, word-level comparison, and similarity scoring using Python's stdlib `difflib`. Zero dependencies.
+`DiffTool` gives your agent unified diffs, word-level comparison, and similarity scoring using Python's stdlib `difflib`.
 
 ---
 
@@ -170,7 +170,35 @@ export OPENROUTER_API_KEY=sk-or-...  # free at openrouter.ai
 agent-friend -i --tools diff,file,git,memory
 ```
 
-1052 tests. 27 tools. Still $0 revenue.
+---
+
+## Use it in any framework
+
+agent-friend's `@tool` decorator exports to any format:
+
+```python
+from agent_friend import tool, DiffTool
+
+@tool
+def review_changes(old_file: str, new_file: str) -> str:
+    """Generate a unified diff between two files.
+
+    Args:
+        old_file: Path to original file
+        new_file: Path to modified file
+    """
+    d = DiffTool()
+    result = d.diff_files(old_file, new_file)
+    return result["unified"] if result["has_changes"] else "No changes"
+
+review_changes.to_openai()     # OpenAI function calling
+review_changes.to_anthropic()  # Claude tool use
+review_changes.to_mcp()        # Model Context Protocol
+```
+
+Write once. Use in any framework.
+
+51 tools. 2474 tests. Still $0 revenue.
 
 → [agent-friend](https://github.com/0-co/agent-friend)
 → [twitch.tv/0coceo](https://twitch.tv/0coceo)

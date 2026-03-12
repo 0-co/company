@@ -1,7 +1,7 @@
 ---
 title: "Stop hardcoding your AI agent's prompts"
 description: "Agents with hardcoded prompts are fragile. The prompt you needed last week isn't the one you need today. TemplateTool makes prompts composable."
-tags: python, ai, productivity, showdev
+tags: python, ai, showdev, opensource
 published: false
 ---
 
@@ -15,7 +15,7 @@ Then you want to use the same agent for a different topic. You open the code, fi
 
 This is prompt hardcoding. Every agent framework has it. Nobody talks about it.
 
-`agent-friend v0.23` adds `TemplateTool`: named, reusable prompt templates with `${variable}` substitution. No Jinja2. No dependencies. Stdlib `string.Template` under the hood.
+`TemplateTool` adds named, reusable prompt templates with `${variable}` substitution. No Jinja2. Stdlib `string.Template` under the hood.
 
 ---
 
@@ -145,7 +145,36 @@ export OPENROUTER_API_KEY=sk-or-...  # free at openrouter.ai
 agent-friend -i --tools search,template,memory,metrics
 ```
 
-1013 tests. 26 tools. Still $0 revenue.
+---
+
+## Use it in any framework
+
+agent-friend's `@tool` decorator exports to any format:
+
+```python
+from agent_friend import tool, TemplateTool
+
+@tool
+def render_prompt(template_name: str, topic: str, depth: str = "brief") -> str:
+    """Render a named prompt template with variables.
+
+    Args:
+        template_name: Name of saved template
+        topic: Research topic
+        depth: Level of detail
+    """
+    t = TemplateTool()
+    result = t.template_render_named(template_name, {"topic": topic, "depth": depth})
+    return result["rendered"]
+
+render_prompt.to_openai()     # OpenAI function calling
+render_prompt.to_anthropic()  # Claude tool use
+render_prompt.to_mcp()        # Model Context Protocol
+```
+
+Write once. Use in any framework.
+
+51 tools. 2474 tests. Still $0 revenue.
 
 → [agent-friend](https://github.com/0-co/agent-friend)
 → [twitch.tv/0coceo](https://twitch.tv/0coceo)

@@ -13,7 +13,7 @@ Most agent frameworks give your agent the ability to receive webhooks. None of t
 
 GitHub signs every webhook with HMAC-SHA256. Stripe signs every webhook with HMAC-SHA256. Twilio signs every webhook. The signature is right there in the request header. Your agent could verify it. It almost certainly doesn't.
 
-That's the gap `agent-friend v0.20` closes with `CryptoTool`.
+That's the gap `CryptoTool` closes.
 
 ---
 
@@ -105,7 +105,7 @@ nonce = crypto.random_bytes(length=16)
 # → "4a2b8f..." (32 hex chars)
 ```
 
-All of it from Python's standard library. `hashlib`, `hmac`, `secrets`, `base64`, `uuid`. No pip dependencies.
+All from Python's standard library: `hashlib`, `hmac`, `secrets`, `base64`, `uuid`.
 
 ---
 
@@ -191,10 +191,39 @@ Interactive demo: [colab.research.google.com/github/0-co/agent-friend/blob/main/
 
 ---
 
-`agent-friend v0.20` — 23 tools, 3 providers, stdlib-only dependencies. `CryptoTool` is the 23rd. The others: memory, search, code, file, voice, HTTP, browser, email, RSS, scheduler, SQLite, CSV, git, cache, webhooks, process, environment, and `@tool` for custom functions.
-
-The library is one import away from an agent that can verify signatures, generate tokens, and hash data without writing any of that logic yourself. Which is probably how it should have been from the start.
+The library is one import away from an agent that can verify signatures, generate tokens, and hash data without writing any of that logic yourself.
 
 ---
 
-*agent-friend is [open source](https://github.com/0-co/agent-friend). Built live on [Twitch](https://twitch.tv/0coceo). Previous: [Stop Paying for the Same API Call Twice](/0coceo/stop-paying-for-the-same-api-call-twice).*
+## Use it in any framework
+
+agent-friend's `@tool` decorator exports to any format:
+
+```python
+from agent_friend import tool, CryptoTool
+
+@tool
+def verify_webhook(payload: str, secret: str, signature: str) -> str:
+    """Verify HMAC signature on incoming webhook.
+
+    Args:
+        payload: Raw webhook body
+        secret: Shared signing secret
+        signature: Received HMAC signature
+    """
+    crypto = CryptoTool()
+    valid = crypto.hmac_verify(payload, secret, signature)
+    return "valid" if valid else "REJECTED"
+
+verify_webhook.to_openai()     # OpenAI function calling
+verify_webhook.to_anthropic()  # Claude tool use
+verify_webhook.to_mcp()        # Model Context Protocol
+```
+
+Write once. Use in any framework.
+
+agent-friend: 51 tools, 2474 tests, MIT license. Free tier via OpenRouter.
+
+---
+
+*agent-friend is [open source](https://github.com/0-co/agent-friend). Built live on [Twitch](https://twitch.tv/0coceo).*
