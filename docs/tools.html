@@ -190,19 +190,18 @@
 
   <!-- Hero -->
   <div class="hero">
-    <div class="hero-eyebrow">Open-source · Python · Zero dependencies</div>
-    <h1>AI Agent Infrastructure</h1>
+    <div class="hero-eyebrow">Open-source · Python · Universal Tool Adapter</div>
+    <h1>Write Once, Use in Any AI Framework</h1>
     <p class="hero-desc">
-      22 Python packages for building reliable, observable, and testable AI agents.
+      @tool decorator exports to OpenAI, Claude, Gemini, MCP. Plus 51 built-in tools and a full agent runtime.
       Built live on Twitch by an autonomous AI company. MIT licensed.
     </p>
     <div class="hero-stats">
-      <div class="stat"><div class="n">51</div><div class="l">Tools</div></div>
-      <div class="stat"><div class="n">0</div><div class="l">Dependencies*</div></div>
-      <div class="stat"><div class="n">2401</div><div class="l">Tests</div></div>
+      <div class="stat"><div class="n">5</div><div class="l">Frameworks</div></div>
+      <div class="stat"><div class="n">51</div><div class="l">Built-in Tools</div></div>
+      <div class="stat"><div class="n">2474</div><div class="l">Tests</div></div>
       <div class="stat"><div class="n">MIT</div><div class="l">License</div></div>
     </div>
-    <p style="font-size:0.72rem;color:#8b949e;margin-top:12px;">* most packages; agent-friend has optional deps for tools</p>
   </div>
 
   <!-- Featured: agent-friend -->
@@ -213,15 +212,15 @@
         <div>
           <div class="featured-name">agent-friend</div>
           <div class="badges">
-            <span class="badge badge-green">v0.48.0</span>
-            <span class="badge badge-blue">2401 tests</span>
+            <span class="badge badge-green">v0.49.0</span>
+            <span class="badge badge-blue">2474 tests</span>
             <span class="badge badge-orange">Free tier via OpenRouter</span>
             <span class="badge badge-green">MIT</span>
           </div>
         </div>
       </div>
       <p class="featured-desc">
-        A personal AI agent. 51 tools: memory, web search, code execution, file I/O, email, voice, RSS, scheduler, SQLite, git, CSV/tabular data, webhooks, HTTP client, cache, notifications, JSON querying, datetime, shell commands, environment variables, cryptographic utilities, input validation, session metrics, parameterized templates, text/file diffs, retry with circuit breaker, HTML parsing, XML parsing, regex operations, rate limiting, work queues, pub/sub event bus, finite state machines, map/filter/reduce over JSON, directed graphs, human-readable formatting, in-memory full-text search (BM25), hierarchical configuration management, text/list chunking for LLM context windows, in-memory vector store (cosine/euclidean/dot), stopwatch timers + countdown + benchmarking, descriptive statistics (mean/median/std/correlation/outliers/histogram), random sampling+shuffling+splitting, workflow/pipeline runner with retries+conditional steps, threshold-based alerting (gt/gte/lt/between/contains/cooldown), named mutex locking with TTL+wait, structured audit log (search/stats/timeline/export), batch map/filter/reduce/partition with custom functions, structured data transformation (pick/omit/rename/coerce/flatten/merge), and custom tools via <code>@tool</code>. Works with Anthropic, OpenAI, or OpenRouter (free tier — no credit card required). 2401 tests, stdlib-only core.
+        Universal AI tool adapter. Write a Python function, decorate with <code>@tool</code>, export to OpenAI, Claude, Gemini, MCP, or raw JSON Schema. One function, every framework. Plus 51 built-in tools and a full agent runtime with memory, search, code execution, and more. Works with Anthropic, OpenAI, or OpenRouter (free tier — no credit card required). 2474 tests.
       </p>
 
       <div class="install-block">
@@ -232,22 +231,24 @@
 
       <div class="code-block">
         <button class="copy-btn" onclick="copyBlock(this)">Copy</button>
-        <pre><span class="keyword">from</span> agent_friend <span class="keyword">import</span> <span class="class-name">Friend</span>
+        <pre><span class="keyword">from</span> agent_friend <span class="keyword">import</span> tool, <span class="class-name">Toolkit</span>
 
-<span class="comment"># Free tier — get key at openrouter.ai (no credit card)</span>
-friend = <span class="class-name">Friend</span>(
-    seed=<span class="string">"You are a helpful assistant."</span>,
-    model=<span class="string">"google/gemini-2.0-flash-exp:free"</span>,
-    tools=[<span class="string">"search"</span>, <span class="string">"memory"</span>, <span class="string">"code"</span>, <span class="string">"file"</span>],
-)
+<span class="keyword">@</span><span class="func">tool</span>
+<span class="keyword">def</span> <span class="func">get_weather</span>(city: <span class="class-name">str</span>, unit: <span class="class-name">str</span> = <span class="string">"celsius"</span>) -> <span class="class-name">dict</span>:
+    <span class="string">"""Get current weather for a city.
 
-response = friend.chat(<span class="string">"Search for AI news today and summarize the top 3 stories"</span>)
-<span class="func">print</span>(response.text)
+    Args:
+        city: The city name
+        unit: Temperature unit (celsius or fahrenheit)
+    """</span>
+    <span class="keyword">return</span> {<span class="string">"temp"</span>: <span class="number">22</span>, <span class="string">"unit"</span>: unit, <span class="string">"city"</span>: city}
 
-<span class="comment"># Multi-turn — memory persists automatically</span>
-friend.chat(<span class="string">"My name is Alice and I work on agent infrastructure"</span>)
-friend.reset()  <span class="comment"># clears history but not memory</span>
-response = friend.chat(<span class="string">"What do you know about me?"</span>)  <span class="comment"># remembers Alice</span></pre>
+<span class="comment"># Export to any AI framework</span>
+get_weather.to_openai()      <span class="comment"># OpenAI function calling</span>
+get_weather.to_anthropic()   <span class="comment"># Claude tool_use</span>
+get_weather.to_google()      <span class="comment"># Gemini</span>
+get_weather.to_mcp()         <span class="comment"># Model Context Protocol</span>
+get_weather.to_json_schema() <span class="comment"># Raw JSON Schema</span></pre>
       </div>
 
       <div class="btn-row">
