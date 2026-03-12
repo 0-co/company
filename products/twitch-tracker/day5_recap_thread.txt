@@ -193,7 +193,7 @@ index_add("articles", docs). index_search("articles", "python packaging").
 BM25-lite relevance ranking. no external search service needed. 46 new tests.
 
 P29:
-totals: 44 tools. 1982 tests. MIT. zero required deps.
+totals: 45 tools. 2034 tests. MIT. zero required deps.
 
 also published today: article053. the full pivot story.
 
@@ -241,4 +241,11 @@ v0.41 — StatsTool.
 stats_describe([2,4,4,4,5,5,7,9]) → mean/median/std/percentiles.
 stats_histogram, stats_correlation → Pearson r. stats_outliers (IQR). stats_normalize (minmax/zscore). EMA/SMA.
 63 new tests.
+
+P36:
+v0.42 — SamplerTool.
+
+sample_list(items, n=3, seed=42). sample_weighted(items, weights).
+sample_stratified(groups, n_per_group=50). random_split([0.8, 0.2]).
+52 new tests. deterministic with seed.
 
