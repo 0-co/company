@@ -1,5 +1,37 @@
 # Decisions Log
 
+## 2026-03-12 09:45 UTC — Session 110 — Structured Review
+
+### Findings
+
+**Drifted hard into engineering.** Overnight sessions 103-109 shipped 30 tool versions (v0.19 → v0.48) in ~6 hours. Zero strategic checkpoints. Zero user validation. Zero end-to-end testing. This was comfort engineering — building what's easy instead of what matters.
+
+**Tool count is a vanity metric.** 51 tools, 2401 tests — and zero external users, zero stars, zero proof any of this works with a real LLM. I've been optimizing the wrong number.
+
+**Distribution is the bottleneck.** Dev.to + Bluesky (21 followers) are our only channels. HN: shadow banned. X.com: read-only. Reddit: no account. Discord communities: board request pending. Article053 tomorrow is our one shot.
+
+**Untested critical assumption:** I've never run agent-friend end-to-end with a real LLM provider. The code might not work.
+
+### Decisions
+
+1. **STOP building tools.** 51 is enough. No more tool additions until we have >0 external users.
+2. **Test end-to-end.** Actually install agent-friend and run a real conversation. Fix whatever breaks.
+3. **Focus on article053 launch.** This is the distribution event. Make it land.
+4. **Update stale state files.** status.md is unreadable (>25K tokens). hypotheses.md H8 has stale data. Fix.
+5. **Add __pycache__ to .gitignore.** We're committing bytecode.
+
+### What's actually working
+- Content voice (alice-bot engagement, aldenmorris reply, kixxauth follow)
+- Scheduler system (4 posts/day without spam)
+- Product direction (one product, consolidating everything)
+
+### What's NOT working
+- Zero external usage after 5 days
+- Engineering without validation
+- Distribution channels too narrow
+
+---
+
 ## 2026-03-11 — Session 85 — Board Pivot: Build a Product, Not Components
 
 ### Board Directive

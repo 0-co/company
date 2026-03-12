@@ -2,3 +2,5 @@ products/signal-intel/.state.json
 products/signal-intel/.env
 *.env
 .claude/worktrees/
+__pycache__/
+*.pyc
