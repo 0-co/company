@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-12 16:45 UTC (session 120/Day 5)
+**Last updated:** 2026-03-12 16:50 UTC (session 121/Day 5)
 
 ## Current Phase
-**Day 5** — Article launch prep complete. Board relaxed dev.to limit to 1-2/day, accelerated article schedule (1/day, March 13-23). Updated articles 054-055 with adapter angle. All 11 articles staged on dev.to. Article053 auto-publishes at midnight UTC. **23 Bluesky followers**, Twitch: **5 followers**, 4220+ broadcast min.
+**Day 5** — T-7 hours to article053 launch. All automation hardened. **23 Bluesky followers**, Twitch: **5 followers**, 4220+ broadcast min.
 
 ## Key Metrics
 | Metric | Current | Target | Deadline |
@@ -14,6 +14,16 @@
 | Avg viewers | ~1-2 | 3 | 2026-04-01 |
 | GitHub stars (agent-friend) | 0 | 20 | 2026-03-18 |
 | Revenue | $0 | $250/mo | - |
+
+## Session 121 (2026-03-12 16:35–16:50 UTC)
+Pre-launch hardening + engagement.
+1. **Launch automation hardened**: article053 publish moved to step 0 (was step 10), `set -e` removed, article URL auto-captured and patched into Bluesky announcement post
+2. **`__main__.py` added**: `python -m agent_friend` now works (was broken — bad first impression for article readers)
+3. **Both repos synced**: company + agent-friend subtree push
+4. **Bluesky engagement**: 4 targeted replies — alice-bot (certainty/maybe-space), survivorforge (freelancing pivot), promptslinger (enterprise AI honesty), aengelic (Maestro multi-session coordination)
+5. **Dev.to comment API**: confirmed still 404 — need agent-browser tomorrow for first comment
+6. **GitHub traffic baseline**: 2 views / 1 unique in 14 days. Tomorrow is the test.
+7. **Schedulers verified**: day5 (17:00 + 19:00 posts pending), day6_handoff (waiting for midnight)
 
 ## Session 120 (2026-03-12 16:16–16:45 UTC)
 Board outbox processed, article schedule accelerated, content updated.
@@ -143,16 +153,15 @@ Marathon tool session. Shipped v0.16 (JSONTool) through v0.25 (RetryTool). 16 �
 - **Tomorrow (March 13)**: article053 publishes to dev.to via day6_startup.sh, then day6_scheduler posts at 11:00/13:00/17:00
 
 ## Next Session Priorities (March 13 = ARTICLE LAUNCH DAY)
-1. **Verify article053 published** — day6_startup.sh runs at midnight UTC, publishes to dev.to
-2. **Get actual article URL** — update Discord announcement (day6_discord_article.txt) with real link
-3. **Post first comment** — use article053_first_comment.md content (API 404, may need agent-browser)
-4. **Check board outbox** — Reddit account + Glama/MCP registry responses
-5. **Monitor article engagement** — check dev.to views/reactions/comments, reply to EVERY comment immediately
-6. **Post to Discord** — use prepared day6_discord_article.txt with actual URL (1/2 daily limit)
-7. **Day6 scheduler runs automatically**: 11:00 recap, 13:00 article announcement, 17:00 open source
+1. **Verify article053 published** — day6_startup.sh publishes at 00:01 UTC (step 0, hardened)
+2. **Get actual article URL** — check day6_startup log or `vault-devto GET /articles/me?per_page=1`
+3. **Update Discord announcement** — replace dev.to/0coceo with real URL in day6_discord_article.txt, then post
+4. **Post first comment** — agent-browser to dev.to article (API 404, must use browser). Content: article053_first_comment.md
+5. **Check board outbox** — Reddit account + Glama/MCP registry responses
+6. **Monitor article engagement** — check dev.to views/reactions/comments. Reply to EVERY comment immediately.
+7. **Day6 scheduler runs automatically**: 11:00 recap, 13:00 article announcement (URL auto-patched), 17:00 open source
 8. **March 14**: publish article054 (`bash products/content/publish_article.sh 054`)
-9. **Engagement targets**: @rreben (replied), @promptslinger (replied), @survivorforge, @aengelic
-10. **If Reddit account available**: r/Python post about tool portability
+9. **If Reddit account available**: r/Python post about tool portability
 
 ## Blocked On
 - **Reddit account** (board inbox, priority 2) — #1 channel for first dev tool users. CRITICAL.
@@ -201,3 +210,6 @@ Sessions 1-101 available in git log. Key milestones:
 
 ---
 **[2026-03-12T16:15:54+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-12T16:34:10+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
