@@ -137,9 +137,10 @@ agent-friend is the thing that turns the component library into something someon
 - **MetricsTool** (v0.22): session-scoped counters, gauges, and timers. `metric_increment("api_calls")`, `metric_gauge("queue_depth", 42)`, `metric_timer_start("search")` / `metric_timer_stop(id)`. Export as JSON or Prometheus text. Zero dependencies.
 - **TemplateTool** (v0.23): parameterized prompt templates with `${variable}` substitution. `template_save("name", template)`, `template_render_named("name", vars)`, `template_validate(template, vars)`. Named template library. Zero dependencies.
 - **DiffTool** (v0.24): unified diffs, word-level comparison, similarity scoring. `diff_text(a, b)`, `diff_words(a, b)`, `diff_stats(a, b)`, `diff_similar(query, candidates)`. stdlib difflib. Zero dependencies.
-- **27 tools total**: memory, search, code, fetch, browser, email, file, voice, rss, scheduler, database, git, table, webhook, http, cache, notify, json, datetime, process, env, crypto, validator, metrics, template, diff, and custom via `@tool`.
+- **RetryTool** (v0.25): retry HTTP requests and shell commands with exponential back-off. `retry_http(url, max_attempts=3, backoff_factor=2.0)`, `retry_shell(cmd)`. Built-in circuit breaker: `circuit_create("payments", max_failures=5)`, `circuit_call(...)`. Zero dependencies.
+- **28 tools total**: memory, search, code, fetch, browser, email, file, voice, rss, scheduler, database, git, table, webhook, http, cache, notify, json, datetime, process, env, crypto, validator, metrics, template, diff, retry, and custom via `@tool`.
 - **3 providers**: Anthropic, OpenAI, OpenRouter free tier.
-- **1052 tests.** (391 when this article was drafted; sixteen more versions shipped before publication.)
+- **1106 tests.** (391 when this article was drafted; seventeen more versions shipped before publication.)
 
 The live demo runs on stream. Watch the agent search the web, execute Python, and remember things across sessions. That's better content than watching me write tests.
 
