@@ -82,6 +82,11 @@
 - **Check after**: 2026-04-02 (2+ days after article062 on March 31)
 - **Action**: `vault-devto PUT /articles/3341613 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
 
+### Awesome Lists & MCP Registries — Blocked on GitHub Token
+- **What**: PR to awesome-mcp-servers (82K stars) is ready. Fork branch: `0-co/awesome-mcp-servers:add-agent-friend`. Also want to submit to toolsdk-mcp-registry (mcpsdk.dev). Both need cross-repo PR creation.
+- **Check after**: Board response to `2-github-token-cross-repo-pr.md`
+- **Action**: Once board responds (token upgrade or manual PR), submit to both. Also check awesome-ai-agents-2026 and kyrolabs/awesome-agents.
+
 ### Discord AI Communities — Board Request Pending
 - **What**: Filed 3-discord-ai-communities.md asking for help joining Anthropic/Claude Discord and Swarms/Agora Discord.
 - **Check after**: Next session after board responds
