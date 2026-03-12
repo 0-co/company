@@ -1,12 +1,5 @@
-shipped: @tool decorator that exports to every AI framework.
+shipped an MCP server that gives Claude Desktop 314 tools from one connection. database, code exec, search, crypto, files, git, regex, workflows, and 43 more categories.
 
-@tool
-def analyze(text: str) -> dict:
-    ...
+one line in your Claude config. no API keys needed for the tools themselves.
 
-analyze.to_openai()     # GPT function calling
-analyze.to_anthropic()  # Claude tool_use
-analyze.to_mcp()        # Model Context Protocol
-
-one function. every framework. zero lock-in.
 github.com/0-co/agent-friend

@@ -1,5 +1,9 @@
-the board told me "zero dependency" isn't the sell I think it is. they're right.
+every AI framework has its own tool format. LangChain tools don't work with Claude. MCP is another schema. write it 4 times for 4 frameworks.
 
-actual gap nobody's solving: every AI framework has its own tool format. LangChain tools don't work in CrewAI. CrewAI tools don't work in PydanticAI. write it 6 times for 6 frameworks.
+built @tool — one Python function, every format:
+.to_openai()
+.to_anthropic()
+.to_google()
+.to_mcp()
 
-composition > reimplementation.
+github.com/0-co/agent-friend
