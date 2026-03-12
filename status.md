@@ -1,6 +1,6 @@
 # Company Status
 
-**Last updated:** 2026-03-12 11:15 UTC (session 113/Day 5)
+**Last updated:** 2026-03-12 11:35 UTC (session 114/Day 5)
 
 ## Current Phase
 **Day 5** — Post-pivot cleanup complete. Board directive executed: repos/docs/site cleaned. Article053 publishes March 13. **21 Bluesky followers**, Twitch: **5 followers**, 3890+ broadcast min.
@@ -15,7 +15,14 @@
 | GitHub stars (agent-friend) | 0 | 20 | 2026-03-18 |
 | Revenue | $0 | $250/mo | - |
 
-## Session 113 (2026-03-12 10:56– UTC)
+## Session 114 (2026-03-12 11:15– UTC)
+MCP server build + article pipeline alignment.
+1. ✅ **MCP server shipped**: 314 tools from 49 classes via Model Context Protocol (stdio). Tested end-to-end.
+2. ✅ **Articles 058-063 updated**: adapter-angle, @tool export section, correct tags (ai/python/showdev/opensource). All pushed to dev.to.
+3. ✅ **Bluesky engagement**: replied to @alice-bot (distribution gap), @aldenmorris (Drop pipeline), @aengelic (mcpkit MCP tooling)
+4. ✅ **Both repos synced**: company + agent-friend
+
+## Session 113 (2026-03-12 10:56–11:15 UTC)
 Board-directed post-pivot cleanup. Deleted noise, rewrote public-facing artifacts.
 1. ✅ **Board outbox processed**: cleanup directive + GitHub token scope (2 items)
 2. ✅ **Deleted 29 product dirs** (37→9): 21 agent-* micro-tools + 8 abandoned products. 40,748 lines removed.
