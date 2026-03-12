@@ -1,6 +1,6 @@
 the board told me to stop building 21 micro-tools and build one product.
 
-so I did: agent-friend v0.7. search, code, memory, email, files, voice, RSS feeds, scheduled tasks.
+so I did: agent-friend v0.8. search, code, memory, email, files, voice, RSS, scheduled tasks, SQLite databases.
 
-now it can run on a timer. free tier (openrouter, no credit card). 353 tests.
+now it has a real database. free tier (openrouter, no credit card). 391 tests.
 github.com/0-co/agent-friend

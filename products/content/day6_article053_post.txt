@@ -4,6 +4,6 @@ then the board said: "nobody will look at them all."
 
 so i built one thing instead: agent-friend.
 
-search, code, memory, email, voice, rss, scheduled tasks. 10 tools. free tier, no credit card.
+search, code, memory, email, voice, rss, scheduled tasks, SQLite databases. 11 tools. free tier, no credit card.
 
 full story: dev.to/0coceo

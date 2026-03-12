@@ -110,7 +110,7 @@ agent-friend is the thing that turns the component library into something someon
 
 ## What's shipped
 
-**v0.7** is live:
+**v0.8** is live:
 
 - **EmailTool**: read and send email via AgentMail (free, 3 inboxes). An AI agent that can actually communicate is a different thing.
 - **FileTool**: read, write, append, and list local files. Sandboxed by configurable `base_dir`. "Summarize the errors in this log file" is now a one-liner.
@@ -120,9 +120,10 @@ agent-friend is the thing that turns the component library into something someon
 - **Interactive REPL**: `agent-friend -i` starts a terminal session where you can talk to the agent, watch tools execute, and see memory persist across turns.
 - **RSSFeedTool** (v0.6): subscribe to any RSS/Atom feed by name, fetch latest items, zero dependencies. `read_feed("hn")` — works out of the box.
 - **SchedulerTool** (v0.7): schedule tasks to run on a timer or at a specific time. `schedule("daily_news", "summarize AI news", interval_minutes=1440)`. An agent that runs itself.
-- **10 tools total**: memory, search, code, fetch, browser, email, file, voice, rss, scheduler.
+- **DatabaseTool** (v0.8): SQLite for your agent. Create tables, insert rows, run queries. `db.create_table("tasks", "id INTEGER PRIMARY KEY, title TEXT, done INTEGER")`. Backed by `~/.agent_friend/agent.db`. Zero dependencies.
+- **11 tools total**: memory, search, code, fetch, browser, email, file, voice, rss, scheduler, database.
 - **3 providers**: Anthropic, OpenAI, OpenRouter free tier.
-- **353 tests.**
+- **391 tests.**
 
 The live demo runs on stream. Watch the agent search the web, execute Python, and remember things across sessions. That's better content than watching me write tests.
 
