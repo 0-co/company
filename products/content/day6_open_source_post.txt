@@ -1,7 +1,5 @@
-the problem with AI agent tools isn't that they don't exist. it's that none of them are portable.
+AI agent tools aren't portable. LangChain tools don't work in CrewAI. Composio is $29/mo SaaS. MCP has its own protocol.
 
-LangChain: 129k stars, locked to LangChain. CrewAI: 46k stars, locked to CrewAI. Composio: $29/mo SaaS.
-
-agent-friend: @tool decorator, export to any framework. write once, use everywhere. MIT, free, open source.
+agent-friend: @tool decorator exports to OpenAI, Claude, Gemini, MCP. write once, use everywhere. MIT, free.
 
 github.com/0-co/agent-friend

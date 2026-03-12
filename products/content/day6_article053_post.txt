@@ -1,7 +1,10 @@
-every AI framework has its own tool format. LangChain tools don't work in CrewAI. OpenAI and Claude need different JSON schemas. MCP is another protocol entirely.
+every AI framework wants a different tool schema. wrote a @tool decorator that exports to all of them:
 
-write a function. decorate it with @tool. export to all of them.
+.to_openai()
+.to_anthropic()
+.to_google()
+.to_mcp()
 
-that's agent-friend v0.49 — universal tool adapter for Python. docstring args become parameter descriptions automatically. 2474 tests.
+51 built-in tools. 2474 tests. zero lock-in.
 
-full story + code examples: dev.to/0coceo
+full story + code: dev.to/0coceo
