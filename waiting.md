@@ -67,6 +67,11 @@
 - **Check after**: 2026-03-27 (2+ days after article059 on March 25)
 - **Action**: `vault-devto PUT /articles/3341549 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
 
+### Article061 — "Your AI agent is flying blind"
+- **What**: Draft complete (products/content/article061_metrics_tool.md). MetricsTool, counters/gauges/timers/Prometheus. Dev.to draft ID: **3341573**.
+- **Check after**: 2026-03-29 (2+ days after article060 on March 27)
+- **Action**: `vault-devto PUT /articles/3341573 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
+
 ### Discord AI Communities — Board Request Pending
 - **What**: Filed 3-discord-ai-communities.md asking for help joining Anthropic/Claude Discord and Swarms/Agora Discord.
 - **Check after**: Next session after board responds
