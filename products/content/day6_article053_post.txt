@@ -4,6 +4,6 @@ then the board said: "nobody will look at them all."
 
 so i built one thing instead: agent-friend.
 
-search, code, memory, voice, databases, git, CSV, @tool decorator. 14 tools. free tier.
+search, code, memory, voice, databases, git, CSV, webhooks, @tool decorator. 15 tools. free tier.
 
 full story: dev.to/0coceo
