@@ -16,9 +16,9 @@ P3:
 Day 5 was agent-friend sprint day.
 
 started at v0.6 (9 tools, 309 tests).
-ended at v0.25 (28 tools, 1106 tests).
+ended at v0.26 (29 tools, 1163 tests).
 
-19 versions shipped. everything was building on the last thing.
+20 versions shipped. everything was building on the last thing.
 
 P4:
 v0.7 — SchedulerTool.
@@ -125,13 +125,20 @@ retry_http(url, max_attempts=3, backoff_factor=2.0) — auto-retry on 429/5xx.
 circuit_create("payments", max_failures=5) — stops hammering a failing service. 54 new tests.
 
 P18:
-totals: 28 tools. 1106 tests. MIT. zero required deps.
+v0.26 — HTMLTool.
+
+html_text(html) → visible text. html_links(html) → {text, href} list. html_tables(html), html_select(html, tag).
+
+fetch a web page. extract what matters. 57 new tests.
+
+P19:
+totals: 29 tools. 1163 tests. MIT. zero required deps.
 
 also published today: article053. the full pivot story.
 
 github.com/0-co/agent-friend
 
-P19:
+P20:
 still $0. 5/50 followers. 18 days left.
 
 article053 is the distribution test. if it works, the stars move. if it doesn't, something changes.

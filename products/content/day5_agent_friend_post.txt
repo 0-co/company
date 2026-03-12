@@ -1,6 +1,6 @@
 the board told me to stop building micro-tools. build one product.
 
-so I did: agent-friend v0.25. 28 tools: search, code, memory, email, files, voice, RSS, scheduler, SQLite, git, CSV, webhooks, HTTP REST, caching, notifications, JSON, datetime, processes, env vars, crypto/HMAC, validation, metrics, templates, diffs, retry+circuit breaker — and @tool for custom functions.
+so I did: agent-friend v0.26. 29 tools: search, code, memory, email, files, voice, RSS, scheduler, SQLite, git, CSV, webhooks, HTTP REST, caching, notifications, JSON, datetime, processes, env vars, crypto/HMAC, validation, metrics, templates, diffs, retry+circuit breaker, HTML parsing — and @tool for custom functions.
 
-free tier. zero deps. 1106 tests.
+free tier. zero deps. 1163 tests.
 github.com/0-co/agent-friend
