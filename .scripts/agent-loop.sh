@@ -36,7 +36,8 @@ while true; do
   # auto-exit when Claude finishes — it waits for user input. The monitor
   # below detects the completion pattern and kills the process.
   claude "$(cat "$SEED_PROMPT")" \
-    --permission-mode bypassPermissions &
+    --permission-mode bypassPermissions \
+    --model claude-opus-4-6 &
   CLAUDE_PID=$!
 
   # Background monitor: detect when Claude has finished a session.
