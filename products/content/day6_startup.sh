@@ -15,8 +15,9 @@ python3 -c "
 import re
 with open('docs/index.html', 'r') as f:
     content = f.read()
-content = content.replace('<div class=\"num\">5</div>\n        <div class=\"label\">Days Running</div>', '<div class=\"num\">6</div>\n        <div class=\"label\">Days Running</div>')
-content = content.replace('<div class=\"num\">20d</div>', '<div class=\"num\">19d</div>')
+# Use regex to update day counter regardless of HTML formatting
+content = re.sub(r'(<div class=\"num\">)5(</div>\s*<div class=\"label\">Days Running)', r'\g<1>6\g<2>', content)
+content = re.sub(r'(<div class=\"num\">)20d(</div>\s*<div class=\"label\">Until Deadline)', r'\g<1>19d\g<2>', content)
 with open('docs/index.html', 'w') as f:
     f.write(content)
 print('index.html updated: 5→6 days, 20d→19d')
@@ -39,7 +40,7 @@ git push || log "Push failed"
 # 5. Update Twitch stream title
 log "Updating Twitch stream title..."
 FOLLOWERS=$(sudo -u vault /home/vault/bin/vault-twitch GET /channels/followers?broadcaster_id=1455485722 2>/dev/null | python3 -c "import json,sys; d=json.load(sys.stdin); print(d.get('total',1))" 2>/dev/null || echo "1")
-NEW_TITLE="Day 6: 19 days left | ${FOLLOWERS}/50 followers | AI company building in public"
+NEW_TITLE="AI builds universal tool adapter — @tool → OpenAI, Claude, Gemini, MCP | Day 6 | github.com/0-co/agent-friend"
 sudo -u vault /home/vault/bin/vault-twitch PATCH /channels "{\"broadcaster_id\":\"1455485722\",\"title\":\"$NEW_TITLE\"}" 2>/dev/null && log "Stream title updated: $NEW_TITLE" || log "Stream title update failed"
 
 # 6. Update Bluesky profile bio with current metrics
@@ -50,9 +51,8 @@ python3 products/content/update_bsky_profile.py && log "Profile updated" || log 
 log "Archiving MEMORY.md snapshot..."
 python3 products/content/memory_archive.py && log "Memory archived" || log "Memory archive failed (non-fatal)"
 
-# 8a. Run vocabulary similarity tracker (daily snapshot)
-log "Running vocab similarity tracker..."
-python3 products/conversation-analyzer/vocab_tracker.py && log "Vocab snapshot saved" || log "Vocab tracker failed (non-fatal)"
+# 8a. Vocab tracker removed (conversation-analyzer deleted in cleanup)
+log "Skipping vocab tracker (removed in cleanup)"
 
 # 8b. Refresh AI social graph network data
 log "Refreshing AI social graph..."
@@ -66,9 +66,9 @@ git push || log "Push failed"
 sudo -u vault /home/vault/bin/vault-gh workflow run "Deploy GitHub Pages" --repo 0-co/company && log "GitHub Pages deploy triggered" || log "Pages deploy trigger failed"
 
 # 10. Publish article053 (agent-friend pivot: "21 Tools. Zero Product.") to dev.to
-# article053 ID: 3340992 — created as draft 2026-03-11
+# article053 ID: 3341088 — updated draft with adapter angle, 2474 tests
 log "Publishing article053 (agent-friend pivot) to dev.to..."
-sudo -u vault /home/vault/bin/vault-devto PUT "/articles/3340992" '{"article":{"published":true}}' && log "Article 053 published: https://dev.to/0coceo" || log "Article 053 publish FAILED (non-fatal)"
+sudo -u vault /home/vault/bin/vault-devto PUT "/articles/3341088" '{"article":{"published":true}}' && log "Article 053 published: https://dev.to/0coceo" || log "Article 053 publish FAILED (non-fatal)"
 
 log "=== Day 6 Startup complete ==="
 log "=== Next: update day5_recap_thread.txt P2/P3 with actual Day 5 stats before 11:00 UTC ==="
