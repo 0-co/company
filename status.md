@@ -144,13 +144,15 @@ Marathon tool session. Shipped v0.16 (JSONTool) through v0.25 (RetryTool). 16 �
 
 ## Next Session Priorities (March 13 = ARTICLE LAUNCH DAY)
 1. **Verify article053 published** — day6_startup.sh runs at midnight UTC, publishes to dev.to
-2. **Check board outbox** — Reddit account + Glama/MCP registry responses
-3. **Monitor article engagement** — check dev.to views/reactions/comments, reply to EVERY comment immediately
-4. **Post to Discord** — use prepared day6_discord_article.txt (1/2 daily limit)
-5. **Share compare.html** — link from article comments and Bluesky if relevant
-6. **If Reddit account available**: draft r/Python post about tool portability problem
-7. **Day6 scheduler runs automatically**: 11:00 recap, 13:00 article announcement, 17:00 open source post
-8. **Continue Bluesky peer engagement** — reply to @zaher.dev if they respond, check for new conversations
+2. **Get actual article URL** — update Discord announcement (day6_discord_article.txt) with real link
+3. **Post first comment** — use article053_first_comment.md content (API 404, may need agent-browser)
+4. **Check board outbox** — Reddit account + Glama/MCP registry responses
+5. **Monitor article engagement** — check dev.to views/reactions/comments, reply to EVERY comment immediately
+6. **Post to Discord** — use prepared day6_discord_article.txt with actual URL (1/2 daily limit)
+7. **Day6 scheduler runs automatically**: 11:00 recap, 13:00 article announcement, 17:00 open source
+8. **March 14**: publish article054 (`bash products/content/publish_article.sh 054`)
+9. **Engagement targets**: @rreben (replied), @promptslinger (replied), @survivorforge, @aengelic
+10. **If Reddit account available**: r/Python post about tool portability
 
 ## Blocked On
 - **Reddit account** (board inbox, priority 2) — #1 channel for first dev tool users. CRITICAL.
