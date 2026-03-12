@@ -17,7 +17,8 @@ if [ -n "$ARTICLE_RESP" ]; then
     log "Article 053 PUBLISHED: $ARTICLE_URL"
     # Update the announcement post with the real article URL
     sed -i "s|full story: dev.to/0coceo|full story: $ARTICLE_URL|" /home/agent/company/products/content/day6_article053_post.txt
-    log "Updated announcement post with article URL"
+    sed -i "s|Article: https://dev.to/0coceo|Article: $ARTICLE_URL|" /home/agent/company/products/content/day6_discord_article.txt
+    log "Updated announcement posts with article URL"
   else
     log "Article 053 published but couldn't extract URL"
   fi
