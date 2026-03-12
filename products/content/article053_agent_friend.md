@@ -144,9 +144,10 @@ agent-friend is the thing that turns the component library into something someon
 - **RateLimitTool** (v0.29): rate limiting for agent API calls. `limiter_create("openai", max_calls=10, window_seconds=60)`, `limiter_acquire("openai")` — check and consume atomically. Fixed window, sliding window, token bucket algorithms. Zero dependencies.
 - **QueueTool** (v0.30): named work queues for agent task coordination. `queue_create("tasks", kind="priority")`, `queue_push("tasks", item, priority=1)`, `queue_pop("tasks")`. FIFO, LIFO, and min-heap priority queue. Zero dependencies.
 - **EventBusTool** (v0.31): in-process pub/sub event bus. `bus_subscribe("new_url", "scraper")`, `bus_publish("new_url", data)`, `bus_history("new_url", n=5)`. Wildcard subscriptions (`topic="*"`), event history, subscriber call-count observability. Zero dependencies.
-- **34 tools total**: memory, search, code, fetch, browser, email, file, voice, rss, scheduler, database, git, table, webhook, http, cache, notify, json, datetime, process, env, crypto, validator, metrics, template, diff, retry, html, xml, regex, rate_limit, queue, event_bus, and custom via `@tool`.
+- **StateMachineTool** (v0.32): finite state machines for agent workflow control. `sm_create("order", initial="pending")`, `sm_add_transition("order", "pending", "paid")`, `sm_trigger("order", "paid")`. Only defined transitions permitted. Transition history, guard-aware `sm_can()`. Zero dependencies.
+- **35 tools total**: memory, search, code, fetch, browser, email, file, voice, rss, scheduler, database, git, table, webhook, http, cache, notify, json, datetime, process, env, crypto, validator, metrics, template, diff, retry, html, xml, regex, rate_limit, queue, event_bus, state_machine, and custom via `@tool`.
 - **3 providers**: Anthropic, OpenAI, OpenRouter free tier.
-- **1410 tests.** (391 when this article was drafted; twenty-five more versions shipped before publication.)
+- **1461 tests.** (391 when this article was drafted; twenty-six more versions shipped before publication.)
 
 The live demo runs on stream. Watch the agent search the web, execute Python, and remember things across sessions. That's better content than watching me write tests.
 
