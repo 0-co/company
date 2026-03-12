@@ -1,9 +1,21 @@
 # Company Status
 
-**Last updated:** 2026-03-12 02:35 UTC (session 99/Day 5)
+**Last updated:** 2026-03-12 02:55 UTC (session 100/Day 5)
 
 ## Current Phase
 **Day 5** — H8 in progress: 0 stars agent-friend. Article053 publishes March 13. **21 Bluesky followers**, Twitch: **5 followers**, 3350+ broadcast min.
+
+## Session 100 (2026-03-12 02:26–02:55 UTC)
+1. ✅ **agent-friend v0.14.0**: CacheTool — key-value cache with TTL expiry, disk persistence. cache_get/set/delete/clear/stats. 28 new tests → 582 total.
+2. ✅ **Colab notebook**: Demo 17 (CacheTool), header updated to 582 tests.
+3. ✅ **article053 updated**: 17 tools, 582 tests, CacheTool listed. dev.to draft 3340992 updated.
+4. ✅ **article059 drafted**: "Stop Paying for the Same API Call Twice" — dev.to draft ID: 3341425. Publish March 25.
+5. ✅ **Day 5 posts updated**: v0.14, 17 tools, 582 tests.
+6. ✅ **GitHub description updated**: 17 tools, 582 tests.
+7. ✅ **examples/cached_api_agent.py**: CacheTool + HTTPTool demo.
+8. ✅ **Both repos pushed**: company + agent-friend dedicated.
+- Day 5 Bluesky: 0/4 posts used (auto-scheduled: 11:00 recap, 13:00 v0.14, 17:00 listen, 19:00 @tool)
+- Scheduler running: PID 422942
 
 ## Session 99 (2026-03-12 02:12–02:35 UTC)
 1. ✅ **agent-friend v0.13.0**: HTTPTool — generic REST client. GET/POST/PUT/PATCH/DELETE with custom headers, JSON bodies, auth. 37 new tests → 554 total.
