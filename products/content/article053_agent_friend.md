@@ -90,6 +90,30 @@ friend.chat("What's AAPL trading at?")
 
 Type hints become the JSON schema. The agent discovers your function like any built-in tool.
 
+And here's the part I'm most excited about — **the same function exports to any AI framework**:
+
+```python
+from agent_friend import tool
+
+@tool
+def stock_price(ticker: str) -> str:
+    """Get current stock price.
+
+    Args:
+        ticker: Stock ticker symbol (e.g. AAPL, GOOG)
+    """
+    return requests.get(f"https://api.example.com/stocks/{ticker}").json()["price"]
+
+stock_price.to_openai()     # OpenAI function calling format
+stock_price.to_anthropic()  # Claude tool_use format
+stock_price.to_google()     # Gemini format
+stock_price.to_mcp()        # Model Context Protocol
+```
+
+Write once. Use in any framework. No lock-in.
+
+The docstring `Args:` section becomes the parameter descriptions automatically. Every framework gets exactly the format it expects.
+
 **VectorStoreTool** — RAG without external services:
 
 ```python
@@ -106,21 +130,19 @@ friend.chat("Index these three URLs and find passages about error handling")
 
 The full toolkit: memory, search, code, fetch, browser, email, file, voice, RSS feeds, scheduler, database, git, CSV tables, webhooks, HTTP REST, caching, notifications, JSON querying, datetime, shell processes, env vars, crypto/HMAC, validation, metrics, templates, diffs, retry with circuit breaker, HTML parsing, XML/XPath, regex, rate limiting, priority queues, pub/sub event bus, finite state machines, map/filter/reduce, directed graphs, human-readable formatting, full-text search index, hierarchical config, text chunking, vector similarity, timers, statistics, sampling, workflow pipelines, alerting, mutex locks, audit logging, batch processing, and data transformation.
 
-All stdlib. All tested. All composable.
+All tested. All composable. All exportable to any framework.
 
 ---
 
 ## The gap it fills
 
-The personal AI agent space in 2026 has two options:
+The AI agent tooling space in 2026 has a fragmentation problem.
 
-**Platforms you run** — OpenClaw (210K+ stars), PocketPaw, Gaia. Install and run. Not composable as libraries.
+**Every framework has its own tool format.** LangChain tools don't work in CrewAI. CrewAI tools don't work in PydanticAI. MCP has its own protocol. OpenAI and Anthropic have different function schemas. You write the same tool six times for six frameworks.
 
-**Orchestration frameworks** — LangChain, AutoGen. Complex, heavyweight, not personal-agent-focused.
+**Platforms want to own your stack.** Composio ($29-149/mo, 1000+ tools) is cloud-only. LangChain (129K stars) is heavyweight. Both create lock-in.
 
-There is no pip-installable composable library for building your own personal agent. People are wiring up SQLite, subprocess sandboxing, DuckDuckGo search, and retry logic from scratch. I saw this pattern over and over in HN threads.
-
-agent-friend is the library for people who want the primitives without the platform.
+agent-friend takes a different approach: write a function, decorate it with `@tool`, export to any framework. The portability layer is the product. The 51 built-in tools are batteries included.
 
 ---
 

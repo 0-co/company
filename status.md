@@ -1,27 +1,34 @@
 # Company Status
 
-**Last updated:** 2026-03-12 10:05 UTC (session 111/Day 5)
+**Last updated:** 2026-03-12 10:50 UTC (session 112/Day 5)
 
 ## Current Phase
-**Day 5** — H8 in progress: 0 stars agent-friend. Article053 publishes March 13. **21 Bluesky followers**, Twitch: **5 followers**, 3800+ broadcast min.
+**Day 5** — Strategic pivot: universal tool adapter. Board directive: compose over existing solutions. Article053 publishes March 13. **21 Bluesky followers**, Twitch: **5 followers**, 3850+ broadcast min.
 
 ## Key Metrics
 | Metric | Current | Target | Deadline |
 |--------|---------|--------|----------|
 | Twitch followers | 5 | 50 | 2026-04-01 |
 | Bluesky followers | 21 | 50 | - |
-| Broadcast minutes | 3800+ | 500 ✓ | - |
+| Broadcast minutes | 3850+ | 500 ✓ | - |
 | Avg viewers | ~1-2 | 3 | 2026-04-01 |
 | GitHub stars (agent-friend) | 0 | 20 | 2026-03-18 |
 | Revenue | $0 | $250/mo | - |
 
+## Session 112 (2026-03-12 10:12–ongoing)
+1. ✅ **Board directive processed**: P1 — "compose thin layers over existing solutions, stop bragging about zero-dep"
+2. ✅ **Full competitor analysis**: LangChain 129k, CrewAI 46k, Composio 27k, MCP 81k. Identified gap: no cross-framework tool portability.
+3. ✅ **Built framework adapters (v0.49.0)**: @tool → .to_openai(), .to_anthropic(), .to_google(), .to_mcp(), .to_json_schema()
+4. ✅ **Toolkit class**: Batch conversion for tool collections
+5. ✅ **Docstring param extraction**: Google-style Args: → JSON Schema descriptions
+6. ✅ **73 new tests** (2474 total), all passing
+7. ✅ **Both repos synced**, GitHub description updated
+8. ✅ **Rewrote scheduled Bluesky posts**: 13:00 now about gap (not 51 tools), 19:00 announces adapters
+9. ✅ **Updated article053**: Added framework adapter section + portability positioning
+10. ✅ **Updated dev.to draft** (ID: 3341088)
+
 ## Session 111 (2026-03-12 09:55–10:10 UTC)
-1. ✅ **Trimmed day5 recap thread**: 42 posts → 6 posts (Bluesky best practice).
-2. ✅ **Added 20 GitHub topics** to agent-friend repo (SEO/discoverability).
-3. ✅ **Updated article053 tags**: ai, python, showdev, opensource (research-optimized).
-4. ✅ **Batch-updated 10 article drafts** (054-063) to optimal tags.
-5. ✅ **Distribution research complete**: 7+ awesome-lists, dev.to strategies, Bluesky growth tactics.
-6. ⏳ **Awesome-list PRs**: Agent submitting to e2b, kyrolabs, slavakurilyak, best-of-python.
+Distribution focus: trimmed recap thread, added GitHub topics, optimized article tags, researched awesome-lists.
 
 ## Session 110 (2026-03-12 09:30–09:55 UTC)
 Committed TransformTool v0.48.0 (51 tools, 2401 tests). Rewrote article053 from tool wall to narrative. Structured review: identified engineering drift, pivoted to distribution. Updated tools.html, notebook, GitHub description. Synced both repos.
@@ -50,7 +57,8 @@ Marathon tool session. Shipped v0.16 (JSONTool) through v0.25 (RetryTool). 16 �
 - Newsletter (waiting for traction threshold: 50 Bluesky or 15 Twitch followers)
 
 ## Product State
-- **agent-friend v0.48.0**: 51 tools, 2401 tests, 3 LLM providers. MIT. Zero deps.
+- **agent-friend v0.49.0**: Universal tool adapter + 51 built-in tools. 2474 tests. 3 LLM providers. MIT.
+- **Hero feature**: @tool decorator exports to OpenAI, Claude, Gemini, MCP, JSON Schema
 - **Dedicated repo**: github.com/0-co/agent-friend
 - **Colab notebook**: 51 demos, 106 cells
 - **Demo site**: 0-co.github.io/company/tools.html
@@ -63,3 +71,6 @@ Sessions 1-101 available in git log. Key milestones:
 - Day 3 (sessions 34-61): Community engagement, alice-bot, spam flag
 - Day 4 (sessions 62-85): Board pivot to agent-friend
 - Day 5 (sessions 86-110): Tool marathon, article prep
+
+---
+**[2026-03-12T10:11:32+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
