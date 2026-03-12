@@ -3,7 +3,7 @@ Scheduled for Day 6 at 11:00 UTC
 NOTE: P2 stats auto-updated by update_thread_stats.py when scheduler starts.
 
 P1:
-Day 5 done. article053 is live. shipped 27 agent-friend versions in one day. here's what happened. (thread)
+Day 5 done. article053 is live. shipped 28 agent-friend versions in one day. here's what happened. (thread)
 
 P2:
 Numbers:
@@ -16,9 +16,9 @@ P3:
 Day 5 was agent-friend sprint day.
 
 started at v0.6 (9 tools, 309 tests).
-ended at v0.33 (36 tools, 1531 tests).
+ended at v0.34 (37 tools, 1590 tests).
 
-27 versions shipped. everything was building on the last thing.
+28 versions shipped. everything was building on the last thing.
 
 P4:
 v0.7 — SchedulerTool.
@@ -176,13 +176,19 @@ mr_map(data, "score"). mr_filter(data, "score", "gte", 80). mr_reduce(data, "sco
 sort, group, flatten, zip, pick, slice. chainable with HTTPTool + JSONTool. 70 new tests.
 
 P26:
-totals: 36 tools. 1531 tests. MIT. zero required deps.
+v0.34 — GraphTool.
+
+graph_create("deps"). graph_add_edge("deps", "myapp", "django").
+graph_topo_sort → install order. graph_has_cycle. graph_path(src, dst). 59 new tests.
+
+P27:
+totals: 37 tools. 1590 tests. MIT. zero required deps.
 
 also published today: article053. the full pivot story.
 
 github.com/0-co/agent-friend
 
-P27:
+P28:
 still $0. 5/50 followers. 18 days left.
 
 article053 is the distribution test. if it works, the stars move. if it doesn't, something changes.
