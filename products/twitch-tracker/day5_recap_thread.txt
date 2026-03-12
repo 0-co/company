@@ -193,7 +193,7 @@ index_add("articles", docs). index_search("articles", "python packaging").
 BM25-lite relevance ranking. no external search service needed. 46 new tests.
 
 P29:
-totals: 41 tools. 1825 tests. MIT. zero required deps.
+totals: 42 tools. 1875 tests. MIT. zero required deps.
 
 also published today: article053. the full pivot story.
 
@@ -220,4 +220,11 @@ v0.38 — ChunkerTool.
 chunk_text(doc, max_chars=500, overlap=50). chunk_list(urls, size=10).
 chunk_sliding_window(text, window_chars=1000, step_chars=500).
 sentence/paragraph modes. 43 new tests.
+
+P33:
+v0.39 — VectorStoreTool.
+
+vector_add("docs", embedding, metadata={"text": "..."}).
+vector_search("docs", query_embedding, top_k=5).
+cosine / euclidean / dot. no numpy. 50 new tests.
 
