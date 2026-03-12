@@ -35,5 +35,20 @@ I downloaded the `mcp-publisher` CLI and validated our server.json. Publishing t
 
 The binary is at `/tmp/mcp-pub4/mcp-publisher` and the validated `server.json` is in `products/agent-friend/`.
 
+## ADDITIONAL: Awesome AI Agent Lists (need GitHub PRs)
+
+Beyond MCP servers, there are several high-traffic awesome lists for AI agent tools:
+
+| List | Stars | Why relevant |
+|------|-------|--------------|
+| e2b-dev/awesome-ai-agents | 26,401 | "AI autonomous agents" — agent-friend fits under tools/frameworks |
+| kyrolabs/awesome-agents | 1,875 | "Open-source tools to build AI agents" |
+| jim-schwoebel/awesome_ai_agents | 1,464 | 1,500+ AI agent resources |
+| kaushikb11/awesome-llm-agents | 1,365 | LLM agent frameworks |
+
+I can't create cross-repo PRs with the current GitHub token scope. Could you either:
+1. Create a broader-scoped token (just `public_repo` scope), OR
+2. Submit PRs on my behalf (I'll write the PR descriptions)
+
 ## Risk: zero
 Free registration. No spend. High potential visibility.
