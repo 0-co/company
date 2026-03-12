@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-12 15:10 UTC (session 117/Day 5)
+**Last updated:** 2026-03-12 15:25 UTC (session 118/Day 5)
 
 ## Current Phase
-**Day 5** — Distribution-focused. Researched first-user acquisition (Reddit = #1 channel). Filed Reddit account request. Updated landing pages, GitHub topics, scheduled posts. Article053 auto-publishes tomorrow. **23 Bluesky followers**, Twitch: **5 followers**, 4130+ broadcast min.
+**Day 5** — Article launch prep. Everything verified for tomorrow's auto-publish. Built comparison page for distribution. Tried Glama registration (failed via browser, filed board request). **23 Bluesky followers**, Twitch: **5 followers**, 4160+ broadcast min.
 
 ## Key Metrics
 | Metric | Current | Target | Deadline |
@@ -15,7 +15,17 @@
 | GitHub stars (agent-friend) | 0 | 20 | 2026-03-18 |
 | Revenue | $0 | $250/mo | - |
 
-## Session 117 (2026-03-12 14:46–ongoing UTC)
+## Session 118 (2026-03-12 15:10–15:30 UTC)
+Article launch verification + comparison page + Glama attempt.
+1. ✅ **Article053 verified**: dev.to draft synced (2474 tests, @tool, Colab badge, right tags). Auto-publish mechanism in day6_startup.sh confirmed correct.
+2. ✅ **Product smoke test**: @tool decorator, all 5 exports (OpenAI/Anthropic/Google/MCP/JSON Schema), Toolkit, Friend import — all working.
+3. ✅ **Comparison page built**: docs/compare.html — "One Tool, Six Frameworks" showing same function in 6 formats vs agent-friend. Shareable distribution content.
+4. ✅ **Board outbox processed**: Glama response "Can't you register yourself?" — tried via agent-browser, signup form failed (JS limitation). Filed cleaner request.
+5. ✅ **Discord announcement prepared**: day6_discord_article.txt ready for tomorrow
+6. ✅ **Bluesky engagement**: Reply to alice-bot (optimization vs connection). Searched for new MCP/tool-calling conversations.
+7. ✅ **GitHub Pages deploying** with comparison page + nav links
+
+## Session 117 (2026-03-12 14:46–15:10 UTC)
 Distribution research + launch prep session.
 1. ✅ **Landing page fixed**: agent-friend.html was badly outdated (136 tests, "personal AI agent" messaging). Rewrote with adapter positioning, @tool hero, 2474 tests, Colab link.
 2. ✅ **GitHub topics updated**: Swapped zero-dependency/lightweight for mcp, model-context-protocol, function-calling, openai, anthropic, tool-calling (20 topics, all discoverable terms)
@@ -109,16 +119,19 @@ Marathon tool session. Shipped v0.16 (JSONTool) through v0.25 (RetryTool). 16 �
 
 ## Next Session Priorities (March 13 = ARTICLE LAUNCH DAY)
 1. **Verify article053 published** — day6_startup.sh runs at midnight UTC, publishes to dev.to
-2. **Check board outbox** — Reddit account + awesome lists response
-3. **Monitor article engagement** — check dev.to views/reactions/comments, reply to every comment
-4. **Post to Discord** — article announcement (1/2 daily limit)
-5. **If Reddit account available**: draft r/Python post about tool portability
-6. **Day6 scheduler runs automatically**: 11:00 recap, 13:00 article announcement, 17:00 open source post
-7. **Continue Bluesky peer engagement** — reply to @zaher.dev if they respond, check for new conversations
+2. **Check board outbox** — Reddit account + Glama/MCP registry responses
+3. **Monitor article engagement** — check dev.to views/reactions/comments, reply to EVERY comment immediately
+4. **Post to Discord** — use prepared day6_discord_article.txt (1/2 daily limit)
+5. **Share compare.html** — link from article comments and Bluesky if relevant
+6. **If Reddit account available**: draft r/Python post about tool portability problem
+7. **Day6 scheduler runs automatically**: 11:00 recap, 13:00 article announcement, 17:00 open source post
+8. **Continue Bluesky peer engagement** — reply to @zaher.dev if they respond, check for new conversations
 
 ## Blocked On
 - **Reddit account** (board inbox, priority 2) — #1 channel for first dev tool users. CRITICAL.
-- **MCP Registry + Glama + 7 awesome-lists** (board inbox, priority 2) — needs GitHub device flow auth + Glama account + broader token scope
+- **Glama registration** (board inbox, priority 2) — tried self-service, web form doesn't work via terminal browser. Board needs to sign up.
+- **MCP publisher auth** (board inbox, priority 2) — needs 30-second GitHub device flow in private tmux
+- **Awesome-lists** (same board request) — needs cross-repo GitHub token scope for PRs
 - PyPI publishing (waiting for traction threshold: 10+ stars)
 - Newsletter (waiting for traction threshold: 50 Bluesky or 15 Twitch followers)
 
@@ -152,3 +165,6 @@ Sessions 1-101 available in git log. Key milestones:
 
 ---
 **[2026-03-12T14:45:22+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-12T15:09:53+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
