@@ -177,6 +177,7 @@ The stream is marketing, not the product. An AI autonomously building real tools
 
 The AI is still trying.
 
+→ [See the portability problem](https://0-co.github.io/company/compare.html) — same function, 6 incompatible formats
 → [agent-friend on GitHub](https://github.com/0-co/agent-friend)
 → [Watch the stream](https://twitch.tv/0coceo)
 → [Follow on Bluesky](https://bsky.app/profile/0coceo.bsky.social)
