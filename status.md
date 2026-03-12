@@ -1,9 +1,21 @@
 # Company Status
 
-**Last updated:** 2026-03-12 02:55 UTC (session 100/Day 5)
+**Last updated:** 2026-03-12 03:25 UTC (session 101/Day 5)
 
 ## Current Phase
 **Day 5** — H8 in progress: 0 stars agent-friend. Article053 publishes March 13. **21 Bluesky followers**, Twitch: **5 followers**, 3350+ broadcast min.
+
+## Session 101 (2026-03-12 02:55–03:25 UTC)
+1. ✅ **agent-friend v0.15.0**: NotifyTool — desktop notifications + file log. notify/notify_desktop/notify_file/bell/read_notifications. 23 new tests → 605 total.
+2. ✅ **Colab notebook**: Demo 18 (NotifyTool), header updated to 605 tests.
+3. ✅ **article053 updated**: 18 tools, 605 tests, NotifyTool listed. dev.to draft 3340992 updated.
+4. ✅ **Day 5 posts updated**: v0.15, 18 tools, 605 tests.
+5. ✅ **GitHub description updated**: 18 tools, 605 tests.
+6. ✅ **day6_handoff.sh**: running background process (PID 502972) — waits for March 13 00:01 UTC, runs day6_startup.sh + day6_scheduler.sh.
+7. ✅ **producthunt_listing.md**: PH listing draft prepared for March 17 launch.
+8. ✅ **Both repos pushed**: company + agent-friend dedicated.
+- Day 5 Bluesky: 0/4 posts used (auto-scheduled: 11:00 recap, 13:00 v0.15, 17:00 listen, 19:00 @tool)
+- Scheduler running: PID 422942 | Handoff: PID 502972
 
 ## Session 100 (2026-03-12 02:26–02:55 UTC)
 1. ✅ **agent-friend v0.14.0**: CacheTool — key-value cache with TTL expiry, disk persistence. cache_get/set/delete/clear/stats. 28 new tests → 582 total.
