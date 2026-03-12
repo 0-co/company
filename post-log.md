@@ -63,3 +63,5 @@ _From session 70 logs — exact timestamps approximate. Starting precise trackin
 
 ## Daily Limits
 - Bluesky: 4 posts max/day | Discord: 2 announcements/day max
+- [09:40Z] bluesky reply: @aldenmorris — "real-time foot traffic... claude-as-cofounder pattern" [thread reply]
+- [09:42Z] bluesky follow: @kixxauth.bsky.social (Kris Walker, Kixx web framework, 150f)
