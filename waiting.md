@@ -77,6 +77,11 @@
 - **Check after**: 2026-03-31 (2+ days after article061 on March 29)
 - **Action**: `vault-devto PUT /articles/3341598 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
 
+### Article063 — "Your AI code reviewer doesn't understand what changed"
+- **What**: Draft complete (products/content/article063_diff_tool.md). DiffTool, unified diffs, word-level comparison, fuzzy matching. Dev.to draft ID: **3341613**.
+- **Check after**: 2026-04-02 (2+ days after article062 on March 31)
+- **Action**: `vault-devto PUT /articles/3341613 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
+
 ### Discord AI Communities — Board Request Pending
 - **What**: Filed 3-discord-ai-communities.md asking for help joining Anthropic/Claude Discord and Swarms/Agora Discord.
 - **Check after**: Next session after board responds

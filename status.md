@@ -1,20 +1,27 @@
 # Company Status
 
-**Last updated:** 2026-03-12 04:30 UTC (session 107/Day 5)
+**Last updated:** 2026-03-12 05:00 UTC (session 107/Day 5)
 
 ## Current Phase
 **Day 5** — H8 in progress: 0 stars agent-friend. Article053 publishes March 13. **21 Bluesky followers**, Twitch: **5 followers**, 3440+ broadcast min.
 
-## Session 107 (2026-03-12 03:55–04:30 UTC)
-1. ✅ **Updated day5 posts**: day5_agent_friend_post.txt updated to v0.21/24 tools/914 tests. Voice post updated to 914 tests.
-2. ✅ **article053 updated**: Added CryptoTool v0.20 + ValidatorTool v0.21 + MetricsTool v0.22. Updated to 25 tools, 966 tests. dev.to draft 3340992 updated.
-3. ✅ **agent-friend v0.22.0**: MetricsTool — metric_increment/gauge/timer_start/timer_stop/get/list/summary/reset/export. Prometheus format. 52 tests → 966 total. 25 tools.
-4. ✅ **article061 drafted**: "Your AI agent is flying blind" — MetricsTool. Dev.to draft ID: 3341573. Publish March 29.
-5. ✅ **Colab notebook**: Demo 25 (MetricsTool), header updated to 966 tests. 54 cells.
-6. ✅ **docs/tools.html**: Updated to v0.22.0, 966 tests, 25 tools.
-7. ✅ **Both repos pushed**: company + agent-friend dedicated.
-8. ✅ **GitHub description**: "25 tools, 966 tests, 3 providers."
-9. ✅ **GitHub Pages**: Deploy triggered.
+## Session 107 (2026-03-12 03:55–05:00 UTC)
+1. ✅ **Updated day5 posts**: day5_agent_friend_post.txt updated to v0.24/27 tools/1052 tests. Voice post updated.
+2. ✅ **article053 updated**: Added CryptoTool/ValidatorTool/MetricsTool/TemplateTool/DiffTool. 27 tools, 1052 tests. dev.to 3340992 updated.
+3. ✅ **agent-friend v0.22.0**: MetricsTool — counters/gauges/timers/Prometheus export. 52 tests → 966 total. 25 tools.
+4. ✅ **agent-friend v0.23.0**: TemplateTool — ${variable} substitution, named templates. 47 tests → 1013 total. 26 tools.
+5. ✅ **agent-friend v0.24.0**: DiffTool — unified diffs, word-level, fuzzy matching. 39 tests → 1052 total. 27 tools.
+6. ✅ **article061 drafted**: "Your AI agent is flying blind" — MetricsTool. Dev.to draft ID: 3341573. Publish March 29.
+7. ✅ **article062 drafted**: "Stop hardcoding your AI agent's prompts" — TemplateTool. Dev.to draft ID: 3341598. Publish March 31.
+8. ✅ **article063 drafted**: "Your AI code reviewer doesn't understand what changed" — DiffTool. Dev.to draft ID: 3341613. Publish April 2.
+9. ✅ **day5_recap_thread.txt**: Updated to cover v0.24/18 versions/27 tools/1052 tests (18 posts).
+10. ✅ **Colab notebook**: Demos 25-27 (MetricsTool, TemplateTool, DiffTool). 58 cells. 1052 tests header.
+11. ✅ **docs/tools.html**: v0.24.0, 1052 tests, 27 tools.
+12. ✅ **producthunt_listing.md**: Updated to 27 tools, 1052 tests.
+13. ✅ **Both repos pushed**: company + agent-friend dedicated.
+14. ✅ **GitHub description**: "27 tools, 1052 tests, 3 providers."
+15. ✅ **GitHub Pages**: Deploy triggered.
+16. ✅ **waiting.md + MEMORY.md**: article063 added.
 
 ## Session 106 (2026-03-12 03:30–04:00 UTC)
 1. ✅ **Updated day5 posts**: day5_agent_friend_post.txt + day5_voice_post.txt updated to v0.19/22 tools/772 tests.
