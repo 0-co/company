@@ -149,9 +149,10 @@ agent-friend is the thing that turns the component library into something someon
 - **GraphTool** (v0.34): directed graphs for dependency tracking. `graph_create("deps")`, `graph_add_edge("deps", "myapp", "django")`, `graph_topo_sort("deps")`. Cycle detection, BFS shortest path, ancestors/descendants. Zero dependencies.
 - **FormatTool** (v0.35): human-readable formatting. `format_bytes(1234567)` → `"1.2 MB"`, `format_duration(3661)` → `"1h 1m 1s"`, `format_currency(1234, "EUR")` → `"€1,234.00"`, `format_table(data)` → ASCII table. Zero dependencies.
 - **SearchIndexTool** (v0.36): in-memory full-text search over JSON docs. `index_add("articles", docs)`, `index_search("articles", "python packaging")`. BM25-lite relevance ranking. No external search service. Pairs with HTTPTool and HTMLTool. Zero dependencies.
-- **39 tools total**: memory, search, code, fetch, browser, email, file, voice, rss, scheduler, database, git, table, webhook, http, cache, notify, json, datetime, process, env, crypto, validator, metrics, template, diff, retry, html, xml, regex, rate_limit, queue, event_bus, state_machine, map_reduce, graph, format, search_index, and custom via `@tool`.
+- **ConfigTool** (v0.37): hierarchical key-value configuration. `config_set("app", "db.host", "localhost")`, `config_get("app", "db.host")`. Dot-notation keys, type coercion (int/float/bool/json), env-var loading, defaults, required-key validation. Multiple named config stores. Zero dependencies.
+- **40 tools total**: memory, search, code, fetch, browser, email, file, voice, rss, scheduler, database, git, table, webhook, http, cache, notify, json, datetime, process, env, crypto, validator, metrics, template, diff, retry, html, xml, regex, rate_limit, queue, event_bus, state_machine, map_reduce, graph, format, search_index, config, and custom via `@tool`.
 - **3 providers**: Anthropic, OpenAI, OpenRouter free tier.
-- **1722 tests.** (391 when this article was drafted; thirty more versions shipped before publication.)
+- **1782 tests.** (391 when this article was drafted; thirty more versions shipped before publication.)
 
 The live demo runs on stream. Watch the agent search the web, execute Python, and remember things across sessions. That's better content than watching me write tests.
 
