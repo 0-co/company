@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-12 14:45 UTC (session 116/Day 5)
+**Last updated:** 2026-03-12 15:10 UTC (session 117/Day 5)
 
 ## Current Phase
-**Day 5** — First end-to-end LLM test passed. Ollama installed, MCP registry prep complete. Article053 auto-publishes tomorrow. **23 Bluesky followers**, Twitch: **5 followers**, 4100+ broadcast min.
+**Day 5** — Distribution-focused. Researched first-user acquisition (Reddit = #1 channel). Filed Reddit account request. Updated landing pages, GitHub topics, scheduled posts. Article053 auto-publishes tomorrow. **23 Bluesky followers**, Twitch: **5 followers**, 4130+ broadcast min.
 
 ## Key Metrics
 | Metric | Current | Target | Deadline |
@@ -15,19 +15,25 @@
 | GitHub stars (agent-friend) | 0 | 20 | 2026-03-18 |
 | Revenue | $0 | $250/mo | - |
 
-## Session 116 (2026-03-12 14:19–ongoing UTC)
+## Session 117 (2026-03-12 14:46–ongoing UTC)
+Distribution research + launch prep session.
+1. ✅ **Landing page fixed**: agent-friend.html was badly outdated (136 tests, "personal AI agent" messaging). Rewrote with adapter positioning, @tool hero, 2474 tests, Colab link.
+2. ✅ **GitHub topics updated**: Swapped zero-dependency/lightweight for mcp, model-context-protocol, function-calling, openai, anthropic, tool-calling (20 topics, all discoverable terms)
+3. ✅ **Article053 announcement improved**: Personal story hook ("wrote stock_price() 4 times, then built a decorator") instead of generic framework pitch
+4. ✅ **Day5 recap thread stats fixed**: 23 followers (was 21), 4100 min (was 3800), 19 days left (was 20)
+5. ✅ **tools.html meta description fixed**: Was "22 zero-dependency Python packages", now "Universal AI Tool Adapter"
+6. ✅ **First-user acquisition research**: Reddit overwhelmingly cited as #1 channel for first GitHub stars. Searched dev.to articles + launch playbooks.
+7. ✅ **Board request: Reddit account** (priority 2) — critical distribution gap, specific subreddit targets identified
+8. ✅ **Board request expanded**: Added 5 awesome AI agent lists (e2b-dev 26K stars, kyrolabs 1.9K, jim-schwoebel 1.5K, kaushikb11 1.4K) to existing Glama/MCP registry request
+9. ✅ **Bluesky engagement**: 3 targeted replies — @alice-bot (README compression), @joeharris76 (textcharts MCP), @insiderllm (Ollama local agents)
+
+## Session 116 (2026-03-12 14:19–14:45 UTC)
 Infrastructure + distribution session. Major unlocks.
-1. ✅ **Board outbox processed**: 4 items — Discord strategy fix, OpenRouter/Ollama green light, Discord communities pivot, GitHub token limitation confirmed
-2. ✅ **Ollama installed on NixOS**: services.ollama enabled, qwen2.5:3b pulled (1.9 GB)
-3. ✅ **First end-to-end LLM test PASSED**: @tool → .to_openai() → Ollama → tool call → result. Weather, math, direct Q&A all work.
-4. ✅ **LICENSE + Dockerfile added**: MIT LICENSE file (was missing), Dockerfile for Glama scoring
-5. ✅ **MCP Registry prep**: server.json created and validated for Official MCP Registry. mcp-publisher CLI downloaded. Needs board GitHub device flow auth.
-6. ✅ **Discord notification spam stopped**: bsky_reply_monitor.py no longer dumps Bluesky notifications to Discord #general
-7. ✅ **Useful Discord post**: Ollama pipeline walkthrough (something people can actually try)
-8. ✅ **Bluesky engagement**: replied to @survivorforge on distribution vs engineering
-9. ✅ **Board inbox filed**: Glama registration + MCP Registry auth + awesome-mcp-servers PR (all in one request)
-10. ✅ **Both repos synced**: company + agent-friend (3 subtree pushes)
-11. ✅ **MCP directory research**: Found 20+ registries. Official MCP Registry cascades to PulseMCP, MCPdb, GitHub, Docker catalogs.
+1. ✅ Ollama installed, first e2e LLM test passed
+2. ✅ LICENSE + Dockerfile + server.json (MCP registry prep)
+3. ✅ Board inbox filed: Glama + MCP Registry + awesome-mcp-servers
+4. ✅ Discord notification spam fixed, useful Ollama demo posted
+5. ✅ MCP directory research: 20+ registries found
 
 ## Session 115 (2026-03-12 11:36–12:20 UTC)
 Distribution prep for article053 launch tomorrow.
@@ -133,3 +139,6 @@ Sessions 1-101 available in git log. Key milestones:
 
 ---
 **[2026-03-12T12:17:20+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-12T14:45:22+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
