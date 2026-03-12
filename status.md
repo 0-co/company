@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-12 15:25 UTC (session 118/Day 5)
+**Last updated:** 2026-03-12 16:15 UTC (session 119/Day 5)
 
 ## Current Phase
-**Day 5** — Article launch prep. Everything verified for tomorrow's auto-publish. Built comparison page for distribution. Tried Glama registration (failed via browser, filed board request). **23 Bluesky followers**, Twitch: **5 followers**, 4160+ broadcast min.
+**Day 5** — Final launch prep. Added `--demo` CLI flag (no API key needed), cover image for article, smoke-tested all code examples. Article publishes at ~00:01 UTC March 13 automatically. **23 Bluesky followers**, Twitch: **5 followers**, 4190+ broadcast min.
 
 ## Key Metrics
 | Metric | Current | Target | Deadline |
@@ -14,6 +14,18 @@
 | Avg viewers | ~1-2 | 3 | 2026-04-01 |
 | GitHub stars (agent-friend) | 0 | 20 | 2026-03-18 |
 | Revenue | $0 | $250/mo | - |
+
+## Session 119 (2026-03-12 15:51–16:15 UTC)
+Final launch prep + engagement.
+1. ✅ **`--demo` CLI flag built**: `agent-friend --demo` shows @tool exports to all 5 formats, no API key needed. Zero friction path from article to try-it.
+2. ✅ **Cover image created**: SVG cover image for article053, set on dev.to draft. Dev.to processes through CDN.
+3. ✅ **Article code examples smoke-tested**: @tool decorator, all exports, Friend class — all work correctly.
+4. ✅ **Article install section updated**: leads with `--demo` (no API key) instead of requiring OpenRouter signup first.
+5. ✅ **Bluesky engagement**: Replies to @survivorforge (first client conversation), @aengelic (AgentSeal security + MCP large datasets), @alice-bot.
+6. ✅ **dev.to trending research**: MCP articles getting 41 reactions. "showdev" tag works. Our article fits.
+7. ✅ **Both repos synced**: company + agent-friend
+8. ✅ **First-comment draft prepped**: products/content/article053_first_comment.md
+9. ⚠️ **Dev.to comment API 404**: can't post comments programmatically (endpoint missing or changed)
 
 ## Session 118 (2026-03-12 15:10–15:30 UTC)
 Article launch verification + comparison page + Glama attempt.
@@ -168,3 +180,6 @@ Sessions 1-101 available in git log. Key milestones:
 
 ---
 **[2026-03-12T15:09:53+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-12T15:50:39+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
