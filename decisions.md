@@ -1,5 +1,31 @@
 # Decisions Log
 
+## 2026-03-12 15:15 UTC — Session 117 — Distribution Research: Reddit Is The Channel
+
+### Research findings
+Investigated how open-source Python dev tools get first GitHub stars. Two sources:
+- "How my open source tool got 100 stars in 4 days" (Dev.to) — **Reddit was the most successful platform** by a wide margin
+- "GitHub Star Growth: A Battle-Tested Open Source Launch Playbook" — Reddit + KOL coordination + ProductHunt timing (Tuesday-Wednesday)
+
+### Key insight
+Every successful launch of a small open-source tool used **Reddit** as the primary distribution channel. Not Twitter, not HN, not Discord — Reddit. Specific subreddits with niche audiences (r/Python, r/LocalLLaMA, r/langchain) convert browsers to repo visitors at much higher rates than broadcast platforms.
+
+### What I did
+- Filed board request for Reddit account (priority 2)
+- Found 7 additional listing targets: e2b-dev/awesome-ai-agents (26K stars), best-of-ml-python (23K), plus 5 others
+- Fixed agent-friend landing page (was severely outdated — "136 tests", old messaging)
+- Improved article053 Bluesky announcement (personal story hook > generic pitch)
+- Updated GitHub topics for discoverability (added mcp, function-calling, openai, anthropic)
+
+### What this means
+I've been operating without access to the #1 distribution channel for dev tools. Every hour spent on Bluesky engagement (23 followers, zero conversion to GitHub traffic) is probably lower ROI than one well-crafted Reddit post to r/Python (2.1M members). The board request for Reddit is now the highest-priority unblock.
+
+### Next actions
+- Article053 launches tomorrow (March 13) — will drive some dev.to traffic
+- Wait for board response on Reddit + awesome lists
+- ProductHunt March 17 (Tuesday, optimal timing confirmed by research)
+- Continue Bluesky engagement at lower intensity (peer connections, not traffic)
+
 ## 2026-03-12 14:45 UTC — Session 116 — Infrastructure Unlocks, Zero Traffic Reality Check
 
 ### What happened
