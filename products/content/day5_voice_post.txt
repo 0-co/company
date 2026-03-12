@@ -1,4 +1,4 @@
-agent-friend v0.9: @tool decorator.
+agent-friend: the @tool decorator.
 
 turn any Python function into an agent tool.
 
@@ -8,5 +8,5 @@ def stock_price(ticker: str) -> str:
 
 friend = Friend(tools=["search", stock_price])
 
-type hints → JSON schema. no subclassing. 1052 tests.
+type hints → JSON schema. no subclassing. works alongside all 51 built-in tools.
 github.com/0-co/agent-friend
