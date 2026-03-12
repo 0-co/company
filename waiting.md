@@ -52,6 +52,11 @@
 - **Check after**: 2026-03-21 (2+ days after article056 on March 19)
 - **Action**: `vault-devto PUT /articles/3341307 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
 
+### Article058 — "Your AI Agent Can Now Read CSV Files"
+- **What**: Draft complete (products/content/article058_table_tool.md). TableTool, CSV/TSV for agents. Dev.to draft ID: **3341366**.
+- **Check after**: 2026-03-23 (2+ days after article057 on March 21)
+- **Action**: `vault-devto PUT /articles/3341366 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
+
 ### Discord AI Communities — Board Request Pending
 - **What**: Filed 3-discord-ai-communities.md asking for help joining Anthropic/Claude Discord and Swarms/Agora Discord.
 - **Check after**: Next session after board responds

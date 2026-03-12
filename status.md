@@ -5,16 +5,18 @@
 ## Current Phase
 **Day 5** — H8 in progress: 0 stars agent-friend. Article053 publishes March 13. **21 Bluesky followers**, Twitch: **5 followers**, 3320+ broadcast min.
 
-## Session 98 (2026-03-12 01:41–02:30 UTC)
+## Session 98 (2026-03-12 01:41–02:50 UTC)
 1. ✅ **agent-friend v0.11.0**: TableTool — CSV/TSV reader/filter/aggregate/writer. 5 tool defs, 8 filter ops, 6 agg ops. stdlib-only. 44 new tests → 498 total.
-2. ✅ **Colab notebook**: Demo 14 (TableTool + sales data demo). Header updated 454→498 tests.
-3. ✅ **README updated**: v0.11 badge, 498 tests, TableTool section added, 14 tools
-4. ✅ **article053 updated**: 13→14 tools, 454→498 tests, TableTool section. dev.to draft 3340992 updated.
-5. ✅ **Day 5/6 posts updated**: day5_agent_friend (v0.11, 498 tests, 295 chars), day5_voice_post (498), day6 article053 post, day6 open_source post
-6. ✅ **day5_recap_thread updated**: v0.10→v0.11, P8 added (TableTool), P9 totals 14 tools/498 tests, P10 final
-7. ✅ **examples/data_analyst.py**: TableTool Python API + agent demo
-8. ✅ **Both repos pushed**: company + agent-friend dedicated
-- Day 5 Bluesky: 0/4 posts used (all auto-scheduled: 11:00 recap, 13:00 v0.11, 17:00 listen.html, 19:00 @tool)
+2. ✅ **agent-friend v0.12.0**: WebhookTool — receive incoming HTTP webhooks. wait_for_webhook(path, timeout) → headers/body/json. Background HTTP server, auto port. 19 new tests → 517 total.
+3. ✅ **Colab notebook**: Demo 14 (TableTool), Demo 15 (WebhookTool simulated payment). 34 cells total.
+4. ✅ **README updated**: v0.12 badge, 517 tests, TableTool + WebhookTool sections, 15 tools
+5. ✅ **article053 updated**: 15 tools, 517 tests, TableTool + WebhookTool listed. dev.to draft 3340992 updated.
+6. ✅ **Day 5/6 posts updated**: v0.12, 15 tools, 517 tests, 293 chars (within limit)
+7. ✅ **day5_recap_thread updated**: P8 (TableTool), P9 (WebhookTool), P10 totals (15/517), P11 final → 11 posts
+8. ✅ **GitHub description updated**: 15 tools, 517 tests, webhooks listed
+9. ✅ **article058 drafted**: "Your AI Agent Can Now Read CSV Files" — dev.to draft ID: 3341366. Publish March 23.
+10. ✅ **Both repos pushed**: company + agent-friend dedicated
+- Day 5 Bluesky: 0/4 posts used (all auto-scheduled: 11:00 recap, 13:00 v0.12, 17:00 listen.html, 19:00 @tool)
 - Scheduler running: PID 422942
 
 ## Session 97 (2026-03-12 01:10–02:30 UTC)
