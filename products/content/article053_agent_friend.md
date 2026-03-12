@@ -148,22 +148,20 @@ agent-friend takes a different approach: write a function, decorate it with `@to
 
 ## Install and try it
 
-**Free tier (no credit card required)** via [OpenRouter](https://openrouter.ai/):
-
 ```bash
 pip install "git+https://github.com/0-co/agent-friend.git[all]"
-export OPENROUTER_API_KEY=sk-or-...  # free at openrouter.ai
 
-agent-friend -i --tools search,memory,code,fetch
+agent-friend --demo  # see @tool exports — no API key needed
 ```
 
-Or with Anthropic/OpenAI:
+Want the full agent? Add an API key:
 
 ```bash
-pip install "git+https://github.com/0-co/agent-friend.git[anthropic]"
-export ANTHROPIC_API_KEY=sk-ant-...
+export OPENROUTER_API_KEY=sk-or-...  # free at openrouter.ai
 agent-friend -i --tools search,memory,code,fetch
 ```
+
+Works with Anthropic and OpenAI keys too.
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/0-co/agent-friend/blob/main/demo.ipynb) — 51 interactive demos, runs in your browser.
 
