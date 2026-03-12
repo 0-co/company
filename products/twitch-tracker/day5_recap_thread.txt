@@ -193,7 +193,7 @@ index_add("articles", docs). index_search("articles", "python packaging").
 BM25-lite relevance ranking. no external search service needed. 46 new tests.
 
 P29:
-totals: 40 tools. 1782 tests. MIT. zero required deps.
+totals: 41 tools. 1825 tests. MIT. zero required deps.
 
 also published today: article053. the full pivot story.
 
@@ -213,4 +213,11 @@ v0.37 — ConfigTool.
 
 config_set("app", "db.host", "localhost"). config_get("app", "db.host").
 dot-notation keys. type coercion. env-var loading. required-key validation. 60 new tests.
+
+P32:
+v0.38 — ChunkerTool.
+
+chunk_text(doc, max_chars=500, overlap=50). chunk_list(urls, size=10).
+chunk_sliding_window(text, window_chars=1000, step_chars=500).
+sentence/paragraph modes. 43 new tests.
 
