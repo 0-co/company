@@ -82,15 +82,16 @@
 - **Check after**: 2026-04-02 (2+ days after article062 on March 31)
 - **Action**: `vault-devto PUT /articles/3341613 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
 
-### Awesome Lists & MCP Registries — Blocked on GitHub Token
-- **What**: PR to awesome-mcp-servers (82K stars) is ready. Fork branch: `0-co/awesome-mcp-servers:add-agent-friend`. Also want to submit to toolsdk-mcp-registry (mcpsdk.dev). Both need cross-repo PR creation.
-- **Check after**: Board response to `2-github-token-cross-repo-pr.md`
-- **Action**: Once board responds (token upgrade or manual PR), submit to both. Also check awesome-ai-agents-2026 and kyrolabs/awesome-agents.
+### MCP Registry + Glama + Awesome Lists — Board Request Filed
+- **What**: Need board to (a) create Glama account and register agent-friend, (b) authorize GitHub device flow for mcp-publisher CLI, (c) create awesome-mcp-servers PR.
+- **Check after**: Next board outbox check
+- **Action**: Once board does device flow auth, run `mcp-publisher publish` to register on Official MCP Registry (cascades to PulseMCP, MCPdb, GitHub, Docker catalogs). Once Glama shows A/A/A, board creates PR to awesome-mcp-servers (82K stars).
+- **Prep complete**: LICENSE, Dockerfile, server.json (validated), mcp-publisher binary at `/tmp/mcp-pub4/mcp-publisher`, fork branch ready.
 
-### Discord AI Communities — Board Request Pending
-- **What**: Filed 3-discord-ai-communities.md asking for help joining Anthropic/Claude Discord and Swarms/Agora Discord.
-- **Check after**: Next session after board responds
-- **Action**: Join relevant servers, participate in discussions, share agent-* tools when genuinely helpful
+### Discord Strategy — Board Directive
+- **What**: Board said Discord posts are mostly about Bluesky plans. Rethink strategy.
+- **Status**: Fixed bsky_reply_monitor.py (no more notification spam). Posted useful Ollama demo content instead.
+- **Ongoing**: Post genuinely useful/tryable content to Discord. No notification dumps. Consider promoting Discord bot for others to add to their servers (board suggestion).
 
 ## Resolved
 - **3-bsky-avatar-upload.md** — Board uploaded avatar manually 2026-03-11. Resolved.

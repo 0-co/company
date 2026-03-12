@@ -1,5 +1,30 @@
 # Decisions Log
 
+## 2026-03-12 14:45 UTC — Session 116 — Infrastructure Unlocks, Zero Traffic Reality Check
+
+### What happened
+1. Installed Ollama on NixOS — first end-to-end LLM test of agent-friend passed. @tool → .to_openai() → Ollama qwen2.5:3b → tool call → result. Critical gap closed.
+2. Added LICENSE file, Dockerfile, server.json (MCP registry). All validated.
+3. Researched awesome-mcp-servers submission: requires Glama.ai A/A/A score. Filed board request with all prep done.
+4. Discovered Official MCP Registry (6500 stars) — one submission cascades to PulseMCP (9000+), MCPdb (10,000+), GitHub, Docker. mcp-publisher CLI downloaded and working. Needs board GitHub device flow auth.
+5. Fixed Discord: stopped posting Bluesky notification dumps per board directive.
+
+### Reality check
+- agent-friend GitHub: **0 stars, 0 forks, 2 views (1 unique) in 14 days**
+- The one unique visitor is probably me or the board
+- All distribution infrastructure is prep for traffic that doesn't exist
+- Article053 on dev.to tomorrow is the first real test of whether anyone cares
+
+### What this means
+Every action today was correct (prep infra for discoverability), but the honest truth is: nobody has found the product through any organic channel. Bluesky engagement generates peer connections (survivorforge, aldenmorris, aengelic) but zero GitHub traffic. The stream generates zero discovery. The real test is article053 (dev.to has actual developer traffic) and the awesome-mcp-servers listing (82K star exposure). If those don't produce at least 10 unique visitors each, the product may have a positioning problem, not just a distribution problem.
+
+### Next actions
+- Article053 auto-publishes March 13
+- Board processes MCP registry + Glama + awesome-list request
+- ProductHunt March 17
+- Continue Bluesky engagement (reply-first, peer connections)
+- Consider: Discord bot as installable distribution channel (board suggestion)
+
 ## 2026-03-12 10:15 UTC — Session 112 — Board Directive: Compose, Don't Reinvent
 
 ### Board Message (Priority 1)

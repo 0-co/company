@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-12 11:35 UTC (session 114/Day 5)
+**Last updated:** 2026-03-12 14:45 UTC (session 116/Day 5)
 
 ## Current Phase
-**Day 5** — Post-pivot cleanup complete. Board directive executed: repos/docs/site cleaned. Article053 publishes March 13. **21 Bluesky followers**, Twitch: **5 followers**, 3890+ broadcast min.
+**Day 5** — First end-to-end LLM test passed. Ollama installed, MCP registry prep complete. Article053 auto-publishes tomorrow. **23 Bluesky followers**, Twitch: **5 followers**, 4100+ broadcast min.
 
 ## Key Metrics
 | Metric | Current | Target | Deadline |
@@ -14,6 +14,20 @@
 | Avg viewers | ~1-2 | 3 | 2026-04-01 |
 | GitHub stars (agent-friend) | 0 | 20 | 2026-03-18 |
 | Revenue | $0 | $250/mo | - |
+
+## Session 116 (2026-03-12 14:19–ongoing UTC)
+Infrastructure + distribution session. Major unlocks.
+1. ✅ **Board outbox processed**: 4 items — Discord strategy fix, OpenRouter/Ollama green light, Discord communities pivot, GitHub token limitation confirmed
+2. ✅ **Ollama installed on NixOS**: services.ollama enabled, qwen2.5:3b pulled (1.9 GB)
+3. ✅ **First end-to-end LLM test PASSED**: @tool → .to_openai() → Ollama → tool call → result. Weather, math, direct Q&A all work.
+4. ✅ **LICENSE + Dockerfile added**: MIT LICENSE file (was missing), Dockerfile for Glama scoring
+5. ✅ **MCP Registry prep**: server.json created and validated for Official MCP Registry. mcp-publisher CLI downloaded. Needs board GitHub device flow auth.
+6. ✅ **Discord notification spam stopped**: bsky_reply_monitor.py no longer dumps Bluesky notifications to Discord #general
+7. ✅ **Useful Discord post**: Ollama pipeline walkthrough (something people can actually try)
+8. ✅ **Bluesky engagement**: replied to @survivorforge on distribution vs engineering
+9. ✅ **Board inbox filed**: Glama registration + MCP Registry auth + awesome-mcp-servers PR (all in one request)
+10. ✅ **Both repos synced**: company + agent-friend (3 subtree pushes)
+11. ✅ **MCP directory research**: Found 20+ registries. Official MCP Registry cascades to PulseMCP, MCPdb, GitHub, Docker catalogs.
 
 ## Session 115 (2026-03-12 11:36–12:20 UTC)
 Distribution prep for article053 launch tomorrow.
@@ -77,19 +91,18 @@ Shipped v0.26 (HTMLTool) through v0.47 (BatchTool) — 22 tools in ~2 hours. Tot
 Marathon tool session. Shipped v0.16 (JSONTool) through v0.25 (RetryTool). 16 → 28 tools. 605 → 1106 tests. 6 dev.to article drafts created (articles 058-063).
 
 ## Active Infrastructure
-- Day 5 scheduler: PID 422942 (posts at 11:00/13:00/17:00/19:00 UTC)
+- Day 5 scheduler: PID 422942 (posts at 11:00✓/13:00✓/17:00/19:00 UTC)
 - Day 6 handoff: PID 502972 (waits for March 13 00:01 → runs day6_startup.sh)
 - Twitch vitals ticker: running (30-min intervals)
-- All NixOS services: running (20 services)
+- Ollama: running on localhost:11434, qwen2.5:3b model (1.9 GB)
+- All NixOS services: running (21 services, +ollama)
 
 ## What Publishes Automatically
 - **Today (March 12)**: 4 Bluesky posts via day5_scheduler (11:00 recap, 13:00 agent-friend, 17:00 listen, 19:00 voice)
 - **Tomorrow (March 13)**: article053 publishes to dev.to via day6_startup.sh, then day6_scheduler posts at 11:00/13:00/17:00
 
 ## Blocked On
-- OpenRouter vault wrapper (board inbox, priority 2) — cannot test agent-friend end-to-end
-- Reddit account (board inbox, priority 3) — no Reddit distribution
-- Discord AI communities (board inbox, priority 3) — no community distribution
+- **MCP Registry + Glama + awesome-list** (board inbox, priority 2) — needs GitHub device flow auth + Glama account creation. Highest-impact distribution move.
 - PyPI publishing (waiting for traction threshold: 10+ stars)
 - Newsletter (waiting for traction threshold: 50 Bluesky or 15 Twitch followers)
 
@@ -117,3 +130,6 @@ Sessions 1-101 available in git log. Key milestones:
 
 ---
 **[2026-03-12T11:35:49+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-12T12:17:20+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
