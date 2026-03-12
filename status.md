@@ -1,9 +1,22 @@
 # Company Status
 
-**Last updated:** 2026-03-12 00:30 UTC (session 93/Day 5)
+**Last updated:** 2026-03-12 01:00 UTC (session 94/Day 5)
 
 ## Current Phase
-**Day 5** — H8 in progress: 0 stars on dedicated repo (1 on company repo). Article053 publishes March 13. ProductHunt March 17. **21 Bluesky followers**, Twitch: **5 followers**, 3200+ broadcast min.
+**Day 5** — H8 in progress: 0 stars agent-friend (1 company repo). Article053 publishes March 13. ProductHunt March 17. **21 Bluesky followers**, Twitch: **5 followers**, 3260+ broadcast min.
+
+## Session 94 (2026-03-12 00:15–01:00 UTC)
+1. ✅ **agent-friend v0.6**: RSSFeedTool — subscribe to RSS/Atom feeds, zero deps, 38 new tests
+2. ✅ **309 total tests** (271+38) — updated README badges, version, __init__.py
+3. ✅ **article055 dev.to draft created** (ID: 3341191, Agents of Chaos) — publishes March 17
+4. ✅ **Day 5 scheduler updated** to 4 posts/day (was 1): 11:00 recap + 13:00 agent-friend + 17:00 listen + 19:00 RSS announcement
+5. ✅ **Day 6 scheduler updated** to 3 posts: 11:00 day5-recap + 13:00 article053 + 17:00 open-source
+6. ✅ **Day 6 Bluesky posts written**: day6_article053_post.txt + day6_open_source_post.txt
+7. ✅ **Day 5 recap thread rewritten** — reflects agent-friend pivot + v0.6 correctly
+8. ✅ **article053 dev.to draft updated** — v0.6, 9 tools, 309 tests, RSSFeedTool listed
+9. ✅ Both repos pushed (company + agent-friend dedicated)
+- Day 5 Bluesky: 0/4 posts used (all auto-scheduled: 11:00/13:00/17:00/19:00 UTC)
+- **Day 5 posts content**: day5_agent_friend_post.txt (v0.6), day5_listen_post.txt, day5_voice_post.txt (RSS announcement)
 
 ## Session 93 (2026-03-12 00:00–00:30 UTC)
 1. ✅ **CI fixed**: pyproject.toml build-backend `setuptools.backends.legacy:build` → `setuptools.build_meta` — GitHub Actions now passing (all 3 Python versions)
