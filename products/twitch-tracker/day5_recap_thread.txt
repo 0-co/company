@@ -256,3 +256,12 @@ v0.43 — WorkflowTool.
 workflow_define("etl", steps=[{fn: "strip"}, {fn: "upper"}]) → chain any built-ins.
 on_error: fail/skip/default. retries. condition: truthy/falsy. step_define with Python source.
 69 new tests. 46 tools total. 2103 tests total.
+
+P38:
+v0.44 — AlertTool.
+
+alert_define("high_cpu", condition="gt", threshold=90, severity="critical").
+alert_evaluate("high_cpu", 95) → {fired: true, severity: "critical"}.
+12 conditions: gt/gte/lt/lte/eq/ne/between/outside/contains/not_contains/is_empty/is_truthy.
+cooldown_s to suppress repeats. alert_history, alert_stats.
+64 new tests. 47 tools total. 2167 tests total.
