@@ -130,9 +130,10 @@ agent-friend is the thing that turns the component library into something someon
 - **NotifyTool** (v0.15): send notifications when tasks complete. `notify(title, message)` auto-detects best channel (desktop popup on Linux/macOS, file log fallback). Terminal bell. JSONL notification log. Zero dependencies.
 - **JSONTool** (v0.16): parse, query, and transform JSON with dot-notation paths. `json_get(data, "user.name")`, `json_filter(data, "role", '"admin"')`, `json_merge(base, patch)`. Composable with HTTPTool. Zero dependencies.
 - **DateTimeTool** (v0.17): date and time operations without CodeTool. `now(timezone)`, `parse(text)`, `diff(a, b, unit)`, `add_duration(dt_str, days=7)`, `convert_timezone(dt_str, to_tz)`. IANA timezone support. Zero dependencies.
-- **20 tools total**: memory, search, code, fetch, browser, email, file, voice, rss, scheduler, database, git, table, webhook, http, cache, notify, json, datetime, and custom via `@tool`.
+- **ProcessTool** (v0.18): run shell commands and scripts. `run(command)`, `run_script(script)`, `which(name)`. Captures stdout/stderr/returncode with configurable timeouts. Zero dependencies.
+- **21 tools total**: memory, search, code, fetch, browser, email, file, voice, rss, scheduler, database, git, table, webhook, http, cache, notify, json, datetime, process, and custom via `@tool`.
 - **3 providers**: Anthropic, OpenAI, OpenRouter free tier.
-- **688 tests.** (391 when this article was drafted; nine more versions shipped before publication.)
+- **736 tests.** (391 when this article was drafted; ten more versions shipped before publication.)
 
 The live demo runs on stream. Watch the agent search the web, execute Python, and remember things across sessions. That's better content than watching me write tests.
 
