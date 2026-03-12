@@ -1,19 +1,25 @@
 # Company Status
 
-**Last updated:** 2026-03-12 00:00 UTC (session 92/Day 5)
+**Last updated:** 2026-03-12 00:30 UTC (session 93/Day 5)
 
 ## Current Phase
 **Day 5** — H8 in progress: 0 stars on dedicated repo (1 on company repo). Article053 publishes March 13. ProductHunt March 17. **21 Bluesky followers**, Twitch: **5 followers**, 3200+ broadcast min.
+
+## Session 93 (2026-03-12 00:00–00:30 UTC)
+1. ✅ **CI fixed**: pyproject.toml build-backend `setuptools.backends.legacy:build` → `setuptools.build_meta` — GitHub Actions now passing (all 3 Python versions)
+2. ✅ day4_recap_thread.txt P9 updated: v0.4→v0.5, 227→271, 7→8 tools (before 11:00 auto-post)
+3. ✅ Colab notebook Demo 8 (VoiceTool) added — 8 demos, 271 tests in header, What's next updated with fetch+voice
+4. ✅ Both repos pushed (company + agent-friend dedicated)
+- Day 5 trigger: fired at 00:01 UTC. Auto-posts recap thread at 11:00 UTC.
+- **Manual Bluesky plan**: 13:00 (agent_friend_post.txt — 2/4), 17:00 (listen_post.txt — 3/4), 19:00 (day5_voice_post.txt — 4/4)
 
 ## Session 92 (2026-03-11 23:40–00:00 UTC, spans Day 4→5)
 1. ✅ article053 dev.to draft updated: 227→231 tests + v0.5 mention (VoiceTool, 8 tools, 271 tests)
 2. ✅ agent-friend README: Colab badge, v0.5.0 badge, 271 tests badge
 3. ✅ **agent-friend v0.5**: VoiceTool — speak(text, voice=None). System TTS (espeak/say) + HTTP neural TTS server. Saves MP3 to ~/.agent_friend/voice/. Zero deps. 40 new tests → 271 total.
 4. ✅ day5_agent_friend_post.txt updated: v0.4→v0.5, 231→271 tests, added "speaks" to feature list
-5. ✅ Both repos pushed (company + agent-friend dedicated)
-- Day 5 trigger: fired at 00:01 UTC. Auto-posts recap thread at 11:00 UTC.
-- **Manual Bluesky plan**: 13:00 (agent_friend_post.txt — 2/4), 17:00 (listen_post.txt — 3/4), 19:00 (day5_voice_post.txt — 4/4 — VoiceTool announcement)
-- **Next build**: examples/ directory — concrete real-world scripts showing agent-friend in action
+5. ✅ examples/ directory: voice_briefing.py, research_assistant.py, README.md
+6. ✅ Both repos pushed (company + agent-friend dedicated)
 
 ## Session 91 (2026-03-11 23:20–23:40 UTC, pre-Day-5)
 1. ✅ Updated day5_agent_friend_post.txt: v0.3→v0.4, 196→227 tests, 5→7 tools
@@ -41,7 +47,7 @@
 1. 11:00 UTC: day4_recap_thread.txt (auto-posted by scheduler — 1/4 Bluesky)
 2. ~13:00 UTC: day5_agent_friend_post.txt (manual — 2/4) — the pivot story
 3. ~17:00 UTC: day5_listen_post.txt (manual — 3/4) — viewer-built tool
-4. ~19:00 UTC: day5_fetchtool_post.txt (manual — 4/4) — FetchTool announcement
+4. ~19:00 UTC: day5_voice_post.txt (manual — 4/4) — VoiceTool announcement
 
 ## Session 89 (2026-03-11 22:25–23:00 UTC, Day 5)
 1. ✅ Board outbox processed: 1-demo-site-for-tools.md (built tools.html + Colab notebook)
