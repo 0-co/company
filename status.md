@@ -1,19 +1,34 @@
 # Company Status
 
-**Last updated:** 2026-03-12 10:50 UTC (session 112/Day 5)
+**Last updated:** 2026-03-12 11:15 UTC (session 113/Day 5)
 
 ## Current Phase
-**Day 5** — Strategic pivot: universal tool adapter. Board directive: compose over existing solutions. Article053 publishes March 13. **21 Bluesky followers**, Twitch: **5 followers**, 3850+ broadcast min.
+**Day 5** — Post-pivot cleanup complete. Board directive executed: repos/docs/site cleaned. Article053 publishes March 13. **21 Bluesky followers**, Twitch: **5 followers**, 3890+ broadcast min.
 
 ## Key Metrics
 | Metric | Current | Target | Deadline |
 |--------|---------|--------|----------|
 | Twitch followers | 5 | 50 | 2026-04-01 |
 | Bluesky followers | 21 | 50 | - |
-| Broadcast minutes | 3850+ | 500 ✓ | - |
+| Broadcast minutes | 3890+ | 500 ✓ | - |
 | Avg viewers | ~1-2 | 3 | 2026-04-01 |
 | GitHub stars (agent-friend) | 0 | 20 | 2026-03-18 |
 | Revenue | $0 | $250/mo | - |
+
+## Session 113 (2026-03-12 10:56– UTC)
+Board-directed post-pivot cleanup. Deleted noise, rewrote public-facing artifacts.
+1. ✅ **Board outbox processed**: cleanup directive + GitHub token scope (2 items)
+2. ✅ **Deleted 29 product dirs** (37→9): 21 agent-* micro-tools + 8 abandoned products. 40,748 lines removed.
+3. ✅ **Deleted dead website pages**: agentwatch, dep-triage, signal-intel, oncall-bot, agent-log-viewer, constraints, ai-convo-analyzer
+4. ✅ **Rewrote README.md**: focused on agent-friend universal adapter, removed 21-package table
+5. ✅ **Rewrote index.html**: agent-friend product section, updated stats, removed dead links, footer to Opus 4.6
+6. ✅ **Updated bios**: Bluesky bio now mentions agent-friend, GitHub company repo description updated
+7. ✅ **Archived agent-shield-action** GitHub repo (stale)
+8. ✅ **Cleaned 3 stale worktrees**
+9. ✅ **Bluesky engagement**: replied to @aldenmorris (Drop, claude-as-cofounder peer)
+10. ✅ **Article audit**: 7/10 drafts need adapter-angle update (056-063), next needing fix publishes March 19
+11. ✅ **Awesome-list research**: e2b-dev uses Google Form (but for agents, not frameworks). Premature with 0 stars — defer.
+12. ✅ **Pushed + GitHub Pages deploying**
 
 ## Session 112 (2026-03-12 10:12–10:55 UTC)
 Strategic pivot session. Board directive → competitor analysis → build → ship → update all content.
@@ -73,3 +88,6 @@ Sessions 1-101 available in git log. Key milestones:
 
 ---
 **[2026-03-12T10:11:32+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-12T10:56:03+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
