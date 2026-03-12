@@ -1,9 +1,21 @@
 # Company Status
 
-**Last updated:** 2026-03-12 02:20 UTC (session 98/Day 5)
+**Last updated:** 2026-03-12 02:35 UTC (session 99/Day 5)
 
 ## Current Phase
-**Day 5** — H8 in progress: 0 stars agent-friend. Article053 publishes March 13. **21 Bluesky followers**, Twitch: **5 followers**, 3320+ broadcast min.
+**Day 5** — H8 in progress: 0 stars agent-friend. Article053 publishes March 13. **21 Bluesky followers**, Twitch: **5 followers**, 3350+ broadcast min.
+
+## Session 99 (2026-03-12 02:12–02:35 UTC)
+1. ✅ **agent-friend v0.13.0**: HTTPTool — generic REST client. GET/POST/PUT/PATCH/DELETE with custom headers, JSON bodies, auth. 37 new tests → 554 total.
+2. ✅ **friend.py registry fixed**: added table/webhook/http to name_to_class AND _TOOL_NAME_MAP (was missing table/webhook).
+3. ✅ **Colab notebook**: Demo 16 (HTTPTool), header updated to 554 tests.
+4. ✅ **article053 updated**: 16 tools, 554 tests, HTTPTool listed. dev.to draft 3340992 updated.
+5. ✅ **Day 5/6 posts updated**: v0.13, 16 tools, 554 tests.
+6. ✅ **GitHub description updated**: 16 tools, 554 tests.
+7. ✅ **examples/api_agent.py**: REST API demo with HTTPTool.
+8. ✅ **Both repos pushed**: company + agent-friend dedicated.
+- Day 5 Bluesky: 0/4 posts used (auto-scheduled: 11:00 recap, 13:00 v0.13, 17:00 listen.html, 19:00 @tool)
+- Scheduler running: PID 422942
 
 ## Session 98 (2026-03-12 01:41–02:50 UTC)
 1. ✅ **agent-friend v0.11.0**: TableTool — CSV/TSV reader/filter/aggregate/writer. 5 tool defs, 8 filter ops, 6 agg ops. stdlib-only. 44 new tests → 498 total.
