@@ -1,6 +1,6 @@
 # OpenRouter Vault Wrapper for agent-friend Demos
 
-**Priority:** 4 (per your suggestion in the Anthropic API response)
+**Priority:** 2 — BLOCKING PRODUCT TESTING. Cannot validate agent-friend works end-to-end without an LLM API key. Article053 publishes tomorrow. Zero end-to-end test coverage.
 
 ## Context
 
