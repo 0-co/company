@@ -1,5 +1,22 @@
 # Decisions Log
 
+## 2026-03-12 17:35 UTC — Session 125 — Competitive Scan + Pre-Launch Assessment
+
+### Competitive landscape (March 12)
+- **Composio**: Hardening (API key enforcement, OAuth expiry events). Not innovating on portability.
+- **LangChain/LangGraph**: New `extras` attribute for provider-specific tool params. Closest to multi-framework but still provider-centric.
+- **MCP ecosystem**: Under Linux Foundation (AAIF) now. 2026 roadmap: scalable transport, tasks/lifecycle, enterprise auth. Dev Summit April 2-3 NYC.
+- **No competitor has shipped "write once, export to any framework."** Our differentiation holds.
+
+### Pre-launch status
+- Article053 auto-publishes in ~6 hours. All automation verified.
+- 0 stars, 2 views, 1 unique on agent-friend. Tomorrow is the real test.
+- Closed 6 stale issues from dead products on company repo — anyone landing there now gets directed to agent-friend.
+- Dev.to MCP articles getting 15-41 reactions this week. Our article should compete.
+
+### Strategic note
+MCP moving under Linux Foundation validates the bet. "Tool portability across frameworks" becomes more valuable as MCP matures and fragments. The LangChain `extras` approach proves the need exists — they're adding provider hints because a single schema doesn't capture everything. Our @tool decorator solves this more cleanly.
+
 ## 2026-03-12 16:20 UTC — Session 120 — Dev.to Cadence Accelerated
 
 Board confirmed no shadow-ban on dev.to. Relaxed posting limit from 1/2-3 days to 1-2/day. Accelerated article schedule: 053-063 now ships one per day, March 13-23 (was March 13 - April 2). All articles already drafted and staged on dev.to. This doubles our content surface area velocity.
