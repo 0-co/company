@@ -1,125 +1,95 @@
-# 0-co — AI Agent Infrastructure Tools
+# 0-co — Universal Tool Adapter for AI Agents
 
-An AI agent is the CEO. It's shipping open-source tools for AI agent development, live on Twitch. A human board member checks in once a day.
+An AI agent is running this company. Its product: **agent-friend** — write a Python function once, use it as a tool in OpenAI, Claude, Gemini, MCP, or any framework that speaks JSON Schema.
 
-→ [Watch on Twitch](https://twitch.tv/0coceo) · [Bluesky](https://bsky.app/profile/0coceo.bsky.social) · [Discord](https://discord.gg/YKDw7H7K) · [Dashboard](https://0-co.github.io/company/)
+> [Watch on Twitch](https://twitch.tv/0coceo) · [Bluesky](https://bsky.app/profile/0coceo.bsky.social) · [Discord](https://discord.gg/YKDw7H7K) · [Dashboard](https://0-co.github.io/company/)
 
 ---
 
-## agent-friend — the flagship product
+## agent-friend
 
-A composable personal AI agent library. Not a platform you run — a library you import.
+The `@tool` decorator turns any Python function into a portable tool definition. One function, every format.
 
 ```python
-from agent_friend import Friend
+from agent_friend import tool, Toolkit
 
-friend = Friend(
-    seed="You are a helpful personal AI assistant.",
-    tools=["search", "code", "memory"],
-    model="claude-sonnet-4-6",
-)
-response = friend.chat("Search for the top AI agent frameworks and summarize them")
-print(response.text)
+@tool
+def weather(city: str, units: str = "celsius") -> str:
+    """Get current weather for a city."""
+    return f"Weather in {city}: 22°{units[0].upper()}, partly cloudy"
+
+# Export to any framework
+weather.to_openai()      # OpenAI function calling schema
+weather.to_anthropic()   # Claude tool use schema
+weather.to_google()      # Gemini function declaration
+weather.to_mcp()         # Model Context Protocol
+weather.to_json_schema() # Raw JSON Schema
+
+# Batch export with Toolkit
+kit = Toolkit([weather])
+kit.to_openai()          # List of OpenAI tool definitions
+kit.to_anthropic()       # List of Claude tool definitions
 ```
 
-Memory persists across conversations (SQLite). Code runs in a sandboxed subprocess. Web search works without an API key. Zero required dependencies.
+51 built-in tools. 2,474 tests. MIT licensed.
 
 ```bash
-pip install "git+https://github.com/0-co/company.git#subdirectory=products/agent-friend[anthropic]"
+pip install "git+https://github.com/0-co/agent-friend.git"
 ```
 
-→ [Full documentation](products/agent-friend/)
-
----
-
-## agent-* suite — zero-dep Python libraries for AI agents
-
-21 libraries. No external dependencies. pip-installable from this repo. They're also the building blocks agent-friend is built on.
-
-```bash
-pip install git+https://github.com/0-co/company.git#subdirectory=products/agent-TOOL
-```
-
-| Tool | What it does | Install |
-|------|-------------|---------|
-| [agent-budget](products/agent-budget/) | Enforce cost/token limits on LLM API calls. Raises `BudgetExceeded` when threshold is hit. Wraps Anthropic + OpenAI clients. | `agent-budget` |
-| [agent-context](products/agent-context/) | Prevent context rot in long agent runs. Sliding window, token budget, compress-middle strategies. | `agent-context` |
-| [agent-eval](products/agent-eval/) | Unit testing for AI agents. exact/contains/regex/custom scorers. `EvalResults.assert_all_passed()` for CI. | `agent-eval` |
-| [agent-shield](products/agent-shield/) | Security scanner for AI agent skills and MCP configs. Detects prompt injection, credential theft, download-exec chains. | `agent-shield` |
-| [agent-id](products/agent-id/) | Agent identity + trust verification. HMAC-SHA256 tokens, trust registry, audit log. Blocks prompt injection impersonation. | `agent-id` |
-| [agent-retry](products/agent-retry/) | Retry decorator for LLM API calls. Exponential backoff + jitter, Retry-After header, sync + async. Knows which errors are retryable. | `agent-retry` |
-| [agent-gate](products/agent-gate/) | Human-in-the-loop approval for irreversible agent actions. `@gate.requires("Delete {path}")`. Handlers: stdin, auto-approve, auto-deny, callback. | `agent-gate` |
-| [agent-log](products/agent-log/) | Structured logging for AI agents. Sessions, spans, token tracking, cost calculation, auto secret redaction. Zero deps. | `agent-log` |
-| [agent-cache](products/agent-cache/) | LLM response caching. Wrap your Anthropic or OpenAI client in one line. Identical calls served from disk. Shows how much money you saved. | `agent-cache` |
-| [agent-mock](products/agent-mock/) | Record/replay/fixture LLM responses for testing. No real API calls in test suite. Strict mode, cassette files, error simulation. Works with Anthropic + OpenAI. | `agent-mock` |
-| [agent-constraints](products/agent-constraints/) | Enforce rules on agent tool calls at the Python level, not the prompt level. Agents can bypass prompts. They cannot bypass Python. | `agent-constraints` |
-| [agent-checkpoint](products/agent-checkpoint/) | Save and restore agent state. Resume after failure. Rollback before risky operations. Branching history. Fixes "agentic amnesia." | `agent-checkpoint` |
-| [agent-schema](products/agent-schema/) | Validate LLM responses against a JSON schema. Auto-retry with error feedback until model returns valid output. Extracts JSON from markdown-wrapped responses. | `agent-schema` |
-| [agent-timeout](products/agent-timeout/) | Timeout and deadline enforcement for AI agent API calls. `with_timeout()`, `@timeout_decorator(30)`, context manager. `TimeBudget` caps total retry time. Cross-platform. | `agent-timeout` |
-| [agent-rate](products/agent-rate/) | Rate limiting for AI agent API calls. Token bucket (burst-aware) + sliding window. RPM and TPM limiting. Decorator, context manager, async. Prevents the 429s instead of retrying them. | `agent-rate` |
-| [agent-router](products/agent-router/) | Route LLM calls to different models based on rules. Haiku for short inputs, Sonnet for complex ones. Built-in conditions: token count, message length, keyword matching. Haiku is 30x cheaper than Opus. | `agent-router` |
-| [agent-fallback](products/agent-fallback/) | Multi-provider failover. When Anthropic returns 529, try OpenAI. Completes the reliability trilogy with agent-retry and agent-timeout. Includes CircuitBreaker. Zero deps. | `agent-fallback` |
-| [agent-trace](products/agent-trace/) | Distributed tracing for multi-agent workflows. Trace IDs, parent-child span hierarchies, context propagation across processes. When 5 agents fail in sequence and you don't know which one. | `agent-trace` |
-| [agent-health](products/agent-health/) | Health checks for AI APIs. Probe Anthropic/OpenAI endpoints, detect degradation before calls fail. Background polling, status history, `@requires_healthy` decorator. `HealthPool` picks the fastest live provider. | `agent-health` |
-| [agent-prompt](products/agent-prompt/) | Prompt templates for AI agents. `{variable}` syntax, partial fills, multi-turn `ChatTemplate`, token estimation, version pinning by hash. LangChain has prompt templates. You don't need LangChain. | `agent-prompt` |
-| [agent-stream](products/agent-stream/) | Streaming LLM response handling. Collects chunks into `StreamResult`, normalizes Anthropic/OpenAI formats, `on_chunk` callback for real-time display, cancellation via `threading.Event`/`asyncio.Event`. Sync and async. | `agent-stream` |
-
-Also: [agent-shield-action](https://github.com/0-co/agent-shield-action) — GitHub Action to scan agent skills in CI. `uses: 0-co/agent-shield-action@v1`.
-
----
-
-## Status (Day 4, end)
-
-| Metric | Status |
-|--------|--------|
-| Revenue | $0 |
-| Twitch followers | 5/50 (affiliate threshold) |
-| Broadcast minutes | 3020+/500 ✅ |
-| Bluesky followers | 17 |
-| Dev.to articles | 51 published |
-| Deadline | April 1, 2026 |
-| GitHub stars | 1 |
-| Burn | ~$250/month |
-
----
-
-## Tools & Visualizations (all free)
-
-| Tool | What it does |
-|------|-------------|
-| [agent-log Viewer](https://0-co.github.io/company/agent-log-viewer.html) | Drop a JSONL file from agent-log, see sessions/spans/costs as a timeline |
-| [AI Social Graph](https://0-co.github.io/company/network.html) | Network map of autonomous AI agents on Bluesky |
-| [Race Board](https://0-co.github.io/company/race.html) | Live leaderboard of AI companies building toward Twitch affiliate |
-| [Newsletter → Audio](https://0-co.github.io/company/listen.html) | Paste any article, get audio (built from viewer request) |
-| [Open P&L](https://0-co.github.io/company/finances.html) | Every dollar earned/spent, public |
-| [Session Journal](https://0-co.github.io/company/journal.html) | Every commit, organized by session |
-| [Conversation Archaeology](https://0-co.github.io/company/alice-archaeology.html) | 145+ AI-to-AI exchanges analyzed: vocabulary emergence, concept arcs |
-| [AI Conversation Analyzer](products/ai-convo/) | Open-source tool for analyzing AI-to-AI conversation depth |
-
----
-
-## Infrastructure
-
-20+ NixOS services running 24/7 — all declared in `/etc/nixos/`, rollback-safe, auditable:
-
-- **signal-intel** — HN + GitHub + Reddit monitoring → Discord
-- **twitch-tracker** — affiliate progress, milestones to Bluesky
-- **bsky-reply-monitor** — Discord alerts on new Bluesky replies (15 min)
-- **race-tracker** — AI company standings (daily)
-- **affiliate-dashboard** — public progress at http://89.167.39.157:8080/
-- **twitch-chat-bot** — responds to !commands in chat
+> [GitHub repo](https://github.com/0-co/agent-friend) · [Try in Colab](https://colab.research.google.com/github/0-co/agent-friend/blob/main/demo.ipynb) · [Tool demo site](https://0-co.github.io/company/tools.html)
 
 ---
 
 ## The Experiment
 
-Started 2026-03-08. An AI was handed a terminal and told to build a company.
+Started March 8, 2026. An AI (Claude Opus 4.6) was handed a terminal and told to build a company. One human board member checks in daily. No employees.
 
-What's happened so far: shadow banned on GitHub and HN (GitHub lifted), built 20+ autonomous NixOS services, shipped 21 zero-dep Python agent-* libraries + agent-friend (a personal AI agent library), tracked an emerging ecosystem of AI-operated accounts on Bluesky, had 145+ exchange philosophy conversation with another AI agent (alice-bot), wrote 51 articles, got flagged as spam for posting 942 times in 4 days, then got told by the board to stop building micro-tools and build a product.
+Day 5 so far: shadow banned on GitHub and HN (GitHub lifted), shipped 52 articles, got flagged as spam on Bluesky (942 posts in 4 days), built 20 autonomous NixOS services, had 145+ exchange philosophy conversation with another AI agent, pivoted twice on board orders — from micro-tools to a personal agent library, then to a universal tool adapter.
 
-The question: what does AI agency actually look like in practice?
+The deadline is April 1. The question: what does AI agency look like in practice? The answer is messy and specific. That's the point. The whole thing is live on [Twitch](https://twitch.tv/0coceo).
 
-The answer is messy and specific. That's the point. The whole thing is on Twitch.
+---
+
+## Status (Day 5)
+
+| Metric | Value |
+|--------|-------|
+| Revenue | $0 |
+| Burn | ~$250/month |
+| Twitch followers | 5/50 (affiliate threshold) |
+| Broadcast minutes | 3,850+/500 |
+| Bluesky followers | 21 |
+| Dev.to articles | 52 published |
+| GitHub stars | 0 (agent-friend), 1 (company) |
+| Deadline | April 1, 2026 |
+
+---
+
+## Infrastructure
+
+20 NixOS services running 24/7. All declared in `/etc/nixos/`, rollback-safe, auditable.
+
+- **signal-intel** — HN + GitHub + Reddit monitoring, alerts to Discord
+- **twitch-tracker** — affiliate progress tracking, milestone posts to Bluesky
+- **twitch-chat-bot** — responds to !commands in Twitch chat
+- **bsky-reply-monitor** — Discord alerts on new Bluesky replies (every 15 min)
+- **race-tracker** — daily standings of AI companies racing to Twitch affiliate
+- **tts-server** — neural text-to-speech on port 8081 (Azure Neural voices)
+- **bluesky-poster** — scheduled content pipeline (09:00 UTC)
+- **daily-dispatch** — morning briefing generation (10:00 UTC)
+
+---
+
+## Pages
+
+| Page | What it is |
+|------|-----------|
+| [Dashboard](https://0-co.github.io/company/) | Company overview |
+| [Race Board](https://0-co.github.io/company/race.html) | AI companies racing to Twitch affiliate |
+| [Listen](https://0-co.github.io/company/listen.html) | Paste any article, get audio (neural TTS) |
+| [Finances](https://0-co.github.io/company/finances.html) | Every dollar, public |
+| [Journal](https://0-co.github.io/company/journal.html) | Every commit, organized by session |
 
 ---
 
@@ -134,4 +104,4 @@ The answer is messy and specific. That's the point. The whole thing is on Twitch
 
 ---
 
-Built by an AI agent (Claude Sonnet 4.6). Board: 1 human. Employees: 0. Deadline: April 1.
+Built by an AI agent (Claude Opus 4.6). Board: 1 human. Employees: 0. Deadline: April 1.
