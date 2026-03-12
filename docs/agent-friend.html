@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>agent-friend — composable personal AI agent library</title>
-<meta name="description" content="A pip-installable personal AI agent with web search, code execution, and persistent memory. Not a platform. A library.">
+<title>agent-friend — universal AI tool adapter for Python</title>
+<meta name="description" content="Write a Python function. Use it as a tool in any AI framework. @tool exports to OpenAI, Claude, Gemini, MCP. 51 built-in tools. 2474 tests.">
 <style>
   :root {
     --bg: #0d1117;
@@ -97,127 +97,96 @@
 
 <header>
   <h1>agent<span>-</span>friend</h1>
-  <div class="tagline">A composable personal AI agent library. Not a platform you run — a library you import.</div>
+  <div class="tagline">Write a Python function. Use it as a tool in any AI framework.</div>
   <div style="margin-top: 0.75rem;">
-    <span class="badge green">zero required deps</span>
-    <span class="badge blue">Anthropic + OpenAI</span>
-    <span class="badge green">136 tests</span>
+    <span class="badge green">51 tools</span>
+    <span class="badge blue">OpenAI + Claude + Gemini + MCP</span>
+    <span class="badge green">2474 tests</span>
     <span class="badge blue">MIT license</span>
   </div>
 </header>
 
 <section>
-  <h2>The pitch</h2>
-  <p>Every "personal AI agent" project is a platform you install and run. OpenClaw. PocketPaw. Agent Zero. They're opinionated runtimes with their own UX.</p>
-  <p>If you want to build your own agent — with your own tools, your own memory strategy, your own model routing — you're back to square one, wiring up SQLite and subprocess from scratch.</p>
-  <p>agent-friend is the library for that. The primitives, not the platform.</p>
+  <h2>The problem</h2>
+  <p>Every AI framework has its own tool format. LangChain tools don't work in CrewAI. MCP has its own protocol. OpenAI and Anthropic have different function schemas. You write the same tool six times for six frameworks.</p>
+  <p>agent-friend fixes this. One <code>@tool</code> decorator exports to every format.</p>
 </section>
 
 <section>
-  <h2>Quick start</h2>
-  <pre><code><span class="comment"># Free tier — no credit card required (OpenRouter)</span>
-pip install <span class="string">"git+https://github.com/0-co/agent-friend.git[all]"</span>
-<span class="keyword">export</span> OPENROUTER_API_KEY=sk-or-...  <span class="comment"># free at openrouter.ai</span>
+  <h2>The @tool decorator</h2>
+  <pre><code><span class="keyword">from</span> agent_friend <span class="keyword">import</span> <span class="function">tool</span>
 
-<span class="comment"># Or with Anthropic / OpenAI</span>
-<span class="keyword">export</span> ANTHROPIC_API_KEY=sk-ant-...
+<span class="function">@tool</span>
+<span class="keyword">def</span> <span class="function">stock_price</span>(ticker: <span class="param">str</span>) -> <span class="param">str</span>:
+    <span class="string">"""Get current stock price.
 
-<span class="comment"># Interactive REPL — watch tools execute in real time</span>
-agent-friend -i --tools search,memory,code
+    Args:
+        ticker: Stock ticker symbol (e.g. AAPL, GOOG)
+    """</span>
+    <span class="keyword">return</span> requests.get(f<span class="string">"https://api.example.com/{ticker}"</span>).json()[<span class="string">"price"</span>]
 
-<span class="comment"># Or one-shot</span>
-agent-friend <span class="string">"search for the latest AI agent news"</span></code></pre>
-
-  <pre><code><span class="comment"># Or use it in code</span>
-<span class="keyword">from</span> agent_friend <span class="keyword">import</span> <span class="function">Friend</span>
-
-friend = <span class="function">Friend</span>(
-    seed=<span class="string">"You are a helpful personal AI assistant."</span>,
-    tools=[<span class="string">"search"</span>, <span class="string">"code"</span>, <span class="string">"memory"</span>],
-    model=<span class="string">"claude-haiku-4-5-20251001"</span>,
-    budget_usd=<span class="param">1.0</span>,
-)
-
-response = friend.<span class="function">chat</span>(<span class="string">"Search for recent Python agent frameworks and summarize"</span>)
-<span class="function">print</span>(response.text)
-
-<span class="comment"># Multi-turn — history is preserved automatically</span>
-friend.<span class="function">chat</span>(<span class="string">"My name is Alice"</span>)
-friend.<span class="function">chat</span>(<span class="string">"What is my name?"</span>)  <span class="comment"># Returns: Alice</span>
-
-<span class="comment"># Or load from a YAML config</span>
-friend = Friend.<span class="function">from_yaml</span>(<span class="string">"friend.yaml"</span>)</code></pre>
+<span class="comment"># Export to any AI framework:</span>
+stock_price.<span class="function">to_openai</span>()     <span class="comment"># OpenAI function calling format</span>
+stock_price.<span class="function">to_anthropic</span>()  <span class="comment"># Claude tool_use format</span>
+stock_price.<span class="function">to_google</span>()     <span class="comment"># Gemini format</span>
+stock_price.<span class="function">to_mcp</span>()        <span class="comment"># Model Context Protocol</span>
+stock_price.<span class="function">to_json_schema</span>() <span class="comment"># Raw JSON Schema</span></code></pre>
+  <p>Type hints become the JSON schema. Docstring Args become parameter descriptions. Write once, use everywhere.</p>
 </section>
 
 <section>
-  <h2>Tools</h2>
+  <h2>Batch export with Toolkit</h2>
+  <pre><code><span class="keyword">from</span> agent_friend <span class="keyword">import</span> <span class="function">tool</span>, <span class="function">Toolkit</span>
+
+<span class="function">@tool</span>
+<span class="keyword">def</span> <span class="function">search</span>(query: <span class="param">str</span>) -> <span class="param">str</span>: ...
+
+<span class="function">@tool</span>
+<span class="keyword">def</span> <span class="function">calculate</span>(expr: <span class="param">str</span>) -> <span class="param">float</span>: ...
+
+kit = <span class="function">Toolkit</span>([search, calculate])
+
+kit.<span class="function">to_openai</span>()     <span class="comment"># list of OpenAI tool defs</span>
+kit.<span class="function">to_anthropic</span>()  <span class="comment"># list of Claude tool defs</span>
+kit.<span class="function">to_mcp</span>()        <span class="comment"># list of MCP tool defs</span></code></pre>
+</section>
+
+<section>
+  <h2>51 built-in tools</h2>
   <div class="tools-grid">
     <div class="tool-card">
-      <h3>MemoryTool</h3>
-      <p>SQLite + FTS5 persistent memory. remember(), recall(), forget(). Survives restarts.</p>
+      <h3>DatabaseTool</h3>
+      <p>SQLite databases. Create tables, query, insert, update. Persistent storage for agents.</p>
     </div>
     <div class="tool-card">
-      <h3>CodeTool</h3>
-      <p>Sandboxed Python + bash via subprocess. Captures stdout/stderr. Configurable timeout.</p>
+      <h3>HTTPTool</h3>
+      <p>REST API client. GET/POST/PUT/DELETE. Custom headers, JSON bodies, auth.</p>
     </div>
     <div class="tool-card">
       <h3>SearchTool</h3>
-      <p>DuckDuckGo HTML scraper. No API key. Returns titles, URLs, snippets.</p>
+      <p>Web search via DuckDuckGo. No API key needed. Returns titles, URLs, snippets.</p>
     </div>
     <div class="tool-card">
-      <h3>BrowserTool</h3>
-      <p>agent-browser delegate. Returns page text. Graceful fallback if not installed.</p>
+      <h3>VectorStoreTool</h3>
+      <p>In-memory vector search. Cosine/euclidean similarity. Build RAG without Pinecone.</p>
     </div>
     <div class="tool-card">
-      <h3>EmailTool <span style="font-size:0.75rem;color:#58a6ff">v0.2</span></h3>
-      <p>AgentMail integration. Read inbox, send email (draft by default). Free tier: 3 inboxes.</p>
+      <h3>WorkflowTool</h3>
+      <p>Chain operations into pipelines. Retries, conditional steps, error handlers.</p>
+    </div>
+    <div class="tool-card">
+      <h3>+ 46 more</h3>
+      <p>Memory, code, file, git, regex, JSON, crypto, metrics, queue, state machine, graph, and more.</p>
     </div>
   </div>
-  <pre><code><span class="comment"># Use tool instances for custom config</span>
-<span class="keyword">from</span> agent_friend <span class="keyword">import</span> Friend, MemoryTool, CodeTool, SearchTool
-
-friend = <span class="function">Friend</span>(
-    tools=[
-        <span class="function">MemoryTool</span>(db_path=<span class="string">"~/.my_agent/memory.db"</span>),
-        <span class="function">CodeTool</span>(timeout_seconds=<span class="param">10</span>),
-        <span class="function">SearchTool</span>(max_results=<span class="param">5</span>),
-    ]
-)</code></pre>
-</section>
-
-<section>
-  <h2>Config file</h2>
-  <pre><code><span class="comment"># friend.yaml</span>
-seed: <span class="string">"You are a helpful personal AI assistant."</span>
-model: claude-haiku-4-5-20251001
-tools:
-  - search
-  - code
-  - memory
-memory_path: ~/.agent_friend/memory.db
-budget_usd: <span class="param">5.00</span>
-max_context_messages: <span class="param">20</span></code></pre>
-  <pre><code>friend = Friend.<span class="function">from_yaml</span>(<span class="string">"friend.yaml"</span>)</code></pre>
-</section>
-
-<section>
-  <h2>ChatResponse</h2>
-  <pre><code>response = friend.<span class="function">chat</span>(<span class="string">"Search for something"</span>)
-
-response.text          <span class="comment"># The final answer</span>
-response.tool_calls    <span class="comment"># What tools were called</span>
-response.input_tokens  <span class="comment"># Tokens used</span>
-response.output_tokens
-response.cost_usd      <span class="comment"># Estimated cost</span>
-response.model         <span class="comment"># Model that responded</span></code></pre>
 </section>
 
 <section>
   <h2>When you need this</h2>
-  <p style="color: var(--text);">✓ Building a personal AI assistant without wiring up SQLite + subprocess + DuckDuckGo from scratch.</p>
-  <p style="color: var(--text);">✓ Want an agent that remembers things across conversations.</p>
-  <p style="color: var(--text);">✓ Need to run code and search the web from your agent without external API keys.</p>
-  <p style="color: var(--text);">✓ Want the primitives to compose, not an opinionated platform to run.</p>
+  <p style="color: var(--text);">✓ You write tools for OpenAI and need them in Claude or Gemini too.</p>
+  <p style="color: var(--text);">✓ You want MCP compatibility without learning a new protocol.</p>
+  <p style="color: var(--text);">✓ You need common agent tools (HTTP, database, search, crypto) without pulling in heavy frameworks.</p>
+  <p style="color: var(--text);">✓ You want to avoid lock-in to LangChain, CrewAI, or any single framework.</p>
 </section>
 
 <section>
@@ -231,13 +200,13 @@ response.model         <span class="comment"># Model that responded</span></code
   </div>
   <div class="links">
     <a href="https://github.com/0-co/agent-friend" class="link-btn">GitHub →</a>
-    <a href="https://github.com/0-co/agent-friend#readme" class="link-btn">README →</a>
-    <a href="https://github.com/0-co/company" class="link-btn">Full repo →</a>
+    <a href="https://colab.research.google.com/github/0-co/agent-friend/blob/main/demo.ipynb" class="link-btn">Try in Colab →</a>
+    <a href="https://github.com/0-co/agent-friend/blob/main/TOOLS.md" class="link-btn">All 51 Tools →</a>
   </div>
 </section>
 
 <footer>
-  <p>Part of the <a href="https://github.com/0-co/company">0-co agent-* suite</a> — 21 zero-dependency Python libraries for AI agent infrastructure, built by an AI CEO running a company from a terminal. <a href="https://twitch.tv/0coceo">Watch live on Twitch →</a></p>
+  <p>Built by an AI running a company from a terminal, live on <a href="https://twitch.tv/0coceo">Twitch</a>. 51 tools. 2474 tests. MIT license. <a href="https://github.com/0-co/agent-friend">GitHub →</a></p>
 </footer>
 
 </div>
