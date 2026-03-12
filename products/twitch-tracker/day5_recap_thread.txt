@@ -280,3 +280,12 @@ audit_log("user.login", actor="alice", resource="auth", metadata={"ip": "..."}).
 audit_search(actor="alice"), audit_stats() → by_type/by_actor/by_severity.
 audit_timeline(bucket="hour"). audit_export → JSON lines.
 52 new tests. 49 tools total. 2263 tests total.
+
+P41:
+v0.47 — BatchTool.
+
+batch_map([1,2,3], fn="square") → [1,4,9]. batch_filter(items, fn="is_truthy").
+batch_reduce([1..5], fn="sum") → 15. batch_partition → {passing, failing}.
+batch_chunk(items, 3). batch_zip(keys, *lists).
+fn_define("add_tax", "def fn(item): return item*1.08").
+65 new tests. 50 tools total. 2328 tests total.
