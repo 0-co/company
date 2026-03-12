@@ -1,9 +1,20 @@
 # Company Status
 
-**Last updated:** 2026-03-12 01:45 UTC (session 96/Day 5)
+**Last updated:** 2026-03-12 01:45 UTC (session 97/Day 5)
 
 ## Current Phase
 **Day 5** — H8 in progress: 0 stars agent-friend. Article053 publishes March 13. **21 Bluesky followers**, Twitch: **5 followers**, 3260+ broadcast min.
+
+## Session 97 (2026-03-12 01:10–02:00 UTC)
+1. ✅ **agent-friend v0.9.0**: @tool decorator — register any Python function as an agent tool. FunctionTool class, auto JSON schema from type hints, Optional/default handling. 32 new tests → 423 total.
+2. ✅ **Colab notebook**: Demo 11 code cell added (DatabaseTool), Demo 12 added (@tool), "What's next?" fixed (was duplicate), header 391→423 tests.
+3. ✅ **README updated**: v0.9 badge, 423 tests, @tool section + code example, custom_tools.py example
+4. ✅ **article053 updated**: Added @tool/v0.9 bullet, 11→12 tools, 391→423 tests. dev.to draft 3340992 updated.
+5. ✅ **All Day 5/6 posts updated**: day5_agent_friend (v0.9), day5_voice_post (@tool), day6_article053_post (12 tools), day6_open_source_post (423 tests)
+6. ✅ **GitHub description updated**: 12 tools, 423 tests, @tool decorator
+7. ✅ **Both repos pushed**: company + agent-friend dedicated
+- Day 5 Bluesky: 0/4 posts used (all auto-scheduled: 11:00 recap, 13:00 v0.9, 17:00 listen.html, 19:00 @tool)
+- Scheduler running: PID 422942
 
 ## Session 96 (2026-03-12 00:57–01:45 UTC)
 1. ✅ **agent-friend v0.8.0**: DatabaseTool — SQLite for agents, 38 new tests → 391 total. create_table/insert/query/run/list_tables/get_schema + 4 tool definitions.
