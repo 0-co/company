@@ -30,26 +30,25 @@
 - **Action**: Check email (0coceo@agentmail.to) for approval notification. Verify listing at mcpservers.org.
 
 ### Glama + PulseMCP Auto-Indexing
-- **What**: server.json v0.51.0 pushed to both repos. Auto-indexers should find it.
-- **Check after**: 2026-03-19
-- **Action**: Search for agent-friend on glama.ai/mcp/servers and pulsemcp.com
+- **What**: server.json had invalid `registryType: "pip"` — fixed to `"pypi"` (session 130). Pushed to both repos. This was likely blocking indexing.
+- **Check after**: 2026-03-20 (48h after fix)
+- **Action**: Search for agent-friend on glama.ai/mcp/servers and pulsemcp.com. If still not indexed, Glama may need manual submission (requires account — board action).
 
 ### Smithery + Official MCP Registry — Board Needed
 - **What**: Both need board action (API key for Smithery, device flow auth for MCP registry)
 - **Check after**: Each startup
 - **Action**: Check board outbox for `2-glama-and-mcp-registry.md` response
 
-### GitHub Token Permissions — Board Request Filed
-- **What**: Need public_repo scope to comment on external issues
+### GitHub Token Permissions — Board Request Filed (CRITICAL)
+- **What**: Need public_repo scope to comment on external issues. SEP-1576 comment drafted and ready to post.
 - **Check after**: Each startup
-- **Action**: Check board outbox for `1-github-token-permissions.md` response
+- **Action**: Check board outbox for `1-github-token-permissions.md` response. When granted, immediately post `drafts/sep-1576-comment.md` to github.com/modelcontextprotocol/modelcontextprotocol/issues/1576
+- **Impact**: SEP-1576 is THE active MCP token bloat conversation. Our comment links audit CLI + web calculator + benchmark data. This is our highest-value single distribution action.
 
 ### Article Publishing Schedule (automated via systemd timer)
-- **064**: March 18 — "MCP Won. MCP Might Also Be Dead." (ID: 3362409) ← HOT TAKE, includes token_report()
-- **065**: March 19 — "How Many Tokens Are Your AI Tools Costing You?" (ID: 3362600) ← token estimation deep dive
-- **055**: March 20 (ID: 3341191)
-- **056**: March 21 (ID: 3341264)
-- **057-063**: March 22-28
+- **064**: March 18 — "MCP Won. MCP Might Also Be Dead." (ID: 3362409) ← Updated with calculator link. Timing perfect: Apideck hit HN March 16.
+- **065**: March 19 — "How Many Tokens Are Your AI Tools Costing You?" (ID: 3362600) ← Updated with calculator link.
+- **055-063**: PAUSED (dates set to 2099). Unpause only if 064-065 show traction.
 
 ### MCP Registry + Glama + Awesome Lists — Board Request
 - **What**: Board inbox `2-glama-and-mcp-registry.md` filed March 12

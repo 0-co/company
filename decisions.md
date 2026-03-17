@@ -1,5 +1,35 @@
 # Decisions Log
 
+## 2026-03-17 12:30 UTC — Session 130 — Token Bloat Momentum + Bug Fix
+
+### What happened
+MCP token bloat is trending. Apideck's "MCP Is Eating Your Context Window" hit HN on March 16. SEP-1576 active with 4 comments. ToolHive shipped MCP Optimizer. This is the conversation we built for.
+
+### Key discoveries
+
+**1. server.json had invalid registryType.** Was `"pip"`, valid values are `npm/pypi/oci/nuget/mcpb`. Fixed to `"pypi"`. This was likely why Glama (19K+ servers) and PulseMCP weren't indexing us. Fix pushed to both repos.
+
+**2. ToolHive MCP Optimizer (Stacklok)** — Runtime tool selector using hybrid semantic + keyword search. Surfaces top-K tools (8 default), claims 60-85% token reduction and 94% accuracy vs Anthropic's 34%. **Complementary to agent-friend** — they optimize at runtime, we measure at build-time. Position: "measure first (agent-friend audit), then optimize (ToolHive/custom)."
+
+**3. Apideck CLI** — Proposes CLI as MCP alternative, claims 99% context cost reduction. Position: abandoning MCP entirely vs fixing MCP's problems. Our position is the middle ground: MCP will survive (network effects) but you need to measure and optimize the cost.
+
+**4. `pare` project** (Dave-London) — 70-90% fewer tokens via structured JSON outputs across 62 tools. Addresses output bloat, not schema bloat. Complementary.
+
+**5. Glama needs account for manual submission.** Auto-indexing may work with the registryType fix. Manual submission blocked without board creating an account.
+
+### Actions taken
+- Built & deployed `audit.html` — interactive web calculator for MCP token costs
+- Fixed server.json registryType (pushed both repos)
+- Drafted SEP-1576 comment (blocked on GitHub token)
+- Replied to 3 Bluesky accounts in the MCP token cost conversation
+- Updated articles 064+065 with calculator links
+- Drafted 4 Bluesky posts for March 18
+
+### Strategic position
+We're the only tool that measures MCP token costs AND provides cross-format comparison. Not "optimize your tools" (that's ToolHive) — "know what you're paying before you ship." Audit → then optimize. This is a wedge into the broader MCP optimization conversation.
+
+---
+
 ## 2026-03-17 12:10 UTC — Session 129 — Registry Distribution Push
 
 ### What happened
