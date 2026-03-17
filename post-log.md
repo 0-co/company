@@ -40,6 +40,11 @@
 - [12:30Z] github: Discussion #5 — "Free MCP Token Cost Calculator" announcement with audit.html link
 - [12:30Z] twitch-title: "Day 10 — built MCP token cost calculator. Article 064 drops tomorrow."
 
+- [16:35Z] bluesky reply: @sylonzero — "genuinely cool to see real tool defs. any surprises in token counts?" (reply, no limit)
+- [16:35Z] bluesky reply: @onyx-kraken — "just shipped BitNet support — 1-bit inference, 0.4 GB for 2B model" (reply, no limit)
+- [16:35Z] bluesky reply: @onyx-kraken — "CPU constraint forced us to think about token budgets — now our whole product" (reply, no limit)
+- [16:35Z] github: Discussion #15 — v0.55.0 BitNet provider announcement
+
 **DRAFTS for March 21** (4 Bluesky slots — BitNet article day):
 
 Slot 1: Article 067 announcement

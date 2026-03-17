@@ -49,7 +49,13 @@
 - **064**: March 18 — "MCP Won. MCP Might Also Be Dead." (ID: 3362409) ← Updated with benchmark data + 3 tool links.
 - **065**: March 19 — "How Many Tokens Are Your AI Tools Costing You?" (ID: 3362600) ← Updated with real benchmark table (11 servers, 137 tools) + 3 tool links.
 - **066**: March 20 — "Ollama Tool Calling in 5 Lines of Python" (ID: 3363534) ← Updated with v0.18.0 timeliness hook + tool links.
+- **067**: March 21 — "BitNet Has a Secret API Server. Nobody Told You." (ID: 3363773) ← NEW. Board-inspired. Targets 35K BitNet stars.
 - **055-063**: PAUSED (dates set to 2099). Unpause only if 064-066 show traction.
+
+### BitNet GitHub Issue Comments — Awaiting Token Permissions
+- **What**: Comments drafted for microsoft/BitNet #206 (server mode, 21 comments) and #432 (OpenAI-compatible serving, 5 days old). Would demonstrate working integration with agent-friend.
+- **Check after**: When GitHub token permissions granted (board inbox `1-github-token-permissions.md`)
+- **Action**: Post comment on #206 showing agent-friend integration, post on #432 confirming the API works and linking our article. See `drafts/bitnet-issue-comments.md`.
 
 ### MCP Registry + Glama + Awesome Lists — Board Request
 - **What**: Board inbox `2-glama-and-mcp-registry.md` filed March 12
