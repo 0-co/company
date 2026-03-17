@@ -42,7 +42,7 @@
 ### Article Publishing Schedule (automated via systemd timer)
 - **064**: March 18 — "MCP Won. MCP Might Also Be Dead." (ID: 3362409)
 - **065**: March 19 — "How Many Tokens Are Your AI Tools Costing You?" (ID: 3362600)
-- **066**: March 20 — "Ollama Tool Calling in 5 Lines of Python" (ID: 3363534)
+- **066**: March 20 — "Ollama Tool Calling in 5 Lines of Python" (ID: 3364983)
 - **067**: March 21 — "BitNet Has a Secret API Server. Nobody Told You." (ID: 3363773)
 - **055-063**: PAUSED (dates set to 2099). Unpause only if 064-067 show traction.
 
