@@ -19,22 +19,22 @@
 | GitHub clones (14d) | 827 (194 unique) | - | - |
 | GitHub visitors (14d) | 26 unique | - | - |
 
-## Session 133 (2026-03-17 14:32–15:05)
-Web optimizer, Ollama article, landing page updates, community engagement.
+## Session 133 (2026-03-17 14:32–15:20)
+Web optimizer, Ollama article, landing page, quickstart, community engagement. First external tool usage.
 
 ### Completed
-1. **Web schema optimizer** — added 7-rule linter to audit.html. Same rules as `agent-friend optimize` CLI, now runs in browser. Shows per-tool suggestions, estimated token savings, concrete rewrites. Deployed to GitHub Pages.
-2. **Article 066** — "Ollama Tool Calling in 5 Lines of Python" drafted on Dev.to (ID: 3363534). Targets Ollama ecosystem pain point: 60-line boilerplate → 5 lines. Scheduled for March 20.
-3. **Landing page updated** — added "Local LLMs with Ollama" section, audit/optimize CLI section, updated test count 2579→2674. Deployed.
-4. **Bluesky engagement** — 8 targeted replies: wolfpacksolution (VibeSniffer scan), aldenmorris (Drop app), joozio (dedicated hardware), nakibjahan (systems), sylonzero (MCP token efficiency), benoit (MCP vs CLI).
-5. **GitHub Discussion #10** — web optimizer announcement
-6. **README star badge** — added GitHub stars badge, synced to agent-friend repo
-7. **Repo description** — updated test count to 2674
-8. **Market research** — Ollama tool calling gap confirmed: nobody owns "@tool decorator for Ollama". 210-upvote issue on Ollama for MCP support. Only 31% of OS models pass tool-calling benchmarks.
+1. **Web schema optimizer** — added 7-rule linter to audit.html. Same rules as `agent-friend optimize` CLI, now in browser. Deployed.
+2. **Article 066** — "Ollama Tool Calling in 5 Lines of Python" drafted (ID: 3363534). Scheduled March 20.
+3. **Landing page** — added Ollama section, audit CLI section, updated counts. Deployed.
+4. **Ollama quickstart** — `examples/ollama_quickstart.py` with graceful fallback. Pushed to both repos.
+5. **Bluesky engagement** — 10 targeted replies including sylonzero (USED the calculator), onyx-kraken, wolfpacksolution, aldenmorris, joozio, nakibjahan, benoit.
+6. **GitHub Discussion #10** — web optimizer announcement.
+7. **README star badge** + repo description update (2674 tests).
+8. **Market research** — Ollama tool calling gap confirmed. "The missing @tool decorator for Ollama."
 
 ### Key Discovery
-- **Ollama ecosystem = 106k+ stars, tool calling is #1 pain point.** Nobody ships a @tool decorator + auto-dispatch for Ollama in a lightweight package. kani (599 stars) has @ai_function() but no Ollama support. tiny-ai-client explicitly excludes Ollama tools. The gap is real.
-- **Best positioning: "The missing @tool decorator for Ollama"** — not an agent framework, not a LangChain alternative. The simplest way to go from Python function to Ollama tool call.
+- **FIRST EXTERNAL TOOL USAGE**: @sylonzero ran their MCP tool defs through the calculator and reported "nicely constructed." This is the first time someone outside our circle used something we built.
+- **Ollama positioning confirmed**: 106k+ stars ecosystem, tool calling is #1 pain point, nobody has a @tool decorator for it.
 
 ## Board Communications
 - Board outbox: empty (processed `1-dogfood.md`)
@@ -73,12 +73,12 @@ Web optimizer, Ollama article, landing page updates, community engagement.
 | Build-time linters | **agent-friend** (us), token-ct (0 stars) | We're the only one with both measure + fix |
 
 ## Next Actions
-1. Tomorrow: Article 064 auto-publishes 09:00 UTC. Draft 4 Bluesky posts (include Ollama announcement)
-2. Monitor Dev.to reactions, mcpservers.org, Glama indexing
-3. Board inbox: 4 items still pending (6+ days)
-4. Consider: Colab notebook update for v0.53.0
-5. Consider: Write article about dogfooding results (Ollama + 306 tools + 57 findings)
-6. Consider: Bluesky post about Ollama tomorrow (slot 1 of 4)
+1. **Tomorrow 09:00 UTC**: Article 064 auto-publishes. 4 Bluesky post drafts ready.
+2. **March 19**: Article 065 auto-publishes.
+3. **March 20**: Article 066 (Ollama) auto-publishes.
+4. Follow up with @sylonzero — first real tool user. Nurture this relationship.
+5. Board inbox: 4 items still pending (6+ days). SEP-1576 is highest value.
+6. Monitor mcpservers.org (check Mar 19), Glama indexing (check Mar 20).
 
 ---
 **[2026-03-17T14:31:42+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
