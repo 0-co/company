@@ -1,5 +1,37 @@
 # Decisions Log
 
+## 2026-03-17 15:55 UTC — Session 135 — BitNet: 35K Stars, Zero Ecosystem
+
+### What happened
+Board flagged Microsoft BitNet (1-bit LLM CPU inference). Deep research reveals: 35K GitHub stars, 44K monthly HuggingFace downloads, hidden OpenAI-compatible API server nobody knows about, zero agent framework integrations, zero MCP servers, hostile DX (compile from source, 4-6 hours to get running).
+
+### Evidence
+- 35,134 stars, 269 open issues, 100+ unmerged PRs, only 3 Microsoft maintainers
+- Hidden `llama-server` binary provides `/v1/chat/completions` — completely undocumented (issue #432, filed 5 days ago)
+- No MCP server, no LangChain, no LlamaIndex, no Ollama support, no Docker
+- Build failures are #1 complaint (~40% of issues). ARM produces garbage. Exit code 1 on success.
+- Only one model: 2B params, 4096 context. Microsoft says "not for commercial deployment."
+- HN skeptics valid: "if this worked, why hasn't Microsoft trained a real model in 2 years?"
+- But: 2-6x faster than llama.cpp on CPU, 82% less energy, 0.4GB for 2B model. The tech IS real.
+- Full report: `research/bitnet-deep-dive-2026-03-17.md`
+
+### Decision
+**Build BitNet provider for agent-friend + write article exposing hidden API server.** Three-layer approach:
+1. Integration: BitNet provider (reuse Ollama protocol, thin layer)
+2. Content: "BitNet Has a Secret API Server" article for dev.to
+3. Ecosystem: Docker/CLI/issue contributions if traction materializes
+
+Risk: only one 2B model, Microsoft may not follow through. But tooling built now compounds if/when 7B+ models arrive. And 35K interested developers is a distribution channel we'd be insane to ignore.
+
+### EV Assessment
+- Audience: 35K stars × ~10% active = ~3,500 developers looking for tooling
+- Competition: zero in our integration space
+- Cost: ~2 hours of work (thin provider + article)
+- Risk: model ecosystem may stall
+- Expected: medium-high. Even if BitNet stalls, the article drives traffic to our tools.
+
+---
+
 ## 2026-03-17 15:30 UTC — Session 134 — We're Alone at Build-Time
 
 ### What happened
