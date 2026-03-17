@@ -1,0 +1,1724 @@
+{
+  "generated_at": "2026-03-17",
+  "total_servers": 11,
+  "total_tools": 137,
+  "total_tokens_mcp": 27462,
+  "total_issues": 132,
+  "avg_tokens_per_tool": 200,
+  "servers": [
+    {
+      "name": "Github",
+      "tool_count": 80,
+      "total_tokens_mcp": 20444,
+      "format_tokens": {
+        "openai": 23510,
+        "anthropic": 22079,
+        "google": 20444,
+        "mcp": 22897,
+        "json_schema": 17377
+      },
+      "tools": [
+        {
+          "name": "assign_copilot_to_issue",
+          "description": "Assign Copilot to a specific issue in a GitHub repository.\n\nThis tool can help with the following ou",
+          "tokens": 810,
+          "params": 5
+        },
+        {
+          "name": "actions_list",
+          "description": "Tools for listing GitHub Actions resources.\nUse this tool to list workflows in a repository, or list",
+          "tokens": 714,
+          "params": 8
+        },
+        {
+          "name": "projects_write",
+          "description": "Add, update, or delete project items, or create status updates in a GitHub Project.",
+          "tokens": 704,
+          "params": 15
+        },
+        {
+          "name": "request_copilot_review",
+          "description": "Request a GitHub Copilot code review for a pull request. Use this for automated feedback on pull req",
+          "tokens": 646,
+          "params": 3
+        },
+        {
+          "name": "merge_pull_request",
+          "description": "Merge a pull request in a GitHub repository.",
+          "tokens": 610,
+          "params": 6
+        },
+        {
+          "name": "fork_repository",
+          "description": "Fork a GitHub repository to your account or specified organization",
+          "tokens": 573,
+          "params": 3
+        },
+        {
+          "name": "pull_request_review_write",
+          "description": "Create and/or submit, delete review of a pull request.\n\nAvailable methods:\n- create: Create a new re",
+          "tokens": 571,
+          "params": 8
+        },
+        {
+          "name": "pull_request_read",
+          "description": "Get information on a specific pull request in GitHub repository.",
+          "tokens": 529,
+          "params": 6
+        },
+        {
+          "name": "list_notifications",
+          "description": "Lists all GitHub notifications for the authenticated user, including unread notifications, mentions,",
+          "tokens": 470,
+          "params": 7
+        },
+        {
+          "name": "issue_write",
+          "description": "Create a new or update an existing issue in a GitHub repository.",
+          "tokens": 461,
+          "params": 13
+        },
+        {
+          "name": "star_repository",
+          "description": "Star a GitHub repository",
+          "tokens": 452,
+          "params": 2
+        },
+        {
+          "name": "projects_list",
+          "description": "Tools for listing GitHub Projects resources.\nUse this tool to list projects for a user or organizati",
+          "tokens": 451,
+          "params": 9
+        },
+        {
+          "name": "add_comment_to_pending_review",
+          "description": "Add review comment to the requester's latest pending pull request review. A pending review needs to ",
+          "tokens": 414,
+          "params": 10
+        },
+        {
+          "name": "list_global_security_advisories",
+          "description": "List global security advisories from GitHub.",
+          "tokens": 402,
+          "params": 11
+        },
+        {
+          "name": "projects_get",
+          "description": "Get details about specific GitHub Projects resources.\nUse this tool to get details about individual ",
+          "tokens": 386,
+          "params": 8
+        },
+        {
+          "name": "sub_issue_write",
+          "description": "Add a sub-issue to a parent issue in a GitHub repository.",
+          "tokens": 368,
+          "params": 8
+        },
+        {
+          "name": "list_issues",
+          "description": "List issues in a GitHub repository. For pagination, use the 'endCursor' from the previous response's",
+          "tokens": 345,
+          "params": 9
+        },
+        {
+          "name": "actions_get",
+          "description": "Get details about specific GitHub Actions resources.\nUse this tool to get details about individual w",
+          "tokens": 329,
+          "params": 4
+        },
+        {
+          "name": "search_pull_requests",
+          "description": "Search for pull requests in GitHub repositories using issues search syntax already scoped to is:pr",
+          "tokens": 325,
+          "params": 7
+        },
+        {
+          "name": "search_issues",
+          "description": "Search for issues in GitHub repositories using issues search syntax already scoped to is:issue",
+          "tokens": 315,
+          "params": 7
+        },
+        {
+          "name": "search_repositories",
+          "description": "Find GitHub repositories by name, description, readme, topics, or other metadata. Perfect for discov",
+          "tokens": 312,
+          "params": 6
+        },
+        {
+          "name": "actions_run_trigger",
+          "description": "Trigger GitHub Actions workflow operations, including running, re-running, cancelling workflow runs,",
+          "tokens": 311,
+          "params": 7
+        },
+        {
+          "name": "create_or_update_file",
+          "description": "Create or update a single file in a GitHub repository. \nIf updating, you should provide the SHA of t",
+          "tokens": 309,
+          "params": 7
+        },
+        {
+          "name": "list_pull_requests",
+          "description": "List pull requests in a GitHub repository. If the user specifies an author, then DO NOT use this too",
+          "tokens": 288,
+          "params": 9
+        },
+        {
+          "name": "list_discussions",
+          "description": "List discussions for a repository or organisation.",
+          "tokens": 281,
+          "params": 7
+        },
+        {
+          "name": "label_write",
+          "description": "Perform write operations on repository labels. To set labels on issues, use the 'update_issue' tool.",
+          "tokens": 273,
+          "params": 7
+        },
+        {
+          "name": "issue_read",
+          "description": "Get information about a specific issue in a GitHub repository.",
+          "tokens": 272,
+          "params": 6
+        },
+        {
+          "name": "search_code",
+          "description": "Fast and precise code search across ALL GitHub repositories using GitHub's native search engine. Bes",
+          "tokens": 263,
+          "params": 5
+        },
+        {
+          "name": "update_pull_request",
+          "description": "Update an existing pull request in a GitHub repository.",
+          "tokens": 261,
+          "params": 10
+        },
+        {
+          "name": "list_commits",
+          "description": "Get list of commits of a branch in a GitHub repository. Returns at least 30 results per page by defa",
+          "tokens": 259,
+          "params": 6
+        },
+        {
+          "name": "search_users",
+          "description": "Find GitHub users by username, real name, or other profile information. Useful for locating develope",
+          "tokens": 243,
+          "params": 5
+        },
+        {
+          "name": "get_job_logs",
+          "description": "Download logs for a specific workflow job or efficiently get all failed job logs for a workflow run",
+          "tokens": 239,
+          "params": 7
+        },
+        {
+          "name": "search_orgs",
+          "description": "Find GitHub organizations by name, location, or other organization metadata. Ideal for discovering c",
+          "tokens": 236,
+          "params": 5
+        },
+        {
+          "name": "list_code_scanning_alerts",
+          "description": "List code scanning alerts in a GitHub repository.",
+          "tokens": 235,
+          "params": 6
+        },
+        {
+          "name": "get_repository_tree",
+          "description": "Get the tree structure (files and directories) of a GitHub repository at a specific ref or SHA",
+          "tokens": 232,
+          "params": 5
+        },
+        {
+          "name": "list_secret_scanning_alerts",
+          "description": "List secret scanning alerts in a GitHub repository.",
+          "tokens": 226,
+          "params": 5
+        },
+        {
+          "name": "create_pull_request",
+          "description": "Create a new pull request in a GitHub repository.",
+          "tokens": 223,
+          "params": 8
+        },
+        {
+          "name": "list_starred_repositories",
+          "description": "List starred repositories",
+          "tokens": 222,
+          "params": 5
+        },
+        {
+          "name": "push_files",
+          "description": "Push multiple files to a GitHub repository in a single commit",
+          "tokens": 214,
+          "params": 5
+        },
+        {
+          "name": "create_issue",
+          "description": "Create a new issue in a GitHub repository.",
+          "tokens": 211,
+          "params": 8
+        },
+        {
+          "name": "get_commit",
+          "description": "Get details for a commit from a GitHub repository",
+          "tokens": 206,
+          "params": 6
+        },
+        {
+          "name": "get_file_contents",
+          "description": "Get the contents of a file or directory from a GitHub repository",
+          "tokens": 196,
+          "params": 5
+        },
+        {
+          "name": "list_repository_security_advisories",
+          "description": "List repository security advisories for a GitHub repository.",
+          "tokens": 191,
+          "params": 5
+        },
+        {
+          "name": "get_discussion_comments",
+          "description": "Get comments from a discussion",
+          "tokens": 182,
+          "params": 5
+        },
+        {
+          "name": "add_reply_to_pull_request_comment",
+          "description": "Add a reply to an existing pull request comment. This creates a new comment that is linked as a repl",
+          "tokens": 180,
+          "params": 5
+        },
+        {
+          "name": "list_dependabot_alerts",
+          "description": "List dependabot alerts in a GitHub repository.",
+          "tokens": 178,
+          "params": 4
+        },
+        {
+          "name": "add_issue_comment",
+          "description": "Add a comment to a specific issue in a GitHub repository. Use this tool to add comments to pull requ",
+          "tokens": 177,
+          "params": 4
+        },
+        {
+          "name": "manage_repository_notification_subscription",
+          "description": "Manage a repository notification subscription: ignore, watch, or delete repository notifications sub",
+          "tokens": 177,
+          "params": 3
+        },
+        {
+          "name": "list_org_repository_security_advisories",
+          "description": "List repository security advisories for a GitHub organization.",
+          "tokens": 171,
+          "params": 4
+        },
+        {
+          "name": "create_repository",
+          "description": "Create a new GitHub repository in your account or specified organization",
+          "tokens": 167,
+          "params": 5
+        },
+        {
+          "name": "mark_all_notifications_read",
+          "description": "Mark all notifications as read",
+          "tokens": 161,
+          "params": 3
+        },
+        {
+          "name": "delete_file",
+          "description": "Delete a file from a GitHub repository",
+          "tokens": 156,
+          "params": 5
+        },
+        {
+          "name": "list_gists",
+          "description": "List gists for a user",
+          "tokens": 151,
+          "params": 4
+        },
+        {
+          "name": "update_pull_request_branch",
+          "description": "Update the branch of a pull request with the latest changes from the base branch.",
+          "tokens": 148,
+          "params": 4
+        },
+        {
+          "name": "list_branches",
+          "description": "List branches in a GitHub repository",
+          "tokens": 144,
+          "params": 4
+        },
+        {
+          "name": "list_releases",
+          "description": "List releases in a GitHub repository",
+          "tokens": 144,
+          "params": 4
+        },
+        {
+          "name": "list_tags",
+          "description": "List git tags in a GitHub repository",
+          "tokens": 142,
+          "params": 4
+        },
+        {
+          "name": "manage_notification_subscription",
+          "description": "Manage a notification subscription: ignore, watch, or delete a notification thread subscription.",
+          "tokens": 141,
+          "params": 2
+        },
+        {
+          "name": "create_gist",
+          "description": "Create a new gist",
+          "tokens": 137,
+          "params": 4
+        },
+        {
+          "name": "get_secret_scanning_alert",
+          "description": "Get details of a specific secret scanning alert in a GitHub repository.",
+          "tokens": 132,
+          "params": 3
+        },
+        {
+          "name": "get_code_scanning_alert",
+          "description": "Get details of a specific code scanning alert in a GitHub repository.",
+          "tokens": 130,
+          "params": 3
+        },
+        {
+          "name": "get_dependabot_alert",
+          "description": "Get details of a specific dependabot alert in a GitHub repository.",
+          "tokens": 128,
+          "params": 3
+        },
+        {
+          "name": "update_gist",
+          "description": "Update an existing gist",
+          "tokens": 128,
+          "params": 4
+        },
+        {
+          "name": "create_branch",
+          "description": "Create a new branch in a GitHub repository",
+          "tokens": 127,
+          "params": 4
+        },
+        {
+          "name": "list_discussion_categories",
+          "description": "List discussion categories with their id and name, for a repository or organisation.",
+          "tokens": 125,
+          "params": 2
+        },
+        {
+          "name": "get_notification_details",
+          "description": "Get detailed information for a specific GitHub notification, always call this tool when the user ask",
+          "tokens": 123,
+          "params": 1
+        },
+        {
+          "name": "get_label",
+          "description": "Get a specific label from a repository.",
+          "tokens": 119,
+          "params": 3
+        },
+        {
+          "name": "get_team_members",
+          "description": "Get member usernames of a specific team in an organization. Limited to organizations accessible with",
+          "tokens": 119,
+          "params": 2
+        },
+        {
+          "name": "get_release_by_tag",
+          "description": "Get a specific release by its tag name in a GitHub repository",
+          "tokens": 118,
+          "params": 3
+        },
+        {
+          "name": "list_label",
+          "description": "List labels from a repository",
+          "tokens": 113,
+          "params": 2
+        },
+        {
+          "name": "get_discussion",
+          "description": "Get a specific discussion by ID",
+          "tokens": 111,
+          "params": 3
+        },
+        {
+          "name": "dismiss_notification",
+          "description": "Dismiss a notification by marking it as read or done",
+          "tokens": 110,
+          "params": 2
+        },
+        {
+          "name": "get_tag",
+          "description": "Get details about a specific git tag in a GitHub repository",
+          "tokens": 108,
+          "params": 3
+        },
+        {
+          "name": "get_me",
+          "description": "Get details of the authenticated GitHub user. Use this when a request is about the user's own profil",
+          "tokens": 99,
+          "params": 0
+        },
+        {
+          "name": "get_teams",
+          "description": "Get details of the teams the user is a member of. Limited to organizations accessible with current c",
+          "tokens": 95,
+          "params": 1
+        },
+        {
+          "name": "get_latest_release",
+          "description": "Get the latest release in a GitHub repository",
+          "tokens": 93,
+          "params": 2
+        },
+        {
+          "name": "get_global_security_advisory",
+          "description": "Get a global security advisory",
+          "tokens": 88,
+          "params": 1
+        },
+        {
+          "name": "list_issue_types",
+          "description": "List supported issue types for repository owner (organization).",
+          "tokens": 87,
+          "params": 1
+        },
+        {
+          "name": "unstar_repository",
+          "description": "Unstar a GitHub repository",
+          "tokens": 82,
+          "params": 2
+        },
+        {
+          "name": "get_gist",
+          "description": "Get gist content of a particular gist, by gist ID",
+          "tokens": 75,
+          "params": 1
+        }
+      ],
+      "issues": [
+        {
+          "rule": "long_description",
+          "tool": "add_issue_comment",
+          "detail": "Description is 237 chars (recommended: <200)"
+        },
+        {
+          "rule": "long_description",
+          "tool": "assign_copilot_to_issue",
+          "detail": "Description is 350 chars (recommended: <200)"
+        },
+        {
+          "rule": "long_description",
+          "tool": "create_or_update_file",
+          "detail": "Description is 431 chars (recommended: <200)"
+        },
+        {
+          "rule": "long_description",
+          "tool": "list_notifications",
+          "detail": "Description is 557 chars (recommended: <200)"
+        },
+        {
+          "rule": "long_description",
+          "tool": "pull_request_review_write",
+          "detail": "Description is 1115 chars (recommended: <200)"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "actions_get",
+          "detail": "Param 'resource_id' description is 451 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "actions_list",
+          "detail": "Param 'resource_id' description is 429 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "actions_run_trigger",
+          "detail": "Param 'ref' description is 114 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "actions_run_trigger",
+          "detail": "Param 'workflow_id' description is 110 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "add_comment_to_pending_review",
+          "detail": "Param 'line' description is 126 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "add_comment_to_pending_review",
+          "detail": "Param 'startSide' description is 148 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "assign_copilot_to_issue",
+          "detail": "Param 'base_ref' description is 131 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "assign_copilot_to_issue",
+          "detail": "Param 'custom_instructions' description is 181 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "get_file_contents",
+          "detail": "Param 'ref' description is 106 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "get_repository_tree",
+          "detail": "Param 'path_filter' description is 102 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "get_repository_tree",
+          "detail": "Param 'recursive' description is 103 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "issue_read",
+          "detail": "Param 'method' description is 241 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "issue_write",
+          "detail": "Param 'method' description is 133 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "issue_write",
+          "detail": "Param 'type' description is 215 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "label_write",
+          "detail": "Param 'color' description is 118 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "list_commits",
+          "detail": "Param 'sha' description is 173 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "list_discussions",
+          "detail": "Param 'category' description is 103 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "list_notifications",
+          "detail": "Param 'filter' description is 275 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "list_secret_scanning_alerts",
+          "detail": "Param 'secret_type' description is 160 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "list_starred_repositories",
+          "detail": "Param 'sort' description is 137 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "mark_all_notifications_read",
+          "detail": "Param 'owner' description is 108 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "mark_all_notifications_read",
+          "detail": "Param 'repo' description is 108 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "projects_get",
+          "detail": "Param 'fields' description is 212 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "projects_list",
+          "detail": "Param 'fields' description is 201 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "projects_list",
+          "detail": "Param 'project_number' description is 122 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "projects_list",
+          "detail": "Param 'query' description is 180 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "projects_write",
+          "detail": "Param 'issue_number' description is 131 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "projects_write",
+          "detail": "Param 'item_owner' description is 128 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "projects_write",
+          "detail": "Param 'item_repo' description is 104 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "projects_write",
+          "detail": "Param 'pull_request_number' description is 145 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "projects_write",
+          "detail": "Param 'start_date' description is 105 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "projects_write",
+          "detail": "Param 'target_date' description is 106 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "projects_write",
+          "detail": "Param 'updated_field' description is 220 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "pull_request_read",
+          "detail": "Param 'method' description is 1204 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "pull_request_review_write",
+          "detail": "Param 'threadId' description is 183 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "search_code",
+          "detail": "Param 'query' description is 258 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "search_orgs",
+          "detail": "Param 'query' description is 140 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "search_repositories",
+          "detail": "Param 'minimal_output' description is 110 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "search_repositories",
+          "detail": "Param 'query' description is 177 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "search_users",
+          "detail": "Param 'query' description is 125 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "sub_issue_write",
+          "detail": "Param 'method' description is 367 chars"
+        },
+        {
+          "rule": "deep_nesting",
+          "tool": "actions_list",
+          "detail": "Schema depth: 4 (max recommended: 3)"
+        },
+        {
+          "rule": "deep_nesting",
+          "tool": "push_files",
+          "detail": "Schema depth: 5 (max recommended: 3)"
+        },
+        {
+          "rule": "redundant_param_description",
+          "tool": "list_starred_repositories",
+          "detail": "Param 'username' description overlaps with tool description"
+        },
+        {
+          "rule": "redundant_param_description",
+          "tool": "sub_issue_write",
+          "detail": "Param 'method' description overlaps with tool description"
+        }
+      ],
+      "issues_by_rule": {
+        "long_description": 5,
+        "long_param_description": 41,
+        "deep_nesting": 2,
+        "redundant_param_description": 2
+      },
+      "total_issues": 50
+    },
+    {
+      "name": "Filesystem",
+      "tool_count": 14,
+      "total_tokens_mcp": 1841,
+      "format_tokens": {
+        "openai": 2117,
+        "anthropic": 1988,
+        "google": 1841,
+        "mcp": 2061,
+        "json_schema": 1564
+      },
+      "tools": [
+        {
+          "name": "read_text_file",
+          "description": "Read the complete contents of a file from the file system as text. Handles various text encodings an",
+          "tokens": 201,
+          "params": 3
+        },
+        {
+          "name": "edit_file",
+          "description": "Make line-based edits to a text file. Each edit replaces exact line sequences with new content. Retu",
+          "tokens": 178,
+          "params": 3
+        },
+        {
+          "name": "search_files",
+          "description": "Recursively search for files and directories matching a pattern. The patterns should be glob-style p",
+          "tokens": 173,
+          "params": 3
+        },
+        {
+          "name": "read_multiple_files",
+          "description": "Read the contents of multiple files simultaneously. This is more efficient than reading files one by",
+          "tokens": 161,
+          "params": 1
+        },
+        {
+          "name": "list_directory_with_sizes",
+          "description": "Get a detailed listing of all files and directories in a specified path, including sizes. Results cl",
+          "tokens": 150,
+          "params": 2
+        },
+        {
+          "name": "directory_tree",
+          "description": "Get a recursive tree view of files and directories as a JSON structure. Each entry includes 'name', ",
+          "tokens": 147,
+          "params": 2
+        },
+        {
+          "name": "move_file",
+          "description": "Move or rename files and directories. Can move files between directories and rename them in a single",
+          "tokens": 130,
+          "params": 2
+        },
+        {
+          "name": "create_directory",
+          "description": "Create a new directory or ensure a directory exists. Can create multiple nested directories in one o",
+          "tokens": 114,
+          "params": 1
+        },
+        {
+          "name": "list_directory",
+          "description": "Get a detailed listing of all files and directories in a specified path. Results clearly distinguish",
+          "tokens": 113,
+          "params": 1
+        },
+        {
+          "name": "get_file_info",
+          "description": "Retrieve detailed metadata about a file or directory. Returns comprehensive information including si",
+          "tokens": 110,
+          "params": 1
+        },
+        {
+          "name": "read_file",
+          "description": "Read the complete contents of a file as text. DEPRECATED: Use read_text_file instead.",
+          "tokens": 107,
+          "params": 3
+        },
+        {
+          "name": "write_file",
+          "description": "Create a new file or completely overwrite an existing file with new content. Use with caution as it ",
+          "tokens": 103,
+          "params": 2
+        },
+        {
+          "name": "list_allowed_directories",
+          "description": "Returns the list of directories that this server is allowed to access. Subdirectories within these a",
+          "tokens": 89,
+          "params": 0
+        },
+        {
+          "name": "read_media_file",
+          "description": "Read an image or audio file. Returns the base64 encoded data and MIME type. Only works within allowe",
+          "tokens": 65,
+          "params": 1
+        }
+      ],
+      "issues": [
+        {
+          "rule": "long_description",
+          "tool": "read_text_file",
+          "detail": "Description is 457 chars (recommended: <200)"
+        },
+        {
+          "rule": "long_description",
+          "tool": "read_multiple_files",
+          "detail": "Description is 324 chars (recommended: <200)"
+        },
+        {
+          "rule": "long_description",
+          "tool": "write_file",
+          "detail": "Description is 228 chars (recommended: <200)"
+        },
+        {
+          "rule": "long_description",
+          "tool": "create_directory",
+          "detail": "Description is 310 chars (recommended: <200)"
+        },
+        {
+          "rule": "long_description",
+          "tool": "list_directory",
+          "detail": "Description is 309 chars (recommended: <200)"
+        },
+        {
+          "rule": "long_description",
+          "tool": "list_directory_with_sizes",
+          "detail": "Description is 323 chars (recommended: <200)"
+        },
+        {
+          "rule": "long_description",
+          "tool": "directory_tree",
+          "detail": "Description is 360 chars (recommended: <200)"
+        },
+        {
+          "rule": "long_description",
+          "tool": "move_file",
+          "detail": "Description is 325 chars (recommended: <200)"
+        },
+        {
+          "rule": "long_description",
+          "tool": "search_files",
+          "detail": "Description is 424 chars (recommended: <200)"
+        },
+        {
+          "rule": "long_description",
+          "tool": "get_file_info",
+          "detail": "Description is 296 chars (recommended: <200)"
+        },
+        {
+          "rule": "long_description",
+          "tool": "list_allowed_directories",
+          "detail": "Description is 248 chars (recommended: <200)"
+        },
+        {
+          "rule": "missing_description",
+          "tool": "read_file",
+          "detail": "Parameter 'path' has no description"
+        },
+        {
+          "rule": "missing_description",
+          "tool": "read_text_file",
+          "detail": "Parameter 'path' has no description"
+        },
+        {
+          "rule": "missing_description",
+          "tool": "read_media_file",
+          "detail": "Parameter 'path' has no description"
+        },
+        {
+          "rule": "missing_description",
+          "tool": "write_file",
+          "detail": "Parameter 'path' has no description"
+        },
+        {
+          "rule": "missing_description",
+          "tool": "write_file",
+          "detail": "Parameter 'content' has no description"
+        },
+        {
+          "rule": "missing_description",
+          "tool": "edit_file",
+          "detail": "Parameter 'path' has no description"
+        },
+        {
+          "rule": "missing_description",
+          "tool": "edit_file",
+          "detail": "Parameter 'edits' has no description"
+        },
+        {
+          "rule": "missing_description",
+          "tool": "create_directory",
+          "detail": "Parameter 'path' has no description"
+        },
+        {
+          "rule": "missing_description",
+          "tool": "list_directory",
+          "detail": "Parameter 'path' has no description"
+        },
+        {
+          "rule": "missing_description",
+          "tool": "list_directory_with_sizes",
+          "detail": "Parameter 'path' has no description"
+        },
+        {
+          "rule": "missing_description",
+          "tool": "directory_tree",
+          "detail": "Parameter 'path' has no description"
+        },
+        {
+          "rule": "missing_description",
+          "tool": "directory_tree",
+          "detail": "Parameter 'excludePatterns' has no description"
+        },
+        {
+          "rule": "missing_description",
+          "tool": "move_file",
+          "detail": "Parameter 'source' has no description"
+        },
+        {
+          "rule": "missing_description",
+          "tool": "move_file",
+          "detail": "Parameter 'destination' has no description"
+        },
+        {
+          "rule": "missing_description",
+          "tool": "search_files",
+          "detail": "Parameter 'path' has no description"
+        },
+        {
+          "rule": "missing_description",
+          "tool": "search_files",
+          "detail": "Parameter 'pattern' has no description"
+        },
+        {
+          "rule": "missing_description",
+          "tool": "search_files",
+          "detail": "Parameter 'excludePatterns' has no description"
+        },
+        {
+          "rule": "missing_description",
+          "tool": "get_file_info",
+          "detail": "Parameter 'path' has no description"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "read_multiple_files",
+          "detail": "Param 'paths' description is 108 chars"
+        },
+        {
+          "rule": "deep_nesting",
+          "tool": "edit_file",
+          "detail": "Schema depth: 5 (max recommended: 3)"
+        }
+      ],
+      "issues_by_rule": {
+        "long_description": 11,
+        "missing_description": 18,
+        "long_param_description": 1,
+        "deep_nesting": 1
+      },
+      "total_issues": 31
+    },
+    {
+      "name": "Sequentialthinking",
+      "tool_count": 1,
+      "total_tokens_mcp": 976,
+      "format_tokens": {
+        "openai": 1122,
+        "anthropic": 1054,
+        "google": 976,
+        "mcp": 1093,
+        "json_schema": 829
+      },
+      "tools": [
+        {
+          "name": "sequentialthinking",
+          "description": "A detailed tool for dynamic and reflective problem-solving through thoughts.\nThis tool helps analyze",
+          "tokens": 976,
+          "params": 9
+        }
+      ],
+      "issues": [
+        {
+          "rule": "long_description",
+          "tool": "sequentialthinking",
+          "detail": "Description is 2781 chars (recommended: <200)"
+        },
+        {
+          "rule": "redundant_param_description",
+          "tool": "sequentialthinking",
+          "detail": "Param 'thought' description overlaps with tool description"
+        }
+      ],
+      "issues_by_rule": {
+        "long_description": 1,
+        "redundant_param_description": 1
+      },
+      "total_issues": 2
+    },
+    {
+      "name": "Memory",
+      "tool_count": 9,
+      "total_tokens_mcp": 975,
+      "format_tokens": {
+        "openai": 1121,
+        "anthropic": 1053,
+        "google": 975,
+        "mcp": 1092,
+        "json_schema": 828
+      },
+      "tools": [
+        {
+          "name": "create_relations",
+          "description": "Create multiple new relations between entities in the knowledge graph. Relations should be in active",
+          "tokens": 154,
+          "params": 1
+        },
+        {
+          "name": "delete_relations",
+          "description": "Delete multiple relations from the knowledge graph",
+          "tokens": 152,
+          "params": 1
+        },
+        {
+          "name": "create_entities",
+          "description": "Create multiple new entities in the knowledge graph",
+          "tokens": 147,
+          "params": 1
+        },
+        {
+          "name": "add_observations",
+          "description": "Add new observations to existing entities in the knowledge graph",
+          "tokens": 133,
+          "params": 1
+        },
+        {
+          "name": "delete_observations",
+          "description": "Delete specific observations from entities in the knowledge graph",
+          "tokens": 133,
+          "params": 1
+        },
+        {
+          "name": "delete_entities",
+          "description": "Delete multiple entities and their associated relations from the knowledge graph",
+          "tokens": 80,
+          "params": 1
+        },
+        {
+          "name": "search_nodes",
+          "description": "Search for nodes in the knowledge graph based on a query",
+          "tokens": 74,
+          "params": 1
+        },
+        {
+          "name": "open_nodes",
+          "description": "Open specific nodes in the knowledge graph by their names",
+          "tokens": 71,
+          "params": 1
+        },
+        {
+          "name": "read_graph",
+          "description": "Read the entire knowledge graph",
+          "tokens": 31,
+          "params": 0
+        }
+      ],
+      "issues": [
+        {
+          "rule": "missing_description",
+          "tool": "create_entities",
+          "detail": "Parameter 'entities' has no description"
+        },
+        {
+          "rule": "missing_description",
+          "tool": "create_relations",
+          "detail": "Parameter 'relations' has no description"
+        },
+        {
+          "rule": "missing_description",
+          "tool": "add_observations",
+          "detail": "Parameter 'observations' has no description"
+        },
+        {
+          "rule": "missing_description",
+          "tool": "delete_observations",
+          "detail": "Parameter 'deletions' has no description"
+        },
+        {
+          "rule": "deep_nesting",
+          "tool": "create_entities",
+          "detail": "Schema depth: 6 (max recommended: 3)"
+        },
+        {
+          "rule": "deep_nesting",
+          "tool": "create_relations",
+          "detail": "Schema depth: 5 (max recommended: 3)"
+        },
+        {
+          "rule": "deep_nesting",
+          "tool": "add_observations",
+          "detail": "Schema depth: 6 (max recommended: 3)"
+        },
+        {
+          "rule": "deep_nesting",
+          "tool": "delete_observations",
+          "detail": "Schema depth: 6 (max recommended: 3)"
+        },
+        {
+          "rule": "deep_nesting",
+          "tool": "delete_relations",
+          "detail": "Schema depth: 5 (max recommended: 3)"
+        }
+      ],
+      "issues_by_rule": {
+        "missing_description": 4,
+        "deep_nesting": 5
+      },
+      "total_issues": 9
+    },
+    {
+      "name": "Git",
+      "tool_count": 12,
+      "total_tokens_mcp": 897,
+      "format_tokens": {
+        "openai": 1031,
+        "anthropic": 968,
+        "google": 897,
+        "mcp": 1004,
+        "json_schema": 762
+      },
+      "tools": [
+        {
+          "name": "git_create_branch",
+          "description": "Creates a new branch from an optional base branch",
+          "tokens": 113,
+          "params": 3
+        },
+        {
+          "name": "git_add",
+          "description": "Adds file contents to the staging area",
+          "tokens": 86,
+          "params": 2
+        },
+        {
+          "name": "git_diff",
+          "description": "Shows differences between branches or commits",
+          "tokens": 84,
+          "params": 2
+        },
+        {
+          "name": "git_show",
+          "description": "Shows the contents of a commit",
+          "tokens": 84,
+          "params": 2
+        },
+        {
+          "name": "git_log",
+          "description": "Shows the commit logs",
+          "tokens": 79,
+          "params": 2
+        },
+        {
+          "name": "git_checkout",
+          "description": "Switches branches",
+          "tokens": 79,
+          "params": 2
+        },
+        {
+          "name": "git_commit",
+          "description": "Records changes to the repository",
+          "tokens": 76,
+          "params": 2
+        },
+        {
+          "name": "git_diff_unstaged",
+          "description": "Shows changes in the working directory that are not yet staged",
+          "tokens": 66,
+          "params": 1
+        },
+        {
+          "name": "git_diff_staged",
+          "description": "Shows changes that are staged for commit",
+          "tokens": 60,
+          "params": 1
+        },
+        {
+          "name": "git_init",
+          "description": "Initialize a new Git repository",
+          "tokens": 59,
+          "params": 1
+        },
+        {
+          "name": "git_status",
+          "description": "Shows the working tree status",
+          "tokens": 56,
+          "params": 1
+        },
+        {
+          "name": "git_reset",
+          "description": "Unstages all staged changes",
+          "tokens": 55,
+          "params": 1
+        }
+      ],
+      "issues": [
+        {
+          "rule": "verbose_prefix",
+          "tool": "git_status",
+          "detail": "Common prefix 'git_' adds ~4 chars/tool"
+        },
+        {
+          "rule": "verbose_prefix",
+          "tool": "git_diff_unstaged",
+          "detail": "Common prefix 'git_' adds ~4 chars/tool"
+        },
+        {
+          "rule": "verbose_prefix",
+          "tool": "git_diff_staged",
+          "detail": "Common prefix 'git_' adds ~4 chars/tool"
+        },
+        {
+          "rule": "verbose_prefix",
+          "tool": "git_diff",
+          "detail": "Common prefix 'git_' adds ~4 chars/tool"
+        },
+        {
+          "rule": "verbose_prefix",
+          "tool": "git_commit",
+          "detail": "Common prefix 'git_' adds ~4 chars/tool"
+        },
+        {
+          "rule": "verbose_prefix",
+          "tool": "git_add",
+          "detail": "Common prefix 'git_' adds ~4 chars/tool"
+        },
+        {
+          "rule": "verbose_prefix",
+          "tool": "git_reset",
+          "detail": "Common prefix 'git_' adds ~4 chars/tool"
+        },
+        {
+          "rule": "verbose_prefix",
+          "tool": "git_log",
+          "detail": "Common prefix 'git_' adds ~4 chars/tool"
+        },
+        {
+          "rule": "verbose_prefix",
+          "tool": "git_create_branch",
+          "detail": "Common prefix 'git_' adds ~4 chars/tool"
+        },
+        {
+          "rule": "verbose_prefix",
+          "tool": "git_checkout",
+          "detail": "Common prefix 'git_' adds ~4 chars/tool"
+        },
+        {
+          "rule": "verbose_prefix",
+          "tool": "git_show",
+          "detail": "Common prefix 'git_' adds ~4 chars/tool"
+        },
+        {
+          "rule": "verbose_prefix",
+          "tool": "git_init",
+          "detail": "Common prefix 'git_' adds ~4 chars/tool"
+        }
+      ],
+      "issues_by_rule": {
+        "verbose_prefix": 12
+      },
+      "total_issues": 12
+    },
+    {
+      "name": "Slack",
+      "tool_count": 8,
+      "total_tokens_mcp": 815,
+      "format_tokens": {
+        "openai": 937,
+        "anthropic": 880,
+        "google": 815,
+        "mcp": 912,
+        "json_schema": 692
+      },
+      "tools": [
+        {
+          "name": "slack_reply_to_thread",
+          "description": "Reply to a specific message thread in Slack",
+          "tokens": 147,
+          "params": 3
+        },
+        {
+          "name": "slack_get_thread_replies",
+          "description": "Get all replies in a message thread",
+          "tokens": 129,
+          "params": 2
+        },
+        {
+          "name": "slack_add_reaction",
+          "description": "Add a reaction emoji to a message",
+          "tokens": 117,
+          "params": 3
+        },
+        {
+          "name": "slack_get_users",
+          "description": "Get a list of all users in the workspace with their basic profile information",
+          "tokens": 96,
+          "params": 2
+        },
+        {
+          "name": "slack_list_channels",
+          "description": "List public or pre-defined channels in the workspace with pagination",
+          "tokens": 95,
+          "params": 2
+        },
+        {
+          "name": "slack_get_channel_history",
+          "description": "Get recent messages from a channel",
+          "tokens": 87,
+          "params": 2
+        },
+        {
+          "name": "slack_post_message",
+          "description": "Post a new message to a Slack channel",
+          "tokens": 82,
+          "params": 2
+        },
+        {
+          "name": "slack_get_user_profile",
+          "description": "Get detailed profile information for a specific user",
+          "tokens": 62,
+          "params": 1
+        }
+      ],
+      "issues": [
+        {
+          "rule": "verbose_prefix",
+          "tool": "slack_list_channels",
+          "detail": "Common prefix 'slack_' adds ~6 chars/tool"
+        },
+        {
+          "rule": "verbose_prefix",
+          "tool": "slack_post_message",
+          "detail": "Common prefix 'slack_' adds ~6 chars/tool"
+        },
+        {
+          "rule": "verbose_prefix",
+          "tool": "slack_reply_to_thread",
+          "detail": "Common prefix 'slack_' adds ~6 chars/tool"
+        },
+        {
+          "rule": "verbose_prefix",
+          "tool": "slack_add_reaction",
+          "detail": "Common prefix 'slack_' adds ~6 chars/tool"
+        },
+        {
+          "rule": "verbose_prefix",
+          "tool": "slack_get_channel_history",
+          "detail": "Common prefix 'slack_' adds ~6 chars/tool"
+        },
+        {
+          "rule": "verbose_prefix",
+          "tool": "slack_get_thread_replies",
+          "detail": "Common prefix 'slack_' adds ~6 chars/tool"
+        },
+        {
+          "rule": "verbose_prefix",
+          "tool": "slack_get_users",
+          "detail": "Common prefix 'slack_' adds ~6 chars/tool"
+        },
+        {
+          "rule": "verbose_prefix",
+          "tool": "slack_get_user_profile",
+          "detail": "Common prefix 'slack_' adds ~6 chars/tool"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "slack_reply_to_thread",
+          "detail": "Param 'thread_ts' description is 187 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "slack_get_thread_replies",
+          "detail": "Param 'thread_ts' description is 187 chars"
+        }
+      ],
+      "issues_by_rule": {
+        "verbose_prefix": 8,
+        "long_param_description": 2
+      },
+      "total_issues": 10
+    },
+    {
+      "name": "Puppeteer",
+      "tool_count": 7,
+      "total_tokens_mcp": 642,
+      "format_tokens": {
+        "openai": 738,
+        "anthropic": 693,
+        "google": 642,
+        "mcp": 719,
+        "json_schema": 545
+      },
+      "tools": [
+        {
+          "name": "puppeteer_screenshot",
+          "description": "Take a screenshot of the current page or a specific element",
+          "tokens": 167,
+          "params": 5
+        },
+        {
+          "name": "puppeteer_navigate",
+          "description": "Navigate to a URL",
+          "tokens": 145,
+          "params": 3
+        },
+        {
+          "name": "puppeteer_select",
+          "description": "Select an element on the page with Select tag",
+          "tokens": 81,
+          "params": 2
+        },
+        {
+          "name": "puppeteer_fill",
+          "description": "Fill out an input field",
+          "tokens": 73,
+          "params": 2
+        },
+        {
+          "name": "puppeteer_evaluate",
+          "description": "Execute JavaScript in the browser console",
+          "tokens": 60,
+          "params": 1
+        },
+        {
+          "name": "puppeteer_click",
+          "description": "Click an element on the page",
+          "tokens": 58,
+          "params": 1
+        },
+        {
+          "name": "puppeteer_hover",
+          "description": "Hover an element on the page",
+          "tokens": 58,
+          "params": 1
+        }
+      ],
+      "issues": [
+        {
+          "rule": "verbose_prefix",
+          "tool": "puppeteer_navigate",
+          "detail": "Common prefix 'puppeteer_' adds ~10 chars/tool"
+        },
+        {
+          "rule": "verbose_prefix",
+          "tool": "puppeteer_screenshot",
+          "detail": "Common prefix 'puppeteer_' adds ~10 chars/tool"
+        },
+        {
+          "rule": "verbose_prefix",
+          "tool": "puppeteer_click",
+          "detail": "Common prefix 'puppeteer_' adds ~10 chars/tool"
+        },
+        {
+          "rule": "verbose_prefix",
+          "tool": "puppeteer_fill",
+          "detail": "Common prefix 'puppeteer_' adds ~10 chars/tool"
+        },
+        {
+          "rule": "verbose_prefix",
+          "tool": "puppeteer_select",
+          "detail": "Common prefix 'puppeteer_' adds ~10 chars/tool"
+        },
+        {
+          "rule": "verbose_prefix",
+          "tool": "puppeteer_hover",
+          "detail": "Common prefix 'puppeteer_' adds ~10 chars/tool"
+        },
+        {
+          "rule": "verbose_prefix",
+          "tool": "puppeteer_evaluate",
+          "detail": "Common prefix 'puppeteer_' adds ~10 chars/tool"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "puppeteer_navigate",
+          "detail": "Param 'launchOptions' description is 135 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "puppeteer_navigate",
+          "detail": "Param 'allowDangerous' description is 130 chars"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "puppeteer_screenshot",
+          "detail": "Param 'encoded' description is 118 chars"
+        }
+      ],
+      "issues_by_rule": {
+        "verbose_prefix": 7,
+        "long_param_description": 3
+      },
+      "total_issues": 10
+    },
+    {
+      "name": "Brave Search",
+      "tool_count": 2,
+      "total_tokens_mcp": 374,
+      "format_tokens": {
+        "openai": 430,
+        "anthropic": 403,
+        "google": 374,
+        "mcp": 418,
+        "json_schema": 317
+      },
+      "tools": [
+        {
+          "name": "brave_local_search",
+          "description": "Searches for local businesses and places using Brave's Local Search API. Best for queries related to",
+          "tokens": 190,
+          "params": 2
+        },
+        {
+          "name": "brave_web_search",
+          "description": "Performs a web search using the Brave Search API, ideal for general queries, news, articles, and onl",
+          "tokens": 184,
+          "params": 3
+        }
+      ],
+      "issues": [
+        {
+          "rule": "verbose_prefix",
+          "tool": "brave_web_search",
+          "detail": "Common prefix 'brave_' adds ~6 chars/tool"
+        },
+        {
+          "rule": "verbose_prefix",
+          "tool": "brave_local_search",
+          "detail": "Common prefix 'brave_' adds ~6 chars/tool"
+        },
+        {
+          "rule": "long_description",
+          "tool": "brave_web_search",
+          "detail": "Description is 331 chars (recommended: <200)"
+        },
+        {
+          "rule": "long_description",
+          "tool": "brave_local_search",
+          "detail": "Description is 437 chars (recommended: <200)"
+        }
+      ],
+      "issues_by_rule": {
+        "verbose_prefix": 2,
+        "long_description": 2
+      },
+      "total_issues": 4
+    },
+    {
+      "name": "Fetch",
+      "tool_count": 1,
+      "total_tokens_mcp": 249,
+      "format_tokens": {
+        "openai": 286,
+        "anthropic": 268,
+        "google": 249,
+        "mcp": 278,
+        "json_schema": 211
+      },
+      "tools": [
+        {
+          "name": "fetch",
+          "description": "Fetches a URL from the internet and optionally extracts its contents as markdown.\n\nAlthough original",
+          "tokens": 249,
+          "params": 4
+        }
+      ],
+      "issues": [
+        {
+          "rule": "long_description",
+          "tool": "fetch",
+          "detail": "Description is 307 chars (recommended: <200)"
+        },
+        {
+          "rule": "long_param_description",
+          "tool": "fetch",
+          "detail": "Param 'start_index' description is 121 chars"
+        }
+      ],
+      "issues_by_rule": {
+        "long_description": 1,
+        "long_param_description": 1
+      },
+      "total_issues": 2
+    },
+    {
+      "name": "Time",
+      "tool_count": 2,
+      "total_tokens_mcp": 215,
+      "format_tokens": {
+        "openai": 247,
+        "anthropic": 232,
+        "google": 215,
+        "mcp": 240,
+        "json_schema": 182
+      },
+      "tools": [
+        {
+          "name": "convert_time",
+          "description": "Convert time between timezones",
+          "tokens": 132,
+          "params": 3
+        },
+        {
+          "name": "get_current_time",
+          "description": "Get current time in a specific timezones",
+          "tokens": 83,
+          "params": 1
+        }
+      ],
+      "issues": [
+        {
+          "rule": "long_param_description",
+          "tool": "get_current_time",
+          "detail": "Param 'timezone' description is 119 chars"
+        }
+      ],
+      "issues_by_rule": {
+        "long_param_description": 1
+      },
+      "total_issues": 1
+    },
+    {
+      "name": "Postgres",
+      "tool_count": 1,
+      "total_tokens_mcp": 34,
+      "format_tokens": {
+        "openai": 39,
+        "anthropic": 36,
+        "google": 34,
+        "mcp": 38,
+        "json_schema": 28
+      },
+      "tools": [
+        {
+          "name": "query",
+          "description": "Run a read-only SQL query",
+          "tokens": 34,
+          "params": 1
+        }
+      ],
+      "issues": [
+        {
+          "rule": "missing_description",
+          "tool": "query",
+          "detail": "Parameter 'sql' has no description"
+        }
+      ],
+      "issues_by_rule": {
+        "missing_description": 1
+      },
+      "total_issues": 1
+    }
+  ]
+}

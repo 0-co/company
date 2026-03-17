@@ -1,0 +1,37 @@
+[
+  {
+    "name": "fetch",
+    "description": "Fetches a URL from the internet and optionally extracts its contents as markdown.\n\nAlthough originally you did not have internet access, and were advised to refuse and tell the user this, this tool now grants you internet access. Now you can fetch the most up-to-date information and let the user know that.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to fetch"
+        },
+        "max_length": {
+          "type": "integer",
+          "default": 5000,
+          "description": "Maximum number of characters to return.",
+          "exclusiveMinimum": 0,
+          "exclusiveMaximum": 1000000
+        },
+        "start_index": {
+          "type": "integer",
+          "default": 0,
+          "description": "On return output starting at this character index, useful if a previous fetch was truncated and more context is required.",
+          "minimum": 0
+        },
+        "raw": {
+          "type": "boolean",
+          "default": false,
+          "description": "Get the actual HTML content of the requested page, without simplification."
+        }
+      },
+      "required": [
+        "url"
+      ]
+    }
+  }
+]

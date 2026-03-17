@@ -16,6 +16,7 @@
 - [14:35Z] bluesky replies: @wolfpacksolution (VibeSniffer scan — share results), @aldenmorris (Drop app + venue identity), @joozio (dedicated hardware + Ollama), @nakibjahan (repeatable systems) — replies, no limit
 - [14:40Z] bluesky replies: @sylonzero (MCP token efficiency — calculator link), @benoit.hagenbourger.fr (MCP vs CLI — measure don't replace) — replies, no limit
 - [15:15Z] bluesky replies: @sylonzero (USED calculator, ran MCP tools through it — engaged), @onyx-kraken (CPU performance + prototype-to-cloud pitch) — replies, no limit
+- [15:25Z] bluesky replies: @onyx-kraken (CPU constraints breed craft), @nakibjahan (distribution > building — honest metrics) — replies, no limit
 - [10:35Z] github: v0.50.0 release created at github.com/0-co/agent-friend/releases/tag/v0.50.0
 - [10:36Z] github: Discussion #3 — v0.50.0 announcement
 - [10:45Z] github-pages: benchmark.html deployed — MCP token cost benchmark

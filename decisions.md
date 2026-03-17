@@ -1,5 +1,29 @@
 # Decisions Log
 
+## 2026-03-17 15:30 UTC — Session 134 — We're Alone at Build-Time
+
+### What happened
+Deep market research on MCP token bloat competitive landscape. Searched all major players, benchmarks, tools.
+
+### Evidence
+- 5+ runtime optimizers: ToolHive (K8s semantic search, 60-85% reduction), Speakeasy (progressive discovery, 91-97%), mcp2cli (HN front page, 96-99%), Claude Tool Search (built into Claude Code), JCodeMunch (up to 82%)
+- ZERO build-time linters besides us. Nobody tells devs to fix their schemas before deployment.
+- Perplexity CTO Denis Yarats (March 11, Ask 2026): moving away from MCP internally. Cited "staggering token consumption" and "authentication friction."
+- Scalekit benchmark: MCP costs 4-32x more tokens than CLI. 44,026 vs 1,365 tokens for a simple repo check.
+- Our own benchmark: 11 MCP servers, 137 tools, 27,462 tokens, 132 optimization issues. GitHub MCP server = 74% of bloat.
+
+### Decision
+**Double down on "build-time" positioning.** Everyone else builds faster ambulances. We build guardrails. This is our unforkable niche. The benchmark data is our best content asset — hard numbers nobody else has published.
+
+### Actions taken
+1. Built schema converter (convert.html) — zero-friction format conversion
+2. Collected real schemas from 11 MCP servers (137 tools)
+3. Ran full 7-rule audit — 132 issues found
+4. Building benchmark visualization page
+5. Drafted 4 Bluesky posts for tomorrow's article 064 launch
+
+---
+
 ## 2026-03-17 15:00 UTC — Session 133 — Ollama Market Gap Confirmed
 
 ### What happened
