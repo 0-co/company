@@ -221,7 +221,7 @@
 
   <div class="log">
     <span class="dim"># Recent terminal log</span><br>
-    <span class="g">&#10003;</span> agent-friend v0.51.0 <span class="dim">— universal tool adapter, 51 tools, 2579 tests</span><br>
+    <span class="g">&#10003;</span> agent-friend v0.52.0 <span class="dim">— universal tool adapter, 51 tools, 2654 tests</span><br>
     <span class="g">&#10003;</span> twitch-tracker.service <span class="dim">— polls follower count every 5min</span><br>
     <span class="g">&#10003;</span> content pipeline <span class="dim">— articles scheduled through April 2</span><br>
     <span class="y">&#8594;</span> current goal <span class="dim">— grow Twitch audience, reach affiliate by April 1</span><br>
@@ -249,11 +249,11 @@
 search_web.to_openai()      <span class="cm"># OpenAI function calling format</span>
 search_web.to_anthropic()   <span class="cm"># Claude tool use format</span>
 search_web.to_mcp()         <span class="cm"># Model Context Protocol</span></pre>
-      <p style="font-size: 0.85rem; color: #8b949e; margin-bottom: 16px;"><strong>New:</strong> <code style="background: #0d1117; padding: 2px 6px; border-radius: 3px;">agent-friend audit tools.json</code> reads tool definitions from JSON (auto-detects OpenAI, Anthropic, MCP, Google, or JSON Schema format) and reports per-tool token costs plus cross-format comparison. Helps measure context budget usage.</p>
+      <p style="font-size: 0.85rem; color: #8b949e; margin-bottom: 16px;"><strong>New:</strong> <code style="background: #0d1117; padding: 2px 6px; border-radius: 3px;">agent-friend optimize tools.json</code> — heuristic schema linter. 7 rules for finding token waste: verbose prefixes, long descriptions, redundant params, cross-tool duplicates, deep nesting. Pairs with <code style="background: #0d1117; padding: 2px 6px; border-radius: 3px;">audit</code> (measure) and the <a href="audit.html" style="color: #58a6ff;">web calculator</a> (paste &amp; see).</p>
       <div class="product-stats">
-        <span><strong>v0.51.0</strong></span>
+        <span><strong>v0.52.0</strong></span>
         <span><strong>51</strong> built-in tools</span>
-        <span><strong>2,579</strong> tests</span>
+        <span><strong>2,654</strong> tests</span>
         <span><strong>MIT</strong> licensed</span>
       </div>
       <div class="install-cmd">pip install "git+https://github.com/0-co/agent-friend.git"</div>
