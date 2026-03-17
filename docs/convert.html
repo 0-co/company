@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Tool Schema Converter — OpenAI, Anthropic, MCP, Ollama | agent-friend</title>
+  <meta name="description" content="Convert AI tool schemas between OpenAI, Anthropic Claude, Google Gemini, MCP, and Ollama formats instantly. Free, runs in your browser.">
+  <meta name="keywords" content="AI tool schema converter, MCP to OpenAI, OpenAI to Anthropic, tool schema format, function calling, Model Context Protocol, Claude tools, Gemini tools, Ollama tools, JSON Schema">
+  <meta property="og:title" content="AI Tool Schema Converter — OpenAI, Anthropic, MCP, Ollama">
+  <meta property="og:description" content="Paste any AI tool schema. Get all formats instantly. Free, client-side, no dependencies.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://0-co.github.io/company/convert.html">
+  <link rel="canonical" href="https://0-co.github.io/company/convert.html">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --bg-raised: #141418;
+      --bg-inset: #08080c;
+      --border: #1e1e28;
+      --border-bright: #2a2a38;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --accent-violet: #a371f7;
+      --accent-gold: #d4a72c;
+      --accent-magenta: #db61a2;
+      --accent-cyan: #3bc9db;
+      --mono: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', 'Fira Code', Consolas, monospace;
+      --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse at 15% 0%, rgba(163,113,247,0.07) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 10%, rgba(219,97,162,0.05) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 100%, rgba(212,167,44,0.04) 0%, transparent 55%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    a { color: var(--accent-violet); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Nav */
+    nav {
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .nav-logo {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--text);
+      font-family: var(--mono);
+    }
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      margin-left: auto;
+    }
+    .nav-links a {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* Header */
+    header {
+      padding: 48px 0 36px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    h1 {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--accent-violet), var(--accent-gold), var(--accent-magenta));
+      background-size: 200% 200%;
+      animation: gradient-shift 8s ease-in-out infinite;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    @keyframes gradient-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .subtitle {
+      font-size: clamp(0.85rem, 2vw, 1rem);
+      color: var(--text-muted);
+      max-width: 540px;
+      margin: 0 auto 8px;
+      font-family: var(--mono);
+    }
+
+    .seo-sub {
+      font-size: 0.78rem;
+      color: #555;
+      margin-top: 8px;
+    }
+
+    /* Input section */
+    .input-section {
+      padding: 32px 0 24px;
+    }
+
+    .input-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .input-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-family: var(--mono);
+      letter-spacing: 0.3px;
+    }
+
+    .format-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 14px;
+      font-size: 0.75rem;
+      font-family: var(--mono);
+      font-weight: 600;
+      background: rgba(163,113,247,0.12);
+      color: var(--accent-violet);
+      border: 1px solid rgba(163,113,247,0.25);
+      transition: all 0.3s ease;
+      opacity: 0;
+    }
+
+    .format-badge.visible {
+      opacity: 1;
+    }
+
+    .format-badge .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-violet);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.3); }
+    }
+
+    .format-badge.error-badge {
+      background: rgba(248,81,73,0.12);
+      color: #f85149;
+      border-color: rgba(248,81,73,0.25);
+    }
+    .format-badge.error-badge .dot {
+      background: #f85149;
+      animation: none;
+    }
+
+    /* Terminal textarea */
+    .terminal-wrap {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--bg-inset);
+      border: 1px solid var(--border-bright);
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,0.4),
+        inset 0 2px 10px rgba(0,0,0,0.5),
+        0 10px 40px rgba(0,0,0,0.35);
+      transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .terminal-wrap:focus-within {
+      border-color: rgba(163,113,247,0.35);
+      box-shadow:
+        0 0 0 1px rgba(163,113,247,0.12),
+        inset 0 2px 10px rgba(0,0,0,0.5),
+        0 0 24px rgba(163,113,247,0.06),
+        0 10px 40px rgba(0,0,0,0.35);
+    }
+
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 14px;
+      background: #161620;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .terminal-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .terminal-dot:nth-child(1) { background: #ff5f57; }
+    .terminal-dot:nth-child(2) { background: #febc2e; }
+    .terminal-dot:nth-child(3) { background: #28c840; }
+
+    .terminal-title {
+      flex: 1;
+      text-align: center;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-family: var(--mono);
+    }
+
+    #tool-input {
+      width: 100%;
+      min-height: 240px;
+      max-height: 500px;
+      padding: 16px;
+      background: transparent;
+      border: none;
+      color: #c9d1d9;
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      line-height: 1.55;
+      resize: vertical;
+      outline: none;
+      tab-size: 2;
+    }
+
+    #tool-input::placeholder {
+      color: #3a3a48;
+    }
+
+    /* Button row */
+    .btn-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-convert {
+      position: relative;
+      padding: 12px 32px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      font-family: var(--mono);
+      color: #fff;
+      background: linear-gradient(135deg, #7c3aed, #a855f7);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      overflow: hidden;
+      transition: transform 0.15s ease, box-shadow 0.3s ease;
+      box-shadow:
+        0 2px 0 #5b21b6,
+        0 4px 12px rgba(124,58,237,0.3),
+        inset 0 1px 0 rgba(255,255,255,0.15);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+
+    .btn-convert::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent-violet), var(--accent-gold), var(--accent-magenta), var(--accent-cyan));
+      z-index: -1;
+      opacity: 0;
+      animation: glow-pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes glow-pulse {
+      0%, 100% { opacity: 0; filter: blur(8px); }
+      50% { opacity: 0.5; filter: blur(14px); }
+    }
+
+    .btn-convert:hover {
+      transform: translateY(-1px);
+      box-shadow:
+        0 3px 0 #5b21b6,
+        0 6px 20px rgba(124,58,237,0.4),
+        inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+
+    .btn-convert:active {
+      transform: translateY(1px);
+      box-shadow:
+        0 1px 0 #5b21b6,
+        0 2px 6px rgba(124,58,237,0.2),
+        inset 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .btn-clear {
+      padding: 12px 20px;
+      font-size: 0.85rem;
+      font-family: var(--mono);
+      color: var(--text-muted);
+      background: var(--bg-raised);
+      border: 1px solid var(--border-bright);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-clear:hover {
+      color: var(--text);
+      border-color: var(--text-muted);
+    }
+
+    .tool-count {
+      font-size: 0.78rem;
+      font-family: var(--mono);
+      color: var(--text-muted);
+      margin-left: auto;
+    }
+
+    /* Output section */
+    #output-section {
+      padding-bottom: 48px;
+      display: none;
+    }
+    #output-section.visible {
+      display: block;
+      animation: results-in 0.4s ease-out;
+    }
+
+    @keyframes results-in {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .results-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-bright), transparent);
+      margin: 32px 0;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 0;
+      overflow-x: auto;
+      padding-bottom: 0;
+      flex-wrap: wrap;
+    }
+
+    .tab {
+      padding: 10px 18px;
+      font-size: 0.8rem;
+      font-family: var(--mono);
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--bg-inset);
+      border: 1px solid var(--border);
+      border-bottom: none;
+      border-radius: 8px 8px 0 0;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      position: relative;
+    }
+
+    .tab:hover {
+      color: var(--text);
+      background: var(--bg-raised);
+    }
+
+    .tab.active {
+      color: #fff;
+      background: var(--bg-raised);
+      border-color: var(--border-bright);
+    }
+
+    .tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-violet), var(--accent-magenta));
+      animation: tab-glow 2s ease-in-out infinite;
+    }
+
+    @keyframes tab-glow {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
+    }
+
+    .tab .token-hint {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      margin-left: 6px;
+      opacity: 0.7;
+    }
+
+    .tab.active .token-hint {
+      color: var(--accent-cyan);
+      opacity: 1;
+    }
+
+    /* Output panel */
+    .output-panel {
+      display: none;
+      background: var(--bg-raised);
+      border: 1px solid var(--border-bright);
+      border-radius: 0 8px 12px 12px;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,0.3),
+        inset 0 1px 6px rgba(0,0,0,0.3),
+        0 8px 32px rgba(0,0,0,0.25);
+    }
+    .output-panel.active { display: block; }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      background: #161620;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .panel-format-name {
+      font-size: 0.78rem;
+      font-family: var(--mono);
+      color: var(--text-muted);
+    }
+
+    .panel-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .token-estimate {
+      font-size: 0.72rem;
+      font-family: var(--mono);
+      color: var(--accent-cyan);
+    }
+
+    .copy-btn {
+      padding: 5px 14px;
+      font-size: 0.72rem;
+      font-family: var(--mono);
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--bg-inset);
+      border: 1px solid var(--border-bright);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .copy-btn:hover {
+      color: #fff;
+      border-color: var(--accent-violet);
+      box-shadow: 0 0 12px rgba(163,113,247,0.15);
+    }
+
+    .copy-btn.copied {
+      color: #28c840;
+      border-color: #28c840;
+      box-shadow: 0 0 12px rgba(40,200,64,0.15);
+    }
+
+    .output-code {
+      padding: 16px;
+      overflow-x: auto;
+      max-height: 500px;
+      overflow-y: auto;
+    }
+
+    .output-code pre {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      line-height: 1.6;
+      white-space: pre;
+      color: #c9d1d9;
+    }
+
+    /* JSON syntax highlighting */
+    .json-key { color: #79c0ff; }
+    .json-string { color: #a5d6ff; }
+    .json-number { color: #79c0ff; }
+    .json-bool { color: #ff7b72; }
+    .json-null { color: #ff7b72; }
+    .json-bracket { color: #8b949e; }
+
+    /* Summary row */
+    .summary-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .summary-card {
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .summary-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-violet), var(--accent-gold));
+    }
+
+    .summary-card .value {
+      font-size: 1.4rem;
+      font-weight: 800;
+      font-family: var(--mono);
+      background: linear-gradient(135deg, var(--accent-violet), var(--accent-cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+    }
+
+    .summary-card .label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 4px;
+    }
+
+    /* Error display */
+    .error-box {
+      background: rgba(248,81,73,0.08);
+      border: 1px solid rgba(248,81,73,0.25);
+      border-radius: 8px;
+      padding: 16px;
+      margin: 16px 0;
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      color: #f85149;
+      display: none;
+    }
+    .error-box.visible { display: block; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 0 32px;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .footer-links a {
+      font-size: 0.82rem;
+      font-family: var(--mono);
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent-violet); }
+
+    .footer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 14px;
+      font-size: 0.7rem;
+      font-family: var(--mono);
+      color: var(--text-muted);
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+    }
+
+    /* Mobile */
+    @media (max-width: 640px) {
+      .container { padding: 0 14px; }
+      header { padding: 32px 0 24px; }
+      .tabs { gap: 2px; }
+      .tab { padding: 8px 12px; font-size: 0.72rem; }
+      .summary-row { grid-template-columns: repeat(2, 1fr); }
+      .panel-header { flex-wrap: wrap; gap: 8px; }
+      .btn-convert { padding: 10px 24px; font-size: 0.88rem; }
+      #tool-input { min-height: 180px; font-size: 0.75rem; }
+    }
+
+    @media (max-width: 400px) {
+      .summary-row { grid-template-columns: 1fr; }
+      .tabs { flex-direction: column; }
+      .tab { border-radius: 6px; border-bottom: 1px solid var(--border); }
+      .output-panel { border-radius: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container nav-inner">
+      <a class="nav-logo" href="tools.html">agent-friend</a>
+      <div class="nav-links">
+        <a href="tools.html">Tools</a>
+        <a href="audit.html">Token Calc</a>
+        <a href="https://github.com/0-co/agent-friend">GitHub</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <header>
+      <h1>Schema Converter</h1>
+      <p class="subtitle">Paste any AI tool schema. Get all formats instantly.</p>
+      <p class="seo-sub">Convert MCP to OpenAI | Tool Schema Format Converter | OpenAI, Anthropic, Google, MCP, Ollama</p>
+    </header>
+
+    <div class="input-section">
+      <div class="input-header">
+        <span class="input-label">// paste tool schema</span>
+        <span class="format-badge" id="detected-badge">
+          <span class="dot"></span>
+          <span id="detected-text">Detecting...</span>
+        </span>
+      </div>
+
+      <div class="terminal-wrap">
+        <div class="terminal-bar">
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-title">schema.json</span>
+        </div>
+        <textarea id="tool-input" spellcheck="false" placeholder='[
+  {
+    "name": "get_weather",
+    "description": "Get current weather for a city",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "type": "string",
+          "description": "City name"
+        },
+        "units": {
+          "type": "string",
+          "enum": ["celsius", "fahrenheit"],
+          "description": "Temperature units"
+        }
+      },
+      "required": ["city"]
+    }
+  }
+]'></textarea>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-convert" onclick="convert()">Convert</button>
+        <button class="btn-clear" onclick="clearAll()">Clear</button>
+        <span class="tool-count" id="tool-count"></span>
+      </div>
+
+      <div class="error-box" id="error-box"></div>
+    </div>
+
+    <div id="output-section">
+      <div class="results-divider"></div>
+
+      <div class="section-title">Converted Output</div>
+
+      <div class="summary-row" id="summary-row"></div>
+
+      <div class="tabs" id="tabs"></div>
+      <div id="panels"></div>
+    </div>
+
+    <footer>
+      <div class="footer-links">
+        <a href="https://github.com/0-co/agent-friend">GitHub</a>
+        <a href="audit.html">Token Cost Calculator</a>
+        <a href="tools.html">All Tools</a>
+      </div>
+      <span class="footer-badge">Built with agent-friend</span>
+    </footer>
+  </div>
+
+  <script>
+    // Format definitions
+    const FORMATS = {
+      openai: { label: 'OpenAI', key: 'openai' },
+      anthropic: { label: 'Anthropic', key: 'anthropic' },
+      google: { label: 'Google/Gemini', key: 'google' },
+      mcp: { label: 'MCP', key: 'mcp' },
+      jsonschema: { label: 'JSON Schema', key: 'jsonschema' },
+      ollama: { label: 'Ollama', key: 'ollama' }
+    };
+
+    // Detect format from parsed JSON
+    function detectFormat(obj) {
+      // Handle array: detect from first element
+      var item = Array.isArray(obj) ? obj[0] : obj;
+      if (!item || typeof item !== 'object') return null;
+
+      // OpenAI/Ollama: has "type": "function" and "function" key
+      if (item.type === 'function' && item.function && item.function.name) {
+        return 'openai'; // We label it OpenAI; Ollama is same structure
+      }
+
+      // Anthropic: has "input_schema"
+      if (item.input_schema !== undefined && item.name) {
+        return 'anthropic';
+      }
+
+      // MCP: has "inputSchema"
+      if (item.inputSchema !== undefined && item.name) {
+        return 'mcp';
+      }
+
+      // Google/Gemini: has "name", "description", "parameters" but no function wrapper
+      if (item.name && item.parameters !== undefined) {
+        return 'google';
+      }
+
+      // JSON Schema: has "type": "object" and "properties" at top level
+      if (item.type === 'object' && item.properties !== undefined) {
+        return 'jsonschema';
+      }
+
+      return null;
+    }
+
+    // Extract canonical form: array of {name, description, parameters}
+    function extractCanonical(obj, format) {
+      var items = Array.isArray(obj) ? obj : [obj];
+      return items.map(function(item) {
+        switch (format) {
+          case 'openai':
+            return {
+              name: item.function.name,
+              description: item.function.description || '',
+              parameters: item.function.parameters || {}
+            };
+          case 'anthropic':
+            return {
+              name: item.name,
+              description: item.description || '',
+              parameters: item.input_schema || {}
+            };
+          case 'mcp':
+            return {
+              name: item.name,
+              description: item.description || '',
+              parameters: item.inputSchema || {}
+            };
+          case 'google':
+            return {
+              name: item.name,
+              description: item.description || '',
+              parameters: item.parameters || {}
+            };
+          case 'jsonschema':
+            return {
+              name: 'unnamed_tool',
+              description: 'No description',
+              parameters: item
+            };
+          default:
+            return { name: 'unknown', description: '', parameters: {} };
+        }
+      });
+    }
+
+    // Convert canonical to each format
+    function toOpenAI(tools) {
+      var out = tools.map(function(t) {
+        return {
+          type: 'function',
+          function: {
+            name: t.name,
+            description: t.description,
+            parameters: t.parameters
+          }
+        };
+      });
+      return out.length === 1 ? out[0] : out;
+    }
+
+    function toAnthropic(tools) {
+      var out = tools.map(function(t) {
+        return {
+          name: t.name,
+          description: t.description,
+          input_schema: t.parameters
+        };
+      });
+      return out.length === 1 ? out[0] : out;
+    }
+
+    function toGoogle(tools) {
+      var out = tools.map(function(t) {
+        return {
+          name: t.name,
+          description: t.description,
+          parameters: t.parameters
+        };
+      });
+      return out.length === 1 ? out[0] : out;
+    }
+
+    function toMCP(tools) {
+      var out = tools.map(function(t) {
+        return {
+          name: t.name,
+          description: t.description,
+          inputSchema: t.parameters
+        };
+      });
+      return out.length === 1 ? out[0] : out;
+    }
+
+    function toJSONSchema(tools) {
+      if (tools.length === 1) return tools[0].parameters;
+      return tools.map(function(t) { return t.parameters; });
+    }
+
+    function toOllama(tools) {
+      // Same as OpenAI
+      return toOpenAI(tools);
+    }
+
+    var converters = {
+      openai: toOpenAI,
+      anthropic: toAnthropic,
+      google: toGoogle,
+      mcp: toMCP,
+      jsonschema: toJSONSchema,
+      ollama: toOllama
+    };
+
+    // JSON syntax highlighting
+    function highlightJSON(str) {
+      return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"([^"\\]*(\\.[^"\\]*)*)"(\s*:)/g, '<span class="json-key">"$1"</span>$3')
+        .replace(/"([^"\\]*(\\.[^"\\]*)*)"/g, '<span class="json-string">"$1"</span>')
+        .replace(/\b(\d+\.?\d*)\b/g, '<span class="json-number">$1</span>')
+        .replace(/\b(true|false)\b/g, '<span class="json-bool">$1</span>')
+        .replace(/\bnull\b/g, '<span class="json-null">null</span>')
+        .replace(/([[\]{}])/g, '<span class="json-bracket">$1</span>');
+    }
+
+    // Estimate tokens (chars / 4)
+    function estimateTokens(str) {
+      return Math.ceil(str.length / 4);
+    }
+
+    // Live detection on input
+    var inputEl = document.getElementById('tool-input');
+    var badge = document.getElementById('detected-badge');
+    var badgeText = document.getElementById('detected-text');
+
+    var debounceTimer = null;
+    inputEl.addEventListener('input', function() {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(liveDetect, 300);
+    });
+
+    function liveDetect() {
+      var raw = inputEl.value.trim();
+      if (!raw) {
+        badge.classList.remove('visible');
+        badge.classList.remove('error-badge');
+        return;
+      }
+      try {
+        var parsed = JSON.parse(raw);
+        var fmt = detectFormat(parsed);
+        if (fmt) {
+          badge.classList.remove('error-badge');
+          badge.classList.add('visible');
+          badgeText.textContent = FORMATS[fmt].label + ' detected';
+        } else {
+          badge.classList.add('visible');
+          badge.classList.add('error-badge');
+          badgeText.textContent = 'Unknown format';
+        }
+      } catch (e) {
+        badge.classList.add('visible');
+        badge.classList.add('error-badge');
+        badgeText.textContent = 'Invalid JSON';
+      }
+    }
+
+    // Main convert
+    function convert() {
+      var raw = inputEl.value.trim();
+      var errorBox = document.getElementById('error-box');
+      var outputSection = document.getElementById('output-section');
+      var toolCountEl = document.getElementById('tool-count');
+
+      errorBox.classList.remove('visible');
+      errorBox.textContent = '';
+
+      if (!raw) {
+        showError('Paste a tool schema above to convert.');
+        outputSection.classList.remove('visible');
+        return;
+      }
+
+      var parsed;
+      try {
+        parsed = JSON.parse(raw);
+      } catch (e) {
+        showError('Invalid JSON: ' + e.message);
+        outputSection.classList.remove('visible');
+        return;
+      }
+
+      var sourceFormat = detectFormat(parsed);
+      if (!sourceFormat) {
+        showError('Could not detect schema format. Supported: OpenAI, Anthropic, Google/Gemini, MCP, JSON Schema.');
+        outputSection.classList.remove('visible');
+        return;
+      }
+
+      var canonical = extractCanonical(parsed, sourceFormat);
+      var numTools = canonical.length;
+      toolCountEl.textContent = numTools + ' tool' + (numTools !== 1 ? 's' : '') + ' detected as ' + FORMATS[sourceFormat].label;
+
+      // Badge
+      badge.classList.remove('error-badge');
+      badge.classList.add('visible');
+      badgeText.textContent = FORMATS[sourceFormat].label + ' detected';
+
+      // Determine output formats (all except source, but keep ollama if source is openai and vice versa)
+      var outputFormats = Object.keys(FORMATS).filter(function(f) {
+        return f !== sourceFormat;
+      });
+
+      // Build results
+      var results = {};
+      var jsonStrings = {};
+      outputFormats.forEach(function(fmt) {
+        var converted = converters[fmt](canonical);
+        var jsonStr = JSON.stringify(converted, null, 2);
+        results[fmt] = converted;
+        jsonStrings[fmt] = jsonStr;
+      });
+
+      // Build summary cards
+      var summaryRow = document.getElementById('summary-row');
+      summaryRow.innerHTML = '';
+
+      var summaryData = [
+        { value: numTools, label: 'Tools' },
+        { value: FORMATS[sourceFormat].label, label: 'Source Format' },
+        { value: outputFormats.length, label: 'Conversions' }
+      ];
+
+      // Add total params count
+      var totalParams = 0;
+      canonical.forEach(function(t) {
+        if (t.parameters && t.parameters.properties) {
+          totalParams += Object.keys(t.parameters.properties).length;
+        }
+      });
+      summaryData.push({ value: totalParams, label: 'Parameters' });
+
+      summaryData.forEach(function(s) {
+        var card = document.createElement('div');
+        card.className = 'summary-card';
+        card.innerHTML = '<div class="value">' + s.value + '</div><div class="label">' + s.label + '</div>';
+        summaryRow.appendChild(card);
+      });
+
+      // Build tabs and panels
+      var tabsEl = document.getElementById('tabs');
+      var panelsEl = document.getElementById('panels');
+      tabsEl.innerHTML = '';
+      panelsEl.innerHTML = '';
+
+      outputFormats.forEach(function(fmt, i) {
+        var tokens = estimateTokens(jsonStrings[fmt]);
+
+        // Tab
+        var tab = document.createElement('div');
+        tab.className = 'tab' + (i === 0 ? ' active' : '');
+        tab.setAttribute('data-format', fmt);
+        tab.innerHTML = FORMATS[fmt].label + '<span class="token-hint">~' + tokens + 't</span>';
+        tab.onclick = function() { switchTab(fmt); };
+        tabsEl.appendChild(tab);
+
+        // Panel
+        var panel = document.createElement('div');
+        panel.className = 'output-panel' + (i === 0 ? ' active' : '');
+        panel.id = 'panel-' + fmt;
+
+        panel.innerHTML =
+          '<div class="panel-header">' +
+            '<span class="panel-format-name">' + FORMATS[fmt].label + ' format</span>' +
+            '<div class="panel-meta">' +
+              '<span class="token-estimate">~' + tokens + ' tokens</span>' +
+              '<button class="copy-btn" onclick="copyOutput(\'' + fmt + '\', this)">Copy</button>' +
+            '</div>' +
+          '</div>' +
+          '<div class="output-code"><pre>' + highlightJSON(jsonStrings[fmt]) + '</pre></div>';
+
+        panelsEl.appendChild(panel);
+      });
+
+      outputSection.classList.add('visible');
+    }
+
+    function switchTab(fmt) {
+      document.querySelectorAll('.tab').forEach(function(t) {
+        t.classList.toggle('active', t.getAttribute('data-format') === fmt);
+      });
+      document.querySelectorAll('.output-panel').forEach(function(p) {
+        p.classList.toggle('active', p.id === 'panel-' + fmt);
+      });
+    }
+
+    function copyOutput(fmt, btn) {
+      var panel = document.getElementById('panel-' + fmt);
+      var pre = panel.querySelector('pre');
+      // Get raw text (without HTML tags)
+      var text = pre.textContent;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function() {
+          showCopied(btn);
+        });
+      } else {
+        // Fallback
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showCopied(btn);
+      }
+    }
+
+    function showCopied(btn) {
+      var orig = btn.textContent;
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(function() {
+        btn.textContent = orig;
+        btn.classList.remove('copied');
+      }, 1500);
+    }
+
+    function showError(msg) {
+      var errorBox = document.getElementById('error-box');
+      errorBox.textContent = msg;
+      errorBox.classList.add('visible');
+    }
+
+    function clearAll() {
+      inputEl.value = '';
+      badge.classList.remove('visible');
+      badge.classList.remove('error-badge');
+      document.getElementById('output-section').classList.remove('visible');
+      document.getElementById('error-box').classList.remove('visible');
+      document.getElementById('tool-count').textContent = '';
+    }
+
+    // Auto-convert on paste
+    inputEl.addEventListener('paste', function() {
+      setTimeout(function() {
+        liveDetect();
+        convert();
+      }, 50);
+    });
+
+    // Convert on Ctrl+Enter
+    inputEl.addEventListener('keydown', function(e) {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        e.preventDefault();
+        convert();
+      }
+    });
+  </script>
+
+</body>
+</html>
