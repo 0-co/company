@@ -4,96 +4,50 @@
 
 ### Anthropic v. DoD — March 24 Hearing
 - **What**: Anthropic sued DoD over supply-chain risk designation (26-cv-01996, ND Cal)
-- **Check after**: 2026-03-17 (government opposition due) + 2026-03-24 (preliminary injunction hearing)
-- **Action**: Write article about outcome. Follow astral100 for updates. Search "Anthropic DoD hearing" on March 24.
-- **Why it matters**: Our operational infrastructure runs on Claude. If Anthropic loses, affects their business model and long-term model development.
+- **Check after**: 2026-03-24 (preliminary injunction hearing)
+- **Action**: Search "Anthropic DoD hearing" on March 24. Write article if significant outcome.
 
 ### Newsletter Pitch — Awaiting Traction Threshold
-- **What**: Board approved the concept but wants more traction first. Re-pitch when threshold passed.
-- **Threshold**: 50 Bluesky followers (currently 21) OR 15 Twitch followers (currently 5)
-- **Check after**: On every startup, compare current followers against threshold
-- **Action**: When threshold passed, recreate board inbox request with fresh pitch + updated numbers
-- **Board response received**: 2026-03-11 — "Good idea, but want more experience/traction. Keep track with metric threshold, request again when passed."
+- **What**: Board wants more traction. Re-pitch when threshold passed.
+- **Threshold**: 50 Bluesky followers (currently 34) OR 15 Twitch followers (currently 4)
+- **Check after**: Each startup
+- **Action**: When threshold passed, recreate board inbox request
 
-### PyPI Publishing — Awaiting Traction Threshold
-- **What**: Board responded to PyPI vault wrapper request: "Ask again once you have some demonstrated traction/interest."
-- **Threshold**: GitHub stars or usage evidence on agent-* tools. Current: 1 star on main repo.
-- **Check after**: On every startup, check GitHub stars on company repo and any agent-* related repos
-- **Action**: When we hit 10+ stars OR see evidence of actual usage (GitHub issues, mentions, forks), re-request PyPI vault wrapper
-- **Why it matters**: PyPI publishing would dramatically improve discoverability (`pip install agent-shield` vs the git+https URL)
+### PyPI Publishing — Awaiting Traction
+- **What**: Board said "ask again with demonstrated traction."
+- **Threshold**: 10+ GitHub stars OR evidence of actual usage
+- **Current**: 0 stars, 26 unique visitors, 0% conversion
+- **Action**: Re-request when threshold met. This is the #1 friction point for adoption.
 
-### ProductHunt Submission — Board Approved Next Tuesday
-- **What**: Board said "Remind me next Tuesday" (March 17) on 2-producthunt-submission.md.
-- **Check after**: 2026-03-17
-- **Action**: Re-file board/inbox request to submit agent-friend to ProductHunt. Best time: Tuesday 8-10am PT. Positioning: universal tool adapter, @tool → any framework. 51 tools, 2474 tests.
-
-### Article053 — "21 Tools. Zero Product. That Changes Today."
-- **What**: Draft on dev.to (ID: 3341088). Adapter story, 2474 tests, tags updated. Will auto-publish via day6_startup.sh.
-- **Check after**: 2026-03-13 (auto-publishes via scheduler)
-- **Action**: Verify published. day6_scheduler.sh posts Bluesky announcement at 13:00 UTC.
-
-### Article054 — "I gave my AI agent an email address"
-- **What**: Draft complete (products/content/article054_email_agent.md). Dev.to draft ID: 3341101.
-- **Check after**: 2026-03-14 (1 day after article053)
-- **Action**: `vault-devto PUT /articles/3341101 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
-- **Note**: Board relaxed dev.to limit to 1-2/day (outbox 2026-03-12). Accelerated from 2-3 day cadence to 1/day.
-
-### Article055 — Agents of Chaos
-- **What**: Draft complete (products/content/article055_agents_of_chaos.md). About the Northeastern University study (6 AI agents on Discord, 2 weeks). Ties to agent-constraints, agent-id, agent-log, agent-health. Dev.to draft ID: **3341191**.
-- **Check after**: 2026-03-15 (1 day after article054)
-- **Action**: `vault-devto PUT /articles/3341191 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
-
-### Article056 — "Your AI Agent Needs a Database"
-- **What**: Draft complete (products/content/article056_agent_database.md). DatabaseTool, SQLite for agents. Dev.to draft ID: **3341264**.
-- **Check after**: 2026-03-16
-- **Action**: `vault-devto PUT /articles/3341264 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
-
-### Article057 — "Turning Any Python Function Into an AI Agent Tool"
-- **What**: Draft complete (products/content/article057_tool_decorator.md). @tool decorator, type hints → JSON Schema. Dev.to draft ID: **3341307**.
-- **Check after**: 2026-03-17 (ProductHunt day — coordinate)
-- **Action**: `vault-devto PUT /articles/3341307 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
-
-### Article058 — "Your AI Agent Can Now Read CSV Files"
-- **What**: Draft complete (products/content/article058_table_tool.md). TableTool, CSV/TSV for agents. Dev.to draft ID: **3341366**.
-- **Check after**: 2026-03-18
-- **Action**: `vault-devto PUT /articles/3341366 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
-
-### Article059 — "Stop Paying for the Same API Call Twice"
-- **What**: Draft complete (products/content/article059_cache_tool.md). CacheTool, TTL caching for agents. Dev.to draft ID: **3341425**.
-- **Check after**: 2026-03-19
-- **Action**: `vault-devto PUT /articles/3341425 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
-
-### Article060 — "Your AI agent is trusting every webhook it receives"
-- **What**: Draft complete (products/content/article060_crypto_tool.md). CryptoTool, HMAC verification, webhook security. Dev.to draft ID: **3341549**.
-- **Check after**: 2026-03-20
-- **Action**: `vault-devto PUT /articles/3341549 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
-
-### Article061 — "Your AI agent is flying blind"
-- **What**: Draft complete (products/content/article061_metrics_tool.md). MetricsTool, counters/gauges/timers/Prometheus. Dev.to draft ID: **3341573**.
-- **Check after**: 2026-03-21
-- **Action**: `vault-devto PUT /articles/3341573 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
-
-### Article062 — "Stop hardcoding your AI agent's prompts"
-- **What**: Draft complete (products/content/article062_template_tool.md). TemplateTool, ${variable} templates, template library. Dev.to draft ID: **3341598**.
-- **Check after**: 2026-03-22
-- **Action**: `vault-devto PUT /articles/3341598 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
-
-### Article063 — "Your AI code reviewer doesn't understand what changed"
-- **What**: Draft complete (products/content/article063_diff_tool.md). DiffTool, unified diffs, word-level comparison, fuzzy matching. Dev.to draft ID: **3341613**.
-- **Check after**: 2026-03-23
-- **Action**: `vault-devto PUT /articles/3341613 '{"article":{"published":true}}'` — then post Bluesky slot 1/4
-
-### MCP Registry + Glama + Awesome Lists — Board Request Filed
-- **What**: Need board to (a) create Glama account and register agent-friend, (b) authorize GitHub device flow for mcp-publisher CLI, (c) create awesome-mcp-servers PR.
+### ProductHunt — Board Request Filed
+- **What**: Filed `1-producthunt-launch-today.md` on March 17
 - **Check after**: Next board outbox check
-- **Action**: Once board does device flow auth, run `mcp-publisher publish` to register on Official MCP Registry (cascades to PulseMCP, MCPdb, GitHub, Docker catalogs). Once Glama shows A/A/A, board creates PR to awesome-mcp-servers (82K stars).
-- **Prep complete**: LICENSE, Dockerfile, server.json (validated), mcp-publisher binary at `/tmp/mcp-pub4/mcp-publisher`, fork branch ready.
+- **Action**: If approved, coordinate launch. If missed today, next Tuesday.
 
-### Discord Strategy — Board Directive
-- **What**: Board said Discord posts are mostly about Bluesky plans. Rethink strategy.
-- **Status**: Fixed bsky_reply_monitor.py (no more notification spam). Posted useful Ollama demo content instead.
-- **Ongoing**: Post genuinely useful/tryable content to Discord. No notification dumps. Consider promoting Discord bot for others to add to their servers (board suggestion).
+### Article Publishing Catch-up
+- **055**: Publish March 18 (ID: 3341191)
+- **056**: Publish March 19 (ID: 3341264)
+- **057**: Publish March 20 (ID: 3341307)
+- **058-063**: March 21-26 (IDs: 3341366, 3341425, 3341549, 3341573, 3341598, 3341613)
+
+### MCP Registry + Glama + Awesome Lists — Board Request
+- **What**: Board inbox `2-glama-and-mcp-registry.md` filed March 12
+- **Check after**: Each startup
+- **Action**: Once board acts, follow up on each item
+
+### Reddit Account — Board Request
+- **What**: Board inbox `2-reddit-account-distribution.md` filed March 12
+- **Check after**: Each startup
+- **Action**: Once available, post to r/Python, r/MachineLearning, r/LocalLLaMA
+
+### Resilient Article Publisher
+- **What**: Current scheduler scripts die when session ends. Need systemd timer or cron.
+- **Action**: Build a NixOS service that publishes articles on schedule independently
+- **Priority**: High — this is what caused 5 days of missed content
 
 ## Resolved
-- **3-bsky-avatar-upload.md** — Board uploaded avatar manually 2026-03-11. Resolved.
-- **4-newsletter-pitch-request.md** — Board responded 2026-03-11: wait for traction. Threshold set at 50 Bluesky followers. Moved to active waiting.
+- ✅ Article053 published March 17 (was March 13 target)
+- ✅ Article054 published March 17 (was March 14 target)
+- ✅ ProductHunt reminder — filed board request March 17
+- ✅ Bluesky avatar upload — board did manually
+- ✅ Newsletter pitch deferred — threshold set
