@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCP Token Cost Calculator — How Much Context Are Your AI Tools Eating?</title>
+  <meta name="description" content="Free tool: paste your MCP, OpenAI, Claude, or Gemini tool definitions and see exactly how many tokens they cost. Compare formats. Optimize your context budget.">
+  <meta name="keywords" content="MCP token cost, context window calculator, AI tool tokens, function calling cost, Model Context Protocol, OpenAI tools, Claude tools, Gemini tools">
+  <meta property="og:title" content="MCP Token Cost Calculator">
+  <meta property="og:description" content="Paste your AI tool definitions. See how many tokens they eat.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://0-co.github.io/company/audit.html">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d1117;
+      --bg-raised: #161b22;
+      --bg-inset: #0a0e14;
+      --border: #21262d;
+      --border-bright: #30363d;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --accent-violet: #a371f7;
+      --accent-gold: #d4a72c;
+      --accent-magenta: #db61a2;
+      --accent-cyan: #3bc9db;
+      --mono: 'SF Mono', 'Cascadia Code', 'Fira Code', 'JetBrains Mono', Consolas, monospace;
+      --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Gradient overlay on body */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at 20% 0%, rgba(163,113,247,0.06) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 100%, rgba(212,167,44,0.04) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header */
+    header {
+      padding: 48px 0 32px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    h1 {
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--accent-violet), var(--accent-gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      font-size: clamp(0.9rem, 2vw, 1.05rem);
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 0 auto;
+      font-family: var(--mono);
+    }
+
+    /* Input section */
+    .input-section {
+      padding: 32px 0 24px;
+    }
+
+    .input-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .input-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-family: var(--mono);
+      letter-spacing: 0.3px;
+    }
+
+    .format-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-family: var(--mono);
+      font-weight: 600;
+      background: rgba(163,113,247,0.12);
+      color: var(--accent-violet);
+      border: 1px solid rgba(163,113,247,0.25);
+      transition: all 0.3s ease;
+      opacity: 0;
+    }
+
+    .format-badge.visible {
+      opacity: 1;
+    }
+
+    .format-badge .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-violet);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.3); }
+    }
+
+    /* Terminal textarea */
+    .terminal-wrap {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--bg-inset);
+      border: 1px solid var(--border-bright);
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,0.3),
+        inset 0 2px 8px rgba(0,0,0,0.4),
+        0 8px 32px rgba(0,0,0,0.3);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .terminal-wrap:focus-within {
+      border-color: rgba(163,113,247,0.4);
+      box-shadow:
+        0 0 0 1px rgba(163,113,247,0.15),
+        inset 0 2px 8px rgba(0,0,0,0.4),
+        0 0 20px rgba(163,113,247,0.08),
+        0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      background: #1c2028;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .terminal-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #3a3a3a;
+    }
+
+    .terminal-dot:nth-child(1) { background: #ff5f57; }
+    .terminal-dot:nth-child(2) { background: #febc2e; }
+    .terminal-dot:nth-child(3) { background: #28c840; }
+
+    .terminal-title {
+      flex: 1;
+      text-align: center;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-family: var(--mono);
+    }
+
+    #tool-input {
+      width: 100%;
+      min-height: 280px;
+      max-height: 500px;
+      padding: 16px;
+      background: transparent;
+      border: none;
+      color: #c9d1d9;
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      line-height: 1.55;
+      resize: vertical;
+      outline: none;
+      tab-size: 2;
+    }
+
+    #tool-input::placeholder {
+      color: #484f58;
+    }
+
+    /* Analyze button */
+    .btn-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-analyze {
+      position: relative;
+      padding: 12px 32px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      font-family: var(--mono);
+      color: #fff;
+      background: linear-gradient(135deg, #7c3aed, #a855f7);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      overflow: hidden;
+      transition: transform 0.15s ease, box-shadow 0.3s ease;
+      box-shadow:
+        0 2px 0 #5b21b6,
+        0 4px 12px rgba(124,58,237,0.3),
+        inset 0 1px 0 rgba(255,255,255,0.15);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+
+    .btn-analyze::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent-violet), var(--accent-gold), var(--accent-magenta), var(--accent-cyan));
+      z-index: -1;
+      opacity: 0;
+      animation: glow-pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes glow-pulse {
+      0%, 100% { opacity: 0; filter: blur(8px); }
+      50% { opacity: 0.6; filter: blur(12px); }
+    }
+
+    .btn-analyze:hover {
+      transform: translateY(-1px);
+      box-shadow:
+        0 3px 0 #5b21b6,
+        0 6px 20px rgba(124,58,237,0.4),
+        inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+
+    .btn-analyze:active {
+      transform: translateY(1px);
+      box-shadow:
+        0 1px 0 #5b21b6,
+        0 2px 6px rgba(124,58,237,0.2),
+        inset 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .btn-clear {
+      padding: 12px 20px;
+      font-size: 0.85rem;
+      font-family: var(--mono);
+      color: var(--text-muted);
+      background: var(--bg-raised);
+      border: 1px solid var(--border-bright);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-clear:hover {
+      color: var(--text);
+      border-color: var(--text-muted);
+    }
+
+    .status-text {
+      font-size: 0.78rem;
+      font-family: var(--mono);
+      color: var(--text-muted);
+      margin-left: auto;
+    }
+
+    .status-text.processing {
+      color: var(--accent-violet);
+      animation: status-blink 1s ease-in-out infinite;
+    }
+
+    @keyframes status-blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .status-text.error {
+      color: #f85149;
+    }
+
+    /* Results panel */
+    #results {
+      padding-bottom: 48px;
+      display: none;
+    }
+
+    #results.visible {
+      display: block;
+      animation: results-in 0.4s ease-out;
+    }
+
+    @keyframes results-in {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .results-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-bright), transparent);
+      margin: 32px 0;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title .icon {
+      font-size: 0.9rem;
+    }
+
+    /* Summary cards */
+    .summary-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .summary-card {
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .summary-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-violet), var(--accent-gold));
+    }
+
+    .summary-card .value {
+      font-size: 1.8rem;
+      font-weight: 800;
+      font-family: var(--mono);
+      background: linear-gradient(135deg, var(--accent-violet), var(--accent-cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+    }
+
+    .summary-card .label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 4px;
+    }
+
+    /* Tool breakdown table */
+    .tool-table-wrap {
+      overflow-x: auto;
+      margin-bottom: 28px;
+    }
+
+    .tool-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+
+    .tool-table th {
+      text-align: left;
+      padding: 10px 12px;
+      font-size: 0.72rem;
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-bright);
+      white-space: nowrap;
+    }
+
+    .tool-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+
+    .tool-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .tool-table .tool-name {
+      font-family: var(--mono);
+      font-weight: 600;
+      color: var(--accent-cyan);
+      white-space: nowrap;
+    }
+
+    .tool-table .num {
+      font-family: var(--mono);
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .tool-table .desc-preview {
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      max-width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* Token bar in table */
+    .token-bar-cell {
+      min-width: 120px;
+    }
+
+    .token-bar-track {
+      height: 8px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .token-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--accent-violet), var(--accent-magenta));
+      width: 0%;
+      transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* Format comparison */
+    .format-comparison {
+      margin-bottom: 28px;
+    }
+
+    .format-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .format-bar-label {
+      width: 100px;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .format-bar-track {
+      flex: 1;
+      height: 28px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .format-bar-fill {
+      height: 100%;
+      border-radius: 6px;
+      width: 0%;
+      transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.9);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+      white-space: nowrap;
+      min-width: fit-content;
+    }
+
+    .format-bar-fill.fmt-openai { background: linear-gradient(90deg, #10a37f, #1aa37f); }
+    .format-bar-fill.fmt-anthropic { background: linear-gradient(90deg, #d97706, #f59e0b); }
+    .format-bar-fill.fmt-google { background: linear-gradient(90deg, #4285f4, #34a853); }
+    .format-bar-fill.fmt-mcp { background: linear-gradient(90deg, var(--accent-violet), var(--accent-magenta)); }
+    .format-bar-fill.fmt-json_schema { background: linear-gradient(90deg, var(--accent-cyan), #06b6d4); }
+
+    .format-bar-value {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      width: 70px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    /* Detected badge next to format name */
+    .detected-tag {
+      font-size: 0.6rem;
+      padding: 1px 5px;
+      border-radius: 3px;
+      background: rgba(163,113,247,0.2);
+      color: var(--accent-violet);
+      margin-left: 4px;
+      vertical-align: middle;
+    }
+
+    /* Context window section */
+    .context-windows {
+      margin-bottom: 24px;
+    }
+
+    .ctx-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .ctx-label {
+      width: 60px;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .ctx-bar-track {
+      flex: 1;
+      height: 18px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .ctx-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--accent-violet), var(--accent-gold));
+      width: 0%;
+      transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+      min-width: 2px;
+    }
+
+    .ctx-bar-fill.warn { background: linear-gradient(90deg, #d29922, #f85149); }
+    .ctx-bar-fill.danger { background: linear-gradient(90deg, #f85149, #da3633); }
+
+    .ctx-pct {
+      width: 60px;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .ctx-pct.warn { color: #d29922; }
+    .ctx-pct.danger { color: #f85149; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0 40px;
+      text-align: center;
+    }
+
+    .footer-cta {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .footer-cta code {
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      padding: 2px 8px;
+      border-radius: 4px;
+      color: var(--accent-violet);
+      font-size: 0.8rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 12px;
+    }
+
+    .footer-links a {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-family: var(--mono);
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-violet);
+    }
+
+    .footer-sub {
+      font-size: 0.7rem;
+      color: #484f58;
+      margin-top: 16px;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      header { padding: 32px 0 24px; }
+      #tool-input { min-height: 200px; font-size: 0.75rem; }
+      .format-bar-label { width: 70px; font-size: 0.7rem; }
+      .format-bar-value { width: 55px; font-size: 0.7rem; }
+      .summary-row { grid-template-columns: 1fr 1fr; }
+      .summary-card .value { font-size: 1.4rem; }
+      .btn-row { flex-direction: column; align-items: stretch; }
+      .btn-analyze, .btn-clear { width: 100%; text-align: center; }
+      .status-text { margin-left: 0; text-align: center; }
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>MCP Token Cost Calculator</h1>
+      <p class="subtitle">Paste your tool definitions. See how much context they eat.</p>
+    </header>
+
+    <section class="input-section">
+      <div class="input-header">
+        <span class="input-label">tool definitions (JSON)</span>
+        <span class="format-badge" id="live-badge"><span class="dot"></span> <span id="live-badge-text">detecting...</span></span>
+      </div>
+
+      <div class="terminal-wrap">
+        <div class="terminal-bar">
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-title">tools.json</span>
+        </div>
+        <textarea id="tool-input" spellcheck="false" placeholder='Paste your tool definitions here (OpenAI, Anthropic, MCP, Google, or JSON Schema)...'></textarea>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-analyze" id="btn-analyze" onclick="analyze()">Analyze</button>
+        <button class="btn-clear" onclick="clearAll()">Clear</button>
+        <span class="status-text" id="status-text"></span>
+      </div>
+    </section>
+
+    <div id="results">
+      <div class="results-divider"></div>
+
+      <div class="summary-row" id="summary-row"></div>
+
+      <div class="section-title">Per-Tool Breakdown</div>
+      <div class="tool-table-wrap">
+        <table class="tool-table">
+          <thead>
+            <tr>
+              <th>Tool</th>
+              <th>Description</th>
+              <th style="text-align:right">Params</th>
+              <th style="text-align:right">Desc Len</th>
+              <th style="text-align:right">Est. Tokens</th>
+              <th style="min-width:120px">Cost</th>
+            </tr>
+          </thead>
+          <tbody id="tool-tbody"></tbody>
+        </table>
+      </div>
+
+      <div class="results-divider"></div>
+
+      <div class="section-title">Format Comparison</div>
+      <p style="font-size:0.78rem;color:var(--text-muted);margin-bottom:16px;font-family:var(--mono);">Estimated token cost if your tools were exported in each format</p>
+      <div class="format-comparison" id="format-comparison"></div>
+
+      <div class="results-divider"></div>
+
+      <div class="section-title">Context Window Impact</div>
+      <p style="font-size:0.78rem;color:var(--text-muted);margin-bottom:16px;font-family:var(--mono);">How much of your context budget these tools consume</p>
+      <div class="context-windows" id="context-windows"></div>
+    </div>
+
+    <footer>
+      <div class="footer-cta">
+        Built by <strong>agent-friend</strong> &mdash;
+        <code>pip install git+https://github.com/0-co/agent-friend.git</code>
+      </div>
+      <div class="footer-cta" style="margin-top:8px;font-size:0.78rem;">
+        CLI: <code>agent-friend audit tools.json</code> for full analysis in your terminal
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/0-co/agent-friend">GitHub</a>
+        <a href="https://0-co.github.io/company/agent-friend.html">Docs</a>
+        <a href="https://0-co.github.io/company/tools.html">Demo</a>
+        <a href="https://0-co.github.io/company/">0-co</a>
+      </div>
+      <div class="footer-sub">All computation runs client-side. No data leaves your browser.</div>
+    </footer>
+  </div>
+
+  <script>
+    // === Sample data ===
+    const SAMPLE = JSON.stringify([
+      {
+        "name": "get_weather",
+        "description": "Get current weather for a city. Returns temperature, conditions, humidity, and wind speed.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "city": {"type": "string", "description": "City name"},
+            "units": {"type": "string", "enum": ["celsius", "fahrenheit"], "description": "Temperature units"}
+          },
+          "required": ["city"]
+        }
+      },
+      {
+        "name": "search_web",
+        "description": "Search the web for information. Returns top results with titles, URLs, and snippets. Supports filtering by date range and domain.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "query": {"type": "string", "description": "Search query"},
+            "max_results": {"type": "integer", "description": "Maximum results to return", "default": 10},
+            "date_range": {"type": "string", "enum": ["day", "week", "month", "year", "all"], "description": "Filter by date"},
+            "domain": {"type": "string", "description": "Filter to specific domain"}
+          },
+          "required": ["query"]
+        }
+      }
+    ], null, 2);
+
+    // === Format multipliers ===
+    const FORMAT_MULTIPLIERS = {
+      openai: 1.08,
+      anthropic: 1.00,
+      google: 0.95,
+      mcp: 1.00,
+      json_schema: 0.95
+    };
+
+    const FORMAT_LABELS = {
+      openai: 'OpenAI',
+      anthropic: 'Anthropic',
+      google: 'Google',
+      mcp: 'MCP',
+      json_schema: 'JSON Schema'
+    };
+
+    const CONTEXT_WINDOWS = [
+      { label: '8K', tokens: 8192 },
+      { label: '32K', tokens: 32768 },
+      { label: '128K', tokens: 131072 },
+      { label: '200K', tokens: 204800 }
+    ];
+
+    // === Init ===
+    const input = document.getElementById('tool-input');
+    const liveBadge = document.getElementById('live-badge');
+    const liveBadgeText = document.getElementById('live-badge-text');
+    const statusText = document.getElementById('status-text');
+
+    input.value = SAMPLE;
+    updateLiveBadge();
+
+    input.addEventListener('input', function() {
+      updateLiveBadge();
+    });
+
+    function updateLiveBadge() {
+      const val = input.value.trim();
+      if (!val) {
+        liveBadge.classList.remove('visible');
+        return;
+      }
+      try {
+        const parsed = JSON.parse(val);
+        const fmt = detectFormat(parsed);
+        liveBadgeText.textContent = FORMAT_LABELS[fmt] || fmt;
+        liveBadge.classList.add('visible');
+      } catch(e) {
+        liveBadgeText.textContent = 'invalid JSON';
+        liveBadge.classList.add('visible');
+      }
+    }
+
+    // Trigger live badge on load
+    updateLiveBadge();
+
+    // === Format detection ===
+    function detectFormat(data) {
+      // Unwrap arrays
+      var items = Array.isArray(data) ? data : [data];
+      var first = items[0];
+      if (!first || typeof first !== 'object') return 'json_schema';
+
+      // OpenAI: array of {type:"function", function:{...}} or single with "function" key
+      if (first.type === 'function' && first.function && first.function.name) return 'openai';
+      if (first.function && first.function.name && first.function.parameters) return 'openai';
+
+      // Google: has functionDeclarations
+      if (first.functionDeclarations || first.function_declarations) return 'google';
+      // Google wrapped in array of toolsets
+      if (first.functionDeclarations) return 'google';
+
+      // Anthropic: has input_schema
+      if (first.input_schema) return 'anthropic';
+      if (first.type === 'tool' && first.name) return 'anthropic';
+
+      // MCP: has inputSchema (camelCase)
+      if (first.inputSchema) return 'mcp';
+
+      // JSON Schema
+      if (first.$schema) return 'json_schema';
+      if (first.type && first.properties && !first.name) return 'json_schema';
+
+      // Fallback: if it has name + description, guess MCP
+      if (first.name && first.description) return 'mcp';
+
+      return 'json_schema';
+    }
+
+    // === Extract tools from any format ===
+    function extractTools(data, format) {
+      var items = Array.isArray(data) ? data : [data];
+      var tools = [];
+
+      for (var i = 0; i < items.length; i++) {
+        var item = items[i];
+
+        if (format === 'openai') {
+          var fn = item.function || item;
+          tools.push({
+            name: fn.name || '(unnamed)',
+            description: fn.description || '',
+            parameters: fn.parameters || {},
+            raw: item
+          });
+        } else if (format === 'google') {
+          var decls = item.functionDeclarations || item.function_declarations || [item];
+          for (var j = 0; j < decls.length; j++) {
+            var d = decls[j];
+            tools.push({
+              name: d.name || '(unnamed)',
+              description: d.description || '',
+              parameters: d.parameters || {},
+              raw: d
+            });
+          }
+        } else if (format === 'anthropic') {
+          tools.push({
+            name: item.name || '(unnamed)',
+            description: item.description || '',
+            parameters: item.input_schema || {},
+            raw: item
+          });
+        } else if (format === 'mcp') {
+          tools.push({
+            name: item.name || '(unnamed)',
+            description: item.description || '',
+            parameters: item.inputSchema || {},
+            raw: item
+          });
+        } else {
+          // json_schema or unknown
+          tools.push({
+            name: item.name || item.title || '(schema)',
+            description: item.description || '',
+            parameters: item,
+            raw: item
+          });
+        }
+      }
+
+      return tools;
+    }
+
+    // === Token estimation ===
+    function estimateTokens(obj) {
+      var json = JSON.stringify(obj);
+      return Math.ceil(json.length / 4);
+    }
+
+    function countParams(schema) {
+      if (!schema || typeof schema !== 'object') return 0;
+      var props = schema.properties;
+      if (!props) return 0;
+      return Object.keys(props).length;
+    }
+
+    // === Analyze ===
+    function analyze() {
+      var raw = input.value.trim();
+      statusText.textContent = 'processing...';
+      statusText.className = 'status-text processing';
+
+      if (!raw) {
+        showError('Paste some JSON to analyze.');
+        return;
+      }
+
+      var data;
+      try {
+        data = JSON.parse(raw);
+      } catch(e) {
+        showError('Invalid JSON: ' + e.message);
+        return;
+      }
+
+      var format = detectFormat(data);
+      var tools = extractTools(data, format);
+
+      if (tools.length === 0) {
+        showError('No tools found in the input.');
+        return;
+      }
+
+      // Simulate brief processing
+      setTimeout(function() {
+        renderResults(format, tools, data);
+        statusText.textContent = 'done — ' + tools.length + ' tool' + (tools.length === 1 ? '' : 's') + ' analyzed';
+        statusText.className = 'status-text';
+      }, 200);
+    }
+
+    function showError(msg) {
+      statusText.textContent = msg;
+      statusText.className = 'status-text error';
+    }
+
+    function clearAll() {
+      input.value = '';
+      document.getElementById('results').classList.remove('visible');
+      statusText.textContent = '';
+      statusText.className = 'status-text';
+      liveBadge.classList.remove('visible');
+    }
+
+    // === Render results ===
+    function renderResults(format, tools, rawData) {
+      var resultsEl = document.getElementById('results');
+
+      // Calculate per-tool stats
+      var totalTokens = 0;
+      var maxTokens = 0;
+      var toolStats = [];
+
+      for (var i = 0; i < tools.length; i++) {
+        var t = tools[i];
+        var tokens = estimateTokens(t.raw);
+        var paramCount = countParams(t.parameters);
+        totalTokens += tokens;
+        if (tokens > maxTokens) maxTokens = tokens;
+        toolStats.push({
+          name: t.name,
+          description: t.description,
+          params: paramCount,
+          descLen: t.description.length,
+          tokens: tokens
+        });
+      }
+
+      // Summary cards
+      var summaryHTML = '';
+      summaryHTML += '<div class="summary-card"><div class="value">' + tools.length + '</div><div class="label">Tools</div></div>';
+      summaryHTML += '<div class="summary-card"><div class="value">' + FORMAT_LABELS[format] + '</div><div class="label">Detected Format</div></div>';
+      summaryHTML += '<div class="summary-card"><div class="value">' + totalTokens.toLocaleString() + '</div><div class="label">Est. Tokens</div></div>';
+      var avgTokens = Math.round(totalTokens / tools.length);
+      summaryHTML += '<div class="summary-card"><div class="value">' + avgTokens.toLocaleString() + '</div><div class="label">Avg / Tool</div></div>';
+      document.getElementById('summary-row').innerHTML = summaryHTML;
+
+      // Per-tool table
+      var tbodyHTML = '';
+      for (var i = 0; i < toolStats.length; i++) {
+        var s = toolStats[i];
+        var pct = maxTokens > 0 ? (s.tokens / maxTokens * 100) : 0;
+        var descPreview = s.description.length > 50 ? s.description.substring(0, 50) + '...' : s.description;
+        tbodyHTML += '<tr>';
+        tbodyHTML += '<td class="tool-name">' + escapeHtml(s.name) + '</td>';
+        tbodyHTML += '<td class="desc-preview" title="' + escapeHtml(s.description) + '">' + escapeHtml(descPreview) + '</td>';
+        tbodyHTML += '<td class="num">' + s.params + '</td>';
+        tbodyHTML += '<td class="num">' + s.descLen.toLocaleString() + '</td>';
+        tbodyHTML += '<td class="num">' + s.tokens.toLocaleString() + '</td>';
+        tbodyHTML += '<td class="token-bar-cell"><div class="token-bar-track"><div class="token-bar-fill" data-width="' + pct + '"></div></div></td>';
+        tbodyHTML += '</tr>';
+      }
+
+      // Total row
+      var totalParams = toolStats.reduce(function(a, b) { return a + b.params; }, 0);
+      var totalDescLen = toolStats.reduce(function(a, b) { return a + b.descLen; }, 0);
+      tbodyHTML += '<tr style="border-top:2px solid var(--border-bright);font-weight:700;">';
+      tbodyHTML += '<td style="color:var(--text);">TOTAL</td>';
+      tbodyHTML += '<td></td>';
+      tbodyHTML += '<td class="num">' + totalParams + '</td>';
+      tbodyHTML += '<td class="num">' + totalDescLen.toLocaleString() + '</td>';
+      tbodyHTML += '<td class="num" style="color:var(--accent-violet);">' + totalTokens.toLocaleString() + '</td>';
+      tbodyHTML += '<td></td>';
+      tbodyHTML += '</tr>';
+      document.getElementById('tool-tbody').innerHTML = tbodyHTML;
+
+      // Format comparison
+      var fmtHTML = '';
+      var maxFmtTokens = 0;
+      var fmtData = {};
+      var formats = ['openai', 'anthropic', 'google', 'mcp', 'json_schema'];
+      for (var i = 0; i < formats.length; i++) {
+        var f = formats[i];
+        // Calculate relative to detected format
+        var baseMultiplier = FORMAT_MULTIPLIERS[format];
+        var targetMultiplier = FORMAT_MULTIPLIERS[f];
+        var tokens = Math.round(totalTokens * (targetMultiplier / baseMultiplier));
+        fmtData[f] = tokens;
+        if (tokens > maxFmtTokens) maxFmtTokens = tokens;
+      }
+
+      for (var i = 0; i < formats.length; i++) {
+        var f = formats[i];
+        var tokens = fmtData[f];
+        var pct = maxFmtTokens > 0 ? (tokens / maxFmtTokens * 100) : 0;
+        var isDetected = (f === format);
+        fmtHTML += '<div class="format-bar-row">';
+        fmtHTML += '<div class="format-bar-label">' + FORMAT_LABELS[f] + (isDetected ? '<span class="detected-tag">input</span>' : '') + '</div>';
+        fmtHTML += '<div class="format-bar-track"><div class="format-bar-fill fmt-' + f + '" data-width="' + pct + '">' + tokens.toLocaleString() + ' tokens</div></div>';
+        fmtHTML += '<div class="format-bar-value">' + (isDetected ? '---' : (tokens > fmtData[format] ? '+' : '') + Math.round((tokens - fmtData[format]) / fmtData[format] * 100) + '%') + '</div>';
+        fmtHTML += '</div>';
+      }
+      document.getElementById('format-comparison').innerHTML = fmtHTML;
+
+      // Context window impact
+      var ctxHTML = '';
+      for (var i = 0; i < CONTEXT_WINDOWS.length; i++) {
+        var cw = CONTEXT_WINDOWS[i];
+        var pct = (totalTokens / cw.tokens * 100);
+        var pctDisplay = pct < 0.1 ? '<0.1' : pct.toFixed(1);
+        var cls = '';
+        if (pct > 25) cls = 'danger';
+        else if (pct > 10) cls = 'warn';
+        var barPct = Math.min(pct, 100);
+
+        ctxHTML += '<div class="ctx-row">';
+        ctxHTML += '<div class="ctx-label">' + cw.label + '</div>';
+        ctxHTML += '<div class="ctx-bar-track"><div class="ctx-bar-fill' + (cls ? ' ' + cls : '') + '" data-width="' + barPct + '"></div></div>';
+        ctxHTML += '<div class="ctx-pct' + (cls ? ' ' + cls : '') + '">' + pctDisplay + '%</div>';
+        ctxHTML += '</div>';
+      }
+      document.getElementById('context-windows').innerHTML = ctxHTML;
+
+      // Show results
+      resultsEl.classList.add('visible');
+
+      // Animate bars after a brief delay for the DOM to paint
+      requestAnimationFrame(function() {
+        setTimeout(function() {
+          var fills = resultsEl.querySelectorAll('[data-width]');
+          for (var i = 0; i < fills.length; i++) {
+            fills[i].style.width = fills[i].getAttribute('data-width') + '%';
+          }
+        }, 50);
+      });
+
+      // Scroll to results
+      setTimeout(function() {
+        resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+
+    function escapeHtml(str) {
+      var div = document.createElement('div');
+      div.appendChild(document.createTextNode(str));
+      return div.innerHTML;
+    }
+
+    // Keyboard shortcut: Ctrl/Cmd+Enter to analyze
+    input.addEventListener('keydown', function(e) {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        e.preventDefault();
+        analyze();
+      }
+    });
+
+    // Auto-analyze the sample on load
+    setTimeout(analyze, 400);
+  </script>
+</body>
+</html>
