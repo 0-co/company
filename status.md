@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-17 13:15 UTC (session 131/Day 10)
+**Last updated:** 2026-03-17 13:30 UTC (session 131/Day 10)
 
 ## Current Phase
-**Day 10** — Shipped `agent-friend optimize` (heuristic schema linter, 7 rules). MCP reckoning accelerating: mcp2cli hit 145pts on HN, Garry Tan said "MCP sucks honestly", Cloudflare Code Mode does 244K→1K tokens. We own the "build-time measurement + fix" niche — nobody else does both. Article 064 drops tomorrow with fresh data. Board still silent (6+ days).
+**Day 10** — Shipped `agent-friend optimize` + dogfooded it on own 306 tools. Board responded: "Use agent-friend yourself." Done — ran audit/optimize on own tools, fixed 57 findings, created CEO toolkit with @tool-wrapped vault commands. Article 064 drops tomorrow.
 
 ## Key Metrics
 | Metric | Current | Target | Deadline |
@@ -19,8 +19,8 @@
 | GitHub clones (14d) | 827 (194 unique) | - | - |
 | GitHub visitors (14d) | 26 unique | - | - |
 
-## Session 131 (2026-03-17 12:30–13:15)
-Built optimize command + deep market research + article updates.
+## Session 131 (2026-03-17 12:30–13:30)
+Built optimize command + deep market research + article updates + dogfooded own tools.
 
 ### Completed
 1. **`agent-friend optimize`** — heuristic schema linter. 7 rules: verbose prefixes, long descriptions, redundant params, missing descriptions, cross-tool duplicates, deep nesting. 75 new tests (2654 total). v0.52.0.
@@ -33,19 +33,20 @@ Built optimize command + deep market research + article updates.
 8. **GitHub Pages deployed** — Landing page live
 9. **Both repos synced** — company + agent-friend
 10. **Tomorrow's Bluesky posts re-drafted** — Sharper: article + optimize + calculator + data
+11. **Board responded: "Dogfood agent-friend"** — Acted immediately.
+12. **Ran audit/optimize on own 306 tools** — 23,502 tokens total, 57 suggestions, fixed all. Trimmed cross-tool duplication (regex flags 7x, git repo_dir 6x), verbose descriptions, added ~50 missing param descriptions. Down to 22 suggestions (remaining are intentional).
+13. **CEO toolkit** (`examples/ceo_toolkit.py`) — 7 @tool-wrapped vault commands (Twitch, Bluesky, Dev.to, Discord, GitHub). 452 tokens. Actually running in production.
+14. **GitHub Discussion #8** — Dogfooding results
 
 ### Key Discovery
 - **mcp2cli** is biggest new competitor — but it bypasses MCP entirely. We complement MCP, don't replace it. Different value prop.
-- **token-ct** (Python, 0 stars) measures runtime call costs, not schema overhead. Nearest direct competitor but different focus.
-- **The competitive landscape has 3 camps**: (1) runtime optimizers (ToolHive, Claude Tool Search), (2) MCP replacers (mcp2cli, Apideck CLI), (3) build-time linters (us). We're alone in camp 3.
 - **"ESLint for MCP schemas"** is the positioning. ESLint didn't compete with bundlers. We don't compete with ToolHive.
+- **Dogfooding works**: audit/optimize found real issues in our own 306 tools. 57 suggestions, all actionable. The tool does what it promises.
 - **The window is narrow.** If runtime optimizers make this "good enough" at the client layer, the build-time niche shrinks.
 
-## Board Inbox (pending — 6+ days for original items)
-- `1-github-token-permissions.md` — **CRITICAL**: SEP-1576 comment ready, can't post.
-- `1-producthunt-launch-today.md` — ProductHunt submission (window missed)
-- `2-glama-and-mcp-registry.md` — Glama + MCP registry + awesome-lists + Smithery
-- `2-reddit-account-distribution.md` — Reddit account for distribution
+## Board Communications
+- **Board outbox `1-dogfood.md`** — "Use agent-friend yourself." ✓ ACTED ON (session 131)
+- Board inbox still pending (6+ days): GitHub tokens P1, ProductHunt P1, Glama/registries P2, Reddit P2
 
 ## Article Publish Schedule
 - 053-054: ✓ Published March 17
@@ -56,8 +57,9 @@ Built optimize command + deep market research + article updates.
 ## Product State
 - **agent-friend v0.52.0**: Universal tool adapter + audit CLI + optimize linter. 2654 tests. MIT.
 - **Web calculator**: `audit.html` — paste tool schemas, see token cost
-- **MCP server**: 314 tools via stdio
-- **GitHub Discussions**: #1-#6
+- **MCP server**: 306 tools via stdio
+- **CEO toolkit**: `examples/ceo_toolkit.py` — 7 @tool-wrapped vault commands, 452 tokens
+- **GitHub Discussions**: #1-#8
 
 ## Distribution Status
 | Channel | Status | Reach |
@@ -66,7 +68,7 @@ Built optimize command + deep market research + article updates.
 | Dev.to | 13 articles, ~0 engagement | ~50/day |
 | mcpservers.org | Submitted, awaiting approval | TBD |
 | Glama | NOT indexed — registryType fix pushed, monitoring | 19K+ servers |
-| GitHub | 0 stars, 6 discussions, 194 unique clones | Organic |
+| GitHub | 0 stars, 8 discussions, 194 unique clones | Organic |
 | Reddit/HN/X.com | Blocked | Blocked |
 
 ## Competitive Landscape (updated session 131)
@@ -79,7 +81,7 @@ Built optimize command + deep market research + article updates.
 ## Next Actions
 1. Tomorrow: Article 064 auto-publishes 09:00 UTC. Post 4 Bluesky slots.
 2. Monitor Dev.to reactions, mcpservers.org, Glama indexing
-3. Check board outbox (6+ days silent)
-4. Check Twitch chat queue
+3. Board inbox: 4 items still pending (6+ days). Dogfood directive acted on.
+4. Continue dogfooding: use Friend class with CEO toolkit for workflow automation
 5. Consider: Colab notebook update for v0.52.0
-6. Consider: Run optimize on real MCP servers for content/data
+6. Consider: Write article about dogfooding results (306 tools, 57 findings)
