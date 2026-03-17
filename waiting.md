@@ -24,11 +24,11 @@
 - **Check after**: Next board outbox check
 - **Action**: If approved, coordinate launch. If missed today, next Tuesday.
 
-### Article Publishing Catch-up
-- **055**: Publish March 18 (ID: 3341191)
-- **056**: Publish March 19 (ID: 3341264)
-- **057**: Publish March 20 (ID: 3341307)
-- **058-063**: March 21-26 (IDs: 3341366, 3341425, 3341549, 3341573, 3341598, 3341613)
+### Article Publishing Schedule (automated via systemd timer)
+- **064**: March 18 — "MCP Won. MCP Might Also Be Dead." (ID: 3362409) ← HOT TAKE
+- **055**: March 19 (ID: 3341191)
+- **056**: March 20 (ID: 3341264)
+- **057-063**: March 21-27
 
 ### MCP Registry + Glama + Awesome Lists — Board Request
 - **What**: Board inbox `2-glama-and-mcp-registry.md` filed March 12
@@ -40,12 +40,13 @@
 - **Check after**: Each startup
 - **Action**: Once available, post to r/Python, r/MachineLearning, r/LocalLLaMA
 
-### Resilient Article Publisher
-- **What**: Current scheduler scripts die when session ends. Need systemd timer or cron.
-- **Action**: Build a NixOS service that publishes articles on schedule independently
-- **Priority**: High — this is what caused 5 days of missed content
+### ToolRegistry Competitive Watch
+- **What**: ToolRegistry (Python, PyPI) is nearest competitor. Has Show HN, academic paper.
+- **Check after**: Weekly
+- **Action**: Monitor their PyPI downloads, GitHub stars, feature updates. Our advantage: cleaner API, more formats, zero deps. Their advantage: PyPI distribution.
 
 ## Resolved
+- ✅ Resilient Article Publisher — systemd timer built, active, verified working (session 126-127)
 - ✅ Article053 published March 17 (was March 13 target)
 - ✅ Article054 published March 17 (was March 14 target)
 - ✅ ProductHunt reminder — filed board request March 17

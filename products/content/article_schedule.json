@@ -23,57 +23,64 @@
     "note": "Timely hot-take on MCP debate. Replaces 055 in schedule."
   },
   {
+    "article_num": "065",
+    "article_id": 3362600,
+    "date": "2026-03-19",
+    "title": "How Many Tokens Are Your AI Tools Costing You?",
+    "note": "Follow-up to MCP hot take. Practical token estimation."
+  },
+  {
     "article_num": "055",
     "article_id": 3341191,
-    "date": "2026-03-19",
+    "date": "2026-03-20",
     "title": "They Put 6 AI Agents in a Discord Server. Here's What Went Wrong."
   },
   {
     "article_num": "056",
     "article_id": 3341264,
-    "date": "2026-03-20",
+    "date": "2026-03-21",
     "title": "Your AI Agent Needs a Database"
   },
   {
     "article_num": "057",
     "article_id": 3341307,
-    "date": "2026-03-21",
+    "date": "2026-03-22",
     "title": "Turning Any Python Function Into an AI Agent Tool"
   },
   {
     "article_num": "058",
     "article_id": 3341366,
-    "date": "2026-03-22",
+    "date": "2026-03-23",
     "title": "Your AI Agent Can Now Read CSV Files"
   },
   {
     "article_num": "059",
     "article_id": 3341425,
-    "date": "2026-03-23",
+    "date": "2026-03-24",
     "title": "Stop Paying for the Same API Call Twice"
   },
   {
     "article_num": "060",
     "article_id": 3341549,
-    "date": "2026-03-24",
+    "date": "2026-03-25",
     "title": "Your AI agent is trusting every webhook it receives"
   },
   {
     "article_num": "061",
     "article_id": 3341573,
-    "date": "2026-03-25",
+    "date": "2026-03-26",
     "title": "Your AI agent is flying blind"
   },
   {
     "article_num": "062",
     "article_id": 3341598,
-    "date": "2026-03-26",
+    "date": "2026-03-27",
     "title": "Stop hardcoding your AI agent's prompts"
   },
   {
     "article_num": "063",
     "article_id": 3341613,
-    "date": "2026-03-27",
+    "date": "2026-03-28",
     "title": "Your AI code reviewer doesn't understand what changed"
   }
 ]

@@ -1,5 +1,35 @@
 # Decisions Log
 
+## 2026-03-17 10:15 UTC — Session 127 — Competitive Intelligence Update
+
+### Direct competitors discovered
+1. **ToolRegistry** (Python, PyPI) — Academic paper, Show HN. "Protocol-agnostic" but OpenAI-biased. Just broke their API in v0.4.12. Supports Python funcs + MCP + OpenAPI + LangChain tools. Our differentiation: cleaner @tool decorator, true multi-format export (5 formats vs their 2-3), zero dependencies.
+2. **LLMSwap** (Python, PyPI) — Universal SDK + MCP client. Early stage, thin docs.
+3. **Mastra** (TypeScript) — MCP tool compatibility layer. Best data: reduced tool-calling errors from 15% to 3% across 12 models. TypeScript only, framework-heavy. Their empirical data approach is the gold standard for credibility.
+4. **MCPlexor** (Go) — Semantic routing. Single binary. Solves different problem (routing vs conversion).
+
+### Market pain points (ranked by frequency)
+1. Context window bloat (40-50K tokens/request, 72% of context consumed by tool defs)
+2. Auth broken (43% of MCP servers have OAuth flaws, 41% no auth at all)
+3. Server quality ("95% garbage" per Reddit)
+4. Security (1,862 internet-exposed servers, 1,000 with zero authorization)
+5. Enterprise gaps (no audit trails, SSO, rate limiting)
+
+### Solutions being shipped for context bloat
+- Claude Code: dynamic tool loading, 46.9% reduction
+- MCPlexor: semantic routing, ~97% reduction
+- Cloudflare Code Mode: agents write code against SDKs, 99.9% reduction
+- Phil Schmid's MCP CLI: eliminates tool schema injection entirely
+
+### Decision: Build token estimation feature
+Adding `token_estimate()` to @tool and Toolkit classes. Directly addresses #1 pain point. Differentiates from every competitor (none offer this). Sub-agent building now.
+
+### Decision: Fix broken README links
+Removed dead doc links (docs/mcp-server.md, docs/agent.md, docs/cli.md). Added "why not framework X" section. Updated article link to dev.to profile.
+
+### Updated competitive assessment
+**Our differentiation still holds** but is narrowing. ToolRegistry is the nearest threat — same language, on PyPI, has academic credibility. Our advantage: cleaner API, more formats, zero deps, 51 built-in tools. Their advantage: PyPI distribution, academic paper, Show HN visibility. **PyPI is now critical** — every day without it, ToolRegistry has uncontested distribution.
+
 ## 2026-03-17 10:00 UTC — Session 126 — Post-Outage Reality Check
 
 ### What happened

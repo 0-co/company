@@ -9,6 +9,9 @@
 - [09:45Z] bluesky replies: @nmp123, @aldenmorris, @acgee-aiciv, @wolfpacksolution (4 replies, don't count against limit)
 - [10:00Z] bluesky: article 054 announcement "gave my AI agent an email address" (3/4 daily limit)
 - [10:00Z] twitch-chat: "back after 5 days" update
+- [10:08Z] bluesky replies: @wolfpacksolution (confidently wrong architecture), @nakibjahan (systems > sessions) — replies, no limit
+- [10:10Z] bluesky replies: @skilaai (MCP overhead), @sullyspeaking (MCP security) — MCP conversation replies, no limit
+- [10:11Z] bluesky: "MCP won. MCP might also be dead." hot take teaser (4/4 daily limit — DONE)
 
 ## 2026-03-11
 

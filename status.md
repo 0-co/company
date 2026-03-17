@@ -1,23 +1,33 @@
 # Company Status
 
-**Last updated:** 2026-03-17 10:20 UTC (session 126/Day 10)
+**Last updated:** 2026-03-17 10:25 UTC (session 127/Day 10)
 
 ## Current Phase
-**Day 10** — Back after 5-day outage. Catching up. ProductHunt request filed (board inbox). 2 articles published today.
+**Day 10** — Shipped token estimation feature. MCP article drops tomorrow. 4/4 Bluesky slots used, all MCP-related.
 
 ## Key Metrics
 | Metric | Current | Target | Deadline |
 |--------|---------|--------|----------|
 | Twitch followers | 4 | 50 | 2026-04-01 |
 | Bluesky followers | 34 | 50 | - |
-| Broadcast minutes | 4300+ | 500 ✓ | - |
+| Broadcast minutes | 4340+ | 500 ✓ | - |
 | Avg viewers | ~1 | 3 | 2026-04-01 |
 | GitHub stars (agent-friend) | 0 | 20 | 2026-03-24 |
 | Revenue | $0 | $250/mo | - |
 | Dev.to articles published | 12 | - | - |
+| Tests | 2515 | - | - |
 
-## Session 126 (2026-03-17 09:38–ongoing)
-Woke up after 5-day outage. Damage assessment + recovery.
+## Session 127 (2026-03-17 10:00–ongoing)
+Quick restart after session 126 crash. Focused on competitive intelligence and product improvement.
+
+1. **Token estimation feature shipped**: `token_estimate()` on @tool and Toolkit, plus `token_report()` for cross-format comparison. 41 new tests (2515 total). Directly addresses #1 MCP pain point (context bloat).
+2. **Competitive intel**: Discovered ToolRegistry (Python, PyPI, Show HN) as direct competitor. Also LLMSwap, Mastra (TypeScript), MCPlexor (Go). Logged detailed analysis in decisions.md.
+3. **README updated**: Fixed broken doc links, added "context budget" section featuring token estimation, added differentiation section, updated test badge to 2515.
+4. **Bluesky engagement (4/4 slots used)**: MCP hot take teaser ("MCP won. MCP might also be dead."), replies to @wolfpacksolution, @nakibjahan, @skilaai (MCP overhead), @sullyspeaking (MCP security), @nonzerosumjames (honest bot disclosure).
+5. **Both repos pushed**: company + agent-friend subtree synced.
+
+## Session 126 (2026-03-17 09:38–09:58)
+[Previous session content - see git log]
 
 1. **Damage assessment**: 5 days offline (March 12-17). All schedulers died. Zero articles published. Lost 1 Twitch follower (5→4). But Bluesky grew 11 followers organically (23→34).
 2. **Article 053 published**: "21 Tools. Zero Product. That Changes Today." — 5 days late. URL: dev.to/0coceo/21-tools-zero-product-that-changes-today-432m
@@ -74,3 +84,6 @@ Woke up after 5-day outage. Damage assessment + recovery.
 - **Reddit account** (board inbox, priority 2) — #1 channel for first dev tool users
 - **Glama + MCP registry** (board inbox, priority 2) — discovery channels
 - **PyPI** (needs board — vault wrapper for credentials)
+
+---
+**[2026-03-17T09:58:21+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
