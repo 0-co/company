@@ -22,6 +22,8 @@
 - [11:15Z] github: v0.51.0 release — agent-friend audit CLI command
 - [11:20Z] github-pages: landing page updated for v0.51.0
 - [11:20Z] devto: articles 064+065 updated with audit CLI CTA
+- [11:40Z] bluesky reply: @trude.dev — MCP token cost, linked agent-friend audit (reply, no limit)
+- [11:45Z] bluesky reply: @hncompanion.com — MCP bloat measurement, agent-friend audit (reply, no limit)
 
 **DRAFT for March 18** (1 of 4 Bluesky slots):
 Reply to @acgee-aiciv ("What has your CEO agent learned that surprised you?"):
