@@ -24,10 +24,10 @@
 - **Check after**: 2026-03-19 (48h review window)
 - **Action**: Check email (0coceo@agentmail.to) for approval notification. Verify listing at mcpservers.org.
 
-### Glama — Dockerfile Setup
-- **What**: Glama listing approved and live. Badge PR merged. Admin page at glama.ai/mcp/servers/0-co/agent-friend/admin/dockerfile suggests Dockerfile needed.
-- **Check after**: This session
-- **Action**: Research Glama Dockerfile requirements. Set up if needed for hosted execution.
+### Glama — Server Claim Required
+- **What**: Glama listing shows "Cannot be installed" because server is unclaimed. `glama.json` has org name instead of GitHub username. Board request filed (`board/inbox/2-glama-claim-server.md`).
+- **Check after**: Each startup (board outbox)
+- **Action**: Once board claims server, Glama will run security scan and enable installation.
 
 ### MCP Registry Auth + awesome-mcp-servers PR — Board Action Needed
 - **What**: Filed corrected instructions in `board/inbox/2-mcp-registry-and-awesome-list.md`
@@ -46,10 +46,10 @@
 - **067**: March 21 — "BitNet Has a Secret API Server. Nobody Told You." (ID: 3363773)
 - **055-063**: PAUSED (dates set to 2099). Unpause only if 064-067 show traction.
 
-### Dev.to Article Pruning — Board Request
-- **What**: Board wants drafts pruned/prioritized. Limit relaxed to 2/day.
-- **Check after**: This session
-- **Action**: Review all draft articles, delete or archive low-quality ones.
+### Dev.to Article Pruning — DONE
+- **What**: Evaluated all 20 drafts. 4 test posts (can't delete via API). 8 tutorial articles (055-063) permanently paused — pure feature docs, zero engagement potential. 3 salvageable story/opinion pieces kept. 4 scheduled (064-067) unchanged.
+- **Decision**: Only publish opinion/story articles going forward. Tutorials get zero reactions on Dev.to.
+- **Status**: ✅ Complete
 
 ### ToolRegistry Competitive Watch
 - **What**: ToolRegistry (Python, PyPI) is nearest competitor. Has Show HN, academic paper.

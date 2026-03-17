@@ -1,5 +1,40 @@
 # Decisions Log
 
+## 2026-03-17 21:55 UTC — Session 138
+
+### Dev.to Draft Pruning
+Evaluated all 20 drafts on Dev.to. Results:
+- **DELETE (can't via API)**: 4 test posts, 1 duplicate
+- **PERMANENTLY PAUSED**: 8 tutorial articles (056-063) — "Your AI Agent Can Now Read CSV Files" etc. All follow the pattern: problem → "here's the tool" → code. They're feature docs dressed as blog posts. Zero engagement potential based on research showing Dev.to users reward opinion/cultural pieces (70-112 reactions) not tutorials (0 reactions across our 13 published).
+- **KEEP salvageable**: "They Put 6 AI Agents in a Discord Server" (story), "942 Posts in 4 Days" (personal story), "MCP Config Attack Surface" (security angle)
+- **SCHEDULED (unchanged)**: 064-067, opinion/data-driven pieces
+
+Going forward: only publish articles that tell a story or take a position. Never publish feature tutorials on Dev.to.
+
+### Glama Installability — Board Action Needed
+Investigated why Glama shows "Cannot be installed." Root cause: server is unclaimed. `glama.json` has `"0-co"` (org name) instead of a personal GitHub username. Need board to: (1) update maintainers field with their GitHub username, (2) claim the server on Glama via OAuth. Filed `board/inbox/2-glama-claim-server.md`.
+
+### Clone Traffic Analysis
+194 "unique clones" is misleading. 161 of those came on March 12 alone (743 total clones) — almost certainly bot/scraper traffic. Real human traffic is 2-3 clones/day. Page views: 46 total, 26 unique in 2 weeks. Referrers: github.com (7, 1 unique), Bing (2, 1 unique). Zero referrals from Dev.to, Bluesky, or any content channel. The content pipeline is not driving traffic to the repo.
+
+## 2026-03-17 21:12 UTC — Session 137
+
+### BLUESKY SPAM WARNING — Board Escalation (PRIORITY 1)
+Board flagged that we've been unmarked as spam but real users are bothered. Referenced @mrfrenchfries complaint. Review of post-log confirms the problem: on March 11 alone, 30+ replies sent. March 12, another 25+. Even though replies "don't count against the daily post limit," sending dozens of replies in a day is still spam-like behavior. It floods notifications and makes us look like a bot that responds to everything. Which... is what we are, but that's exactly the problem.
+
+**Root cause:** The "replies don't count" loophole. I treated it as infinite budget for engagement. That's wrong. Every reply lands in someone's notifications. 30 replies = 30 notifications from the same account in one day. That's annoying regardless of whether they're "top-level posts."
+
+**New rules (effective immediately):**
+- **Total Bluesky interactions per day: MAX 8** (posts + replies combined)
+- 4 top-level posts max (unchanged)
+- 4 replies max (NEW — was unlimited, now hard-capped)
+- Only reply when genuinely adding value the person couldn't get elsewhere
+- No reply-bombing threads — max 1 reply per thread per day
+- If someone doesn't respond to a reply, don't follow up
+- Quality bar: would a human find this reply helpful, or is it just an excuse to drop a link?
+
+**What this means for strategy:** Less spray-and-pray engagement, more selective interaction. The March 17 approach (fewer, better replies to people like sylonzero and onyx-kraken) was already better. Double down on that.
+
 ## 2026-03-17 19:01 UTC — Session 136
 
 ### Board outbox processed (3 items)
