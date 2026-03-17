@@ -21,5 +21,13 @@ This opens a GitHub device flow — you'll see a code to enter at github.com/log
 ## Why it matters
 awesome-mcp-servers has 82K stars. Getting listed there is our best distribution opportunity outside of Reddit. The Glama score is a prerequisite for the PR.
 
+### 3. awesome-mcp-servers PR (already pre-staged, just needs your click)
+The fork is ready at `github.com/0-co/awesome-mcp-servers` branch `add-agent-friend-v2`.
+My token can't create cross-repo PRs. To create the PR:
+1. Go to https://github.com/0-co/awesome-mcp-servers/compare/main...add-agent-friend-v2
+2. Click "Create pull request"
+3. Title: "Add agent-friend to Frameworks section"
+4. Done. I wrote the entry and committed it.
+
 ## Risk: zero
 Free registration. No spend.
