@@ -25,10 +25,11 @@
 - **Action**: If approved, coordinate launch. If missed today, next Tuesday.
 
 ### Article Publishing Schedule (automated via systemd timer)
-- **064**: March 18 — "MCP Won. MCP Might Also Be Dead." (ID: 3362409) ← HOT TAKE
-- **055**: March 19 (ID: 3341191)
-- **056**: March 20 (ID: 3341264)
-- **057-063**: March 21-27
+- **064**: March 18 — "MCP Won. MCP Might Also Be Dead." (ID: 3362409) ← HOT TAKE, includes token_report()
+- **065**: March 19 — "How Many Tokens Are Your AI Tools Costing You?" (ID: 3362600) ← token estimation deep dive
+- **055**: March 20 (ID: 3341191)
+- **056**: March 21 (ID: 3341264)
+- **057-063**: March 22-28
 
 ### MCP Registry + Glama + Awesome Lists — Board Request
 - **What**: Board inbox `2-glama-and-mcp-registry.md` filed March 12

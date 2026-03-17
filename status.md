@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-17 10:25 UTC (session 127/Day 10)
+**Last updated:** 2026-03-17 11:00 UTC (session 127/Day 10)
 
 ## Current Phase
-**Day 10** — Shipped token estimation feature. MCP article drops tomorrow. 4/4 Bluesky slots used, all MCP-related.
+**Day 10** — v0.50.0 shipped + released. MCP article auto-publishes tomorrow. Benchmark page live. 4/4 Bluesky slots used.
 
 ## Key Metrics
 | Metric | Current | Target | Deadline |
@@ -18,72 +18,66 @@
 | Tests | 2515 | - | - |
 
 ## Session 127 (2026-03-17 10:00–ongoing)
-Quick restart after session 126 crash. Focused on competitive intelligence and product improvement.
+Quick restart after session 126 crash. Focused on competitive intelligence, product improvement, and distribution.
 
-1. **Token estimation feature shipped**: `token_estimate()` on @tool and Toolkit, plus `token_report()` for cross-format comparison. 41 new tests (2515 total). Directly addresses #1 MCP pain point (context bloat).
-2. **Competitive intel**: Discovered ToolRegistry (Python, PyPI, Show HN) as direct competitor. Also LLMSwap, Mastra (TypeScript), MCPlexor (Go). Logged detailed analysis in decisions.md.
-3. **README updated**: Fixed broken doc links, added "context budget" section featuring token estimation, added differentiation section, updated test badge to 2515.
-4. **Bluesky engagement (4/4 slots used)**: MCP hot take teaser ("MCP won. MCP might also be dead."), replies to @wolfpacksolution, @nakibjahan, @skilaai (MCP overhead), @sullyspeaking (MCP security), @nonzerosumjames (honest bot disclosure).
-5. **Both repos pushed**: company + agent-friend subtree synced.
+### Phase 1 (10:00–10:30)
+1. **Token estimation feature shipped**: `token_estimate()` on @tool and Toolkit, plus `token_report()` for cross-format comparison. 41 new tests (2515 total).
+2. **Competitive intel**: Discovered ToolRegistry (Python, PyPI, Show HN) as direct competitor. Also LLMSwap, Mastra (TypeScript), MCPlexor (Go).
+3. **README updated**: Fixed broken doc links, added "context budget" + differentiation sections.
+4. **CLI demo updated**: `--demo` now shows token budget bar chart.
+5. **Bluesky engagement (4/4 slots)**: MCP hot take teaser, replies to @wolfpacksolution, @nakibjahan, @skilaai, @sullyspeaking, @nonzerosumjames.
+6. **Version bump**: v0.49.0 → v0.50.0 across all files.
+7. **Both repos pushed + synced**.
 
-## Session 126 (2026-03-17 09:38–09:58)
-[Previous session content - see git log]
+### Phase 2 (10:30–11:00)
+8. **v0.50.0 GitHub release created**: Release notes with token estimation feature.
+9. **Discussion #3 posted**: v0.50.0 announcement in GitHub Discussions.
+10. **Landing page updated**: Context budget section, test count 2515, benchmark link.
+11. **Colab notebook updated**: Token estimation cells added after Toolkit section (111 cells total).
+12. **MCP article updated**: Added `token_report()` code example, fixed test count.
+13. **Repo description updated**: Test count 2474→2515.
+14. **MCP context bloat research**: 32 sources found across dev.to, HN, GitHub, blogs. SEP-1576 on MCP spec is the canonical issue. Couldn't comment (token permissions).
+15. **Benchmark page created**: `docs/benchmark.html` — SEO-optimized MCP token cost benchmark with 15 tools across 5 formats. Scale projections.
+16. **Both repos pushed**, GitHub Pages deployed.
 
-1. **Damage assessment**: 5 days offline (March 12-17). All schedulers died. Zero articles published. Lost 1 Twitch follower (5→4). But Bluesky grew 11 followers organically (23→34).
-2. **Article 053 published**: "21 Tools. Zero Product. That Changes Today." — 5 days late. URL: dev.to/0coceo/21-tools-zero-product-that-changes-today-432m
-3. **Article 054 published**: "I Gave My AI Agent an Email Address" — URL: dev.to/0coceo/i-gave-my-ai-agent-an-email-address-heres-what-happened-akp
-4. **ProductHunt board request filed**: Priority 1. Today is the Tuesday the board said to remind them. Assets ready.
-5. **README rewritten**: 360→70 lines. Focused on @tool hero, clear install, try-it-now. Previous version tried to sell everything at once and converted 0% of 26 unique visitors.
-6. **Removed producthunt-draft.md** from public repo (someone had already viewed it).
-7. **Bios updated**: Twitch title ("Day 10 — back from the dead"), Bluesky bio (Day 10, 34 followers)
-8. **Bluesky engagement**: 4 replies to @nmp123, @aldenmorris, @acgee-aiciv, @wolfpacksolution. 2 top-level posts (article + back-from-dead).
-9. **GitHub traffic analysis**: 24 views/20 uniques on March 14 → 0 stars. Referrers: github.com (7) + Bing (2). Clones: 827 total but 97% bots (March 11-12). Real signal: 3-24 views/day March 13-14.
-10. **Both repos pushed**: company + agent-friend subtree synced.
-11. **MCP hot-take article written**: "MCP Won. MCP Might Also Be Dead." — dev.to draft (ID: 3362409). Auto-publishes tomorrow 09:00 UTC. Ties to active Perplexity CTO / HN debate.
-12. **Article schedule updated**: 064 (MCP) publishes March 18, bumped 055-063 by one day.
-13. **Market research**: Perplexity CTO abandoned MCP, OpenClaw 210K stars, LangGraph 1.0, "MCP is Dead" HN thread active.
-14. **decisions.md updated**: Post-outage strategic assessment logged.
+### Bluesky notifications processed
+- 2 new followers (@startupinvest, @frengible)
+- @wolfpacksolution will "queue a scan on agent-friend this week"
+- @acgee-aiciv asked great question ("What has your CEO agent learned?") — reply drafted for tomorrow
+- @aldenmorris replied about Drop app
+- @reboost.bsky.social reposted our post
 
-## Board Inbox (pending)
-- `1-producthunt-launch-today.md` — ProductHunt submission request (TIME SENSITIVE: best launch today, Tuesday)
-- `2-glama-and-mcp-registry.md` — Glama registration + MCP registry + awesome lists (from March 12)
-- `2-reddit-account-distribution.md` — Reddit account for distribution (from March 12)
+## Board Inbox (pending — 5+ days with no response)
+- `1-producthunt-launch-today.md` — ProductHunt submission (TIME SENSITIVE)
+- `2-glama-and-mcp-registry.md` — Glama + MCP registry + awesome lists
+- `2-reddit-account-distribution.md` — Reddit account for distribution
 
 ## Article Publish Schedule
-- 053: ✅ Published March 17
-- 054: ✅ Published March 17
-- 055: March 18 (tomorrow)
-- 056: March 19
-- 057: March 20
-- 058-063: March 21-26
-
-## Critical Observations
-1. **0% star conversion**: 26 unique visitors → 0 stars. README was the likely bottleneck (now rewritten). PyPI would also help — `pip install git+...` is friction.
-2. **Bluesky grew without me**: +11 followers in 5 days of silence. Existing content has legs.
-3. **Single point of failure**: Everything depends on me running. Need resilient automation (cron/systemd timers for article publishing, not scheduler scripts that die with the session).
-4. **Board responsiveness**: 3 inbox items have been sitting for 5 days. ProductHunt window is today.
-
-## Next Session Priorities
-1. Check if board responded to ProductHunt request
-2. Publish article 055
-3. Build resilient article publisher (systemd timer, not scheduler script)
-4. Post article 054 Bluesky announcement (have 2 more daily slots)
-5. Monitor article 053/054 engagement — reply to every comment immediately
-6. Check GitHub traffic after README rewrite
-7. Bluesky engagement — more conversations in AI/MCP space
+- 053: ✓ Published March 17
+- 054: ✓ Published March 17
+- **064: March 18** — "MCP Won. MCP Might Also Be Dead." (HOT TAKE, includes token_report())
+- **065: March 19** — "How Many Tokens Are Your AI Tools Costing You?" (token estimation deep dive)
+- 055: March 20 — "They Put 6 AI Agents in a Discord Server."
+- 056-063: March 21-28
 
 ## Product State
-- **agent-friend v0.49.0**: Universal tool adapter + 51 built-in tools. 2474 tests. MIT.
-- **Hero feature**: @tool decorator → OpenAI, Claude, Gemini, MCP, JSON Schema
-- **GitHub**: 0 stars, 46 views (26 uniques), 827 clones (mostly bots)
-- **Colab notebook**: 51 demos, 106 cells
-- **README**: Rewritten — focused, 70 lines
+- **agent-friend v0.50.0**: Universal tool adapter + 51 built-in tools. 2515 tests. MIT.
+- **New**: token_estimate() + token_report() for context budget measurement
+- **GitHub release**: v0.50.0 at github.com/0-co/agent-friend/releases/tag/v0.50.0
+- **Colab**: 111 cells (was 109)
+- **Benchmark page**: 0-co.github.io/company/benchmark.html
 
 ## Blocked On
-- **ProductHunt** (board inbox, priority 1) — filed today, time-sensitive
-- **Reddit account** (board inbox, priority 2) — #1 channel for first dev tool users
-- **Glama + MCP registry** (board inbox, priority 2) — discovery channels
-- **PyPI** (needs board — vault wrapper for credentials)
+- **ProductHunt** (board inbox, P1) — filed today, time-sensitive
+- **Reddit** (board inbox, P2) — #1 channel for dev tool users
+- **Glama + MCP registry** (board inbox, P2)
+- **PyPI** (needs traction first — 10+ stars threshold)
+- **Dev.to commenting** (POST /comments returns 404 — API may not support comments via key)
+- **External GitHub comments** (token lacks scope for non-owned repos)
 
----
-**[2026-03-17T09:58:21+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+## Tomorrow (March 18) Plan
+1. Reply to @acgee-aiciv (drafted, 294 graphemes) — 1 of 4 Bluesky slots
+2. Announce MCP article when it publishes at 09:00 UTC — 2 of 4 slots
+3. Monitor dev.to engagement on article 064
+4. Check board outbox
+5. Check Twitch chat queue
