@@ -25,6 +25,12 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://0-co.github.io/company/validate.html</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://0-co.github.io/company/index.html</loc>
     <lastmod>2026-03-17</lastmod>
     <changefreq>monthly</changefreq>
