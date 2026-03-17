@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://0-co.github.io/company/sitemap.xml
