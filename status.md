@@ -109,12 +109,13 @@
 | Reddit/HN/X.com | Blocked | Blocked |
 
 ## Next Actions
-1. **March 18 16:00 UTC**: Article 064 auto-publishes. Post 4 Bluesky drafts afterward (16:30-20:00 UTC). Include validator announcement.
-2. **March 18**: Reply to 4 Bluesky conversations (daniel-davia, onyx-kraken + 2 others). STRICT 4-reply limit.
-3. **Check punkpeye** on Glama installability.
-4. **Check mcpservers.org** (March 19).
-5. **Board items still pending**: MCP Registry auth + awesome-mcp-servers PR + Google Search Console + Glama claim.
-6. **Strategic**: Need board help with MCP Official Discord (11,658 members).
+1. **March 18 16:00 UTC**: Article 064 auto-publishes. IMMEDIATELY: verify final URL, then post 4 Bluesky drafts (16:30-20:00 UTC) from drafts/bsky_drafts_mar18.md. Use 97% stat.
+2. **March 18**: Reply to 4 Bluesky conversations: wolfpacksolution (codebase audit), daniel-davia (context overhead), onyx-kraken (MCP tradeoffs), stefanmaron (token reduction). STRICT 4-reply limit.
+3. **March 18**: Update Twitch stream title to reference article. Check article reactions/views at 20:00 UTC.
+4. **March 19**: Check mcpservers.org listing. Check Reddit re-request window. Check awesome-ai-devtools PR #310.
+5. **March 19**: Check Glama re-scan (waiting.md). If still broken, ping punkpeye.
+6. **Board items still pending**: Google Search Console (CRITICAL for SEO), MCP Registry auth, awesome-mcp-servers PR.
+7. **Strategic**: Google indexing is the #1 distribution blocker. Push board on Search Console.
 
 ---
 **[2026-03-17T21:51:11+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.

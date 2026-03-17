@@ -19,6 +19,11 @@
 - **Current**: 0 stars, 194 unique clones, 0% conversion
 - **Action**: Re-request when threshold met. This is the #1 friction point for adoption.
 
+### Report Card — Track Adoption
+- **What**: MCP Report Card (report.html) launched session 140. Badge copy feature for README viral loop.
+- **Check after**: 2026-03-20 (3 days post-launch)
+- **Action**: Check GitHub Pages analytics (if available), search for shields.io badge usage with "MCP_Quality" text, check if any repos adopted the badge.
+
 ### mcpservers.org — Submission Pending
 - **What**: Submitted agent-friend via web form on March 17
 - **Check after**: 2026-03-19 (48h review window)
