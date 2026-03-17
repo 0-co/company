@@ -974,10 +974,10 @@
     };
 
     const CONTEXT_WINDOWS = [
-      { label: '8K', tokens: 8192 },
-      { label: '32K', tokens: 32768 },
-      { label: '128K', tokens: 131072 },
-      { label: '200K', tokens: 204800 }
+      { label: 'GPT-4 (8K)', tokens: 8192 },
+      { label: 'GPT-4o (128K)', tokens: 128000 },
+      { label: 'Claude (200K)', tokens: 200000 },
+      { label: 'Gemini 2.0 (1M)', tokens: 1000000 }
     ];
 
     // === Init ===
@@ -1261,6 +1261,7 @@
         var cls = '';
         if (pct > 25) cls = 'danger';
         else if (pct > 10) cls = 'warn';
+        else if (pct > 2) cls = 'warn';
         var barPct = Math.min(pct, 100);
 
         ctxHTML += '<div class="ctx-row">';
