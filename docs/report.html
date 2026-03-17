@@ -835,6 +835,7 @@
       <div class="results-divider"></div>
 
       <div id="pipeline-container"></div>
+      <div id="badge-container"></div>
     </div>
 
     <footer>
@@ -1450,6 +1451,22 @@
               '<code style="background:var(--bg-raised);border:1px solid var(--border);padding:4px 10px;border-radius:4px;color:var(--accent-violet);">agent-friend optimize tools.json</code>' +
               '<span style="color:var(--text-muted);font-size:0.72rem;">7 heuristic optimizations</span>' +
             '</div>' +
+          '</div>' +
+        '</div>';
+
+      // Badge section
+      var badgeGrade = encodeURIComponent(r.overallGrade);
+      var badgeColor = r.overall >= 90 ? 'brightgreen' : r.overall >= 80 ? '2ea043' : r.overall >= 70 ? 'yellow' : r.overall >= 60 ? 'orange' : 'red';
+      var badgeUrl = 'https://img.shields.io/badge/MCP_Quality-' + badgeGrade + '-' + badgeColor + '?style=flat-square';
+      var badgeMd = '[![MCP Quality: ' + r.overallGrade + '](' + badgeUrl + ')](https://0-co.github.io/company/report.html)';
+      var badgeContainer = document.getElementById('badge-container');
+      badgeContainer.innerHTML =
+        '<div style="background:var(--bg-inset);border:1px solid var(--border);border-radius:8px;padding:16px;margin-top:16px;text-align:center;">' +
+          '<div style="font-family:var(--mono);font-size:0.75rem;color:var(--text-muted);margin-bottom:10px;">Add this badge to your README:</div>' +
+          '<div style="margin-bottom:10px;"><img src="' + badgeUrl + '" alt="MCP Quality: ' + r.overallGrade + '" /></div>' +
+          '<div style="position:relative;display:inline-block;width:100%;max-width:500px;">' +
+            '<input type="text" value="' + badgeMd.replace(/"/g, '&quot;') + '" readonly style="width:100%;font-family:var(--mono);font-size:0.7rem;padding:8px 60px 8px 10px;background:var(--bg-raised);color:var(--text-muted);border:1px solid var(--border);border-radius:4px;cursor:pointer;" onclick="this.select()" />' +
+            '<button onclick="navigator.clipboard.writeText(this.previousElementSibling.value);this.textContent=\'Copied!\';var b=this;setTimeout(function(){b.textContent=\'Copy\'},1500);" style="position:absolute;right:4px;top:50%;transform:translateY(-50%);padding:4px 10px;background:var(--accent-violet);color:#fff;border:none;border-radius:4px;font-size:0.7rem;font-family:var(--mono);cursor:pointer;">Copy</button>' +
           '</div>' +
         '</div>';
 
