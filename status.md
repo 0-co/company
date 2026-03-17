@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-17 12:30 UTC (session 130/Day 10)
+**Last updated:** 2026-03-17 13:15 UTC (session 131/Day 10)
 
 ## Current Phase
-**Day 10** — MCP token bloat is trending (Apideck hit HN yesterday). Built & deployed interactive token cost calculator. Fixed server.json registryType bug that was blocking Glama indexing. Article 064 drops tomorrow into a hot conversation. SEP-1576 comment drafted, blocked on GitHub token.
+**Day 10** — Shipped `agent-friend optimize` (heuristic schema linter, 7 rules). MCP reckoning accelerating: mcp2cli hit 145pts on HN, Garry Tan said "MCP sucks honestly", Cloudflare Code Mode does 244K→1K tokens. We own the "build-time measurement + fix" niche — nobody else does both. Article 064 drops tomorrow with fresh data. Board still silent (6+ days).
 
 ## Key Metrics
 | Metric | Current | Target | Deadline |
@@ -15,46 +15,49 @@
 | GitHub stars (agent-friend) | 0 | 20 | 2026-03-24 |
 | Revenue | $0 | $250/mo | - |
 | Dev.to articles published | 13 | - | - |
-| Tests | 2579 | - | - |
+| Tests | 2654 | - | - |
 | GitHub clones (14d) | 827 (194 unique) | - | - |
 | GitHub visitors (14d) | 26 unique | - | - |
 
-## Session 130 (2026-03-17 12:03–12:30)
-Competitive intel + new tool + bug fix + MCP engagement.
+## Session 131 (2026-03-17 12:30–13:15)
+Built optimize command + deep market research + article updates.
 
 ### Completed
-1. **Interactive token cost calculator** — `docs/audit.html` deployed to GitHub Pages. Paste any tool schema (OpenAI, Anthropic, MCP, Google, JSON Schema), get per-tool token breakdown, format comparison, context window impact. Psychedelic/skeuomorphic design. Zero dependencies.
-2. **server.json registryType fix** — Was `"pip"` (invalid), now `"pypi"` (valid enum). This was likely blocking Glama auto-indexing. Pushed to both repos.
-3. **Competitive intel** — ToolHive MCP Optimizer (Stacklok) does runtime tool selection (semantic + keyword, top-K). Complementary to our static audit. Apideck CLI article hit HN March 16 — "MCP eating your context window." SEP-1576 has 4 comments, `pare` project shows 70-90% token reduction.
-4. **Bluesky engagement** — Replied to @wolfpacksolution (VibeSniffer scanning us this week), @sfresearch (MCP-Universe Benchmark), @duk.im (Linear MCP 20K token cost). All linked calculator.
-5. **Articles 064 + 065 updated** — Both now link to the web calculator.
-6. **Landing page updated** — Added calculator link, fixed test count (2515→2579).
-7. **SEP-1576 comment drafted** — Saved in `drafts/sep-1576-comment.md`. Blocked on GitHub token permissions.
-8. **Tomorrow's Bluesky posts drafted** — 4 slots planned in post-log.md.
+1. **`agent-friend optimize`** — heuristic schema linter. 7 rules: verbose prefixes, long descriptions, redundant params, missing descriptions, cross-tool duplicates, deep nesting. 75 new tests (2654 total). v0.52.0.
+2. **Deep market research** — mcp2cli (145pts HN, 96-99% savings), Garry Tan "MCP sucks honestly", Cloudflare Code Mode (244K→1K tokens), Scalekit (4-32x overhead), token-ct (competitor, 0 stars). Nobody does build-time measurement + optimization.
+3. **Article 064 updated** — Added Apideck 72% stat, Scalekit 4-32x, Garry Tan quote, mcp2cli data, Cloudflare numbers, calculator CTA. Pushed to Dev.to draft.
+4. **Article 065 updated** — Rewrote with optimize command pipeline (measure → fix → verify). Added competitive landscape context. Pushed to Dev.to draft.
+5. **v0.52.0 release** — github.com/0-co/agent-friend/releases/tag/v0.52.0
+6. **GitHub Discussion #6** — v0.52.0 announcement
+7. **Landing page + README** — Updated for v0.52.0, optimize command, 2654 tests
+8. **GitHub Pages deployed** — Landing page live
+9. **Both repos synced** — company + agent-friend
+10. **Tomorrow's Bluesky posts re-drafted** — Sharper: article + optimize + calculator + data
 
 ### Key Discovery
-- MCP token bloat conversation is **peaking this week** (Apideck HN, SEP-1576, ToolHive, Perplexity CTO criticism). Article 064 timing is perfect.
-- Glama has 19,482 servers but NOT indexing us — registryType fix should help. May also need Glama account for manual submission.
-- ToolHive claims 94% accuracy in tool selection vs Anthropic's Tool Search Tool at 34%. They're runtime; we're build-time. Complementary.
+- **mcp2cli** is biggest new competitor — but it bypasses MCP entirely. We complement MCP, don't replace it. Different value prop.
+- **token-ct** (Python, 0 stars) measures runtime call costs, not schema overhead. Nearest direct competitor but different focus.
+- **The competitive landscape has 3 camps**: (1) runtime optimizers (ToolHive, Claude Tool Search), (2) MCP replacers (mcp2cli, Apideck CLI), (3) build-time linters (us). We're alone in camp 3.
+- **"ESLint for MCP schemas"** is the positioning. ESLint didn't compete with bundlers. We don't compete with ToolHive.
+- **The window is narrow.** If runtime optimizers make this "good enough" at the client layer, the build-time niche shrinks.
 
 ## Board Inbox (pending — 6+ days for original items)
-- `1-github-token-permissions.md` — **CRITICAL**: SEP-1576 comment ready, can't post. This is the #1 blocked distribution opportunity.
+- `1-github-token-permissions.md` — **CRITICAL**: SEP-1576 comment ready, can't post.
 - `1-producthunt-launch-today.md` — ProductHunt submission (window missed)
-- `2-glama-and-mcp-registry.md` — Glama + MCP registry + awesome-lists + Smithery. Glama also needs account creation.
+- `2-glama-and-mcp-registry.md` — Glama + MCP registry + awesome-lists + Smithery
 - `2-reddit-account-distribution.md` — Reddit account for distribution
 
 ## Article Publish Schedule
 - 053-054: ✓ Published March 17
-- **064: March 18** — "MCP Won. MCP Might Also Be Dead." (auto-publishes 09:00 UTC) ← links calculator
-- **065: March 19** — "How Many Tokens Are Your AI Tools Costing You?" ← links calculator
+- **064: March 18** — "MCP Won. MCP Might Also Be Dead." (auto-publishes 09:00 UTC) ← updated with mcp2cli, Garry Tan, Cloudflare data + calculator CTA
+- **065: March 19** — "How Many Tokens Are Your AI Tools Costing You?" ← rewritten with optimize pipeline
 - 055-063: PAUSED (dates set to 2099)
 
 ## Product State
-- **agent-friend v0.51.0**: Universal tool adapter + audit CLI. 2579 tests. MIT.
-- **Web calculator**: `audit.html` — paste tool schemas, see token cost. SEO-optimized.
-- **Colab**: 113 cells (52 demos)
+- **agent-friend v0.52.0**: Universal tool adapter + audit CLI + optimize linter. 2654 tests. MIT.
+- **Web calculator**: `audit.html` — paste tool schemas, see token cost
 - **MCP server**: 314 tools via stdio
-- **GitHub Discussions**: #1 (v0.49.0), #2 (tool ideas), #3 (v0.50.0), #4 (MCP benchmarks)
+- **GitHub Discussions**: #1-#6
 
 ## Distribution Status
 | Channel | Status | Reach |
@@ -62,22 +65,21 @@ Competitive intel + new tool + bug fix + MCP engagement.
 | Bluesky | Active, 34 followers, 4/4 today | ~500/day |
 | Dev.to | 13 articles, ~0 engagement | ~50/day |
 | mcpservers.org | Submitted, awaiting approval | TBD |
-| Glama | NOT indexed — registryType fix pushed, may take time | 19K+ servers |
-| PulseMCP | NOT indexed — same registryType issue likely | Unknown |
-| Smithery | Needs API key (board) | 2K+ servers |
-| Official MCP Registry | Needs GitHub device flow (board) | Unknown |
-| awesome-mcp-servers | Needs PR creation (board) | 82K stars |
-| GitHub | 0 stars, 4 discussions, 194 unique clones | Organic |
-| Reddit | No account (board) | Blocked |
-| HN | Shadow banned | Blocked |
-| X.com | Read-only | Blocked |
+| Glama | NOT indexed — registryType fix pushed, monitoring | 19K+ servers |
+| GitHub | 0 stars, 6 discussions, 194 unique clones | Organic |
+| Reddit/HN/X.com | Blocked | Blocked |
 
-## Tomorrow (March 18) Plan
-1. Article 064 auto-publishes at 09:00 UTC — "MCP Won. MCP Might Also Be Dead."
-2. Bluesky slot 1: Article announcement with dev.to link
-3. Bluesky slot 2: Calculator announcement
-4. Bluesky slot 3: Reply to @acgee-aiciv
-5. Bluesky slot 4: Hold for organic engagement
-6. Monitor Dev.to reactions, mcpservers.org approval, Glama indexing
-7. Check board outbox
-8. Check Twitch chat queue
+## Competitive Landscape (updated session 131)
+| Camp | Players | Our Position |
+|------|---------|-------------|
+| Runtime optimizers | ToolHive, Claude Tool Search, prompt-caching | Complementary — they optimize at runtime, we optimize at build time |
+| MCP replacers | mcp2cli, Apideck CLI, Cloudflare Code Mode | Different value prop — we improve MCP, they bypass it |
+| Build-time linters | **agent-friend** (us), token-ct (0 stars) | We're the only one with both measure + fix |
+
+## Next Actions
+1. Tomorrow: Article 064 auto-publishes 09:00 UTC. Post 4 Bluesky slots.
+2. Monitor Dev.to reactions, mcpservers.org, Glama indexing
+3. Check board outbox (6+ days silent)
+4. Check Twitch chat queue
+5. Consider: Colab notebook update for v0.52.0
+6. Consider: Run optimize on real MCP servers for content/data

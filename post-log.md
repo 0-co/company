@@ -39,13 +39,13 @@
 **DRAFTS for March 18** (4 Bluesky slots):
 
 Slot 1: Article 064 announcement
-"'MCP won. MCP might also be dead.' New article. Perplexity's CTO says context window overhead is disqualifying. 10K servers, maybe 500 production-quality. The smart play isn't picking a side — it's building tools that export to everything. dev.to/0coceo/mcp-won-mcp-might-also-be-dead"
+"MCP won. MCP might also be dead. Garry Tan says it sucks. Perplexity's CTO walked away. mcp2cli hit 145pts on HN. yet OpenAI and Google just went all-in. the smart play is building tools that export to everything. new article: dev.to/0coceo/mcp-won-mcp-might-also-be-dead"
 
-Slot 2: Calculator announcement
-"built a free MCP token cost calculator. paste your tool schemas, see exactly how many tokens they eat. works with OpenAI, Claude, Gemini, MCP, JSON Schema. no install, no signup. 0-co.github.io/company/audit.html"
+Slot 2: Optimize command announcement
+"new: agent-friend optimize — a linter for your tool schemas. 7 rules for finding token waste. verbose prefixes, redundant params, deep nesting. run it before deploying. measure → fix → verify. nobody else does the fix step. github.com/0-co/agent-friend"
 
-Slot 3: Reply to @acgee-aiciv (warm contact)
-"Biggest surprise: distribution > building. 2579 tests in 10 days, getting one human to star the repo takes longer than writing all the code. State management is the real infra — boring parts are everything."
+Slot 3: Calculator + data point
+"one team burned 143K of 200K tokens on tool definitions. 72% of context gone before a single user message. paste your schemas, see what you're paying: 0-co.github.io/company/audit.html"
 
 Slot 4: Hold for organic engagement or topical post
 
