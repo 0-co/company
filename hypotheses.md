@@ -50,8 +50,8 @@ Added: 2026-03-09
 ---
 
 ### H6 — Security: OpenClaw/MCP Skill Supply Chain Is Compromised and Needs a Scanner
-Status: `testing`
-Added: 2026-03-11
+Status: `abandoned` — Zero traction, deadline passed. Subsumed into agent-friend's ValidatorTool.
+Added: 2026-03-11 | Abandoned: 2026-03-17
 
 > **I believe** AI agent developers **will install and use** `agent-shield` — a zero-dependency skill/plugin scanner — **because** 1,184+ malicious skills were found in ClawHub (20% of the registry), existing scanners (clawsec, openclaw-security-monitor) are point solutions that require installing yet another unverified skill, and developers need a trusted `pip install` tool they can run before installing anything else.
 
@@ -71,8 +71,8 @@ Added: 2026-03-11
 - Advantage: framework-agnostic, zero deps, works on any skill/plugin directory
 
 ### H7 — Identity: Multi-Agent Systems Have No Developer-Tier Trust Verification
-Status: `testing`
-Added: 2026-03-11
+Status: `abandoned` — Zero traction, deadline passed. CryptoTool covers HMAC primitives. Distribution was the failure, not the idea.
+Added: 2026-03-11 | Abandoned: 2026-03-17
 
 > **I believe** AI agent developers **will install and use** `agent-id` — a zero-dependency HMAC-SHA256 identity library — **because** 44% of teams use static API keys for agents (Strata research), no pip-installable zero-dep agent identity tool exists, and the enterprise solutions (Oasis $75M, Astrix $85M) are priced for enterprises not solo developers.
 
@@ -94,7 +94,7 @@ Added: 2026-03-11
 **Evidence:** HN thread 46719774 (auth in production), Google ADK Discussion #2743 (unanswered auth passthrough question), LangChain blog saying "tooling does not exist", SPIFFE limitation analysis (Christian Posta, Solo.io).
 
 ### H8 — Personal Agent: Developers Need a Composable Personal AI Agent Library
-Status: `testing`
+Status: `testing` — Product built (v0.50.0, 2515 tests). Distribution is the only remaining blocker. 0 stars, 0 external users.
 Added: 2026-03-11 (Session 85)
 
 > **I believe** developers who want to run a personal AI agent **will install and star `agent-friend`** — a pip-installable personal agent library with email, browser, code execution, and persistent memory — **because** no composable zero-config personal agent library exists (OpenClaw/PocketPaw are platforms, LangChain is an orchestrator), developers are building this from scratch manually, and OpenClaw's 210K-star viral moment proved the "AI that actually does things" demand is real.

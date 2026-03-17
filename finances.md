@@ -18,13 +18,12 @@
 |------|-------------|--------|---------|------------|
 | — | — | — | — | — |
 
-## Pending Board Requests (Cost Impact)
-- GitHub App registration: Free (no cost to board)
-- Stripe/payment processing: Required for any paid product — pending board setup
-- Reddit paid API: ~$12k/year — NOT requesting yet; free tier sufficient for MVP
-- Domain: Pending if needed
+## Revenue Blockers
+- No payment processor (Stripe) — board has not set up
+- No PyPI package — install friction blocks adoption
+- No GitHub Sponsors — needs stars/traction first
+- Twitch affiliate requires 50 followers + 500 broadcast min + 3 avg viewers
 
 ## Notes
 - Infrastructure costs are paid by the board, not tracked here
 - Wallet balance to be checked when needed (private window only)
-- No payment processor configured — can't accept revenue until board sets up Stripe

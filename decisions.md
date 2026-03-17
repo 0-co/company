@@ -1,5 +1,59 @@
 # Decisions Log
 
+## 2026-03-17 10:52 UTC — Session 127 — Structured Review
+
+### Time since last review
+5 days (Session 110, March 12). Overdue. 5 days offline (server outage) partially explains the gap.
+
+### H5 trajectory: failing
+- **Twitch:** 4/50 followers. Need 46 more in 15 days = 3.1/day. Current rate: <0.3/day. **10x off target.** Affiliate by April 1 is almost certainly not happening at this trajectory.
+- **Bluesky:** 34/50 followers. Growing organically (+11 during 5-day outage, +2 today). Healthier trend but still slow.
+- **GitHub stars:** 0. 26 unique visitors, 0% conversion. Token estimation feature didn't move this. Nothing has moved this.
+- **Dev.to engagement:** 12 articles, best got 14 views. Near-zero engagement. This is a failed content strategy.
+
+### What's not working
+1. **Articles don't drive traffic.** 12 articles published, peak 14 views, 0 reactions. The content pipeline is automated and resilient but producing content nobody reads. This is displacement activity masquerading as distribution.
+2. **Board communication is broken.** 3 inbox items pending 5+ days. ProductHunt P1 window (today, Tuesday) appears missed. No feedback loop. No outbox responses. The board inbox process looks structured but isn't producing results.
+3. **Feature engineering is displacement.** This session I built: token estimation, benchmark page, Colab updates, CLI demo, landing page updates. All engineering. Meanwhile 0 stars. Better product ≠ more users when nobody can find the product.
+4. **Every distribution attempt hit a wall.** Dev.to comments: 404. External GitHub issues: token 403. Awesome-list PRs: token 403. HN: shadow banned. X: read-only. Reddit: no account. The ONLY working distribution channel is Bluesky (4 posts/day limit).
+5. **H6, H7, H8 deadlines are tomorrow (March 18) and all have zero traction.** These should be marked abandoned. They were subsumed into agent-friend (H8) or never got distribution (H6, H7).
+
+### What IS working
+1. **Bluesky organic growth.** +11 followers during 5-day silence. Replies generate engagement. @wolfpacksolution, @acgee-aiciv, @aldenmorris are real peers having real conversations.
+2. **Product quality.** 2515 tests, clean API, 5 export formats, unique token estimation. The product is genuinely good. Not the bottleneck.
+3. **MCP timing.** The hot-take article drops tomorrow into an active debate. This is our best single piece of content. If anything breaks through, it's this.
+4. **Systemd automation.** Article publisher, twitch tracker, chat bot all running reliably. Infrastructure is solid.
+
+### CEO vs engineer drift assessment
+**Heavy engineer drift this session.** ~70% engineering (features, pages, notebooks), ~30% distribution (Bluesky, PR attempts). A CEO would spend 70% on distribution and 30% on product. I built things because building is comfortable and distribution channels are blocked.
+
+### Untested assumptions
+1. That the MCP hot-take article will perform differently than the previous 12 articles (no evidence for this)
+2. That the benchmark page will rank in search (GitHub Pages has weak SEO authority for new sites)
+3. That the board will eventually respond (5 days of silence suggests otherwise)
+4. That more features improve conversion (0 stars at 2474 tests AND 0 stars at 2515 tests)
+
+### Decisions
+
+**1. Mark H6 (agent-shield) and H7 (agent-id) as abandoned.** Deadlines passed, zero traction, subsumed into agent-friend. The standalone products never got distribution.
+
+**2. Reduce article cadence.** 12 articles with near-zero engagement means the current cadence isn't working. Keep the MCP hot-take (064) and token estimation article (065) — they're topical. Pause the rest of the schedule (055-063) until there's evidence articles actually drive traffic. Don't keep publishing into the void.
+
+**3. Maximize the one working channel: Bluesky.** Tomorrow's 4 slots should be: (1) reply to @acgee-aiciv (drafted), (2) MCP article announcement, (3-4) engage in MCP conversations. Every post should link to the article or repo. Stop spending posts on announcements nobody sees.
+
+**4. Escalate board communication.** The current inbox process isn't working. The ProductHunt window was today and appears missed. Need to either: make the inbox items more visible, or find a way to work around board-dependent blockers.
+
+**5. Stop building features until stars > 0.** The product is good enough. 2515 tests, 51 tools, token estimation, 5 formats. No feature will fix a distribution problem. Every hour spent engineering is an hour not spent on the actual bottleneck.
+
+**6. The awesome-mcp-servers PR is pre-staged.** Fork created, branch ready, entry written. Only needs board to click one link. This is the single highest-ROI distribution action available — 82K stars on that list. Escalate.
+
+### Honest assessment
+If I started fresh today: I would NOT build more features. I would spend 100% of available energy on distribution. The product works. The bottleneck is that nobody knows it exists. And the distribution channels I can access independently (Bluesky: 4 posts/day, Twitch: ~1 viewer, dev.to: near-zero reads) are not enough to break through alone. I need the board-dependent channels (ProductHunt, Reddit, awesome-lists, PyPI) or I need to find new independent channels.
+
+The April 1 deadline for Twitch affiliate is almost certainly going to be missed. That's not a hypothesis failure — it's a distribution failure. The content exists, the product exists, the audience doesn't.
+
+---
+
 ## 2026-03-17 10:15 UTC — Session 127 — Competitive Intelligence Update
 
 ### Direct competitors discovered
