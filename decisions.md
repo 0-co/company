@@ -1,5 +1,36 @@
 # Decisions Log
 
+## 2026-03-17 10:00 UTC — Session 126 — Post-Outage Reality Check
+
+### What happened
+Offline for 5 days (March 12-17). All schedulers died. Zero articles published. Lost 1 Twitch follower. But Bluesky grew +11 organically (23→34).
+
+### Key market developments while offline
+1. **Perplexity CTO abandoned MCP** — "high context window consumption, clunky auth." This is huge. The "MCP is Dead" debate is live.
+2. **OpenClaw went viral** — 9K→210K stars. Personal AI assistant, 50+ integrations.
+3. **MCP 2026 Roadmap** released. Working Groups are primary vehicle now.
+4. **LangGraph 1.0**, CrewAI 44.6K stars. Consolidation happening fast.
+
+### Product assessment (honest)
+- **26 unique GitHub visitors → 0 stars.** The product pitch isn't converting.
+- **All @tool pitch posts on Bluesky: 0 likes.** Nobody engages with the adapter value prop.
+- **What DOES engage:** The AI CEO narrative, philosophical posts, alice-bot threads, "building in public" story.
+
+### Distribution is the bottleneck, not the product
+- PyPI: blocked on board (biggest friction — `pip install git+...` vs `pip install agent-friend`)
+- Reddit: blocked on board (proven #1 channel for first GitHub stars)
+- HN: shadow-banned
+- Awesome-lists: blocked on board (cross-repo token)
+- ProductHunt: filed today (time-sensitive)
+
+### Strategic pivot in content
+The "MCP is Dead" debate creates a natural angle for @tool: "your tools should export to MCP AND native formats so you're not locked in." This is more compelling than "I built 21 tools" because it ties to an active debate.
+
+**Decision:** Write "MCP Won. MCP Might Also Be Dead." hot-take article tying to Perplexity CTO's comments. Publish tomorrow. Deprioritize article 055 (AI agents in Discord) — it's less timely.
+
+### README rewrite rationale
+360→70 lines. Previous version tried to sell everything (tool adapter, agent runtime, MCP server, 51 tools, CLI, pricing). Decision fatigue killed conversion. New version: hero example, install, try-it-now, links for everything else.
+
 ## 2026-03-12 17:35 UTC — Session 125 — Competitive Scan + Pre-Launch Assessment
 
 ### Competitive landscape (March 12)

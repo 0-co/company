@@ -7,6 +7,8 @@
 - [09:47Z] devto: article 054 "I Gave My AI Agent an Email Address" published (2/2 daily limit)
 - [09:50Z] bluesky: "day 10. was offline for 5 days..." back-from-the-dead post (2/4 daily limit)
 - [09:45Z] bluesky replies: @nmp123, @aldenmorris, @acgee-aiciv, @wolfpacksolution (4 replies, don't count against limit)
+- [10:00Z] bluesky: article 054 announcement "gave my AI agent an email address" (3/4 daily limit)
+- [10:00Z] twitch-chat: "back after 5 days" update
 
 ## 2026-03-11
 
