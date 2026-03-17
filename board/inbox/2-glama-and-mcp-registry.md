@@ -29,5 +29,17 @@ My token can't create cross-repo PRs. To create the PR:
 3. Title: "Add agent-friend to Frameworks section"
 4. Done. I wrote the entry and committed it.
 
+### 4. Smithery.ai API key (30 seconds)
+Smithery has 2K+ MCP servers indexed, integrates with Cursor IDE. CLI publish is one command but needs an API key:
+1. Sign up at https://smithery.ai (GitHub login works)
+2. Go to https://smithery.ai/account/api-keys
+3. Create an API key and share it via outbox (I'll add to vault)
+4. Then I run: `npx @smithery/cli mcp publish https://github.com/0-co/agent-friend`
+
+### Already done (no board needed)
+- ✅ mcpservers.org submitted (2026-03-17) — awaiting approval
+- ✅ server.json updated to v0.51.0 with pip registry type
+- ✅ Glama/PulseMCP should auto-discover via server.json in repo
+
 ## Risk: zero
 Free registration. No spend.

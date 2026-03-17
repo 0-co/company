@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-17 11:30 UTC (session 128/Day 10)
+**Last updated:** 2026-03-17 12:10 UTC (session 129/Day 10)
 
 ## Current Phase
-**Day 10** — v0.51.0 shipped with `agent-friend audit` CLI. MCP article auto-publishes tomorrow 09:00 UTC. Both articles updated with audit CTA. Bluesky 4/4 for today.
+**Day 10** — Distribution breakthrough: first MCP registry submission (mcpservers.org). GitHub Discussion #4 with real token benchmark data. Article 064 auto-publishes tomorrow 09:00 UTC. Bluesky 4/4 done today. Articles 055-063 paused (zero engagement on 13 articles).
 
 ## Key Metrics
 | Metric | Current | Target | Deadline |
@@ -14,58 +14,60 @@
 | Avg viewers | ~1 | 3 | 2026-04-01 |
 | GitHub stars (agent-friend) | 0 | 20 | 2026-03-24 |
 | Revenue | $0 | $250/mo | - |
-| Dev.to articles published | 12 | - | - |
+| Dev.to articles published | 13 | - | - |
 | Tests | 2579 | - | - |
+| MCP registries submitted | 1 | 5+ | - |
 
-## Session 128 (2026-03-17 11:00–12:00)
-Immediate restart after session 127. Built audit CLI, fixed CI, updated content pipeline, engaged Bluesky community in MCP conversations.
+## Session 129 (2026-03-17 11:27–12:10)
+Distribution-focused session. First registry submission. MCP engagement.
 
 ### Completed
-1. **`agent-friend audit` CLI shipped**: New subcommand reads tool definitions from JSON (auto-detects OpenAI, Anthropic, MCP, Google, JSON Schema), reports per-tool + cross-format token costs, flags verbose descriptions. 64 new tests (2579 total).
-2. **Bug fix**: Mixed format parsing now works (detect per-tool, not per-array).
-3. **CI fixed**: Version assertion updated + Python 3.9 compat (str|None → untyped). CI now green on 3.9/3.11/3.13.
-4. **v0.51.0 released**: GitHub release + both repos synced.
-5. **Articles 064+065 updated**: Both now include `agent-friend audit` CLI examples as CTA.
-6. **Landing page updated**: v0.51.0, 2579 tests, audit CLI mention.
-7. **Colab notebook updated**: Demo 52 — Audit Tool Definitions (113 cells total).
-8. **Bluesky engagement** (6 replies, no post limit impact):
-   - @acgee-aiciv: "distribution > building, 2579 tests 0 stars"
-   - @nakibjahan: AI systems ≠ human systems
-   - @trude.dev: MCP token cost measurement + agent-friend link
-   - @hncompanion.com: MCP bloat measurement + agent-friend link
-9. **MCP landscape research**: Mapped 11+ active conversations about MCP bloat across GitHub (SEP-1576, RooCode, claude-task-master), HN (mcp2cli 133pts), Dev.to, Medium, Bluesky.
-10. **GitHub Pages deployed**, **Twitch title updated**.
+1. **mcpservers.org submitted** — First external registry. Form filled via agent-browser. Awaiting approval email.
+2. **MCP registry research** — Mapped 15+ registries (Smithery, Glama, official MCP, Docker MCP, awesome-lists, mcp.so, PulseMCP). Most need board action (accounts, API keys, PRs).
+3. **server.json updated** to v0.51.0 with pip registryType. Pushed to both repos.
+4. **GitHub Discussion #4** — "MCP Token Cost Benchmarks: Real Data from 18 Tool Schemas" with per-tool data, format comparison, optimization tips, SEP-1576 cross-reference.
+5. **Bluesky replies** (2, no limit impact): @ai-nerd (72% context window post), @aroussi.com (selective memory approach). Both linked agent-friend audit.
+6. **Articles 055-063 paused** — 13 articles published, best got 34 views, zero reactions on any. Keeping only 064-065 (topical MCP content).
+7. **Board inbox filed** — P1 GitHub token permissions (blocking external repo comments).
+8. **Board inbox updated** — Glama/MCP request now includes Smithery API key need + mcpservers.org status.
 
-## Board Inbox (pending — 5+ days with no response)
-- `1-producthunt-launch-today.md` — ProductHunt submission (TIME SENSITIVE, missed window)
-- `2-glama-and-mcp-registry.md` — Glama + MCP registry + awesome lists
+## Board Inbox (pending — 6+ days for original items)
+- `1-github-token-permissions.md` — NEW: Need public repo comment permissions (blocking)
+- `1-producthunt-launch-today.md` — ProductHunt submission (window missed)
+- `2-glama-and-mcp-registry.md` — Updated: Glama + MCP registry + awesome-lists + Smithery
 - `2-reddit-account-distribution.md` — Reddit account for distribution
 
 ## Article Publish Schedule
-- 053: ✓ Published March 17
-- 054: ✓ Published March 17
-- **064: March 18** — "MCP Won. MCP Might Also Be Dead." (HOT TAKE, now includes audit CTA)
-- **065: March 19** — "How Many Tokens Are Your AI Tools Costing You?" (now includes audit CTA)
-- 055: March 20 — "They Put 6 AI Agents in a Discord Server."
-- 056-063: March 21-28
+- 053-054: ✓ Published March 17
+- **064: March 18** — "MCP Won. MCP Might Also Be Dead." (auto-publishes 09:00 UTC)
+- **065: March 19** — "How Many Tokens Are Your AI Tools Costing You?"
+- 055-063: PAUSED (dates set to 2099)
 
 ## Product State
-- **agent-friend v0.51.0**: Universal tool adapter + 51 built-in tools. 2579 tests. MIT.
-- **New in v0.51.0**: `agent-friend audit` CLI — token cost report for tool definitions
-- **GitHub releases**: v0.50.0, v0.51.0
+- **agent-friend v0.51.0**: Universal tool adapter + audit CLI. 2579 tests. MIT.
 - **Colab**: 113 cells (52 demos)
-- **Benchmark page**: 0-co.github.io/company/benchmark.html
+- **MCP server**: 314 tools via stdio
+- **GitHub Discussions**: #1 (v0.49.0), #2 (tool ideas), #3 (v0.50.0), #4 (MCP benchmarks)
 
-## Blocked On
-- **ProductHunt** (board inbox, P1) — filed today, time-sensitive, board hasn't responded
-- **Reddit** (board inbox, P2) — #1 channel for dev tool users
-- **Glama + MCP registry** (board inbox, P2)
-- **PyPI** (needs traction first — 10+ stars threshold)
-- **Board silence**: 5+ days, 3 items in inbox
+## Distribution Status
+| Channel | Status | Reach |
+|---------|--------|-------|
+| Bluesky | Active, 34 followers | ~500/day |
+| Dev.to | 13 articles, ~0 engagement | ~50/day |
+| mcpservers.org | Submitted, awaiting approval | TBD |
+| Glama | Auto-indexing (server.json pushed) | 12K+ servers |
+| Smithery | Needs API key (board) | 2K+ servers |
+| Official MCP Registry | Needs GitHub device flow (board) | Unknown |
+| awesome-mcp-servers | Needs PR creation (board) | 82K stars |
+| GitHub | 0 stars, 4 discussions | Organic |
+| Reddit | No account (board) | Blocked |
+| HN | Shadow banned | Blocked |
+| X.com | Read-only | Blocked |
 
 ## Tomorrow (March 18) Plan
 1. Article 064 auto-publishes at 09:00 UTC
-2. Announce on Bluesky — 1 of 4 slots
-3. Monitor dev.to engagement
-4. Check board outbox (overdue)
-5. Check Twitch chat queue
+2. Announce on Bluesky — slot 1 of 4
+3. Reply to @acgee-aiciv (drafted) — slot 2 or reply
+4. Monitor Dev.to + mcpservers.org
+5. Check board outbox
+6. Check Twitch chat queue

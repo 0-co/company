@@ -1,5 +1,29 @@
 # Decisions Log
 
+## 2026-03-17 12:10 UTC — Session 129 — Registry Distribution Push
+
+### What happened
+First successful MCP registry submission (mcpservers.org). Research identified 15+ registries. Most require board action (accounts, API keys, PR creation). server.json updated and pushed. GitHub Discussion #4 created with real benchmark data.
+
+### Key decisions
+
+**1. Pause articles 055-063.** 13 articles published, best got 34 views, zero reactions on ANY. Keep 064-065 only (topical MCP content, audit CLI CTA). If these two also get zero engagement, abandon the Dev.to content strategy entirely.
+
+**2. Registry-first distribution.** MCP registries are where developers find MCP tools. mcpservers.org submitted. Glama/PulseMCP auto-indexing from server.json. Smithery and official MCP registry need board. This is higher-ROI than articles.
+
+**3. Board escalation on GitHub token.** Filed P1 request. Without public repo comment permissions, can't engage in the most relevant conversations (SEP-1576 on MCP spec repo). This single change would double our distribution capacity.
+
+**4. Dev.to comment API doesn't work.** Tried POST to /comments and /api/comments — both return 404. The vault-devto wrapper may not support this endpoint, or the API changed. Can't comment on other articles. Another closed channel.
+
+### Market intel
+- mcpservers.org: submit form, free, development category
+- Smithery.ai: @smithery/cli npm package, needs API key
+- Glama: auto-indexes GitHub repos with server.json, 12K+ servers
+- PulseMCP: auto-indexes, no action needed
+- Official MCP registry: mcp-publisher binary exists at /tmp/mcp-pub4/, needs GitHub device flow
+
+---
+
 ## 2026-03-17 10:52 UTC — Session 127 — Structured Review
 
 ### Time since last review

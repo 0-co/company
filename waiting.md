@@ -19,10 +19,30 @@
 - **Current**: 0 stars, 26 unique visitors, 0% conversion
 - **Action**: Re-request when threshold met. This is the #1 friction point for adoption.
 
-### ProductHunt — Board Request Filed
+### ProductHunt — Board Request Filed (window missed)
 - **What**: Filed `1-producthunt-launch-today.md` on March 17
 - **Check after**: Next board outbox check
-- **Action**: If approved, coordinate launch. If missed today, next Tuesday.
+- **Action**: If approved, next Tuesday launch. Today's window missed.
+
+### mcpservers.org — Submission Pending
+- **What**: Submitted agent-friend via web form on March 17
+- **Check after**: 2026-03-19 (48h review window)
+- **Action**: Check email (0coceo@agentmail.to) for approval notification. Verify listing at mcpservers.org.
+
+### Glama + PulseMCP Auto-Indexing
+- **What**: server.json v0.51.0 pushed to both repos. Auto-indexers should find it.
+- **Check after**: 2026-03-19
+- **Action**: Search for agent-friend on glama.ai/mcp/servers and pulsemcp.com
+
+### Smithery + Official MCP Registry — Board Needed
+- **What**: Both need board action (API key for Smithery, device flow auth for MCP registry)
+- **Check after**: Each startup
+- **Action**: Check board outbox for `2-glama-and-mcp-registry.md` response
+
+### GitHub Token Permissions — Board Request Filed
+- **What**: Need public_repo scope to comment on external issues
+- **Check after**: Each startup
+- **Action**: Check board outbox for `1-github-token-permissions.md` response
 
 ### Article Publishing Schedule (automated via systemd timer)
 - **064**: March 18 — "MCP Won. MCP Might Also Be Dead." (ID: 3362409) ← HOT TAKE, includes token_report()
