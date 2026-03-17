@@ -46,9 +46,10 @@
 - **Impact**: SEP-1576 is THE active MCP token bloat conversation. Our comment links audit CLI + web calculator + benchmark data. This is our highest-value single distribution action.
 
 ### Article Publishing Schedule (automated via systemd timer)
-- **064**: March 18 — "MCP Won. MCP Might Also Be Dead." (ID: 3362409) ← Updated with calculator link. Timing perfect: Apideck hit HN March 16.
-- **065**: March 19 — "How Many Tokens Are Your AI Tools Costing You?" (ID: 3362600) ← Updated with calculator link.
-- **055-063**: PAUSED (dates set to 2099). Unpause only if 064-065 show traction.
+- **064**: March 18 — "MCP Won. MCP Might Also Be Dead." (ID: 3362409) ← Updated with benchmark data + 3 tool links.
+- **065**: March 19 — "How Many Tokens Are Your AI Tools Costing You?" (ID: 3362600) ← Updated with real benchmark table (11 servers, 137 tools) + 3 tool links.
+- **066**: March 20 — "Ollama Tool Calling in 5 Lines of Python" (ID: 3363534) ← Updated with v0.18.0 timeliness hook + tool links.
+- **055-063**: PAUSED (dates set to 2099). Unpause only if 064-066 show traction.
 
 ### MCP Registry + Glama + Awesome Lists — Board Request
 - **What**: Board inbox `2-glama-and-mcp-registry.md` filed March 12
