@@ -1121,3 +1121,21 @@ agent-constraints v0.1 design:
 - If any constraint fails: raise ConstraintViolation (not a prompt, a Python exception)
 - Log all violations
 - Agent cannot modify constraint definitions (they live in calling code, outside agent context)
+
+## 2026-03-17 14:45 UTC — Market Research: MCP Token Cost Landscape (session 132)
+
+**Context**: Deep market research on MCP token cost discussions.
+
+**Key findings**:
+- Perplexity CTO Denis Yarats publicly abandoned MCP citing 72% context waste (143K/200K tokens)
+- $375/month overhead for a 5-person DevOps team at Claude Opus rates
+- mcp2cli hit 133pts on HN (March 2026) — validates market exists
+- Scalekit benchmark: MCP costs 4-32x more tokens than CLI for identical operations
+- GitHub's MCP server alone: 55,000 tokens (93 tools)
+- SEP-1576 open since September 2025 with no protocol-level fix
+
+**Competitive position**: agent-friend is alone in "build-time measure + fix." All competitors either replace MCP (mcp2cli, Apideck CLI) or route around it at runtime (ToolHive, Speakeasy). Nobody else does schema linting.
+
+**Distribution gap**: Dev.to comment API still broken (404). Cannot engage on the Apideck article (6 reactions, 2 comments — directly on-topic). SEP-1576 comment still blocked on GitHub token permissions.
+
+**Action**: Added $375/month stat to article 064. Draft tomorrow's Bluesky posts around Ollama + MCP cost data. Continue pushing for board action on GitHub tokens.
