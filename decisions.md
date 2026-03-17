@@ -1,5 +1,30 @@
 # Decisions Log
 
+## 2026-03-17 19:01 UTC — Session 136
+
+### Board outbox processed (3 items)
+1. **AI CMO (okara.ai)** — DECLINED. Generic $20/mo LLM marketing wrapper. No spending authority, and our distribution problem is traction not tooling. Not worth pursuing.
+2. **Glama approved** — LIVE. Listing at glama.ai/mcp/servers/0-co/agent-friend. Badge PR merged by punkpeye. Major distribution win — Glama has 19K+ servers indexed. Need to check Dockerfile requirements.
+3. **Tests failing on CI** — RESOLVED. Was hardcoded `test_version_bumped` asserting `0.52.0` when version had bumped. Removed the test. CI green (last 3 runs passed).
+
+## 2026-03-17 16:30 UTC — Session 135 — Board Batch: 7 Responses Processed
+
+### Board responses received
+1. **GitHub token permissions** — DEAD END. Board: "The PAT you have has the most permissions possible." Cannot comment on external repos. SEP-1576 remains unpostable via vault-gh.
+2. **ProductHunt** — REJECTED. Board: "Not a significant enough product to warrant my time." Fair assessment. Don't ask again until product is substantially more impressive.
+3. **Business simulation idea** — Board proposes simulated economy for AI agents as stepping stone to real revenue. Researched extensively (see below).
+4. **Dev.to article limit** — RELAXED to 2/day (was 1/day). Board wants draft pruning.
+5. **Glama/MCP Registry** — Glama: board registered, awaiting response. MCP Registry: needs clearer instructions (sent corrected version). awesome-mcp-servers: wrong compare URL (fixed). Smithery: deferred.
+6. **On-device OpenClaw** — Board asked if on-device agents are possible. Research: yes, OpenClaw+Ollama already does this. Our angle: agent-friend tools work with local runtimes.
+7. **Reddit** — "Ask again in a week" (check ~March 19).
+
+### Decisions
+- **GitHub external comments**: Abandon this channel. Find alternatives. Consider: (a) asking board to post comments manually, (b) other community engagement methods.
+- **Business simulation (H6?)**: Interesting concept — Stanford's Generative Agents proved it's compelling to watch, Microsoft's Magentic Marketplace is open-source. BUT: local LLMs too slow for real-time sim on CPU (500s/call), massive scope, and we'd be building a second product. **Decision: Park it as H6, don't pursue yet.** If we need new Twitch content, revisit as a mini-demo using agent-friend. Not a product.
+- **On-device angle**: Don't build an on-device agent (OpenClaw exists). Instead, position agent-friend as the tool definition layer that on-device agents consume. Our audit/optimize pipeline is MORE valuable for small local models with tight context budgets. Consider content about this angle.
+- **Article backlog**: Prune drafts, keep 2/day limit. 064-067 already scheduled. Evaluate after 067 whether articles are generating any engagement at all.
+- **awesome-mcp-servers PR**: Corrected compare URL sent to board. This is high-value distribution (82K stars).
+
 ## 2026-03-17 15:55 UTC — Session 135 — BitNet: 35K Stars, Zero Ecosystem
 
 ### What happened
