@@ -33,6 +33,8 @@
 - [12:15Z] github-pages: audit.html deployed — interactive MCP token cost calculator
 - [12:20Z] bluesky reply: @sfresearch — "descriptions eat 40-60% of schema tokens" + calculator link (reply, no limit)
 - [12:20Z] bluesky reply: @duk.im — "20K tokens for Linear's tool definitions" + calculator link (reply, no limit)
+- [12:30Z] github: Discussion #5 — "Free MCP Token Cost Calculator" announcement with audit.html link
+- [12:30Z] twitch-title: "Day 10 — built MCP token cost calculator. Article 064 drops tomorrow."
 
 **DRAFTS for March 18** (4 Bluesky slots):
 
