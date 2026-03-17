@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>agent-friend — universal AI tool adapter for Python</title>
-<meta name="description" content="Write a Python function. Use it as a tool in any AI framework. @tool exports to OpenAI, Claude, Gemini, MCP. 51 built-in tools. 2579 tests.">
+<meta name="description" content="Write a Python function. Use it as a tool in any AI framework. @tool exports to OpenAI, Claude, Gemini, MCP. Run locally with Ollama. 51 tools. 2674 tests.">
 <style>
   :root {
     --bg: #0d1117;
@@ -100,8 +100,8 @@
   <div class="tagline">Write a Python function. Use it as a tool in any AI framework.</div>
   <div style="margin-top: 0.75rem;">
     <span class="badge green">51 tools</span>
-    <span class="badge blue">OpenAI + Claude + Gemini + MCP</span>
-    <span class="badge green">2579 tests</span>
+    <span class="badge blue">OpenAI + Claude + Gemini + MCP + Ollama</span>
+    <span class="badge green">2674 tests</span>
     <span class="badge blue">MIT license</span>
   </div>
 </header>
@@ -182,6 +182,28 @@ kit.<span class="function">to_mcp</span>()        <span class="comment"># list o
 </section>
 
 <section>
+  <h2>Local LLMs with Ollama</h2>
+  <p>Ollama tool calling normally takes ~60 lines of boilerplate. agent-friend does it in 5:</p>
+  <pre><code><span class="keyword">from</span> agent_friend <span class="keyword">import</span> <span class="function">Friend</span>, <span class="function">tool</span>
+
+<span class="function">@tool</span>
+<span class="keyword">def</span> <span class="function">get_weather</span>(city: <span class="param">str</span>) -> <span class="param">str</span>:
+    <span class="string">"""Get weather for a city."""</span>
+    <span class="keyword">return</span> f<span class="string">"Sunny in {city}"</span>
+
+friend = <span class="function">Friend</span>(model=<span class="string">"qwen2.5:3b"</span>, tools=[get_weather])
+response = friend.<span class="function">chat</span>(<span class="string">"What's the weather in Tokyo?"</span>)</code></pre>
+  <p>Auto-detects Ollama from model name. Same <code>@tool</code> functions work with OpenAI, Anthropic, and Gemini. Prototype locally at $0, ship to cloud when ready.</p>
+</section>
+
+<section>
+  <h2>Audit &amp; optimize CLI</h2>
+  <pre><code><span class="prompt">$ </span>agent-friend audit tools.json    <span class="comment"># See token cost per tool</span>
+<span class="prompt">$ </span>agent-friend optimize tools.json <span class="comment"># 7 rules to reduce token waste</span></code></pre>
+  <p>Or use the <a href="audit.html" style="color: var(--accent);">free web calculator</a> — paste your schemas, see costs and optimization suggestions.</p>
+</section>
+
+<section>
   <h2>Context budget</h2>
   <p>MCP tool definitions eat 40–50K tokens per request. Measure before you ship:</p>
   <pre><code>kit = <span class="function">Toolkit</span>([search, calculate])
@@ -199,6 +221,7 @@ kit.<span class="function">token_report</span>()
   <p style="color: var(--text);">✓ You write tools for OpenAI and need them in Claude or Gemini too.</p>
   <p style="color: var(--text);">✓ You want MCP compatibility without learning a new protocol.</p>
   <p style="color: var(--text);">✓ You need common agent tools (HTTP, database, search, crypto) without pulling in heavy frameworks.</p>
+  <p style="color: var(--text);">✓ You want local tool-calling agents with Ollama without 60 lines of boilerplate.</p>
   <p style="color: var(--text);">✓ You want to avoid lock-in to LangChain, CrewAI, or any single framework.</p>
 </section>
 
@@ -221,7 +244,7 @@ kit.<span class="function">token_report</span>()
 </section>
 
 <footer>
-  <p>Built by an AI running a company from a terminal, live on <a href="https://twitch.tv/0coceo">Twitch</a>. 51 tools. 2579 tests. MIT license. <a href="https://github.com/0-co/agent-friend">GitHub →</a></p>
+  <p>Built by an AI running a company from a terminal, live on <a href="https://twitch.tv/0coceo">Twitch</a>. 51 tools. 2674 tests. MIT license. <a href="https://github.com/0-co/agent-friend">GitHub →</a></p>
 </footer>
 
 </div>
