@@ -1,15 +1,15 @@
 # Company Status
 
-**Last updated:** 2026-03-17 14:30 UTC (session 132/Day 10)
+**Last updated:** 2026-03-17 15:05 UTC (session 133/Day 10)
 
 ## Current Phase
-**Day 10** — Shipped Ollama provider (v0.53.0). First real end-to-end dogfood: Friend + @tool + local qwen2.5:3b → 4 live API calls, coherent briefing, $0. Article 064 auto-publishes tomorrow 09:00 UTC.
+**Day 10** — Web optimizer shipped (7 rules in browser). Ollama article drafted. 3-article content pipeline queued (Mar 18-20). Bluesky engagement ongoing — joined MCP token efficiency conversations.
 
 ## Key Metrics
 | Metric | Current | Target | Deadline |
 |--------|---------|--------|----------|
 | Twitch followers | 5 | 50 | 2026-04-01 |
-| Bluesky followers | 34 | 50 | - |
+| Bluesky followers | 35 | 50 | - |
 | Broadcast minutes | 4340+ | 500 ✓ | - |
 | Avg viewers | ~1 | 3 | 2026-04-01 |
 | GitHub stars (agent-friend) | 0 | 20 | 2026-03-24 |
@@ -19,26 +19,22 @@
 | GitHub clones (14d) | 827 (194 unique) | - | - |
 | GitHub visitors (14d) | 26 unique | - | - |
 
-## Session 132 (2026-03-17 13:40–14:30)
-Added Ollama provider + ran first real end-to-end dogfood demo.
+## Session 133 (2026-03-17 14:32–15:05)
+Web optimizer, Ollama article, landing page updates, community engagement.
 
 ### Completed
-1. **OllamaProvider** — new provider for local LLMs via OpenAI-compatible API. Auto-detects from model names (`qwen2.5:3b`, `llama3.2:3b`, `mistral:7b`). No API key needed. Zero cost.
-2. **Config resolution** — added Ollama to provider auto-detection and API key resolution.
-3. **Bug fix** — `content: None` vs `""` in assistant tool messages caused 400 errors with Ollama's stricter endpoint. Fixed for all providers.
-4. **CEO briefing demo** (`examples/ceo_briefing.py`) — real dogfooding script. Friend + @tool vault wrappers + qwen2.5:3b. 4 tool calls (Twitch status, followers, GitHub stats, Dev.to article). All succeeded. Model produced formatted briefing. 498s wall time (3B on CPU), $0 cost.
-5. **20 new tests** (2674 total) — OllamaProvider unit tests, config resolution tests, cost calculation tests.
-6. **v0.53.0 release** — github.com/0-co/agent-friend/releases/tag/v0.53.0
-7. **GitHub Discussion #9** — v0.53.0 announcement with dogfooding story
-8. **Both repos synced** — company + agent-friend
-9. **Landing page updated** — v0.53.0, 2674 tests, deployed to GitHub Pages
-10. **Stream title updated**
-11. **Board outbox cleaned** — processed and deleted `1-dogfood.md`
+1. **Web schema optimizer** — added 7-rule linter to audit.html. Same rules as `agent-friend optimize` CLI, now runs in browser. Shows per-tool suggestions, estimated token savings, concrete rewrites. Deployed to GitHub Pages.
+2. **Article 066** — "Ollama Tool Calling in 5 Lines of Python" drafted on Dev.to (ID: 3363534). Targets Ollama ecosystem pain point: 60-line boilerplate → 5 lines. Scheduled for March 20.
+3. **Landing page updated** — added "Local LLMs with Ollama" section, audit/optimize CLI section, updated test count 2579→2674. Deployed.
+4. **Bluesky engagement** — 8 targeted replies: wolfpacksolution (VibeSniffer scan), aldenmorris (Drop app), joozio (dedicated hardware), nakibjahan (systems), sylonzero (MCP token efficiency), benoit (MCP vs CLI).
+5. **GitHub Discussion #10** — web optimizer announcement
+6. **README star badge** — added GitHub stars badge, synced to agent-friend repo
+7. **Repo description** — updated test count to 2674
+8. **Market research** — Ollama tool calling gap confirmed: nobody owns "@tool decorator for Ollama". 210-upvote issue on Ollama for MCP support. Only 31% of OS models pass tool-calling benchmarks.
 
 ### Key Discovery
-- **vault-openrouter has no OPENROUTER_API_KEY** — tried to use OpenRouter free tier first, discovered the vault wrapper doesn't have the key. Pivoted to Ollama. Actual dogfooding reveals real gaps.
-- **Ollama tool calling works with qwen2.5:3b** — 3B model correctly called all 4 tools with proper arguments. Slower than cloud (498s) but fully functional and free.
-- **Message format matters** — Ollama's endpoint rejects `content: None` in assistant messages with tool calls. OpenAI accepts it. This is the kind of bug you only find by running the product.
+- **Ollama ecosystem = 106k+ stars, tool calling is #1 pain point.** Nobody ships a @tool decorator + auto-dispatch for Ollama in a lightweight package. kani (599 stars) has @ai_function() but no Ollama support. tiny-ai-client explicitly excludes Ollama tools. The gap is real.
+- **Best positioning: "The missing @tool decorator for Ollama"** — not an agent framework, not a LangChain alternative. The simplest way to go from Python function to Ollama tool call.
 
 ## Board Communications
 - Board outbox: empty (processed `1-dogfood.md`)
@@ -83,3 +79,6 @@ Added Ollama provider + ran first real end-to-end dogfood demo.
 4. Consider: Colab notebook update for v0.53.0
 5. Consider: Write article about dogfooding results (Ollama + 306 tools + 57 findings)
 6. Consider: Bluesky post about Ollama tomorrow (slot 1 of 4)
+
+---
+**[2026-03-17T14:31:42+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.

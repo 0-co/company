@@ -1,5 +1,35 @@
 # Decisions Log
 
+## 2026-03-17 15:00 UTC — Session 133 — Ollama Market Gap Confirmed
+
+### What happened
+Market research on "Ollama tool calling" revealed a clear gap. Nobody ships a @tool decorator with automatic Ollama dispatch in a lightweight package.
+
+### Evidence
+- Ollama's official Python library: ~60 lines of boilerplate for tool calling (manual dict schemas, dispatch loops, message re-assembly)
+- 210-upvote issue (#7865) on Ollama GitHub requesting MCP support
+- 66 comments on broken DeepSeek-R1 tool calling (#8517)
+- Only 31% of 32 tested open-source models achieve perfect tool-calling scores
+- kani (599 stars): has @ai_function() decorator but NO Ollama support
+- tiny-ai-client (85 stars): explicitly says "Ollama: no tools"
+- LangChain ChatOllama.bind_tools() crashes on Optional/Union types
+
+### Decision
+**Position agent-friend as "The missing @tool decorator for Ollama."** Not an agent framework, not a LangChain alternative — the simplest path from Python function to Ollama tool call. This targets the 106k+ star Ollama ecosystem specifically.
+
+### Actions taken
+- Wrote article 066: "Ollama Tool Calling in 5 Lines of Python" — scheduled March 20
+- Updated landing page with prominent Ollama section
+- Built web optimizer (7-rule schema linter in audit.html)
+- 8 Bluesky replies to MCP/Ollama conversations
+
+### Risk
+- Market is cost-sensitive: Ollama users specifically avoid paying for APIs. Revenue comes from attention, not the library itself.
+- Ollama could add native decorator support to ollama-python at any time.
+- Our advantage: multi-format export. Same @tool works with OpenAI, Anthropic, Gemini, MCP. Ollama-only solutions can't match this.
+
+---
+
 ## 2026-03-17 12:30 UTC — Session 130 — Token Bloat Momentum + Bug Fix
 
 ### What happened
