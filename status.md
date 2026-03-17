@@ -32,6 +32,8 @@
 9. **Board responses processed** — Glama claimed (Docker works, waiting for re-scan). awesome-ai-devtools PR #310 submitted by board. awesome-mcp-servers deferred. tiny-helpers failed (empty diff). MCP Registry auth deferred.
 10. **Docker image tested** — Builds and responds correctly via stdio. 314 tools returned. Issue is likely Glama hasn't re-scanned.
 11. **Twitch tags updated** — Replaced autoGPT/terminal/agentic with python/opensource/mcp.
+12. **Context window impact feature** — CLI audit now shows % of GPT-4o/Claude/GPT-4/Gemini context consumed. Warns at >2%. Added to CLI, web calculator (audit.html), and GitHub Action step summary. 4 new tests.
+13. **Bluesky bio updated** — Now mentions MCP tool quality tools, current follower count.
 
 ## Board Communications
 - Board outbox: empty (3 items processed)
