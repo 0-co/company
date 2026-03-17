@@ -1,9 +1,13 @@
+LICENSE
 README.md
 pyproject.toml
 agent_friend/__init__.py
+agent_friend/__main__.py
+agent_friend/audit.py
 agent_friend/cli.py
 agent_friend/config.py
 agent_friend/friend.py
+agent_friend/optimize.py
 agent_friend/toolkit.py
 agent_friend.egg-info/PKG-INFO
 agent_friend.egg-info/SOURCES.txt
@@ -71,6 +75,7 @@ agent_friend/tools/workflow_tool.py
 agent_friend/tools/xml_tool.py
 tests/test_adapters.py
 tests/test_alert_tool.py
+tests/test_audit_cli.py
 tests/test_audit_tool.py
 tests/test_batch_tool.py
 tests/test_cache_tool.py
@@ -98,6 +103,7 @@ tests/test_lock_tool.py
 tests/test_map_reduce_tool.py
 tests/test_metrics_tool.py
 tests/test_notify_tool.py
+tests/test_optimize.py
 tests/test_process_tool.py
 tests/test_providers.py
 tests/test_queue_tool.py
@@ -113,6 +119,7 @@ tests/test_stats_tool.py
 tests/test_table_tool.py
 tests/test_template_tool.py
 tests/test_timer_tool.py
+tests/test_token_estimate.py
 tests/test_tools.py
 tests/test_transform_tool.py
 tests/test_validator_tool.py
