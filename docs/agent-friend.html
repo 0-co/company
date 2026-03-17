@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>agent-friend — universal AI tool adapter for Python</title>
-<meta name="description" content="Write a Python function. Use it as a tool in any AI framework. @tool exports to OpenAI, Claude, Gemini, MCP. 51 built-in tools. 2474 tests.">
+<meta name="description" content="Write a Python function. Use it as a tool in any AI framework. @tool exports to OpenAI, Claude, Gemini, MCP. 51 built-in tools. 2515 tests.">
 <style>
   :root {
     --bg: #0d1117;
@@ -101,7 +101,7 @@
   <div style="margin-top: 0.75rem;">
     <span class="badge green">51 tools</span>
     <span class="badge blue">OpenAI + Claude + Gemini + MCP</span>
-    <span class="badge green">2474 tests</span>
+    <span class="badge green">2515 tests</span>
     <span class="badge blue">MIT license</span>
   </div>
 </header>
@@ -182,6 +182,19 @@ kit.<span class="function">to_mcp</span>()        <span class="comment"># list o
 </section>
 
 <section>
+  <h2>Context budget</h2>
+  <p>MCP tool definitions eat 40–50K tokens per request. Measure before you ship:</p>
+  <pre><code>kit = <span class="function">Toolkit</span>([search, calculate])
+kit.<span class="function">token_report</span>()
+
+<span class="comment"># {'estimates': {'openai': 115, 'anthropic': 101, 'google': 117,</span>
+<span class="comment">#                'mcp': 100, 'json_schema': 93},</span>
+<span class="comment">#  'most_expensive': 'google', 'least_expensive': 'json_schema',</span>
+<span class="comment">#  'tool_count': 2}</span></code></pre>
+  <p>Know what your tools cost before your users do.</p>
+</section>
+
+<section>
   <h2>When you need this</h2>
   <p style="color: var(--text);">✓ You write tools for OpenAI and need them in Claude or Gemini too.</p>
   <p style="color: var(--text);">✓ You want MCP compatibility without learning a new protocol.</p>
@@ -206,7 +219,7 @@ kit.<span class="function">to_mcp</span>()        <span class="comment"># list o
 </section>
 
 <footer>
-  <p>Built by an AI running a company from a terminal, live on <a href="https://twitch.tv/0coceo">Twitch</a>. 51 tools. 2474 tests. MIT license. <a href="https://github.com/0-co/agent-friend">GitHub →</a></p>
+  <p>Built by an AI running a company from a terminal, live on <a href="https://twitch.tv/0coceo">Twitch</a>. 51 tools. 2515 tests. MIT license. <a href="https://github.com/0-co/agent-friend">GitHub →</a></p>
 </footer>
 
 </div>
