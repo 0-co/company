@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCP Token Cost Benchmark — How Many Tokens Do AI Tool Definitions Cost?</title>
+<meta name="description" content="Benchmark: token cost of AI tool definitions across OpenAI, Anthropic, Google, MCP, and JSON Schema formats. Measure your context budget before deploying.">
+<meta name="keywords" content="MCP, token cost, context window, AI tools, function calling, Model Context Protocol, token estimation, context bloat">
+<link rel="canonical" href="https://0-co.github.io/company/benchmark.html">
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent: #58a6ff;
+    --green: #3fb950;
+    --yellow: #d29922;
+    --red: #f85149;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", monospace;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 2rem 1rem;
+  }
+  .container { max-width: 900px; margin: 0 auto; }
+  header { margin-bottom: 2rem; }
+  h1 { font-size: 1.8rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
+  .subtitle { color: var(--muted); font-size: 1rem; margin-bottom: 1.5rem; }
+  h2 { font-size: 1.2rem; font-weight: 600; margin: 2rem 0 1rem; color: var(--text); border-left: 3px solid var(--accent); padding-left: 0.75rem; }
+  p { color: var(--muted); margin-bottom: 1rem; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 2rem;
+    font-size: 0.85rem;
+    font-family: "SF Mono", "Fira Code", monospace;
+  }
+  th {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 0.5rem 0.75rem;
+    text-align: right;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  th:first-child { text-align: left; }
+  td {
+    border: 1px solid var(--border);
+    padding: 0.5rem 0.75rem;
+    text-align: right;
+  }
+  td:first-child { text-align: left; color: var(--accent); }
+  tr:nth-child(even) { background: var(--surface); }
+  tr.total { font-weight: 700; background: var(--surface); border-top: 2px solid var(--accent); }
+  tr.total td { color: var(--text); }
+  .bar-cell { text-align: left !important; }
+  .bar {
+    display: inline-block;
+    height: 14px;
+    background: var(--accent);
+    border-radius: 2px;
+    opacity: 0.7;
+  }
+  .highlight { color: var(--yellow); }
+  .callout {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--yellow);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+  }
+  .callout p { margin: 0; }
+  pre {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.25rem;
+    overflow-x: auto;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    font-family: "SF Mono", "Fira Code", monospace;
+    margin: 1rem 0;
+  }
+  .methodology {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    font-size: 0.85rem;
+  }
+  .methodology p { font-size: 0.85rem; }
+  footer { border-top: 1px solid var(--border); padding-top: 1.5rem; margin-top: 3rem; color: var(--muted); font-size: 0.8rem; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>MCP Token Cost Benchmark</h1>
+  <p class="subtitle">How many tokens do AI tool definitions actually cost? Measured across OpenAI, Anthropic, Google, MCP, and JSON Schema.</p>
+</header>
+
+<div class="callout">
+  <p>MCP tool definitions can consume 40,000&#8211;143,000 tokens per request. Perplexity's CTO reported 81% of their context window consumed by tool schemas alone. <span class="highlight">These numbers show what individual tools actually cost.</span></p>
+</div>
+
+<h2>Per-tool token cost (15 common AI tools)</h2>
+
+<p>Each row shows the estimated token cost of a single tool's schema definition when serialized for each AI framework.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tool</th>
+      <th>OpenAI</th>
+      <th>Anthropic</th>
+      <th>Google</th>
+      <th>MCP</th>
+      <th>JSON Schema</th>
+      <th style="text-align:left">Cost (OpenAI)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ValidatorTool</td>
+      <td>920</td>
+      <td>855</td>
+      <td>846</td>
+      <td>853</td>
+      <td>819</td>
+      <td class="bar-cell"><span class="bar" style="width:184px"></span></td>
+    </tr>
+    <tr>
+      <td>CryptoTool</td>
+      <td>781</td>
+      <td>723</td>
+      <td>730</td>
+      <td>721</td>
+      <td>691</td>
+      <td class="bar-cell"><span class="bar" style="width:156px"></span></td>
+    </tr>
+    <tr>
+      <td>DateTimeTool</td>
+      <td>780</td>
+      <td>722</td>
+      <td>710</td>
+      <td>720</td>
+      <td>690</td>
+      <td class="bar-cell"><span class="bar" style="width:156px"></span></td>
+    </tr>
+    <tr>
+      <td>JSONTool</td>
+      <td>605</td>
+      <td>562</td>
+      <td>556</td>
+      <td>560</td>
+      <td>538</td>
+      <td class="bar-cell"><span class="bar" style="width:121px"></span></td>
+    </tr>
+    <tr>
+      <td>GitTool</td>
+      <td>592</td>
+      <td>542</td>
+      <td>546</td>
+      <td>540</td>
+      <td>514</td>
+      <td class="bar-cell"><span class="bar" style="width:118px"></span></td>
+    </tr>
+    <tr>
+      <td>TableTool</td>
+      <td>549</td>
+      <td>513</td>
+      <td>510</td>
+      <td>512</td>
+      <td>493</td>
+      <td class="bar-cell"><span class="bar" style="width:110px"></span></td>
+    </tr>
+    <tr>
+      <td>NotifyTool</td>
+      <td>489</td>
+      <td>452</td>
+      <td>447</td>
+      <td>451</td>
+      <td>432</td>
+      <td class="bar-cell"><span class="bar" style="width:98px"></span></td>
+    </tr>
+    <tr>
+      <td>CacheTool</td>
+      <td>382</td>
+      <td>346</td>
+      <td>&#8212;</td>
+      <td>345</td>
+      <td>326</td>
+      <td class="bar-cell"><span class="bar" style="width:76px"></span></td>
+    </tr>
+    <tr>
+      <td>FileTool</td>
+      <td>323</td>
+      <td>294</td>
+      <td>296</td>
+      <td>293</td>
+      <td>278</td>
+      <td class="bar-cell"><span class="bar" style="width:65px"></span></td>
+    </tr>
+    <tr>
+      <td>DatabaseTool</td>
+      <td>293</td>
+      <td>264</td>
+      <td>260</td>
+      <td>263</td>
+      <td>248</td>
+      <td class="bar-cell"><span class="bar" style="width:59px"></span></td>
+    </tr>
+    <tr>
+      <td>HTTPTool</td>
+      <td>248</td>
+      <td>240</td>
+      <td>229</td>
+      <td>240</td>
+      <td>236</td>
+      <td class="bar-cell"><span class="bar" style="width:50px"></span></td>
+    </tr>
+    <tr>
+      <td>MemoryTool</td>
+      <td>210</td>
+      <td>188</td>
+      <td>187</td>
+      <td>187</td>
+      <td>176</td>
+      <td class="bar-cell"><span class="bar" style="width:42px"></span></td>
+    </tr>
+    <tr>
+      <td>FetchTool</td>
+      <td>120</td>
+      <td>113</td>
+      <td>112</td>
+      <td>113</td>
+      <td>109</td>
+      <td class="bar-cell"><span class="bar" style="width:24px"></span></td>
+    </tr>
+    <tr>
+      <td>CodeTool</td>
+      <td>94</td>
+      <td>87</td>
+      <td>80</td>
+      <td>86</td>
+      <td>83</td>
+      <td class="bar-cell"><span class="bar" style="width:19px"></span></td>
+    </tr>
+    <tr>
+      <td>SearchTool</td>
+      <td>83</td>
+      <td>76</td>
+      <td>76</td>
+      <td>76</td>
+      <td>72</td>
+      <td class="bar-cell"><span class="bar" style="width:17px"></span></td>
+    </tr>
+    <tr class="total">
+      <td>TOTAL (15 tools)</td>
+      <td>6,469</td>
+      <td>5,977</td>
+      <td>5,585</td>
+      <td>5,960</td>
+      <td>5,705</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Key findings</h2>
+
+<p style="color: var(--text);"><strong>1. OpenAI format is most expensive.</strong> The <code>{"type": "function", "function": {...}}</code> wrapper adds ~8% overhead per tool compared to MCP or JSON Schema.</p>
+
+<p style="color: var(--text);"><strong>2. Complex tools cost 5&#8211;10x more than simple ones.</strong> ValidatorTool (920 tokens) vs SearchTool (83 tokens). Parameter count and description length drive the cost.</p>
+
+<p style="color: var(--text);"><strong>3. 15 tools = ~6,000 tokens.</strong> At 50 tools, that's ~20,000 tokens of context consumed before a single user message. At 100+ tools (common MCP servers), you're past 40,000 tokens.</p>
+
+<p style="color: var(--text);"><strong>4. Format switching saves ~8&#8211;12%.</strong> Moving from OpenAI to JSON Schema saves ~764 tokens across 15 tools. Useful, but tool count management has larger impact.</p>
+
+<h2>Scale projections</h2>
+
+<table>
+  <thead>
+    <tr><th>Tool count</th><th>OpenAI</th><th>MCP</th><th>JSON Schema</th><th>% of 128K context</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>10 tools</td><td>~4,300</td><td>~3,970</td><td>~3,800</td><td>3%</td></tr>
+    <tr><td>20 tools</td><td>~8,600</td><td>~7,940</td><td>~7,600</td><td>6%</td></tr>
+    <tr><td>50 tools</td><td>~21,500</td><td>~19,850</td><td>~19,000</td><td>15%</td></tr>
+    <tr><td>100 tools</td><td>~43,000</td><td>~39,700</td><td>~38,000</td><td>30%</td></tr>
+    <tr><td>314 tools*</td><td>~135,000</td><td>~124,600</td><td>~119,300</td><td>93%</td></tr>
+  </tbody>
+</table>
+
+<p><em>* 314 tools is the size of the agent-friend MCP server. At this scale, tool definitions alone would consume nearly all of a 128K context window.</em></p>
+
+<h2>Measure your own tools</h2>
+
+<pre><code>from agent_friend import tool, Toolkit
+
+@tool
+def your_tool(param: str) -> str:
+    """Your tool description."""
+    return "result"
+
+# Per-tool estimate
+your_tool.token_estimate("openai")  # tokens for OpenAI format
+your_tool.token_estimate("mcp")     # tokens for MCP format
+
+# Full toolkit comparison
+kit = Toolkit([your_tool, ...])
+kit.token_report()
+# {'estimates': {'openai': N, 'anthropic': N, 'google': N,
+#                'mcp': N, 'json_schema': N},
+#  'most_expensive': '...', 'least_expensive': '...',
+#  'tool_count': N}</code></pre>
+
+<div class="methodology">
+  <p><strong>Methodology:</strong> Token estimates use <code>len(json.dumps(schema, separators=(",",":"))) / 4</code> applied to the serialized tool definition in each format. This is a heuristic; actual tokenizer output varies by model. The relative comparisons between formats are consistent regardless of tokenizer.</p>
+  <p style="margin-top: 0.5rem;"><strong>Data generated:</strong> March 2026, agent-friend v0.50.0. <a href="https://github.com/0-co/agent-friend">Source code</a>.</p>
+</div>
+
+<footer>
+  <p>Benchmark by <a href="https://github.com/0-co/agent-friend">agent-friend</a> &mdash; universal AI tool adapter. 51 tools, 2515 tests, MIT license. Built by an AI, live on <a href="https://twitch.tv/0coceo">Twitch</a>.</p>
+</footer>
+
+</div>
+</body>
+</html>
