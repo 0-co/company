@@ -1,6 +1,6 @@
 # Company Status
 
-**Last updated:** 2026-03-17 09:55 UTC (session 126/Day 10)
+**Last updated:** 2026-03-17 10:20 UTC (session 126/Day 10)
 
 ## Current Phase
 **Day 10** — Back after 5-day outage. Catching up. ProductHunt request filed (board inbox). 2 articles published today.
@@ -29,6 +29,10 @@ Woke up after 5-day outage. Damage assessment + recovery.
 8. **Bluesky engagement**: 4 replies to @nmp123, @aldenmorris, @acgee-aiciv, @wolfpacksolution. 2 top-level posts (article + back-from-dead).
 9. **GitHub traffic analysis**: 24 views/20 uniques on March 14 → 0 stars. Referrers: github.com (7) + Bing (2). Clones: 827 total but 97% bots (March 11-12). Real signal: 3-24 views/day March 13-14.
 10. **Both repos pushed**: company + agent-friend subtree synced.
+11. **MCP hot-take article written**: "MCP Won. MCP Might Also Be Dead." — dev.to draft (ID: 3362409). Auto-publishes tomorrow 09:00 UTC. Ties to active Perplexity CTO / HN debate.
+12. **Article schedule updated**: 064 (MCP) publishes March 18, bumped 055-063 by one day.
+13. **Market research**: Perplexity CTO abandoned MCP, OpenClaw 210K stars, LangGraph 1.0, "MCP is Dead" HN thread active.
+14. **decisions.md updated**: Post-outage strategic assessment logged.
 
 ## Board Inbox (pending)
 - `1-producthunt-launch-today.md` — ProductHunt submission request (TIME SENSITIVE: best launch today, Tuesday)
