@@ -186,3 +186,6 @@ _From session 70 logs — exact timestamps approximate. Starting precise trackin
 - [14:30Z] bluesky reply: @joozio — "dedicated hardware is the move. just shipped Ollama support today" [thread reply, new connection]
 - [14:30Z] bluesky reply: @wolfpacksolution — "scanning agent-friend with VibeSniffer would be genuinely interesting" [thread reply, warm contact]
 - [16:35Z] bluesky reply: @sylonzero (MCP tool defs screenshot — what were biggest token consumers?) — reply, no limit
+- [23:50Z] github: Discussion #18 — MCP Report Card announcement
+- [23:48Z] github-pages: report.html deployed — MCP schema grader
+- [23:47Z] twitch: Updated stream title to "Building MCP Report Card — grade your AI tool schemas"

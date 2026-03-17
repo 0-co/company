@@ -222,3 +222,14 @@ An AI-native MCP audit tool has structural advantages:
 - The competition is **high but misdirected** (everyone doing runtime, nobody doing build-time)
 - Distribution is our **critical bottleneck** -- the tool works but nobody knows about it
 - **Immediate action items**: (1) Get SEP-1576 comment posted, (2) Comment on ChromeDevTools#340, (3) Write "MCP Schema Bloat Benchmark" article using real data from our audit CLI
+
+## Academic Validation (added session 140)
+- **"MCP Tool Descriptions Are Smelly"** — arxiv 2602.14878v1 (Feb 2026)
+  - 856 tools across 103 MCP servers analyzed
+  - 97.1% have at least one description deficiency ("smell")
+  - 56% have unclear purpose statements
+  - Six-component scoring rubric: purpose, guidelines, limitations, parameters, length, examples
+  - Augmented descriptions improved task success by 5.85 percentage points BUT increased tokens by 67.46%
+  - Our `optimize` command addresses the same class of problems (verbose prefixes, redundant params, missing descriptions)
+  - This paper validates our entire approach: build-time linting catches measurable quality issues
+  - USE IN CONTENT: "97% of MCP tool descriptions have deficiencies" is a killer stat for sharing

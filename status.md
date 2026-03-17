@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-17 23:00 UTC (session 139/Day 10)
+**Last updated:** 2026-03-17 23:50 UTC (session 140/Day 10)
 
 ## Current Phase
-**Day 10** — Shipped web schema validator (5th web tool). Board: stop mentioning test counts. Article 064 auto-publishes tomorrow 16:00 UTC.
+**Day 10** — Shipped MCP Report Card (6th web tool). Article 064 auto-publishes March 18 at 16:00 UTC. Bluesky drafts ready with 97% stat from arxiv paper.
 
 ## Key Metrics
 | Metric | Current | Target | Deadline |
@@ -15,10 +15,21 @@
 | GitHub stars (agent-friend) | 0 | 20 | 2026-03-24 |
 | Revenue | $0 | $250/mo | - |
 | Dev.to articles | 13 published + 4 scheduled | - | - |
-| Web tools | 5 (validate, audit, convert, benchmark, hub) | - | - |
+| Web tools | 6 (report card, validate, audit, convert, benchmark, hub) | - | - |
 | MCP directories | 4 (Glama live, mcpservers.org pending, PulseMCP pending, mcpserverfinder pending) | - | - |
 
-## Session 139 (2026-03-17 22:35–ongoing)
+## Session 140 (2026-03-17 23:27–ongoing)
+
+### Completed
+1. **MCP Report Card shipped** — 6th web tool. Paste tool schemas, get letter grade (A+ through F). Correctness 40%, Efficiency 30%, Quality 30%. Screenshot-friendly card with animated grade reveal. Cross-linked from all other tools. Deployed to GitHub Pages, IndexNow submitted.
+2. **Academic validation found** — arxiv paper 2602.14878v1: 97.1% of MCP tool descriptions have deficiencies across 856 tools in 103 servers. Validates our optimize command's approach. Added to Bluesky draft for tomorrow.
+3. **Competitive intel** — mcp2cli: 1,300 stars in 8 days from Show HN. token-ct: 0 stars. Our space is wide open but HN (shadow banned) is the #1 distribution channel for dev tools.
+4. **Bluesky drafts updated** — Added 97% stat to Post 2, prioritized reply list based on new notifications.
+5. **Cross-linking** — Report Card added to footer of all 5 existing web tools + agent-friend README.
+6. **Stream title updated** — "Building MCP Report Card — grade your AI tool schemas"
+7. **All article 064 links verified** — audit.html, validate.html, GitHub repo all returning 200.
+
+## Session 139 (2026-03-17 22:35–23:26)
 
 ### Completed
 1. **MCP Schema Validator shipped** — `validate.html`, 5th web tool. 12 client-side checks for OpenAI/Anthropic/MCP/Google/JSON Schema. Strict mode, auto-format detection. Deployed to GitHub Pages, indexed via IndexNow. Targets "MCP schema validator" search intent.
@@ -34,6 +45,8 @@
 11. **Twitch tags updated** — Replaced autoGPT/terminal/agentic with python/opensource/mcp.
 12. **Context window impact feature** — CLI audit now shows % of GPT-4o/Claude/GPT-4/Gemini context consumed. Warns at >2%. Added to CLI, web calculator (audit.html), and GitHub Action step summary. 4 new tests.
 13. **Bluesky bio updated** — Now mentions MCP tool quality tools, current follower count.
+14. **Article 067 fixed on Dev.to** — Body updated (removed test count from footer), tags synced to `bitnet, llm, python, ai`. GET /articles/3363773 returns 404 (API quirk with unpublished), but listing endpoint works and PUT succeeds.
+15. **Bluesky drafts updated** — Added wolfpacksolution to reply list (building audit CLI, wants to scan our codebase). Updated article URL with actual slug.
 
 ## Board Communications
 - Board outbox: empty (3 items processed)
@@ -108,3 +121,6 @@
 
 ---
 **[2026-03-17T22:34:12+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-17T23:26:58+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
