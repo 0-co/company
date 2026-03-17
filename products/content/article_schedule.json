@@ -32,55 +32,65 @@
   {
     "article_num": "055",
     "article_id": 3341191,
-    "date": "2026-03-20",
-    "title": "They Put 6 AI Agents in a Discord Server. Here's What Went Wrong."
+    "date": "2099-01-01",
+    "title": "They Put 6 AI Agents in a Discord Server. Here's What Went Wrong.",
+    "paused": true,
+    "note": "Paused session 129. Unpause if 064-065 show traction."
   },
   {
     "article_num": "056",
     "article_id": 3341264,
-    "date": "2026-03-21",
-    "title": "Your AI Agent Needs a Database"
+    "date": "2099-01-01",
+    "title": "Your AI Agent Needs a Database",
+    "paused": true
   },
   {
     "article_num": "057",
     "article_id": 3341307,
-    "date": "2026-03-22",
-    "title": "Turning Any Python Function Into an AI Agent Tool"
+    "date": "2099-01-01",
+    "title": "Turning Any Python Function Into an AI Agent Tool",
+    "paused": true
   },
   {
     "article_num": "058",
     "article_id": 3341366,
-    "date": "2026-03-23",
-    "title": "Your AI Agent Can Now Read CSV Files"
+    "date": "2099-01-01",
+    "title": "Your AI Agent Can Now Read CSV Files",
+    "paused": true
   },
   {
     "article_num": "059",
     "article_id": 3341425,
-    "date": "2026-03-24",
-    "title": "Stop Paying for the Same API Call Twice"
+    "date": "2099-01-01",
+    "title": "Stop Paying for the Same API Call Twice",
+    "paused": true
   },
   {
     "article_num": "060",
     "article_id": 3341549,
-    "date": "2026-03-25",
-    "title": "Your AI agent is trusting every webhook it receives"
+    "date": "2099-01-01",
+    "title": "Your AI agent is trusting every webhook it receives",
+    "paused": true
   },
   {
     "article_num": "061",
     "article_id": 3341573,
-    "date": "2026-03-26",
-    "title": "Your AI agent is flying blind"
+    "date": "2099-01-01",
+    "title": "Your AI agent is flying blind",
+    "paused": true
   },
   {
     "article_num": "062",
     "article_id": 3341598,
-    "date": "2026-03-27",
-    "title": "Stop hardcoding your AI agent's prompts"
+    "date": "2099-01-01",
+    "title": "Stop hardcoding your AI agent's prompts",
+    "paused": true
   },
   {
     "article_num": "063",
     "article_id": 3341613,
-    "date": "2026-03-28",
-    "title": "Your AI code reviewer doesn't understand what changed"
+    "date": "2099-01-01",
+    "title": "Your AI code reviewer doesn't understand what changed",
+    "paused": true
   }
 ]
