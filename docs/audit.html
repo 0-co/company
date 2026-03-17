@@ -649,6 +649,171 @@
       .status-text { margin-left: 0; text-align: center; }
     }
 
+    /* Optimize section */
+    .optimize-section {
+      margin-top: 0;
+    }
+
+    .optimize-summary {
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .optimize-summary::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-gold), var(--accent-magenta));
+    }
+
+    .optimize-summary .opt-count {
+      font-size: 1.4rem;
+      font-weight: 800;
+      font-family: var(--mono);
+      background: linear-gradient(135deg, var(--accent-gold), var(--accent-magenta));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .optimize-summary .opt-detail {
+      font-size: 0.82rem;
+      font-family: var(--mono);
+      color: var(--text-muted);
+    }
+
+    .optimize-summary .opt-savings {
+      margin-left: auto;
+      font-size: 0.85rem;
+      font-family: var(--mono);
+      font-weight: 700;
+      color: var(--accent-gold);
+    }
+
+    .optimize-clean {
+      background: var(--bg-raised);
+      border: 1px solid rgba(40, 200, 64, 0.25);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: #28c840;
+      margin-bottom: 20px;
+    }
+
+    .suggestion-card {
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+      border-left: 3px solid var(--accent-gold);
+      transition: border-color 0.2s;
+    }
+
+    .suggestion-card:hover {
+      border-left-color: var(--accent-magenta);
+    }
+
+    .suggestion-card .sg-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .suggestion-card .sg-tool {
+      font-family: var(--mono);
+      font-weight: 600;
+      font-size: 0.82rem;
+      color: var(--accent-cyan);
+    }
+
+    .suggestion-card .sg-rule {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: rgba(212,167,44,0.12);
+      color: var(--accent-gold);
+      border: 1px solid rgba(212,167,44,0.25);
+    }
+
+    .suggestion-card .sg-savings {
+      margin-left: auto;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent-magenta);
+      font-weight: 600;
+    }
+
+    .suggestion-card .sg-issue {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      line-height: 1.5;
+    }
+
+    .suggestion-card .sg-fix {
+      font-size: 0.78rem;
+      font-family: var(--mono);
+      color: #28c840;
+      background: rgba(40,200,64,0.06);
+      border: 1px solid rgba(40,200,64,0.15);
+      border-radius: 4px;
+      padding: 6px 10px;
+      line-height: 1.5;
+      word-break: break-word;
+    }
+
+    .optimize-cta {
+      background: var(--bg-inset);
+      border: 1px solid var(--border-bright);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .optimize-cta .cta-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-family: var(--mono);
+      margin-bottom: 8px;
+    }
+
+    .optimize-cta code {
+      display: inline-block;
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 4px;
+      color: var(--accent-violet);
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      margin: 3px 0;
+      word-break: break-all;
+    }
+
+    @media (max-width: 640px) {
+      .optimize-summary { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .optimize-summary .opt-savings { margin-left: 0; }
+      .suggestion-card .sg-header { gap: 6px; }
+      .suggestion-card .sg-savings { margin-left: 0; }
+    }
+
     /* Scrollbar */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
@@ -719,6 +884,12 @@
       <div class="section-title">Context Window Impact</div>
       <p style="font-size:0.78rem;color:var(--text-muted);margin-bottom:16px;font-family:var(--mono);">How much of your context budget these tools consume</p>
       <div class="context-windows" id="context-windows"></div>
+
+      <div class="results-divider"></div>
+
+      <div class="section-title">Optimization Suggestions</div>
+      <p style="font-size:0.78rem;color:var(--text-muted);margin-bottom:16px;font-family:var(--mono);">Heuristic analysis of your tool schemas &mdash; 7 rules checked</p>
+      <div class="optimize-section" id="optimize-section"></div>
     </div>
 
     <footer>
@@ -744,11 +915,11 @@
     const SAMPLE = JSON.stringify([
       {
         "name": "get_weather",
-        "description": "Get current weather for a city. Returns temperature, conditions, humidity, and wind speed.",
+        "description": "This tool allows you to get the current weather conditions for any city worldwide. Returns temperature, conditions, humidity, and wind speed in the requested unit system.",
         "inputSchema": {
           "type": "object",
           "properties": {
-            "city": {"type": "string", "description": "City name"},
+            "city": {"type": "string", "description": "The city."},
             "units": {"type": "string", "enum": ["celsius", "fahrenheit"], "description": "Temperature units"}
           },
           "required": ["city"]
@@ -766,6 +937,20 @@
             "domain": {"type": "string", "description": "Filter to specific domain"}
           },
           "required": ["query"]
+        }
+      },
+      {
+        "name": "send_email",
+        "description": "Used to send an email message to one or more recipients with optional attachments and CC/BCC support. Validates email addresses and handles SMTP connection errors gracefully with automatic retry logic and detailed error reporting for debugging purposes.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "to": {"type": "string", "description": "The to."},
+            "subject": {"type": "string", "description": "The subject."},
+            "body": {"type": "string", "description": "The email body content to send to the recipient, which can include plain text or HTML formatted content depending on the content_type parameter"},
+            "attachments": {"type": "array", "items": {"type": "object", "properties": {"filename": {"type": "string"}, "data": {"type": "string"}}}}
+          },
+          "required": ["to", "subject", "body"]
         }
       }
     ], null, 2);
@@ -1085,6 +1270,10 @@
       }
       document.getElementById('context-windows').innerHTML = ctxHTML;
 
+      // Run optimization rules
+      var suggestions = runOptimize(tools, totalTokens);
+      renderOptimize(suggestions, totalTokens);
+
       // Show results
       resultsEl.classList.add('visible');
 
@@ -1117,6 +1306,251 @@
         analyze();
       }
     });
+
+    // === Optimization Rules ===
+    var VERBOSE_PREFIXES = [
+      'this is a tool that ',
+      'this tool allows you to ',
+      'allows the user to ',
+      'use this tool to ',
+      'this function ',
+      'a tool that ',
+      'used to '
+    ];
+
+    function normalizeForComparison(str) {
+      return str.toLowerCase().replace(/[_\s.]+/g, ' ').replace(/\b(the|a|an)\b/g, '').replace(/\s+/g, ' ').trim();
+    }
+
+    function measureNestingDepth(schema, currentDepth) {
+      if (!schema || typeof schema !== 'object') return currentDepth;
+      var maxDepth = currentDepth;
+
+      if (schema.type === 'object' && schema.properties) {
+        var props = schema.properties;
+        var keys = Object.keys(props);
+        for (var i = 0; i < keys.length; i++) {
+          var prop = props[keys[i]];
+          var d = measureNestingDepth(prop, currentDepth + 1);
+          if (d > maxDepth) maxDepth = d;
+        }
+      }
+
+      if (schema.type === 'array' && schema.items) {
+        var d = measureNestingDepth(schema.items, currentDepth);
+        if (d > maxDepth) maxDepth = d;
+      }
+
+      // Handle nested objects in additionalProperties
+      if (schema.additionalProperties && typeof schema.additionalProperties === 'object') {
+        var d = measureNestingDepth(schema.additionalProperties, currentDepth + 1);
+        if (d > maxDepth) maxDepth = d;
+      }
+
+      return maxDepth;
+    }
+
+    function runOptimize(tools, totalTokens) {
+      var suggestions = [];
+
+      // Collect all param descriptions across tools for Rule 6
+      var paramDescMap = {}; // description -> [{toolName, paramName}]
+
+      for (var i = 0; i < tools.length; i++) {
+        var t = tools[i];
+        var desc = t.description || '';
+
+        // Rule 1: verbose_prefix
+        var descLower = desc.toLowerCase();
+        for (var p = 0; p < VERBOSE_PREFIXES.length; p++) {
+          if (descLower.indexOf(VERBOSE_PREFIXES[p]) === 0) {
+            var prefixLen = VERBOSE_PREFIXES[p].length;
+            var remaining = desc.substring(prefixLen);
+            var fixed = remaining.charAt(0).toUpperCase() + remaining.substring(1);
+            suggestions.push({
+              tool: t.name,
+              rule: 'verbose_prefix',
+              issue: 'Description starts with filler: "' + desc.substring(0, prefixLen) + '"',
+              fix: fixed,
+              savings: Math.floor(prefixLen / 4)
+            });
+            break;
+          }
+        }
+
+        // Rule 2: long_description
+        if (desc.length > 200) {
+          suggestions.push({
+            tool: t.name,
+            rule: 'long_description',
+            issue: 'Description is ' + desc.length + ' characters (recommended: under 200)',
+            fix: 'Shorten to ~200 chars. Current: "' + desc.substring(0, 80) + '..."',
+            savings: Math.floor((desc.length - 200) / 4)
+          });
+        }
+
+        // Rule 5: missing_description (tool level)
+        if (!desc || desc.trim() === '') {
+          suggestions.push({
+            tool: t.name,
+            rule: 'missing_description',
+            issue: 'Tool has no description. LLMs rely on descriptions to choose tools.',
+            fix: 'Add a concise description explaining what this tool does and when to use it.',
+            savings: 0
+          });
+        }
+
+        // Check parameters
+        var params = t.parameters;
+        if (params && params.properties) {
+          var propKeys = Object.keys(params.properties);
+          for (var k = 0; k < propKeys.length; k++) {
+            var paramName = propKeys[k];
+            var prop = params.properties[paramName];
+            var paramDesc = prop.description || '';
+
+            // Rule 3: long_param_description
+            if (paramDesc.length > 100) {
+              suggestions.push({
+                tool: t.name,
+                rule: 'long_param_description',
+                issue: 'Parameter "' + paramName + '" description is ' + paramDesc.length + ' chars (recommended: under 100)',
+                fix: 'Shorten to ~100 chars: "' + paramDesc.substring(0, 60) + '..."',
+                savings: Math.floor((paramDesc.length - 80) / 4)
+              });
+            }
+
+            // Rule 4: redundant_param_description
+            if (paramDesc) {
+              var normParam = normalizeForComparison(paramName);
+              var normDesc = normalizeForComparison(paramDesc);
+              if (normParam === normDesc) {
+                suggestions.push({
+                  tool: t.name,
+                  rule: 'redundant_param_description',
+                  issue: 'Parameter "' + paramName + '" description just restates the name: "' + paramDesc + '"',
+                  fix: 'Add meaningful context, e.g. format, constraints, or examples.',
+                  savings: Math.floor(paramDesc.length / 4) + 1
+                });
+              }
+            }
+
+            // Rule 5: missing_description (param level for object/array)
+            if ((prop.type === 'object' || prop.type === 'array') && (!paramDesc || paramDesc.trim() === '')) {
+              suggestions.push({
+                tool: t.name,
+                rule: 'missing_description',
+                issue: 'Parameter "' + paramName + '" (type: ' + prop.type + ') has no description. Complex types need docs.',
+                fix: 'Add a description explaining the expected structure.',
+                savings: 0
+              });
+            }
+
+            // Collect for Rule 6
+            if (paramDesc && paramDesc.trim()) {
+              var key = paramDesc.trim();
+              if (!paramDescMap[key]) paramDescMap[key] = [];
+              paramDescMap[key].push({ toolName: t.name, paramName: paramName });
+            }
+          }
+        }
+
+        // Rule 7: deep_nesting
+        var depth = measureNestingDepth(params, 0);
+        if (depth > 2) {
+          suggestions.push({
+            tool: t.name,
+            rule: 'deep_nesting',
+            issue: 'Schema nesting depth is ' + depth + ' (recommended: max 2). Deep nesting inflates token cost.',
+            fix: 'Flatten nested objects or accept a JSON string parameter instead.',
+            savings: (depth - 2) * 12
+          });
+        }
+      }
+
+      // Rule 6: duplicate_param_description
+      var descKeys = Object.keys(paramDescMap);
+      for (var d = 0; d < descKeys.length; d++) {
+        var descText = descKeys[d];
+        var occurrences = paramDescMap[descText];
+        if (occurrences.length >= 3) {
+          var toolNames = [];
+          for (var o = 0; o < occurrences.length; o++) {
+            if (toolNames.indexOf(occurrences[o].toolName) === -1) {
+              toolNames.push(occurrences[o].toolName);
+            }
+          }
+          if (toolNames.length >= 3) {
+            var words = descText.split(/\s+/);
+            var shortVersion = words.slice(0, 3).join(' ');
+            var savingsPerDup = Math.max(1, Math.floor((descText.length - shortVersion.length) / 4));
+            suggestions.push({
+              tool: toolNames.join(', '),
+              rule: 'duplicate_param_description',
+              issue: 'Description "' + descText + '" is repeated across ' + toolNames.length + ' tools (' + toolNames.join(', ') + ')',
+              fix: 'Use a shorter shared description: "' + shortVersion + '..." or tool-specific context.',
+              savings: savingsPerDup * (toolNames.length - 1)
+            });
+          }
+        }
+      }
+
+      return suggestions;
+    }
+
+    function renderOptimize(suggestions, totalTokens) {
+      var container = document.getElementById('optimize-section');
+      var html = '';
+
+      if (suggestions.length === 0) {
+        html += '<div class="optimize-clean">All clear -- no optimization suggestions. Your schemas look good.</div>';
+        container.innerHTML = html;
+        return;
+      }
+
+      // Calculate totals
+      var totalSavings = 0;
+      for (var i = 0; i < suggestions.length; i++) {
+        totalSavings += suggestions[i].savings;
+      }
+      var pctReduction = totalTokens > 0 ? ((totalSavings / totalTokens) * 100).toFixed(1) : '0';
+
+      // Summary bar
+      html += '<div class="optimize-summary">';
+      html += '<div class="opt-count">' + suggestions.length + '</div>';
+      html += '<div class="opt-detail">' + suggestions.length + ' suggestion' + (suggestions.length === 1 ? '' : 's') + ' found</div>';
+      if (totalSavings > 0) {
+        html += '<div class="opt-savings">~' + totalSavings + ' tokens saved (' + pctReduction + '% reduction)</div>';
+      }
+      html += '</div>';
+
+      // Suggestion cards
+      for (var i = 0; i < suggestions.length; i++) {
+        var s = suggestions[i];
+        html += '<div class="suggestion-card">';
+        html += '<div class="sg-header">';
+        html += '<span class="sg-tool">' + escapeHtml(s.tool) + '</span>';
+        html += '<span class="sg-rule">' + escapeHtml(s.rule) + '</span>';
+        if (s.savings > 0) {
+          html += '<span class="sg-savings">-' + s.savings + ' tokens</span>';
+        } else {
+          html += '<span class="sg-savings" style="color:var(--accent-gold);">quality</span>';
+        }
+        html += '</div>';
+        html += '<div class="sg-issue">' + escapeHtml(s.issue) + '</div>';
+        html += '<div class="sg-fix">' + escapeHtml(s.fix) + '</div>';
+        html += '</div>';
+      }
+
+      // CTA
+      html += '<div class="optimize-cta">';
+      html += '<div class="cta-label">Want this in CI?</div>';
+      html += '<code>pip install git+https://github.com/0-co/agent-friend.git</code><br>';
+      html += '<code>agent-friend optimize tools.json</code>';
+      html += '</div>';
+
+      container.innerHTML = html;
+    }
 
     // Auto-analyze the sample on load
     setTimeout(analyze, 400);
