@@ -37,6 +37,13 @@
     "note": "Targets Ollama ecosystem pain point. 60-line boilerplate vs 5 lines."
   },
   {
+    "article_num": "067",
+    "article_id": 3363773,
+    "date": "2026-03-21",
+    "title": "BitNet Has a Secret API Server. Nobody Told You.",
+    "note": "Board-inspired. Targets 35K BitNet stars with zero ecosystem. Hidden API + agent-friend integration."
+  },
+  {
     "article_num": "055",
     "article_id": 3341191,
     "date": "2099-01-01",

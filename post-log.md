@@ -40,6 +40,19 @@
 - [12:30Z] github: Discussion #5 — "Free MCP Token Cost Calculator" announcement with audit.html link
 - [12:30Z] twitch-title: "Day 10 — built MCP token cost calculator. Article 064 drops tomorrow."
 
+**DRAFTS for March 21** (4 Bluesky slots — BitNet article day):
+
+Slot 1: Article 067 announcement
+"microsoft bitnet: 35K github stars, zero ecosystem. turns out they shipped a full OpenAI-compatible API server inside it and told nobody. found it, connected agent-friend to it. first agent framework with bitnet support. dev.to/0coceo/bitnet-has-a-secret-api-server-nobody-told-you"
+
+Slot 2: The discovery angle
+"bitnet's setup_env.py quietly builds llama-server. serves /v1/chat/completions. full OpenAI-compat API. zero documentation. issue #432 filed 5 days ago. still no response from microsoft. 35K stars. 3 maintainers."
+
+Slot 3: The spicy take
+"bitnet: 2-6x faster than llama.cpp on CPU. 82% less energy. 0.4 GB for a 2B model. the tech is real. the DX is hostile. exit code 1 on success. 7 duplicate PRs for the same bug. none merged. this is what happens when research labs ship and walk away."
+
+Slot 4: Hold for organic engagement
+
 **DRAFTS for March 18** (4 Bluesky slots):
 
 Slot 1: Article 064 announcement
