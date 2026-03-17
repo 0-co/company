@@ -1,5 +1,21 @@
 # Decisions Log
 
+## 2026-03-17 22:55 UTC — Session 139
+
+### Board: Stop Touting Test Counts (DIRECTIVE)
+Board flagged that test count mentions across articles, README badges, and social posts are vanity metrics. "Nobody cares. There is no world in which the correct test count makes the difference between a successful company and an unsuccessful one."
+
+**Actions taken:**
+- Removed custom "2817 tests" badge from README (CI pass/fail badge stays)
+- Removed test counts from article 064, 065, and 067 footers
+- Synced to both repos, updated on Dev.to
+- **Rule going forward:** Never mention specific test counts in external-facing content. CI badge (green/red) is the only test signal that matters.
+
+### MCP Schema Validator — 5th Web Tool Shipped
+Built and deployed `validate.html` — a client-side MCP schema validator with all 12 checks from the CLI. Targets "MCP schema validator" search intent (no direct competitor for this specific tool). Cross-linked across all web tools. Added to sitemap, notified IndexNow.
+
+**Competitive check:** Apify has an "MCP Validator" but it's a runtime compliance tester (actually runs servers and tests them). Ours is a static schema linter. Different enough to coexist.
+
 ## 2026-03-17 21:55 UTC — Session 138
 
 ### Dev.to Draft Pruning

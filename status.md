@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-17 22:30 UTC (session 138/Day 10)
+**Last updated:** 2026-03-17 23:00 UTC (session 139/Day 10)
 
 ## Current Phase
-**Day 10** — Shipped validate command (v0.56.0). Pruned Dev.to drafts. Filed Glama claim request. Tomorrow: article 064 publishes at 16:00 UTC (first article with new timing strategy).
+**Day 10** — Shipped web schema validator (5th web tool). Board: stop mentioning test counts. Article 064 auto-publishes tomorrow 16:00 UTC.
 
 ## Key Metrics
 | Metric | Current | Target | Deadline |
@@ -15,10 +15,21 @@
 | GitHub stars (agent-friend) | 0 | 20 | 2026-03-24 |
 | Revenue | $0 | $250/mo | - |
 | Dev.to articles | 13 published + 4 scheduled | - | - |
-| Tests | 2817 | - | - |
+| Web tools | 5 (validate, audit, convert, benchmark, hub) | - | - |
 | MCP directories | 4 (Glama live, mcpservers.org pending, PulseMCP pending, mcpserverfinder pending) | - | - |
 
-## Session 138 (2026-03-17 21:51–ongoing)
+## Session 139 (2026-03-17 22:35–ongoing)
+
+### Completed
+1. **MCP Schema Validator shipped** — `validate.html`, 5th web tool. 12 client-side checks for OpenAI/Anthropic/MCP/Google/JSON Schema. Strict mode, auto-format detection. Deployed to GitHub Pages, indexed via IndexNow. Targets "MCP schema validator" search intent.
+2. **Board directive: no test counts** — Purged test count mentions from README badge, articles 064/065/067, synced both repos. Rule: CI pass/fail only.
+3. **Cross-linked all 5 web tools** — Every page footer links to all others. Consistent navigation across validate, audit, convert, benchmark, tools hub.
+4. **Updated sitemap** — Added validate.html entry.
+5. **Twitch viewer response** — Replied to professeurwannabe about BitNet experience.
+6. **Article 064 prep** — Added validator link, removed test count, updated on Dev.to.
+7. **Competitive check** — Apify MCP Validator exists but validates running servers (runtime). Ours validates static schemas (build-time). Different tools, different intent.
+
+## Session 138 (2026-03-17 21:51–22:34)
 
 ### Completed
 1. **v0.56.0 shipped** — `agent-friend validate tools.json` command. 12 schema correctness checks, --strict/--json flags. 116 new tests (2817 total). Released on GitHub, Discussion #17.
@@ -74,12 +85,15 @@
 | Reddit/HN/X.com | Blocked | Blocked |
 
 ## Next Actions
-1. **March 18 16:00 UTC**: Article 064 auto-publishes. Post 4 Bluesky drafts afterward (16:30-20:00 UTC).
+1. **March 18 16:00 UTC**: Article 064 auto-publishes. Post 4 Bluesky drafts afterward (16:30-20:00 UTC). Include validator announcement.
 2. **March 18**: Reply to 4 Bluesky conversations (daniel-davia, onyx-kraken + 2 others). STRICT 4-reply limit.
 3. **Check punkpeye** on Glama installability.
 4. **Check mcpservers.org** (March 19).
-5. **Board items still pending**: MCP Registry auth + awesome-mcp-servers PR + Google Search Console.
-6. **Strategic**: Need board help with MCP Official Discord (11,658 members) and Dev.to community engagement (can't comment/follow via API or browser without login).
+5. **Board items still pending**: MCP Registry auth + awesome-mcp-servers PR + Google Search Console + Glama claim.
+6. **Strategic**: Need board help with MCP Official Discord (11,658 members).
 
 ---
 **[2026-03-17T21:51:11+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-17T22:34:12+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
