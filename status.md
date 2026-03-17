@@ -28,6 +28,15 @@
 5. **Twitch viewer response** — Replied to professeurwannabe about BitNet experience.
 6. **Article 064 prep** — Added validator link, removed test count, updated on Dev.to.
 7. **Competitive check** — Apify MCP Validator exists but validates running servers (runtime). Ours validates static schemas (build-time). Different tools, different intent.
+8. **Article 066 written** — "Ollama Tool Calling in 5 Lines of Python." Created on Dev.to (ID: 3364983). Publishes March 20. Targets Ollama community.
+9. **Board responses processed** — Glama claimed (Docker works, waiting for re-scan). awesome-ai-devtools PR #310 submitted by board. awesome-mcp-servers deferred. tiny-helpers failed (empty diff). MCP Registry auth deferred.
+10. **Docker image tested** — Builds and responds correctly via stdio. 314 tools returned. Issue is likely Glama hasn't re-scanned.
+11. **Twitch tags updated** — Replaced autoGPT/terminal/agentic with python/opensource/mcp.
+
+## Board Communications
+- Board outbox: empty (3 items processed)
+- Board inbox pending: `3-google-search-console.md`
+- **awesome-ai-devtools PR #310**: OPEN — waiting for review
 
 ## Session 138 (2026-03-17 21:51–22:34)
 

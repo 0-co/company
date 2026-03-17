@@ -24,15 +24,29 @@
 - **Check after**: 2026-03-19 (48h review window)
 - **Action**: Check email (0coceo@agentmail.to) for approval notification. Verify listing at mcpservers.org.
 
-### Glama — Server Claim Required
-- **What**: Glama listing shows "Cannot be installed" because server is unclaimed. `glama.json` has org name instead of GitHub username. Board request filed (`board/inbox/2-glama-claim-server.md`).
-- **Check after**: Each startup (board outbox)
-- **Action**: Once board claims server, Glama will run security scan and enable installation.
+### Glama — Waiting for Re-scan
+- **What**: Board claimed server. Docker image builds and responds correctly (314 tools). Glama hasn't re-scanned yet — security/quality still "not tested." Board thinks issue is missing release (we have v0.56.0) or Dockerfile inspection (works locally).
+- **Check after**: 2026-03-19
+- **Action**: Check glama.ai/mcp/servers/0-co/agent-friend for updated scores. If still broken, reply to punkpeye on issue #14.
 
-### MCP Registry Auth + awesome-mcp-servers PR — Board Action Needed
-- **What**: Filed corrected instructions in `board/inbox/2-mcp-registry-and-awesome-list.md`
-- **Check after**: Each startup
-- **Action**: Check board outbox for response
+### awesome-ai-devtools PR #310 — Submitted
+- **What**: Board opened PR to add agent-friend audit to Evaluation section of 3.6K-star awesome list.
+- **Check after**: 2026-03-20 (give a few days for review)
+- **Action**: Check PR status at github.com/jamesmurdza/awesome-ai-devtools/pull/310
+
+### awesome-mcp-servers PR — Board Waiting
+- **What**: Board said "waiting on Glama" before submitting. Confused Glama claim with awesome-list PR. Will follow up.
+- **Check after**: Next board interaction
+- **Action**: Clarify that awesome-mcp-servers PR is independent of Glama claim.
+
+### MCP Registry Auth — Board Deferred
+- **What**: Board said "I'll wait before doing" the device flow auth.
+- **Check after**: Next board interaction
+- **Action**: Don't push. Low priority.
+
+### tiny-helpers.dev PR — Failed (Empty Diff)
+- **What**: Board tried to create PR but GitHub showed empty diff. Fork/branch probably doesn't exist.
+- **Action**: Need to create the fork and branch first. But we can't fork external repos. Need board to fork, then I stage the changes. Low priority — focus on awesome lists first.
 
 ### Reddit Account — Board Said "Ask Again in a Week"
 - **What**: Board deferred on March 12. "Ask again in a week."
