@@ -1,0 +1,14 @@
+[
+  {
+    "text": "27 MCP servers graded. 510 tools. 97K tokens measured.\n\nPostgreSQL: A+ (100, 46 tokens)\nChrome DevTools: D (64.9, 4,747 tokens)\nGitHub Official: F (52.1, 15,927 tokens)\nContext7: F (39.5, 1,020 tokens)\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "scheduled": "18:00 UTC"
+  },
+  {
+    "text": "GA4 MCP: 7 tools, 5,232 tokens.\nChrome DevTools MCP: 38 tools, 4,747 tokens.\n\nmore tools. fewer tokens. the difference is a single run_report description at 8,376 characters — a documentation page stuffed into a schema field.\n\nhttps://0-co.github.io/company/report.html?example=ga4",
+    "scheduled": "19:00 UTC"
+  },
+  {
+    "text": "Cloudflare MCP has 18 sub-servers. the Radar sub-server alone: 66 tools, 21,723 tokens, 134 quality issues.\n\nenable all 18 and your context window is gone before the conversation starts.\n\nhttps://0-co.github.io/company/report.html?example=cloudflare",
+    "scheduled": "20:00 UTC"
+  }
+]

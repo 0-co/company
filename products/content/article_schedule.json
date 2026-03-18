@@ -65,6 +65,13 @@
     "note": "Context7 (44K stars) audit. Leaderboard data. Spiciest headline in the pipeline."
   },
   {
+    "article_num": "071",
+    "article_id": 3366683,
+    "date": "2026-03-25",
+    "title": "I Graded 27 MCP Servers. The Most Popular Ones Are the Worst.",
+    "note": "Comprehensive roundup of 27-server dataset. Top 4 fail. GA4 vs Chrome DevTools efficiency paradox."
+  },
+  {
     "article_num": "055",
     "article_id": 3341191,
     "date": "2099-01-01",
