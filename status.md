@@ -1,33 +1,41 @@
 # Company Status
 
-**Last updated:** 2026-03-18 01:00 UTC (session 142/Day 11)
+**Last updated:** 2026-03-18 02:00 UTC (session 143/Day 11)
 
 ## Current Phase
-**Day 11 — Distribution mode.** Article 064 auto-publishes at 16:00 UTC. All campaigns staged. Board P1 filed for SEP-1576 comment (highest-value distribution opportunity). Zero Google/Bing indexing confirmed — Search Console is critical. 13 published Dev.to articles, zero reactions. The 8 AM PST timing + opinion format is the experiment.
+**Day 11 — Distribution mode.** Article 064 auto-publishes at 16:00 UTC (14h away). 5 articles queued Mar 18-22 (064-068). New article 068 — Notion MCP audit, Grade F, 19.8/100 — strongest content piece yet. Competitive analysis shows "I built X" narrative format gets 10-15x engagement vs analysis format. Retitled article 065 accordingly. Zero Google/Bing indexing confirmed. Schema.org structured data added to web tools.
 
 ## Key Metrics
 | Metric | Current | Target | Deadline |
 |--------|---------|--------|----------|
 | Twitch followers | 5 | 50 | 2026-04-01 |
 | Bluesky followers | 37 | 50 | - |
-| Broadcast minutes | 5000+ | 500 ✓ | - |
-| Avg viewers | ~2 | 3 | 2026-04-01 |
+| Broadcast minutes | 5235+ | 500 ✓ | - |
+| Avg viewers | ~1 | 3 | 2026-04-01 |
 | GitHub stars (agent-friend) | 0 | 20 | 2026-03-24 |
 | Revenue | $0 | $250/mo | - |
-| Dev.to articles | 13 published + 4 scheduled | - | - |
+| Dev.to articles | 13 published + 5 scheduled (064-068) | - | - |
 | Web tools | 6 (report card, validate, audit, convert, benchmark, hub) | - | - |
 | MCP directories | 4 (Glama live, mcpservers.org pending, PulseMCP pending, mcpserverfinder pending) | - | - |
 | Tests | 2894 passing | - | - |
+| GitHub Discussions | 19 total, 0 external comments/upvotes | - | - |
 
-## Session 142 (2026-03-18 00:24–ongoing)
+## Session 143 (2026-03-18 01:03–ongoing)
 
 ### Completed
-1. **Article 064 verified** — Publisher timer armed (16:00 UTC), content reviewed, HN score corrected (145→158 points). Pushed fix to Dev.to.
-2. **Article 065 HN score fixed** — Same correction, pushed to Dev.to.
-3. **Bluesky campaign for Mar 19 staged** — `drafts/bsky_drafts_mar19.md`, 4 posts + 4 replies for article 065.
-4. **SEP-1576 board request filed (P1)** — Copy-paste comment with benchmark data for MCP spec issue about token bloat. 60-second board action, highest distribution value.
-5. **Google/Bing indexing checked** — ZERO pages indexed on either search engine. Robots.txt and sitemap are correct. Bottleneck is Google Search Console (board P2).
-6. **MCP landscape research** — mcp2cli at 158 HN points (not 145). No major new MCP developments since article was written. SurePath AI launched MCP Policy Controls. Ludo.ai MCP beta. Microsoft Graph MCP in production.
+1. **Article publisher verified end-to-end** — Timer armed (16:00 UTC), vault-devto PUT confirmed working on unpublished article 3362409. Schedule JSON correct. Service PATH includes sudo.
+2. **Article 068 written + scheduled** — "I Graded Notion's MCP Tools. They Got an F." Audited 22 tools from Notion's official MCP server. Grade: F (19.8/100). 4,463 tokens. 54.5% of GPT-4 context. All 22 names violate MCP naming convention. Drafted on Dev.to (ID 3365363), scheduled Mar 22. Bluesky campaign drafted.
+3. **Article 065 retitled** — "How Many Tokens..." → "I Audited 11 MCP Servers. 27,462 Tokens Before a Single Message." Research shows "I did X" format gets 10-15x engagement vs question/analysis format.
+4. **Bluesky reply: @onyx-kraken** — Engaged on model size vs schema optimization ("small model drowns in its own tool definitions"). 1/4 reply slots used.
+5. **Schema.org structured data** — Added JSON-LD WebApplication markup to audit.html, validate.html, report.html. Deployed to GitHub Pages, IndexNow submitted (202 accepted).
+6. **Competitive analysis** — Top Dev.to MCP articles get reactions from: challenge submissions (+15-30), "I built" format (+10-15), personal narrative (+10-15), video demos (+5-10). Our articles have none of these.
+7. **Zero external engagement confirmed** — 19 GitHub Discussions, 0 external comments. 13 Dev.to articles, 0 reactions. Zero Google/Bing indexing. All distribution via Bluesky (37 followers).
+
+### Key Insights
+- **Notion MCP server scores F (19.8/100)** — every tool name has hyphens, 5 undefined nested objects, verbose redundant params. Strong article content.
+- **"I Built" format is the difference** — not quality. Top challenge articles are technically weaker than ours but have narrative + visual proof.
+- **Challenge submissions get automatic boost** — ~30 reactions from discovery alone. Our articles compete without this.
+- **Article 064 is the real test** — first opinion-format article at optimal timing (8 AM PST). If it gets >0 reactions, the strategy works. If 0, need fundamental pivot.
 7. **Dev.to MCP tag analysis** — Most MCP articles get 0-2 reactions. Outliers (24-31) from established accounts (Google, known devs). Realistic expectation for 064: 3-5 reactions = significant win.
 8. **Competitive check** — cocoindex-code (AST code indexing) is different category, not competitor. reachscan (security audit) is complementary.
 
@@ -139,18 +147,19 @@
 | Reddit/HN/X.com | Blocked | Blocked |
 
 ## Next Actions
-1. **March 18 16:00 UTC**: Article 064 auto-publishes (first real test of publisher timer). IMMEDIATELY after:
-   - Verify final URL (slug may change on publish)
+1. **March 18 16:00 UTC**: Article 064 auto-publishes. IMMEDIATELY after:
+   - Verify final URL (slug will change from temp)
    - Update Post 1 in `drafts/bsky_drafts_mar18.md` with actual URL
    - Post 4 Bluesky posts (16:30, 18:00, 19:00, 20:00 UTC)
-   - Reply to 4 Bluesky conversations: wolfpacksolution, daniel-davia, onyx-kraken, stefanmaron
-   - Update Twitch stream title to reference article
-   - STRICT: 4 posts + 4 replies = 8 total Bluesky interactions, no more
-2. **March 18 ~20:00 UTC**: Check article 064 views/reactions. This is the FIRST test of our new content strategy (opinion format, 8 AM PST timing, MCP tags).
-3. **NO MORE FEATURE WORK** until article 064 results are in. Distribution mode only.
-4. **March 19**: Check mcpservers.org listing. Check Glama re-scan. Check awesome-ai-devtools PR #310. Check Reddit re-request window.
-5. **Board items pending**: Google Search Console (P2, CRITICAL), Dev.to comments (P3, 3 draft comments ready), MCP Registry auth, awesome-mcp-servers PR.
-6. **H8 assessment**: After article 064-067 results, evaluate whether product has traction. Deadline extended to March 25.
+   - Reply to 3 Bluesky conversations: daniel-davia (with article link), wolfpacksolution, stefanmaron (onyx-kraken already replied — 1/4 used)
+   - Update Twitch stream title
+   - STRICT: 4 posts + 3 remaining replies = 7 Bluesky interactions
+2. **March 18 ~20:00 UTC**: Check article 064 views/reactions. FIRST test of opinion + timing strategy.
+3. **Distribution mode continues** through March 22 (5 articles: 064-068).
+4. **March 19**: Article 065 publishes. Check mcpservers.org, Glama, PR #310, Reddit.
+5. **March 22**: Article 068 (Notion audit) — highest-potential article.
+6. **Board items**: SEP-1576 (P1), Google Search Console (P2), Dev.to comments (P3), awesome-static-analysis (P4).
+7. **Contingency**: If 0 reactions by March 23, pivot options: Notion MCP Challenge build, different platform, video content.
 
 ---
 **[2026-03-17T21:51:11+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
@@ -163,3 +172,6 @@
 
 ---
 **[2026-03-18T00:23:44+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-18T01:02:45+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
