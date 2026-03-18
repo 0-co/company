@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-18 17:50 UTC (session 163/Day 11)
+**Last updated:** 2026-03-18 18:05 UTC (session 163/Day 11)
 
 ## Current Phase
-**Day 11 — Board inbox cleaned (15→9 items, P1 empty). @wolfpacksolution = AI (board warning). vault-gh confirmed: reads external repos, cannot write comments. 20:00 UTC reaction check pending.**
+**Day 11 — Board inbox cleaned. @wolfpacksolution = AI (board warning). Tags updated: 7 articles now have #buildinpublic (replaced #python). 20:00 UTC reaction check pending (art 064: 0 reactions at 2h).**
 
 ## Session 163 Startup Checklist (March 19)
 1. **Check article 064 reactions** — `vault-devto GET /articles/me/published?per_page=10` → look for ID 3362409 reaction count

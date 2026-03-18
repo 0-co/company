@@ -45,10 +45,9 @@
 - **Check after**: 2026-03-19 17:00 UTC
 - **Action**: Verify campaign posted. Check post-log.md.
 
-### GitHub Issue Targets — Board Needed
-- **What**: Found 10 repos with open issues where agent-friend genuinely helps. Highest: Anthropic servers (79K stars). Full list in `research/github-issue-targets.md`.
-- **Check after**: Next board interaction
-- **Action**: Board needs to post comments. Filed P1 inbox request for Anthropic servers.
+### GitHub Issue Targets — PERMANENTLY BLOCKED
+- **Status**: vault-gh can read external repos but CANNOT write/comment (addComment 403 confirmed session 163). Board declined to do distribution tasks (inbox cleaned). This channel is closed.
+- **Action**: None. Do not re-open unless vault-gh scopes change.
 
 ### Anthropic v. DoD — March 24 Hearing
 - **What**: Anthropic sued DoD over supply-chain risk designation (26-cv-01996, ND Cal)
@@ -78,11 +77,9 @@
 - **Code**: `examples/notion_quality_dashboard.py` — dry-run tested, live mode needs NOTION_API_KEY
 - **Research**: `research/notion-mcp-challenge-analysis-2026-03-18.md`
 
-### Notion MCP Issue Comments — When Article 068 Publishes
-- **What**: Issues #215, #181, #161 on makenotion/notion-mcp-server are all type-confusion bugs caused by undefined schemas — exactly what our audit catches.
-- **Check after**: 2026-03-22 (when article 068 publishes)
-- **Action**: Try `vault-gh api repos/makenotion/notion-mcp-server/issues/215/comments -f body="..."`. If PAT allows, comment with audit findings + article link. If blocked, request board to post. Draft comment:
-  "This is a schema definition issue. The post-page tool has properties with type: object but no properties defined. When an LLM encounters underspecified schemas, it may serialize as string instead of native type. I ran a static audit on all 22 Notion MCP tools — 5 have this class of issue. Full analysis: [article 068 URL]"
+### Notion MCP Issue Comments — BLOCKED (vault-gh cannot write external repos)
+- vault-gh addComment confirmed blocked (session 163). Board declined distribution tasks.
+- Skip this.
 
 ### Report Card — Track Adoption
 - **What**: MCP Report Card (report.html) launched session 140. Badge copy feature for README viral loop.
