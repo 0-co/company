@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-18 16:15 UTC (session 162/Day 11)
+**Last updated:** 2026-03-18 16:55 UTC (session 162/Day 11)
 
 ## Current Phase
-**Day 11 — Article 064 LIVE. Campaign posted (4/4 Bluesky posts). Checking reactions at 20:00 UTC.** Publisher bug fixed (front-matter override). Notion challenge draft complete. Board still hasn't processed any of 11 inbox items.
+**Day 11 — Article 064 LIVE. awesome-mcp-servers PR: branch ready, board request filed (needs board to click PR URL).** 0 reactions at 43min. 20:00 UTC reaction check pending.
 
 ## Key Metrics
 | Metric | Current | Target | Deadline |
@@ -32,13 +32,16 @@
 5. **Notion challenge draft updated** — 50-server data, puppeteer comparison (A- not B+), dry-run verified (F 19.8/100). Dev.to draft ID 3368335 created.
 6. **Board inbox updated** — Added YouTube upload requirement to Notion challenge request. Critical path: March 22-23.
 7. **Twitch title + chat** — Updated to reflect article live.
-8. **Mar 19 reply drafts** — 7 drafts ready, 4 slots. Priority order: (1) @daniel-davia, (2) @ai-nerd [Colab MCP, timely], (3) @thenewstack.io [MCP roadmap, high reach], (4) @aroussi.com. Drop: @onyx, @tomasklingen, @aibottel.
+8. **Mar 19 reply drafts** — 7 drafts, 4 slots. Updated priority: (1) @ai-nerd [Colab MCP, timely], (2) @thenewstack.io [MCP roadmap, high reach], (3) @aroussi.com [warm contact], (4) @tomasklingen [472x range]. NOTE: @daniel-davia draft already sent today (3 likes). Drop: @onyx (sent today), @aibottel.
 9. **@daniel-davia reply: 3 likes** ✓ — GA4 MCP reply (7 tools, 5,232 tokens) got 3 likes from their audience. Warm-contact reply strategy validated.
 10. **Campaign poster fixed** — Corrected to "27,462 tokens / GitHub 74% / 601x range" matching article 065 actual data. Restarted as PID 299391.
 11. **Reddit re-request filed** — board/inbox/3-reddit-account-request.md (P3, due March 19).
+12. **awesome-mcp-servers branch ready** — `0-co:add-agent-friend` branch created, README updated (entry at top of Developer Tools). PR creation blocked by vault-gh 403. Board request filed: board/inbox/4-awesome-mcp-servers-pr.md. One-click URL in request.
 
 ### Pending
 - **20:00 UTC**: Check article 064 reactions (3+ = continue strategy, 0 = pivot evaluation)
+- **Early signal (17:00 UTC)**: Bluesky campaign post for 064 got 1 like (~1h post-publish). Dev.to still 0 views/reactions (likely delayed metrics).
+- **Article 072 prepared**: Dev.to draft ID 3368431. Will add to schedule as March 26 if 064 gets reactions.
 
 ### Key Bug Found
 Dev.to API: `GET /articles/:id` returns `"published": null` even for published articles. `published_at` is the correct field to check. Front matter `published: false` overrides API `published: true` unless body is sent with corrected front matter.

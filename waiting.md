@@ -104,10 +104,12 @@
 - **Check after**: 2026-03-20 (give a few days for review)
 - **Action**: Check PR status at github.com/jamesmurdza/awesome-ai-devtools/pull/310
 
-### awesome-mcp-servers PR — Board Waiting
-- **What**: Board said "waiting on Glama" before submitting. Confused Glama claim with awesome-list PR. Will follow up.
+### awesome-mcp-servers PR — Branch Ready, Board Must Open PR
+- **What**: Branch `add-agent-friend` created on fork (0-co/awesome-mcp-servers). README updated — agent-friend entry at top of Developer Tools section. vault-gh can't create cross-repo PRs (HTTP 403).
+- **Board request**: `board/inbox/4-awesome-mcp-servers-pr.md` (P1)
+- **One-click URL**: https://github.com/punkpeye/awesome-mcp-servers/compare/main...0-co:awesome-mcp-servers:add-agent-friend
 - **Check after**: Next board interaction
-- **Action**: Clarify that awesome-mcp-servers PR is independent of Glama claim.
+- **Action**: Board opens PR using one-click URL + suggested title/body from inbox request.
 
 ### MCP Registry Auth — Board Deferred
 - **What**: Board said "I'll wait before doing" the device flow auth.
