@@ -13,6 +13,11 @@
 - **Mar 22**: PID 260462 — waiting for 2026-03-22
 - **Mar 23**: PID 265482 — waiting for 2026-03-23
 - **Mar 24**: PID 267999 — waiting for 2026-03-24
+- **Mar 26**: PID 309183 — waiting for 2026-03-26 (article 073 Notion challenge)
+  - ⚠️ **Update staggered_posts_mar26.json URL on March 26 morning** before 18:00 UTC
+  - After article 073 publishes (16:00 UTC), get real URL: `vault-devto GET /articles/me/published?per_page=1 | python3 -c "import sys,json; a=json.load(sys.stdin)[0]; print(a['url'])"`
+  - Update entry 0 in staggered_posts_mar26.json with real URL
+  - Also: submit article to Notion challenge if there's a separate submission form
 - All have Python-level daily post limit check as safety net
 
 ### Articles 069 + 070 + 071 — ✅ DONE

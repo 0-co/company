@@ -1,28 +1,47 @@
 # Company Status
 
-**Last updated:** 2026-03-18 18:28 UTC (session 164/Day 11)
+**Last updated:** 2026-03-18 18:52 UTC (session 165/Day 11)
 
 ## Current Phase
-**Day 11 — Board responded: PRs declined, vault-notion LIVE. Notion challenge: database created + 29 entries populated. Article 3368335 draft updated. Waiting 20:00 UTC reaction check for art 064.**
+**Day 11 — Automation healthy, all campaigns running. Glama admin board item filed. Art 064 at 0 reactions (3 views, 2.5h post-publish). Waiting 20:00 UTC check.**
 
 ## 20:00 UTC Reaction Check (PENDING)
 - Run: `vault-devto GET /articles/me/published?per_page=3 | python3 -c "import sys,json; a=json.load(sys.stdin)[0]; print(a['positive_reactions_count'], a['page_views_count'])"`
-- **If reactions > 0**: Add article 072 to `products/content/article_schedule.json` for March 26. Entry: `{"article_num":"072","article_id":3368431,"date":"2026-03-26","title":"OWASP Published an MCP Top 10. They Missed the Biggest Risk.","note":"OWASP gap piece."}`
+- **If reactions > 0**: Add article 072 to `products/content/article_schedule.json` for March 27 (March 26 = article 073 Notion challenge). Entry: `{"article_num":"072","article_id":3368431,"date":"2026-03-27","title":"OWASP Published an MCP Top 10. They Missed the Biggest Risk.","note":"OWASP gap piece."}`
 - **If reactions = 0**: Continue pipeline (don't panic — tag change needs 24-48h to surface). Note in decisions.md.
 
-## Session 164 Startup Checklist (March 19)
-1. **Check article 064 reactions** — `vault-devto GET /articles/me/published?per_page=10` → look for ID 3362409 reaction count
-2. **If reactions > 0**: Add article 072 (ID 3368431) to `article_schedule.json` for March 26
-3. **Check SEP-1576 thread** — any replies after kira-autonoma's comment?
-4. **Check Glama** — still "not tested"? If re-scanned, note score
-5. **Check article 065 campaign** — fires at 16:05 UTC Mar 19. Check `/tmp/campaign-065.log`
-6. **Post 4 Bluesky replies** (FINAL priority): (1)@daniel-davia [new safe-mcp.com thread — `bsky_reply_mar19_daniel_davia_2.md`], (2)@ai-nerd Colab MCP [timely], (3)@joozio [context drift question — CIDs ready], (4)@aroussi.com warm contact
-7. **Feature freeze ends**: 16:10 UTC March 19 — can resume work
-8. **Notion challenge**: After freeze, build final submission, submit by March 25
+## Startup Checklist (March 19)
+1. **Check article 064 reactions** — `vault-devto GET /articles/me/published?per_page=10` → look for ID 3362409 count. Check art 065 (publishes 16:00 today).
+2. **If art 064 reactions > 0**: Add art 072 (ID 3368431) to `article_schedule.json` for March 27 (not 26 — taken by 073)
+3. **Check art 065 campaign** — should fire at 16:05 UTC Mar 19 via PID 299391. Check `/tmp/campaign-065.log`.
+4. **Check Glama** — board should have processed `3-glama-dockerfile-deploy.md`. If not, board outbox pending.
+5. **Post 4 Bluesky replies** (FINAL priority order):
+   1. @daniel-davia [new safe-mcp.com thread — `drafts/bsky_reply_mar19_daniel_davia_2.md`]
+   2. @ai-nerd Colab MCP [timely — `drafts/bsky_reply_mar19_ainerd_colab.md`]
+   3. @joozio [context drift — `drafts/bsky_reply_mar19_joozio.md`]
+   4. @aroussi.com [warm contact — `drafts/bsky_reply_mar19_aroussi.md`]
+6. **Feature freeze ends**: 16:10 UTC March 19 — can resume product work
+7. **Post-freeze options**: Check if there's high-EV work. Twitch followers at 5/50 is the weakest metric.
 
 ---
 
-## Session 164 (2026-03-18 18:12–ongoing)
+## Session 165 (2026-03-18 18:30–ongoing)
+
+### Completed
+1. **State review** — All 9 staggered campaign PIDs healthy, article publisher timer triggers 16:00 UTC Mar 19. Board outbox empty. Chat queue empty.
+2. **Art 064 check** (18:30 UTC): 0 reactions, 3 views. Expected at 2.5h — real check at 20:00 UTC.
+3. **SEP-1576**: No new replies. kira-autonoma's comment (Mar 18 13:17 UTC) is still last. 0 reactions on ours.
+4. **Glama**: Still "not tested / cannot be installed". Root cause found: needs Dockerfile admin deploy step.
+5. **Board item filed**: `3-glama-dockerfile-deploy.md` (P3) — board needs to click Deploy on Dockerfile admin page.
+6. **server.json updated**: 0.56.0 → 0.62.0, description updated. Pushed to agent-friend repo.
+7. **Art 072 date fixed**: "March 26" (collision with 073) → "March 27" in status.md startup checklist.
+8. **staggered_posts_mar26.json**: URL updated to full temp slug. Waiting.md note added for March 26 URL update + challenge submission.
+9. **Notion challenge article (ID 3368335)**: Verified clean, no TODOs, tags set, body has real terminal output.
+
+### PENDING
+- **20:00 UTC**: Art 064 reactions check. If > 0 → add art 072 to schedule for March 27.
+
+## Session 164 (2026-03-18 18:12–18:30)
 
 ### Completed
 1. **Board responses processed** — 2 outbox items: (1) PRs declined (all PR inbox items deleted), (2) vault-notion LIVE + no YouTube needed
@@ -33,14 +52,11 @@
 6. **29 tool entries populated**: 22 Notion MCP tools + 7 Puppeteer tools. Live in Notion workspace.
 7. **Article 3368335 draft updated**: Replaced YouTube TODO with real terminal output, added #notionchallenge tag. Tags: `devchallenge, notionchallenge, mcp, ai`
 8. **Dry-run verified**: `notion_quality_dashboard.py` produces exact output described in article. ✓
-9. **Art 064 early check** (18:12 UTC): 0 reactions, 3 views — not a verdict, tag change needs 24-48h
-10. **Art 064 second check** (18:45 UTC): still 0 reactions, 3 views — not a verdict, no action
-11. **Article 073 scheduled**: Notion challenge submission (ID 3368335) → March 26. Staggered_posts_mar26.json created. PID 309183 launched.
-12. **PENDING 20:00 UTC check**: Art 064 reactions. Command: `vault-devto GET /articles/me/published?per_page=3 | python3 -c "import sys,json; a=json.load(sys.stdin)[0]; print(a['positive_reactions_count'], a['page_views_count'])"`
+9. **Article 073 scheduled**: Notion challenge submission (ID 3368335) → March 26. Staggered_posts_mar26.json created. PID 309183 launched.
 
 ## Session 163 Startup Checklist (March 19)
 1. **Check article 064 reactions** — `vault-devto GET /articles/me/published?per_page=10` → look for ID 3362409 reaction count
-2. **If reactions > 0**: Add article 072 (ID 3368431) to `article_schedule.json` for March 26
+2. **If reactions > 0**: Add article 072 (ID 3368431) to `article_schedule.json` for March 27 (not 26 — taken by 073)
 3. **Check SEP-1576 thread** — any replies after kira-autonoma's comment?
 4. **Check Glama** — still "not tested"? If re-scanned, note score
 5. **Check article 065 campaign** — should fire at 16:05 UTC Mar 19. Check `/tmp/campaign-065.log`
@@ -329,3 +345,6 @@ Building features for zero users. Product is ahead of audience by a mile. Distri
 
 ---
 **[2026-03-18T17:40:18+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-18T18:29:49+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
