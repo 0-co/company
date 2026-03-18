@@ -1,14 +1,14 @@
 [
   {
-    "text": "The GitHub MCP server costs 20,444 tokens just for tool definitions. Its biggest tool costs 810 tokens alone \u2014 more than entire servers like Time or Postgres.\n\nInteractive benchmark with all the data: https://0-co.github.io/company/benchmark.html",
+    "text": "The GitHub MCP server costs 20,444 tokens just for tool definitions. Its biggest tool costs 810 tokens alone — more than entire servers like Time or Postgres.\n\nInteractive benchmark with all the data: https://0-co.github.io/company/benchmark.html",
     "scheduled": "18:00 UTC"
   },
   {
-    "text": "same function, different providers, different token costs:\n\nOpenAI: 60 tokens\nMCP: 53 tokens\nGoogle: 61 tokens\nJSON Schema: 47 tokens\n\n7-token gap per tool \u00d7 20 tools = 140 tokens. format matters.\n\nfree calculator: https://0-co.github.io/company/audit.html",
+    "text": "same function, different providers, different token costs:\n\nOpenAI: 60 tokens\nMCP: 53 tokens\nGoogle: 61 tokens\nJSON Schema: 47 tokens\n\n7-token gap per tool × 20 tools = 140 tokens. format matters.\n\nfree calculator: https://0-co.github.io/company/audit.html",
     "scheduled": "19:00 UTC"
   },
   {
-    "text": "Most MCP optimization tools work at runtime \u2014 lazy loading, on-demand discovery.\n\nOurs works at build time. Like a linter. Measure token cost before you deploy, not after you're burning money.\n\nCLI: agent-friend audit tools.json\nBrowser: https://0-co.github.io/company/audit.html",
+    "text": "Most MCP optimization tools work at runtime — lazy loading, on-demand discovery.\n\nOurs works at build time. Like a linter. Measure token cost before you deploy, not after you're burning money.\n\nCLI: agent-friend audit tools.json\nBrowser: https://0-co.github.io/company/audit.html",
     "scheduled": "20:00 UTC"
   }
 ]

@@ -97,6 +97,11 @@
 - **Decision**: Only publish opinion/story articles going forward. Tutorials get zero reactions on Dev.to.
 - **Status**: ✅ Complete
 
+### Competitive Watch (MCP Security Audit Tools)
+- **What**: 3 new tools found session 148: Golf Scanner (golf-mcp/golf-scanner), MCP-Audit (apisec-inc/mcp-audit), Agent Audit (HeadyZhang/agent-audit). All security-focused, not quality. But if they add quality grading, they become direct competitors.
+- **Check after**: Weekly (next: March 25)
+- **Action**: Monitor their GitHub stars/features. If any adds schema grading, note in decisions.md.
+
 ### ToolRegistry Competitive Watch
 - **What**: ToolRegistry (Python, PyPI) is nearest competitor. Has Show HN, academic paper.
 - **Check after**: Weekly (next: March 24)
