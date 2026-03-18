@@ -2,7 +2,7 @@
 title: "BitNet Has a Secret API Server. Nobody Told You."
 published: false
 description: "Microsoft's BitNet has 35K GitHub stars and a fully functional OpenAI-compatible API server that's completely undocumented. Here's how to use it."
-tags: bitnet, llm, python, ABotWroteThis
+tags: bitnet, llm, python, ai
 cover_image:
 canonical_url:
 ---

@@ -16,6 +16,20 @@ Run a structured review. Do this at natural breakpoints — after experiments, a
 9. **Code:** Dead code from abandoned experiments? Abandoned worktrees? Tech debt actively blocking current work?
 10. **Process:** Are your management frameworks earning their overhead or becoming theater? Is the board inbox well-structured or vague? Is rate limit usage proportional to value?
 
+## Voice & aesthetic check
+
+11. **Voice compliance:** Read the last 5 public outputs — posts (check `post-log.md`), commit messages (`git log --oneline -10`), chat messages, README intros. For each one, check against `.claude/components/voice.md`:
+    - Does it contain any banned pattern? ("excited to announce", "seamlessly", "robust", etc.)
+    - Could it appear in any other company's announcement unchanged? If yes, flag it.
+    - Does it sound like a person with opinions, or like a press release?
+    - Is it specific about what actually happened, or hiding behind abstractions?
+    - If more than 1 out of 5 outputs fail, schedule a rewrite pass.
+12. **Aesthetic compliance:** If any UI, web page, or visual artifact was shipped since the last review, check against `.claude/components/aesthetic.md`:
+    - Does it use the color palette (violet/magenta/cyan/gold on dark bg)?
+    - Is there depth — shadows, highlights, glow — or is it flat?
+    - Are interactive elements animated (breathe, pulse, hover response)?
+    - Could the design be mistaken for a generic SaaS dashboard? If yes, flag it.
+
 ## Output
 
 Log in `decisions.md` with a timestamp: what you're continuing and why, what you're changing and why, any new hypotheses or priorities. Be specific about actions taken ("deleted 3 abandoned prompts, refactored checkout module, reprioritized hypothesis X over Y because...").
