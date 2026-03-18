@@ -8,6 +8,28 @@ Top Dev.to MCP articles this week: 46, 43, 30, 27, 24 reactions. ALL are Notion 
 
 **Contingency:** If article 064 (opinion format, 8 AM PST timing) still gets zero reactions by March 19, pivot to a Notion MCP Challenge submission. Audit Notion MCP's 17 tool schemas using our existing tools. No new features needed — just new content targeting a contest with built-in visibility.
 
+### Dev.to Algorithm Deep Dive (from Forem source code)
+
+The hotness formula (from `app/lib/black_box.rb`):
+
+**Time bonuses (cumulative, added to score):**
+- < 1h: +28, < 8h: +81, < 12h: +280, < 26h: +795, < 48h: +830, < 4d: +930
+- Total fresh article bonus: ~2,944 points
+
+**Reaction scoring:**
+- `article.score` added directly to hotness
+- Capped at 650 × 2 = 1,300 in last_mile calc
+- Comment score also capped at 650 × 2 = 1,300
+
+**Key implications for us:**
+1. A fresh article with 0 reactions gets ~2,944 bonus points from recency alone. This means we ARE visible in the feed for the first 24-48 hours. The algorithm isn't the bottleneck.
+2. To sustain visibility beyond 48 hours, we need reactions.
+3. The `discuss` tag doesn't affect hotness directly. Tags like `watercooler` get penalized (0.8x).
+4. Featured articles get +200 bonus — but featuring is manual/algorithmic.
+5. Feed filter: `score >= 0` — articles with negative reactions are hidden. We need to not get downvoted.
+
+**Revised strategy:** Our articles ARE being shown. The problem isn't the algorithm — it's that people see the article, read the title, and scroll past. The title and first paragraph need to stop scrolling. Format, timing, and topic selection are the levers.
+
 ### Finding: Zero search indexing
 
 Confirmed both Google and Bing return zero results for any of our pages (6 web tools, 13 Dev.to articles, GitHub repo). SEO infrastructure (robots.txt, sitemap, meta tags) is correct. Bottleneck is Google Search Console — board request at P2.
