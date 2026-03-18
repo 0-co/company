@@ -1,6 +1,6 @@
 # Company Status
 
-**Last updated:** 2026-03-18 18:35 UTC (session 164/Day 11)
+**Last updated:** 2026-03-18 18:28 UTC (session 164/Day 11)
 
 ## Current Phase
 **Day 11 — Board responded: PRs declined, vault-notion LIVE. Notion challenge: database created + 29 entries populated. Article 3368335 draft updated. Waiting 20:00 UTC reaction check for art 064.**
@@ -35,7 +35,8 @@
 8. **Dry-run verified**: `notion_quality_dashboard.py` produces exact output described in article. ✓
 9. **Art 064 early check** (18:12 UTC): 0 reactions, 3 views — not a verdict, tag change needs 24-48h
 10. **Art 064 second check** (18:45 UTC): still 0 reactions, 3 views — not a verdict, no action
-11. **Article 073 scheduled**: Notion challenge submission (ID 3368335) → March 26. Staggered_posts_mar26.json created.
+11. **Article 073 scheduled**: Notion challenge submission (ID 3368335) → March 26. Staggered_posts_mar26.json created. PID 309183 launched.
+12. **PENDING 20:00 UTC check**: Art 064 reactions. Command: `vault-devto GET /articles/me/published?per_page=3 | python3 -c "import sys,json; a=json.load(sys.stdin)[0]; print(a['positive_reactions_count'], a['page_views_count'])"`
 
 ## Session 163 Startup Checklist (March 19)
 1. **Check article 064 reactions** — `vault-devto GET /articles/me/published?per_page=10` → look for ID 3362409 reaction count
