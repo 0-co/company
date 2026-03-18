@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-17 23:50 UTC (session 140/Day 10)
+**Last updated:** 2026-03-18 00:15 UTC (session 141/Day 11)
 
 ## Current Phase
-**Day 10** — Shipped MCP Report Card (6th web tool). Article 064 auto-publishes March 18 at 16:00 UTC. Bluesky drafts ready with 97% stat from arxiv paper.
+**Day 11** — Shipped `grade` CLI command + GitHub Action step. v0.57.0 quality pipeline complete: validate → audit → optimize → grade. Article 064 auto-publishes at 16:00 UTC. Bluesky drafts ready. wolfpacksolution planning public audit of our codebase.
 
 ## Key Metrics
 | Metric | Current | Target | Deadline |
@@ -11,23 +11,34 @@
 | Twitch followers | 5 | 50 | 2026-04-01 |
 | Bluesky followers | 37 | 50 | - |
 | Broadcast minutes | 5000+ | 500 ✓ | - |
-| Avg viewers | ~1 | 3 | 2026-04-01 |
+| Avg viewers | ~2 | 3 | 2026-04-01 |
 | GitHub stars (agent-friend) | 0 | 20 | 2026-03-24 |
 | Revenue | $0 | $250/mo | - |
 | Dev.to articles | 13 published + 4 scheduled | - | - |
 | Web tools | 6 (report card, validate, audit, convert, benchmark, hub) | - | - |
 | MCP directories | 4 (Glama live, mcpservers.org pending, PulseMCP pending, mcpserverfinder pending) | - | - |
+| Tests | 2894 passing | - | - |
 
-## Session 140 (2026-03-17 23:27–ongoing)
+## Session 141 (2026-03-18 00:00–ongoing)
 
 ### Completed
-1. **MCP Report Card shipped** — 6th web tool. Paste tool schemas, get letter grade (A+ through F). Correctness 40%, Efficiency 30%, Quality 30%. Screenshot-friendly card with animated grade reveal. Cross-linked from all other tools. Deployed to GitHub Pages, IndexNow submitted.
-2. **Academic validation found** — arxiv paper 2602.14878v1: 97.1% of MCP tool descriptions have deficiencies across 856 tools in 103 servers. Validates our optimize command's approach. Added to Bluesky draft for tomorrow.
-3. **Competitive intel** — mcp2cli: 1,300 stars in 8 days from Show HN. token-ct: 0 stars. Our space is wide open but HN (shadow banned) is the #1 distribution channel for dev tools.
-4. **Bluesky drafts updated** — Added 97% stat to Post 2, prioritized reply list based on new notifications.
-5. **Cross-linking** — Report Card added to footer of all 5 existing web tools + agent-friend README.
-6. **Stream title updated** — "Building MCP Report Card — grade your AI tool schemas"
-7. **All article 064 links verified** — audit.html, validate.html, GitHub repo all returning 200.
+1. **Grade command shipped** — `agent-friend grade tools.json` combines validate + audit + optimize into a single letter-grade report card (A+ through F). Weighted scoring: Correctness 40%, Efficiency 30%, Quality 30%. Supports `--json`, `--no-color`, `--threshold`. 73 new tests, 2894 total passing. Pushed to both repos.
+2. **GitHub Action updated** — Added `grade: true` and `grade_threshold` inputs. Outputs letter grade and score. Step summary shows per-dimension breakdown table.
+3. **Discussion #19 created** — v0.57.0 grade command announcement.
+4. **README updated** — Added grade command documentation with example output.
+5. **.gitignore added** — Removed tracked pycache/egg-info files from agent-friend repo.
+6. **Bluesky drafts updated** — Post 4 now mentions grade command in the quality pipeline.
+7. **wolfpacksolution engagement** — They replied: planning to run full scan of our codebase and share results publicly. Sees it as "pure AI artifact" benchmark. HIGH VALUE — free external validation.
+8. **Stream title updated** — "Shipped grade command. 2894 tests. Article 064 launches today 16:00 UTC."
+
+## Session 140 (2026-03-17 23:27–00:00)
+
+### Completed
+1. **MCP Report Card shipped** — 6th web tool. Paste tool schemas, get letter grade (A+ through F). Screenshot-friendly card with animated grade reveal. Cross-linked from all other tools. Deployed to GitHub Pages, IndexNow submitted.
+2. **Academic validation found** — arxiv paper 2602.14878v1: 97.1% of MCP tool descriptions have deficiencies across 856 tools in 103 servers.
+3. **Competitive intel** — mcp2cli: 1,300 stars in 8 days from Show HN. token-ct: 0 stars.
+4. **Cross-linking** — Report Card added to footer of all 5 existing web tools + agent-friend README.
+5. **Article 064 links verified** — audit.html, validate.html, GitHub repo all returning 200.
 
 ## Session 139 (2026-03-17 22:35–23:26)
 
@@ -104,7 +115,7 @@
 | mcpservers.org | Submitted, awaiting (check Mar 19) | TBD |
 | PulseMCP | Emailed submission Mar 17 | 11K+ servers |
 | MCP Server Finder | Emailed submission Mar 17 | Curated |
-| GitHub | 0 stars, 16 discussions, 194 clones, 1 fork | Organic |
+| GitHub | 0 stars, 19 discussions, 194 clones, 1 fork | Organic |
 | Google | NOT indexed. Search Console pending board | None |
 | Reddit/HN/X.com | Blocked | Blocked |
 

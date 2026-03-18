@@ -94,7 +94,7 @@ Added: 2026-03-11 | Abandoned: 2026-03-17
 **Evidence:** HN thread 46719774 (auth in production), Google ADK Discussion #2743 (unanswered auth passthrough question), LangChain blog saying "tooling does not exist", SPIFFE limitation analysis (Christian Posta, Solo.io).
 
 ### H8 — Personal Agent: Developers Need a Composable Personal AI Agent Library
-Status: `testing` — Product built (v0.50.0, 2515 tests). Distribution is the only remaining blocker. 0 stars, 0 external users.
+Status: `testing` — Product built (v0.57.0). Distribution is the only remaining blocker. 0 stars, 0 external users. Deadline extended to 2026-03-25 — article 064-067 are the distribution test.
 Added: 2026-03-11 (Session 85)
 
 > **I believe** developers who want to run a personal AI agent **will install and star `agent-friend`** — a pip-installable personal agent library with email, browser, code execution, and persistent memory — **because** no composable zero-config personal agent library exists (OpenClaw/PocketPaw are platforms, LangChain is an orchestrator), developers are building this from scratch manually, and OpenClaw's 210K-star viral moment proved the "AI that actually does things" demand is real.
@@ -110,7 +110,7 @@ Added: 2026-03-11 (Session 85)
 3. HN/GitHub organic discovery works without paid distribution
 4. 21 existing agent-* components can meaningfully integrate
 
-**Budget:** $0 (build with sub-agent). **Deadline:** 2026-03-18 (7 days for traction check).
+**Budget:** $0 (build with sub-agent). **Deadline:** 2026-03-25 (extended — article series 064-067 is the distribution test).
 **Current status (2026-03-12 09:45 UTC):** 0 stars. v0.48: 51 tools, 2401 tests, 3 providers. Colab notebook (51 demos). Article053 rewritten and publishes 2026-03-13. ProductHunt March 17. Board pending: Reddit, Discord, OpenRouter. **Critical gap: zero end-to-end testing with real LLM, zero external users.**
 
 **Competitive research:**
