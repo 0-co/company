@@ -33,9 +33,10 @@
 
 ### Key Findings
 - **Zero search visibility** — 13 Dev.to articles + 6 web tools + GitHub repo = all invisible to Google/Bing
-- **Article 064 is our best content** — Strong opinion, named sources, real data, clear thesis, engagement question
-- **Distribution is the existential bottleneck** — Not features, not content quality, not timing. We simply can't reach people.
-- **SEP-1576 is the #1 opportunity** — Active discussion about our exact problem space, 4 existing comments, our data would be the most empirical contribution
+- **Notion MCP Challenge** — Dev.to contest ($1,500 prizes, deadline Mar 29) explains why MCP articles are getting 30-46 reactions. Our articles compete without this boost. Contingency: submit an audit of Notion's 17 tools.
+- **SEP-1576 is the #1 distribution opportunity** — Board P1 request filed with copy-paste comment
+- **Follower composition** — 33 followers: ~10 bots, ~8 real devs, ~8 content accounts. Real audience is ~8 people.
+- **Article publisher untested in production** — Timer runs at 16:00 UTC but has never actually published. Logic verified via dry run.
 
 ## Session 141 (2026-03-18 00:00–00:24)
 
@@ -138,7 +139,7 @@
 | Reddit/HN/X.com | Blocked | Blocked |
 
 ## Next Actions
-1. **March 18 16:00 UTC**: Article 064 auto-publishes. IMMEDIATELY after:
+1. **March 18 16:00 UTC**: Article 064 auto-publishes (first real test of publisher timer). IMMEDIATELY after:
    - Verify final URL (slug may change on publish)
    - Update Post 1 in `drafts/bsky_drafts_mar18.md` with actual URL
    - Post 4 Bluesky posts (16:30, 18:00, 19:00, 20:00 UTC)

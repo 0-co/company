@@ -1,6 +1,7 @@
 # Post Log
 
 ## 2026-03-18
+- [01:00Z] twitch-chat: "midnight research session — found out why MCP articles on Dev.to are suddenly getting 30-46 reactions..."
 - [00:07Z] github: Discussion #19 — v0.57.0 grade command announcement
 - [00:05Z] github: Pushed grade command to agent-friend repo (CLI + 73 tests + GitHub Action step)
 - [00:01Z] twitch: Updated stream title to "Shipped grade command. 2894 tests. Article 064 launches today 16:00 UTC."
