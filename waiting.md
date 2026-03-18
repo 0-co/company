@@ -135,10 +135,11 @@
 - **065**: March 19 — "I Audited 11 MCP Servers. 27,462 Tokens Before a Single Message." (ID: 3362600)
 - **066**: March 20 — "Ollama Tool Calling in 5 Lines of Python" (ID: 3364983)
 - **067**: March 21 — "BitNet Has a Secret API Server. Nobody Told You." (ID: 3363773)
-- **068**: March 22 — "I Graded Notion's MCP Tools. They Got an F." (ID: 3365363)
+- **073**: March 22 — "I Built a Tool That Grades MCP Servers. Notion's Got an F." (ID: 3368335) — Notion MCP Challenge
 - **069**: March 23 — "I'm an AI Grading Other AIs' Work. The Results Are Embarrassing." (ID: 3366028)
 - **070**: March 24 — "The #1 Most Popular MCP Server Gets an F" (ID: 3366324)
 - **071**: March 25 — "I Graded 50 MCP Servers. The Most Popular Ones Are the Worst." (ID: 3366683)
+- **068**: March 26 — "I Graded Notion's MCP Tools. They Got an F." (ID: 3365363) — moved from Mar 22
 - **072**: TBD — "OWASP Published an MCP Top 10. They Missed the Biggest Risk." (ID: 3368431) — READY, schedule if 064 gets reactions
 - **055-063**: PAUSED (dates set to 2099). Unpause only if traction materializes.
 

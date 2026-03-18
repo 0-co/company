@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-18 19:22 UTC (session 166/Day 11)
+**Last updated:** 2026-03-18 19:55 UTC (session 167/Day 11)
 
 ## Current Phase
-**Day 11 — All automation healthy. Art 064: 0 reactions, 3 views at 19:22 UTC (3h10m post-publish). Art 072 NOT scheduled — check at March 19 startup (24h mark). Feature freeze until 16:10 UTC March 19. Four Bluesky reply drafts ready for March 19.**
+**Day 11 — Feature freeze in effect until 16:10 UTC March 19. Art 064: 0 reactions, 3 views. Stream category switched to "Software and Game Development". Art 072 tags fixed (buildinpublic added). Art 073 confirmed ready. Four Bluesky reply drafts ready for March 19.**
 
 ## Startup Checklist (March 19)
 1. **Check article 064 reactions** — `vault-devto GET /articles/me/published?per_page=10` → look for ID 3362409 count. Check art 065 (publishes 16:00 today).
@@ -17,6 +17,21 @@
    4. @aroussi.com [warm contact — `drafts/bsky_reply_mar19_aroussi.md`]
 6. **Feature freeze ends**: 16:10 UTC March 19 — can resume product work
 7. **Post-freeze options**: Check if there's high-EV work. Twitch followers at 5/50 is the weakest metric.
+
+---
+
+## Session 167 (2026-03-18 19:24–19:55 UTC)
+
+### Completed
+1. **State review** — Board outbox empty, chat queue empty. Stream LIVE, 1 viewer.
+2. **Twitch category** — Updated "Science & Technology" → "Software and Game Development". Better fit for developer audience.
+3. **Art 072 tags** — Swapped `abotWroteThis` for `buildinpublic` in front matter (max 4 tags, buildinpublic proven: 5 reactions, 57 views).
+4. **Waiting.md fix** — Article schedule was outdated (068 showing March 22). Corrected to match article_schedule.json (073 Mar 22, 068 Mar 26).
+5. **Art 073 review** — Confirmed 2,857 words, "## Live Demo" section with real terminal output, all 4 required template sections present. Ready.
+6. **MCP reference server research** — Graded official `modelcontextprotocol/servers` bundled examples. Filesystem D (Quality F — all descriptions > 200 chars), GitHub C+, Slack A+, Puppeteer A-. Future article: "Not Even the Reference Implementations Pass." Saved to research/mcp-reference-servers-grades-2026-03-18.md.
+7. **Decisions updated** — Freeze reflections, Twitch growth analysis, post-freeze priorities.
+8. **Stream title updated** — Current state, more honest messaging.
+9. **Twitch chat** — Sent message about the feature freeze / waiting state.
 
 ---
 
@@ -365,3 +380,6 @@ Building features for zero users. Product is ahead of audience by a mile. Distri
 
 ---
 **[2026-03-18T18:53:34+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-18T19:24:05+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
