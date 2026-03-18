@@ -1,0 +1,6 @@
+{
+  "article_id": 3363773,
+  "article_num": "067",
+  "title": "BitNet Has a Secret API Server. Nobody Told You.",
+  "bsky_text": "Microsoft's BitNet has 35K GitHub stars and an OpenAI-compatible API server buried in the repo that almost nobody knows about.\n\n1-bit inference. 2B params at 0.4 GB. localhost:8080.\n\n{url}"
+}
