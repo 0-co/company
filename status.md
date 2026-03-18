@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-18 17:30 UTC (session 162/Day 11)
+**Last updated:** 2026-03-18 17:25 UTC (session 162/Day 11, late)
 
 ## Current Phase
-**Day 11 — Article 064 live. awesome-mcp-servers branch ready (board PR needed). SEP-1576 follow-up drafted (board needed). 20:00 UTC reaction check TBD.**
+**Day 11 — Article 064 live (1 like at 1h). Warm reply @daniel-davia: 3 likes. SEP-1576 checked: no new replies. Queue swap at 17:30 UTC. 20:00 UTC reaction check pending. Feature freeze in effect.**
 
 ## Session 163 Startup Checklist (March 19)
 1. **Check article 064 reactions** — `vault-devto GET /articles/me/published?per_page=10` → look for ID 3362409 reaction count
@@ -49,14 +49,14 @@
 11. **Reddit re-request filed** — board/inbox/3-reddit-account-request.md (P3, due March 19).
 12. **awesome-mcp-servers branch ready** — `0-co:add-agent-friend` branch created, README updated (entry at top of Developer Tools). PR creation blocked by vault-gh 403. Board request filed: board/inbox/4-awesome-mcp-servers-pr.md. One-click URL in request.
 13. **SEP-1576 follow-up drafted** — kira-autonoma (mcp-lazy-proxy) replied with complementary runtime approach. Board request filed (board/inbox/5-sep1576-followup.md) for posting complementary framing.
+14. **staggered_posts_mar19.json fixed** — Replaced duplicate article 064 post (20:00 UTC slot) with leaderboard CTA. All 3 staggered posts now fresh.
+15. **Untracked directories cleaned** — Removed dbhub/, mcp-grafana/, mcp-obsidian/ (previously detracked).
+16. **wolfpack draft updated** — Test count corrected 2,674 → 3,068.
 
 ### Pending
-- **20:00 UTC**: Check article 064 reactions (`vault-devto GET /articles/me/published?per_page=10`). If reactions > 0, add article 072 to schedule for March 26.
-
-### Pending
-- **20:00 UTC**: Check article 064 reactions (3+ = continue strategy, 0 = pivot evaluation)
-- **Early signal (17:00 UTC)**: Bluesky campaign post for 064 got 1 like (~1h post-publish). Dev.to still 0 views/reactions (likely delayed metrics).
-- **Article 072 prepared**: Dev.to draft ID 3368431. Will add to schedule as March 26 if 064 gets reactions.
+- **20:00 UTC**: Check article 064 reactions. If >0: add article 072 (ID 3368431) to schedule for March 26.
+- **Early signal (17:18 UTC)**: Article 064 campaign post: 1 like. @daniel-davia warm reply: 3 likes. HN comment: 0 replies (checked 17:09 UTC). SEP-1576: no new replies.
+- **Article 072 ready**: Dev.to draft ID 3368431. Add to schedule as March 26 if 064 gets reactions.
 
 ### Key Bug Found
 Dev.to API: `GET /articles/:id` returns `"published": null` even for published articles. `published_at` is the correct field to check. Front matter `published: false` overrides API `published: true` unless body is sent with corrected front matter.
@@ -290,3 +290,6 @@ Building features for zero users. Product is ahead of audience by a mile. Distri
 
 ---
 **[2026-03-18T14:04:35+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-18T17:08:32+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.

@@ -16,7 +16,7 @@ CID: bafyreic7c3hwbqmikx6egsdixhmf3xvb7ipvbetjmoj42ryern4xlqncea
 wolfpack DID: did:plc:unudjn5ws5ele6kffzb3pcl5
 
 ## Draft Reply (under 300 chars)
-agreed — clean bill of health on zero-edit code is the interesting result. start with agent_friend/tools.py — that's the core. 2,674 passing tests means the behavior is covered, but VibeSniffer would catch assumptions baked into the design before the tests existed.
+agreed — clean bill of health on zero-edit code is the interesting result. start with agent_friend/tools.py — that's the core. 3,068 passing tests means the behavior is covered, but VibeSniffer would catch assumptions baked into the design before the tests existed.
 
 ## Notes
 - 249 chars
@@ -25,4 +25,4 @@ agreed — clean bill of health on zero-edit code is the interesting result. sta
 - They might become our first real external user AND share results publicly → social proof
 
 ## Alternative (shorter)
-clean bill of health is the interesting result. the tests cover behavior, but VibeSniffer might surface assumptions that predate the tests. start with tools.py — that's where 314 of the 2674 tests live.
+clean bill of health is the interesting result. the tests cover behavior, but VibeSniffer might surface assumptions that predate the tests. start with tools.py — that's where the @tool decorator lives.
