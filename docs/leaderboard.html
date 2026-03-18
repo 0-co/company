@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MCP Server Quality Leaderboard — Grade Rankings for Popular MCP Servers</title>
-  <meta name="description" content="25 MCP servers graded A+ to F. PostgreSQL scores perfect 100, Notion scores F. The first public quality ranking of MCP tool schemas.">
+  <meta name="description" content="27 MCP servers graded A+ to F. PostgreSQL scores perfect 100, Notion scores F. The first public quality ranking of MCP tool schemas.">
   <meta name="keywords" content="MCP server quality, MCP server ranking, MCP leaderboard, best MCP servers, MCP tool quality">
   <meta property="og:title" content="MCP Server Quality Leaderboard — Grade Rankings for Popular MCP Servers">
-  <meta property="og:description" content="25 MCP servers graded A+ to F. PostgreSQL scores perfect 100, Notion scores F. See the full ranking.">
+  <meta property="og:description" content="27 MCP servers graded A+ to F. PostgreSQL scores perfect 100, Notion scores F. See the full ranking.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://0-co.github.io/company/leaderboard.html">
   <link rel="canonical" href="https://0-co.github.io/company/leaderboard.html">
@@ -866,6 +866,8 @@
     .leaderboard tbody tr.data-row:nth-of-type(45) { animation-delay: 1.86s; }
     .leaderboard tbody tr.data-row:nth-of-type(47) { animation-delay: 1.94s; }
     .leaderboard tbody tr.data-row:nth-of-type(49) { animation-delay: 2.02s; }
+    .leaderboard tbody tr.data-row:nth-of-type(51) { animation-delay: 2.10s; }
+    .leaderboard tbody tr.data-row:nth-of-type(53) { animation-delay: 2.18s; }
 
     /* Detail rows should not animate like data rows */
     .leaderboard tbody tr.detail-row {
@@ -904,19 +906,19 @@
   <div class="container">
     <div class="stats-grid">
       <div class="stat-card animate-in">
-        <div class="stat-number" data-count="25">0</div>
+        <div class="stat-number" data-count="27">0</div>
         <div class="stat-label">Servers Graded</div>
       </div>
       <div class="stat-card animate-in">
-        <div class="stat-number" data-value="70.6">0</div>
+        <div class="stat-number" data-value="69.1">0</div>
         <div class="stat-label">Avg Score / 100</div>
       </div>
       <div class="stat-card animate-in">
-        <div class="stat-number" data-count="439">0</div>
+        <div class="stat-number" data-count="510">0</div>
         <div class="stat-label">Total Tools</div>
       </div>
       <div class="stat-card animate-in">
-        <div class="stat-number" data-count="73055">0</div>
+        <div class="stat-number" data-count="96671">0</div>
         <div class="stat-label">Total Tokens</div>
       </div>
     </div>
@@ -1845,9 +1847,95 @@
             </td>
           </tr>
 
-          <!-- #22 GA4 -->
-          <tr class="data-row" data-server="ga4">
+          <!-- #22 Cloudflare Radar -->
+          <tr class="data-row" data-server="cloudflare">
             <td class="rank-cell">22</td>
+            <td>
+              <a href="https://github.com/cloudflare/mcp-server-cloudflare" class="server-name" onclick="event.stopPropagation()">Cloudflare Radar MCP Server</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-f">F</div></td>
+            <td class="r">51.4<span class="score-bar-bg"><span class="score-bar-fill" data-width="51.4" style="background: var(--accent-red);"></span></span></td>
+            <td class="r">66</td>
+            <td class="r">21,723</td>
+            <td class="r">329</td>
+            <td class="r"><span class="issues-badge issues-high">134</span></td>
+          </tr>
+          <tr class="detail-row" data-server="cloudflare">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="100" style="background: var(--accent-cyan);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-cyan);">100</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="38" style="background: var(--accent-red);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-red);">38</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="0" style="background: var(--accent-red);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-red);">0</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html" class="detail-btn detail-btn-primary">Grade your own server</a>
+                  <a href="https://github.com/cloudflare/mcp-server-cloudflare" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- #23 Tavily -->
+          <tr class="data-row" data-server="tavily">
+            <td class="rank-cell">23</td>
+            <td>
+              <a href="https://github.com/tavily-ai/tavily-mcp" class="server-name" onclick="event.stopPropagation()">Tavily MCP Server</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-f">F</div></td>
+            <td class="r">48.1<span class="score-bar-bg"><span class="score-bar-fill" data-width="48.1" style="background: var(--accent-red);"></span></span></td>
+            <td class="r">5</td>
+            <td class="r">1,893</td>
+            <td class="r">379</td>
+            <td class="r"><span class="issues-badge issues-med">11</span></td>
+          </tr>
+          <tr class="detail-row" data-server="tavily">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="100" style="background: var(--accent-cyan);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-cyan);">100</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="27" style="background: var(--accent-red);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-red);">27</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="0" style="background: var(--accent-red);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-red);">0</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html" class="detail-btn detail-btn-primary">Grade your own server</a>
+                  <a href="https://github.com/tavily-ai/tavily-mcp" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- #24 GA4 -->
+          <tr class="data-row" data-server="ga4">
+            <td class="rank-cell">24</td>
             <td>
               <a href="https://github.com/googleanalytics/google-analytics-mcp" class="server-name" onclick="event.stopPropagation()">Google Analytics (GA4) MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -1888,9 +1976,9 @@
             </td>
           </tr>
 
-          <!-- #23 Context7 -->
+          <!-- #25 Context7 -->
           <tr class="data-row" data-server="context7">
-            <td class="rank-cell">23</td>
+            <td class="rank-cell">25</td>
             <td>
               <a href="https://github.com/upstash/context7" class="server-name" onclick="event.stopPropagation()">Context7 MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -1931,9 +2019,9 @@
             </td>
           </tr>
 
-          <!-- #24 Firecrawl -->
+          <!-- #26 Firecrawl -->
           <tr class="data-row" data-server="firecrawl">
-            <td class="rank-cell">24</td>
+            <td class="rank-cell">26</td>
             <td>
               <a href="https://github.com/mendableai/firecrawl-mcp-server" class="server-name" onclick="event.stopPropagation()">Firecrawl MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -1974,9 +2062,9 @@
             </td>
           </tr>
 
-          <!-- #25 Notion -->
+          <!-- #27 Notion -->
           <tr class="data-row" data-server="notion">
-            <td class="rank-cell">25</td>
+            <td class="rank-cell">27</td>
             <td>
               <a href="https://github.com/makenotion/notion-mcp-server" class="server-name" onclick="event.stopPropagation()">Notion MCP Server</a>
               <span class="expand-hint">&#9662;</span>
