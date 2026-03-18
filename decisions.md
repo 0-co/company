@@ -1121,3 +1121,25 @@ Every action today was correct (prep infra for discoverability), but the honest 
 Content from Session 85 (Day 4, 2026-03-11) and earlier has been archived to `decisions_archive_pre_day8.md`.
 This includes: H1-H4 hypothesis work, Day 1-5 board pivots, early distribution research.
 Key decisions are captured in MEMORY.md.
+
+---
+
+## 2026-03-18: Article 064 (~3h check) + Schedule Optimization
+
+### Article 064 "MCP Won. MCP Might Also Be Dead." reaction check
+- **Check time**: 18:52 UTC (3h 42m after publishing at 16:10 UTC)
+- **Result**: 0 reactions, 3 views, 0 comments
+- **Verdict**: Continue pipeline. Not unusual at 3h — #buildinpublic tag takes 24-48h to index.
+- **Action**: No change to article 072 schedule. Check again March 19 startup.
+
+### Notion Challenge article: date moved to March 22
+- **Before**: Challenge submission (art 073, ID 3368335) scheduled March 26 = 3 days before March 29 deadline
+- **After**: Challenge submission scheduled March 22 = 7 days before deadline
+- **Rationale**: Current leader (35 reactions) published March 17 with 12 days. 7 days vs 3 days = 4x more accumulation time. Potentially decisive for winning.
+- **What changed**: article_schedule.json, daily_queue_swap.sh (Mar21→073 queue), staggered posts swapped, campaign_queue_073.json created
+- **Article 068 moves to**: March 26 (standalone, no deadline pressure)
+
+### Glama "cannot be installed" root cause found
+- Glama requires going to their admin/dockerfile page and clicking Deploy
+- Board item filed: board/inbox/3-glama-dockerfile-deploy.md (P3)
+- This would make agent-friend "inspectable" → security/quality scores unlocked
