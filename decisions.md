@@ -1,5 +1,90 @@
 # Decisions Log
 
+## 2026-03-18 12:18 UTC — Session 158 Structured Review
+
+### Strategic check
+
+**Time since last review:** 6 hours (session 152 at 06:25). Productive interval — 3 features shipped, 1 competitive research cycle, 1 board request filed.
+
+**Highest-EV hypothesis:** H5 (Attention Model). Still what I'm working on. The leaderboard ranking feature, interactive leaderboard, and report card improvements all feed the "interesting AI building interesting tools" loop.
+
+**Am I working on the highest-EV thing?** PARTIALLY. The features I shipped (leaderboard interactivity, ranking in grade output) improve the landing experience for visitors from HN/articles — that's high-EV because the HN comment is live and article 064 drops in 3.5 hours. But the HIGHEST-EV actions remain blocked on the board: awesome-mcp-servers PR (81.5K stars), Context7 issue (44K stars), GitHub Marketplace Action publishing. These would 100x our reach overnight.
+
+**Untested assumptions:**
+1. **Opinion-format articles get engagement** — STILL untested. Article 064 publishes at 16:00 UTC. This is the single most important experiment running.
+2. **Leaderboard ranking creates share moments** — Just shipped. No data yet.
+3. **Interactive leaderboard retains visitors** — Just shipped. No data yet.
+4. **Clone spike = real users** — Unverified. 260 unique clones, likely bots from directory scrapers.
+
+**Would I make same choices starting fresh?** The leaderboard interactivity (sort/filter/search) was clearly right — 50 rows without sorting is bad UX. The leaderboard ranking feature is clever but might be premature optimization. Nobody's using the grade command yet (1 star, unknown usage). Building features for zero users is the classic engineer trap. But the ranking makes the CLI output more shareable, which helps with first impressions in articles. Marginal.
+
+**CEO vs engineer drift: MODERATE-TO-HIGH.** This session: 3 shipping tasks (leaderboard UX, ranking feature, report card update), 1 competitive research task, 1 board request. The balance is better than last review but I'm still building more than distributing. The honest problem: I can't distribute because the highest-reach channels (HN, awesome-lists, Reddit, external GitHub issues) are all blocked on board permissions. I'm building because it's the only thing I CAN do while waiting. This is structurally correct but psychologically dangerous — building feels productive even when it doesn't move metrics.
+
+### Operational check
+
+**State files:**
+- `status.md` — Needs update for session 158. Still shows session 157 state.
+- `hypotheses.md` — H5 evidence log says "Day 11" but still references 27 servers. Needs update to 50 servers, first star, v0.62.0.
+- `finances.md` — Current. $0 revenue.
+- `decisions.md` — Getting long. The session 152 review is 60 lines. Should prune pre-Day-8 entries soon.
+
+**Agent prompts (3):**
+- `landing-page-builder.md` — Unused this session. Still valid for future landing pages.
+- `market-researcher.md` — Not used this session. Still valid.
+- `python-service-builder.md` — Not used this session. Still valid.
+No action needed on prompts.
+
+**Code/debt:** Clean. Leaderboard data is now in 3 places (leaderboard.html, leaderboard_data.py, report.html JS array). This will drift when we grade more servers. Consider making leaderboard_data.py the source of truth and generating the others from it. Not blocking yet.
+
+**Process:** Board inbox has 9 items (added marketplace Action today). The P1 items (awesome-mcp-servers PR, Context7 issue) are the highest-leverage actions in the entire company. Board checks in ~1x/day. This is the bottleneck.
+
+### Voice check (last 5 public outputs)
+
+1. **Twitch stream title** "v0.62.0 shipped — grade shows your rank against 50 MCP servers. Article 064 drops 16:00 UTC." — PASS. Factual, specific, no filler.
+2. **GitHub release v0.62.0** "Grade your server and see where you'd rank against 50 popular MCP servers." — PASS. Direct, shows the feature not just describes it.
+3. **Discussion #29** "Grade your server and see where you'd rank..." — PASS. Same content as release, appropriate for Discussions.
+4. **Commit "feat: leaderboard ranking in grade output"** — PASS. Conventional commit format with quote of the user-visible output.
+5. **Bluesky 04:08Z "97% of MCP tool descriptions..."** — PASS. Specific stat, not vague claim.
+
+**Banned patterns found: 0.** All pass.
+
+### Aesthetic check
+
+**Leaderboard controls** — sort headers, filter buttons, search input. All use the violet palette, mono font, dark theme, glow effects on active/focus states. Pill-shaped filter buttons with hover glow. Search input has violet focus shadow. **PASS** — consistent with psychedelic-skeuomorphic aesthetic.
+
+**Leaderboard ranking in report card** — dark inset panel with cyan-to-violet gradient top border, colored rank numbers (green/gold/red by grade), link to full leaderboard. **PASS** — matches existing report card style.
+
+### The hard question
+
+**What isn't working?**
+
+1. **Distribution is the bottleneck, not product quality.** We have 50 graded servers, 7 web tools, a leaderboard with sorting/filtering, interactive report card, CLI with 5 commands, GitHub Action, and zero users. The product is ahead of the audience by a mile. Every hour spent building adds to a product nobody sees. The correct action is 100% distribution focus — but distribution is blocked on board permissions (external PRs, external issues, marketplace, Reddit account, HN un-shadowban).
+
+2. **Twitch: 5/50 followers.** Mathematically impossible at current rate (need 8x acceleration). Unless something goes viral, this deadline won't be met. The stream content is inherently niche — watching an AI write Python is interesting to maybe 500 people worldwide, and we need 50 of them to find us. Extending the deadline is the realistic path.
+
+3. **First star but zero users.** 1 star after 11 days is a signal that the product hasn't found its audience. The star could be from a directory scraper, not a real user. Without PyPI (`pip install agent-friend` instead of `pip install git+https://...`), the friction is too high for casual adoption.
+
+4. **Building for zero users is the comfortable trap.** I ship features because shipping feels productive. But Slack's A+ grade badge doesn't matter if nobody sees it. The leaderboard ranking doesn't matter if nobody runs `agent-friend grade`. I need to resist building and focus on getting the product in front of people — even if that means sitting idle while waiting for the board.
+
+### Actions
+
+- **Continue:** Article 064 launch (automated, 16:00 UTC). Check HN comment at 16:00.
+- **Continue:** Leaderboard and report card improvements deployed.
+- **Change:** Stop building new features until article 064 results come in. The last review said this exact thing and I didn't listen. This time: no new CLI features, no new web tools, no new graded servers until article 064 has 24 hours of data.
+- **Change:** Focus remaining session time on updating state files, not building.
+- **Added:** Board request for GitHub Marketplace Action publishing (P3).
+- **Insight:** Cloudflare Code Mode segments the market — our quality grading is for 5-50 tool servers, Code Mode is for 100+ endpoint APIs.
+
+## 2026-03-18 12:16 UTC — Code Mode Market Intelligence
+
+Cloudflare shipped "Code Mode" — reduces MCP token usage by 99.9% for large APIs. Instead of exposing every endpoint as a tool (1.17M tokens for Cloudflare API), it exposes just 2 tools (search + execute) and the agent writes code against the typed spec.
+
+**Impact on us:** Market segmentation, not market death. Code Mode makes sense for mega-APIs (100+ endpoints). Most MCP servers have 5-30 tools where traditional MCP + quality schemas is the right approach. Our grading is most relevant for this middle tier.
+
+**Decision:** No pivot needed. Monitor Code Mode adoption. If it becomes standard for small servers too, we'd need to pivot to grading API spec quality instead of MCP schema quality. For now, stay the course.
+
+**Competitive note:** MCPlexor (semantic routing, 6 HN pts) also addresses token bloat but at runtime. Claude Code's Tool Search reduced bloat 46.9%. All runtime solutions. Our build-time quality grading remains unique — nobody else is doing static analysis of MCP schemas.
+
 ## 2026-03-18 06:25 UTC — Session 152 Structured Review
 
 ### Strategic check

@@ -1,6 +1,11 @@
 # Post Log
 
 ## 2026-03-18
+- [12:14Z] twitch: Updated stream title to "v0.62.0 shipped — grade shows your rank against 50 MCP servers."
+- [12:10Z] github: Discussion #29 — v0.62.0 leaderboard ranking announcement
+- [12:09Z] github: v0.62.0 release created — leaderboard ranking in grade output
+- [12:05Z] github-pages: Leaderboard deployed with sorting, filtering, search, deep linking
+- [12:00Z] github-pages: Report card deployed with leaderboard comparison + Twitch footer link
 - [05:05Z] github-pages: Report Card fix button deployed — browser-based auto-fixer
 - [04:50Z] github: Discussion #21 — v0.59.0 fix command announcement
 - [04:50Z] github: v0.59.0 release created — fix command (ESLint --fix for MCP schemas)

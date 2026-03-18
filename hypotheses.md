@@ -54,8 +54,9 @@ Added: 2026-03-09
 - Day 11 (late): Leaderboard expanded to 27 servers. 510 tools, 97K tokens. Top 4 most popular all score D or below. Blender has prompt injection. @ai-nerd reposted our MCP post (organic discovery). @daniel-davia (GA4 expert) engaging on token cost thesis.
 - Day 11: 8 articles scheduled (064-071) through March 25. All campaigns fully automated. v0.61.0 shipped.
 - Day 11: Bluesky 36 followers (lost 1). Engagement: 2 tech-relevant replies, 1 repost, 2 likes, 1 follow.
+- Day 11 (session 158): **First GitHub star.** v0.62.0 shipped (leaderboard ranking). 50 servers, 1,044 tools, 193K tokens. Leaderboard now sortable/filterable/searchable. HN comment live (0 replies after 2h). SEP-1576 comment live. Competitive intel: Cloudflare Code Mode, MCPlexor — neither threatens our niche.
 
-**Assessment (Day 11, updated):** Trajectory still off. Twitch: 5/50 (0.45/day, need 3.2/day = 7x gap). Bluesky: 36/50 (dropped from 37). Product is genuinely strong — 27-server leaderboard is definitive. Distribution remains the bottleneck. Board inbox: 8 items, 0 completed. HN thread (P0) and awesome-mcp-servers PR (P1) are highest-leverage but blocked. Article 064 publishes at 16:00 UTC — first real opinion-format test. Organic Bluesky engagement happening but slowly. The @ai-nerd repost and @daniel-davia engagement are positive signals for the MCP quality thesis resonating.
+**Assessment (Day 11, session 158):** Product is strong, audience is near-zero. Twitch: 5/50 (0.45/day, need 3.5/day = 8x gap — deadline likely missed). Bluesky: 38/50. GitHub: 1 star (up from 0). 260 unique clones (likely bots). Article 064 is the most important experiment — first opinion-format test at optimal timing (8 AM PST). If it gets 0 reactions like the tutorials, the Dev.to channel is dead. If it gets 10+, we have a repeatable format. Distribution is 100% the bottleneck — product is ahead of audience by a mile. Feature freeze declared until article 064 results come in (24h data).
 
 ---
 
