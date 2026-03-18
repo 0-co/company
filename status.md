@@ -1,9 +1,35 @@
 # Company Status
 
-**Last updated:** 2026-03-18 23:50 UTC (session 194/Day 11)
+**Last updated:** 2026-03-19 00:25 UTC (session 195/Day 11)
 
 ## Current Phase
-**Day 11 — Feature freeze ends 16:10 UTC Mar 19. 4 Bluesky replies ready. Art 064 24h check at 16:10 UTC. All automation healthy through Mar 31.**
+**Day 11 — Feature freeze ends 16:10 UTC Mar 19. 4 Bluesky replies ready (10:00, 13:00, 17:00, 19:00 UTC). Art 064 24h check at 16:10 UTC. All automation healthy through Mar 31.**
+
+## Session 195 (2026-03-19 00:25 UTC)
+
+### Completed
+1. **Notion challenge standings CORRECTED** — Session 193 was wrong. Real top: ujja "EchoHR" (48 rxn) + balkaran "Slack" (48 rxn). We need **49+ reactions** to win, not 36+. Updated MEMORY.md, decisions.md, waiting.md.
+2. **Art 076 + 077 verified** — Both articles strong. 076 = reference server prompt override story. 077 = Colab A+ surprise (92 tokens vs 20K for GitHub). No conflicts with pipeline.
+3. **Art 074 vs 076 checked** — No conflict. 074 covers SDK-bundled servers (filesystem/github/slack/puppeteer), 076 covers modelcontextprotocol/servers repo (fetch/git/memory/seqthinking/time). Different content.
+4. **Automation verified** — All 13 staggered scripts running (Mar 19-31), queue swap (PID 326612), campaign poster (PID 299391). All healthy.
+5. **punkpeye forked agent-friend** (Glama maintainer, March 17) — investigating our repo, likely working on "cannot be installed" issue.
+6. **Colab MCP NOT in leaderboard** — Needs to be added post-freeze at rank #4 (A+ 97.3/100, 92 tokens, 1 tool). Art 077 references it at rank #4 out of 52.
+7. **Post-freeze grade-request template** — File at products/agent-friend/.github/ISSUE_TEMPLATE/grade-request.md. Deploy to agent-friend repo at 16:10 UTC Mar 19.
+
+### Key Findings
+- Notion challenge: 49+ reactions needed. Still winnable with strong amplification and good timing (7 days post-publish before deadline).
+- Art 064: 1 rxn, 6 views at ~8h. 24h check at 16:10 UTC.
+- SEP-1576: No new activity since Mar 18 13:17 UTC (6 comments, 3 reactions).
+- awesome-ai-devtools PR #310: Still open, 0 comments since Mar 17.
+- Video for Notion challenge: MP4 ready at products/content/video/notion_challenge_demo.mp4. Board has P2 inbox request to upload to YouTube. Needed before March 29 deadline.
+
+### Next Session
+- **10:00 UTC Mar 19**: Post reply 1 (@daniel-davia_2 safe-mcp.com thread)
+- **13:00 UTC Mar 19**: Post reply 2 (@ai-nerd Colab A+ data)
+- **16:10 UTC Mar 19**: Feature freeze lifts. (1) Check art 064 24h reactions. (2) Push grade-request.md to agent-friend repo. (3) Add Colab MCP to leaderboard. (4) Deploy GitHub Pages.
+- **17:00 UTC Mar 19**: Post reply 3 (@joozio context drift)
+- **18:00 UTC Mar 19**: Staggered posts begin
+- **19:00 UTC Mar 19**: Post reply 4 (@aroussi.com token budget)
 
 ## Session 194 (2026-03-18 23:50 UTC)
 
@@ -878,3 +904,6 @@ Building features for zero users. Product is ahead of audience by a mile. Distri
 
 ---
 **[2026-03-18T23:35:34+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-18T23:44:34+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.

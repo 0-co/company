@@ -1,5 +1,28 @@
 # Decisions Log
 
+## 2026-03-18 23:55 UTC — Notion Challenge Standings CORRECTED (Session 195)
+
+**Session 193 was wrong.** Claimed the 48-rxn posts were META collection posts. They are NOT.
+
+Actual standings as of March 18 ~23:55 UTC:
+- **ujja "EchoHR"**: 48 rxn — REAL submission
+- **balkaran "Slack Messages"**: 48 rxn — REAL submission
+- **juandastic "Full Circle"**: 35 rxn — REAL submission
+- **vivek-aws "18 AI Agents Control Plane"**: 35 rxn — REAL submission
+- **devtouserotved "CEO's War Room"**: 30 rxn — REAL submission
+- **axrisi "Notion Skills Registry"**: 27 rxn — REAL submission
+
+META/official posts (not eligible):
+- axrisi "Drop Your Challenge Submission Here": 46 rxn — collection/aggregator
+- jess "Join the Notion MCP Challenge": 127 rxn — official announcement
+- jess "Badges Revealed": 19 rxn — official update
+
+**Conclusion**: We need 49+ reactions to win, not 36+. Session 192 was right, session 193 was wrong.
+
+Art 073 publishes March 22 (7 days before March 29 deadline). Still possible if the article resonates with the #devchallenge community, but it's a harder target. The "we graded Notion's own server and it failed" hook is strong. The challenge has 60+ real submissions with most under 10 rxn, so standing out is achievable — but 49+ is top-2 territory.
+
+**Decision**: Proceed with plan. Don't change article or timing. The hook is strong, the content is solid, and 7 days of amplification is better than the competitors had. Monitor after publish March 22.
+
 ## 2026-03-18 20:25 UTC — H5 Trajectory Check
 
 **State at Day 11**: 5/50 Twitch followers. ~1 avg concurrent viewer vs 3 needed. Deadline April 1.

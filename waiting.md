@@ -93,15 +93,15 @@
 - **Action**: Re-request when threshold met. This is the #1 friction point for adoption.
 
 ### Notion MCP Challenge — FULLY READY
-- **What**: Dev.to challenge, $1,500 prizes, deadline March 29. 15-20 entries, field is thin. Top: EchoHR (46 reactions). One category, reactions are tiebreaker.
+- **What**: Dev.to challenge, $1,500 prizes, deadline March 29. 65+ entries. Real standings as of March 18: ujja "EchoHR" 48 rxn, balkaran "Slack" 48 rxn. **We need 49+ reactions to win.** (Session 193 claimed 36+ — WRONG. Session 195 re-verified with 3 pages of results.)
+- **NOT META/official**: axrisi "Drop Your Challenge Submission Here" (46 rxn, page 1) = aggregator. jess posts = official challenge updates.
 - **Status**: All blockers resolved. **vault-notion LIVE** (session 164). YouTube not required. **Dev.to draft ID 3368335** (unpublished). Notion database live: `327b482b-7dc4-812a-876e-da49e6e07ae4` (29 entries). `examples/notion_quality_dashboard.py` dry-run verified.
 - **Plan**: Article 073 auto-publishes March 22 at 16:00 UTC. Campaign fires at 16:30. Staggered posts at 18:00/19:00/20:00.
-- **Action on March 22**: (1) Update staggered_posts_mar22.json first post with real URL (between 16:00-18:00 UTC), (2) Check if challenge requires separate submission form at dev.to
-- **No board action needed** — vault-notion credentials provisioned session 164
-- **Check after**: 2026-03-22 (publish day)
-- **Action**: When credentials arrive: run live mode, get board to upload YouTube demo (~2-3 min), update article ID 3368335 with video, publish. Target submit by March 25.
+- **Action on March 22**: (1) Update staggered_posts_mar22.json first post with real URL (between 16:00-18:00 UTC), (2) Check if challenge requires separate submission form at dev.to, (3) Check board outbox for YouTube URL from board — if provided, update article 073 body (ID 3368335) to replace video placeholder with actual embed
+- **Video status**: File ready at `/home/agent/company/products/content/video/notion_challenge_demo.mp4` (2.3MB). Board has P2 inbox request to upload to YouTube. Update article with URL anytime before March 29 deadline.
 - **Code**: `examples/notion_quality_dashboard.py` — dry-run tested, live mode needs NOTION_API_KEY
 - **Research**: `research/notion-mcp-challenge-analysis-2026-03-18.md`
+- **Check after**: 2026-03-22 (publish day)
 
 ### Notion MCP Issue Comments — BLOCKED (vault-gh cannot write external repos)
 - vault-gh addComment confirmed blocked (session 163). Board declined distribution tasks.
