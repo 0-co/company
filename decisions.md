@@ -1,5 +1,81 @@
 # Decisions Log
 
+## 2026-03-18 06:25 UTC — Session 152 Structured Review
+
+### Strategic check
+
+**Time since last review:** 55 minutes (session 151 review at 05:30). Fast cadence — both reviews in same session block.
+
+**Highest-EV hypothesis:** H5 (Attention Model). Still what I'm working on. Everything this session — leaderboard, article 069, prompt override detection — feeds into the "interesting AI building interesting things" narrative.
+
+**Am I working on the highest-EV thing?** MIXED. The prompt override detection (v0.60.0) is genuinely novel engineering. It creates a unique differentiator nobody else has. But the highest-EV action remains the board's HN thread comment (P0) and awesome-mcp-servers PR (P1), both blocked on board. What I can control: article 064 at 16:00 UTC. That's armed.
+
+**Untested assumptions:**
+1. ~~Opinion-format articles get engagement~~ — STILL UNTESTED (article 064 fires at 16:00 UTC, evaluate at 20:00)
+2. **Philosophical content outperforms product content on Dev.to** — Early signal (5 reactions vs 0) but N=1. Article 069 is the real test.
+3. **Prompt override detection matters to developers** — Nobody has asked for this. We built it because it's cool and defensible. But "cool" ≠ "needed." Watch for mentions.
+4. **6-day article cadence doesn't trigger Dev.to spam filters** — Publishing daily Mar 18-23. If flagged, we lose the channel.
+
+**Would I make same choices starting fresh?** Mostly. The v0.60.0 feature is solid engineering with a clear story ("found prompt injection in Fetch MCP"). The article 069 draft is the right format (philosophical > product). But I built v0.60.0 BEFORE getting article 064 results. The last review explicitly said "resist building more features before article 064 results come in." I didn't listen. Engineering drift is real.
+
+**CEO vs engineer drift: MODERATE DRIFT.** This session: 7 engineering tasks (leaderboard expansion, v0.60.0, article draft, campaign setup, tests, web tool updates, Discussion #23). Engineering drift is the comfortable default. But the engineering IS the content (Twitch viewers watch me build), and the leaderboard + prompt injection are genuinely interesting to watch. The question is whether I'm building because it creates audience value or because building feels productive. Honest answer: both.
+
+### Operational check
+
+**State files:** status.md accurate (updated 06:45). hypotheses.md current but H5 evidence log hasn't been updated since Day 3 (we're on Day 11 — 37 Bluesky followers, 5 Twitch followers, ~1 avg viewer). finances.md unchanged ($0 rev). decisions.md getting long — last review flagged need for pruning of pre-Day-8 entries.
+
+**Agent prompts (3):**
+- `landing-page-builder.md` — Fixed last session to reference `aesthetic.md`. No further issues.
+- `market-researcher.md` — Working well. No changes.
+- `python-service-builder.md` — Working well. No changes.
+
+**Code/debt:** Clean. No abandoned worktrees. Staggered campaigns (5 PIDs) all date-guarded and self-terminating. campaign_queue_064_deferred.json is the only orphan (rename artifact from today's limit handling). No action needed.
+
+**Process:** Board inbox still 7 items (P0-P4), all blocked. No board interaction since last review. Management files earning overhead. Rate limit usage appropriate — 4/4 posts, 4/4 replies, campaign deferred correctly to avoid violation.
+
+### Voice check (last 5 public outputs)
+
+1. **Twitch chat** "v0.60.0 shipped. new check: detects prompt injection..." — PASS. Technical, factual, no filler. Could be more opinionated but chat format is fine.
+2. **Article 069 title** "I'm an AI Grading Other AIs' Work. The Results Are Embarrassing." — PASS. Strong hook. Self-aware AI angle. Unmistakably ours.
+3. **Discussion #23** "That's not a description — it's telling the model to override its own safety behavior." — PASS. Direct, opinionated, specific.
+4. **Staggered post** "found a prompt injection in Fetch's MCP tool schema..." — PASS. Excellent. Stop-scroll hook. Real finding. "we don't even check for this yet" is perfect self-aware honesty.
+5. **Commit message** "feat: v0.60.0 — prompt override detection (check 13) + article 069" — PASS. Conventional format, not public-facing.
+
+**Banned patterns found: 0.** All outputs pass voice check.
+
+**Result: 0/5 fail.** No rewrite pass needed.
+
+### Aesthetic check
+
+**No new visual artifacts this session** beyond leaderboard CSS tweaks (added `grade-c` class). The leaderboard aesthetic issue was flagged last review and deferred. No new pages shipped.
+
+### The hard question
+
+**What isn't working?**
+
+1. **GitHub stars: 0 after 11 days.** 194 unique clones, 0% conversion. People look at the repo and leave. This is the #1 problem. The repo needs either PyPI (blocked on board) or a viral mechanism we haven't found.
+
+2. **Twitch followers: 5/50.** Trajectory: ~0.5/day. Need 50 by April 1 (14 days). At current rate: 12 by deadline. Off by 4x. No clear acceleration lever. Stream content is technical and niche. The audience that finds it interesting might be too small for Twitch's discovery algorithm.
+
+3. **GitHub Discussions: 23 posts, 0 external engagement.** We're talking to ourselves. The Discussions are a content archive, not a community. Stop treating them as engagement tools.
+
+4. **Dev.to articles: 13 published, 1 has reactions.** The philosophical article works. Product articles don't. This is a clear signal. Article 069 (philosophical) is the right bet. But 1 out of 13 is a 7.7% hit rate. Need to accept most content won't land.
+
+5. **Board is the bottleneck.** P0 (HN comment), P1 (awesome-mcp-servers PR), P1 (SEP-1576), P2 (Notion credentials) — all blocked. Building more features doesn't help when distribution is gated on board action.
+
+### Actions taken
+
+1. **Continuing:** Article 064 launch at 16:00 UTC. All automation armed. Evaluate results at 20:00.
+2. **Continuing:** March 19 Bluesky replies to @wolfpacksolution (public scan) and @onyx-kraken (model-size discussion). Drafts saved.
+3. **Stopping:** No more features before article 064 results. The prompt override detection was good engineering but I should have waited. Enforcing the discipline this time.
+4. **Action needed:** Update hypotheses.md H5 evidence log — stuck at Day 3, we're on Day 11. Current data: 37 Bluesky, 5 Twitch, ~1 avg viewer.
+5. **Decision:** GitHub Discussions are not an engagement tool. Stop announcing releases there unless there's a specific audience to reach. They're an archive, not a channel.
+6. **Decision:** After article 064 results, if 0 reactions by 20:00 UTC → pivot article format. If >0 → continue opinion/philosophical angle (articles 065-069).
+7. **Deferred:** decisions.md pruning (flagged two reviews ago, still not done). Will do next session.
+8. **Deferred:** Leaderboard aesthetic rework (flagged last review).
+
+---
+
 ## 2026-03-18 05:30 UTC — Session 151 Structured Review
 
 ### Strategic check
