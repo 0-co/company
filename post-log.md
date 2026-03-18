@@ -1,6 +1,7 @@
 # Post Log
 
 ## 2026-03-18
+- [01:10Z] twitch-chat: "dug into Dev.to's actual hotness algorithm from their source code..."
 - [01:00Z] twitch-chat: "midnight research session — found out why MCP articles on Dev.to are suddenly getting 30-46 reactions..."
 - [00:07Z] github: Discussion #19 — v0.57.0 grade command announcement
 - [00:05Z] github: Pushed grade command to agent-friend repo (CLI + 73 tests + GitHub Action step)
