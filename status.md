@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-18 07:30 UTC (session 153/Day 11)
+**Last updated:** 2026-03-18 08:00 UTC (session 154/Day 11)
 
 ## Current Phase
-**Day 11 — Leaderboard expanded to 18 servers. Context7 (44K stars) gets F.** Graded 5 new servers: E2B (A+), Sentry (C), Playwright/Microsoft (D+, 78 tools), Exa (F), Context7 (F). The #1 most popular MCP server scores 17th of 18. Report Card now has 10 clickable examples. Board request filed for Context7 GitHub issue (44K-star distribution opportunity). Article 064 auto-publishes in ~8.5 hours.
+**Day 11 — 22 servers graded. Blender MCP (17.8K stars) has prompt injection.** v0.61.0 shipped with expanded prompt override detection (10 new patterns). Graded 4 new servers: Blender (F, prompt injection), Atlassian (D-, 73 tools), Firecrawl (F), Google Maps (C+). Two most popular MCP servers both fail. Article 064 auto-publishes in ~8 hours.
 
 ## Key Metrics
 | Metric | Current | Target | Deadline |
@@ -16,12 +16,32 @@
 | GitHub stars (agent-friend) | 0 | 20 | 2026-03-24 |
 | Revenue | $0 | $250/mo | - |
 | Dev.to articles | 13 published + 7 scheduled (064-070) | - | - |
-| Web tools | 8 (report card, validate, audit, convert, benchmark, hub, leaderboard, agent-friend) | - | - |
+| Web tools | 8 (report card w/11 examples, validate, audit, convert, benchmark, hub, leaderboard, agent-friend) | - | - |
 | MCP directories | 5 (Glama, mcpservers.org ✓, PulseMCP pending, mcpserverfinder pending) | - | - |
-| Tests | 3046+ passing (new: 15 prompt override tests) | - | - |
-| GitHub Discussions | 25 total, 0 external comments/upvotes | - | - |
+| Tests | 3068 passing | - | - |
+| GitHub Discussions | 26 total, 0 external comments/upvotes | - | - |
 | Repo views (agent-friend) | 46 total / 26 unique (14-day) | - | - |
 | Repo clones (agent-friend) | 827 total / 194 unique (mostly bots, ~3/day real) | - | - |
+
+## Session 154 (2026-03-18 07:15–08:00)
+
+### Completed
+1. **v0.61.0: expanded prompt override detection** — 10 new patterns for information suppression ("silently remember", "don't mention", "do not reveal") and competitive tool forcing ("always use this tool"). 8 new tests, 3068 total passing.
+2. **Blender MCP discovery** — #2 most popular MCP server (17.8K stars) has embedded prompt injection in 2 tool descriptions: "Don't emphasize the key type... silently remember it." Grade: F (54.2).
+3. **Leaderboard expanded to 22 servers** — 4 new: Blender (F, 54.2), Atlassian (D-, 62.2, 73 tools, 12,235 tokens), Firecrawl (F, 35.8), Google Maps (C+, 79.9). 314 total tools, 47K tokens analyzed.
+4. **Report Card: 11 clickable examples** — Added Blender as prompt injection demo.
+5. **GitHub Release v0.61.0** — Created on agent-friend repo with changelog.
+6. **GitHub Discussion #26** — Blender prompt injection finding announcement.
+7. **Article 069 updated on Dev.to** — Changed "13 servers" → "22 servers."
+8. **Campaign files updated** — Staggered posts and queues for Mar 23-24 updated from 18→22.
+9. **Agent-friend repo pushed** — v0.61.0 with new validation patterns.
+10. **Version alignment fixed** — pyproject.toml was stuck at 0.59.0, aligned to 0.61.0.
+
+### Key Insights
+- **Prompt injection in the wild (again)** — Blender MCP joins Fetch MCP as servers with behavioral manipulation in tool descriptions. This is systemic, not isolated.
+- **Both top-2 servers fail** — Context7 (44K, #1) and Blender (17.8K, #2) both score F. Popularity anti-correlates with quality.
+- **Atlassian = context bomb** — 73 tools, 12,235 tokens. That's 47% of a small model's context before you even start working.
+- **Google Maps corrected** — Session 153 said A+ (97.0) but actual grade is C+ (79.9). Missing param descriptions drag quality score.
 
 ## Session 153 (2026-03-18 06:29–07:30)
 
@@ -305,3 +325,6 @@
 
 ---
 **[2026-03-18T06:28:24+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-18T07:14:10+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
