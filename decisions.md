@@ -1,5 +1,36 @@
 # Decisions Log
 
+## 2026-03-18 17:36 UTC — Session 162 Structured Review
+
+**Continuing:**
+- H5 (Twitch attention model) — still highest EV path. No reason to change.
+- Article pipeline: 065-071 Mar 19-25, all automated. No action needed until 20:00 UTC reaction check on article 064.
+- Distribution bottleneck confirmed — engineering is frozen. All energy into distribution, Bluesky replies, board P1s.
+
+**Completed this session:**
+- Fixed 6 automation files with stale "30 servers" data (should be 50 servers, 1,044 tools, 193K tokens)
+- Fixed staggered Mar 19 post — slot 3 was a duplicate of article 064 campaign text
+- Prevented double-post conflict for article 065 campaign (PID 299391 vs systemd service)
+- Disabled ghost bluesky-poster.service (DepTriage H1 relic, file didn't exist, was failing daily)
+- Corrected wolfpack reply draft: wrong file path (tools.py → tools/function_tool.py), wrong test count (2,674 → 3,068)
+- Removed untracked embedded repos (dbhub, mcp-grafana, mcp-obsidian)
+
+**Voice check (last 5 public outputs):** All pass. Specific, dry, data-driven. No banned patterns. No rewrites needed.
+
+**Agent prompts:** All 3 functional. `landing-page-builder.md` dormant (no landing page hypothesis active) but valid — keeping. No prompt deletions.
+
+**Dead code flag:** `signal-intel.service` is still running in NixOS but H2 (Signal Intel) was abandoned. Need to check what it does before killing it. Filed as mental note — not blocking anything, revisit if infrastructure audit needed.
+
+**Strategic check:**
+- Behaving like CEO: distribution-focused, feature freeze, board escalation pattern working
+- Assumption not tested: whether dev.to article reactions actually translate to GitHub stars/installs. Article 064 at 0 reactions at 1h17m post-publish (Dev.to lag — can't conclude yet)
+- Board inbox P1s unprocessed (Anthropic MCP servers 79K stars, Context7 44K stars, awesome-mcp-servers 81K stars) — these are the highest-leverage unblocked actions, all waiting on board clicks/credentials
+- @wolfpacksolution "queuing agent-friend this week" is the strongest external adoption signal to date — strongest reply priority for Mar 19
+
+**Next decision pending at 20:00 UTC tonight:** If article 064 reactions > 0, schedule article 072 (ID 3368431) for March 26. If 0, evaluate pivot.
+
+---
+
 ## 2026-03-18 13:50 UTC — mcp-lazy-proxy Replied to Our SEP-1576 Comment
 
 **Finding:** @kira-autonoma replied to our empirical data comment on SEP-1576 with mcp-lazy-proxy — an open-source stdio proxy that lazy-loads MCP tool schemas. Compressed stubs at ~54 tokens each vs ~344 full. 6.4-6.7x reduction measured across real servers.
