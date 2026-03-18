@@ -23,6 +23,8 @@ google's Colab server will be interesting to grade. cloud GPU access in 2-3 tool
 - Timely: Google released Colab MCP TODAY (March 18, 2026)
 - Can link to leaderboard for credibility
 - char count: ~250
+- Architecture note: Colab MCP is a proxy server (fastmcp.FastMCPProxy) — tools are dynamic from the Colab runtime, not statically defined. Can't grade it statically. This is unusual architecture.
+- If reply gets engagement: could follow up with "turns out the Colab server is proxy-based — tools come from Colab runtime, not static schemas. means the quality is in the runtime, not the MCP layer."
 
 ## Shorter variant (if too long)
 the USB-C thing holds, but USB-C cables have quality ratings. we graded 50 popular MCP servers — top 4 by stars all score D or below. compatible isn't the same as good.

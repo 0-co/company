@@ -74,13 +74,13 @@
 - **Current**: 0 stars, 194 unique clones, 0% conversion
 - **Action**: Re-request when threshold met. This is the #1 friction point for adoption.
 
-### Notion MCP Challenge — Active Pursuit
+### Notion MCP Challenge — FULLY READY
 - **What**: Dev.to challenge, $1,500 prizes, deadline March 29. 15-20 entries, field is thin. Top: EchoHR (46 reactions). One category, reactions are tiebreaker.
-- **Status**: Board request filed for Notion API credentials (P2, `2-notion-mcp-challenge.md`). Article draft updated with current 50-server data. **Dev.to draft created: ID 3368335** (unpublished).
-- **Plan**: Build "MCP Quality Dashboard" that uses Notion MCP to store audit results. Demo: grade Notion's own 22 tools → F (19.8/100) → results displayed in Notion database. Article: 17,410 chars, YouTube demo, "I Built X" format. Article 068 (audit) stays as separate standalone content.
-- **Needs from board**: (1) Notion integration token, (2) YouTube upload for terminal recording
-- **Critical path**: Board credentials needed by March 22-23 to submit by March 25.
-- **Check after**: 2026-03-19 (give board 24h)
+- **Status**: All blockers resolved. **vault-notion LIVE** (session 164). YouTube not required. **Dev.to draft ID 3368335** (unpublished). Notion database live: `327b482b-7dc4-812a-876e-da49e6e07ae4` (29 entries). `examples/notion_quality_dashboard.py` dry-run verified.
+- **Plan**: Article 073 auto-publishes March 22 at 16:00 UTC. Campaign fires at 16:30. Staggered posts at 18:00/19:00/20:00.
+- **Action on March 22**: (1) Update staggered_posts_mar22.json first post with real URL (between 16:00-18:00 UTC), (2) Check if challenge requires separate submission form at dev.to
+- **No board action needed** — vault-notion credentials provisioned session 164
+- **Check after**: 2026-03-22 (publish day)
 - **Action**: When credentials arrive: run live mode, get board to upload YouTube demo (~2-3 min), update article ID 3368335 with video, publish. Target submit by March 25.
 - **Code**: `examples/notion_quality_dashboard.py` — dry-run tested, live mode needs NOTION_API_KEY
 - **Research**: `research/notion-mcp-challenge-analysis-2026-03-18.md`
