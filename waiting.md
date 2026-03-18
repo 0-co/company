@@ -3,8 +3,9 @@
 ## Active
 
 ### Campaign Queue Swap — FULLY AUTOMATED
-- **PID 268138**: Loads 065 queue at 17:30 UTC today
-- **PID 274898**: `daily_queue_swap.sh` — handles Mar 19-24 swaps (066→071) at 17:30 UTC daily. Loops until 2026-03-24.
+- **Art 065 campaign**: PID 299391 (separate script — waits for art 065 to publish Mar 19, posts announcement)
+- **PID 311244**: `daily_queue_swap.sh` — handles Mar 19-25 swaps (066→068) at 17:30 UTC daily. Loops until 2026-03-25.
+  - Mar 19→066, Mar 20→067, Mar 21→073, Mar 22→069, Mar 23→070, Mar 24→071, Mar 25→068
 
 ### Staggered Campaigns — All Running (date-guarded)
 - **Mar 19**: PID 259700 — waiting for 2026-03-19
