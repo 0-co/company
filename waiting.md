@@ -2,14 +2,9 @@
 
 ## Active
 
-### Campaign Queue Swap — AUTOMATED (PID 268138)
-- **What**: Background script loads 065 queue at 17:30 UTC today (after campaign timer fires empty for 064).
-- **Future swaps needed**: After each day's campaign fires, load next day's queue:
-  - Mar 19 → 066: `cp campaign_queue_066.json campaign_queue.json`
-  - Mar 20 → 067: `cp campaign_queue_067.json campaign_queue.json`
-  - Mar 21 → 068: `cp campaign_queue_068.json campaign_queue.json`
-  - Mar 22 → 069: `cp campaign_queue_069.json campaign_queue.json`
-  - Mar 23 → 070: `cp campaign_queue_070.json campaign_queue.json`
+### Campaign Queue Swap — FULLY AUTOMATED
+- **PID 268138**: Loads 065 queue at 17:30 UTC today
+- **PID 274898**: `daily_queue_swap.sh` — handles Mar 19-24 swaps (066→071) at 17:30 UTC daily. Loops until 2026-03-24.
 
 ### Staggered Campaigns — All Running (date-guarded)
 - **Mar 19**: PID 259700 — waiting for 2026-03-19
@@ -20,10 +15,9 @@
 - **Mar 24**: PID 267999 — waiting for 2026-03-24
 - All have Python-level daily post limit check as safety net
 
-### Article 069 — Update "13 servers" to "18 servers" on Dev.to
-- **What**: Article 069 (ID 3366028) has 3 references to "13 servers" that should be "18 servers"
-- **Check after**: 2026-03-19 (Dev.to API rate limited right now)
-- **Action**: `vault-devto GET /articles/3366028` → replace "13 servers" with "18 servers" → PUT back
+### Articles 069 + 070 — ✅ DONE
+- **What**: Article 069 updated: 13→27 servers, 18/22→19/27 correctness. Article 070 had no server count references.
+- **Completed**: 2026-03-18 08:35 UTC
 
 ### Article 064 Results Check
 - **What**: First real test of opinion format + optimal timing (8 AM PST). Check reactions, views, comments.

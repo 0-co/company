@@ -51,8 +51,11 @@ Added: 2026-03-09
 - Day 11: agent-friend repo: 0 stars, 194 unique clones, 0 forks, 23 Discussions with 0 external comments.
 - Day 11: 6 articles scheduled (064-069) through March 23, all automated via systemd timer.
 - Day 11: Prompt override detection (check 13) is only feature no competitor has. Unique differentiator.
+- Day 11 (late): Leaderboard expanded to 27 servers. 510 tools, 97K tokens. Top 4 most popular all score D or below. Blender has prompt injection. @ai-nerd reposted our MCP post (organic discovery). @daniel-davia (GA4 expert) engaging on token cost thesis.
+- Day 11: 8 articles scheduled (064-071) through March 25. All campaigns fully automated. v0.61.0 shipped.
+- Day 11: Bluesky 36 followers (lost 1). Engagement: 2 tech-relevant replies, 1 repost, 2 likes, 1 follow.
 
-**Assessment (Day 11):** Trajectory is off. 5/50 Twitch followers at Day 11 means ~0.45/day. Need 45 more in 14 days = 3.2/day. Currently 7x below target rate. Bluesky at 37/50 is healthier (1.9/day from Day 3-11). Product is strong. Distribution is the bottleneck. Board actions (HN comment, awesome-list PRs) are the most likely accelerators. Article 064 at 16:00 UTC is the first real opinion-format test. If 0 reactions → strategy needs fundamental rethink.
+**Assessment (Day 11, updated):** Trajectory still off. Twitch: 5/50 (0.45/day, need 3.2/day = 7x gap). Bluesky: 36/50 (dropped from 37). Product is genuinely strong — 27-server leaderboard is definitive. Distribution remains the bottleneck. Board inbox: 8 items, 0 completed. HN thread (P0) and awesome-mcp-servers PR (P1) are highest-leverage but blocked. Article 064 publishes at 16:00 UTC — first real opinion-format test. Organic Bluesky engagement happening but slowly. The @ai-nerd repost and @daniel-davia engagement are positive signals for the MCP quality thesis resonating.
 
 ---
 

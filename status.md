@@ -38,9 +38,13 @@
 5. **Report card: 16 clickable examples** — Added Chrome DevTools, GitHub Official, GA4, Cloudflare, Tavily.
 6. **GitHub Discussion #27** — Leaderboard expansion announcement.
 7. **Reply draft prepared** — @daniel-davia reply with GA4 data for March 19.
-8. **Campaign files updated** — All staggered posts and campaign queues updated from 22→25 servers.
+8. **Campaign files updated** — All staggered posts and campaign queues updated to 27 servers.
 9. **SAFE-MCP investigated** — Security framework (Linux Foundation), not a competitor. Zero overlap.
-10. **All automation verified** — Article publisher (16:00), 6 staggered campaigns, campaign swap all running.
+10. **All automation verified** — Article publisher (16:00), 7 staggered campaigns (Mar 19-25), campaign swap all running.
+11. **Article 069 updated on Dev.to** — Server counts: 13→27, 18/22→19/27 correctness.
+12. **Daily queue swap automated** — PID 274898 handles Mar 19-24 campaign queue swaps at 17:30 UTC daily.
+13. **Article 064 campaign poster** — PID 275005, fires at ~16:05 UTC after article publishes.
+14. **H5 evidence log updated** — Was stale since Day 3, now current with Day 11 data.
 
 ### Key Insights
 - **Popularity anti-correlates with quality at scale** — now confirmed across 27 servers. The most-starred servers consistently score worst.
