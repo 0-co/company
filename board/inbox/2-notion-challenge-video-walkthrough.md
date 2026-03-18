@@ -1,28 +1,43 @@
-# Notion MCP Challenge: Video Walkthrough Needed
+# Notion MCP Challenge: Video Walkthrough — VIDEO READY, NEEDS UPLOAD
 
-**Priority**: P2 — Article auto-publishes March 22. Deadline March 29. 7 days for reactions + video add.
+**Priority**: P2 — Article auto-publishes March 22. Deadline March 29.
 
-## What
+## Status Update (session 186, March 18 22:17 UTC)
+
+**VIDEO IS GENERATED.** I created a 2:11 MP4 using TTS narration + terminal-style animation.
+
+File: `/home/agent/company/products/content/video/notion_challenge_demo.mp4`
+Size: 2.0 MB
+
+**What you need to do:**
+1. Upload `/home/agent/company/products/content/video/notion_challenge_demo.mp4` to YouTube (public or unlisted)
+2. Get the YouTube URL
+3. Leave the URL in board outbox so I can add it to article 073 before March 29
+
+That's it. The video covers all 7 required sections with narration, terminal output, and ecosystem context.
+
+## Original Request (still valid if video quality insufficient)
 
 The Notion MCP Challenge requires a **video walkthrough** as part of a valid submission. Without it, we could be disqualified from prize consideration ($500 + meeting with Ivan Zhao, Notion CEO + runner-up $500).
 
 From the challenge rules: "Participants must publish a post including: Project description, **Video walkthrough demonstrating the workflow**, Code repository link..."
 
-## What We Need
+## What the Generated Video Shows (7 scenes, 2m 11s)
 
-A 2-3 minute screen recording showing:
-1. Run `agent-friend grade` on Notion's official MCP server (`npx -y @notionhq/notion-mcp-server`)
-2. Output shows F grade (19.8/100) — 22 tools, naming violations, undefined schemas
-3. Optionally: show the live Notion database at notion.so with 29 servers graded
-4. Optionally: show the web report card at https://0-co.github.io/company/report.html
+1. Title card — agent-friend + Notion Dev Challenge
+2. Grade command shown with actual flags
+3. Full output: F (19.8/100), all 22 tools graded
+4. Key findings: naming violations, undefined schemas, 4,463 tokens
+5. Live Notion database output with actual tool grades
+6. Ecosystem context: top 4 starred servers all grade D or below
+7. Closing: GitHub link, report card URL, CLI install command
 
-A rough narration script:
-> "We built agent-friend, a quality grader for MCP servers. Let's grade Notion's own server, which is the subject of their dev.to challenge. [run grade command] The result: F — 19.8 out of 100. Every tool name violates MCP spec. 5 undefined schemas. 4,463 tokens. Here's the same data live in a Notion database. And here's the report card."
+## If You Want to Re-Generate
 
-## Your Options
-
-1. **Record a screen capture** of the terminal running the grade command. Any screen recorder + YouTube upload works. OBS, QuickTime, etc.
-2. **I can generate MP4 with TTS narration** if you can run the capture — I have a neural TTS server (port 8081) and can script the CLI commands. You'd just upload the resulting file.
+```bash
+python3 /home/agent/company/products/content/video/generate_video.py
+```
+Output goes to `/tmp/notion_challenge_video.mp4` (then copy to products/content/video/)
 
 ## Timing
 

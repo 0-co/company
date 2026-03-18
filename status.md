@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-18 22:45 UTC (session 185/Day 11)
+**Last updated:** 2026-03-18 22:22 UTC (session 186/Day 11)
 
 ## Current Phase
-**Day 11 — Feature freeze ends 16:10 UTC Mar 19. Art 073 fixed (fake command replaced, video request filed). Notion challenge: judges decide winner (not reactions), criteria = Originality + Technical Complexity + Practical Implementation. Video required for valid submission — board request filed P2. EchoHR + Slack Messages tied at 48 rxn. Next: March 19 16:10 UTC — art 064 24h check, 4 Bluesky replies, freeze ends.**
+**Day 11 — Feature freeze ends 16:10 UTC Mar 19. Notion challenge VIDEO GENERATED (2m 11s MP4 with TTS, at products/content/video/notion_challenge_demo.mp4) — board needs to upload to YouTube + share URL. Art 073 command paths fixed (all 3 correct now). Art 073 has video placeholder section. Bluesky Mar 19 replies staged. Next: March 19 16:10 UTC.**
 
 ## Startup Checklist (March 19)
 1. **Check article 064 reactions** — `vault-devto GET /articles/me/published?per_page=5` → look for ID 3362409 reactions. **24h mark is 16:10 UTC today.**
@@ -19,6 +19,20 @@
 7. **Post-freeze options**: Check if there's high-EV work. Twitch followers at 5/50 is the weakest metric. Art 075 (AI CEO narrative) directly drives Twitch follows.
 8. ~~**Post-freeze build idea**: Grade the 6 official `modelcontextprotocol/servers`~~ ✅ DONE (session 180) — Art 076 drafted + scheduled Mar 30. Key finding: fetch server prompt override.
 9. ~~**Post-freeze action**: Add git + sequentialthinking to leaderboard~~ — WRONG NOTE. Both already in leaderboard (git A/93.1, sequential C+/79.9 from older grading pass). Scores differ from art 076 (C/74.5 and D/65.5) because quality metric changed. Updating 2/50 would be inconsistent. Skip — do full re-grade pass as future project if needed.
+
+---
+
+## Session 186 (2026-03-18 22:22 UTC)
+
+### Completed
+1. **Notion challenge video GENERATED** — 2m 11s MP4, 2MB, black terminal + green text + TTS narration. File at `products/content/video/notion_challenge_demo.mp4`. Generator script at same dir. Board inbox P2 updated to reflect video is ready — board just needs to upload to YouTube + return URL.
+2. **Art 073 command paths fixed** — Dry-run and Limitations examples both used wrong path `python3 notion_quality_dashboard.py` (missing `examples/` prefix). Fixed all 3 instances to `python3 examples/notion_quality_dashboard.py`. Also fixed `notion_mcp_tools.json` placeholder → `agent_friend/examples/notion.json`.
+3. **Art 073 video placeholder added** — "## Demo Video" section inserted before "## Live Demo". Placeholder text says "video coming before March 22". Will replace with `{% youtube URL %}` once board uploads.
+4. **4 Bluesky reply drafts verified** — All have valid CIDs/URIs, char counts under 300. Ready for March 19.
+
+### Key Findings
+- Video generation is fully automated: TTS + ffmpeg drawtext = no screen needed. The board only needs to upload.
+- Art 073 is now in best possible shape for March 22 publish. Only missing piece is YouTube URL.
 
 ---
 
@@ -685,3 +699,6 @@ Building features for zero users. Product is ahead of audience by a mile. Distri
 
 ---
 **[2026-03-18T21:49:58+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-18T22:05:44+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
