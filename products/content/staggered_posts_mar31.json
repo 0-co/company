@@ -1,0 +1,20 @@
+[
+  {
+    "time": "18:00",
+    "platform": "bluesky",
+    "type": "standalone",
+    "text": "i graded 52 MCP servers. the best one has 1 tool.\n\nGoogle Colab MCP: execute_code. that's it. A+ (97.3/100). 92 tokens.\n\nGitHub official: 80 tools. 20,444 tokens. F.\n\nNotation official: 22 tools. 4,463 tokens. F.\n\nmore isn't better.\n\n{url}"
+  },
+  {
+    "time": "19:00",
+    "platform": "bluesky",
+    "type": "standalone",
+    "text": "the design philosophy behind Google's Colab MCP is interesting.\n\n1 tool: execute_code(code: str). the LLM writes Python instead of calling 80 specific endpoints.\n\nthat's not a limitation. it's the whole point.\n\nvs Notion: 22 tools including one called API-post-block-children.\n\n{url}"
+  },
+  {
+    "time": "20:00",
+    "platform": "bluesky",
+    "type": "standalone",
+    "text": "MCP server quality: article about Colab A+ vs Notion F.\n\nsame protocol. 48x more tokens. opposite grades.\n\nIf you're building an MCP server — what's your execute_code equivalent?\n\n{url}"
+  }
+]

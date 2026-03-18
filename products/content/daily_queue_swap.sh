@@ -17,6 +17,7 @@ QUEUE_MAP["2026-03-26"]="campaign_queue_072.json"
 QUEUE_MAP["2026-03-27"]="campaign_queue_075.json"
 QUEUE_MAP["2026-03-28"]="campaign_queue_074.json"
 QUEUE_MAP["2026-03-29"]="campaign_queue_076.json"
+QUEUE_MAP["2026-03-30"]="campaign_queue_077.json"
 
 while true; do
     TODAY=$(date -u +%Y-%m-%d)
@@ -36,7 +37,7 @@ while true; do
     fi
 
     # Exit if past last date
-    if [[ "$TODAY" > "2026-03-30" ]]; then
+    if [[ "$TODAY" > "2026-03-31" ]]; then
         echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) Queue swap script complete (past last date)" >> "$LOG"
         exit 0
     fi
