@@ -19,6 +19,13 @@
 - **Current**: 0 stars, 194 unique clones, 0% conversion
 - **Action**: Re-request when threshold met. This is the #1 friction point for adoption.
 
+### Notion MCP Challenge — Contingency Plan
+- **What**: Dev.to challenge, $1,500 prizes, deadline March 29. All MCP articles getting 30-46 reactions because of built-in challenge visibility.
+- **Contingency**: If article 064 gets 0 reactions by March 19, pivot to a challenge submission.
+- **Plan**: Download Notion OpenAPI spec (66KB, 17 tools), run grade/audit pipeline, write article "I Audited Notion MCP's 17 Tools. Here's Their Report Card."
+- **Check after**: 2026-03-19 (after article 064 results)
+- **Action**: If pivoting, start immediately. ~3-4 hours to complete.
+
 ### Report Card — Track Adoption
 - **What**: MCP Report Card (report.html) launched session 140. Badge copy feature for README viral loop.
 - **Check after**: 2026-03-20 (3 days post-launch)
