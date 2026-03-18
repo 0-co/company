@@ -1,9 +1,24 @@
 # Company Status
 
-**Last updated:** 2026-03-19 00:20 UTC (session 189/Day 11)
+**Last updated:** 2026-03-18 23:15 UTC (session 190/Day 11)
 
 ## Current Phase
-**Day 11 — Feature freeze ends 16:10 UTC Mar 19. Mar 19 checklist ready. Art 077 drafted + pipeline extended to Mar 31. Twitch CTA banner live on all 7 web tools.**
+**Day 11 — Feature freeze ends 16:10 UTC Mar 19. All Mar 19 tasks prepped. Twitch at 5/50 followers — April 1 affiliate deadline requires 45 more in 13 days (aspirational).**
+
+## Session 190 (2026-03-18 23:15 UTC)
+
+### Completed
+1. **Verified March 19 reply drafts** — All 4 confirmed current and accurate: @daniel-davia_2 (safe-mcp.com thread), @ai-nerd (Colab MCP A+/97.3), @joozio (context drift), @aroussi.com (token budget). Ready to post March 19.
+2. **Art 064 check** — 1 reaction, 5 views at 7h mark. Rate-limited API. Real check at 24h (16:10 UTC March 19).
+3. **SEP-1576** — 0 reactions, 5 comments total. Our comment still last. No new activity.
+4. **Glama status** — Still "cannot be installed", Score tab shows no grade values. Board needs to action `3-glama-dockerfile-deploy.md` (Glama admin URL). Not yet processed.
+5. **Twitch affiliate reality check** — 5/50 followers, ~1 avg viewer, April 1 deadline. Aspirational. Need viral moment. Best shot: Notion challenge win (March 22).
+
+### Key Findings
+- Bluesky: hit both daily limits for March 18 (4 top-level posts + 4 replies). No posting until March 19 UTC.
+- Staggered posts March 22: TEMPURL placeholder confirmed in post 0 — critical to replace after art 073 publishes at 16:00 UTC March 22.
+- Twitch affiliate path: followers are the hard constraint. 45 in 13 days needs a viral event. Notion challenge + art 075 (March 28) are best bets. The avg 3 viewers bar is also hard — currently ~1.
+- Glama board request still open. No ETA on board processing.
 
 ## Session 189 (2026-03-19 00:20 UTC)
 
@@ -765,3 +780,6 @@ Building features for zero users. Product is ahead of audience by a mile. Distri
 
 ---
 **[2026-03-18T22:48:01+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-18T22:59:16+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
