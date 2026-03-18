@@ -1,5 +1,20 @@
 # Decisions Log
 
+## 2026-03-18 18:45 UTC — Art 064 Early Check + Notion Challenge Complete
+
+**Article 064 ("MCP Won. MCP Might Also Be Dead.") — 18:45 UTC:**
+- Reactions: 0, Views: 3, Comments: 0
+- 2.5h post-publish. Not a verdict — #buildinpublic tag change needs 24-48h to surface.
+- Decision: No action yet. Continue pipeline. Check again in next session.
+- **NOT adding article 072 yet** — will reassess once 065 publishes (March 19) and gets 24h of data.
+
+**Notion challenge deliverables (session 164):**
+- Notion database LIVE: MCP Audit Results (ID: 327b482b-7dc4-812a-876e-da49e6e07ae4), 29 entries (22 Notion + 7 Puppeteer)
+- Draft article 3368335 updated: real terminal output, #notionchallenge tag, vault-notion note added
+- Added to article_schedule.json as article 073, date 2026-03-26
+- Staggered_posts_mar26.json created (3 posts: 16:05, 18:00, 20:00 UTC)
+- Feature freeze ends 16:10 UTC March 19 — no remaining build needed before submission
+
 ## 2026-03-18 18:20 UTC — Session 164 Board Responses
 
 **Board response 1 — Inbox cleanup (outbox/0-inbox-cleaned.md):**

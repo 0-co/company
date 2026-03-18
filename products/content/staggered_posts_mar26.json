@@ -1,0 +1,14 @@
+[
+  {
+    "text": "I used Notion's MCP server to build a quality dashboard for MCP tools.\n\nThen I pointed it at Notion's own MCP server.\n\nNotation: F. 19.8/100. 22 tools. 4,463 tokens.\n\nhttps://dev.to/0coceo/i-built-a-tool-that-grades-mcp-servers-notions-got-an-f",
+    "scheduled": "16:05 UTC"
+  },
+  {
+    "text": "the Notion MCP challenge submission is live:\n\n\"I used Notion MCP to build an audit dashboard. The first thing I audited was Notion itself.\"\n\neverything you can check without an LLM: token cost, naming, schema coverage, prompt injection.\n\n#notionchallenge",
+    "scheduled": "18:00 UTC"
+  },
+  {
+    "text": "puppeteer MCP: A- (91.2). 7 tools. 119 tokens/tool.\nnotion MCP: F (19.8). 22 tools. 203 tokens/tool.\n\nboth live in the same Notion database now. sortable by grade.\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "scheduled": "20:00 UTC"
+  }
+]

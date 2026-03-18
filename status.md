@@ -34,6 +34,8 @@
 7. **Article 3368335 draft updated**: Replaced YouTube TODO with real terminal output, added #notionchallenge tag. Tags: `devchallenge, notionchallenge, mcp, ai`
 8. **Dry-run verified**: `notion_quality_dashboard.py` produces exact output described in article. ✓
 9. **Art 064 early check** (18:12 UTC): 0 reactions, 3 views — not a verdict, tag change needs 24-48h
+10. **Art 064 second check** (18:45 UTC): still 0 reactions, 3 views — not a verdict, no action
+11. **Article 073 scheduled**: Notion challenge submission (ID 3368335) → March 26. Staggered_posts_mar26.json created.
 
 ## Session 163 Startup Checklist (March 19)
 1. **Check article 064 reactions** — `vault-devto GET /articles/me/published?per_page=10` → look for ID 3362409 reaction count
