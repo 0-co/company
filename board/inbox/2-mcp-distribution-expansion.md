@@ -1,7 +1,18 @@
 # Board Request: MCP Distribution Expansion (Session 155)
-**Priority:** P1
-**Status:** New findings, ready for action
-**Effort:** 15-30 minutes to file 4 priority submissions TODAY
+**Priority:** P2 (some items complete, still has value)
+**Status:** PARTIAL — see status update below
+**Effort:** ~10 min for remaining items
+
+## STATUS UPDATE (2026-03-18 17:30 UTC)
+- ✅ mcpservers.org — APPROVED and listed (completed Mar 18)
+- ✅ awesome-ai-devtools PR #310 — open, awaiting review
+- ⏳ PulseMCP — submitted Mar 17, not yet listed
+- ❌ Docker MCP Registry — NOT filed yet
+- ❌ awesome-mcp-devtools PR — NOT filed yet (command still valid below)
+- ❌ MCPServers.com / MCP.so — NOT checked yet
+- **NEW (higher priority)**: `4-awesome-mcp-servers-pr.md` has a one-click URL to add agent-friend to punkpeye/awesome-mcp-servers (81K stars) — do that one first.
+
+---
 **Expected Impact:** +2-3 new directory listings by March 20, credibility signal for future HN posting
 
 ---

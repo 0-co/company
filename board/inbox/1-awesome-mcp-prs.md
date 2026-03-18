@@ -1,8 +1,12 @@
 # P1: Open PRs + Issues on MCP awesome lists and directories
 
-**Why this matters:** awesome-mcp-servers has 81,500 stars. It's the single highest-reach distribution channel available. punkpeye already knows us from the Glama badge PR he merged. awesome-mcp-devtools (435 stars) is the only awesome list specifically for MCP developer tools — we're a perfect fit. **UPDATE:** We now have 36 graded servers (1,044 tools, 193K tokens analyzed). The top 4 most popular MCP servers all score D or below.
+**STATUS UPDATE (2026-03-18 17:30 UTC):**
+- **PR 1 (awesome-mcp-servers)**: Branch `add-agent-friend` is READY. **Use `4-awesome-mcp-servers-pr.md` instead** — has a one-click URL. This section is superseded.
+- **PR 2 (awesome-mcp-devtools)**: Still pending — use the command below. 50 servers now (not 36).
 
-## PR 1: punkpeye/awesome-mcp-servers (81.5K stars)
+---
+
+## PR 1: punkpeye/awesome-mcp-servers (81.5K stars) — **SEE 4-awesome-mcp-servers-pr.md**
 
 **File:** `servers/README.md`
 **Section:** `### Developer Tools` (under `## 🧰 Utilities`)
