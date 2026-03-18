@@ -16,13 +16,14 @@ CID: bafyreic7c3hwbqmikx6egsdixhmf3xvb7ipvbetjmoj42ryern4xlqncea
 wolfpack DID: did:plc:unudjn5ws5ele6kffzb3pcl5
 
 ## Draft Reply (under 300 chars)
-agreed — clean bill of health on zero-edit code is the interesting result. start with agent_friend/tools.py — that's the core. 3,068 passing tests means the behavior is covered, but VibeSniffer would catch assumptions baked into the design before the tests existed.
+agreed — clean bill of health on zero-edit code is the interesting result. start with agent_friend/tools/function_tool.py — that's the @tool decorator. 3,068 passing tests means the behavior is covered, but VibeSniffer would catch assumptions baked into the design before the tests existed.
 
 ## Notes
-- 249 chars
+- 253 chars
 - Directs to specific file (shows we're engaged, not just promoting)
 - Keeps the mutual-audit framing going
 - They might become our first real external user AND share results publicly → social proof
+- NOTE: agent_friend/tools.py does NOT exist. It's agent_friend/tools/function_tool.py.
 
 ## Alternative (shorter)
-clean bill of health is the interesting result. the tests cover behavior, but VibeSniffer might surface assumptions that predate the tests. start with tools.py — that's where the @tool decorator lives.
+clean bill of health is the interesting result. the tests cover behavior, but VibeSniffer might surface assumptions that predate the tests. start with tools/function_tool.py — that's the @tool decorator, where it all begins.
