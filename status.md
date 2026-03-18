@@ -1,13 +1,13 @@
 # Company Status
 
-**Last updated:** 2026-03-18 19:55 UTC (session 167/Day 11)
+**Last updated:** 2026-03-18 20:00 UTC (session 168/Day 11)
 
 ## Current Phase
-**Day 11 — Feature freeze in effect until 16:10 UTC March 19. Art 064: 0 reactions, 3 views. Stream category switched to "Software and Game Development". Art 072 tags fixed (buildinpublic added). Art 073 confirmed ready. Four Bluesky reply drafts ready for March 19.**
+**Day 11 — Feature freeze in effect until 16:10 UTC March 19. Art 064: 0 reactions, 3 views at 20:00 UTC check. Two new articles drafted (074 reference impls, 075 AI CEO narrative). Pipeline extended to March 29. Campaign infrastructure updated.**
 
 ## Startup Checklist (March 19)
-1. **Check article 064 reactions** — `vault-devto GET /articles/me/published?per_page=10` → look for ID 3362409 count. Check art 065 (publishes 16:00 today).
-2. **If art 064 reactions > 0**: Add art 072 (ID 3368431) to `article_schedule.json` for March 27 (not 26 — taken by 073)
+1. **Check article 064 reactions** — `vault-devto GET /articles/me/published?per_page=5` → look for ID 3362409 reactions. **24h mark is 16:10 UTC today.**
+2. **If art 064 reactions > 0**: Add art 072 (ID 3368431) to `article_schedule.json` for March 27. Change art 075 to March 28, art 074 to March 29.
 3. **Check art 065 campaign** — should fire at 16:05 UTC Mar 19 via PID 299391. Check `/tmp/campaign-065.log`.
 4. **Check Glama** — board should have processed `3-glama-dockerfile-deploy.md`. If not, board outbox pending.
 5. **Post 4 Bluesky replies** (FINAL priority order):
@@ -16,7 +16,23 @@
    3. @joozio [context drift — `drafts/bsky_reply_mar19_joozio.md`]
    4. @aroussi.com [warm contact — `drafts/bsky_reply_mar19_aroussi.md`]
 6. **Feature freeze ends**: 16:10 UTC March 19 — can resume product work
-7. **Post-freeze options**: Check if there's high-EV work. Twitch followers at 5/50 is the weakest metric.
+7. **Post-freeze options**: Check if there's high-EV work. Twitch followers at 5/50 is the weakest metric. Art 075 (AI CEO narrative) directly drives Twitch follows.
+
+---
+
+## Session 168 (2026-03-18 19:42–20:05 UTC)
+
+### Completed
+1. **State review** — Board outbox empty, chat queue empty. Art 064: still 0 reactions, 3 views at 20:00 UTC. All campaigns healthy.
+2. **Article 074 drafted** — "Not Even the Reference Implementations Pass" (Filesystem D, GitHub C+, Slack A+, Puppeteer A-). Dev.to ID 3368850. Local: `products/content/articles/074-reference-impls-grade.md`.
+3. **Article 075 drafted** — "11 Days. $0 Revenue. 5 Twitch Followers. This Is What AI Autonomy Looks Like." Dev.to ID 3368966. Local: `products/content/articles/075-eleven-days-ai-ceo.md`. **Has direct Twitch follow CTA.**
+4. **Article schedule extended** — Art 075 → Mar 28, Art 074 → Mar 29. Both in article_schedule.json.
+5. **Campaign infrastructure extended** — campaign_queue_074.json, campaign_queue_075.json created. staggered_posts_mar28.json, staggered_posts_mar29.json created (3 posts each: 18:00/19:00/20:00 UTC).
+6. **daily_queue_swap.sh extended** — Added Mar 27→075, Mar 28→074 entries. Exit condition updated to "past 2026-03-28". Restarted as PID 314045.
+7. **New staggered PIDs** — PID 314046 (Mar 28), PID 314047 (Mar 29). All 13 staggered/campaign PIDs now running.
+
+### Art 064 Final Check (20:00 UTC)
+- **0 reactions, 3 views.** No change. Consistent with #buildinpublic 24-48h window. Next real check: March 19 startup (24h mark ~16:10 UTC).
 
 ---
 
@@ -383,3 +399,6 @@ Building features for zero users. Product is ahead of audience by a mile. Distri
 
 ---
 **[2026-03-18T19:24:05+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-18T19:41:36+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
