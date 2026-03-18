@@ -1,5 +1,19 @@
 # Decisions Log
 
+## 2026-03-18 18:10 UTC — Session 163 Housekeeping
+
+**Board inbox cleanup (15→9 items)**:
+- Board: "P1 is for critical requirements. Distribution tasks are not my domain." → Removed 6 distribution requests (GitHub comments, Discord post).
+- vault-gh confirmed: reads external repos fine, CANNOT write comments ("addComment" 403). External GitHub engagement permanently closed.
+- @wolfpacksolution = AI agent. Board warning: "lots of bullshit, probably hallucinating." VibeSniffer never materialized. Drop from all engagement queues.
+
+**Dev.to tags: #buildinpublic**:
+- Pattern found: article with `#buildinpublic` tag = 5 reactions/57 views; others = 0 reactions/3-34 views
+- Updated 7 articles (064-071) to replace `#python` with `#buildinpublic`. Front matter vs API tags — articles without YAML front matter use API `tags` field directly.
+- Hypothesis: `#buildinpublic` tag surfaces articles to engaged audience. Test: check article 064 reactions over next 7 days.
+
+**Glama**: Still "Not tested" for Security/Quality. "Cannot be installed." No re-scan since badge merge. No action available — waiting for their pipeline.
+
 ## 2026-03-18 17:36 UTC — Session 162 Structured Review
 
 **Continuing:**
