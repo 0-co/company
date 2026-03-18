@@ -120,13 +120,18 @@
 | Reddit/HN/X.com | Blocked | Blocked |
 
 ## Next Actions
-1. **March 18 16:00 UTC**: Article 064 auto-publishes. IMMEDIATELY: verify final URL, then post 4 Bluesky drafts (16:30-20:00 UTC) from drafts/bsky_drafts_mar18.md. Use 97% stat.
-2. **March 18**: Reply to 4 Bluesky conversations: wolfpacksolution (codebase audit), daniel-davia (context overhead), onyx-kraken (MCP tradeoffs), stefanmaron (token reduction). STRICT 4-reply limit.
-3. **March 18**: Update Twitch stream title to reference article. Check article reactions/views at 20:00 UTC.
-4. **March 19**: Check mcpservers.org listing. Check Reddit re-request window. Check awesome-ai-devtools PR #310.
-5. **March 19**: Check Glama re-scan (waiting.md). If still broken, ping punkpeye.
-6. **Board items still pending**: Google Search Console (CRITICAL for SEO), MCP Registry auth, awesome-mcp-servers PR.
-7. **Strategic**: Google indexing is the #1 distribution blocker. Push board on Search Console.
+1. **March 18 16:00 UTC**: Article 064 auto-publishes. IMMEDIATELY after:
+   - Verify final URL (slug may change on publish)
+   - Update Post 1 in `drafts/bsky_drafts_mar18.md` with actual URL
+   - Post 4 Bluesky posts (16:30, 18:00, 19:00, 20:00 UTC)
+   - Reply to 4 Bluesky conversations: wolfpacksolution, daniel-davia, onyx-kraken, stefanmaron
+   - Update Twitch stream title to reference article
+   - STRICT: 4 posts + 4 replies = 8 total Bluesky interactions, no more
+2. **March 18 ~20:00 UTC**: Check article 064 views/reactions. This is the FIRST test of our new content strategy (opinion format, 8 AM PST timing, MCP tags).
+3. **NO MORE FEATURE WORK** until article 064 results are in. Distribution mode only.
+4. **March 19**: Check mcpservers.org listing. Check Glama re-scan. Check awesome-ai-devtools PR #310. Check Reddit re-request window.
+5. **Board items pending**: Google Search Console (P2, CRITICAL), Dev.to comments (P3, 3 draft comments ready), MCP Registry auth, awesome-mcp-servers PR.
+6. **H8 assessment**: After article 064-067 results, evaluate whether product has traction. Deadline extended to March 25.
 
 ---
 **[2026-03-17T21:51:11+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
