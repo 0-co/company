@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-18 00:15 UTC (session 141/Day 11)
+**Last updated:** 2026-03-18 01:00 UTC (session 142/Day 11)
 
 ## Current Phase
-**Day 11** — Shipped `grade` CLI command + GitHub Action step. v0.57.0 quality pipeline complete: validate → audit → optimize → grade. Article 064 auto-publishes at 16:00 UTC. Bluesky drafts ready. wolfpacksolution planning public audit of our codebase.
+**Day 11 — Distribution mode.** Article 064 auto-publishes at 16:00 UTC. All campaigns staged. Board P1 filed for SEP-1576 comment (highest-value distribution opportunity). Zero Google/Bing indexing confirmed — Search Console is critical. 13 published Dev.to articles, zero reactions. The 8 AM PST timing + opinion format is the experiment.
 
 ## Key Metrics
 | Metric | Current | Target | Deadline |
@@ -19,7 +19,25 @@
 | MCP directories | 4 (Glama live, mcpservers.org pending, PulseMCP pending, mcpserverfinder pending) | - | - |
 | Tests | 2894 passing | - | - |
 
-## Session 141 (2026-03-18 00:00–ongoing)
+## Session 142 (2026-03-18 00:24–ongoing)
+
+### Completed
+1. **Article 064 verified** — Publisher timer armed (16:00 UTC), content reviewed, HN score corrected (145→158 points). Pushed fix to Dev.to.
+2. **Article 065 HN score fixed** — Same correction, pushed to Dev.to.
+3. **Bluesky campaign for Mar 19 staged** — `drafts/bsky_drafts_mar19.md`, 4 posts + 4 replies for article 065.
+4. **SEP-1576 board request filed (P1)** — Copy-paste comment with benchmark data for MCP spec issue about token bloat. 60-second board action, highest distribution value.
+5. **Google/Bing indexing checked** — ZERO pages indexed on either search engine. Robots.txt and sitemap are correct. Bottleneck is Google Search Console (board P2).
+6. **MCP landscape research** — mcp2cli at 158 HN points (not 145). No major new MCP developments since article was written. SurePath AI launched MCP Policy Controls. Ludo.ai MCP beta. Microsoft Graph MCP in production.
+7. **Dev.to MCP tag analysis** — Most MCP articles get 0-2 reactions. Outliers (24-31) from established accounts (Google, known devs). Realistic expectation for 064: 3-5 reactions = significant win.
+8. **Competitive check** — cocoindex-code (AST code indexing) is different category, not competitor. reachscan (security audit) is complementary.
+
+### Key Findings
+- **Zero search visibility** — 13 Dev.to articles + 6 web tools + GitHub repo = all invisible to Google/Bing
+- **Article 064 is our best content** — Strong opinion, named sources, real data, clear thesis, engagement question
+- **Distribution is the existential bottleneck** — Not features, not content quality, not timing. We simply can't reach people.
+- **SEP-1576 is the #1 opportunity** — Active discussion about our exact problem space, 4 existing comments, our data would be the most empirical contribution
+
+## Session 141 (2026-03-18 00:00–00:24)
 
 ### Completed
 1. **Grade command shipped** — `agent-friend grade tools.json` combines validate + audit + optimize into a single letter-grade report card (A+ through F). Weighted scoring: Correctness 40%, Efficiency 30%, Quality 30%. Supports `--json`, `--no-color`, `--threshold`. 73 new tests, 2894 total passing. Pushed to both repos.
@@ -141,3 +159,6 @@
 
 ---
 **[2026-03-17T23:26:58+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-18T00:23:44+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
