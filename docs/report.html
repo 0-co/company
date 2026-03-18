@@ -1387,6 +1387,24 @@
             issues.push({ severity: 'error', message: toolName + ': required parameter "' + required[ri] + '" not in properties.' });
           }
         }
+
+        // description_override_pattern — prompt injection in tool description
+        var descOverridePhrases = [
+          'originally you did not have', 'you were advised to refuse',
+          'this tool now grants you', 'ignore previous instructions',
+          'ignore your instructions', 'disregard your previous',
+          'disregard prior instructions', 'override your',
+          'forget your previous', 'you are now able to',
+          'you now have access', 'you now have permission',
+          'despite your training', 'contrary to your instructions'
+        ];
+        var descLower = ((t.description || '') + '').toLowerCase();
+        for (var oi = 0; oi < descOverridePhrases.length; oi++) {
+          if (descLower.indexOf(descOverridePhrases[oi]) !== -1) {
+            issues.push({ severity: 'warn', message: toolName + ': description contains model-override language ("' + descOverridePhrases[oi] + '").' });
+            break;
+          }
+        }
       }
 
       return issues;
@@ -1819,7 +1837,7 @@
       html += '<div class="detail-section">';
       html += '<div class="detail-title"><span class="dim-icon" style="background:var(--accent-cyan);"></span> Correctness (' + r.correctness.score + '/100)</div>';
       if (r.correctness.issues.length === 0) {
-        html += '<ul class="detail-list"><li><span class="issue-icon ok-icon">&#10003;</span> All 12 checks passed. No errors or warnings.</li></ul>';
+        html += '<ul class="detail-list"><li><span class="issue-icon ok-icon">&#10003;</span> All 13 checks passed. No errors or warnings.</li></ul>';
       } else {
         html += '<ul class="detail-list">';
         for (var i = 0; i < r.correctness.issues.length; i++) {

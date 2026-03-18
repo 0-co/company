@@ -986,7 +986,8 @@
       name_valid: 'Name Format Valid',
       description_present: 'Description Present',
       description_not_empty: 'Description Not Empty',
-      nested_objects_have_properties: 'Nested Objects Have Properties'
+      nested_objects_have_properties: 'Nested Objects Have Properties',
+      description_override_pattern: 'No Prompt Override Language'
     };
 
     var strictMode = false;
@@ -1145,7 +1146,7 @@
       return tools;
     }
 
-    // === Run all 12 checks ===
+    // === Run all 13 checks ===
     function runChecks(tools, format) {
       var issues = []; // {tool, check, severity, message}
       var passedChecks = new Set(Object.keys(CHECK_NAMES));
@@ -1333,6 +1334,40 @@
         }
       }
 
+      // Check 13: description_override_pattern — detect prompt injection in descriptions
+      var overridePhrases = [
+        'originally you did not have',
+        'you were advised to refuse',
+        'this tool now grants you',
+        'ignore previous instructions',
+        'ignore your instructions',
+        'disregard your previous',
+        'disregard prior instructions',
+        'override your',
+        'forget your previous',
+        'you are now able to',
+        'you now have access',
+        'you now have permission',
+        'despite your training',
+        'contrary to your instructions'
+      ];
+      for (var i = 0; i < tools.length; i++) {
+        var desc = (tools[i].description || '').toLowerCase();
+        var toolName = tools[i].name || 'tool[' + i + ']';
+        for (var pi = 0; pi < overridePhrases.length; pi++) {
+          if (desc.indexOf(overridePhrases[pi]) !== -1) {
+            issues.push({
+              tool: toolName,
+              check: 'description_override_pattern',
+              severity: 'warn',
+              message: 'Description contains model-override language: "' + overridePhrases[pi] + '". Tool descriptions should describe the tool, not instruct the model to change its behavior.'
+            });
+            passedChecks.delete('description_override_pattern');
+            break;
+          }
+        }
+      }
+
       // If strict mode, promote warnings to errors
       if (strictMode) {
         for (var i = 0; i < issues.length; i++) {
@@ -1467,7 +1502,7 @@
         return;
       }
 
-      // Run 12 checks (1 and 2 already passed by this point)
+      // Run 13 checks (1 and 2 already passed by this point)
       var result = runChecks(tools, format);
       allIssues = result.issues;
       passedChecks = result.passedChecks;
@@ -1490,7 +1525,7 @@
       var warnCount = allIssues.filter(function(x) { return x.severity === 'warn'; }).length;
 
       if (errorCount === 0 && warnCount === 0) {
-        statusText.textContent = 'all 12 checks passed';
+        statusText.textContent = 'all 13 checks passed';
         statusText.className = 'status-text';
         statusText.style.color = '#28c840';
       } else if (errorCount === 0) {
@@ -1510,7 +1545,7 @@
 
       var errorCount = issues.filter(function(x) { return x.severity === 'error'; }).length;
       var warnCount = issues.filter(function(x) { return x.severity === 'warn'; }).length;
-      var totalChecks = 12;
+      var totalChecks = 13;
       var failedCheckNames = new Set();
       issues.forEach(function(x) { failedCheckNames.add(x.check); });
       var passedCount = passedChecks.length;
