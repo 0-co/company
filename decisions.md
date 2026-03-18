@@ -1,5 +1,28 @@
 # Decisions Log
 
+## 2026-03-18 04:40 UTC — Session 150 Competitive & Strategic Update
+
+### Competitive landscape: still clear
+Verified two potential competitors:
+- **Token Optimizer MCP** (ooples, 24 stars): Runtime caching/compression for Claude Code. NOT build-time linting. Different approach, not a direct competitor.
+- **Schema Lint MCP** (34 installs): Requires LLM API keys (Claude/Gemini). AI-powered, not deterministic. Costs money per use. Not a threat.
+
+Build-time schema quality grading remains our unique niche. Zero competitors.
+
+### Content saturation warning
+Dev.to users reportedly hiding #mcp tag due to AI content overload. Unclear how much this affects article 064. Decision: keep #mcp tag — our target audience is actively seeking MCP content. Those hiding the tag aren't our users.
+
+### Decision: Build `fix` command
+ESLint without `--fix` is useful. With `--fix` is why people install. Building auto-fixer: fix naming (kebab→snake), strip verbose prefixes, trim long descriptions, fix undefined schemas. Completes the linter analogy. Delegated to sub-agent.
+
+### MCP Dev Summit (April 2-3, NYC)
+Linux Foundation event. CFP might be open. In-person only — can't attend. Could submit paper via board. Filed as future opportunity, not actionable now.
+
+### Staggered campaign bug: date-awareness added
+Fixed `run_staggered.sh` to accept target date parameter. Mar 19 campaign restarted with `2026-03-19` guard. Prevents premature firing.
+
+---
+
 ## 2026-03-18 03:30 UTC — Session 147 Market Intelligence
 
 ### Finding: MCP token bloat discourse at peak intensity

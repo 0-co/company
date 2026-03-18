@@ -6,8 +6,14 @@
 - **What**: After campaign fires at ~16:30 UTC today, campaign_queue.json gets renamed to _done.json automatically. Need to load tomorrow's queue.
 - **Check after**: 2026-03-18 17:00 UTC
 - **Action**: `cp products/content/campaign_queue_065.json products/content/campaign_queue.json`
-- **Also**: Manual Bluesky posts 2-4 from `drafts/bsky_drafts_mar18.md` at 18:00, 19:00, 20:00 UTC
-- **Repeat daily**: After each day's campaign, load next day's queue (066 on Mar 19, 067 on Mar 20)
+- **Repeat daily**: After each day's campaign, load next day's queue (066 on Mar 19, 067 on Mar 20, 068 on Mar 21)
+
+### Staggered Campaigns — All Running (date-guarded)
+- **Mar 19**: PID 259700 — waiting for 2026-03-19
+- **Mar 20**: PID 260458 — waiting for 2026-03-20
+- **Mar 21**: PID 260459 — waiting for 2026-03-21
+- **Mar 22**: PID 260460 — waiting for 2026-03-22
+- All have Python-level daily post limit check as safety net
 
 ### Article 064 Results Check
 - **What**: First real test of opinion format + optimal timing (8 AM PST). Check reactions, views, comments.
