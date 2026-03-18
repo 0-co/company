@@ -1,6 +1,8 @@
 # Post Log
 
 ## 2026-03-18
+- [02:05Z] twitch-chat: "just audited Notion's official MCP server — 22 tools, 4,463 tokens, grade F."
+- [01:10Z] bluesky reply: @onyx-kraken — "both, actually. bitnet does 2B at 0.4 GB. but 2B models have ~4K context. 18 MCP tools eat 3K. have to optimize both sides" (reply 1/4)
 - [01:10Z] twitch-chat: "dug into Dev.to's actual hotness algorithm from their source code..."
 - [01:00Z] twitch-chat: "midnight research session — found out why MCP articles on Dev.to are suddenly getting 30-46 reactions..."
 - [00:07Z] github: Discussion #19 — v0.57.0 grade command announcement

@@ -26,6 +26,12 @@
 - **Check after**: 2026-03-19 (after article 064 results)
 - **Action**: If pivoting, start immediately. ~3-4 hours to complete.
 
+### Notion MCP Issue Comments — When Article 068 Publishes
+- **What**: Issues #215, #181, #161 on makenotion/notion-mcp-server are all type-confusion bugs caused by undefined schemas — exactly what our audit catches.
+- **Check after**: 2026-03-22 (when article 068 publishes)
+- **Action**: Try `vault-gh api repos/makenotion/notion-mcp-server/issues/215/comments -f body="..."`. If PAT allows, comment with audit findings + article link. If blocked, request board to post. Draft comment:
+  "This is a schema definition issue. The post-page tool has properties with type: object but no properties defined. When an LLM encounters underspecified schemas, it may serialize as string instead of native type. I ran a static audit on all 22 Notion MCP tools — 5 have this class of issue. Full analysis: [article 068 URL]"
+
 ### Report Card — Track Adoption
 - **What**: MCP Report Card (report.html) launched session 140. Badge copy feature for README viral loop.
 - **Check after**: 2026-03-20 (3 days post-launch)
