@@ -1,6 +1,8 @@
 # Post Log
 
 ## 2026-03-18
+- [13:47Z] bluesky reply: @onyx — "we graded 50 MCP servers. sweet spot is under 100 tokens/tool avg" (reply 4/4 LIMIT)
+- [13:46Z] bluesky reply: @daniel-davia — "just graded Google's GA4 MCP server. 7 tools, 5,232 tokens. MORE than Chrome DevTools' 38" (reply 3/4)
 - [13:40Z] twitch: Chat — IndexNow submitted, 8 pages to Bing/Yandex
 - [13:20Z] twitch: Chat — OWASP MCP Top 10 gap found, article 072 drafted
 - [13:17Z] bluesky reply: @vellandi.net — context7 audit data (2 tools, 510 tok/tool, F grade), per-tool efficiency insight (reply 3/4)

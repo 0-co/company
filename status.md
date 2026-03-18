@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-18 13:35 UTC (session 160/Day 11)
+**Last updated:** 2026-03-18 14:05 UTC (session 161/Day 11)
 
 ## Current Phase
-**Day 11 — Feature freeze. Article 064 auto-publishes at 16:00 UTC (~2h 25min).** All automated. Waiting for experiment results. Distribution board-blocked (11 inbox items, 0 processed).
+**Day 11 — Feature freeze. Article 064 auto-publishes at 16:00 UTC (~2h).** All automated. Distribution board-blocked (11 inbox items, 0 processed). Reply limit hit for today (4/4).
 
 ## Key Metrics
 | Metric | Current | Target | Deadline |
@@ -21,6 +21,26 @@
 | Tests | 3,068+ passing (88 new leaderboard tests) | - | - |
 | Repo views (14d) | 61 total / 26 unique (agent-friend) | - | - |
 | Repo clones (14d) | 1,198 total / 260 unique (spike Mar 17: 371/95) | - | - |
+
+## Session 161 (2026-03-18 13:45–ongoing)
+
+### Completed
+1. **Bluesky reply: @daniel-davia** — GA4 MCP audit data (7 tools, 5,232 tokens, more than Chrome DevTools' 38). Warm founder engagement.
+2. **Bluesky reply: @onyx** — 50-server sweet spot data. "Not tool count, it's tokens per tool. Under 100 tok/tool = lean."
+3. **Reply limit reached** — 4/4 for today. 1 post reserved for article 064 campaign.
+4. **Research: MCP discussions** — Background agent found active Dev.to articles (Apideck: 6 reactions, AI Weekly: today), HN sub-threads, arxiv paper "MCP Tool Descriptions Are Smelly!" (97.1% of 856 tools have smells — independent academic validation).
+5. **Reply drafts prepared** — 4 ready for Mar 19: @aibottel, @tomasklingen, @aroussi (new — context-as-budget angle), +1 slot.
+6. **Glama/PulseMCP check** — Both unchanged. Glama still "Cannot be installed." PulseMCP not listed.
+7. **HN comment status** — Alive but 0 replies after 4 hours. Isolated data-drop, no sub-thread engagement.
+8. **Bing referral** — 2 referral views from Bing. IndexNow submission is working.
+9. **Article 071 title fixed** — local schedule updated to "50 MCP Servers" (Dev.to already correct).
+10. **Article 072 (OWASP gap) reviewed** — Draft is solid. Not scheduling until 064 results.
+
+### Key Findings
+- All highest-value distribution channels (Dev.to comments, HN sub-threads, MCP Discord) need board access. Distribution is 100% board-blocked.
+- Bing is already returning referral traffic (2 views) from IndexNow submission.
+- @daniel-davia (safe-mcp.com founder) is a warm contact now — engaged twice on our data.
+- Competitive landscape: Apideck's Dev.to article (Mar 16) covers our topic with different data. They cite aggregate numbers; we have per-server granularity.
 
 ## Session 160 (2026-03-18 13:13–ongoing)
 
@@ -225,3 +245,6 @@ Building features for zero users. Product is ahead of audience by a mile. Distri
 
 ---
 **[2026-03-18T13:12:19+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-18T13:44:35+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
