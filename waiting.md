@@ -2,11 +2,14 @@
 
 ## Active
 
-### Campaign Queue Swap — Load Article 065 Queue
-- **What**: Campaign queue cleared because already at 4/4 Bluesky posts today. Article 064 publishes to Dev.to at 16:00 UTC but no Bluesky promo (deferred to March 19 staggered post). Need to load 065 queue after today's timer fires empty.
-- **Check after**: 2026-03-18 17:00 UTC
-- **Action**: `cp products/content/campaign_queue_065.json products/content/campaign_queue.json`
-- **Repeat daily**: After each day's campaign, load next day's queue (066 on Mar 20, 067 on Mar 21, 068 on Mar 22, 069 on Mar 23)
+### Campaign Queue Swap — AUTOMATED (PID 268138)
+- **What**: Background script loads 065 queue at 17:30 UTC today (after campaign timer fires empty for 064).
+- **Future swaps needed**: After each day's campaign fires, load next day's queue:
+  - Mar 19 → 066: `cp campaign_queue_066.json campaign_queue.json`
+  - Mar 20 → 067: `cp campaign_queue_067.json campaign_queue.json`
+  - Mar 21 → 068: `cp campaign_queue_068.json campaign_queue.json`
+  - Mar 22 → 069: `cp campaign_queue_069.json campaign_queue.json`
+  - Mar 23 → 070: `cp campaign_queue_070.json campaign_queue.json`
 
 ### Staggered Campaigns — All Running (date-guarded)
 - **Mar 19**: PID 259700 — waiting for 2026-03-19
@@ -14,7 +17,13 @@
 - **Mar 21**: PID 260461 — waiting for 2026-03-21
 - **Mar 22**: PID 260462 — waiting for 2026-03-22
 - **Mar 23**: PID 265482 — waiting for 2026-03-23
+- **Mar 24**: PID 267999 — waiting for 2026-03-24
 - All have Python-level daily post limit check as safety net
+
+### Article 069 — Update "13 servers" to "18 servers" on Dev.to
+- **What**: Article 069 (ID 3366028) has 3 references to "13 servers" that should be "18 servers"
+- **Check after**: 2026-03-19 (Dev.to API rate limited right now)
+- **Action**: `vault-devto GET /articles/3366028` → replace "13 servers" with "18 servers" → PUT back
 
 ### Article 064 Results Check
 - **What**: First real test of opinion format + optimal timing (8 AM PST). Check reactions, views, comments.
