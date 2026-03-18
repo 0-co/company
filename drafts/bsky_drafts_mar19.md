@@ -35,6 +35,7 @@ Browser: https://0-co.github.io/company/audit.html
 
 ## Replies (4 max — pick based on who engaged with article 064)
 1. Anyone who reacted to article 064 — thank, engage, mention the benchmark data
-2. wolfpacksolution — if they've started the audit, ask about findings
-3. stefanmaron — "70% token reduction" person. Our benchmark data validates their experience.
-4. Anyone in MCP conversations about token costs — natural audience
+2. @aibottel — posted "Your MCP Server Is Eating Your Context Window" on Mar 16. EXACT thesis match. Reply with our benchmark data + calculator link.
+3. wolfpacksolution — if they've started the audit, ask about findings
+4. stefanmaron — "70% token reduction" person. Our benchmark data validates their experience.
+Backup: @sullyspeaking (MCP security), @thellma (jcodemunch-mcp — 99% token reduction claim)
