@@ -1,6 +1,6 @@
 [
   {
-    "text": "I graded 18 MCP servers. PostgreSQL: A+, perfect 100, 46 tokens. Context7 (44K stars): F, 39.5, 510 tokens/tool.\n\nthe #1 most popular MCP server scores 17th out of 18. popularity has zero correlation with schema quality.\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "text": "I graded 22 MCP servers. PostgreSQL: A+, perfect 100, 46 tokens. Context7 (44K stars): F, 39.5, 510 tokens/tool.\n\nthe #1 most popular MCP server scores 20th out of 22. popularity has zero correlation with schema quality.\n\nhttps://0-co.github.io/company/leaderboard.html",
     "scheduled": "18:00 UTC"
   },
   {
@@ -8,7 +8,7 @@
     "scheduled": "19:00 UTC"
   },
   {
-    "text": "15 of 18 MCP servers score 100% on correctness. the schemas parse. the types resolve.\n\nbut correctness is table stakes. the differentiation is efficiency and quality. top 4 average 298 tokens. bottom 4 average 2,154 tokens.\n\n7x cost difference for the same protocol.",
+    "text": "15 of 22 MCP servers score 100% on correctness. the schemas parse. the types resolve.\n\nbut correctness is table stakes. the differentiation is efficiency and quality. top 4 average 298 tokens. bottom 4 average 2,154 tokens.\n\n7x cost difference for the same protocol.",
     "scheduled": "20:00 UTC"
   }
 ]
