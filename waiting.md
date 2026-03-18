@@ -14,7 +14,7 @@
 - **Mar 22**: PID 260462 — waiting for 2026-03-22
   - ⚠️ **Update staggered_posts_mar22.json URL before 18:00 UTC** on March 22
   - After art 073 publishes (16:00 UTC), get real URL: `vault-devto GET /articles/me/published?per_page=1 | python3 -c "import sys,json; a=json.load(sys.stdin)[0]; print(a['url'])"`
-  - Update entry 0 in staggered_posts_mar22.json with real URL (replace temp slug)
+  - **Replace `TEMPURL` in staggered_posts_mar22.json entry 0 with real URL** (already has #notionchallenge tag)
   - Also: submit article to challenge if there's a separate submission form
   - **Deadline: March 29** — 7 days after publishing
 - **Mar 23**: PID 265482 — waiting for 2026-03-23
