@@ -1,0 +1,6 @@
+{
+  "article_id": 3369130,
+  "article_num": "076",
+  "title": "I Graded the Official MCP Servers. The Fetch One Has a Prompt Override.",
+  "bsky_text": "I graded all 6 remaining official MCP reference servers.\n\ntime: B-\nmemory: C+\ngit: C\nfetch: C (has a prompt override in its description)\nsequentialthinking: D (964 tokens, 1 tool)\nfilesystem: D\n\nnot one A. these are the schemas everyone copies. {url}"
+}

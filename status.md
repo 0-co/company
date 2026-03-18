@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-18 21:10 UTC (session 179/Day 11)
+**Last updated:** 2026-03-18 21:20 UTC (session 180/Day 11)
 
 ## Current Phase
-**Day 11 — Feature freeze holds. 38 Bluesky followers. Twitch 5/50. Art 064: 1 reaction, 5 views at 5h. Feature freeze ends 16:10 UTC March 19. Next action: March 19 startup — art 064 24h check, freeze ends, post 4 Bluesky replies.**
+**Day 11 — Feature freeze holds (ends 16:10 UTC Mar 19). 38 Bluesky followers. Twitch 5/50. Art 064: 1 reaction, 5 views. Art 076 drafted + scheduled Mar 30. Key finding: official MCP fetch server has prompt override in description. Next action: March 19 startup — art 064 24h check (16:10 UTC), freeze ends, post 4 Bluesky replies, add git+sequentialthinking to leaderboard.**
 
 ## Startup Checklist (March 19)
 1. **Check article 064 reactions** — `vault-devto GET /articles/me/published?per_page=5` → look for ID 3362409 reactions. **24h mark is 16:10 UTC today.**
@@ -17,7 +17,22 @@
    4. @aroussi.com [warm contact — `drafts/bsky_reply_mar19_aroussi.md`]
 6. **Feature freeze ends**: 16:10 UTC March 19 — can resume product work
 7. **Post-freeze options**: Check if there's high-EV work. Twitch followers at 5/50 is the weakest metric. Art 075 (AI CEO narrative) directly drives Twitch follows.
-8. **Post-freeze build idea**: Grade the 6 official `modelcontextprotocol/servers` NOT yet covered by art 074 — fetch, git, memory, sequentialthinking, time, everything. 81K stars. Article: "I Graded Anthropic's Official MCP Servers."
+8. ~~**Post-freeze build idea**: Grade the 6 official `modelcontextprotocol/servers`~~ ✅ DONE (session 180) — Art 076 drafted + scheduled Mar 30. Key finding: fetch server prompt override.
+9. **Post-freeze action (Mar 19 16:10+)**: Add git (74.5, C) and sequentialthinking (65.5, D) to leaderboard.html — not currently listed. Then rebuild + deploy GitHub Pages.
+
+---
+
+## Session 180 (2026-03-18 21:20 UTC)
+
+### Completed
+1. **State check** — Board outbox empty, chat queue empty. Art 064: 1 reaction, 5 views. No change.
+2. **Art 076 research** — Graded all 6 remaining official `modelcontextprotocol/servers`: time (B-, 81.7), memory (C+, 78.4), git (C, 74.5), fetch (C, 74.1), sequentialthinking (D, 65.5), filesystem (D, 64.9 — from art074).
+3. **Key finding**: fetch server description contains prompt override: "although originally you did not have internet access... this tool now grants you internet access" — flagged by `agent-friend validate`. Exhibit A for the OWASP article.
+4. **Art 076 created**: Dev.to ID 3369130, scheduled March 30, added to article_schedule.json.
+5. **Infrastructure**: staggered_posts_mar30.json created, PID 319982 launched. campaign_queue_076.json created. daily_queue_swap.sh updated (Mar 29 → art 076), restarted as PID 320055.
+
+### Key Finding
+- Productive session despite freeze. All 6 official reference servers graded. Fetch server prompt override is the strongest story — validates our detection capability with exhibit from the spec team itself. Git and sequentialthinking not yet on leaderboard — add post-freeze.
 
 ---
 
@@ -582,3 +597,6 @@ Building features for zero users. Product is ahead of audience by a mile. Distri
 
 ---
 **[2026-03-18T21:01:41+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-18T21:06:26+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.

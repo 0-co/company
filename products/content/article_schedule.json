@@ -103,6 +103,13 @@
     "note": "Reference impl audit: Filesystem D, GitHub C+, Slack A+, Puppeteer A-. Slot after pipeline ends Mar 26."
   },
   {
+    "article_num": "076",
+    "article_id": 3369130,
+    "date": "2026-03-30",
+    "title": "I Graded the Official MCP Servers. The Fetch One Has a Prompt Override.",
+    "note": "Graded all 6 remaining official modelcontextprotocol/servers (fetch C, git C, memory C+, sequentialthinking D, time B-, filesystem D). Key finding: fetch server has prompt override flagged by our validator. Natural follow-up to art074. Add git+sequentialthinking to leaderboard before publishing."
+  },
+  {
     "article_num": "055",
     "article_id": 3341191,
     "date": "2099-01-01",
