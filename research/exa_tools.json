@@ -1,0 +1,159 @@
+{
+  "tools": [
+    {
+      "name": "web_search_exa",
+      "description": "Search the web for any topic and get clean, ready-to-use content. Best for: Finding current information, news, facts, or answering questions about any topic. Returns: Clean text content from top search results, ready for LLM use.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": { "type": "string", "description": "Websearch query" },
+          "numResults": { "type": "number", "description": "Number of search results to return (must be a number, default: 8)" },
+          "livecrawl": { "type": "string", "enum": ["fallback", "preferred"], "description": "Live crawl mode - 'fallback': use live crawling as backup if cached content unavailable, 'preferred': prioritize live crawling (default: 'fallback')" },
+          "type": { "type": "string", "enum": ["auto", "fast"], "description": "Search type - 'auto': balanced search (default), 'fast': quick results" },
+          "category": { "type": "string", "enum": ["company", "research paper", "people"], "description": "Filter results to a specific category" },
+          "contextMaxCharacters": { "type": "number", "description": "Maximum characters for context string optimized for LLMs (must be a number, default: 10000)" }
+        },
+        "required": ["query"]
+      }
+    },
+    {
+      "name": "web_search_advanced_exa",
+      "description": "Advanced web search with full control over filters, domains, dates, and content options. Best for specific filters like date ranges, domain restrictions, or category filters. Not recommended for simple searches.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": { "type": "string", "description": "Search query - can be a question, statement, or keywords" },
+          "numResults": { "type": "number", "description": "Number of results (must be a number, 1-100, default: 10)" },
+          "type": { "type": "string", "enum": ["auto", "fast", "neural"], "description": "Search type" },
+          "category": { "type": "string", "enum": ["company", "research paper", "news", "pdf", "github", "tweet", "personal site", "people", "financial report"], "description": "Filter results to a specific category" },
+          "includeDomains": { "type": "array", "items": { "type": "string" }, "description": "Only include results from these domains" },
+          "excludeDomains": { "type": "array", "items": { "type": "string" }, "description": "Exclude results from these domains" },
+          "startPublishedDate": { "type": "string", "description": "Only include results published after this date (ISO 8601: YYYY-MM-DD)" },
+          "endPublishedDate": { "type": "string", "description": "Only include results published before this date (ISO 8601: YYYY-MM-DD)" },
+          "startCrawlDate": { "type": "string", "description": "Only include results crawled after this date (ISO 8601: YYYY-MM-DD)" },
+          "endCrawlDate": { "type": "string", "description": "Only include results crawled before this date (ISO 8601: YYYY-MM-DD)" },
+          "includeText": { "type": "array", "items": { "type": "string" }, "description": "Only include results containing ALL of these text strings" },
+          "excludeText": { "type": "array", "items": { "type": "string" }, "description": "Exclude results containing ANY of these text strings" },
+          "userLocation": { "type": "string", "description": "ISO country code for geo-targeted results" },
+          "moderation": { "type": "boolean", "description": "Filter out unsafe/inappropriate content" },
+          "additionalQueries": { "type": "array", "items": { "type": "string" }, "description": "Additional query variations to expand search coverage" },
+          "textMaxCharacters": { "type": "number", "description": "Max characters for text extraction per result" },
+          "contextMaxCharacters": { "type": "number", "description": "Max characters for context string" },
+          "enableSummary": { "type": "boolean", "description": "Enable summary generation for results" },
+          "summaryQuery": { "type": "string", "description": "Focus query for summary generation" },
+          "enableHighlights": { "type": "boolean", "description": "Enable highlights extraction" },
+          "highlightsNumSentences": { "type": "number", "description": "Number of sentences per highlight" },
+          "highlightsPerUrl": { "type": "number", "description": "Number of highlights per URL" },
+          "highlightsQuery": { "type": "string", "description": "Query for highlight relevance" },
+          "livecrawl": { "type": "string", "enum": ["never", "fallback", "always", "preferred"], "description": "Live crawl mode" },
+          "livecrawlTimeout": { "type": "number", "description": "Timeout for live crawl in milliseconds" },
+          "subpages": { "type": "number", "description": "Number of subpages to crawl from each result (1-10)" },
+          "subpageTarget": { "type": "array", "items": { "type": "string" }, "description": "Keywords to target when selecting subpages" }
+        },
+        "required": ["query"]
+      }
+    },
+    {
+      "name": "get_code_context_exa",
+      "description": "Find code examples, documentation, and programming solutions. Searches GitHub, Stack Overflow, and official docs. Best for: Any programming question - API usage, library examples, code snippets, debugging help. Returns: Relevant code and documentation, formatted for easy reading.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": { "type": "string", "description": "Search query to find relevant context for APIs, Libraries, and SDKs." },
+          "tokensNum": { "type": "number", "minimum": 1000, "maximum": 50000, "default": 5000, "description": "Number of tokens to return (1000-50000). Default is 5000 tokens." }
+        },
+        "required": ["query"]
+      }
+    },
+    {
+      "name": "company_research_exa",
+      "description": "Research any company to get business information, news, and insights. Best for: Learning about a company's products, services, recent news, or industry position. Returns: Company information from trusted business sources.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "companyName": { "type": "string", "description": "Name of the company to research" },
+          "numResults": { "type": "number", "description": "Number of search results to return (default: 3)" }
+        },
+        "required": ["companyName"]
+      }
+    },
+    {
+      "name": "crawling_exa",
+      "description": "Get the full content of a specific webpage. Use when you have an exact URL. Best for: Extracting content from a known URL. Returns: Full text content and metadata from the page.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "url": { "type": "string", "description": "URL to crawl and extract content from" },
+          "maxCharacters": { "type": "number", "description": "Maximum characters to extract (default: 3000)" }
+        },
+        "required": ["url"]
+      }
+    },
+    {
+      "name": "deep_researcher_start",
+      "description": "Start an AI research agent that searches, reads, and writes a detailed report. Takes 15 seconds to 2 minutes.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "instructions": { "type": "string", "description": "Complex research question or detailed instructions for the AI researcher." },
+          "model": { "type": "string", "enum": ["exa-research-fast", "exa-research", "exa-research-pro"], "default": "exa-research-fast", "description": "Research model selection" },
+          "outputSchema": { "type": "object", "description": "Optional JSON Schema for structured output." }
+        },
+        "required": ["instructions"]
+      }
+    },
+    {
+      "name": "deep_researcher_check",
+      "description": "Check status and get results from a deep research task. Best for: Getting the research report after calling deep_researcher_start. Returns: Research report when complete, or status update if still running.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "researchId": { "type": "string", "description": "The research ID returned from deep_researcher_start tool" }
+        },
+        "required": ["researchId"]
+      }
+    },
+    {
+      "name": "people_search_exa",
+      "description": "Find people and their professional profiles. Best for: Finding professionals, executives, or anyone with a public profile. Returns: Profile information and links.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": { "type": "string", "description": "Search query for finding people" },
+          "numResults": { "type": "number", "description": "Number of profile results to return (default: 5)" }
+        },
+        "required": ["query"]
+      }
+    },
+    {
+      "name": "linkedin_search_exa",
+      "description": "DEPRECATED: This tool is deprecated. Please use 'people_search_exa' instead. This tool will be removed in a future version.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": { "type": "string", "description": "Search query for finding people on LinkedIn" },
+          "numResults": { "type": "number", "description": "Number of LinkedIn profile results to return (default: 5)" }
+        },
+        "required": ["query"]
+      }
+    },
+    {
+      "name": "deep_search_exa",
+      "description": "Deep search with automatic query expansion for thorough research. Generates multiple search variations to find results from multiple angles, then synthesizes a short answer with citations.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "objective": { "type": "string", "description": "Natural language description of what the web search is looking for." },
+          "search_queries": { "type": "array", "items": { "type": "string" }, "description": "Optional list of keyword search queries related to the objective." },
+          "type": { "type": "string", "enum": ["deep", "deep-reasoning"], "description": "Search depth" },
+          "numResults": { "type": "number", "description": "Number of search results to return (default: 8)" },
+          "highlightMaxCharacters": { "type": "number", "description": "Maximum characters for highlights per result (default: 4000)" },
+          "outputSchema": { "type": "object", "description": "JSON schema for structured output." },
+          "systemPrompt": { "type": "string", "description": "Instructions for how the deep search agent should process and format results (max 32000 chars)." },
+          "structuredOutput": { "type": "boolean", "description": "When true, returns a structured JSON response instead of markdown." }
+        },
+        "required": ["objective"]
+      }
+    }
+  ]
+}
