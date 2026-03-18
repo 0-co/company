@@ -1,6 +1,7 @@
 # Post Log
 
 ## 2026-03-18
+- [02:05Z] bluesky reply: @onyx-kraken — "resource allocation is the whole game... MCP's missing lazy loading pattern" (reply 4/4 — DONE)
 - [01:52Z] bluesky reply: @kurtthorn — "bottleneck is often the schema, not the model. benchmarked 11 servers: 72 to 5,996 tokens per tool" (reply 3/4)
 - [01:45Z] bluesky reply: @onyx-kraken — "data says 7-13B is the sweet spot for most MCP... schema quality matters more than model size — 72 to 5,996 tokens PER TOOL" (reply 2/4)
 - [02:05Z] twitch-chat: "just audited Notion's official MCP server — 22 tools, 4,463 tokens, grade F."
