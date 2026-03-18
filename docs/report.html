@@ -319,6 +319,54 @@
     .status-text.error { color: #f85149; }
     .status-text.processing { color: var(--accent-cyan); }
 
+    /* Example selector */
+    .example-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .example-label {
+      font-size: 0.75rem;
+      font-family: var(--mono);
+      color: var(--text-muted);
+    }
+    .example-btn {
+      padding: 5px 12px;
+      border-radius: 20px;
+      border: 1px solid var(--border-bright);
+      background: var(--bg-inset);
+      color: var(--text-muted);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .example-btn:hover {
+      border-color: var(--accent-violet);
+      color: var(--text);
+      background: rgba(163,113,247,0.08);
+    }
+    .example-btn.loading {
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    .example-grade {
+      font-weight: 700;
+      font-size: 0.7rem;
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+    .example-f .example-grade { color: #f85149; background: rgba(248,81,73,0.15); }
+    .example-d .example-grade { color: #d29922; background: rgba(210,153,34,0.15); }
+    .example-c .example-grade { color: #d4a72c; background: rgba(212,167,44,0.15); }
+    .example-a .example-grade { color: #3fb950; background: rgba(63,185,80,0.15); }
+    .example-aplus .example-grade { color: #3bc9db; background: rgba(59,201,219,0.15); }
+
     .error-box {
       background: rgba(248,81,73,0.08);
       border: 1px solid rgba(248,81,73,0.25);
@@ -755,6 +803,8 @@
       .btn-row { flex-direction: column; align-items: stretch; }
       .btn-grade, .btn-clear { width: 100%; text-align: center; }
       .status-text { margin-left: 0; text-align: center; }
+      .example-row { justify-content: center; }
+      .example-label { width: 100%; text-align: center; }
       .report-card-inner { padding: 28px 20px 24px; }
       .overall-grade { width: 110px; height: 110px; font-size: 3rem; }
       .dimension-grades { grid-template-columns: 1fr; gap: 10px; }
@@ -986,6 +1036,15 @@
         <span class="status-text" id="status-text"></span>
       </div>
 
+      <div class="example-row">
+        <span class="example-label">Try a real server:</span>
+        <button class="example-btn example-f" onclick="loadExample('notion')">Notion <span class="example-grade">F</span></button>
+        <button class="example-btn example-d" onclick="loadExample('filesystem')">Filesystem <span class="example-grade">D</span></button>
+        <button class="example-btn example-c" onclick="loadExample('github')">GitHub <span class="example-grade">C+</span></button>
+        <button class="example-btn example-a" onclick="loadExample('puppeteer')">Puppeteer <span class="example-grade">A-</span></button>
+        <button class="example-btn example-aplus" onclick="loadExample('slack')">Slack <span class="example-grade">A+</span></button>
+      </div>
+
       <div class="error-box" id="error-box"></div>
     </section>
 
@@ -1033,6 +1092,7 @@
 
       <div class="results-divider"></div>
 
+      <div id="share-container"></div>
       <div id="pipeline-container"></div>
       <div id="badge-container"></div>
 
@@ -1677,6 +1737,23 @@
           '</div>' +
         '</div>';
 
+      // Share button
+      var shareContainer = document.getElementById('share-container');
+      var shareText = 'MCP Report Card: ' + r.overallGrade + ' (' + r.overall + '/100)\n' +
+        r.toolCount + ' tools | ' + r.totalTokens.toLocaleString() + ' tokens | ' +
+        'Correctness ' + r.correctness.grade + ' | Efficiency ' + r.efficiency.grade + ' | Quality ' + r.quality.grade + '\n' +
+        'Grade your own: https://0-co.github.io/company/report.html';
+      var currentExample = new URLSearchParams(window.location.search).get('example');
+      var shareUrl = 'https://0-co.github.io/company/report.html' + (currentExample ? '?example=' + currentExample : '');
+      shareContainer.innerHTML =
+        '<div style="display:flex;gap:8px;justify-content:center;margin:16px 0;">' +
+          '<button id="btn-share-text" onclick="shareResult()" style="padding:8px 20px;border-radius:20px;border:1px solid var(--accent-violet);background:rgba(163,113,247,0.1);color:var(--accent-violet);font-family:var(--mono);font-size:0.78rem;cursor:pointer;transition:all 0.2s;">Copy Result</button>' +
+          '<button id="btn-share-link" onclick="shareLink()" style="padding:8px 20px;border-radius:20px;border:1px solid var(--accent-cyan);background:rgba(59,201,219,0.1);color:var(--accent-cyan);font-family:var(--mono);font-size:0.78rem;cursor:pointer;transition:all 0.2s;">Copy Link</button>' +
+        '</div>';
+      // Store for share functions
+      window._lastShareText = shareText;
+      window._lastShareUrl = shareUrl;
+
       // Show/hide fix button based on issues found
       var fixSection = document.getElementById('fix-section');
       var hasIssues = r.correctness.issues.length > 0 || r.quality.suggestions.length > 0;
@@ -2128,6 +2205,66 @@
         setTimeout(function() { btn.textContent = 'Copy Fixed JSON'; }, 1500);
       });
     }
+
+    // === SHARE FUNCTIONS ===
+    function shareResult() {
+      navigator.clipboard.writeText(window._lastShareText || '').then(function() {
+        var btn = document.getElementById('btn-share-text');
+        btn.textContent = 'Copied!';
+        setTimeout(function() { btn.textContent = 'Copy Result'; }, 1500);
+      });
+    }
+    function shareLink() {
+      navigator.clipboard.writeText(window._lastShareUrl || window.location.href).then(function() {
+        var btn = document.getElementById('btn-share-link');
+        btn.textContent = 'Copied!';
+        setTimeout(function() { btn.textContent = 'Copy Link'; }, 1500);
+      });
+    }
+
+    // === EXAMPLE LOADER ===
+    var EXAMPLE_NAMES = {
+      notion: 'Notion MCP Server',
+      filesystem: 'Filesystem MCP Server',
+      github: 'GitHub MCP Server',
+      puppeteer: 'Puppeteer MCP Server',
+      slack: 'Slack MCP Server'
+    };
+
+    function loadExample(name) {
+      var btn = event ? event.target.closest('.example-btn') : null;
+      if (btn) btn.classList.add('loading');
+      statusText.textContent = 'loading ' + name + '...';
+      statusText.className = 'status-text processing';
+
+      fetch('examples/' + name + '.json')
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          input.value = JSON.stringify(data, null, 2);
+          updateLiveBadge();
+          if (btn) btn.classList.remove('loading');
+          // Update URL without reload
+          var url = new URL(window.location);
+          url.searchParams.set('example', name);
+          history.replaceState(null, '', url);
+          // Auto-grade
+          grade();
+        })
+        .catch(function(err) {
+          statusText.textContent = 'failed to load example';
+          statusText.className = 'status-text error';
+          if (btn) btn.classList.remove('loading');
+        });
+    }
+
+    // === URL PARAMETER HANDLING ===
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      var example = params.get('example');
+      if (example && EXAMPLE_NAMES[example]) {
+        loadExample(example);
+      }
+    })();
   </script>
 </body>
 </html>
