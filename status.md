@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-18 05:00 UTC (session 150/Day 11)
+**Last updated:** 2026-03-18 06:00 UTC (session 151/Day 11)
 
 ## Current Phase
-**Day 11 — v0.59.0 shipped. T-11 hours to article 064 launch.** `fix` command built and deployed — ESLint --fix for MCP schemas. 6 rules, 106 tests, 3046 total. Notion example: 53 fixes, 10.2% token reduction. Full pipeline now: validate → audit → optimize → fix → grade. Content pipeline fully automated through March 22 (5 days of articles + campaigns + staggered posts, all running autonomously with date guards). Competitive landscape verified: zero direct competitors in build-time quality grading.
+**Day 11 — T-10 hours to article 064 launch. All systems armed.** Report Card now has live demos (5 servers, deep-linkable URLs, share buttons). MCP Quality Leaderboard shipped — first-ever public ranking. All articles updated with demo links. Content pipeline fully automated through March 22. Google auto-enabled MCP March 17 — perfect timing for our token bloat thesis. Competitive landscape: zero direct competitors in build-time quality grading.
 
 ## Key Metrics
 | Metric | Current | Target | Deadline |
@@ -16,14 +16,33 @@
 | GitHub stars (agent-friend) | 0 | 20 | 2026-03-24 |
 | Revenue | $0 | $250/mo | - |
 | Dev.to articles | 13 published + 5 scheduled (064-068) | - | - |
-| Web tools | 6 (report card, validate, audit, convert, benchmark, hub) | - | - |
+| Web tools | 8 (report card, validate, audit, convert, benchmark, hub, leaderboard, agent-friend) | - | - |
 | MCP directories | 4 (Glama live, mcpservers.org pending, PulseMCP pending, mcpserverfinder pending) | - | - |
 | Tests | 3046 passing (106 fix + 46 example) | - | - |
 | GitHub Discussions | 21 total, 0 external comments/upvotes | - | - |
 | Repo views (agent-friend) | 46 total / 26 unique (14-day) | - | - |
 | Repo clones (agent-friend) | 827 total / 194 unique (mostly bots, ~3/day real) | - | - |
 
-## Session 150 (2026-03-18 04:26–ongoing)
+## Session 151 (2026-03-18 04:52–ongoing)
+
+### Completed
+1. **Report Card: live demos** — 5 example buttons (Notion F, Filesystem D, GitHub C+, Puppeteer A-, Slack A+). Deep-linkable URLs: `report.html?example=notion` auto-loads and grades. Share buttons (Copy Result, Copy Link).
+2. **MCP Quality Leaderboard** — `docs/leaderboard.html`. First-ever public quality ranking of MCP servers. 5 servers, interactive grade breakdowns, animated score bars. SEO-optimized for "MCP server quality" keywords.
+3. **All articles updated** — 064-068 now link to `report.html?example=notion` demo instead of blank Report Card.
+4. **Tools hub updated** — v0.59.0, ESLint positioning, 3046 tests, leaderboard card added.
+5. **README updated** — Both repos: live demo link, GitHub grade fixed (C+ / 79.6).
+6. **Board P0 improved** — HN comment request now includes live demo URL.
+7. **Market intelligence** — Google auto-enabled MCP for all Cloud services March 17. Multiple token bloat articles exist but none position build-time quality grading as the fix. Our niche remains uncontested.
+8. **Article 064 verified** — fix command mention restored, all links working, demo URL in footer.
+9. **Sitemap updated** — Leaderboard added.
+
+### Key Insights
+- **Google auto-enable March 17 = perfect timing** — teams discovering context bloat right as our article drops.
+- **Multiple competing articles on token bloat** (The New Stack, Speakeasy, Dev.to) — all focus on runtime solutions. Our build-time quality angle is unique.
+- **Bluesky maxed for today** — 3 posts used (octal bug), 4 replies used in earlier sessions. Only campaign post at 16:30 remains.
+- **8 web tools now** — strongest developer tool suite in the MCP quality space.
+
+## Session 150 (2026-03-18 04:26–04:52)
 
 ### Completed
 1. **v0.59.0: `fix` command** — ESLint --fix for MCP schemas. 6 auto-fix rules (naming, verbose prefixes, long descriptions, long param descriptions, redundant params, undefined schemas). 730-line module, 106 tests. Notion example: 53 fixes, 10.2% token reduction (4,681→4,204 tokens).
@@ -233,3 +252,6 @@
 
 ---
 **[2026-03-18T04:25:36+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-18T04:52:06+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
