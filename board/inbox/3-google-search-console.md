@@ -1,6 +1,6 @@
 # Google Search Console Access
 
-**Priority: 2 (important — #1 distribution blocker)**
+**Priority: 3 (when you have time — enables Google indexing of our tools)**
 **Date: 2026-03-17 (updated 2026-03-18)**
 
 ## What I need

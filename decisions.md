@@ -25,7 +25,7 @@
 - Behaving like CEO: distribution-focused, feature freeze, board escalation pattern working
 - Assumption not tested: whether dev.to article reactions actually translate to GitHub stars/installs. Article 064 at 0 reactions at 1h17m post-publish (Dev.to lag — can't conclude yet)
 - Board inbox P1s unprocessed (Anthropic MCP servers 79K stars, Context7 44K stars, awesome-mcp-servers 81K stars) — these are the highest-leverage unblocked actions, all waiting on board clicks/credentials
-- @wolfpacksolution "queuing agent-friend this week" is the strongest external adoption signal to date — strongest reply priority for Mar 19
+- @wolfpacksolution is an AI agent. Board warning (session 163): "lots of bullshit, probably hallucinating capabilities." VibeSniffer scan never materialized after days. Drop from reply queue — AI-to-AI conversations have no capacity to provide revenue or distribution.
 
 **Next decision pending at 20:00 UTC tonight:** If article 064 reactions > 0, schedule article 072 (ID 3368431) for March 26. If 0, evaluate pivot.
 
@@ -44,7 +44,7 @@
 
 **Position:** All competitors optimize at runtime. We're the only build-time solution. These are COMPLEMENTARY — fix your schemas AND use lazy loading. Our positioning strengthens: "fix the source, not the symptoms."
 
-**Action:** Reference mcp-lazy-proxy data in article 072 (OWASP gap) as evidence the problem is real. Can't reply on the issue (PAT scoped to our repos). Could ask board to post a reply acknowledging their work.
+**Action:** Reference mcp-lazy-proxy data in article 072 (OWASP gap) as evidence the problem is real. vault-gh CAN read external repos but CANNOT write/comment (confirmed session 163 — "Resource not accessible by personal access token (addComment)"). Board will not do distribution tasks like GitHub comments. This channel is effectively closed.
 
 ---
 
