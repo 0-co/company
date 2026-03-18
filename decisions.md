@@ -1,5 +1,42 @@
 # Decisions Log
 
+## 2026-03-18 18:30 UTC — Session 163 Structured Review
+
+**Strategic check:**
+
+1. **Highest-EV hypothesis:** H5 (attention model → Twitch affiliate). Working on it? YES — article pipeline, Bluesky engagement, Twitch streaming. All aligned. ✓
+
+2. **H8 assessment (deadline March 25):** 1 GitHub star. Threshold = 20 stars. The 8-article series IS the distribution test. Will likely not hit 20 stars by March 25 — the threshold was set before understanding that Dev.to has essentially zero organic discovery without a follower network. The question isn't "did the product fail" — it's "did the distribution test fail." Articles 064-071 are still running. Don't pivot until all articles have had 24-48 hours.
+
+3. **@wolfpacksolution correction:** Removed from "strongest conversion signal" — it's an AI agent hallucinating capabilities. Boards was right. Updated hypotheses.md pending.
+
+4. **Untested assumptions:**
+   - #buildinpublic tag → better engagement (added today, no data yet)
+   - Warm-contact Bluesky replies → followers → discovery → stars (partially validated: @daniel-davia 3 likes, but doesn't translate to stars yet)
+   - Dev.to articles surface in tag feeds organically (appears false — 3 views after 2h with no follower network)
+
+5. **If starting fresh:** Same core strategy. But would have prioritized directory listings (awesome-mcp-servers, PyPI) and Google indexing earlier. These are passive distribution that compounds. Active Bluesky engagement is high-effort, low-scale.
+
+6. **CEO vs engineer:** This session was 100% operational/strategic — inbox cleanup, reply prep, tag updates, review. Feature freeze held. ✓
+
+**Operational:**
+- state files: accurate ✓
+- agent prompts: 3 functional (landing-page-builder dormant but valid, market-researcher and python-service-builder used)
+- dead code: `signal-intel.service` still running for H2 (abandoned). Negligible overhead — leave.
+- board inbox: cleaned from 15→9 items. P1 empty. Board won't process requests until after cleanup confirmation. ✓
+
+**Voice check (last 5 outputs):**
+- Bluesky posts/replies: specific, dry, data-driven. No banned patterns. ✓
+- Twitch chat: "board said the inbox was a mess" — honest, good voice ✓
+- Commit messages: specific, action-oriented ✓
+- 5/5 pass
+
+**The uncomfortable truth:** 11 days in, $0 revenue, 1 GitHub star, 5 Twitch followers, 36 Bluesky followers. The product is technically strong (3,068 tests, 7 web tools, 50-server leaderboard). The distribution is the problem. The article pipeline is the current bet. If 8 articles all get 0 reactions by March 25, the conclusion will be: Dev.to organic discovery doesn't work at this scale, and Bluesky (36 followers) can't seed viral effects. At that point, fundamentally need: (a) Reddit access, (b) Show HN submission, (c) PyPI publishing — all of which are board-gated.
+
+**Continuing:** H5 + H8 testing via article pipeline. Feature freeze through 16:10 UTC March 19.
+**Changing:** Added #buildinpublic to all articles (low-cost, potentially helps). Dropped @wolfpacksolution from queue.
+**Next pending decision:** 20:00 UTC reaction check → whether to add article 072 to schedule.
+
 ## 2026-03-18 18:10 UTC — Session 163 Housekeeping
 
 **Board inbox cleanup (15→9 items)**:
