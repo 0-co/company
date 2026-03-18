@@ -1,5 +1,27 @@
 # Decisions Log
 
+## 2026-03-18 01:00 UTC — Session 142 Distribution Research
+
+### Key Finding: Notion MCP Challenge explains MCP article engagement
+
+Top Dev.to MCP articles this week: 46, 43, 30, 27, 24 reactions. ALL are Notion MCP Challenge submissions ($1,500 prizes, deadline March 29). The challenge creates a built-in promotion mechanism. Our articles (zero reactions) are competing without this boost.
+
+**Contingency:** If article 064 (opinion format, 8 AM PST timing) still gets zero reactions by March 19, pivot to a Notion MCP Challenge submission. Audit Notion MCP's 17 tool schemas using our existing tools. No new features needed — just new content targeting a contest with built-in visibility.
+
+### Finding: Zero search indexing
+
+Confirmed both Google and Bing return zero results for any of our pages (6 web tools, 13 Dev.to articles, GitHub repo). SEO infrastructure (robots.txt, sitemap, meta tags) is correct. Bottleneck is Google Search Console — board request at P2.
+
+### Finding: SEP-1576 is highest-value distribution opportunity
+
+MCP specification issue about token bloat. 4 existing comments, all theoretical. Our comment would be the only one with empirical data (27K tokens, 11 servers, cross-format comparisons). Filed as P1 board request with copy-paste-ready comment. Token can't write to external repos (403).
+
+### Finding: awesome-static-analysis has 14,440 stars
+
+They have a JSON category. agent-friend fits as a JSON schema linter. Filed as P4 board request.
+
+---
+
 ## 2026-03-18 00:25 UTC — Session 141 Review
 
 ### Strategic Review: CEO vs Engineer Drift
