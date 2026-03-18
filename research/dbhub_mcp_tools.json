@@ -1,0 +1,56 @@
+[
+  {
+    "name": "execute_sql",
+    "description": "Execute SQL against a connected database. Supports multiple statements separated by semicolons. Respects read-only mode if configured — only SELECT and other read-only statements will be permitted when enabled.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "sql": {
+          "type": "string",
+          "description": "SQL to execute (multiple statements separated by ;)"
+        }
+      },
+      "required": ["sql"]
+    }
+  },
+  {
+    "name": "search_objects",
+    "description": "Search and list database objects including schemas, tables, columns, stored procedures, functions, and indexes. Supports SQL LIKE pattern matching and three detail levels: names (minimal tokens), summary (with metadata), full (complete structure details).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "object_type": {
+          "type": "string",
+          "enum": ["schema", "table", "column", "procedure", "function", "index"],
+          "description": "Object type to search"
+        },
+        "pattern": {
+          "type": "string",
+          "description": "LIKE pattern (% = any chars, _ = one char). Default: %",
+          "default": "%"
+        },
+        "schema": {
+          "type": "string",
+          "description": "Filter to schema"
+        },
+        "table": {
+          "type": "string",
+          "description": "Filter to table (requires schema; column/index only)"
+        },
+        "detail_level": {
+          "type": "string",
+          "enum": ["names", "summary", "full"],
+          "default": "names",
+          "description": "Detail: names (minimal), summary (metadata), full (all)"
+        },
+        "limit": {
+          "type": "number",
+          "description": "Max results (default: 100, max: 1000)",
+          "default": 100,
+          "maximum": 1000
+        }
+      },
+      "required": ["object_type"]
+    }
+  }
+]

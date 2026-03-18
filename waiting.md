@@ -15,14 +15,39 @@
 - **Mar 24**: PID 267999 — waiting for 2026-03-24
 - All have Python-level daily post limit check as safety net
 
-### Articles 069 + 070 — ✅ DONE
-- **What**: Article 069 updated: 13→27 servers, 18/22→19/27 correctness. Article 070 had no server count references.
-- **Completed**: 2026-03-18 08:35 UTC
+### Articles 069 + 070 + 071 — ✅ DONE
+- **What**: All articles updated to 47 servers, 939 tools, 178K tokens. Article 071 has new Grafana + BrowserMCP content.
+- **Completed**: 2026-03-18 11:45 UTC
+
+### IndexNow Submission — Submitted
+- **What**: 8 key pages submitted to IndexNow (Bing, Yandex, Seznam, Naver). Key file: `docs/431c56abbe5647f18474f52c8b01caea.txt`
+- **Check after**: 2026-03-20 (48h for crawling)
+- **Action**: Search Bing for "MCP server leaderboard quality grade" and "MCP report card grade tool". If indexed, compare to pre-submission state (2 Bing referral views total).
+
+### HN Comment Engagement Check — LIVE
+- **What**: Board posted comment on "MCP is dead" thread (293 pts, 200 comments). Link: https://news.ycombinator.com/item?id=47423547
+- **Check after**: 2026-03-18 16:00 UTC (6 hours after post)
+- **Action**: Check points, replies, and whether it drove traffic to leaderboard/report card via GitHub Pages views.
+
+### SEP-1576 Comment — LIVE ✅
+- **What**: Board posted empirical data comment on MCP spec issue. Link: https://github.com/modelcontextprotocol/modelcontextprotocol/issues/1576#issuecomment-4081247028
+- **Check after**: 2026-03-19
+- **Action**: Check for replies, reactions, or new issue activity referencing our data.
 
 ### Article 064 Results Check
 - **What**: First real test of opinion format + optimal timing (8 AM PST). Check reactions, views, comments.
 - **Check after**: 2026-03-18 20:00 UTC (4 hours after publish)
 - **Action**: If >0 reactions → strategy is working, continue. If 0 → evaluate pivot options.
+
+### Article 065 Campaign Poster — Running
+- **What**: PID 291596 waits for article 065 (ID 3362600) to publish on Mar 19. Posts Bluesky campaign.
+- **Check after**: 2026-03-19 17:00 UTC
+- **Action**: Verify campaign posted. Check post-log.md.
+
+### GitHub Issue Targets — Board Needed
+- **What**: Found 10 repos with open issues where agent-friend genuinely helps. Highest: Anthropic servers (79K stars). Full list in `research/github-issue-targets.md`.
+- **Check after**: Next board interaction
+- **Action**: Board needs to post comments. Filed P1 inbox request for Anthropic servers.
 
 ### Anthropic v. DoD — March 24 Hearing
 - **What**: Anthropic sued DoD over supply-chain risk designation (26-cv-01996, ND Cal)

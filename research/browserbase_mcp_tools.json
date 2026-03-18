@@ -1,0 +1,122 @@
+[
+  {
+    "name": "browserbase_stagehand_act",
+    "description": "Perform a single action on the page (e.g., click, type).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string",
+          "description": "The action to perform. Should be as atomic and specific as possible, i.e. 'Click the sign in button' or 'Type 'hello' into the search input'."
+        },
+        "variables": {
+          "type": "object",
+          "description": "Variables used in the action template. ONLY use variables if you're dealing with sensitive data or dynamic content. When using variables, you MUST have the variable key in the action template. ie: {\"action\": \"Fill in the password\", \"variables\": {\"password\": \"123456\"}}"
+        }
+      },
+      "required": ["action"]
+    }
+  },
+  {
+    "name": "browserbase_stagehand_agent",
+    "description": "Execute a task autonomously using Gemini Computer Use agent. The agent will navigate and interact with web pages to complete the given task.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "prompt": {
+          "type": "string",
+          "description": "The task prompt describing what you want the sub-agent to accomplish. Be clear and specific about the goal. For example: 'Go to Hacker News and find the most controversial post from today, then summarize the top 3 comments'. The agent will autonomously navigate and interact with web pages to complete this task."
+        }
+      },
+      "required": ["prompt"]
+    }
+  },
+  {
+    "name": "browserbase_stagehand_extract",
+    "description": "Extract structured data or text from the current page using an instruction.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "instruction": {
+          "type": "string",
+          "description": "The specific instruction for what information to extract from the current page. Be as detailed and specific as possible about what you want to extract. For example: 'Extract all product names and prices from the listing page'. The more specific your instruction, the better the extraction results will be."
+        }
+      },
+      "required": ["instruction"]
+    }
+  },
+  {
+    "name": "browserbase_stagehand_navigate",
+    "description": "Navigate to a URL in the browser. Only use this tool with URLs you're confident will work and be up to date. Otherwise, use https://google.com as the starting point.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "The URL to navigate to"
+        }
+      },
+      "required": ["url"]
+    }
+  },
+  {
+    "name": "browserbase_stagehand_observe",
+    "description": "Find interactive elements on the page from an instruction; optionally return an action.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "instruction": {
+          "type": "string",
+          "description": "Detailed instruction for what specific elements or components to observe on the web page. This instruction must be extremely specific and descriptive. For example: 'Find the red login button in the top right corner', 'Locate the search input field with placeholder text', or 'Identify all clickable product cards on the page'. The more specific and detailed your instruction, the better the observation results will be."
+        }
+      },
+      "required": ["instruction"]
+    }
+  },
+  {
+    "name": "browserbase_screenshot",
+    "description": "Capture a full-page screenshot and return it (and save as a resource).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the screenshot"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "browserbase_session_create",
+    "description": "Create or reuse a Browserbase browser session and set it as active.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "sessionId": {
+          "type": "string",
+          "description": "Optional session ID to use/reuse. If not provided or invalid, a new session is created."
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "browserbase_session_close",
+    "description": "Close the current Browserbase session and reset the active context.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "browserbase_stagehand_get_url",
+    "description": "Return the current page URL (full URL with query/fragment).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  }
+]

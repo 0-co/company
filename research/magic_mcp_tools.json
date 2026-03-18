@@ -1,0 +1,94 @@
+[
+  {
+    "name": "21st_magic_component_builder",
+    "description": "Use this tool when the user requests a new UI component—e.g., mentions /ui, /21 /21st, or asks for a button, input, dialog, table, form, banner, card, or other React component. This tool ONLY returns the text snippet for that UI component. After calling this tool, you must edit or add files to integrate the snippet into the codebase.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "The complete user's request"
+        },
+        "searchQuery": {
+          "type": "string",
+          "description": "A 2-4 word maximum search phrase for 21st.dev to locate matching UI components"
+        },
+        "absolutePathToCurrentFile": {
+          "type": "string",
+          "description": "Full filesystem path to the file being modified"
+        },
+        "absolutePathToProjectDirectory": {
+          "type": "string",
+          "description": "Full filesystem path to the project root"
+        },
+        "standaloneRequestQuery": {
+          "type": "string",
+          "description": "A formulated description of the desired component based on user message, chat history, and file context; designed to avoid hallucination"
+        }
+      },
+      "required": ["message", "searchQuery", "absolutePathToCurrentFile", "absolutePathToProjectDirectory", "standaloneRequestQuery"]
+    }
+  },
+  {
+    "name": "21st_magic_component_inspiration",
+    "description": "Use this tool when the user wants to see component, get inspiration, or /21st fetch data and previews from 21st.dev. This tool returns the JSON data of matching components without generating new code. This tool ONLY returns the text snippet for that UI component. After calling this tool, you must edit or add files to integrate the snippet into the codebase.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "Full users message"
+        },
+        "searchQuery": {
+          "type": "string",
+          "description": "Search query for 21st.dev (library for searching UI components) to find a UI component that matches the user's message. Must be a two-four words max or phrase"
+        }
+      },
+      "required": ["message", "searchQuery"]
+    }
+  },
+  {
+    "name": "logo_search",
+    "description": "Search and retrieve company logos in multiple formats (JSX, TSX, SVG). Supports batch searches with category filtering and theme selection for logos with light/dark variants. Use for commands like '/logo GitHub' or requests to add company logos to projects.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "queries": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Array of company names to search for logos"
+        },
+        "format": {
+          "type": "string",
+          "enum": ["JSX", "TSX", "SVG"],
+          "description": "Output format for the returned logos"
+        }
+      },
+      "required": ["queries", "format"]
+    }
+  },
+  {
+    "name": "21st_magic_component_refiner",
+    "description": "Use this tool when the user requests to re-design/refine/improve current UI component with /ui or /21 commands, or when context is about improving, or refining UI for a React component or molecule (NOT for big pages). This tool improves UI of components and returns redesigned version of the component and instructions on how to implement it.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "userMessage": {
+          "type": "string",
+          "description": "Complete user's message regarding UI refinement"
+        },
+        "absolutePathToRefiningFile": {
+          "type": "string",
+          "description": "Full file path to the component requiring refinement"
+        },
+        "context": {
+          "type": "string",
+          "description": "Identifies specific UI elements and aspects needing improvement (buttons, forms, modals, etc.) and their desired enhancements (styling, layout, responsiveness). Focuses only on user-specified improvements or reasonable inferences from available context; returns empty string if nothing specific applies."
+        }
+      },
+      "required": ["userMessage", "absolutePathToRefiningFile", "context"]
+    }
+  }
+]

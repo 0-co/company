@@ -1,0 +1,195 @@
+[
+  {
+    "name": "list_items",
+    "description": "List all items in the database.\n\nReturns a list of items, with pagination support.\n\n### Responses:\n\n**200**: Successful Response (Success Response)\nContent-Type: application/json",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "skip": {
+          "type": "integer",
+          "title": "skip",
+          "description": "",
+          "default": 0
+        },
+        "limit": {
+          "type": "integer",
+          "title": "limit",
+          "description": "",
+          "default": 10
+        }
+      },
+      "title": "list_itemsArguments"
+    }
+  },
+  {
+    "name": "get_item",
+    "description": "Get a specific item by its ID.\n\nRaises a 404 error if the item does not exist.\n\n### Responses:\n\n**200**: Successful Response (Success Response)\nContent-Type: application/json",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "item_id": {
+          "type": "integer",
+          "title": "item_id"
+        }
+      },
+      "required": [
+        "item_id"
+      ],
+      "title": "get_itemArguments"
+    }
+  },
+  {
+    "name": "create_item",
+    "description": "Create a new item in the database.\n\nReturns the created item with its assigned ID.\n\n### Responses:\n\n**200**: Successful Response (Success Response)\nContent-Type: application/json",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "title": "Id"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Description",
+          "default": null
+        },
+        "price": {
+          "type": "number",
+          "title": "Price"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Tags",
+          "default": []
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "price"
+      ],
+      "title": "create_itemArguments"
+    }
+  },
+  {
+    "name": "update_item",
+    "description": "Update an existing item.\n\nRaises a 404 error if the item does not exist.\n\n### Responses:\n\n**200**: Successful Response (Success Response)\nContent-Type: application/json",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "item_id": {
+          "type": "integer",
+          "title": "item_id"
+        },
+        "id": {
+          "type": "integer",
+          "title": "Id"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Description",
+          "default": null
+        },
+        "price": {
+          "type": "number",
+          "title": "Price"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Tags",
+          "default": []
+        }
+      },
+      "required": [
+        "item_id",
+        "id",
+        "name",
+        "price"
+      ],
+      "title": "update_itemArguments"
+    }
+  },
+  {
+    "name": "delete_item",
+    "description": "Delete an item from the database.\n\nRaises a 404 error if the item does not exist.\n\n### Responses:\n\n**200**: Successful Response (Success Response)\nContent-Type: application/json",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "item_id": {
+          "type": "integer",
+          "title": "item_id"
+        }
+      },
+      "required": [
+        "item_id"
+      ],
+      "title": "delete_itemArguments"
+    }
+  },
+  {
+    "name": "search_items",
+    "description": "Search for items with various filters.\n\nReturns a list of items that match the search criteria.\n\n### Responses:\n\n**200**: Successful Response (Success Response)\nContent-Type: application/json",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "q": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "q",
+          "description": "Search query string",
+          "default": null
+        },
+        "min_price": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "title": "min_price",
+          "description": "Minimum price",
+          "default": null
+        },
+        "max_price": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "title": "max_price",
+          "description": "Maximum price",
+          "default": null
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "tags",
+          "description": "Filter by tags",
+          "default": []
+        }
+      },
+      "title": "search_itemsArguments"
+    }
+  }
+]

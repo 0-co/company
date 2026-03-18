@@ -1,0 +1,767 @@
+[
+  {
+    "_server": "aws-documentation-mcp-server",
+    "name": "read_documentation",
+    "description": "Fetch and convert an AWS documentation page to markdown format. For long documents, you can make multiple calls with different start_index values to retrieve the entire content in chunks. URL must be from docs.aws.amazon.com and end with .html.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "URL of the AWS documentation page to read"
+        },
+        "max_length": {
+          "type": "integer",
+          "description": "Maximum number of characters to return.",
+          "default": 5000,
+          "exclusiveMinimum": 0,
+          "exclusiveMaximum": 1000000
+        },
+        "start_index": {
+          "type": "integer",
+          "description": "On return output starting at this character index, useful if a previous fetch was truncated and more content is required.",
+          "default": 0,
+          "minimum": 0
+        }
+      },
+      "required": ["url"]
+    }
+  },
+  {
+    "_server": "aws-documentation-mcp-server",
+    "name": "read_sections",
+    "description": "Extract specific sections from AWS documentation pages by title. Retrieves a page, converts to markdown, and returns only matching sections. Section matching is case-insensitive and handles whitespace differences.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "URL of the AWS documentation page to read"
+        },
+        "section_titles": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "List of section titles to extract from the documentation"
+        }
+      },
+      "required": ["url", "section_titles"]
+    }
+  },
+  {
+    "_server": "aws-documentation-mcp-server",
+    "name": "search_documentation",
+    "description": "Search AWS documentation using the official AWS Documentation Search API. Use specific technical terms rather than general phrases. Include service names to narrow results.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "search_phrase": {
+          "type": "string",
+          "description": "Search phrase to use"
+        },
+        "search_intent": {
+          "type": "string",
+          "description": "For the search_phrase parameter, describe the search intent of the user. CRITICAL: Do not include any PII or customer data, describe only the AWS-related intent for search.",
+          "default": ""
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Maximum number of results to return",
+          "default": 10,
+          "minimum": 1,
+          "maximum": 50
+        },
+        "product_types": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Filter results by AWS product/service (e.g., [\"Amazon Simple Storage Service\"])"
+        },
+        "guide_types": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Filter results by guide type (e.g., [\"User Guide\", \"API Reference\", \"Developer Guide\"])"
+        }
+      },
+      "required": ["search_phrase"]
+    }
+  },
+  {
+    "_server": "aws-documentation-mcp-server",
+    "name": "recommend",
+    "description": "Get content recommendations for an AWS documentation page. Provides recommendations for related AWS documentation pages based on a given URL. Includes four categories: Highly Rated, New, Similar, and Journey.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "URL of the AWS documentation page to get recommendations for"
+        }
+      },
+      "required": ["url"]
+    }
+  },
+  {
+    "_server": "core-mcp-server",
+    "name": "prompt_understanding",
+    "description": "MCP-CORE Prompt Understanding. ALWAYS Use this tool first to understand the user's query and translate it into AWS expert advice.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "_server": "aws-api-mcp-server",
+    "name": "suggest_aws_commands",
+    "description": "Suggest AWS CLI commands based on a natural language query. This is a FALLBACK tool to use when you are uncertain about the exact AWS CLI command needed to fulfill a user's request.\n\n    IMPORTANT: Only use this tool when:\n    1. You are unsure about the exact AWS service or operation to use\n    2. The user's request is ambiguous or lacks specific details\n    3. You need to explore multiple possible approaches to solve a task\n    4. You want to provide options to the user for different ways to accomplish their goal\n\n    DO NOT use this tool when:\n    1. You are confident about the exact AWS CLI command needed - use 'call_aws' instead\n    2. The user's request is clear and specific about the AWS service and operation\n    3. You already know the exact parameters and syntax needed\n    4. The task requires immediate execution of a known command\n\n    Best practices for query formulation:\n    1. Include the user's primary goal or intent\n    2. Specify any relevant AWS services if mentioned\n    3. Include important parameters or conditions mentioned\n    4. Add context about the environment or constraints\n    5. Mention any specific requirements or preferences\n\n    CRITICAL: Query Granularity\n    - Each query should be granular enough to be accomplished by a single CLI command\n    - If the user's request requires multiple commands to complete, break it down into individual tasks\n    - Call this tool separately for each specific task to get the most relevant suggestions\n\n    Returns:\n        A list of up to 10 most likely AWS CLI commands that could accomplish the task, including:\n        - The CLI command\n        - Confidence score for the suggestion\n        - Required parameters\n        - Description of what the command does",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "A natural language description of what you want to do in AWS. Should be detailed enough to capture the user's intent and any relevant context.",
+          "maxLength": 2000
+        }
+      },
+      "required": ["query"]
+    }
+  },
+  {
+    "_server": "aws-api-mcp-server",
+    "name": "call_aws",
+    "description": "Execute AWS CLI commands with validation and proper error handling. This is the PRIMARY tool to use when you are confident about the exact AWS CLI command needed to fulfill a user's request. Always prefer this tool over 'suggest_aws_commands' when you have a specific command in mind.\n    Key points:\n    - The command MUST start with \"aws\" and follow AWS CLI syntax\n    - Commands are executed in the default region by default\n    - For cross-region or account-wide operations, explicitly include --region parameter\n    - All commands are validated before execution to prevent errors\n    - Supports pagination control via max_results parameter\n    - You can use `--region *` to run a command on all regions enabled in the account.\n    - Do not generate explicit batch calls for iterating over all regions, use `--region *` instead.\n\n    Single Command Mode:\n    - You can run a single AWS CLI command using this tool.\n\n    Batch Running:\n    - The tool can also run multiple independent commands at the same time.\n    - Call this tool with multiple CLI commands whenever possible.\n\n    Command restrictions:\n    - DO NOT use bash/zsh pipes (|) or any shell operators\n    - DO NOT use bash/zsh tools like grep, awk, sed, etc.\n    - DO NOT use shell redirection operators (>, >>, <)\n    - DO NOT use command substitution ($())\n    - DO NOT use shell variables or environment variables",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "cli_command": {
+          "oneOf": [
+            { "type": "string" },
+            { "type": "array", "items": { "type": "string" } }
+          ],
+          "description": "A single command or a list of complete AWS CLI commands to execute"
+        },
+        "max_results": {
+          "type": "integer",
+          "description": "Optional limit for number of results (useful for pagination)"
+        }
+      },
+      "required": ["cli_command"]
+    }
+  },
+  {
+    "_server": "aws-api-mcp-server",
+    "name": "get_execution_plan",
+    "description": "Get the execution plan for a compiled AWS workflow. This tool provides structured, step-by-step guidance for accomplishing a complex task with AWS. When a user request matches a plan intent, you MUST always call this tool to get an execution plan instead of attempting to come up with your own, since the procedures returned by this tool are more robust, and properly tested.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "script_name": {
+          "type": "string",
+          "description": "Name of the script to get the plan for"
+        }
+      },
+      "required": ["script_name"]
+    }
+  },
+  {
+    "_server": "bedrock-kb-retrieval-mcp-server",
+    "name": "ListKnowledgeBases",
+    "description": "List all available Amazon Bedrock Knowledge Bases and their data sources. Returns a mapping of knowledge base IDs to their details, including name, description, and data_sources (each with id and name).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "_server": "bedrock-kb-retrieval-mcp-server",
+    "name": "QueryKnowledgeBases",
+    "description": "Query an Amazon Bedrock Knowledge Base using natural language. You MUST first use the ListKnowledgeBases tool to get valid knowledge base IDs. You can query different knowledge bases or make multiple queries to the same knowledge base. Use clear, specific natural language queries for best results.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "A natural language query to search the knowledge base with"
+        },
+        "knowledge_base_id": {
+          "type": "string",
+          "description": "The knowledge base ID to query. It must be a valid ID from the ListKnowledgeBases tool"
+        },
+        "number_of_results": {
+          "type": "integer",
+          "description": "The number of results to return. Use smaller values for focused results and larger values for broader coverage.",
+          "default": 10
+        },
+        "reranking": {
+          "type": "boolean",
+          "description": "Whether to rerank the results. Useful for improving relevance and sorting. Can be globally configured with BEDROCK_KB_RERANKING_ENABLED environment variable.",
+          "default": false
+        },
+        "reranking_model_name": {
+          "type": "string",
+          "enum": ["COHERE", "AMAZON"],
+          "description": "The name of the reranking model to use. Options: 'COHERE', 'AMAZON'",
+          "default": "AMAZON"
+        },
+        "data_source_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "The data source IDs to filter the knowledge base by. It must be a list of valid data source IDs from the ListKnowledgeBases tool"
+        }
+      },
+      "required": ["query", "knowledge_base_id"]
+    }
+  },
+  {
+    "_server": "cdk-mcp-server",
+    "name": "CDKGeneralGuidance",
+    "description": "Use this tool to get prescriptive CDK advice for building applications on AWS.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "_server": "cdk-mcp-server",
+    "name": "ExplainCDKNagRule",
+    "description": "Explain a specific CDK Nag rule with AWS Well-Architected guidance. CDK Nag is a crucial tool for ensuring your CDK applications follow AWS security best practices.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "rule_id": {
+          "type": "string",
+          "description": "The CDK Nag rule ID (e.g., 'AwsSolutions-IAM4')"
+        }
+      },
+      "required": ["rule_id"]
+    }
+  },
+  {
+    "_server": "cdk-mcp-server",
+    "name": "CheckCDKNagSuppressions",
+    "description": "DEPRECATED: This tool is deprecated. Please use the AWS IaC MCP Server instead. Check if CDK code contains Nag suppressions that require human review. Scans TypeScript/JavaScript code for NagSuppressions usage to ensure security suppressions receive proper human oversight and justification.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "CDK code to analyze (TypeScript/JavaScript)"
+        },
+        "file_path": {
+          "type": "string",
+          "description": "Path to a file containing CDK code to analyze"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "_server": "cdk-mcp-server",
+    "name": "GenerateBedrockAgentSchema",
+    "description": "DEPRECATED: This tool is deprecated. Please use the AWS IaC MCP Server instead. Generate OpenAPI schema for Bedrock Agent Action Groups from a file. Converts a Lambda file with BedrockAgentResolver into a Bedrock-compatible OpenAPI schema.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "lambda_code_path": {
+          "type": "string",
+          "description": "Path to Python file containing BedrockAgentResolver app"
+        },
+        "output_path": {
+          "type": "string",
+          "description": "Where to save the generated schema"
+        }
+      },
+      "required": ["lambda_code_path", "output_path"]
+    }
+  },
+  {
+    "_server": "cdk-mcp-server",
+    "name": "GetAwsSolutionsConstructPattern",
+    "description": "Search and discover AWS Solutions Constructs patterns. AWS Solutions Constructs are vetted architecture patterns that combine multiple AWS services to solve common use cases following AWS Well-Architected best practices.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "pattern_name": {
+          "type": "string",
+          "description": "Optional name of the specific pattern (e.g., 'aws-lambda-dynamodb')"
+        },
+        "services": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Optional list of AWS services to search for patterns that use them (e.g., ['lambda', 'dynamodb'])"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "_server": "cdk-mcp-server",
+    "name": "SearchGenAICDKConstructs",
+    "description": "Search for GenAI CDK constructs by name or type. The search is flexible and will match any of your search terms (OR logic). It handles common variations like singular/plural forms and terms with/without spaces. Content is fetched dynamically from GitHub to ensure the most up-to-date documentation.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Search term(s) to find constructs by name or description"
+        },
+        "construct_type": {
+          "type": "string",
+          "description": "Optional filter by construct type ('bedrock', 'opensearchserverless', etc.)"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "_server": "cdk-mcp-server",
+    "name": "LambdaLayerDocumentationProvider",
+    "description": "Provide documentation sources for Lambda layers. Returns information about where to find documentation for Lambda layers and instructs the MCP Client to fetch and process this documentation.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "layer_type": {
+          "type": "string",
+          "description": "Type of layer (\"generic\" or \"python\")"
+        }
+      },
+      "required": ["layer_type"]
+    }
+  },
+  {
+    "_server": "cloudwatch-mcp-server",
+    "name": "describe_log_groups",
+    "description": "Lists AWS CloudWatch log groups and saved queries associated with them, optionally filtering by a name prefix. Retrieves information about log groups in the account, or log groups in accounts linked to this account as a monitoring account. Additionally returns any user saved queries that are associated with any of the returned log groups.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "account_identifiers": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "When include_linked_accounts is set to True, use this parameter to specify the list of accounts to search. IMPORTANT: Only has affect if include_linked_accounts is True"
+        },
+        "include_linked_accounts": {
+          "type": "boolean",
+          "description": "If the AWS account is a monitoring account, set this to True to have the tool return log groups in the accounts listed in account_identifiers.",
+          "default": false
+        },
+        "log_group_class": {
+          "type": "string",
+          "enum": ["STANDARD", "INFREQUENT_ACCESS"],
+          "description": "If specified, filters for only log groups of the specified class."
+        },
+        "log_group_name_prefix": {
+          "type": "string",
+          "description": "An exact prefix to filter log groups by name. IMPORTANT: Only log groups with names starting with this prefix will be returned."
+        },
+        "max_items": {
+          "type": "integer",
+          "description": "The maximum number of log groups to return."
+        },
+        "region": {
+          "type": "string",
+          "description": "AWS region to query. Defaults to AWS_REGION environment variable or us-east-1 if not set."
+        },
+        "profile_name": {
+          "type": "string",
+          "description": "AWS CLI Profile Name to use for AWS access. Falls back to AWS_PROFILE environment variable if not specified, or uses default AWS credential chain."
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "_server": "cloudwatch-mcp-server",
+    "name": "analyze_log_group",
+    "description": "Analyzes a CloudWatch log group for anomalies, message patterns, and error patterns within a specified time window. Performs analysis by: 1. Discovering and checking log anomaly detectors associated with the log group 2. Retrieving anomalies from those detectors that fall within the specified time range 3. Identifying the top 5 most common message patterns 4. Finding the top 5 patterns containing error-related terms.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "log_group_arn": {
+          "type": "string",
+          "description": "The log group arn to look for anomalies in, as returned by the describe_log_groups tools"
+        },
+        "start_time": {
+          "type": "string",
+          "description": "ISO 8601 formatted start time for the CloudWatch Logs Insights query window (e.g., \"2025-04-19T20:00:00+00:00\")."
+        },
+        "end_time": {
+          "type": "string",
+          "description": "ISO 8601 formatted end time for the CloudWatch Logs Insights query window (e.g., \"2025-04-19T21:00:00+00:00\")."
+        },
+        "region": {
+          "type": "string",
+          "description": "AWS region to query. Defaults to AWS_REGION environment variable or us-east-1 if not set."
+        },
+        "profile_name": {
+          "type": "string",
+          "description": "AWS CLI Profile Name to use for AWS access. Falls back to AWS_PROFILE environment variable if not specified, or uses default AWS credential chain."
+        }
+      },
+      "required": ["log_group_arn", "start_time", "end_time"]
+    }
+  },
+  {
+    "_server": "cloudwatch-mcp-server",
+    "name": "execute_log_insights_query",
+    "description": "Executes a CloudWatch Logs Insights query and waits for the results to be available. IMPORTANT: The operation must include exactly one of the following parameters: log_group_names, or log_group_identifiers. CRITICAL: The volume of returned logs can easily overwhelm the agent context window. Always include a limit in the query (| limit 50) or using the limit parameter.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "log_group_names": {
+          "type": "array",
+          "items": { "type": "string" },
+          "maxItems": 50,
+          "description": "The list of up to 50 log group names to be queried. CRITICAL: Exactly one of [log_group_names, log_group_identifiers] should be non-null."
+        },
+        "log_group_identifiers": {
+          "type": "array",
+          "items": { "type": "string" },
+          "maxItems": 50,
+          "description": "The list of up to 50 logGroupIdentifiers to query. You can specify them by the log group name or ARN. CRITICAL: Exactly one of [log_group_names, log_group_identifiers] should be non-null."
+        },
+        "start_time": {
+          "type": "string",
+          "description": "ISO 8601 formatted start time for the CloudWatch Logs Insights query window (e.g., \"2025-04-19T20:00:00+00:00\")."
+        },
+        "end_time": {
+          "type": "string",
+          "description": "ISO 8601 formatted end time for the CloudWatch Logs Insights query window (e.g., \"2025-04-19T21:00:00+00:00\")."
+        },
+        "query_string": {
+          "type": "string",
+          "description": "The query string in the Cloudwatch Log Insights Query Language. See https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_QuerySyntax.html."
+        },
+        "limit": {
+          "type": "integer",
+          "description": "The maximum number of log events to return. It is critical to use either this parameter or a `| limit <int>` operator in the query to avoid consuming too many tokens of the agent."
+        },
+        "max_timeout": {
+          "type": "integer",
+          "description": "Maximum time in seconds to poll for complete results before giving up",
+          "default": 30
+        },
+        "region": {
+          "type": "string",
+          "description": "AWS region to query. Defaults to AWS_REGION environment variable or us-east-1 if not set."
+        },
+        "profile_name": {
+          "type": "string",
+          "description": "AWS CLI Profile Name to use for AWS access. Falls back to AWS_PROFILE environment variable if not specified, or uses default AWS credential chain."
+        }
+      },
+      "required": ["start_time", "end_time", "query_string"]
+    }
+  },
+  {
+    "_server": "cloudwatch-mcp-server",
+    "name": "get_logs_insight_query_results",
+    "description": "Retrieves the results of a previously started CloudWatch Logs Insights query. If a log query is started by execute_log_insights_query tool and has a polling time out, this tool can be used to try to retrieve the query results again.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query_id": {
+          "type": "string",
+          "description": "The unique ID of the query to retrieve the results for. CRITICAL: This ID is returned by the execute_log_insights_query tool."
+        },
+        "region": {
+          "type": "string",
+          "description": "AWS region to query. Defaults to AWS_REGION environment variable or us-east-1 if not set."
+        },
+        "profile_name": {
+          "type": "string",
+          "description": "AWS CLI Profile Name to use for AWS access. Falls back to AWS_PROFILE environment variable if not specified, or uses default AWS credential chain."
+        }
+      },
+      "required": ["query_id"]
+    }
+  },
+  {
+    "_server": "cloudwatch-mcp-server",
+    "name": "cancel_logs_insight_query",
+    "description": "Cancels an ongoing CloudWatch Logs Insights query. If the query has already ended, returns an error that the given query is not running. If a log query is started by execute_log_insights_query tool and has a polling time out, this tool can be used to cancel it prematurely to avoid incurring additional costs.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query_id": {
+          "type": "string",
+          "description": "The unique ID of the ongoing query to cancel. CRITICAL: This ID is returned by the execute_log_insights_query tool."
+        },
+        "region": {
+          "type": "string",
+          "description": "AWS region to query. Defaults to AWS_REGION environment variable or us-east-1 if not set."
+        },
+        "profile_name": {
+          "type": "string",
+          "description": "AWS CLI Profile Name to use for AWS access. Falls back to AWS_PROFILE environment variable if not specified, or uses default AWS credential chain."
+        }
+      },
+      "required": ["query_id"]
+    }
+  },
+  {
+    "_server": "cloudwatch-mcp-server",
+    "name": "get_metric_data",
+    "description": "Retrieves CloudWatch metric data for a specific metric. Retrieves metric data from CloudWatch for a specific metric identified by its namespace, metric name, and dimensions, within a specified time range. It can use either standard GetMetricData API or CloudWatch Metrics Insights for more advanced querying. The function automatically determines whether to use standard GetMetricData or Metrics Insights based on the parameters provided.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "type": "string",
+          "description": "The namespace of the metric (e.g., 'AWS/EC2', 'AWS/Lambda')"
+        },
+        "metric_name": {
+          "type": "string",
+          "description": "The name of the metric (e.g., 'CPUUtilization', 'Duration')"
+        },
+        "start_time": {
+          "type": "string",
+          "description": "The start time for the metric data query (ISO format or datetime)"
+        },
+        "dimensions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "value": { "type": "string" }
+            },
+            "required": ["name", "value"]
+          },
+          "description": "List of dimensions that identify the metric, each with name and value",
+          "default": []
+        },
+        "end_time": {
+          "type": "string",
+          "description": "The end time for the metric data query (ISO format or datetime), defaults to current time"
+        },
+        "statistic": {
+          "type": "string",
+          "enum": ["AVG", "COUNT", "MAX", "MIN", "SUM", "Average", "Sum", "Maximum", "Minimum", "SampleCount"],
+          "description": "The statistic to use for the metric",
+          "default": "AVG"
+        },
+        "target_datapoints": {
+          "type": "integer",
+          "description": "Target number of data points to return (default: 60). Controls the granularity of the returned data.",
+          "default": 60
+        },
+        "group_by_dimension": {
+          "type": "string",
+          "description": "Dimension name to group by in Metrics Insights mode. Must be included in schema_dimension_keys."
+        },
+        "schema_dimension_keys": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "List of dimension keys to include in the SCHEMA definition for Metrics Insights query.",
+          "default": []
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Maximum number of results to return in Metrics Insights mode (used with LIMIT clause)."
+        },
+        "sort_order": {
+          "type": "string",
+          "enum": ["ASC", "DESC"],
+          "description": "Sort order for results when using ORDER BY in Metrics Insights. Can be 'ASC', 'DESC', or None."
+        },
+        "order_by_statistic": {
+          "type": "string",
+          "enum": ["AVG", "COUNT", "MAX", "MIN", "SUM"],
+          "description": "Statistic to use in the ORDER BY clause. Required if sort_order is specified."
+        },
+        "region": {
+          "type": "string",
+          "description": "AWS region to query. Defaults to AWS_REGION environment variable or us-east-1 if not set."
+        },
+        "profile_name": {
+          "type": "string",
+          "description": "AWS CLI Profile Name to use for AWS access. Falls back to AWS_PROFILE environment variable if not specified, or uses default AWS credential chain."
+        }
+      },
+      "required": ["namespace", "metric_name", "start_time"]
+    }
+  },
+  {
+    "_server": "cloudwatch-mcp-server",
+    "name": "get_metric_metadata",
+    "description": "Gets metadata for a CloudWatch metric including description, unit and recommended statistics that can be used for metric data retrieval. This tool retrieves comprehensive metadata about a specific CloudWatch metric identified by its namespace and metric name. Note: This function uses local metadata and does not make AWS API calls.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "type": "string",
+          "description": "The namespace of the metric (e.g., 'AWS/EC2', 'AWS/Lambda')"
+        },
+        "metric_name": {
+          "type": "string",
+          "description": "The name of the metric (e.g., 'CPUUtilization', 'Duration')"
+        }
+      },
+      "required": ["namespace", "metric_name"]
+    }
+  },
+  {
+    "_server": "cloudwatch-mcp-server",
+    "name": "analyze_metric",
+    "description": "Analyzes CloudWatch metric data to determine seasonality, trend, data density and statistical properties. This tool provides RAW DATA ONLY about historical metric data and performs analysis including: seasonality detection, trend analysis, data density and publishing period, advanced statistical measures (min/max/median, std dev, noise).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "type": "string",
+          "description": "The namespace of the metric (e.g., 'AWS/EC2', 'AWS/Lambda')"
+        },
+        "metric_name": {
+          "type": "string",
+          "description": "The name of the metric (e.g., 'CPUUtilization', 'Duration')"
+        },
+        "dimensions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "value": { "type": "string" }
+            },
+            "required": ["name", "value"]
+          },
+          "description": "List of dimensions that identify the metric, each with name and value",
+          "default": []
+        },
+        "region": {
+          "type": "string",
+          "description": "AWS region to query. Defaults to AWS_REGION environment variable or us-east-1 if not set."
+        },
+        "profile_name": {
+          "type": "string",
+          "description": "AWS CLI Profile Name to use for AWS access. Falls back to AWS_PROFILE environment variable if not specified, or uses default AWS credential chain."
+        },
+        "statistic": {
+          "type": "string",
+          "enum": ["AVG", "COUNT", "MAX", "MIN", "SUM", "Average", "Sum", "Maximum", "Minimum", "SampleCount"],
+          "description": "The statistic to use for the metric analysis",
+          "default": "AVG"
+        }
+      },
+      "required": ["namespace", "metric_name"]
+    }
+  },
+  {
+    "_server": "cloudwatch-mcp-server",
+    "name": "get_recommended_metric_alarms",
+    "description": "Gets recommended alarms for a CloudWatch metric. This tool retrieves alarm recommendations for a specific CloudWatch metric identified by its namespace, metric name, and dimensions. The recommendations are filtered to match the provided dimensions.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "type": "string",
+          "description": "The namespace of the metric (e.g., 'AWS/EC2', 'AWS/Lambda')"
+        },
+        "metric_name": {
+          "type": "string",
+          "description": "The name of the metric (e.g., 'CPUUtilization', 'Duration')"
+        },
+        "dimensions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "value": { "type": "string" }
+            },
+            "required": ["name", "value"]
+          },
+          "description": "List of dimensions that identify the metric, each with name and value",
+          "default": []
+        },
+        "region": {
+          "type": "string",
+          "description": "AWS region to query. Defaults to AWS_REGION environment variable or us-east-1 if not set."
+        },
+        "profile_name": {
+          "type": "string",
+          "description": "AWS CLI Profile Name to use for AWS access. Falls back to AWS_PROFILE environment variable if not specified, or uses default AWS credential chain."
+        },
+        "statistic": {
+          "type": "string",
+          "enum": ["AVG", "COUNT", "MAX", "MIN", "SUM", "Average", "Sum", "Maximum", "Minimum", "SampleCount"],
+          "description": "The statistic to use for alarm recommendations",
+          "default": "AVG"
+        }
+      },
+      "required": ["namespace", "metric_name"]
+    }
+  },
+  {
+    "_server": "cloudwatch-mcp-server",
+    "name": "get_active_alarms",
+    "description": "Gets all CloudWatch Alarms currently in ALARM state. This tool retrieves all CloudWatch Alarms that are currently in the ALARM state, including both metric alarms and composite alarms. Results are optimized for LLM reasoning with summary-level information.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "max_items": {
+          "type": "integer",
+          "description": "Maximum number of alarms to return (default: 50). Large values may cause context window overflow and impact LLM performance.",
+          "default": 50
+        },
+        "region": {
+          "type": "string",
+          "description": "AWS region to query. Defaults to AWS_REGION environment variable or us-east-1 if not set."
+        },
+        "profile_name": {
+          "type": "string",
+          "description": "AWS CLI Profile Name to use for AWS access. Falls back to AWS_PROFILE environment variable if not specified, or uses default AWS credential chain."
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "_server": "cloudwatch-mcp-server",
+    "name": "get_alarm_history",
+    "description": "Gets the history for a CloudWatch alarm with time range suggestions for investigation. Retrieves the history for a specified CloudWatch alarm, focusing primarily on state transitions to ALARM state. It also provides suggested time ranges for investigation based on the alarm's configuration and history.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "alarm_name": {
+          "type": "string",
+          "description": "Name of the alarm to retrieve history for"
+        },
+        "start_time": {
+          "type": "string",
+          "description": "The start time for the history query in ISO format (e.g., '2023-01-01T00:00:00Z') or as a datetime object. Defaults to 24 hours ago."
+        },
+        "end_time": {
+          "type": "string",
+          "description": "The end time for the history query in ISO format (e.g., '2023-01-01T00:00:00Z') or as a datetime object. Defaults to current time."
+        },
+        "history_item_type": {
+          "type": "string",
+          "enum": ["ConfigurationUpdate", "StateUpdate", "Action"],
+          "description": "Type of history items to retrieve. Defaults to 'StateUpdate'."
+        },
+        "max_items": {
+          "type": "integer",
+          "description": "Maximum number of history items to return (default: 50). Large values may cause context window overflow and impact LLM performance.",
+          "default": 50
+        },
+        "include_component_alarms": {
+          "type": "boolean",
+          "description": "For composite alarms, whether to include details about component alarms. Defaults to false.",
+          "default": false
+        },
+        "region": {
+          "type": "string",
+          "description": "AWS region to query. Defaults to AWS_REGION environment variable or us-east-1 if not set."
+        },
+        "profile_name": {
+          "type": "string",
+          "description": "AWS CLI Profile Name to use for AWS access. Falls back to AWS_PROFILE environment variable if not specified, or uses default AWS credential chain."
+        }
+      },
+      "required": ["alarm_name"]
+    }
+  }
+]

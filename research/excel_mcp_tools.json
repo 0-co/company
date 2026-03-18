@@ -1,0 +1,727 @@
+[
+  {
+    "name": "create_workbook",
+    "description": "Creates a new Excel workbook.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filepath": {
+          "type": "string",
+          "description": "Path to the Excel file to create"
+        }
+      },
+      "required": ["filepath"]
+    }
+  },
+  {
+    "name": "create_worksheet",
+    "description": "Creates a new worksheet in an existing workbook.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filepath": {
+          "type": "string",
+          "description": "Path to the Excel file"
+        },
+        "sheet_name": {
+          "type": "string",
+          "description": "Name of the new worksheet"
+        }
+      },
+      "required": ["filepath", "sheet_name"]
+    }
+  },
+  {
+    "name": "get_workbook_metadata",
+    "description": "Get metadata about workbook including sheets and ranges.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filepath": {
+          "type": "string",
+          "description": "Path to the Excel file"
+        },
+        "include_ranges": {
+          "type": "boolean",
+          "description": "Whether to include named ranges in the metadata",
+          "default": false
+        }
+      },
+      "required": ["filepath"]
+    }
+  },
+  {
+    "name": "write_data_to_excel",
+    "description": "Write data to Excel worksheet. Excel formula will write to cell without any verification.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filepath": {
+          "type": "string",
+          "description": "Path to the Excel file"
+        },
+        "sheet_name": {
+          "type": "string",
+          "description": "Name of the worksheet"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "array"
+          },
+          "description": "Rows of data to write"
+        },
+        "start_cell": {
+          "type": "string",
+          "description": "Starting cell address",
+          "default": "A1"
+        }
+      },
+      "required": ["filepath", "sheet_name", "data"]
+    }
+  },
+  {
+    "name": "read_data_from_excel",
+    "description": "Read data from Excel worksheet with cell metadata including validation rules.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filepath": {
+          "type": "string",
+          "description": "Path to the Excel file"
+        },
+        "sheet_name": {
+          "type": "string",
+          "description": "Name of the worksheet"
+        },
+        "start_cell": {
+          "type": "string",
+          "description": "Starting cell address",
+          "default": "A1"
+        },
+        "end_cell": {
+          "type": "string",
+          "description": "Ending cell address (optional, reads to last used cell if omitted)"
+        },
+        "preview_only": {
+          "type": "boolean",
+          "description": "If true, returns only a preview of the data",
+          "default": false
+        }
+      },
+      "required": ["filepath", "sheet_name"]
+    }
+  },
+  {
+    "name": "format_range",
+    "description": "Apply formatting to a range of cells.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filepath": {
+          "type": "string",
+          "description": "Path to the Excel file"
+        },
+        "sheet_name": {
+          "type": "string",
+          "description": "Name of the worksheet"
+        },
+        "start_cell": {
+          "type": "string",
+          "description": "Starting cell address of the range"
+        },
+        "end_cell": {
+          "type": "string",
+          "description": "Ending cell address of the range"
+        },
+        "bold": {
+          "type": "boolean",
+          "description": "Apply bold formatting"
+        },
+        "italic": {
+          "type": "boolean",
+          "description": "Apply italic formatting"
+        },
+        "underline": {
+          "type": "boolean",
+          "description": "Apply underline formatting"
+        },
+        "font_size": {
+          "type": "integer",
+          "description": "Font size in points"
+        },
+        "font_color": {
+          "type": "string",
+          "description": "Font color in hex format (e.g. #FF0000)"
+        },
+        "bg_color": {
+          "type": "string",
+          "description": "Background color in hex format"
+        },
+        "border_style": {
+          "type": "string",
+          "description": "Border style (thin, medium, thick, etc.)"
+        },
+        "border_color": {
+          "type": "string",
+          "description": "Border color in hex format"
+        },
+        "number_format": {
+          "type": "string",
+          "description": "Number format string (e.g. #,##0.00)"
+        },
+        "alignment": {
+          "type": "string",
+          "description": "Text alignment (left, center, right)"
+        },
+        "wrap_text": {
+          "type": "boolean",
+          "description": "Enable text wrapping"
+        },
+        "merge_cells": {
+          "type": "boolean",
+          "description": "Merge the specified cell range"
+        },
+        "protection": {
+          "type": "object",
+          "description": "Cell protection settings"
+        },
+        "conditional_format": {
+          "type": "object",
+          "description": "Conditional formatting rules"
+        }
+      },
+      "required": ["filepath", "sheet_name", "start_cell"]
+    }
+  },
+  {
+    "name": "merge_cells",
+    "description": "Merge a range of cells.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filepath": {
+          "type": "string",
+          "description": "Path to the Excel file"
+        },
+        "sheet_name": {
+          "type": "string",
+          "description": "Name of the worksheet"
+        },
+        "start_cell": {
+          "type": "string",
+          "description": "Starting cell address"
+        },
+        "end_cell": {
+          "type": "string",
+          "description": "Ending cell address"
+        }
+      },
+      "required": ["filepath", "sheet_name", "start_cell", "end_cell"]
+    }
+  },
+  {
+    "name": "unmerge_cells",
+    "description": "Unmerge a previously merged range of cells.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filepath": {
+          "type": "string",
+          "description": "Path to the Excel file"
+        },
+        "sheet_name": {
+          "type": "string",
+          "description": "Name of the worksheet"
+        },
+        "start_cell": {
+          "type": "string",
+          "description": "Starting cell address"
+        },
+        "end_cell": {
+          "type": "string",
+          "description": "Ending cell address"
+        }
+      },
+      "required": ["filepath", "sheet_name", "start_cell", "end_cell"]
+    }
+  },
+  {
+    "name": "get_merged_cells",
+    "description": "Get merged cells in a worksheet.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filepath": {
+          "type": "string",
+          "description": "Path to the Excel file"
+        },
+        "sheet_name": {
+          "type": "string",
+          "description": "Name of the worksheet"
+        }
+      },
+      "required": ["filepath", "sheet_name"]
+    }
+  },
+  {
+    "name": "apply_formula",
+    "description": "Apply Excel formula to cell. Excel formula will write to cell with verification.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filepath": {
+          "type": "string",
+          "description": "Path to Excel file"
+        },
+        "sheet_name": {
+          "type": "string",
+          "description": "Name of the worksheet"
+        },
+        "cell": {
+          "type": "string",
+          "description": "Target cell address"
+        },
+        "formula": {
+          "type": "string",
+          "description": "Excel formula to apply"
+        }
+      },
+      "required": ["filepath", "sheet_name", "cell", "formula"]
+    }
+  },
+  {
+    "name": "validate_formula_syntax",
+    "description": "Validate Excel formula syntax without applying it.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filepath": {
+          "type": "string",
+          "description": "Path to Excel file"
+        },
+        "sheet_name": {
+          "type": "string",
+          "description": "Name of the worksheet"
+        },
+        "cell": {
+          "type": "string",
+          "description": "Cell address for context"
+        },
+        "formula": {
+          "type": "string",
+          "description": "Formula to validate"
+        }
+      },
+      "required": ["filepath", "sheet_name", "cell", "formula"]
+    }
+  },
+  {
+    "name": "create_chart",
+    "description": "Create chart in worksheet.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filepath": {
+          "type": "string",
+          "description": "Path to Excel file"
+        },
+        "sheet_name": {
+          "type": "string",
+          "description": "Name of the worksheet"
+        },
+        "data_range": {
+          "type": "string",
+          "description": "Cell range containing chart data (e.g. A1:B10)"
+        },
+        "chart_type": {
+          "type": "string",
+          "description": "Type of chart to create (bar, line, pie, etc.)"
+        },
+        "target_cell": {
+          "type": "string",
+          "description": "Cell where chart will be placed"
+        },
+        "title": {
+          "type": "string",
+          "description": "Chart title",
+          "default": ""
+        },
+        "x_axis": {
+          "type": "string",
+          "description": "X-axis label",
+          "default": ""
+        },
+        "y_axis": {
+          "type": "string",
+          "description": "Y-axis label",
+          "default": ""
+        }
+      },
+      "required": ["filepath", "sheet_name", "data_range", "chart_type", "target_cell"]
+    }
+  },
+  {
+    "name": "create_pivot_table",
+    "description": "Create pivot table in worksheet.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filepath": {
+          "type": "string",
+          "description": "Path to Excel file"
+        },
+        "sheet_name": {
+          "type": "string",
+          "description": "Name of the worksheet"
+        },
+        "data_range": {
+          "type": "string",
+          "description": "Cell range containing source data"
+        },
+        "target_cell": {
+          "type": "string",
+          "description": "Cell where pivot table will be placed"
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Field names to use as row headers"
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Field names to aggregate as values"
+        },
+        "columns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Field names to use as column headers"
+        },
+        "agg_func": {
+          "type": "string",
+          "description": "Aggregation function (mean, sum, count, etc.)",
+          "default": "mean"
+        }
+      },
+      "required": ["filepath", "sheet_name", "data_range", "target_cell", "rows", "values"]
+    }
+  },
+  {
+    "name": "create_table",
+    "description": "Creates a native Excel table from a specified range of data.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filepath": {
+          "type": "string",
+          "description": "Path to Excel file"
+        },
+        "sheet_name": {
+          "type": "string",
+          "description": "Name of the worksheet"
+        },
+        "data_range": {
+          "type": "string",
+          "description": "Cell range for the table"
+        },
+        "table_name": {
+          "type": "string",
+          "description": "Name for the Excel table (auto-generated if omitted)"
+        },
+        "table_style": {
+          "type": "string",
+          "description": "Excel table style name",
+          "default": "TableStyleMedium9"
+        }
+      },
+      "required": ["filepath", "sheet_name", "data_range"]
+    }
+  },
+  {
+    "name": "copy_worksheet",
+    "description": "Copy worksheet within workbook.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filepath": {
+          "type": "string",
+          "description": "Path to Excel file"
+        },
+        "source_sheet": {
+          "type": "string",
+          "description": "Name of the worksheet to copy"
+        },
+        "target_sheet": {
+          "type": "string",
+          "description": "Name for the new worksheet copy"
+        }
+      },
+      "required": ["filepath", "source_sheet", "target_sheet"]
+    }
+  },
+  {
+    "name": "delete_worksheet",
+    "description": "Delete worksheet from workbook.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filepath": {
+          "type": "string",
+          "description": "Path to Excel file"
+        },
+        "sheet_name": {
+          "type": "string",
+          "description": "Name of the worksheet to delete"
+        }
+      },
+      "required": ["filepath", "sheet_name"]
+    }
+  },
+  {
+    "name": "rename_worksheet",
+    "description": "Rename worksheet in workbook.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filepath": {
+          "type": "string",
+          "description": "Path to Excel file"
+        },
+        "old_name": {
+          "type": "string",
+          "description": "Current name of the worksheet"
+        },
+        "new_name": {
+          "type": "string",
+          "description": "New name for the worksheet"
+        }
+      },
+      "required": ["filepath", "old_name", "new_name"]
+    }
+  },
+  {
+    "name": "copy_range",
+    "description": "Copy a range of cells to another location.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filepath": {
+          "type": "string",
+          "description": "Path to Excel file"
+        },
+        "sheet_name": {
+          "type": "string",
+          "description": "Name of the source worksheet"
+        },
+        "source_start": {
+          "type": "string",
+          "description": "Starting cell of the source range"
+        },
+        "source_end": {
+          "type": "string",
+          "description": "Ending cell of the source range"
+        },
+        "target_start": {
+          "type": "string",
+          "description": "Starting cell of the target range"
+        },
+        "target_sheet": {
+          "type": "string",
+          "description": "Name of the target worksheet (defaults to source sheet)"
+        }
+      },
+      "required": ["filepath", "sheet_name", "source_start", "source_end", "target_start"]
+    }
+  },
+  {
+    "name": "delete_range",
+    "description": "Delete a range of cells and shift remaining cells.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filepath": {
+          "type": "string",
+          "description": "Path to Excel file"
+        },
+        "sheet_name": {
+          "type": "string",
+          "description": "Name of the worksheet"
+        },
+        "start_cell": {
+          "type": "string",
+          "description": "Starting cell address"
+        },
+        "end_cell": {
+          "type": "string",
+          "description": "Ending cell address"
+        },
+        "shift_direction": {
+          "type": "string",
+          "description": "Direction to shift remaining cells after deletion",
+          "enum": ["up", "left"],
+          "default": "up"
+        }
+      },
+      "required": ["filepath", "sheet_name", "start_cell", "end_cell"]
+    }
+  },
+  {
+    "name": "validate_excel_range",
+    "description": "Validate if a range exists and is properly formatted.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filepath": {
+          "type": "string",
+          "description": "Path to Excel file"
+        },
+        "sheet_name": {
+          "type": "string",
+          "description": "Name of the worksheet"
+        },
+        "start_cell": {
+          "type": "string",
+          "description": "Starting cell address"
+        },
+        "end_cell": {
+          "type": "string",
+          "description": "Ending cell address (optional)"
+        }
+      },
+      "required": ["filepath", "sheet_name", "start_cell"]
+    }
+  },
+  {
+    "name": "get_data_validation_info",
+    "description": "Get all data validation rules in a worksheet. This tool helps identify which cell ranges have validation rules and what types of validation are applied.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filepath": {
+          "type": "string",
+          "description": "Path to Excel file"
+        },
+        "sheet_name": {
+          "type": "string",
+          "description": "Name of the worksheet"
+        }
+      },
+      "required": ["filepath", "sheet_name"]
+    }
+  },
+  {
+    "name": "insert_rows",
+    "description": "Insert one or more rows starting at the specified row.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filepath": {
+          "type": "string",
+          "description": "Path to Excel file"
+        },
+        "sheet_name": {
+          "type": "string",
+          "description": "Name of the worksheet"
+        },
+        "start_row": {
+          "type": "integer",
+          "description": "Row number where insertion starts"
+        },
+        "count": {
+          "type": "integer",
+          "description": "Number of rows to insert",
+          "default": 1
+        }
+      },
+      "required": ["filepath", "sheet_name", "start_row"]
+    }
+  },
+  {
+    "name": "insert_columns",
+    "description": "Insert one or more columns starting at the specified column.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filepath": {
+          "type": "string",
+          "description": "Path to Excel file"
+        },
+        "sheet_name": {
+          "type": "string",
+          "description": "Name of the worksheet"
+        },
+        "start_col": {
+          "type": "integer",
+          "description": "Column number where insertion starts"
+        },
+        "count": {
+          "type": "integer",
+          "description": "Number of columns to insert",
+          "default": 1
+        }
+      },
+      "required": ["filepath", "sheet_name", "start_col"]
+    }
+  },
+  {
+    "name": "delete_sheet_rows",
+    "description": "Delete one or more rows starting at the specified row.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filepath": {
+          "type": "string",
+          "description": "Path to Excel file"
+        },
+        "sheet_name": {
+          "type": "string",
+          "description": "Name of the worksheet"
+        },
+        "start_row": {
+          "type": "integer",
+          "description": "Row number where deletion starts"
+        },
+        "count": {
+          "type": "integer",
+          "description": "Number of rows to delete",
+          "default": 1
+        }
+      },
+      "required": ["filepath", "sheet_name", "start_row"]
+    }
+  },
+  {
+    "name": "delete_sheet_columns",
+    "description": "Delete one or more columns starting at the specified column.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filepath": {
+          "type": "string",
+          "description": "Path to Excel file"
+        },
+        "sheet_name": {
+          "type": "string",
+          "description": "Name of the worksheet"
+        },
+        "start_col": {
+          "type": "integer",
+          "description": "Column number where deletion starts"
+        },
+        "count": {
+          "type": "integer",
+          "description": "Number of columns to delete",
+          "default": 1
+        }
+      },
+      "required": ["filepath", "sheet_name", "start_col"]
+    }
+  }
+]

@@ -1,6 +1,6 @@
 {
   "article_id": 3366683,
   "article_num": "071",
-  "title": "I Graded 27 MCP Servers. The Most Popular Ones Are the Worst.",
-  "bsky_text": "graded 27 MCP servers. 510 tools. 97,000 tokens.\n\nthe top 4 most popular all score D or below. popularity anti-correlates with quality.\n\nCloudflare Radar alone: 21,723 tokens. GA4: 7 tools outweigh 38.\n\n{url}"
+  "title": "I Graded 30 MCP Servers. The Most Popular Ones Are the Worst.",
+  "bsky_text": "graded 30 MCP servers. 590 tools. 117,000 tokens.\n\nthe top 4 most popular all score D or below. popularity anti-correlates with quality.\n\nAWS: F (7K tokens). Desktop Commander: F (9K tokens). Stripe: D-.\n\n{url}"
 }

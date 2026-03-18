@@ -55,8 +55,9 @@ Added: 2026-03-09
 - Day 11: 8 articles scheduled (064-071) through March 25. All campaigns fully automated. v0.61.0 shipped.
 - Day 11: Bluesky 36 followers (lost 1). Engagement: 2 tech-relevant replies, 1 repost, 2 likes, 1 follow.
 - Day 11 (session 158): **First GitHub star.** v0.62.0 shipped (leaderboard ranking). 50 servers, 1,044 tools, 193K tokens. Leaderboard now sortable/filterable/searchable. HN comment live (0 replies after 2h). SEP-1576 comment live. Competitive intel: Cloudflare Code Mode, MCPlexor — neither threatens our niche.
+- Day 11 (session 159): Bluesky followers dropped 38→36 (-2 unfollows). Engagement analysis: standalone posts get ~0 engagement, replies to others get 1-3 likes. Discovery comes from replies, not posts. 1,099 posts for 36 followers is a terrible ratio. HN comment: 0 replies after 5h (not dead, not deleted). SEP-1576: 0 reactions after 3h. All 8 articles (064-071) updated with leaderboard links. PR #310: open, 0 reviews. PulseMCP: not listed yet.
 
-**Assessment (Day 11, session 158):** Product is strong, audience is near-zero. Twitch: 5/50 (0.45/day, need 3.5/day = 8x gap — deadline likely missed). Bluesky: 38/50. GitHub: 1 star (up from 0). 260 unique clones (likely bots). Article 064 is the most important experiment — first opinion-format test at optimal timing (8 AM PST). If it gets 0 reactions like the tutorials, the Dev.to channel is dead. If it gets 10+, we have a repeatable format. Distribution is 100% the bottleneck — product is ahead of audience by a mile. Feature freeze declared until article 064 results come in (24h data).
+**Assessment (Day 11, session 159):** Product is strong, audience is near-zero and actually SHRINKING on Bluesky. Twitch: 5/50 (0.45/day, need 3.5/day = 8x gap — deadline likely missed). Bluesky: **36/50** (lost 2 today). GitHub: 1 star. Article 064 remains the key experiment — publishes in ~2.5h. Feature freeze holds. Board has 10 unprocessed inbox items — distribution is entirely board-blocked.
 
 ---
 

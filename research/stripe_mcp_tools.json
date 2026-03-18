@@ -1,0 +1,530 @@
+[
+  {
+    "name": "create_customer",
+    "description": "This tool will create a customer in Stripe.\n\nIt takes two arguments:\n- name (str): The name of the customer.\n- email (str, optional): The email of the customer.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the customer"
+        },
+        "email": {
+          "type": "string",
+          "description": "The email of the customer"
+        }
+      },
+      "required": ["name"]
+    }
+  },
+  {
+    "name": "list_customers",
+    "description": "This tool will fetch a list of Customers from Stripe.\n\nIt takes two arguments:\n- limit (int, optional): The number of customers to return.\n- email (str, optional): A case-sensitive filter on the list based on the customer's email field.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "description": "A limit on the number of objects to be returned. Limit can range between 1 and 100.",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "email": {
+          "type": "string",
+          "description": "A case-sensitive filter on the list based on the customer's email field. The value must be a string."
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "create_product",
+    "description": "This tool will create a product in Stripe.\n\nIt takes two arguments:\n- name (str): The name of the product.\n- description (str, optional): The description of the product.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the product."
+        },
+        "description": {
+          "type": "string",
+          "description": "The description of the product."
+        }
+      },
+      "required": ["name"]
+    }
+  },
+  {
+    "name": "list_products",
+    "description": "This tool will fetch a list of Products from Stripe.\n\nIt takes one optional argument:\n- limit (int, optional): The number of products to return.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "description": "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 10.",
+          "minimum": 1,
+          "maximum": 100
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "create_price",
+    "description": "This tool will create a price in Stripe. If a product has not already been specified, a product should be created first.\n\nIt takes three arguments:\n- product (str): The ID of the product to create the price for.\n- unit_amount (int): The unit amount of the price in cents.\n- currency (str): The currency of the price.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "product": {
+          "type": "string",
+          "description": "The ID of the product to create the price for."
+        },
+        "unit_amount": {
+          "type": "integer",
+          "description": "The unit amount of the price in cents."
+        },
+        "currency": {
+          "type": "string",
+          "description": "The currency of the price."
+        }
+      },
+      "required": ["product", "unit_amount", "currency"]
+    }
+  },
+  {
+    "name": "list_prices",
+    "description": "This tool will fetch a list of Prices from Stripe.\n\nIt takes two arguments.\n- product (str, optional): The ID of the product to list prices for.\n- limit (int, optional): The number of prices to return.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "product": {
+          "type": "string",
+          "description": "The ID of the product to list prices for."
+        },
+        "limit": {
+          "type": "integer",
+          "description": "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 10.",
+          "minimum": 1,
+          "maximum": 100
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "create_payment_link",
+    "description": "This tool will create a payment link in Stripe.\n\nIt takes two arguments:\n- price (str): The ID of the price to create the payment link for.\n- quantity (int): The quantity of the product to include in the payment link.\n- redirect_url (str, optional): The URL to redirect to after the payment is completed.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "price": {
+          "type": "string",
+          "description": "The ID of the price to create the payment link for."
+        },
+        "quantity": {
+          "type": "integer",
+          "description": "The quantity of the product to include."
+        },
+        "redirect_url": {
+          "type": "string",
+          "description": "The URL to redirect to after the payment is completed."
+        }
+      },
+      "required": ["price", "quantity"]
+    }
+  },
+  {
+    "name": "create_invoice",
+    "description": "This tool will create an invoice in Stripe.\n\nIt takes two arguments:\n- customer (str): The ID of the customer to create the invoice for.\n- days_until_due (int, optional): The number of days until the invoice is due.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "customer": {
+          "type": "string",
+          "description": "The ID of the customer to create the invoice for."
+        },
+        "days_until_due": {
+          "type": "integer",
+          "description": "The number of days until the invoice is due."
+        }
+      },
+      "required": ["customer"]
+    }
+  },
+  {
+    "name": "list_invoices",
+    "description": "This tool will fetch a list of Invoices from Stripe.\n\nIt takes two arguments:\n- customer (str, optional): The ID of the customer to list invoices for.\n- limit (int, optional): The number of invoices to return.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "customer": {
+          "type": "string",
+          "description": "The ID of the customer to list invoices for."
+        },
+        "limit": {
+          "type": "integer",
+          "description": "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 10.",
+          "minimum": 1,
+          "maximum": 100
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "create_invoice_item",
+    "description": "This tool will create an invoice item in Stripe.\n\nIt takes three arguments:\n- customer (str): The ID of the customer to create the invoice item for.\n- price (str): The ID of the price to create the invoice item for.\n- invoice (str): The ID of the invoice to create the invoice item for.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "customer": {
+          "type": "string",
+          "description": "The ID of the customer to create the invoice item for."
+        },
+        "price": {
+          "type": "string",
+          "description": "The ID of the price for the item."
+        },
+        "invoice": {
+          "type": "string",
+          "description": "The ID of the invoice to create the item for."
+        }
+      },
+      "required": ["customer", "price", "invoice"]
+    }
+  },
+  {
+    "name": "finalize_invoice",
+    "description": "This tool will finalize an invoice in Stripe.\n\nIt takes one argument:\n- invoice (str): The ID of the invoice to finalize.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "invoice": {
+          "type": "string",
+          "description": "The ID of the invoice to finalize."
+        }
+      },
+      "required": ["invoice"]
+    }
+  },
+  {
+    "name": "retrieve_balance",
+    "description": "This tool will retrieve the balance from Stripe. It takes no input.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create_refund",
+    "description": "This tool will refund a payment intent in Stripe.\n\nIt takes three arguments:\n- payment_intent (str): The ID of the payment intent to refund.\n- amount (int, optional): The amount to refund in cents.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "payment_intent": {
+          "type": "string",
+          "description": "The ID of the PaymentIntent to refund."
+        },
+        "amount": {
+          "type": "integer",
+          "description": "The amount to refund in cents."
+        }
+      },
+      "required": ["payment_intent"]
+    }
+  },
+  {
+    "name": "list_payment_intents",
+    "description": "This tool will list payment intents in Stripe.\n\nIt takes two arguments:\n- customer (str, optional): The ID of the customer to list payment intents for.\n- limit (int, optional): The number of payment intents to return.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "customer": {
+          "type": "string",
+          "description": "The ID of the customer to list payment intents for."
+        },
+        "limit": {
+          "type": "integer",
+          "description": "A limit on the number of objects to be returned. Limit can range between 1 and 100.",
+          "minimum": 1,
+          "maximum": 100
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "list_subscriptions",
+    "description": "This tool will list all subscriptions in Stripe.\n\nIt takes four arguments:\n- customer (str, optional): The ID of the customer to list subscriptions for.\n- price (str, optional): The ID of the price to list subscriptions for.\n- status (str, optional): The status of the subscriptions to list.\n- limit (int, optional): The number of subscriptions to return.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "customer": {
+          "type": "string",
+          "description": "The ID of the customer to list subscriptions for."
+        },
+        "price": {
+          "type": "string",
+          "description": "The ID of the price to list subscriptions for."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["active", "past_due", "unpaid", "canceled", "incomplete", "incomplete_expired", "trialing", "all"],
+          "description": "The status of the subscriptions to retrieve."
+        },
+        "limit": {
+          "type": "integer",
+          "description": "A limit on the number of objects to be returned. Limit can range between 1 and 100.",
+          "minimum": 1,
+          "maximum": 100
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "cancel_subscription",
+    "description": "This tool will cancel a subscription in Stripe.\n\nIt takes the following arguments:\n- subscription (str, required): The ID of the subscription to cancel.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "subscription": {
+          "type": "string",
+          "description": "The ID of the subscription to cancel."
+        }
+      },
+      "required": ["subscription"]
+    }
+  },
+  {
+    "name": "update_subscription",
+    "description": "This tool will update an existing subscription in Stripe. If changing an existing subscription item, the existing subscription item has to be set to deleted and the new one has to be added.\n\nIt takes the following arguments:\n- subscription (str, required): The ID of the subscription to update.\n- proration_behavior (str, optional): Determines how to handle prorations when the subscription items change.\n- items (array, optional): A list of subscription items to update, add, or remove.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "subscription": {
+          "type": "string",
+          "description": "The ID of the subscription to update."
+        },
+        "proration_behavior": {
+          "type": "string",
+          "enum": ["create_prorations", "none", "always_invoice", "none_implicit"],
+          "description": "Determines how to handle prorations when the subscription items change."
+        },
+        "items": {
+          "type": "array",
+          "description": "A list of subscription items to update, add, or remove.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The ID of the subscription item to modify."
+              },
+              "price": {
+                "type": "string",
+                "description": "The ID of the price to switch to."
+              },
+              "quantity": {
+                "type": "integer",
+                "description": "The quantity of the plan to subscribe to.",
+                "minimum": 1
+              },
+              "deleted": {
+                "type": "boolean",
+                "description": "Whether to delete this item."
+              }
+            }
+          }
+        }
+      },
+      "required": ["subscription"]
+    }
+  },
+  {
+    "name": "search_stripe_documentation",
+    "description": "This tool will take in a user question about integrating with Stripe in their application, then search and retrieve relevant Stripe documentation to answer the question.\n\nIt takes two arguments:\n- question (str): The user question to search an answer for in the Stripe documentation.\n- language (str, optional): The programming language to search for in the documentation.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "question": {
+          "type": "string",
+          "description": "The user question about integrating with Stripe will be used to search the documentation."
+        },
+        "language": {
+          "type": "string",
+          "enum": ["dotnet", "go", "java", "node", "php", "ruby", "python", "curl"],
+          "description": "The programming language to search for in the documentation."
+        }
+      },
+      "required": ["question"]
+    }
+  },
+  {
+    "name": "list_coupons",
+    "description": "This tool will fetch a list of Coupons from Stripe.\n\nIt takes one optional argument:\n- limit (int, optional): The number of coupons to return.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "description": "A limit on the number of objects to be returned. Limit can range between 1 and 100.",
+          "minimum": 1,
+          "maximum": 100
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "create_coupon",
+    "description": "This tool will create a coupon in Stripe.\n\nIt takes several arguments:\n- name (str): The name of the coupon.\n\nOnly use one of percent_off or amount_off, not both:\n- percent_off (number, optional): The percentage discount to apply (between 0 and 100).\n- amount_off (number, optional): The amount to subtract from an invoice (in cents).\n\nOptional arguments for duration:\n- duration (str, optional): How long the discount will last ('once', 'repeating', or 'forever'). Defaults to 'once'.\n- duration_in_months (number, optional): The number of months the discount will last if duration is repeating.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the coupon displayed to customers on invoices or receipts"
+        },
+        "percent_off": {
+          "type": "number",
+          "description": "A positive float larger than 0, and smaller or equal to 100, that represents the discount the coupon will apply (required if amount_off is not passed)",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "amount_off": {
+          "type": "number",
+          "description": "A positive integer representing the amount to subtract from an invoice total (required if percent_off is not passed)"
+        },
+        "currency": {
+          "type": "string",
+          "description": "Three-letter ISO code for the currency of the amount_off parameter (required if amount_off is passed)"
+        },
+        "duration": {
+          "type": "string",
+          "enum": ["once", "repeating", "forever"],
+          "description": "How long the discount will last. Defaults to 'once'."
+        },
+        "duration_in_months": {
+          "type": "number",
+          "description": "The number of months the discount will last if duration is repeating"
+        }
+      },
+      "required": ["name", "amount_off"]
+    }
+  },
+  {
+    "name": "update_dispute",
+    "description": "When you receive a dispute, contacting your customer is always the best first step. If that doesn't work, you can submit evidence to help resolve the dispute in your favor. This tool helps.\n\nIt takes the following arguments:\n- dispute (string): The ID of the dispute to update\n- evidence (object, optional): Evidence to upload for the dispute.\n- submit (boolean, optional): Whether to immediately submit evidence to the bank.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "dispute": {
+          "type": "string",
+          "description": "The ID of the dispute to update"
+        },
+        "evidence": {
+          "type": "object",
+          "description": "Evidence to upload, to respond to a dispute. Updating any field in the hash will submit all fields in the hash for review.",
+          "properties": {
+            "cancellation_policy_disclosure": {
+              "type": "string",
+              "description": "An explanation of how and when the customer was shown your refund policy prior to purchase.",
+              "maxLength": 20000
+            },
+            "duplicate_charge_explanation": {
+              "type": "string",
+              "description": "An explanation of the difference between the disputed charge versus the prior charge that appears to be a duplicate.",
+              "maxLength": 20000
+            },
+            "uncategorized_text": {
+              "type": "string",
+              "description": "Any additional evidence or statements.",
+              "maxLength": 20000
+            }
+          }
+        },
+        "submit": {
+          "type": "boolean",
+          "description": "Whether to immediately submit evidence to the bank. If false, evidence is staged on the dispute."
+        }
+      },
+      "required": ["dispute"]
+    }
+  },
+  {
+    "name": "list_disputes",
+    "description": "This tool will fetch a list of disputes in Stripe.\n\nIt takes the following arguments:\n- charge (string, optional): Only return disputes associated to the charge specified by this charge ID.\n- payment_intent (string, optional): Only return disputes associated to the PaymentIntent specified by this PaymentIntent ID.\n- limit (int, optional): A limit on the number of objects to be returned.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "charge": {
+          "type": "string",
+          "description": "Only return disputes associated to the charge specified by this charge ID."
+        },
+        "payment_intent": {
+          "type": "string",
+          "description": "Only return disputes associated to the PaymentIntent specified by this PaymentIntent ID."
+        },
+        "limit": {
+          "type": "integer",
+          "description": "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 10.",
+          "minimum": 1,
+          "maximum": 100
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "get_stripe_account_info",
+    "description": "Retrieves information about the connected Stripe account, including business details, capabilities, and settings.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "search_stripe_resources",
+    "description": "Searches across Stripe objects (customers, charges, invoices, subscriptions, etc.) using Stripe's search query syntax.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "The search query string using Stripe's search query language."
+        },
+        "resource": {
+          "type": "string",
+          "description": "The type of Stripe resource to search.",
+          "enum": ["customers", "charges", "invoices", "subscriptions", "payment_intents", "prices", "products"]
+        },
+        "limit": {
+          "type": "integer",
+          "description": "A limit on the number of objects to be returned.",
+          "minimum": 1,
+          "maximum": 100
+        }
+      },
+      "required": ["query", "resource"]
+    }
+  },
+  {
+    "name": "fetch_stripe_resources",
+    "description": "Retrieves a specific Stripe object by its ID (e.g., customer, charge, invoice, subscription, payment intent).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the Stripe object to retrieve (e.g., cus_xxx, ch_xxx, in_xxx, sub_xxx, pi_xxx)."
+        }
+      },
+      "required": ["id"]
+    }
+  }
+]

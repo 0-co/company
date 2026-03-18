@@ -1,0 +1,1097 @@
+[
+  {
+    "name": "chat",
+    "description": "Interactive development chat and brainstorming",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "prompt": {
+          "type": "string",
+          "description": "Your question or idea for collaborative thinking to be sent to the external model. Must include context, goals, and challenges. Large inline code should be avoided."
+        },
+        "working_directory_absolute_path": {
+          "type": "string",
+          "description": "Absolute path to an existing directory where generated code artifacts can be saved."
+        },
+        "absolute_file_paths": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Full, absolute file paths to relevant code in order to share with external model"
+        },
+        "images": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Image paths (absolute) or base64 strings for optional visual context."
+        },
+        "model": {
+          "type": "string",
+          "description": "Model selection (required when auto-mode is active)"
+        },
+        "temperature": {
+          "type": "number",
+          "description": "Controls response randomness (range: 0-1)"
+        },
+        "thinking_mode": {
+          "type": "string",
+          "enum": ["minimal", "low", "medium", "high", "max"],
+          "description": "Depth of thinking mode"
+        },
+        "continuation_id": {
+          "type": "string",
+          "description": "Identifier for conversation continuation"
+        }
+      },
+      "required": ["prompt", "working_directory_absolute_path"],
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "clink",
+    "description": "Bridge requests to configured AI CLIs",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "prompt": {
+          "type": "string",
+          "description": "User request forwarded to the CLI (conversation context is pre-applied)."
+        },
+        "cli_name": {
+          "type": "string",
+          "description": "Configured CLI client name (from conf/cli_clients). Required when multiple CLI clients are configured."
+        },
+        "role": {
+          "type": "string",
+          "description": "Optional role preset defined for the selected CLI (defaults to 'default')."
+        },
+        "absolute_file_paths": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "File paths to include with the request."
+        },
+        "images": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Image paths to include with the request."
+        },
+        "continuation_id": {
+          "type": "string",
+          "description": "Identifier for conversation continuation tracking."
+        }
+      },
+      "required": ["prompt"],
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "thinkdeep",
+    "description": "Step-by-step deep thinking workflow with expert analysis",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "step": {
+          "type": "string",
+          "description": "Current work step content and findings"
+        },
+        "step_number": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Current step number (starts at 1)"
+        },
+        "total_steps": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Estimated total steps needed"
+        },
+        "next_step_required": {
+          "type": "boolean",
+          "description": "Whether another step is needed"
+        },
+        "findings": {
+          "type": "string",
+          "description": "Discoveries: insights, connections, implications, evidence"
+        },
+        "files_checked": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "All files examined (absolute paths)",
+          "default": []
+        },
+        "relevant_files": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Files relevant to problem/goal",
+          "default": []
+        },
+        "relevant_context": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Key concepts/methods like 'concept_name' or 'ClassName.methodName'",
+          "default": []
+        },
+        "hypothesis": {
+          "type": "string",
+          "description": "Current theory based on evidence"
+        },
+        "issues_found": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "severity": {
+                "type": "string",
+                "enum": ["critical", "high", "medium", "low"]
+              },
+              "description": { "type": "string" }
+            }
+          },
+          "description": "Issues with severity and description",
+          "default": []
+        },
+        "confidence": {
+          "type": "string",
+          "enum": ["exploring", "low", "medium", "high", "very_high", "almost_certain", "certain"],
+          "description": "Current confidence level",
+          "default": "low"
+        },
+        "temperature": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "Creative thinking temperature"
+        },
+        "thinking_mode": {
+          "type": "string",
+          "enum": ["minimal", "low", "medium", "high", "max"],
+          "description": "Depth: minimal/low/medium/high/max"
+        },
+        "problem_context": {
+          "type": "string",
+          "description": "Additional context about problem/goal"
+        },
+        "focus_areas": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Focus aspects (architecture, performance, security, etc.)"
+        }
+      },
+      "required": ["step", "step_number", "total_steps", "next_step_required", "findings"]
+    }
+  },
+  {
+    "name": "planner",
+    "description": "Interactive sequential planner using workflow architecture",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "step": {
+          "type": "string",
+          "description": "Current planning step content"
+        },
+        "step_number": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Current step number"
+        },
+        "total_steps": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Estimated total steps"
+        },
+        "next_step_required": {
+          "type": "boolean",
+          "description": "Whether another step is needed"
+        },
+        "findings": {
+          "type": "string",
+          "description": "Current planning findings and discoveries"
+        },
+        "files_checked": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "All files examined (absolute paths)"
+        },
+        "relevant_files": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Files relevant to planning"
+        },
+        "relevant_context": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Key methods/functions central to plan"
+        },
+        "issues_found": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "severity": { "type": "string" },
+              "description": { "type": "string" }
+            }
+          },
+          "description": "Issues identified during planning"
+        },
+        "is_step_revision": {
+          "type": "boolean",
+          "description": "Set true when you are replacing a previously recorded step"
+        },
+        "revises_step_number": {
+          "type": "integer",
+          "description": "Step number being replaced during revision"
+        },
+        "is_branch_point": {
+          "type": "boolean",
+          "description": "True when this step creates a new branch to explore an alternative path"
+        },
+        "branch_from_step": {
+          "type": "integer",
+          "description": "Step number where the branch originates"
+        },
+        "branch_id": {
+          "type": "string",
+          "description": "Name for this branch (e.g. 'approach-A', 'migration-path')"
+        },
+        "more_steps_needed": {
+          "type": "boolean",
+          "description": "True when you now expect to add additional steps beyond the prior estimate"
+        }
+      },
+      "required": ["step", "step_number", "total_steps", "next_step_required", "findings"]
+    }
+  },
+  {
+    "name": "consensus",
+    "description": "Step-by-step consensus workflow with multi-model analysis",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "step": {
+          "type": "string",
+          "description": "Step 1: the exact proposal/question every model will see. Steps 2+: internal notes NOT shared with other models."
+        },
+        "step_number": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Current step number"
+        },
+        "total_steps": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Estimated total steps needed"
+        },
+        "next_step_required": {
+          "type": "boolean",
+          "description": "Whether additional model consultations remain"
+        },
+        "findings": {
+          "type": "string",
+          "description": "Step 1: independent analysis. Later steps: summary of newest model response."
+        },
+        "models": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "properties": {
+              "model": { "type": "string" },
+              "stance": {
+                "type": "string",
+                "enum": ["for", "against", "neutral"]
+              },
+              "stance_prompt": { "type": "string" }
+            },
+            "required": ["model"]
+          },
+          "description": "Array of model configurations (minimum 2 entries)"
+        },
+        "current_model_index": {
+          "type": "integer",
+          "description": "0-based index of the next model to consult (managed internally)"
+        },
+        "model_responses": {
+          "type": "array",
+          "items": { "type": "object" },
+          "description": "Internal log tracking responses gathered throughout the workflow"
+        },
+        "relevant_files": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Files relevant to the consensus question"
+        },
+        "images": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Optional visual context supporting the consensus analysis"
+        }
+      },
+      "required": ["step", "step_number", "total_steps", "next_step_required", "findings", "models"]
+    }
+  },
+  {
+    "name": "codereview",
+    "description": "Comprehensive step-by-step code review workflow with expert analysis",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "step": {
+          "type": "string",
+          "description": "Review narrative. Step 1: outline strategy. Later steps: report findings."
+        },
+        "step_number": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Current review step"
+        },
+        "total_steps": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Planned review steps (external: 2 minimum, internal: 1)"
+        },
+        "next_step_required": {
+          "type": "boolean",
+          "description": "True if another step follows; false on final step"
+        },
+        "findings": {
+          "type": "string",
+          "description": "Capture quality, security, performance, architecture insights"
+        },
+        "files_checked": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Absolute paths of all reviewed files"
+        },
+        "relevant_files": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Step 1: all files/dirs under review (absolute paths)"
+        },
+        "relevant_context": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Functions/methods central to findings (e.g., 'Class.method')"
+        },
+        "issues_found": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "severity": {
+                "type": "string",
+                "enum": ["critical", "high", "medium", "low"]
+              },
+              "description": { "type": "string" }
+            }
+          },
+          "description": "Issues with severity and descriptions"
+        },
+        "review_type": {
+          "type": "string",
+          "enum": ["full", "security", "performance", "quick"],
+          "description": "Focus type of the review",
+          "default": "full"
+        },
+        "focus_on": {
+          "type": "string",
+          "description": "Optional emphasis areas (e.g., 'threading', 'auth flow')"
+        },
+        "standards": {
+          "type": "string",
+          "description": "Coding standards or style guides to enforce"
+        },
+        "severity_filter": {
+          "type": "string",
+          "enum": ["critical", "high", "medium", "low", "all"],
+          "description": "Report threshold",
+          "default": "all"
+        },
+        "review_validation_type": {
+          "type": "string",
+          "enum": ["external", "internal"],
+          "description": "'external' (expert follow-up) or 'internal' (local-only)",
+          "default": "external"
+        },
+        "images": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Diagram or screenshot paths for context"
+        }
+      },
+      "required": ["step", "step_number", "total_steps", "next_step_required", "findings"]
+    }
+  },
+  {
+    "name": "precommit",
+    "description": "Validates git changes and repository state before committing with systematic analysis. Use for multi-repository validation, security review, change impact assessment, and completeness verification. Guides through structured investigation with expert analysis.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "step": {
+          "type": "string",
+          "description": "Validation approach outline and findings reporting"
+        },
+        "step_number": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Current workflow phase"
+        },
+        "total_steps": {
+          "type": "integer",
+          "minimum": 3,
+          "description": "Planned validation phases (minimum 3 for external, 1 for internal)"
+        },
+        "next_step_required": {
+          "type": "boolean",
+          "description": "Workflow continuation flag"
+        },
+        "findings": {
+          "type": "string",
+          "description": "Accumulated git insights, risks, and positives"
+        },
+        "files_checked": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "All examined file paths (absolute)"
+        },
+        "relevant_files": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Changed or validation-related files (absolute paths)"
+        },
+        "relevant_context": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Affected functions/methods (e.g., 'Class.method')"
+        },
+        "issues_found": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "severity": { "type": "string" },
+              "description": { "type": "string" }
+            }
+          },
+          "description": "Documented issues with severity levels"
+        },
+        "path": {
+          "type": "string",
+          "description": "Repository root directory (required for step 1)"
+        },
+        "compare_to": {
+          "type": "string",
+          "description": "Optional git reference (branch/tag/commit) for comparison"
+        },
+        "include_staged": {
+          "type": "boolean",
+          "description": "Include staged changes",
+          "default": true
+        },
+        "include_unstaged": {
+          "type": "boolean",
+          "description": "Include unstaged changes",
+          "default": true
+        },
+        "precommit_type": {
+          "type": "string",
+          "enum": ["external", "internal"],
+          "description": "'external' uses expert model, 'internal' is local-only",
+          "default": "external"
+        },
+        "focus_on": {
+          "type": "string",
+          "description": "Optional areas like 'security', 'performance', or 'test coverage'"
+        },
+        "severity_filter": {
+          "type": "string",
+          "enum": ["critical", "high", "medium", "low", "all"],
+          "description": "Lowest severity to report",
+          "default": "all"
+        },
+        "images": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Screenshot/diagram paths supporting validation"
+        }
+      },
+      "required": ["step", "step_number", "total_steps", "next_step_required", "findings"]
+    }
+  },
+  {
+    "name": "debug",
+    "description": "Root cause analysis and debugging assistance",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "step": {
+          "type": "string",
+          "description": "Current investigation phase. Step 1: State issue+direction. Symptoms misleading; 'no bug' valid."
+        },
+        "step_number": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Investigation sequence index"
+        },
+        "total_steps": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Estimated steps needed"
+        },
+        "next_step_required": {
+          "type": "boolean",
+          "description": "Whether continued investigation is necessary"
+        },
+        "findings": {
+          "type": "string",
+          "description": "Discoveries, clues, and disproven theories"
+        },
+        "files_checked": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "All examined files, including ruled-out ones (absolute paths)"
+        },
+        "relevant_files": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Files directly connected to the issue's cause or manifestation"
+        },
+        "relevant_context": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Methods/functions central to issue in 'Class.method' format"
+        },
+        "hypothesis": {
+          "type": "string",
+          "description": "Current root cause theory. May conclude 'No bug found - user misunderstanding'."
+        },
+        "confidence": {
+          "type": "string",
+          "enum": ["exploring", "low", "medium", "high", "very_high", "almost_certain", "certain"],
+          "description": "Seven-level certainty scale. Do not use 'certain' unless 100% confidence."
+        },
+        "issues_found": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "severity": { "type": "string" },
+              "description": { "type": "string" }
+            }
+          },
+          "description": "Issues identified during debugging"
+        },
+        "images": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Optional screenshots or visuals clarifying the issue"
+        }
+      },
+      "required": ["step", "step_number", "total_steps", "next_step_required", "findings"]
+    }
+  },
+  {
+    "name": "secaudit",
+    "description": "Comprehensive security audit with OWASP Top 10 and compliance coverage",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "step": {
+          "type": "string",
+          "description": "Current audit phase"
+        },
+        "step_number": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Current step number"
+        },
+        "total_steps": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Estimated total steps"
+        },
+        "next_step_required": {
+          "type": "boolean",
+          "description": "Whether more audit steps are needed"
+        },
+        "findings": {
+          "type": "string",
+          "description": "Security findings including vulns, auth flaws, injection, crypto, config"
+        },
+        "files_checked": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "All examined file paths (absolute)"
+        },
+        "relevant_files": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Security-relevant files (absolute paths)"
+        },
+        "relevant_context": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Security-critical classes/methods (e.g. 'AuthService.login', 'encryption_helper')"
+        },
+        "issues_found": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "severity": {
+                "type": "string",
+                "enum": ["critical", "high", "medium", "low"]
+              },
+              "description": { "type": "string" }
+            }
+          },
+          "description": "Vulnerabilities with severity classifications"
+        },
+        "threat_level": {
+          "type": "string",
+          "enum": ["low", "medium", "high", "critical"],
+          "description": "Application risk context: low (internal/low-risk) through critical (financial/healthcare/PII)"
+        },
+        "compliance_requirements": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Compliance frameworks to map against (SOC2, PCI DSS, HIPAA, GDPR, ISO 27001, NIST, FedRAMP, FISMA)"
+        },
+        "audit_focus": {
+          "type": "string",
+          "enum": ["owasp", "compliance", "infrastructure", "dependencies", "comprehensive"],
+          "description": "Specialization domain for audit investigation"
+        },
+        "security_scope": {
+          "type": "string",
+          "description": "Application context: stack, user types, data sensitivity, and threat landscape"
+        },
+        "severity_filter": {
+          "type": "string",
+          "enum": ["critical", "high", "medium", "low", "all"],
+          "description": "Filter reported issues to this severity level and above"
+        },
+        "images": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Optional visual context (architecture diagrams, screenshots)"
+        }
+      },
+      "required": ["step", "step_number", "total_steps", "next_step_required", "findings"]
+    }
+  },
+  {
+    "name": "docgen",
+    "description": "Step-by-step documentation generation with complexity analysis",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "step": {
+          "type": "string",
+          "description": "Current documentation step. Step 1: discovery (list all files needing docs). Subsequent steps: document one file per step."
+        },
+        "step_number": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Current step number"
+        },
+        "total_steps": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Total steps needed (must equal total_files_to_document + 1 for discovery)"
+        },
+        "next_step_required": {
+          "type": "boolean",
+          "description": "Whether more documentation steps are needed"
+        },
+        "findings": {
+          "type": "string",
+          "description": "Documentation progress and discoveries"
+        },
+        "files_checked": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "All examined file paths (absolute)"
+        },
+        "relevant_files": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Files requiring documentation"
+        },
+        "num_files_documented": {
+          "type": "integer",
+          "description": "Files completed so far"
+        },
+        "total_files_to_document": {
+          "type": "integer",
+          "description": "Total files identified during discovery"
+        },
+        "document_complexity": {
+          "type": "boolean",
+          "description": "Include algorithmic complexity (Big O) analysis when True",
+          "default": true
+        },
+        "document_flow": {
+          "type": "boolean",
+          "description": "Include call flow/dependency notes when True",
+          "default": true
+        },
+        "update_existing": {
+          "type": "boolean",
+          "description": "Enable polishing of inaccurate or outdated documentation",
+          "default": true
+        },
+        "comments_on_complex_logic": {
+          "type": "boolean",
+          "description": "Add inline comments around non-obvious logic sections",
+          "default": true
+        },
+        "images": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Architecture diagrams or visual references"
+        }
+      },
+      "required": ["step", "step_number", "total_steps", "next_step_required", "findings"]
+    }
+  },
+  {
+    "name": "analyze",
+    "description": "General-purpose file and code analysis",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "step": {
+          "type": "string",
+          "description": "The investigation strategy and methodology. Step 1 should outline how you'll map codebase structure, understand business logic, and assess code quality."
+        },
+        "step_number": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Current position in the analysis sequence"
+        },
+        "total_steps": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Estimated steps needed"
+        },
+        "next_step_required": {
+          "type": "boolean",
+          "description": "Whether further investigation is needed"
+        },
+        "findings": {
+          "type": "string",
+          "description": "Discoveries including architectural patterns, tech stack assessment, scalability characteristics, performance implications, and strategic opportunities"
+        },
+        "files_checked": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "All examined files as absolute paths, including ruled-out files"
+        },
+        "relevant_files": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Files directly relevant to findings (absolute paths). Required in step 1."
+        },
+        "relevant_context": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Key methods/functions in 'ClassName.methodName' format"
+        },
+        "issues_found": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "severity": {
+                "type": "string",
+                "enum": ["critical", "high", "medium", "low"]
+              },
+              "description": { "type": "string" }
+            }
+          },
+          "description": "Identified problems with severity levels"
+        },
+        "confidence": {
+          "type": "string",
+          "enum": ["exploring", "low", "medium", "high", "very_high", "almost_certain", "certain"],
+          "description": "Level of certainty in analysis"
+        },
+        "analysis_type": {
+          "type": "string",
+          "enum": ["architecture", "performance", "security", "quality", "general"],
+          "description": "Focus area of analysis",
+          "default": "general"
+        },
+        "output_format": {
+          "type": "string",
+          "enum": ["summary", "detailed", "actionable"],
+          "description": "Presentation style of results",
+          "default": "detailed"
+        },
+        "images": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Absolute paths to architecture diagrams or visual references"
+        }
+      },
+      "required": ["step", "step_number", "total_steps", "next_step_required", "findings"]
+    }
+  },
+  {
+    "name": "refactor",
+    "description": "Step-by-step refactoring analysis workflow with expert validation",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "step": {
+          "type": "string",
+          "description": "Current refactoring analysis step"
+        },
+        "step_number": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Current step number"
+        },
+        "total_steps": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Estimated total steps"
+        },
+        "next_step_required": {
+          "type": "boolean",
+          "description": "Whether more analysis steps are needed"
+        },
+        "findings": {
+          "type": "string",
+          "description": "Refactoring opportunities identified"
+        },
+        "files_checked": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "All explored files (absolute paths)"
+        },
+        "relevant_files": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Files requiring actual refactoring work"
+        },
+        "relevant_context": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Methods and functions central to opportunities in 'ClassName.methodName' format"
+        },
+        "issues_found": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "severity": {
+                "type": "string",
+                "enum": ["critical", "high", "medium", "low"]
+              },
+              "type": { "type": "string" },
+              "description": { "type": "string" }
+            }
+          },
+          "description": "Refactoring opportunities with severity levels and type classifications"
+        },
+        "confidence": {
+          "type": "string",
+          "enum": ["exploring", "incomplete", "partial", "complete"],
+          "description": "Analysis completeness. 'complete' triggers completion and prevents expert validation."
+        },
+        "refactor_type": {
+          "type": "string",
+          "enum": ["codesmells", "decompose", "modernize", "organization"],
+          "description": "Refactoring analysis category"
+        },
+        "focus_areas": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Specific improvement domains (performance, readability, maintainability, security)"
+        },
+        "style_guide_examples": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Absolute file paths serving as reference implementations for target coding style"
+        },
+        "images": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Architecture diagrams or design documents"
+        }
+      },
+      "required": ["step", "step_number", "total_steps", "next_step_required", "findings"]
+    }
+  },
+  {
+    "name": "tracer",
+    "description": "Static call path prediction and control flow analysis",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "step": {
+          "type": "string",
+          "description": "Current tracing plan, adapted from findings"
+        },
+        "step_number": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Investigation sequence index"
+        },
+        "total_steps": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Estimated steps needed"
+        },
+        "next_step_required": {
+          "type": "boolean",
+          "description": "Whether additional investigation steps are planned"
+        },
+        "findings": {
+          "type": "string",
+          "description": "Summary of discoveries including execution paths, dependency relationships, call chains, and structural patterns"
+        },
+        "files_checked": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "All examined files with absolute paths"
+        },
+        "relevant_files": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Files directly relevant to the tracing target"
+        },
+        "relevant_context": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Central methods/functions in format 'ClassName.methodName'"
+        },
+        "confidence": {
+          "type": "string",
+          "enum": ["exploring", "low", "medium", "high", "very_high", "almost_certain", "certain"],
+          "description": "Certainty level of trace findings"
+        },
+        "trace_mode": {
+          "type": "string",
+          "enum": ["precision", "dependencies", "ask"],
+          "description": "Flow type selection: precision (execution flow), dependencies (structural relationships), ask (prompt user)"
+        },
+        "target_description": {
+          "type": "string",
+          "description": "What to trace and contextual reasoning"
+        },
+        "images": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Optional paths to architecture diagrams"
+        }
+      },
+      "required": ["step", "step_number", "total_steps", "next_step_required", "findings"]
+    }
+  },
+  {
+    "name": "testgen",
+    "description": "Step-by-step test generation workflow with expert validation",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "step": {
+          "type": "string",
+          "description": "Test plan for this step. Step 1: outline how you'll analyse structure, business logic, critical paths, edge cases"
+        },
+        "step_number": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Current test-generation step"
+        },
+        "total_steps": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Estimated number of steps needed for test planning"
+        },
+        "next_step_required": {
+          "type": "boolean",
+          "description": "Boolean indicating if investigation remains incomplete"
+        },
+        "findings": {
+          "type": "string",
+          "description": "Summarizes functionality, critical paths, edge cases, boundary conditions, error handling, and existing test patterns"
+        },
+        "files_checked": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Absolute paths of every file examined, including ruled-out files"
+        },
+        "relevant_files": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Code paths requiring new or updated tests"
+        },
+        "relevant_context": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Specific functions/methods needing coverage with emphasis on critical paths"
+        },
+        "confidence": {
+          "type": "string",
+          "enum": ["exploring", "low", "medium", "high", "very_high", "almost_certain", "certain"],
+          "description": "Seven-level scale. 'certain' means comprehensively complete test planning requiring no external validation."
+        },
+        "images": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Optional absolute paths to diagrams clarifying the system under test"
+        }
+      },
+      "required": ["step", "step_number", "total_steps", "next_step_required", "findings"]
+    }
+  },
+  {
+    "name": "challenge",
+    "description": "Critical challenge prompt wrapper to avoid automatic agreement",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "prompt": {
+          "type": "string",
+          "description": "Statement to scrutinize. If you invoke challenge manually, strip the word 'challenge' and pass just the statement. Automatic invocations send the full user message as-is; do not modify it."
+        }
+      },
+      "required": ["prompt"]
+    }
+  },
+  {
+    "name": "apilookup",
+    "description": "Quick web/API lookup instructions",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "prompt": {
+          "type": "string",
+          "description": "The API, SDK, library, framework, or technology you need current documentation, version info, breaking changes, or migration guidance for."
+        }
+      },
+      "required": ["prompt"]
+    }
+  },
+  {
+    "name": "listmodels",
+    "description": "List all available AI models by provider",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "version",
+    "description": "Display server version and system information",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    }
+  }
+]

@@ -53,13 +53,15 @@ These sit squarely between OWASP's MCP03 (Tool Poisoning) and MCP06 (Intent Flow
 
 ## Runtime vs. Build-Time
 
-OWASP's approach: make your agent smart enough to detect and resist these attacks while operating.
+The industry is converging on runtime solutions. Apideck built a CLI wrapper that claims 99% context reduction. Cloudflare's Code Mode generates minimal code on the fly. mcp-lazy-proxy sits between client and server, lazy-loading schemas only when tools are actually invoked (measured 6.5x reduction across real servers). Perplexity's CTO says MCP descriptions consume "40-50% of available context windows."
 
-Our approach: don't ship schemas with these problems in the first place.
+These are real, useful tools. But they're all treating the symptom: too many tokens in the context window.
 
-Runtime defense is important. But it's also the last line. If your schema is bloated, underspecified, or literally contains instructions to manipulate the model — catching that at deployment is too late. The model has already read 193K tokens of garbage definitions before your fancy runtime guard kicks in.
+We think there's a missing layer. Build-time quality.
 
-Build-time schema quality is the missing layer. ESLint doesn't replace type checking at runtime. It catches problems before they ship. Same principle.
+Runtime defense is important. But it's the last line. If your schema is bloated, underspecified, or literally contains instructions to manipulate the model — catching that at deployment is too late. The model has already read 193K tokens of garbage definitions before your lazy-loading proxy kicks in.
+
+Build-time schema quality is the missing layer. ESLint doesn't replace type checking at runtime. It catches problems before they ship. Same principle. Fix the source, not the symptoms.
 
 ## What a Build-Time Check Catches
 

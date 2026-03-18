@@ -1,0 +1,351 @@
+[
+  {
+    "name": "check_login_status",
+    "description": "\u68c0\u67e5\u5c0f\u7ea2\u4e66\u767b\u5f55\u72b6\u6001",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "get_login_qrcode",
+    "description": "\u83b7\u53d6\u767b\u5f55\u4e8c\u7ef4\u7801\uff08\u8fd4\u56de Base64 \u56fe\u7247\u548c\u8d85\u65f6\u65f6\u95f4\uff09",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "delete_cookies",
+    "description": "\u5220\u9664 cookies \u6587\u4ef6\uff0c\u91cd\u7f6e\u767b\u5f55\u72b6\u6001\u3002\u5220\u9664\u540e\u9700\u8981\u91cd\u65b0\u767b\u5f55\u3002",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "publish_content",
+    "description": "\u53d1\u5e03\u5c0f\u7ea2\u4e66\u56fe\u6587\u5185\u5bb9",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "\u5185\u5bb9\u6807\u9898\uff08\u5c0f\u7ea2\u4e66\u9650\u5236\uff1a\u6700\u591a20\u4e2a\u4e2d\u6587\u5b57\u6216\u82f1\u6587\u5355\u8bcd\uff09"
+        },
+        "content": {
+          "type": "string",
+          "description": "\u6b63\u6587\u5185\u5bb9\uff0c\u4e0d\u5305\u542b\u4ee5#\u5f00\u5934\u7684\u6807\u7b7e\u5185\u5bb9\uff0c\u6240\u6709\u8bdd\u9898\u6807\u7b7e\u90fd\u7528tags\u53c2\u6570\u6765\u751f\u6210\u548c\u63d0\u4f9b\u5373\u53ef"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "\u56fe\u7247\u8def\u5f84\u5217\u8868\uff08\u81f3\u5c11\u9700\u89811\u5f20\u56fe\u7247\uff09\u3002\u652f\u6301\u4e24\u79cd\u65b9\u5f0f\uff1a1. HTTP/HTTPS\u56fe\u7247\u94fe\u63a5\uff08\u81ea\u52a8\u4e0b\u8f7d\uff09\uff1b2. \u672c\u5730\u56fe\u7247\u7edd\u5bf9\u8def\u5f84\uff08\u63a8\u8350\uff0c\u5982:/Users/user/image.jpg\uff09"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "\u8bdd\u9898\u6807\u7b7e\u5217\u8868\uff08\u53ef\u9009\u53c2\u6570\uff09\uff0c\u5982 [\u7f8e\u98df, \u65c5\u884c, \u751f\u6d3b]"
+        },
+        "schedule_at": {
+          "type": "string",
+          "description": "\u5b9a\u65f6\u53d1\u5e03\u65f6\u95f4\uff08\u53ef\u9009\uff09\uff0cISO8601\u683c\u5f0f\u5982 2024-01-20T10:30:00+08:00\uff0c\u652f\u63011\u5c0f\u65f6\u81f314\u5929\u5185\u3002\u4e0d\u586b\u5219\u7acb\u5373\u53d1\u5e03"
+        },
+        "is_original": {
+          "type": "boolean",
+          "description": "\u662f\u5426\u58f0\u660e\u539f\u521b\uff08\u53ef\u9009\uff09\uff0ctrue\u4e3a\u58f0\u660e\u539f\u521b\uff0cfalse\u6216\u4e0d\u586b\u5219\u4e0d\u58f0\u660e"
+        },
+        "visibility": {
+          "type": "string",
+          "description": "\u53ef\u89c1\u8303\u56f4\uff08\u53ef\u9009\uff09\uff0c\u652f\u6301: \u516c\u5f00\u53ef\u89c1(\u9ed8\u8ba4)\u3001\u4ec5\u81ea\u5df1\u53ef\u89c1\u3001\u4ec5\u4e92\u5173\u597d\u53cb\u53ef\u89c1\u3002\u4e0d\u586b\u5219\u9ed8\u8ba4\u516c\u5f00\u53ef\u89c1"
+        },
+        "products": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "\u5546\u54c1\u5173\u952e\u8bcd\u5217\u8868\uff08\u53ef\u9009\uff09\uff0c\u7528\u4e8e\u7ed1\u5b9a\u5e26\u8d27\u5546\u54c1"
+        }
+      },
+      "required": [
+        "title",
+        "content",
+        "images"
+      ]
+    }
+  },
+  {
+    "name": "list_feeds",
+    "description": "\u83b7\u53d6\u9996\u9875 Feeds \u5217\u8868",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "search_feeds",
+    "description": "\u641c\u7d22\u5c0f\u7ea2\u4e66\u5185\u5bb9\uff08\u9700\u8981\u5df2\u767b\u5f55\uff09",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "keyword": {
+          "type": "string",
+          "description": "\u641c\u7d22\u5173\u952e\u8bcd"
+        },
+        "filters": {
+          "type": "object",
+          "description": "\u7b5b\u9009\u9009\u9879",
+          "properties": {
+            "sort_by": {
+              "type": "string",
+              "description": "\u6392\u5e8f\u4f9d\u636e: \u7efc\u5408|\u6700\u65b0|\u6700\u591a\u70b9\u8d5e|\u6700\u591a\u8bc4\u8bba|\u6700\u591a\u6536\u85cf,\u9ed8\u8ba4\u4e3a'\u7efc\u5408'"
+            },
+            "note_type": {
+              "type": "string",
+              "description": "\u7b14\u8bb0\u7c7b\u578b: \u4e0d\u9650|\u89c6\u9891|\u56fe\u6587,\u9ed8\u8ba4\u4e3a'\u4e0d\u9650'"
+            },
+            "publish_time": {
+              "type": "string",
+              "description": "\u53d1\u5e03\u65f6\u95f4: \u4e0d\u9650|\u4e00\u5929\u5185|\u4e00\u5468\u5185|\u534a\u5e74\u5185,\u9ed8\u8ba4\u4e3a'\u4e0d\u9650'"
+            },
+            "search_scope": {
+              "type": "string",
+              "description": "\u641c\u7d22\u8303\u56f4: \u4e0d\u9650|\u5df2\u770b\u8fc7|\u672a\u770b\u8fc7|\u5df2\u5173\u6ce8,\u9ed8\u8ba4\u4e3a'\u4e0d\u9650'"
+            },
+            "location": {
+              "type": "string",
+              "description": "\u4f4d\u7f6e\u8ddd\u79bb: \u4e0d\u9650|\u540c\u57ce|\u9644\u8fd1,\u9ed8\u8ba4\u4e3a'\u4e0d\u9650'"
+            }
+          }
+        }
+      },
+      "required": [
+        "keyword"
+      ]
+    }
+  },
+  {
+    "name": "get_feed_detail",
+    "description": "\u83b7\u53d6\u5c0f\u7ea2\u4e66\u7b14\u8bb0\u8be6\u60c5\uff0c\u8fd4\u56de\u7b14\u8bb0\u5185\u5bb9\u3001\u56fe\u7247\u3001\u4f5c\u8005\u4fe1\u606f\u3001\u4e92\u52a8\u6570\u636e\uff08\u70b9\u8d5e/\u6536\u85cf/\u5206\u4eab\u6570\uff09\u53ca\u8bc4\u8bba\u5217\u8868\u3002\u9ed8\u8ba4\u8fd4\u56de\u524d10\u6761\u4e00\u7ea7\u8bc4\u8bba\uff0c\u5982\u9700\u66f4\u591a\u8bc4\u8bba\u8bf7\u8bbe\u7f6eload_all_comments=true",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "feed_id": {
+          "type": "string",
+          "description": "\u5c0f\u7ea2\u4e66\u7b14\u8bb0ID\uff0c\u4eceFeed\u5217\u8868\u83b7\u53d6"
+        },
+        "xsec_token": {
+          "type": "string",
+          "description": "\u8bbf\u95ee\u4ee4\u724c\uff0c\u4eceFeed\u5217\u8868\u7684xsecToken\u5b57\u6bb5\u83b7\u53d6"
+        },
+        "load_all_comments": {
+          "type": "boolean",
+          "description": "\u662f\u5426\u52a0\u8f7d\u5168\u90e8\u8bc4\u8bba\u3002false\u4ec5\u8fd4\u56de\u524d10\u6761\u4e00\u7ea7\u8bc4\u8bba\uff08\u9ed8\u8ba4\uff09\uff0ctrue\u6eda\u52a8\u52a0\u8f7d\u66f4\u591a\u8bc4\u8bba"
+        },
+        "limit": {
+          "type": "integer",
+          "description": "\u3010\u4ec5\u5f53load_all_comments\u4e3atrue\u65f6\u751f\u6548\u3011\u9650\u5236\u52a0\u8f7d\u7684\u4e00\u7ea7\u8bc4\u8bba\u6570\u91cf\u3002\u4f8b\u598220\u8868\u793a\u6700\u591a\u52a0\u8f7d20\u6761\uff0c\u9ed8\u8ba420"
+        },
+        "click_more_replies": {
+          "type": "boolean",
+          "description": "\u3010\u4ec5\u5f53load_all_comments\u4e3atrue\u65f6\u751f\u6548\u3011\u662f\u5426\u5c55\u5f00\u4e8c\u7ea7\u56de\u590d\u3002true\u5c55\u5f00\u5b50\u8bc4\u8bba\uff0cfalse\u4e0d\u5c55\u5f00\uff08\u9ed8\u8ba4\uff09"
+        },
+        "reply_limit": {
+          "type": "integer",
+          "description": "\u3010\u4ec5\u5f53click_more_replies\u4e3atrue\u65f6\u751f\u6548\u3011\u8df3\u8fc7\u56de\u590d\u6570\u8fc7\u591a\u7684\u8bc4\u8bba\u3002\u4f8b\u598210\u8868\u793a\u8df3\u8fc7\u8d85\u8fc710\u6761\u56de\u590d\u7684\uff0c\u9ed8\u8ba410"
+        },
+        "scroll_speed": {
+          "type": "string",
+          "description": "\u3010\u4ec5\u5f53load_all_comments\u4e3atrue\u65f6\u751f\u6548\u3011\u6eda\u52a8\u901f\u5ea6slow\u6162\u901f\u3001normal\u6b63\u5e38\u3001fast\u5feb\u901f"
+        }
+      },
+      "required": [
+        "feed_id",
+        "xsec_token"
+      ]
+    }
+  },
+  {
+    "name": "user_profile",
+    "description": "\u83b7\u53d6\u6307\u5b9a\u7684\u5c0f\u7ea2\u4e66\u7528\u6237\u4e3b\u9875\uff0c\u8fd4\u56de\u7528\u6237\u57fa\u672c\u4fe1\u606f\uff0c\u5173\u6ce8\u3001\u7c89\u4e1d\u3001\u83b7\u8d5e\u91cf\u53ca\u5176\u7b14\u8bb0\u5185\u5bb9",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "description": "\u5c0f\u7ea2\u4e66\u7528\u6237ID\uff0c\u4eceFeed\u5217\u8868\u83b7\u53d6"
+        },
+        "xsec_token": {
+          "type": "string",
+          "description": "\u8bbf\u95ee\u4ee4\u724c\uff0c\u4eceFeed\u5217\u8868\u7684xsecToken\u5b57\u6bb5\u83b7\u53d6"
+        }
+      },
+      "required": [
+        "user_id",
+        "xsec_token"
+      ]
+    }
+  },
+  {
+    "name": "post_comment_to_feed",
+    "description": "\u53d1\u8868\u8bc4\u8bba\u5230\u5c0f\u7ea2\u4e66\u7b14\u8bb0",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "feed_id": {
+          "type": "string",
+          "description": "\u5c0f\u7ea2\u4e66\u7b14\u8bb0ID\uff0c\u4eceFeed\u5217\u8868\u83b7\u53d6"
+        },
+        "xsec_token": {
+          "type": "string",
+          "description": "\u8bbf\u95ee\u4ee4\u724c\uff0c\u4eceFeed\u5217\u8868\u7684xsecToken\u5b57\u6bb5\u83b7\u53d6"
+        },
+        "content": {
+          "type": "string",
+          "description": "\u8bc4\u8bba\u5185\u5bb9"
+        }
+      },
+      "required": [
+        "feed_id",
+        "xsec_token",
+        "content"
+      ]
+    }
+  },
+  {
+    "name": "reply_comment_in_feed",
+    "description": "\u56de\u590d\u5c0f\u7ea2\u4e66\u7b14\u8bb0\u4e0b\u7684\u6307\u5b9a\u8bc4\u8bba",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "feed_id": {
+          "type": "string",
+          "description": "\u5c0f\u7ea2\u4e66\u7b14\u8bb0ID\uff0c\u4eceFeed\u5217\u8868\u83b7\u53d6"
+        },
+        "xsec_token": {
+          "type": "string",
+          "description": "\u8bbf\u95ee\u4ee4\u724c\uff0c\u4eceFeed\u5217\u8868\u7684xsecToken\u5b57\u6bb5\u83b7\u53d6"
+        },
+        "comment_id": {
+          "type": "string",
+          "description": "\u76ee\u6807\u8bc4\u8bbaID\uff0c\u4ece\u8bc4\u8bba\u5217\u8868\u83b7\u53d6"
+        },
+        "user_id": {
+          "type": "string",
+          "description": "\u76ee\u6807\u8bc4\u8bba\u7528\u6237ID\uff0c\u4ece\u8bc4\u8bba\u5217\u8868\u83b7\u53d6"
+        },
+        "content": {
+          "type": "string",
+          "description": "\u56de\u590d\u5185\u5bb9"
+        }
+      },
+      "required": [
+        "feed_id",
+        "xsec_token",
+        "content"
+      ]
+    }
+  },
+  {
+    "name": "publish_with_video",
+    "description": "\u53d1\u5e03\u5c0f\u7ea2\u4e66\u89c6\u9891\u5185\u5bb9\uff08\u4ec5\u652f\u6301\u672c\u5730\u5355\u4e2a\u89c6\u9891\u6587\u4ef6\uff09",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "\u5185\u5bb9\u6807\u9898\uff08\u5c0f\u7ea2\u4e66\u9650\u5236\uff1a\u6700\u591a20\u4e2a\u4e2d\u6587\u5b57\u6216\u82f1\u6587\u5355\u8bcd\uff09"
+        },
+        "content": {
+          "type": "string",
+          "description": "\u6b63\u6587\u5185\u5bb9\uff0c\u4e0d\u5305\u542b\u4ee5#\u5f00\u5934\u7684\u6807\u7b7e\u5185\u5bb9"
+        },
+        "video": {
+          "type": "string",
+          "description": "\u672c\u5730\u89c6\u9891\u7edd\u5bf9\u8def\u5f84\uff08\u4ec5\u652f\u6301\u5355\u4e2a\u89c6\u9891\u6587\u4ef6\uff0c\u5982:/Users/user/video.mp4\uff09"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "\u8bdd\u9898\u6807\u7b7e\u5217\u8868\uff08\u53ef\u9009\u53c2\u6570\uff09"
+        },
+        "schedule_at": {
+          "type": "string",
+          "description": "\u5b9a\u65f6\u53d1\u5e03\u65f6\u95f4\uff08\u53ef\u9009\uff09\uff0cISO8601\u683c\u5f0f"
+        },
+        "visibility": {
+          "type": "string",
+          "description": "\u53ef\u89c1\u8303\u56f4\uff08\u53ef\u9009\uff09"
+        },
+        "products": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "\u5546\u54c1\u5173\u952e\u8bcd\u5217\u8868\uff08\u53ef\u9009\uff09"
+        }
+      },
+      "required": [
+        "title",
+        "content",
+        "video"
+      ]
+    }
+  },
+  {
+    "name": "like_feed",
+    "description": "\u4e3a\u6307\u5b9a\u7b14\u8bb0\u70b9\u8d5e\u6216\u53d6\u6d88\u70b9\u8d5e\uff08\u5982\u5df2\u70b9\u8d5e\u5c06\u8df3\u8fc7\u70b9\u8d5e\uff0c\u5982\u672a\u70b9\u8d5e\u5c06\u8df3\u8fc7\u53d6\u6d88\u70b9\u8d5e\uff09",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "feed_id": {
+          "type": "string",
+          "description": "\u5c0f\u7ea2\u4e66\u7b14\u8bb0ID\uff0c\u4eceFeed\u5217\u8868\u83b7\u53d6"
+        },
+        "xsec_token": {
+          "type": "string",
+          "description": "\u8bbf\u95ee\u4ee4\u724c\uff0c\u4eceFeed\u5217\u8868\u7684xsecToken\u5b57\u6bb5\u83b7\u53d6"
+        },
+        "unlike": {
+          "type": "boolean",
+          "description": "\u662f\u5426\u53d6\u6d88\u70b9\u8d5e\uff0ctrue\u4e3a\u53d6\u6d88\u70b9\u8d5e\uff0cfalse\u6216\u672a\u8bbe\u7f6e\u5219\u4e3a\u70b9\u8d5e"
+        }
+      },
+      "required": [
+        "feed_id",
+        "xsec_token"
+      ]
+    }
+  },
+  {
+    "name": "favorite_feed",
+    "description": "\u6536\u85cf\u6307\u5b9a\u7b14\u8bb0\u6216\u53d6\u6d88\u6536\u85cf\uff08\u5982\u5df2\u6536\u85cf\u5c06\u8df3\u8fc7\u6536\u85cf\uff0c\u5982\u672a\u6536\u85cf\u5c06\u8df3\u8fc7\u53d6\u6d88\u6536\u85cf\uff09",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "feed_id": {
+          "type": "string",
+          "description": "\u5c0f\u7ea2\u4e66\u7b14\u8bb0ID\uff0c\u4eceFeed\u5217\u8868\u83b7\u53d6"
+        },
+        "xsec_token": {
+          "type": "string",
+          "description": "\u8bbf\u95ee\u4ee4\u724c\uff0c\u4eceFeed\u5217\u8868\u7684xsecToken\u5b57\u6bb5\u83b7\u53d6"
+        },
+        "unfavorite": {
+          "type": "boolean",
+          "description": "\u662f\u5426\u53d6\u6d88\u6536\u85cf\uff0ctrue\u4e3a\u53d6\u6d88\u6536\u85cf\uff0cfalse\u6216\u672a\u8bbe\u7f6e\u5219\u4e3a\u6536\u85cf"
+        }
+      },
+      "required": [
+        "feed_id",
+        "xsec_token"
+      ]
+    }
+  }
+]

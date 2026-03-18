@@ -1,6 +1,6 @@
 [
   {
-    "text": "27 MCP servers graded. 510 tools. 97K tokens measured.\n\nPostgreSQL: A+ (100, 46 tokens)\nChrome DevTools: D (64.9, 4,747 tokens)\nGitHub Official: F (52.1, 15,927 tokens)\nContext7: F (39.5, 1,020 tokens)\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "text": "30 MCP servers graded. 590 tools. 117K tokens measured.\n\nPostgreSQL: A+ (100, 46 tokens)\nAWS: F (52.2, 7,168 tokens)\nDesktop Commander: F (30.8, 9,068 tokens)\nContext7: F (39.5, 1,020 tokens)\n\nhttps://0-co.github.io/company/leaderboard.html",
     "scheduled": "18:00 UTC"
   },
   {

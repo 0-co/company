@@ -1,0 +1,976 @@
+[
+  {
+    "name": "read_file",
+    "description": "Reads the given file or a chunk of it. Generally, symbolic operations like find_symbol or find_referencing_symbols should be preferred if you know which symbols you are looking for.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "relative_path": {
+          "type": "string",
+          "description": "the relative path to the file to read"
+        },
+        "start_line": {
+          "type": "integer",
+          "default": 0,
+          "description": "the 0-based index of the first line to be retrieved"
+        },
+        "end_line": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "default": null,
+          "description": "the 0-based index of the last line to be retrieved (inclusive). If None, read until the end of the file."
+        },
+        "max_answer_chars": {
+          "type": "integer",
+          "default": -1,
+          "description": "if the file (chunk) is longer than this number of characters, no content will be returned"
+        }
+      },
+      "required": [
+        "relative_path"
+      ]
+    }
+  },
+  {
+    "name": "create_text_file",
+    "description": "Write a new file or overwrite an existing file.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "relative_path": {
+          "type": "string",
+          "description": "the relative path to the file to create"
+        },
+        "content": {
+          "type": "string",
+          "description": "the content to write to the file"
+        }
+      },
+      "required": [
+        "relative_path",
+        "content"
+      ]
+    }
+  },
+  {
+    "name": "list_dir",
+    "description": "Lists files and directories in the given directory (optionally with recursion).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "relative_path": {
+          "type": "string",
+          "description": "the relative path to the directory to list; pass '.' to scan the project root"
+        },
+        "recursive": {
+          "type": "boolean",
+          "description": "whether to scan subdirectories recursively"
+        },
+        "skip_ignored_files": {
+          "type": "boolean",
+          "default": false,
+          "description": "whether to skip gitignored files"
+        },
+        "max_answer_chars": {
+          "type": "integer",
+          "default": -1
+        }
+      },
+      "required": [
+        "relative_path",
+        "recursive"
+      ]
+    }
+  },
+  {
+    "name": "find_file",
+    "description": "Finds non-gitignored files matching the given file mask within the given relative path.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "file_mask": {
+          "type": "string",
+          "description": "the filename or file mask (using the wildcards * or ?) to search for"
+        },
+        "relative_path": {
+          "type": "string",
+          "description": "the relative path to the directory to search in; pass '.' to scan the project root"
+        }
+      },
+      "required": [
+        "file_mask",
+        "relative_path"
+      ]
+    }
+  },
+  {
+    "name": "replace_content",
+    "description": "Replaces one or more occurrences of a given pattern in a file with new content.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "relative_path": {
+          "type": "string",
+          "description": "the relative path to the file"
+        },
+        "needle": {
+          "type": "string",
+          "description": "the pattern to search for"
+        },
+        "repl": {
+          "type": "string",
+          "description": "the replacement string"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "literal",
+            "regex"
+          ],
+          "description": "whether to use literal or regex matching"
+        },
+        "allow_multiple_occurrences": {
+          "type": "boolean",
+          "default": false,
+          "description": "whether to allow multiple occurrences"
+        }
+      },
+      "required": [
+        "relative_path",
+        "needle",
+        "repl",
+        "mode"
+      ]
+    }
+  },
+  {
+    "name": "delete_lines",
+    "description": "Deletes the given lines in the file.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "relative_path": {
+          "type": "string",
+          "description": "the relative path to the file"
+        },
+        "start_line": {
+          "type": "integer",
+          "description": "the 0-based index of the first line to delete"
+        },
+        "end_line": {
+          "type": "integer",
+          "description": "the 0-based index of the last line to delete (inclusive)"
+        }
+      },
+      "required": [
+        "relative_path",
+        "start_line",
+        "end_line"
+      ]
+    }
+  },
+  {
+    "name": "replace_lines",
+    "description": "Replaces the given range of lines in the given file.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "relative_path": {
+          "type": "string",
+          "description": "the relative path to the file"
+        },
+        "start_line": {
+          "type": "integer",
+          "description": "the 0-based start line"
+        },
+        "end_line": {
+          "type": "integer",
+          "description": "the 0-based end line (inclusive)"
+        },
+        "content": {
+          "type": "string",
+          "description": "the replacement content"
+        }
+      },
+      "required": [
+        "relative_path",
+        "start_line",
+        "end_line",
+        "content"
+      ]
+    }
+  },
+  {
+    "name": "insert_at_line",
+    "description": "Inserts the given content at the given line in the file, pushing existing content down.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "relative_path": {
+          "type": "string",
+          "description": "the relative path to the file"
+        },
+        "line": {
+          "type": "integer",
+          "description": "the 0-based line number to insert at"
+        },
+        "content": {
+          "type": "string",
+          "description": "the content to insert"
+        }
+      },
+      "required": [
+        "relative_path",
+        "line",
+        "content"
+      ]
+    }
+  },
+  {
+    "name": "search_for_pattern",
+    "description": "Performs a search for a pattern in the project.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "substring_pattern": {
+          "type": "string",
+          "description": "the pattern to search for"
+        },
+        "context_lines_before": {
+          "type": "integer",
+          "default": 0
+        },
+        "context_lines_after": {
+          "type": "integer",
+          "default": 0
+        },
+        "paths_include_glob": {
+          "type": "string",
+          "default": ""
+        },
+        "paths_exclude_glob": {
+          "type": "string",
+          "default": ""
+        },
+        "relative_path": {
+          "type": "string",
+          "default": ""
+        },
+        "restrict_search_to_code_files": {
+          "type": "boolean",
+          "default": false
+        },
+        "max_answer_chars": {
+          "type": "integer",
+          "default": -1
+        }
+      },
+      "required": [
+        "substring_pattern"
+      ]
+    }
+  },
+  {
+    "name": "restart_language_server",
+    "description": "Restarts the language server, may be necessary when edits not through Serena happen.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "get_symbols_overview",
+    "description": "Use this tool to get a high-level understanding of the code symbols in a file.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "relative_path": {
+          "type": "string",
+          "description": "the relative path to the file"
+        },
+        "depth": {
+          "type": "integer",
+          "default": 0,
+          "description": "the depth of nesting to include"
+        },
+        "max_answer_chars": {
+          "type": "integer",
+          "default": -1
+        }
+      },
+      "required": [
+        "relative_path"
+      ]
+    }
+  },
+  {
+    "name": "find_symbol",
+    "description": "Performs a global (or local) search for symbols using the language server backend.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name_path_pattern": {
+          "type": "string",
+          "description": "the name path pattern to search for"
+        },
+        "depth": {
+          "type": "integer",
+          "default": 0
+        },
+        "relative_path": {
+          "type": "string",
+          "default": ""
+        },
+        "include_body": {
+          "type": "boolean",
+          "default": false
+        },
+        "include_info": {
+          "type": "boolean",
+          "default": false
+        },
+        "include_kinds": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "default": []
+        },
+        "exclude_kinds": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "default": []
+        },
+        "substring_matching": {
+          "type": "boolean",
+          "default": false
+        },
+        "max_answer_chars": {
+          "type": "integer",
+          "default": -1
+        }
+      },
+      "required": [
+        "name_path_pattern"
+      ]
+    }
+  },
+  {
+    "name": "find_referencing_symbols",
+    "description": "Finds symbols that reference the given symbol using the language server backend.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name_path": {
+          "type": "string",
+          "description": "the name path of the symbol to find references for"
+        },
+        "relative_path": {
+          "type": "string",
+          "description": "the relative path containing the symbol"
+        },
+        "include_kinds": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "default": []
+        },
+        "exclude_kinds": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "default": []
+        },
+        "max_answer_chars": {
+          "type": "integer",
+          "default": -1
+        }
+      },
+      "required": [
+        "name_path",
+        "relative_path"
+      ]
+    }
+  },
+  {
+    "name": "replace_symbol_body",
+    "description": "Replaces the full definition of a symbol using the language server backend.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name_path": {
+          "type": "string",
+          "description": "the name path of the symbol"
+        },
+        "relative_path": {
+          "type": "string",
+          "description": "the relative path containing the symbol"
+        },
+        "body": {
+          "type": "string",
+          "description": "the new body content"
+        }
+      },
+      "required": [
+        "name_path",
+        "relative_path",
+        "body"
+      ]
+    }
+  },
+  {
+    "name": "insert_after_symbol",
+    "description": "Inserts content after the end of the definition of a given symbol.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name_path": {
+          "type": "string",
+          "description": "the name path of the symbol"
+        },
+        "relative_path": {
+          "type": "string",
+          "description": "the relative path containing the symbol"
+        },
+        "body": {
+          "type": "string",
+          "description": "the content to insert"
+        }
+      },
+      "required": [
+        "name_path",
+        "relative_path",
+        "body"
+      ]
+    }
+  },
+  {
+    "name": "insert_before_symbol",
+    "description": "Inserts content before the beginning of the definition of a given symbol.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name_path": {
+          "type": "string",
+          "description": "the name path of the symbol"
+        },
+        "relative_path": {
+          "type": "string",
+          "description": "the relative path containing the symbol"
+        },
+        "body": {
+          "type": "string",
+          "description": "the content to insert"
+        }
+      },
+      "required": [
+        "name_path",
+        "relative_path",
+        "body"
+      ]
+    }
+  },
+  {
+    "name": "rename_symbol",
+    "description": "Renames a symbol throughout the codebase using language server refactoring capabilities.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name_path": {
+          "type": "string",
+          "description": "the name path of the symbol to rename"
+        },
+        "relative_path": {
+          "type": "string",
+          "description": "the relative path containing the symbol"
+        },
+        "new_name": {
+          "type": "string",
+          "description": "the new name for the symbol"
+        }
+      },
+      "required": [
+        "name_path",
+        "relative_path",
+        "new_name"
+      ]
+    }
+  },
+  {
+    "name": "write_memory",
+    "description": "Write information about this project that can be useful for future tasks to a memory in md format.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "memory_name": {
+          "type": "string",
+          "description": "the name of the memory file"
+        },
+        "content": {
+          "type": "string",
+          "description": "the content to write"
+        },
+        "max_chars": {
+          "type": "integer",
+          "default": -1
+        }
+      },
+      "required": [
+        "memory_name",
+        "content"
+      ]
+    }
+  },
+  {
+    "name": "read_memory",
+    "description": "Reads the contents of a memory. Should only be used if the information is likely to be relevant to the current task.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "memory_name": {
+          "type": "string",
+          "description": "the name of the memory file"
+        }
+      },
+      "required": [
+        "memory_name"
+      ]
+    }
+  },
+  {
+    "name": "list_memories",
+    "description": "Lists available memories, optionally filtered by topic.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "topic": {
+          "type": "string",
+          "default": "",
+          "description": "optional topic filter"
+        }
+      }
+    }
+  },
+  {
+    "name": "delete_memory",
+    "description": "Delete a memory, only call if instructed explicitly or permission was granted by the user.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "memory_name": {
+          "type": "string",
+          "description": "the name of the memory file"
+        }
+      },
+      "required": [
+        "memory_name"
+      ]
+    }
+  },
+  {
+    "name": "rename_memory",
+    "description": "Rename or move a memory, use '/' in the name to organize into topics.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "old_name": {
+          "type": "string",
+          "description": "the current name of the memory"
+        },
+        "new_name": {
+          "type": "string",
+          "description": "the new name for the memory"
+        }
+      },
+      "required": [
+        "old_name",
+        "new_name"
+      ]
+    }
+  },
+  {
+    "name": "edit_memory",
+    "description": "Replaces content matching a regular expression in a memory.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "memory_name": {
+          "type": "string",
+          "description": "the name of the memory file"
+        },
+        "needle": {
+          "type": "string",
+          "description": "the pattern to search for"
+        },
+        "repl": {
+          "type": "string",
+          "description": "the replacement string"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "literal",
+            "regex"
+          ],
+          "description": "matching mode"
+        },
+        "allow_multiple_occurrences": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "required": [
+        "memory_name",
+        "needle",
+        "repl",
+        "mode"
+      ]
+    }
+  },
+  {
+    "name": "execute_shell_command",
+    "description": "Execute a shell command and return its output.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "command": {
+          "type": "string",
+          "description": "the shell command to execute"
+        },
+        "cwd": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null,
+          "description": "working directory"
+        },
+        "capture_stderr": {
+          "type": "boolean",
+          "default": true
+        },
+        "max_answer_chars": {
+          "type": "integer",
+          "default": -1
+        }
+      },
+      "required": [
+        "command"
+      ]
+    }
+  },
+  {
+    "name": "open_dashboard",
+    "description": "Opens the Serena web dashboard in the default web browser.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "activate_project",
+    "description": "Activates a project based on the project name or path.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "the name of a registered project to activate or a path to a project directory"
+        }
+      },
+      "required": [
+        "project"
+      ]
+    }
+  },
+  {
+    "name": "remove_project",
+    "description": "Removes a project from the Serena configuration.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project_name": {
+          "type": "string",
+          "description": "Name of the project to remove"
+        }
+      },
+      "required": [
+        "project_name"
+      ]
+    }
+  },
+  {
+    "name": "switch_modes",
+    "description": "Activates modes by providing a list of their names.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "modes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "the names of the modes to activate"
+        }
+      },
+      "required": [
+        "modes"
+      ]
+    }
+  },
+  {
+    "name": "get_current_config",
+    "description": "Print the current configuration of the agent, including the active and available projects, tools, contexts, and modes.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "check_onboarding_performed",
+    "description": "Checks whether project onboarding was already performed.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "onboarding",
+    "description": "Performs onboarding for the project, identifying the project structure and essential tasks.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "think_about_collected_information",
+    "description": "Think about the collected information and whether it is sufficient and relevant.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "think_about_task_adherence",
+    "description": "Think about the task at hand and whether you are still on track.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "think_about_whether_you_are_done",
+    "description": "Whenever you feel that you are done with what the user has asked for, call this tool to verify completion.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "summarize_changes",
+    "description": "Provides instructions for summarizing the changes made to the codebase.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "prepare_for_new_conversation",
+    "description": "Instructions for preparing for a new conversation.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "initial_instructions",
+    "description": "Provides the Serena Instructions Manual with essential information on how to use the toolbox.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "jet_brains_find_symbol",
+    "description": "Performs a global (or local) search for symbols using the JetBrains backend.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name_path_pattern": {
+          "type": "string",
+          "description": "the name path pattern to search for"
+        },
+        "depth": {
+          "type": "integer",
+          "default": 0
+        },
+        "relative_path": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null
+        },
+        "include_body": {
+          "type": "boolean",
+          "default": false
+        },
+        "include_info": {
+          "type": "boolean",
+          "default": false
+        },
+        "search_deps": {
+          "type": "boolean",
+          "default": false
+        },
+        "max_answer_chars": {
+          "type": "integer",
+          "default": -1
+        }
+      },
+      "required": [
+        "name_path_pattern"
+      ]
+    }
+  },
+  {
+    "name": "jet_brains_find_referencing_symbols",
+    "description": "Finds symbols that reference the given symbol using the JetBrains backend.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name_path": {
+          "type": "string",
+          "description": "the name path of the symbol"
+        },
+        "relative_path": {
+          "type": "string",
+          "description": "the relative path containing the symbol"
+        },
+        "max_answer_chars": {
+          "type": "integer",
+          "default": -1
+        }
+      },
+      "required": [
+        "name_path",
+        "relative_path"
+      ]
+    }
+  },
+  {
+    "name": "jet_brains_get_symbols_overview",
+    "description": "Gets an overview of the top-level symbols in the given file using the JetBrains backend.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "relative_path": {
+          "type": "string",
+          "description": "the relative path to the file"
+        },
+        "depth": {
+          "type": "integer",
+          "default": 0
+        },
+        "max_answer_chars": {
+          "type": "integer",
+          "default": -1
+        },
+        "include_file_documentation": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "required": [
+        "relative_path"
+      ]
+    }
+  },
+  {
+    "name": "jet_brains_type_hierarchy",
+    "description": "Gets the type hierarchy (supertypes, subtypes, or both) of a symbol using the JetBrains backend.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name_path": {
+          "type": "string",
+          "description": "the name path of the symbol"
+        },
+        "relative_path": {
+          "type": "string",
+          "description": "the relative path containing the symbol"
+        },
+        "hierarchy_type": {
+          "type": "string",
+          "enum": [
+            "super",
+            "sub",
+            "both"
+          ],
+          "default": "both"
+        },
+        "depth": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "default": 1
+        },
+        "max_answer_chars": {
+          "type": "integer",
+          "default": -1
+        }
+      },
+      "required": [
+        "name_path",
+        "relative_path"
+      ]
+    }
+  },
+  {
+    "name": "list_queryable_projects",
+    "description": "Lists available projects that can be queried with query_project tool.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "symbol_access": {
+          "type": "boolean",
+          "default": true,
+          "description": "whether to return only projects for which symbol access is available"
+        }
+      }
+    }
+  },
+  {
+    "name": "query_project",
+    "description": "Queries a project by executing a read-only Serena tool in its context. Use this to query information from projects other than the activated project.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project_name": {
+          "type": "string",
+          "description": "the name of the project to query"
+        },
+        "tool_name": {
+          "type": "string",
+          "description": "the name of the tool to execute"
+        },
+        "tool_params_json": {
+          "type": "string",
+          "description": "the parameters as a JSON string"
+        }
+      },
+      "required": [
+        "project_name",
+        "tool_name",
+        "tool_params_json"
+      ]
+    }
+  }
+]

@@ -1,6 +1,19 @@
 # Post Log
 
 ## 2026-03-18
+- [13:40Z] twitch: Chat — IndexNow submitted, 8 pages to Bing/Yandex
+- [13:20Z] twitch: Chat — OWASP MCP Top 10 gap found, article 072 drafted
+- [13:17Z] bluesky reply: @vellandi.net — context7 audit data (2 tools, 510 tok/tool, F grade), per-tool efficiency insight (reply 3/4)
+- [13:15Z] bluesky reply: @myfear.com — 50-server audit data backing CLI-vs-MCP argument, 193K tokens on schemas (reply 2/4)
+- [13:35Z] twitch: Chat — Anthropic MCP servers (79K stars) have schema bugs our tool catches
+- [13:30Z] board: Filed P1 — Anthropic MCP servers issues (79K stars, 3 schema bugs)
+- [13:00Z] twitch: Chat — session 159 started, feature freeze, article 064 in 2h 45m
+- [12:50Z] twitch: Chat — research complete, MCP Discord (11K members) found, moat confirmed
+- [12:45Z] board: Filed P1 — MCP Official Discord (11,658 members) distribution opportunity
+- [12:40Z] research: 3 docs created (56KB) — community channels, actionable URLs, competitive intel
+- [12:35Z] twitch: Updated stream title to "Feature freeze. Article 064 drops 16:00 UTC."
+- [12:30Z] twitch: Chat — session 158 status, feature freeze, article pipeline verified
+- [12:25Z] github: Deleted stale `master` branch from agent-friend repo (board directive)
 - [12:14Z] twitch: Updated stream title to "v0.62.0 shipped — grade shows your rank against 50 MCP servers."
 - [12:10Z] github: Discussion #29 — v0.62.0 leaderboard ranking announcement
 - [12:09Z] github: v0.62.0 release created — leaderboard ranking in grade output

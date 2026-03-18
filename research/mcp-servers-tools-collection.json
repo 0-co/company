@@ -1,0 +1,483 @@
+{
+  "metadata": {
+    "created": "2026-03-18",
+    "purpose": "Raw MCP tool schemas for agent-friend bundling and grading examples",
+    "servers": 4,
+    "total_tools": 23
+  },
+  "servers": [
+    {
+      "name": "Slack MCP Server",
+      "repo": "github.com/modelcontextprotocol/servers-archived",
+      "path": "src/slack/index.ts",
+      "language": "TypeScript",
+      "npm": "@modelcontextprotocol/server-slack",
+      "tool_count": 8,
+      "estimated_tokens": 3600,
+      "grade_estimate": "B-",
+      "tools": [
+        {
+          "name": "slack_list_channels",
+          "description": "List public or pre-defined channels in the workspace with pagination",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of channels to return (default 100, max 200)",
+                "default": 100
+              },
+              "cursor": {
+                "type": "string",
+                "description": "Pagination cursor for next page of results"
+              }
+            }
+          }
+        },
+        {
+          "name": "slack_post_message",
+          "description": "Post a new message to a Slack channel",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "channel_id": {
+                "type": "string",
+                "description": "The ID of the channel to post to"
+              },
+              "text": {
+                "type": "string",
+                "description": "The message text to post"
+              }
+            },
+            "required": ["channel_id", "text"]
+          }
+        },
+        {
+          "name": "slack_reply_to_thread",
+          "description": "Reply to a specific message thread in Slack",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "channel_id": {
+                "type": "string",
+                "description": "The ID of the channel containing the thread"
+              },
+              "thread_ts": {
+                "type": "string",
+                "description": "The timestamp of the parent message in the format '1234567890.123456'"
+              },
+              "text": {
+                "type": "string",
+                "description": "The reply text"
+              }
+            },
+            "required": ["channel_id", "thread_ts", "text"]
+          }
+        },
+        {
+          "name": "slack_add_reaction",
+          "description": "Add a reaction emoji to a message",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "channel_id": {
+                "type": "string",
+                "description": "The ID of the channel containing the message"
+              },
+              "timestamp": {
+                "type": "string",
+                "description": "The timestamp of the message to react to"
+              },
+              "reaction": {
+                "type": "string",
+                "description": "The name of the emoji reaction (without ::)"
+              }
+            },
+            "required": ["channel_id", "timestamp", "reaction"]
+          }
+        },
+        {
+          "name": "slack_get_channel_history",
+          "description": "Get recent messages from a channel",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "channel_id": {
+                "type": "string",
+                "description": "The ID of the channel"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Number of messages to retrieve (default 10)",
+                "default": 10
+              }
+            },
+            "required": ["channel_id"]
+          }
+        },
+        {
+          "name": "slack_get_thread_replies",
+          "description": "Get all replies in a message thread",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "channel_id": {
+                "type": "string",
+                "description": "The ID of the channel containing the thread"
+              },
+              "thread_ts": {
+                "type": "string",
+                "description": "The timestamp of the parent message in format '1234567890.123456'"
+              }
+            },
+            "required": ["channel_id", "thread_ts"]
+          }
+        },
+        {
+          "name": "slack_get_users",
+          "description": "Get a list of all users in the workspace with their basic profile information",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "cursor": {
+                "type": "string",
+                "description": "Pagination cursor for next page of results"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of users to return (default 100, max 200)",
+                "default": 100
+              }
+            }
+          }
+        },
+        {
+          "name": "slack_get_user_profile",
+          "description": "Get detailed profile information for a specific user",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "user_id": {
+                "type": "string",
+                "description": "The ID of the user"
+              }
+            },
+            "required": ["user_id"]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Puppeteer MCP Server",
+      "repo": "github.com/modelcontextprotocol/servers-archived",
+      "path": "src/puppeteer/index.ts",
+      "language": "TypeScript",
+      "npm": "@modelcontextprotocol/server-puppeteer",
+      "tool_count": 7,
+      "estimated_tokens": 2400,
+      "grade_estimate": "C+",
+      "tools": [
+        {
+          "name": "puppeteer_navigate",
+          "description": "Navigate to a URL",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "URL to navigate to"
+              },
+              "launchOptions": {
+                "type": "object"
+              },
+              "allowDangerous": {
+                "type": "boolean"
+              }
+            },
+            "required": ["url"]
+          }
+        },
+        {
+          "name": "puppeteer_screenshot",
+          "description": "Take a screenshot of the current page or a specific element",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "selector": {
+                "type": "string"
+              },
+              "width": {
+                "type": "number"
+              },
+              "height": {
+                "type": "number"
+              },
+              "encoded": {
+                "type": "boolean"
+              }
+            },
+            "required": ["name"]
+          }
+        },
+        {
+          "name": "puppeteer_click",
+          "description": "Click an element on the page",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "selector": {
+                "type": "string"
+              }
+            },
+            "required": ["selector"]
+          }
+        },
+        {
+          "name": "puppeteer_fill",
+          "description": "Fill out an input field",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "selector": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            },
+            "required": ["selector", "value"]
+          }
+        },
+        {
+          "name": "puppeteer_select",
+          "description": "Select an element on the page with Select tag",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "selector": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            },
+            "required": ["selector", "value"]
+          }
+        },
+        {
+          "name": "puppeteer_hover",
+          "description": "Hover an element on the page",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "selector": {
+                "type": "string"
+              }
+            },
+            "required": ["selector"]
+          }
+        },
+        {
+          "name": "puppeteer_evaluate",
+          "description": "Execute JavaScript in the browser console",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "script": {
+                "type": "string"
+              }
+            },
+            "required": ["script"]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Google Maps MCP Server",
+      "repo": "github.com/modelcontextprotocol/servers-archived",
+      "path": "src/google-maps/index.ts",
+      "language": "TypeScript",
+      "npm": "@modelcontextprotocol/server-google-maps",
+      "tool_count": 7,
+      "estimated_tokens": 2800,
+      "grade_estimate": "B",
+      "tools": [
+        {
+          "name": "maps_geocode",
+          "description": "Convert an address into geographic coordinates",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "address": {
+                "type": "string",
+                "description": "The address to geocode"
+              }
+            },
+            "required": ["address"]
+          }
+        },
+        {
+          "name": "maps_reverse_geocode",
+          "description": "Convert coordinates into an address",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "latitude": {
+                "type": "number",
+                "description": "Latitude coordinate"
+              },
+              "longitude": {
+                "type": "number",
+                "description": "Longitude coordinate"
+              }
+            },
+            "required": ["latitude", "longitude"]
+          }
+        },
+        {
+          "name": "maps_search_places",
+          "description": "Search for places using Google Places API",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search query"
+              },
+              "location": {
+                "type": "object",
+                "properties": {
+                  "latitude": {
+                    "type": "number"
+                  },
+                  "longitude": {
+                    "type": "number"
+                  }
+                }
+              },
+              "radius": {
+                "type": "number",
+                "description": "Search radius in meters (max 50000)"
+              }
+            },
+            "required": ["query"]
+          }
+        },
+        {
+          "name": "maps_place_details",
+          "description": "Get detailed information about a specific place",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "place_id": {
+                "type": "string",
+                "description": "The place ID to get details for"
+              }
+            },
+            "required": ["place_id"]
+          }
+        },
+        {
+          "name": "maps_distance_matrix",
+          "description": "Calculate travel distance and time for multiple origins and destinations",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "origins": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "destinations": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "mode": {
+                "type": "string",
+                "enum": ["driving", "walking", "bicycling", "transit"]
+              }
+            },
+            "required": ["origins", "destinations"]
+          }
+        },
+        {
+          "name": "maps_elevation",
+          "description": "Get elevation data for locations on the earth",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "locations": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "latitude": {
+                      "type": "number"
+                    },
+                    "longitude": {
+                      "type": "number"
+                    }
+                  },
+                  "required": ["latitude", "longitude"]
+                }
+              }
+            },
+            "required": ["locations"]
+          }
+        },
+        {
+          "name": "maps_directions",
+          "description": "Get directions between two points",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "origin": {
+                "type": "string",
+                "description": "Starting point address or coordinates"
+              },
+              "destination": {
+                "type": "string",
+                "description": "Ending point address or coordinates"
+              },
+              "mode": {
+                "type": "string",
+                "enum": ["driving", "walking", "bicycling", "transit"]
+              }
+            },
+            "required": ["origin", "destination"]
+          }
+        }
+      ]
+    },
+    {
+      "name": "PostgreSQL MCP Server",
+      "repo": "github.com/modelcontextprotocol/servers-archived",
+      "path": "src/postgres/index.ts",
+      "language": "TypeScript",
+      "npm": "@modelcontextprotocol/server-postgres",
+      "tool_count": 1,
+      "estimated_tokens": 350,
+      "grade_estimate": "D",
+      "tools": [
+        {
+          "name": "query",
+          "description": "Run a read-only SQL query",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "sql": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

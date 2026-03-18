@@ -1,15 +1,15 @@
 # Company Status
 
-**Last updated:** 2026-03-18 12:25 UTC (session 158/Day 11)
+**Last updated:** 2026-03-18 13:35 UTC (session 160/Day 11)
 
 ## Current Phase
-**Day 11 — v0.62.0 shipped. Leaderboard now interactive. Waiting for article 064 at 16:00 UTC.** Feature freeze until article results come in. Distribution blocked on board (8 inbox items).
+**Day 11 — Feature freeze. Article 064 auto-publishes at 16:00 UTC (~2h 25min).** All automated. Waiting for experiment results. Distribution board-blocked (11 inbox items, 0 processed).
 
 ## Key Metrics
 | Metric | Current | Target | Deadline |
 |--------|---------|--------|----------|
 | Twitch followers | 5 | 50 | 2026-04-01 |
-| Bluesky followers | 38 | 50 | - |
+| Bluesky followers | **36** ⬇️ (-2) | 50 | - |
 | Broadcast minutes | 5235+ | 500 ✓ | - |
 | Avg viewers | ~1 | 3 | 2026-04-01 |
 | GitHub stars (agent-friend) | **1** ⬆️ | 20 | 2026-03-24 |
@@ -22,7 +22,52 @@
 | Repo views (14d) | 61 total / 26 unique (agent-friend) | - | - |
 | Repo clones (14d) | 1,198 total / 260 unique (spike Mar 17: 371/95) | - | - |
 
-## Session 158 (2026-03-18 11:57–ongoing)
+## Session 160 (2026-03-18 13:13–ongoing)
+
+### Completed
+1. **OWASP MCP Top 10 competitive intel** — All 10 items cover runtime security. Zero coverage of build-time schema quality, token waste, or description-based prompt injection. Our niche confirmed again. Logged in decisions.md.
+2. **Bluesky reply: @myfear.com** (6 likes post) — added 50-server audit data to CLI-vs-MCP conversation. "193K tokens on schema definitions alone. MCP's implicit assumption is that context is cheap. it isn't."
+3. **Bluesky reply: @vellandi.net** — context7 audit data (F grade, 510 tok/tool). Contextualized: absolute cost is low with 2 tools, but 60+ tool servers eating 10K+ are the real problem.
+4. **Competitive intel: safe-mcp.com** — GA4 analytics integration (€4.99/month), NOT a competitor. @daniel-davia is the founder.
+5. **Competitive intel: Apideck CLI** — claims 99% context reduction vs MCP using progressive CLI discovery (~80 token system prompt). Cites 550-1,400 tok/tool for MCP. Our data is more granular (50 servers, per-tool breakdowns). Their solution = runtime; ours = build-time.
+6. **Article 072 drafted** — "OWASP Published an MCP Top 10. They Missed the Biggest Risk." Positions us in the build-time gap. Not scheduled yet — waiting for 064 results.
+7. **Sitemap updated** — added lastmod dates to all key pages for better crawl prioritization.
+8. **Dev.to article engagement**: 0 reactions across all 13 published articles. Philosophical articles = dead (0 views). March 17 articles: 8-13 views each. The opinion format (064+) is untested until today.
+9. **Key quote found**: Perplexity CTO Denis Yarats — "MCP tool descriptions consume 40-50% of available context windows before agents do any actual work." AI Weekly covers our topic without mentioning us.
+10. **IndexNow submitted** — 8 pages to Bing/Yandex/Seznam/Naver (HTTP 202+200). Key file deployed to GitHub Pages. Check Bing indexing after March 20.
+11. **mcp-lazy-proxy** discovered — @kira-autonoma replied to our SEP-1576 comment with a 6.5x token reduction proxy. New runtime competitor (complementary to us).
+12. **Anthropic issue comments drafted** — 3 polished comments for issues #3074, #3144, #799 in `drafts/anthropic-mcp-comments.md`. Board can copy-paste.
+13. **MCP Scoreboard listing** — we're indexed, C grade (62). Protocol=0 because stdio. Schema=4/4.
+14. **MCP Dev Summit** — April 2-3, NYC, in-person. Anthropic/OpenAI/AWS speaking. Our data could be referenced by presenters.
+
+### Key Findings
+- OWASP MCP Top 10: all runtime security, zero build-time quality. Our niche confirmed.
+- **mcp-lazy-proxy replied to our SEP-1576 comment** — 6.5x token reduction via lazy loading. Another runtime solution. All competitors are runtime; we're the only build-time play.
+- Competitive landscape: Apideck (CLI, 99% reduction), Cloudflare (code gen, 99.9%), mcp-lazy-proxy (proxy, 6.5x), Token Optimizer MCP (cache, 24 stars). We complement all of them.
+- **MCP Scoreboard lists us**: C grade (62). Protocol=0 because they can't test stdio servers remotely. Same Glama issue.
+- **IndexNow submitted**: 8 key pages to Bing/Yandex/Seznam/Naver. Were completely invisible to Google (0 indexed pages).
+- Bluesky: 3 posts + 3 replies = 6/8 daily limit. 1 post reserved for article 064 campaign at ~16:05.
+- Perplexity CTO quoted in AI Weekly: "MCP tool descriptions consume 40-50% of context windows." Article covers our topic, doesn't mention us.
+
+## Session 159 (2026-03-18 12:46–13:12)
+
+### Completed
+1. **Article 071 body fixed** — "all 36 servers" → "all 50 servers"
+2. **Leaderboard links added** to articles 064-068 footers (5 articles updated on Dev.to). All 8 articles now cross-promote the 50-server leaderboard.
+3. **All distribution channels checked** — HN comment: alive, 0 replies. SEP-1576: 0 reactions (2.5h). PR #310: open, 0 reviews. PulseMCP: not listed. Glama: still "Cannot be installed."
+4. **Bluesky followers**: dropped from 38 to 36 (-2 unfollows). Post-to-follower ratio is 1099:36 — concerning.
+5. **Competitive check**: No new MCP schema quality tools found. ESLint now has its own MCP server (for JS linting, not a competitor).
+6. **Campaign automation verified** — all processes running, PID 275005 ready for article 064 at ~16:05 UTC.
+7. **Bluesky reply drafts verified** — 4 drafts current with 50-server data for Mar 19.
+8. **Bluesky engagement analysis** — standalone posts get ~0 engagement, replies get 1-3 likes. Decision: shift to 1-2 posts/day + more replies. Logged in decisions.md.
+9. **GitHub issue target list created** — 10 repos with real schema bugs where agent-friend helps: Anthropic servers (79K stars), GitHub MCP (8K), Notion (5K), Composio (15K), Docker (2K). See `research/github-issue-targets.md`.
+10. **New P1 board request filed** — Anthropic MCP servers issues (79K stars, 3 relevant issues). This is the highest-reach distribution target found.
+11. **Campaign poster for article 065** launched (PID 291596) — waits for publish, posts to Bluesky.
+
+### Key Observation
+Lost 2 Bluesky followers (38→36) despite posting within limits. 1,099 posts for 36 followers is a terrible ratio. Engagement analysis shows replies outperform posts. Distribution remains 100% board-blocked — 11 inbox items, 0 processed. The highest-impact targets: Anthropic MCP servers (79K stars), awesome-mcp-servers (81K stars), Context7 (44K stars).
+
+## Session 158 (2026-03-18 11:57–12:45 UTC)
 
 ### Completed
 1. **First GitHub star** on agent-friend — was 0, now 1
@@ -36,9 +81,15 @@
 9. **Competitive research** — Cloudflare Code Mode (99.9% token reduction for mega-APIs), MCPlexor (6 HN pts), quality-check-mcp-server (not a competitor). Our niche still clear.
 10. **Report card footer** — added Twitch, leaderboard, and GitHub links
 11. **Structured review** — acknowledged engineering drift, feature freeze declared
+12. **Branch standardization** — Board directive: agent-friend repo now `main` only (deleted stale `master`). Company repo stays `master`.
+13. **Competitive intelligence deep-dive** — Discovered MCP Scoreboard (26K servers, 6 dimensions), MCP-Atlas (Scale Labs), MCPMark. Our moat confirmed: ZERO competitors in build-time schema quality + prompt injection detection.
+14. **MCP Official Discord discovered** — 11,658 members. Biggest untapped distribution channel. Board request filed (P1).
+15. **Distribution research** — 3 research docs (56KB total) with community mapping, actionable URLs, message templates, competitive intel.
+16. **Reply draft prepared** — @onyx.markvizion.com (tool count sweet spot question, answered with 50-server data).
+17. **Article 064 pipeline verified** — timer fires 16:00 UTC, all 8 articles (064-071) confirmed in schedule.
 
 ### Key Insight
-Building features for zero users. Product is ahead of audience by a mile. Distribution is the bottleneck and is mostly blocked on board permissions. Feature freeze until article 064 results (24h data).
+Building features for zero users. Product is ahead of audience by a mile. Distribution is the bottleneck and is mostly blocked on board permissions. Feature freeze until article 064 results (24h data). **New finding**: MCP Official Discord (11,658 members) is the highest-leverage distribution channel we haven't tapped. Filed as P1 board request.
 
 ## Session 157 (2026-03-18 10:32–11:56)
 
@@ -125,7 +176,7 @@ Building features for zero users. Product is ahead of audience by a mile. Distri
 
 ## Board Communications
 - Board outbox: empty
-- Board inbox pending: 9 items — **P0**: HN thread comment (time-sensitive!), P1: Context7 issue, P1: awesome-mcp-servers/devtools PRs, P1: SEP-1576, P2: Notion credentials, P2: MCP.so/Cline submissions, P3: Google Search Console, P3: Dev.to comments, P4: awesome-static-analysis
+- Board inbox pending: **11 items** — **P1**: Anthropic MCP servers (79K stars, NEW), P1: MCP Official Discord (11.6K members), P1: Context7 issue (44K stars), P1: awesome-mcp-servers/devtools PRs (81K stars), P2: Notion credentials, P2: MCP distribution expansion, P3: Google Search Console, P3: Dev.to comments, P3: GitHub Marketplace Action, P4: Discord content strategy, P4: awesome-static-analysis
 - **awesome-ai-devtools PR #310**: OPEN — 0 reviews, 0 comments, mergeable
 
 ## Article Publish Schedule
@@ -168,3 +219,9 @@ Building features for zero users. Product is ahead of audience by a mile. Distri
 
 ---
 **[2026-03-18T11:56:32+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-18T12:45:18+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-18T13:12:19+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.

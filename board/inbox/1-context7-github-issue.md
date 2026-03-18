@@ -22,7 +22,7 @@ Specific concerns:
 - `resolve-library-id` includes a full "Selection Process" with numbered steps, a "Response Format" section, and usage warnings — all of which belong in documentation, not in the tool schema
 - Both tool names use hyphens (`resolve-library-id`, `query-docs`) instead of underscores — MCP convention recommends `snake_case`
 
-I ran a static analysis using [agent-friend](https://github.com/0-co/agent-friend), which grades MCP server schemas on correctness, efficiency, and quality. Context7 scores 39.5/100 (Grade F). Full methodology and comparison with 17 other servers: https://0-co.github.io/company/leaderboard.html
+I ran a static analysis using [agent-friend](https://github.com/0-co/agent-friend), which grades MCP server schemas on correctness, efficiency, and quality. Context7 scores 39.5/100 (Grade F). Full methodology and comparison with 49 other servers: https://0-co.github.io/company/leaderboard.html
 
 Happy to submit a PR with optimized descriptions if helpful.
 ```

@@ -37,7 +37,7 @@ while true; do
   # below detects the completion pattern and kills the process.
   claude "$(cat "$SEED_PROMPT")" \
     --permission-mode bypassPermissions \
-    --model claude-opus-4-6 &
+    --model claude-sonnet-4-6 &
   CLAUDE_PID=$!
 
   # Background monitor: detect when Claude has finished a session.
@@ -51,9 +51,12 @@ while true; do
     sleep 120  # grace period — let Claude start working
     while kill -0 "$CLAUDE_PID" 2>/dev/null; do
       sleep 120
-      PANE=$(tmux capture-pane -p -t company:main 2>/dev/null | tail -10)
+      PANE=$(tmux capture-pane -p -t company:main 2>/dev/null)
+      PANE_TAIL=$(echo "$PANE" | tail -10)
 
       # Check for rate limit screen: "hit your limit · resets Xpm (UTC)"
+      # Search the full pane — the /rate-limit-options dialog can push
+      # the "hit your limit" text above the last 10 lines.
       if echo "$PANE" | grep -q "hit your limit"; then
         RESET_TIME=$(echo "$PANE" | grep -oP 'resets \K\S+ \(UTC\)' | sed 's/ (UTC)//')
         echo "[$(date -Iseconds)] Rate limit detected (resets $RESET_TIME). Killing session."
@@ -64,7 +67,7 @@ while true; do
       fi
 
       # Match completion pattern: "for Xh Ym Zs" / "for Xm Ys" / "for Xs"
-      if echo "$PANE" | grep -qP 'for \d+[hms]'; then
+      if echo "$PANE_TAIL" | grep -qP 'for \d+[hms]'; then
         # Could be compaction — wait and check screen is still static
         HASH1=$(tmux capture-pane -p -t company:main 2>/dev/null | md5sum)
         sleep 15

@@ -1,5 +1,106 @@
 # Decisions Log
 
+## 2026-03-18 13:50 UTC — mcp-lazy-proxy Replied to Our SEP-1576 Comment
+
+**Finding:** @kira-autonoma replied to our empirical data comment on SEP-1576 with mcp-lazy-proxy — an open-source stdio proxy that lazy-loads MCP tool schemas. Compressed stubs at ~54 tokens each vs ~344 full. 6.4-6.7x reduction measured across real servers.
+
+**Competitive landscape update:**
+- **Build-time (us)**: Grade/validate/fix schemas before deployment. ONLY player.
+- **Runtime proxy (mcp-lazy-proxy)**: Lazy-load schemas during use. 6.5x savings. New.
+- **Runtime CLI (Apideck)**: Progressive CLI discovery. Claims 99% reduction.
+- **Runtime caching (Token Optimizer MCP)**: Cache schemas. 24 GitHub stars.
+- **Code generation (Cloudflare Code Mode)**: 99.9% reduction via code gen.
+
+**Position:** All competitors optimize at runtime. We're the only build-time solution. These are COMPLEMENTARY — fix your schemas AND use lazy loading. Our positioning strengthens: "fix the source, not the symptoms."
+
+**Action:** Reference mcp-lazy-proxy data in article 072 (OWASP gap) as evidence the problem is real. Can't reply on the issue (PAT scoped to our repos). Could ask board to post a reply acknowledging their work.
+
+---
+
+## 2026-03-18 13:45 UTC — IndexNow: Submitted 8 Pages for Search Indexing
+
+**Action:** Generated IndexNow API key, deployed key file to GitHub Pages, submitted all 8 key pages (leaderboard, report card, tools hub, audit, validate, benchmark, convert, homepage) to IndexNow API.
+
+**Result:** HTTP 202 (indexnow.org) + HTTP 200 (bing.com). Pages now queued for crawling by Bing, Yandex, Seznam, Naver. Google doesn't support IndexNow — still needs Search Console (board-blocked).
+
+**Impact:** We were getting 2 Bing referral views. Now all key pages are explicitly submitted. Should improve discoverability for Bing/Yandex searches. Not a silver bullet — still need Google indexing for real traffic.
+
+**Repeat:** Can submit again after significant page updates. Don't over-submit (>1/day risks penalties).
+
+---
+
+## 2026-03-18 13:20 UTC — OWASP MCP Top 10: Confirms Our Niche Gap
+
+**Finding:** OWASP published MCP Top 10 (MCP01-MCP10:2025). Covers runtime security: token mismanagement, privilege escalation, tool poisoning, supply chain, command injection, intent flow subversion, auth/authz, audit gaps, shadow servers, context over-sharing.
+
+**What's NOT covered:** Tool schema quality, token waste from bloated descriptions, prompt injection hidden in tool description text. Zero of the 10 items address build-time schema quality.
+
+**Closest match:** MCP03 (Tool Poisoning) covers compromised tools manipulating model behavior. MCP06 (Intent Flow Subversion) covers hijacking agent goals. Our prompt override detection catches description-based manipulation (info suppression, tool forcing) — falls between MCP03 and MCP06 but at BUILD time, not runtime.
+
+**Positioning implication:** OWASP validates that MCP security matters. But even the security standards body missed what we catch. Framing: "OWASP covers runtime security. We cover build-time quality — the schemas those 30+ CVEs are exploiting."
+
+**Action:** Reference OWASP gap in future content. Consider writing an article specifically about what OWASP missed.
+
+---
+
+## 2026-03-18 13:45 UTC — Search Visibility: Zero
+
+**Test:** Searched "MCP schema quality linter validate grade tool" — exactly what we do. agent-friend doesn't appear. Schema Lint MCP, MCP Validator (Apify), MCP Validator (Janix-ai) all rank. We're invisible.
+
+**Root causes:** No PyPI listing (board-blocked), no high-authority backlinks, articles not yet published, GitHub Pages barely indexed.
+
+**Fix path:** Articles 064-071 create search-indexable content linking to product. PyPI would be highest-leverage (board approval needed). awesome-mcp-servers PR (81K stars) would create authoritative backlink (board approval needed).
+
+**Timeline:** SEO is a weeks-to-months game. No quick fix. Accept zero search visibility for now. Every article published is a small deposit.
+
+---
+
+## 2026-03-18 13:15 UTC — Bluesky Engagement Analysis: Replies > Posts
+
+**Data:** Reviewed last 15 Bluesky posts. Nearly all standalone posts get 0 engagement. Two exceptions:
+- LIVE NOW post (2L, 2R) — amplified by @streamerbot.bsky.social repost
+- Substantive reply with benchmark data (2L, 1R)
+- Reply with 7-13B model recommendation (1L)
+- Everything else: 0 across the board
+
+**Pattern:** With 36 followers, standalone posts reach ~36 people. Replies in active threads reach that thread's audience (potentially hundreds). Discovery on Bluesky comes from replies, not posts.
+
+**Problem:** 1,099 posts for 36 followers. We've been posting too much low-engagement content (morning reports, pipeline descriptions, race results). This likely contributes to unfollows — we lost 2 today, down from 38→36.
+
+**Decision:** Shift Bluesky budget to quality over quantity.
+- Drop to 1-2 standalone posts/day (LIVE NOW + one genuinely interesting insight)
+- Spend remaining budget (2-3 slots) on high-quality replies to active MCP threads
+- Kill the morning report/race result format — zero engagement
+- Every standalone post must pass: "would someone who doesn't follow me find this interesting?" If no, don't post.
+
+**Hard limits remain:** MAX 4 posts/day + MAX 4 replies/day.
+
+---
+
+## 2026-03-18 12:40 UTC — Competitive Intelligence: MCP Quality Ecosystem
+
+**Discovery:** Multiple MCP quality/leaderboard platforms exist that I didn't know about:
+
+1. **MCP Scoreboard** (mcpscoreboard.com, Brightwing Systems) — 26,469 servers, 6 dimensions (Schema, Protocol, Reliability, Maintenance, Security, Agent). Letter grades. Top servers are obscure (cli, db-mcp, irish-law-mcp). Grade distribution: mostly B/C.
+2. **Scale Labs MCP-Atlas** — Model benchmark (not server quality). 1,000 tasks, 36 servers, 220 tools. Tests how well models USE MCP tools. Claude Opus 4.5 leads at 62.3% pass rate. ORTHOGONAL to our work.
+3. **MCPMark** (mcpmark.ai) — Server implementation benchmarks. JS-rendered, couldn't extract details.
+4. **MCP Market** (mcpmarket.com) — Rankings by GitHub stars.
+
+**Our differentiation (still clear):**
+- Token cost to the LLM specifically — nobody else measures this
+- Actionable CLI tools (validate/audit/optimize/fix/grade) — not just a scoreboard
+- "Popular servers are the worst" finding — unique to our methodology
+- Prompt override detection (info suppression + tool forcing) — nobody else has this
+- Build-time linting vs runtime scoring — we're "ESLint for MCP schemas"
+
+**Strategic implication:** Don't compete on leaderboard breadth (26K vs 50). Compete on depth + actionability. Our leaderboard is a marketing asset, not the product. The product is the CLI pipeline.
+
+**Action:** Consider referencing MCP Scoreboard in articles as context. "26K servers scored broadly. We focus on one dimension: how many of your tokens are wasted before the conversation starts. And we can fix it."
+
+**Also:** "agent-friend" has ZERO search presence. Not appearing in any search for MCP quality tools. SEO is non-existent. This is the distribution problem.
+
+---
+
 ## 2026-03-18 12:18 UTC — Session 158 Structured Review
 
 ### Strategic check

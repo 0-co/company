@@ -1,0 +1,534 @@
+[
+  {
+    "name": "execute_sql",
+    "description": "Use this tool to execute SQL.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "sql": {
+          "type": "string",
+          "description": "The sql to execute."
+        }
+      },
+      "required": [
+        "sql"
+      ]
+    }
+  },
+  {
+    "name": "list_tables",
+    "description": "Lists detailed schema information (object type, columns, constraints, indexes, triggers, owner, comment) as JSON for user-created tables (ordinary or partitioned). Filters by a comma-separated list of names. If names are omitted, lists all tables in user schemas.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "table_names": {
+          "type": "string",
+          "description": "Optional: A comma-separated list of table names. If empty, details for all tables will be listed.",
+          "default": ""
+        },
+        "output_format": {
+          "type": "string",
+          "description": "Optional: Use 'simple' for names only or 'detailed' for full info.",
+          "default": "detailed"
+        }
+      }
+    }
+  },
+  {
+    "name": "list_active_queries",
+    "description": "List the top N (default 50) currently running queries (state='active') from pg_stat_activity, ordered by longest-running first. Returns pid, user, database, application_name, client_addr, state, wait_event_type/wait_event, backend/xact/query start times, computed query_duration, and the SQL text.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "min_duration": {
+          "type": "string",
+          "description": "Optional: Only show queries running at least this long (e.g., '1 minute', '1 second', '2 seconds').",
+          "default": "1 minute"
+        },
+        "exclude_application_names": {
+          "type": "string",
+          "description": "Optional: A comma-separated list of application names to exclude from the query results. This is useful for filtering out queries from specific applications (e.g., 'psql', 'pgAdmin', 'DBeaver'). The match is case-sensitive.",
+          "default": ""
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Optional: The maximum number of results to return.",
+          "default": 50
+        }
+      }
+    }
+  },
+  {
+    "name": "list_available_extensions",
+    "description": "Discover all PostgreSQL extensions available for installation on this server, returning name, default_version, and description.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "list_installed_extensions",
+    "description": "List all installed PostgreSQL extensions with their name, version, schema, owner, and description.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "long_running_transactions",
+    "description": "Identifies and lists database transactions that exceed a specified time limit. For each of the long running transactions, the output contains the process id, database name, user name, application name, client address, state, connection age, transaction age, query age, last activity age, wait event type, wait event, and query string.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "min_duration": {
+          "type": "string",
+          "description": "Optional: Only show transactions running at least this long (e.g., '1 minute', '15 minutes', '30 seconds').",
+          "default": "5 minutes"
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Optional: The maximum number of long-running transactions to return. Defaults to 20.",
+          "default": 20
+        }
+      }
+    }
+  },
+  {
+    "name": "list_locks",
+    "description": "Identifies all locks held by active processes showing the process ID, user, query text, and an aggregated list of all transactions and specific locks (relation, mode, grant status) associated with each process.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "replication_stats",
+    "description": "Lists each replica's process ID, user name, application name, backend_xmin (standby's xmin horizon reported by hot_standby_feedback), client IP address, connection state, and sync_state, along with lag sizes in bytes for sent_lag (primary to sent), write_lag (sent to written), flush_lag (written to flushed), replay_lag (flushed to replayed), and the overall total_lag (primary to replayed).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "list_autovacuum_configurations",
+    "description": "List PostgreSQL autovacuum-related configurations (name and current setting) from pg_settings.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "list_memory_configurations",
+    "description": "List PostgreSQL memory-related configurations (name and current setting) from pg_settings.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "list_top_bloated_tables",
+    "description": "List the top tables by dead-tuple (approximate bloat signal), returning schema, table, live/dead tuples, percentage, and last vacuum/analyze times.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "description": "The maximum number of results to return.",
+          "default": 50
+        }
+      }
+    }
+  },
+  {
+    "name": "list_replication_slots",
+    "description": "List key details for all PostgreSQL replication slots (e.g., type, database, active status) and calculates the size of the outstanding WAL that is being prevented from removal by the slot.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "list_invalid_indexes",
+    "description": "Lists all invalid PostgreSQL indexes which are taking up disk space but are unusable by the query planner. Typically created by failed CREATE INDEX CONCURRENTLY operations.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "get_query_plan",
+    "description": "Generate a PostgreSQL EXPLAIN plan in JSON format for a single SQL statement--without executing it. This returns the optimizer's estimated plan, costs, and rows (no ANALYZE, no extra options). Use in production safely for plan inspection, regression checks, and query tuning workflows.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "The SQL statement for which you want to generate plan (omit the EXPLAIN keyword)."
+        }
+      },
+      "required": [
+        "query"
+      ]
+    }
+  },
+  {
+    "name": "list_views",
+    "description": "Lists views in the database from pg_views with a default limit of 50 rows. Returns schemaname, viewname, ownername and the definition.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "view_name": {
+          "type": "string",
+          "description": "Optional: A specific view name to search for.",
+          "default": ""
+        },
+        "schema_name": {
+          "type": "string",
+          "description": "Optional: A specific schema name to search for.",
+          "default": ""
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Optional: The maximum number of rows to return.",
+          "default": 50
+        }
+      }
+    }
+  },
+  {
+    "name": "list_schemas",
+    "description": "Lists all schemas in the database ordered by schema name and excluding system and temporary schemas. It returns the schema name, schema owner, grants, number of functions, number of tables and number of views within each schema.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "schema_name": {
+          "type": "string",
+          "description": "Optional: A specific schema name pattern to search for.",
+          "default": ""
+        },
+        "owner": {
+          "type": "string",
+          "description": "Optional: A specific schema owner name pattern to search for.",
+          "default": ""
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Optional: The maximum number of schemas to return.",
+          "default": 10
+        }
+      }
+    }
+  },
+  {
+    "name": "database_overview",
+    "description": "Fetches the current state of the PostgreSQL server, returning the version, whether it's a replica, uptime duration, maximum connection limit, number of current connections, number of active connections, and the percentage of connections in use.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "list_triggers",
+    "description": "Lists all non-internal triggers in a database. Returns trigger name, schema name, table name, whether its enabled or disabled, timing (e.g BEFORE/AFTER), triggering events, and the trigger function.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "trigger_name": {
+          "type": "string",
+          "description": "Optional: A specific trigger name pattern to search for.",
+          "default": ""
+        },
+        "schema_name": {
+          "type": "string",
+          "description": "Optional: A specific schema name pattern to search for.",
+          "default": ""
+        },
+        "table_name": {
+          "type": "string",
+          "description": "Optional: A specific table name pattern to search for.",
+          "default": ""
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Optional: The maximum number of rows to return.",
+          "default": 50
+        }
+      }
+    }
+  },
+  {
+    "name": "list_indexes",
+    "description": "Lists indexes in the database with details including schema, table, index name, definition, uniqueness, size, and usage statistics.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "schema_name": {
+          "type": "string",
+          "description": "Optional: a text to filter results by schema name. The input is used within a LIKE clause.",
+          "default": ""
+        },
+        "table_name": {
+          "type": "string",
+          "description": "Optional: a text to filter results by table name. The input is used within a LIKE clause.",
+          "default": ""
+        },
+        "index_name": {
+          "type": "string",
+          "description": "Optional: a text to filter results by index name. The input is used within a LIKE clause.",
+          "default": ""
+        },
+        "only_unused": {
+          "type": "boolean",
+          "description": "Optional: If true, only returns indexes that have never been used.",
+          "default": false
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Optional: The maximum number of rows to return.",
+          "default": 50
+        }
+      }
+    }
+  },
+  {
+    "name": "list_sequences",
+    "description": "Lists sequences in the database. Returns sequence name, schema name, sequence owner, data type of the sequence, starting value, minimum value, maximum value of the sequence, the value by which the sequence is incremented, and the last value generated by the sequence.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "schema_name": {
+          "type": "string",
+          "description": "Optional: A specific schema name pattern to search for.",
+          "default": ""
+        },
+        "sequence_name": {
+          "type": "string",
+          "description": "Optional: A specific sequence name pattern to search for.",
+          "default": ""
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Optional: The maximum number of rows to return. Default is 50",
+          "default": 50
+        }
+      }
+    }
+  },
+  {
+    "name": "list_query_stats",
+    "description": "Lists performance statistics for executed queries ordered by total time, filtering by database name pattern if provided. This tool requires the pg_stat_statements extension to be installed. The tool returns the database name, query text, execution count, timing metrics (total, min, max, mean), rows affected, and buffer cache I/O statistics.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "database_name": {
+          "type": "string",
+          "description": "Optional: The database name to list query stats for.",
+          "default": ""
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Optional: The maximum number of results to return. Defaults to 50.",
+          "default": 50
+        }
+      }
+    }
+  },
+  {
+    "name": "get_column_cardinality",
+    "description": "Estimates the number of unique values (cardinality) quickly for one or all columns in a specific PostgreSQL table by using the planner's statistics.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "schema_name": {
+          "type": "string",
+          "description": "Optional: The schema name in which the table is present.",
+          "default": "public"
+        },
+        "table_name": {
+          "type": "string",
+          "description": "Required: The table name in which the column is present."
+        },
+        "column_name": {
+          "type": "string",
+          "description": "Optional: The column name for which the cardinality is to be found. If not provided, cardinality for all columns will be returned."
+        }
+      },
+      "required": [
+        "table_name"
+      ]
+    }
+  },
+  {
+    "name": "list_table_stats",
+    "description": "Lists the user table statistics in the database including row counts, dead tuples, sequential and index scan counts, and last vacuum/analyze times.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "schema_name": {
+          "type": "string",
+          "description": "Optional: A specific schema name to filter by",
+          "default": "public"
+        },
+        "table_name": {
+          "type": "string",
+          "description": "Optional: A specific table name to filter by"
+        },
+        "owner": {
+          "type": "string",
+          "description": "Optional: A specific owner to filter by"
+        },
+        "sort_by": {
+          "type": "string",
+          "description": "Optional: The column to sort by"
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Optional: The maximum number of results to return",
+          "default": 50
+        }
+      }
+    }
+  },
+  {
+    "name": "list_publication_tables",
+    "description": "Lists all publication tables in the database. Returns the publication name, schema name, and table name.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "table_names": {
+          "type": "string",
+          "description": "Optional: Filters by a comma-separated list of table names.",
+          "default": ""
+        },
+        "publication_names": {
+          "type": "string",
+          "description": "Optional: Filters by a comma-separated list of publication names.",
+          "default": ""
+        },
+        "schema_names": {
+          "type": "string",
+          "description": "Optional: Filters by a comma-separated list of schema names.",
+          "default": ""
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Optional: The maximum number of rows to return.",
+          "default": 50
+        }
+      }
+    }
+  },
+  {
+    "name": "list_tablespaces",
+    "description": "Lists all tablespaces in the database. Returns the tablespace name, owner name, size in bytes (if the current user has CREATE privileges on the tablespace, otherwise NULL), internal object ID, the access control list regarding permissions, and any specific tablespace options.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "tablespace_name": {
+          "type": "string",
+          "description": "Optional: a text to filter results by tablespace name. The input is used within a LIKE clause.",
+          "default": ""
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Optional: The maximum number of rows to return.",
+          "default": 50
+        }
+      }
+    }
+  },
+  {
+    "name": "list_pg_settings",
+    "description": "Lists configuration parameters for the postgres server ordered lexicographically, with a default limit of 50 rows. It returns the parameter name, its current setting, unit of measurement, a short description, the source of the current setting (e.g., default, configuration file, session), and whether a restart is required when the parameter value is changed.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "setting_name": {
+          "type": "string",
+          "description": "Optional: A specific configuration parameter name pattern to search for.",
+          "default": ""
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Optional: The maximum number of rows to return.",
+          "default": 50
+        }
+      }
+    }
+  },
+  {
+    "name": "list_database_stats",
+    "description": "Lists database-level statistics including size, connection counts, transaction counts, cache hit ratios, and temporary file usage.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "database_name": {
+          "type": "string",
+          "description": "Optional: A specific database name pattern to search for.",
+          "default": ""
+        },
+        "include_templates": {
+          "type": "boolean",
+          "description": "Optional: Whether to include template databases in the results.",
+          "default": false
+        },
+        "database_owner": {
+          "type": "string",
+          "description": "Optional: A specific database owner name pattern to search for.",
+          "default": ""
+        },
+        "default_tablespace": {
+          "type": "string",
+          "description": "Optional: A specific default tablespace name pattern to search for.",
+          "default": ""
+        },
+        "order_by": {
+          "type": "string",
+          "description": "Optional: The field to order the results by. Valid values are 'size' and 'connections'.",
+          "default": ""
+        }
+      }
+    }
+  },
+  {
+    "name": "list_roles",
+    "description": "Lists all the user-created roles in the instance. It returns the role name, Object ID, the maximum number of concurrent connections the role can make, along with boolean indicators for superuser status, privilege inheritance, ability to create roles, databases, login, and replication.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "role_name": {
+          "type": "string",
+          "description": "Optional: a text to filter results by role name. The input is used within a LIKE clause.",
+          "default": ""
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Optional: The maximum number of rows to return. Default is 50.",
+          "default": 50
+        }
+      }
+    }
+  },
+  {
+    "name": "list_stored_procedure",
+    "description": "Lists stored procedures and functions in the database with their schema, name, owner, language, type, and definition.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "role_name": {
+          "type": "string",
+          "description": "Optional: The owner name to filter the stored procedures by. Defaults to NULL."
+        },
+        "schema_name": {
+          "type": "string",
+          "description": "Optional: The schema name to filter the stored procedures by. Defaults to NULL."
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Optional: The maximum number of results to return.",
+          "default": 50
+        }
+      }
+    }
+  }
+]

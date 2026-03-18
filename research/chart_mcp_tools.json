@@ -1,0 +1,1084 @@
+[
+  {
+    "name": "generate_area_chart",
+    "description": "Generate a area chart to show data trends under continuous independent variables and observe the overall data trend, such as, displacement = velocity (average or instantaneous) × time: s = v × t. If the x-axis is time (t) and the y-axis is velocity (v) at each moment, an area chart allows you to observe the trend of velocity over time and infer the distance traveled by the area's size.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "time": { "type": "string" },
+              "value": { "type": "number" },
+              "group": { "type": "string" }
+            },
+            "required": ["time", "value"]
+          },
+          "description": "Data for area chart. Array of objects with time, value, and optional group fields.",
+          "minItems": 1
+        },
+        "stack": {
+          "type": "boolean",
+          "description": "Enable stacking when group field is present in data",
+          "default": false
+        },
+        "style": {
+          "type": "object",
+          "properties": {
+            "backgroundColor": { "type": "string" },
+            "palette": { "type": "array", "items": { "type": "string" } },
+            "texture": { "type": "string", "enum": ["default", "rough"] },
+            "lineWidth": { "type": "number" }
+          }
+        },
+        "theme": {
+          "type": "string",
+          "enum": ["default", "academy", "dark"],
+          "description": "Visual theme of the chart",
+          "default": "default"
+        },
+        "width": {
+          "type": "number",
+          "description": "Chart width in pixels",
+          "default": 600
+        },
+        "height": {
+          "type": "number",
+          "description": "Chart height in pixels",
+          "default": 400
+        },
+        "title": {
+          "type": "string",
+          "description": "Chart title",
+          "default": ""
+        },
+        "axisXTitle": {
+          "type": "string",
+          "description": "X-axis label",
+          "default": ""
+        },
+        "axisYTitle": {
+          "type": "string",
+          "description": "Y-axis label",
+          "default": ""
+        }
+      },
+      "required": ["data"]
+    }
+  },
+  {
+    "name": "generate_bar_chart",
+    "description": "Generate a horizontal bar chart to show data for numerical comparisons among different categories, such as, comparing categorical data and for horizontal comparisons.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "category": { "type": "string" },
+              "value": { "type": "number" },
+              "group": { "type": "string" }
+            },
+            "required": ["category", "value"]
+          },
+          "description": "Data for bar chart with category, value, and optional group fields.",
+          "minItems": 1
+        },
+        "group": {
+          "type": "boolean",
+          "description": "Enable grouped bars. Requires group field in data. Conflicts with stack: true.",
+          "default": false
+        },
+        "stack": {
+          "type": "boolean",
+          "description": "Enable stacked bars. Requires group field in data. Conflicts with group: true.",
+          "default": true
+        },
+        "style": {
+          "type": "object",
+          "properties": {
+            "backgroundColor": { "type": "string" },
+            "palette": { "type": "array", "items": { "type": "string" } },
+            "texture": { "type": "string", "enum": ["default", "rough"] }
+          }
+        },
+        "theme": {
+          "type": "string",
+          "enum": ["default", "academy", "dark"],
+          "default": "default"
+        },
+        "width": { "type": "number", "default": 600 },
+        "height": { "type": "number", "default": 400 },
+        "title": { "type": "string", "default": "" },
+        "axisXTitle": { "type": "string", "default": "" },
+        "axisYTitle": { "type": "string", "default": "" }
+      },
+      "required": ["data"]
+    }
+  },
+  {
+    "name": "generate_column_chart",
+    "description": "Generate a column chart, which are best for comparing categorical data, such as, when values are close, column charts are preferable because our eyes are better at judging height than other visual elements like area or angles.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "category": { "type": "string" },
+              "value": { "type": "number" },
+              "group": { "type": "string" }
+            },
+            "required": ["category", "value"]
+          },
+          "minItems": 1
+        },
+        "group": {
+          "type": "boolean",
+          "description": "Enable column grouping when data includes a group field. Mutually exclusive with stack.",
+          "default": true
+        },
+        "stack": {
+          "type": "boolean",
+          "description": "Enable stacked columns when data includes a group field. Mutually exclusive with group.",
+          "default": false
+        },
+        "style": {
+          "type": "object",
+          "properties": {
+            "backgroundColor": { "type": "string" },
+            "palette": { "type": "array", "items": { "type": "string" } },
+            "texture": { "type": "string", "enum": ["default", "rough"] }
+          }
+        },
+        "theme": { "type": "string", "enum": ["default", "academy", "dark"], "default": "default" },
+        "width": { "type": "number", "default": 600 },
+        "height": { "type": "number", "default": 400 },
+        "title": { "type": "string", "default": "" },
+        "axisXTitle": { "type": "string", "default": "" },
+        "axisYTitle": { "type": "string", "default": "" }
+      },
+      "required": ["data"]
+    }
+  },
+  {
+    "name": "generate_line_chart",
+    "description": "Generate a line chart to show trends over time, such as, the ratio of Apple computer sales to Apple's profits changed from 2000 to 2016.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "time": { "type": "string" },
+              "value": { "type": "number" },
+              "group": { "type": "string" }
+            },
+            "required": ["time", "value"]
+          },
+          "minItems": 1
+        },
+        "style": {
+          "type": "object",
+          "properties": {
+            "backgroundColor": { "type": "string" },
+            "palette": { "type": "array", "items": { "type": "string" } },
+            "texture": { "type": "string", "enum": ["default", "rough"] },
+            "lineWidth": { "type": "number", "description": "Line thickness" },
+            "startAtZero": { "type": "boolean" }
+          }
+        },
+        "theme": { "type": "string", "enum": ["default", "academy", "dark"], "default": "default" },
+        "width": { "type": "number", "default": 600 },
+        "height": { "type": "number", "default": 400 },
+        "title": { "type": "string", "default": "" },
+        "axisXTitle": { "type": "string", "default": "" },
+        "axisYTitle": { "type": "string", "default": "" }
+      },
+      "required": ["data"]
+    }
+  },
+  {
+    "name": "generate_pie_chart",
+    "description": "Generate a pie chart to show the proportion of parts, such as, market share and budget allocation.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "category": { "type": "string" },
+              "value": { "type": "number" }
+            },
+            "required": ["category", "value"]
+          },
+          "description": "Data for pie chart with category and value fields.",
+          "minItems": 1
+        },
+        "innerRadius": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Inner radius as fraction of outer radius. Set to ~0.6 for donut chart.",
+          "default": 0
+        },
+        "style": {
+          "type": "object",
+          "properties": {
+            "backgroundColor": { "type": "string" },
+            "palette": { "type": "array", "items": { "type": "string" } },
+            "texture": { "type": "string", "enum": ["default", "rough"] }
+          }
+        },
+        "theme": { "type": "string", "enum": ["default", "academy", "dark"], "default": "default" },
+        "width": { "type": "number", "default": 600 },
+        "height": { "type": "number", "default": 400 },
+        "title": { "type": "string", "default": "" }
+      },
+      "required": ["data"]
+    }
+  },
+  {
+    "name": "generate_scatter_chart",
+    "description": "Generate a scatter chart to show the relationship between two variables, helps discover their relationship or trends, such as, the strength of correlation, data distribution patterns.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "x": { "type": "number" },
+              "y": { "type": "number" },
+              "group": { "type": "string" }
+            },
+            "required": ["x", "y"]
+          },
+          "minItems": 1
+        },
+        "style": {
+          "type": "object",
+          "properties": {
+            "backgroundColor": { "type": "string" },
+            "palette": { "type": "array", "items": { "type": "string" } },
+            "texture": { "type": "string", "enum": ["default", "rough"] }
+          }
+        },
+        "theme": { "type": "string", "enum": ["default", "academy", "dark"], "default": "default" },
+        "width": { "type": "number", "default": 600 },
+        "height": { "type": "number", "default": 400 },
+        "title": { "type": "string", "default": "" },
+        "axisXTitle": { "type": "string", "default": "" },
+        "axisYTitle": { "type": "string", "default": "" }
+      },
+      "required": ["data"]
+    }
+  },
+  {
+    "name": "generate_radar_chart",
+    "description": "Generate a radar chart to display multidimensional data (four dimensions or more), such as, evaluate Huawei and Apple phones in terms of five dimensions: ease of use, functionality, camera, benchmark scores, and battery life.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "value": { "type": "number" },
+              "group": { "type": "string" }
+            },
+            "required": ["name", "value"]
+          },
+          "minItems": 1
+        },
+        "style": {
+          "type": "object",
+          "properties": {
+            "backgroundColor": { "type": "string" },
+            "palette": { "type": "array", "items": { "type": "string" } },
+            "texture": { "type": "string", "enum": ["default", "rough"] },
+            "lineWidth": { "type": "number" }
+          }
+        },
+        "theme": { "type": "string", "enum": ["default", "academy", "dark"], "default": "default" },
+        "width": { "type": "number", "default": 600 },
+        "height": { "type": "number", "default": 400 },
+        "title": { "type": "string", "default": "" }
+      },
+      "required": ["data"]
+    }
+  },
+  {
+    "name": "generate_boxplot_chart",
+    "description": "Generate a boxplot chart to show data for statistical summaries among different categories, such as, comparing the distribution of data points across categories.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "category": { "type": "string" },
+              "value": { "type": "number" },
+              "group": { "type": "string" }
+            },
+            "required": ["category", "value"]
+          },
+          "minItems": 1
+        },
+        "style": {
+          "type": "object",
+          "properties": {
+            "backgroundColor": { "type": "string" },
+            "palette": { "type": "array", "items": { "type": "string" } },
+            "startAtZero": { "type": "boolean" },
+            "texture": { "type": "string", "enum": ["default", "rough"] }
+          }
+        },
+        "theme": { "type": "string", "enum": ["default", "academy", "dark"], "default": "default" },
+        "width": { "type": "number", "default": 600 },
+        "height": { "type": "number", "default": 400 },
+        "title": { "type": "string", "default": "" },
+        "axisXTitle": { "type": "string", "default": "" },
+        "axisYTitle": { "type": "string", "default": "" }
+      },
+      "required": ["data"]
+    }
+  },
+  {
+    "name": "generate_histogram_chart",
+    "description": "Generate a histogram chart to show the frequency of data points within a certain range. It can observe data distribution, such as, normal and skewed distributions, and identify data concentration areas and extreme points.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": { "type": "number" },
+          "description": "Array of numbers representing histogram values.",
+          "minItems": 1
+        },
+        "binNumber": {
+          "type": "number",
+          "description": "Number of intervals (bins) for the histogram"
+        },
+        "style": {
+          "type": "object",
+          "properties": {
+            "backgroundColor": { "type": "string" },
+            "palette": { "type": "array", "items": { "type": "string" } },
+            "texture": { "type": "string", "enum": ["default", "rough"] }
+          }
+        },
+        "theme": { "type": "string", "enum": ["default", "academy", "dark"], "default": "default" },
+        "width": { "type": "number", "default": 600 },
+        "height": { "type": "number", "default": 400 },
+        "title": { "type": "string", "default": "" },
+        "axisXTitle": { "type": "string", "default": "" },
+        "axisYTitle": { "type": "string", "default": "" }
+      },
+      "required": ["data"]
+    }
+  },
+  {
+    "name": "generate_violin_chart",
+    "description": "Generate a violin chart to show data for statistical summaries among different categories, such as, comparing the distribution of data points across categories.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "category": { "type": "string" },
+              "value": { "type": "number" },
+              "group": { "type": "string" }
+            },
+            "required": ["category", "value"]
+          },
+          "minItems": 1
+        },
+        "style": {
+          "type": "object",
+          "properties": {
+            "backgroundColor": { "type": "string" },
+            "palette": { "type": "array", "items": { "type": "string" } },
+            "startAtZero": { "type": "boolean" },
+            "texture": { "type": "string", "enum": ["default", "rough"] }
+          }
+        },
+        "theme": { "type": "string", "enum": ["default", "academy", "dark"], "default": "default" },
+        "width": { "type": "number", "default": 600 },
+        "height": { "type": "number", "default": 400 },
+        "title": { "type": "string", "default": "" },
+        "axisXTitle": { "type": "string", "default": "" },
+        "axisYTitle": { "type": "string", "default": "" }
+      },
+      "required": ["data"]
+    }
+  },
+  {
+    "name": "generate_waterfall_chart",
+    "description": "Generate a waterfall chart to visualize cumulative effects of sequential positive or negative values, useful for financial analysis, budget tracking, profit and loss statements, and understanding the composition of changes.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "category": { "type": "string" },
+              "value": { "type": "number" },
+              "isIntermediateTotal": { "type": "boolean" },
+              "isTotal": { "type": "boolean" }
+            },
+            "required": ["category"]
+          },
+          "minItems": 1
+        },
+        "style": {
+          "type": "object",
+          "properties": {
+            "backgroundColor": { "type": "string" },
+            "texture": { "type": "string", "enum": ["default", "rough"] },
+            "palette": {
+              "type": "object",
+              "properties": {
+                "positiveColor": { "type": "string", "default": "#FF4D4F" },
+                "negativeColor": { "type": "string", "default": "#2EBB59" },
+                "totalColor": { "type": "string", "default": "#1783FF" }
+              }
+            }
+          }
+        },
+        "theme": { "type": "string", "enum": ["default", "academy", "dark"], "default": "default" },
+        "width": { "type": "number", "default": 600 },
+        "height": { "type": "number", "default": 400 },
+        "title": { "type": "string", "default": "" },
+        "axisXTitle": { "type": "string", "default": "" },
+        "axisYTitle": { "type": "string", "default": "" }
+      },
+      "required": ["data"]
+    }
+  },
+  {
+    "name": "generate_funnel_chart",
+    "description": "Generate a funnel chart to visualize the progressive reduction of data as it passes through stages, such as, the conversion rates of users from visiting a website to completing a purchase.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "category": { "type": "string" },
+              "value": { "type": "number" }
+            },
+            "required": ["category", "value"]
+          },
+          "minItems": 1
+        },
+        "style": {
+          "type": "object",
+          "properties": {
+            "backgroundColor": { "type": "string" },
+            "palette": { "type": "array", "items": { "type": "string" } },
+            "texture": { "type": "string", "enum": ["default", "rough"] }
+          }
+        },
+        "theme": { "type": "string", "enum": ["default", "academy", "dark"], "default": "default" },
+        "width": { "type": "number", "default": 600 },
+        "height": { "type": "number", "default": 400 },
+        "title": { "type": "string", "default": "" }
+      },
+      "required": ["data"]
+    }
+  },
+  {
+    "name": "generate_treemap_chart",
+    "description": "Generate a treemap chart to display hierarchical data and can intuitively show comparisons between items at the same level, such as, show disk space usage with treemap.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "value": { "type": "number" },
+              "children": { "type": "array" }
+            },
+            "required": ["name", "value"]
+          },
+          "description": "Hierarchical tree node objects with maximum depth of 3 levels.",
+          "minItems": 1
+        },
+        "style": {
+          "type": "object",
+          "properties": {
+            "backgroundColor": { "type": "string" },
+            "palette": { "type": "array", "items": { "type": "string" } },
+            "texture": { "type": "string", "enum": ["default", "rough"] }
+          }
+        },
+        "theme": { "type": "string", "enum": ["default", "academy", "dark"], "default": "default" },
+        "width": { "type": "number", "default": 600 },
+        "height": { "type": "number", "default": 400 },
+        "title": { "type": "string", "default": "" }
+      },
+      "required": ["data"]
+    }
+  },
+  {
+    "name": "generate_sankey_chart",
+    "description": "Generate a sankey chart to visualize the flow of data between different stages or categories, such as, the user journey from landing on a page to completing a purchase.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "source": { "type": "string" },
+              "target": { "type": "string" },
+              "value": { "type": "number" }
+            },
+            "required": ["source", "target", "value"]
+          },
+          "minItems": 1
+        },
+        "nodeAlign": {
+          "type": "string",
+          "enum": ["left", "right", "justify", "center"],
+          "description": "Controls how nodes position themselves within the chart",
+          "default": "center"
+        },
+        "style": {
+          "type": "object",
+          "properties": {
+            "backgroundColor": { "type": "string" },
+            "palette": { "type": "array", "items": { "type": "string" } },
+            "texture": { "type": "string", "enum": ["default", "rough"] }
+          }
+        },
+        "theme": { "type": "string", "enum": ["default", "academy", "dark"], "default": "default" },
+        "width": { "type": "number", "default": 600 },
+        "height": { "type": "number", "default": 400 },
+        "title": { "type": "string", "default": "" }
+      },
+      "required": ["data"]
+    }
+  },
+  {
+    "name": "generate_venn_chart",
+    "description": "Generate a Venn diagram to visualize the relationships between different sets, showing how they intersect and overlap, such as the commonalities and differences between various groups.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "sets": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "Array of set names this segment belongs to"
+              },
+              "value": { "type": "number" },
+              "label": { "type": "string" }
+            },
+            "required": ["sets", "value"]
+          },
+          "minItems": 1
+        },
+        "style": {
+          "type": "object",
+          "properties": {
+            "backgroundColor": { "type": "string" },
+            "palette": { "type": "array", "items": { "type": "string" } },
+            "texture": { "type": "string", "enum": ["default", "rough"] }
+          }
+        },
+        "theme": { "type": "string", "enum": ["default", "academy", "dark"], "default": "default" },
+        "width": { "type": "number", "default": 600 },
+        "height": { "type": "number", "default": 400 },
+        "title": { "type": "string", "default": "" }
+      },
+      "required": ["data"]
+    }
+  },
+  {
+    "name": "generate_liquid_chart",
+    "description": "Generate a liquid chart to visualize a single value as a percentage, such as, the current occupancy rate of a reservoir or the completion percentage of a project.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "percent": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "A decimal value between 0 and 1 representing the percentage to display (e.g., 0.75 = 75%)"
+        },
+        "shape": {
+          "type": "string",
+          "enum": ["circle", "rect", "pin", "triangle"],
+          "description": "Chart shape",
+          "default": "circle"
+        },
+        "style": {
+          "type": "object",
+          "properties": {
+            "backgroundColor": { "type": "string" },
+            "texture": { "type": "string", "enum": ["default", "rough"] },
+            "color": { "type": "string", "description": "Custom liquid color" }
+          }
+        },
+        "theme": { "type": "string", "enum": ["default", "academy", "dark"], "default": "default" },
+        "width": { "type": "number", "default": 600 },
+        "height": { "type": "number", "default": 400 },
+        "title": { "type": "string", "default": "" }
+      },
+      "required": ["percent"]
+    }
+  },
+  {
+    "name": "generate_word_cloud_chart",
+    "description": "Generate a word cloud chart to show word frequency or weight through text size variation, such as, analyzing common words in social media, reviews, or feedback.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": { "type": "string" },
+              "value": { "type": "number" }
+            },
+            "required": ["text", "value"]
+          },
+          "description": "Array of objects with text and value fields, e.g., [{ value: 4.272, text: '形成' }]",
+          "minItems": 1
+        },
+        "style": {
+          "type": "object",
+          "properties": {
+            "backgroundColor": { "type": "string" },
+            "palette": { "type": "array", "items": { "type": "string" } },
+            "texture": { "type": "string", "enum": ["default", "rough"] }
+          }
+        },
+        "theme": { "type": "string", "enum": ["default", "academy", "dark"], "default": "default" },
+        "width": { "type": "number", "default": 600 },
+        "height": { "type": "number", "default": 400 },
+        "title": { "type": "string", "default": "" }
+      },
+      "required": ["data"]
+    }
+  },
+  {
+    "name": "generate_dual_axes_chart",
+    "description": "Generate a dual axes chart combining two visualization types (typically bar and line) to display both data trends and comparisons, exemplified by tracking sales performance and profit margins over time.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "categories": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Array of strings representing chart categories (e.g., year labels)",
+          "minItems": 1
+        },
+        "series": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string", "enum": ["column", "line"] },
+              "data": {
+                "type": "array",
+                "items": { "type": "number" },
+                "description": "Numeric array (quantities for columns; ratios under 1 for lines)"
+              },
+              "axisYTitle": { "type": "string" }
+            },
+            "required": ["type", "data"]
+          },
+          "description": "Array of data series"
+        },
+        "style": {
+          "type": "object",
+          "properties": {
+            "backgroundColor": { "type": "string" },
+            "palette": { "type": "array", "items": { "type": "string" } },
+            "startAtZero": { "type": "boolean" },
+            "texture": { "type": "string", "enum": ["default", "rough"] }
+          }
+        },
+        "theme": { "type": "string", "enum": ["default", "academy", "dark"], "default": "default" },
+        "width": { "type": "number", "default": 600 },
+        "height": { "type": "number", "default": 400 },
+        "title": { "type": "string", "default": "" },
+        "axisXTitle": { "type": "string", "default": "" }
+      },
+      "required": ["categories", "series"]
+    }
+  },
+  {
+    "name": "generate_mind_map",
+    "description": "Generate a mind map chart to organizes and presents information in a hierarchical structure with branches radiating from a central topic, such as, a diagram showing the relationship between a main topic and its subtopics.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "description": "Hierarchical node structure with maximum depth of 3 levels. Node names must be unique.",
+          "properties": {
+            "name": { "type": "string" },
+            "children": { "type": "array" }
+          },
+          "required": ["name"]
+        },
+        "style": {
+          "type": "object",
+          "properties": {
+            "texture": { "type": "string", "enum": ["default", "rough"] }
+          }
+        },
+        "theme": { "type": "string", "enum": ["default", "academy", "dark"], "default": "default" },
+        "width": { "type": "number", "default": 600 },
+        "height": { "type": "number", "default": 400 }
+      },
+      "required": ["data"]
+    }
+  },
+  {
+    "name": "generate_network_graph",
+    "description": "Generate a network graph chart to show relationships (edges) between entities (nodes), such as, relationships between people in social networks.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "nodes": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" }
+                },
+                "required": ["name"]
+              },
+              "minItems": 1
+            },
+            "edges": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "source": { "type": "string" },
+                  "target": { "type": "string" },
+                  "name": { "type": "string" }
+                },
+                "required": ["source", "target"]
+              }
+            }
+          },
+          "required": ["nodes", "edges"]
+        },
+        "style": {
+          "type": "object",
+          "properties": {
+            "texture": { "type": "string", "enum": ["default", "rough"] }
+          }
+        },
+        "theme": { "type": "string", "enum": ["default", "academy", "dark"], "default": "default" },
+        "width": { "type": "number", "default": 600 },
+        "height": { "type": "number", "default": 400 }
+      },
+      "required": ["data"]
+    }
+  },
+  {
+    "name": "generate_flow_diagram",
+    "description": "Generate a flow diagram chart to show the steps and decision points of a process or system, such as, scenarios requiring linear process presentation.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "nodes": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" }
+                },
+                "required": ["name"]
+              },
+              "minItems": 1
+            },
+            "edges": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "source": { "type": "string" },
+                  "target": { "type": "string" },
+                  "name": { "type": "string" }
+                },
+                "required": ["source", "target"]
+              }
+            }
+          },
+          "required": ["nodes", "edges"]
+        },
+        "style": {
+          "type": "object",
+          "properties": {
+            "texture": { "type": "string", "enum": ["default", "rough"] }
+          }
+        },
+        "theme": { "type": "string", "enum": ["default", "academy", "dark"], "default": "default" },
+        "width": { "type": "number", "default": 600 },
+        "height": { "type": "number", "default": 400 }
+      },
+      "required": ["data"]
+    }
+  },
+  {
+    "name": "generate_organization_chart",
+    "description": "Generate an organization chart to visualize the hierarchical structure of an organization, such as, a diagram showing the relationship between a CEO and their direct reports.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "description": "Hierarchical structure with up to 3 levels of depth",
+          "properties": {
+            "name": { "type": "string" },
+            "description": { "type": "string" },
+            "children": { "type": "array" }
+          },
+          "required": ["name"]
+        },
+        "orient": {
+          "type": "string",
+          "enum": ["horizontal", "vertical"],
+          "description": "Chart orientation. Use horizontal when levels exceed 3.",
+          "default": "vertical"
+        },
+        "style": {
+          "type": "object",
+          "properties": {
+            "texture": { "type": "string", "enum": ["default", "rough"] }
+          }
+        },
+        "theme": { "type": "string", "enum": ["default", "academy", "dark"], "default": "default" },
+        "width": { "type": "number", "default": 600 },
+        "height": { "type": "number", "default": 400 }
+      },
+      "required": ["data"]
+    }
+  },
+  {
+    "name": "generate_fishbone_diagram",
+    "description": "Generate a fishbone diagram (Ishikawa/cause-and-effect diagram) that uses a fish skeleton-like structure to display the causes or effects of a core problem, with the problem as the fish head and the causes/effects as the fish bones.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "description": "Hierarchical tree structure with maximum depth of 3 levels. All node names must be unique.",
+          "properties": {
+            "name": { "type": "string" },
+            "children": { "type": "array" }
+          },
+          "required": ["name"]
+        },
+        "style": {
+          "type": "object",
+          "properties": {
+            "texture": { "type": "string", "enum": ["default", "rough"] }
+          }
+        },
+        "theme": { "type": "string", "enum": ["default", "academy", "dark"], "default": "default" },
+        "width": { "type": "number", "default": 600 },
+        "height": { "type": "number", "default": 400 }
+      },
+      "required": ["data"]
+    }
+  },
+  {
+    "name": "generate_district_map",
+    "description": "Generate a district map to display regional distribution across Chinese administrative divisions, such as, provincial GDP distributions or administrative region compositions. Not for showing specific location points.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Map title"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string", "description": "District/region name (must be a Chinese administrative region)" },
+              "style": { "type": "object", "description": "Fill color styling (RGB/RGBA format)" },
+              "colors": { "type": "array", "items": { "type": "string" }, "description": "Color palette array" },
+              "dataType": { "type": "string", "enum": ["number", "enum"] },
+              "dataLabel": { "type": "string", "description": "Label describing the data (e.g., 'GDP')" },
+              "dataValue": { "description": "Numeric or enumeration string value" },
+              "dataValueUnit": { "type": "string", "description": "Unit of measurement (e.g., '万亿')" },
+              "showAllSubdistricts": { "type": "boolean" },
+              "subdistricts": { "type": "array" }
+            },
+            "required": ["name"]
+          }
+        },
+        "width": { "type": "number", "default": 600 },
+        "height": { "type": "number", "default": 400 }
+      },
+      "required": ["data"]
+    }
+  },
+  {
+    "name": "generate_pin_map",
+    "description": "Generate a point map to display the location and distribution of point data on the map, such as the location distribution of attractions, hospitals, supermarkets, etc.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Map title"
+        },
+        "data": {
+          "type": "array",
+          "description": "Points of interest data",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "longitude": { "type": "number" },
+              "latitude": { "type": "number" }
+            },
+            "required": ["name", "longitude", "latitude"]
+          }
+        },
+        "markerPopup": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "default": "image" },
+            "width": { "type": "number", "default": 40 },
+            "height": { "type": "number", "default": 40 },
+            "borderRadius": { "type": "number", "default": 8 }
+          }
+        },
+        "width": { "type": "number", "default": 600 },
+        "height": { "type": "number", "default": 400 }
+      },
+      "required": ["data"]
+    }
+  },
+  {
+    "name": "generate_path_map",
+    "description": "Generate a route map to display the user's planned route, such as travel guide routes.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Map title"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "description": "POIs along this route",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": { "type": "string" },
+                    "longitude": { "type": "number" },
+                    "latitude": { "type": "number" }
+                  }
+                }
+              }
+            },
+            "required": ["data"]
+          },
+          "minItems": 1,
+          "description": "Array of route objects, each containing a list of POIs"
+        },
+        "width": { "type": "number", "default": 600 },
+        "height": { "type": "number", "default": 400 }
+      },
+      "required": ["data"]
+    }
+  },
+  {
+    "name": "generate_spreadsheet",
+    "description": "Generate a spreadsheet or pivot table for displaying tabular data. When 'rows' or 'values' fields are provided, it renders as a pivot table; otherwise, it renders as a regular table.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "description": "Row object where keys are column names and values are strings, numbers, or null"
+          },
+          "minItems": 1
+        },
+        "rows": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Row header fields for pivot table functionality"
+        },
+        "columns": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Column order in regular tables or column grouping in pivot tables"
+        },
+        "values": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Value fields for pivot table aggregation"
+        },
+        "theme": {
+          "type": "string",
+          "enum": ["default", "dark"],
+          "description": "Visual theme",
+          "default": "default"
+        },
+        "width": { "type": "number", "default": 600 },
+        "height": { "type": "number", "default": 400 }
+      },
+      "required": ["data"]
+    }
+  }
+]
