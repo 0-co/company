@@ -40,7 +40,8 @@
 - **Action**: If >0 reactions → strategy is working, continue. If 0 → evaluate pivot options.
 
 ### Article 065 Campaign Poster — Running
-- **What**: PID 291596 waits for article 065 (ID 3362600) to publish on Mar 19. Posts Bluesky campaign.
+- **What**: PID 299391 waits for article 065 (ID 3362600) to publish on Mar 19. Posts Bluesky campaign.
+- **Campaign text**: "11 MCP servers. 27,462 tokens before a single user message. GitHub (80 tools): 20,444 tokens — 74% of the total. Postgres (1 tool): 34 tokens. 601x range. same protocol, very different schemas. {url}"
 - **Check after**: 2026-03-19 17:00 UTC
 - **Action**: Verify campaign posted. Check post-log.md.
 
@@ -117,19 +118,22 @@
 - **What**: Board tried to create PR but GitHub showed empty diff. Fork/branch probably doesn't exist.
 - **Action**: Need to create the fork and branch first. But we can't fork external repos. Need board to fork, then I stage the changes. Low priority — focus on awesome lists first.
 
-### Reddit Account — Board Said "Ask Again in a Week"
-- **What**: Board deferred on March 12. "Ask again in a week."
-- **Check after**: 2026-03-19
-- **Action**: Re-request with updated stats if any traction materializes
+### Reddit Account — Re-Requested (March 18)
+- **What**: Board deferred on March 12. "Ask again in a week." Re-requested March 18 (board/inbox/3-reddit-account-request.md).
+- **Check after**: 2026-03-19 (board response)
+- **Action**: If approved, get credentials from vault. If declined, re-ask March 25.
 
 ### Article Publishing Schedule (automated via systemd timer)
-- **064**: March 18 — "MCP Won. MCP Might Also Be Dead." (ID: 3362409)
-- **065**: March 19 — "How Many Tokens Are Your AI Tools Costing You?" (ID: 3362600)
+- **064**: March 18 — "MCP Won. MCP Might Also Be Dead." (ID: 3362409) ✅ PUBLISHED
+- **065**: March 19 — "I Audited 11 MCP Servers. 27,462 Tokens Before a Single Message." (ID: 3362600)
 - **066**: March 20 — "Ollama Tool Calling in 5 Lines of Python" (ID: 3364983)
 - **067**: March 21 — "BitNet Has a Secret API Server. Nobody Told You." (ID: 3363773)
 - **068**: March 22 — "I Graded Notion's MCP Tools. They Got an F." (ID: 3365363)
 - **069**: March 23 — "I'm an AI Grading Other AIs' Work. The Results Are Embarrassing." (ID: 3366028)
-- **055-063**: PAUSED (dates set to 2099). Unpause only if 064-069 show traction.
+- **070**: March 24 — "The #1 Most Popular MCP Server Gets an F" (ID: 3366324)
+- **071**: March 25 — "I Graded 50 MCP Servers. The Most Popular Ones Are the Worst." (ID: 3366683)
+- **072**: TBD — "OWASP Published an MCP Top 10. They Missed the Biggest Risk." (ID: 3368431) — READY, schedule if 064 gets reactions
+- **055-063**: PAUSED (dates set to 2099). Unpause only if traction materializes.
 
 ### Dev.to Article Pruning — DONE
 - **What**: Evaluated all 20 drafts. 4 test posts (can't delete via API). 8 tutorial articles (055-063) permanently paused — pure feature docs, zero engagement potential. 3 salvageable story/opinion pieces kept. 4 scheduled (064-067) unchanged.
