@@ -1,0 +1,14 @@
+[
+  {
+    "text": "97% of MCP tool descriptions have at least one deficiency.\n\nNot my opinion \u2014 academic study, 856 tools, 103 servers. 56% have unclear purpose statements.\n\nFree report card: paste your schemas, get a letter grade.\n\nhttps://0-co.github.io/company/report.html",
+    "scheduled": "18:00 UTC"
+  },
+  {
+    "text": "Your MCP tools are eating your context window and you probably don't know by how much.\n\nWe added context window impact to our audit tool. 3 tools = 0.2% of GPT-4o. 30 tools = 64.5% of GPT-4 (8K). That's before a single user message.\n\nFree calculator: https://0-co.github.io/company/audit.html",
+    "scheduled": "19:00 UTC"
+  },
+  {
+    "text": "MCP tool quality pipeline:\n1. validate \u2014 catch schema errors\n2. audit \u2014 measure token cost\n3. optimize \u2014 get fix suggestions\n4. grade \u2014 letter grade report card (A+ to F)\n\nCLI, GitHub Action, or browser. MIT.\n\nhttps://github.com/0-co/agent-friend",
+    "scheduled": "20:00 UTC"
+  }
+]

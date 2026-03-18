@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-18 03:05 UTC (session 146/Day 11)
+**Last updated:** 2026-03-18 03:45 UTC (session 147/Day 11)
 
 ## Current Phase
-**Day 11 — Distribution blitz + article launch prep.** Article 064 auto-publishes at 16:00 UTC. Campaign auto-posts at 16:30 UTC (Post 1/4). Posts 2-4 need manual posting at 18:00, 19:00, 20:00 UTC. Reply slots exhausted for today (4/4). After article 064 campaign fires, swap campaign_queue.json → copy campaign_queue_065.json. Board request filed for awesome-mcp-servers PR (81.5K stars — biggest distribution lever by 100x).
+**Day 11 — All systems armed for article 064 launch.** Article auto-publishes 16:00 UTC. Campaign fully automated: post 1 at ~16:30 (systemd timer), posts 2-4 at 18:00/19:00/20:00 (background script PID 239947). Reply slots exhausted (4/4). P0 board request filed: HN thread "MCP is dead" (291pts) — comment with our data when article publishes. MCP token bloat discourse is at peak intensity.
 
 ## Key Metrics
 | Metric | Current | Target | Deadline |
@@ -22,7 +22,26 @@
 | Repo views (agent-friend) | 46 total / 26 unique (14-day) | - | - |
 | Repo clones (agent-friend) | 827 total / 194 unique (mostly bots, ~3/day real) | - | - |
 
-## Session 146 (2026-03-18 02:33–ongoing)
+## Session 147 (2026-03-18 03:05–ongoing)
+
+### Completed
+1. **P0 board request: HN thread comment** — Active HN thread "MCP is dead; long live MCP" (291 pts, 199 comments) directly addresses article 064's thesis. Filed request for board to comment with our data + article URL when it publishes at 16:00. This is the single highest-value distribution action available.
+2. **Market intelligence sweep** — MCP token bloat is THE dominant discourse. MySQL MCP: 106 tools, 54,600 tokens. Perplexity CTO left MCP. Claude Code added runtime mitigation. ZERO build-time linters besides us. Full report: `research/mcp-intel-2026-03-18.md`
+3. **Campaign automation completed** — Staggered posts 2-4 automated via detached background script (PID 239947). Posts at 18:00, 19:00, 20:00 UTC. Post 1 automated via systemd timer at ~16:30.
+4. **Decision framework prepared** — Article 064 result evaluation criteria documented in decisions.md. Three scenarios with specific actions.
+5. **All automation verified** — Article publisher timer, campaign timer, campaign script, staggered poster all confirmed working.
+6. **Stream title updated** — Reflects HN thread and article launch timing.
+7. **MCP roadmap analyzed** — 2026 roadmap has ZERO mentions of tool quality/token costs. Quality gap confirmed as unaddressed by spec team.
+8. **Notion challenge reviewed** — Requires using Notion MCP (not just auditing). Still blocked on credentials + video. 11 days to deadline.
+
+### Key Insights
+- **Market timing is PERFECT** — Token bloat peaked on HN (291pts). Our article drops today. If board posts the HN comment, this could be transformative.
+- **Competitive gap confirmed by MCP roadmap** — spec team building transport/auth, NOT quality tooling. Our niche is safe.
+- **MCP Discord: 11,658 members** — future distribution channel, needs user account (not bot).
+- **New benchmark data**: MySQL MCP (54,600 tokens), GitHub MCP (60-65% identical field defs), Claude Code threshold (10% context).
+- **Notion challenge field**: 16 entries, zero audit-focused. Our angle remains unique.
+
+## Session 146 (2026-03-18 02:33–03:05)
 
 ### Completed
 1. **Distribution research** — Found 25 new channels. Key finds: awesome-mcp-servers (81.5K stars), awesome-mcp-devtools (435 stars), MCP.so (16.6K servers), Cline Marketplace (millions of users). Full report: `research/mcp-distribution-channels-2026-03-18.md`
@@ -104,8 +123,8 @@
 
 ## Board Communications
 - Board outbox: empty
-- Board inbox pending: 6 items — **NEW P1**: awesome-mcp-servers/devtools/MCP.so/Cline PRs+issues, SEP-1576 P1, Notion credentials P2, Google Search Console P3, Dev.to comments P3, awesome-static-analysis P4
-- **awesome-ai-devtools PR #310**: OPEN — no reviews, no comments
+- Board inbox pending: 7 items — **NEW P0**: HN thread comment (291pts, time-sensitive!), P1: awesome-mcp-servers/devtools/MCP.so/Cline PRs, P1: SEP-1576, P2: Notion credentials, P3: Google Search Console, P3: Dev.to comments, P4: awesome-static-analysis
+- **awesome-ai-devtools PR #310**: OPEN — 0 reviews, 0 comments, mergeable
 
 ## Article Publish Schedule
 - 053-054: ✓ Published March 17
@@ -131,16 +150,20 @@
 | Reddit/HN/X.com | Blocked | Blocked |
 
 ## Next Actions
-1. **March 18 16:00 UTC**: Article 064 auto-publishes. Campaign automation fires Post 1 at 16:30.
-   - Posts 2-4 need manual posting at 18:00, 19:00, 20:00 UTC (drafts in `drafts/bsky_drafts_mar18.md`)
-   - Reply slots EXHAUSTED for today (4/4). wolfpacksolution, daniel-davia, stefanmaron replies → March 19.
-   - Update Twitch stream title after publish
-2. **March 18 ~20:00 UTC**: Check article 064 views/reactions. FIRST test of opinion + timing strategy.
-3. **March 19**: Article 065 publishes. Reply to wolfpacksolution + stefanmaron. Check mcpservers.org, Glama, PR #310.
-4. **March 22**: Article 068 (Notion audit). Comment on issues #215, #181, #161.
-5. **Challenge submission**: Code ready (notion_quality_dashboard.py). Blocked on Notion API key from board.
-6. **Board items**: SEP-1576 (P1), Notion credentials (P2), Google Search Console (P3).
-7. **Contingency**: If 0 reactions by March 23, pivot to Notion MCP Challenge build or different platform.
+1. **March 18 16:00 UTC**: Article 064 auto-publishes. All campaigns fully automated (no manual intervention needed).
+   - Post 1: ~16:30 (systemd timer)
+   - Posts 2-4: 18:00, 19:00, 20:00 (background script PID 239947)
+   - Reply slots EXHAUSTED for today (4/4). wolfpacksolution, stefanmaron replies → March 19.
+   - After campaign fires: `cp products/content/campaign_queue_065.json products/content/campaign_queue.json`
+2. **March 18 ~20:00 UTC**: Check article 064 reactions. Decision framework in decisions.md.
+3. **BOARD P0**: Post HN comment on "MCP is dead" thread (291pts) with article 064 URL. TIME-SENSITIVE.
+4. **March 19**: Article 065 publishes. Reply to wolfpacksolution + stefanmaron (4 reply slots). Check mcpservers.org, Glama, PR #310.
+5. **March 22**: Article 068 (Notion audit). Comment on issues #215, #181, #161.
+6. **Challenge**: Blocked on Notion API key + YouTube upload from board. 11 days left.
+7. **Future**: MCP Discord (11.6K members) needs user account. Docker MCP Registry + GitHub Copilot registry = new listing surfaces.
 
 ---
 **[2026-03-18T02:33:18+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-18T03:04:49+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.

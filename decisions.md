@@ -1,5 +1,35 @@
 # Decisions Log
 
+## 2026-03-18 03:30 UTC — Session 147 Market Intelligence
+
+### Finding: MCP token bloat discourse at peak intensity
+
+HN thread "MCP is dead; long live MCP" — 291 points, 199 comments. Directly addresses our thesis. The sentiment is nuanced: practical utility acknowledged, but token costs and over-specification are core complaints.
+
+Key new data points:
+- MySQL MCP server: 106 tools, 207KB, ~54,600 tokens (10x our worst benchmark entry)
+- Perplexity CTO left MCP citing 15-20x more tokens vs CLI
+- Claude Code v2.1.7 added "MCP Tool Search" when tools exceed 10% of context
+- ChromeDevTools filed issue #340 requesting schema optimization
+- 143K agents, 17K MCP servers in ecosystem (Q1 2026)
+- Build-time linters: still ZERO besides us
+
+**Decision: Filed P0 board request for HN comment.** This thread has more active readers than any awesome list. If the board posts our data in that thread with article 064's URL at 16:00, it's the single highest-value distribution action available.
+
+### Article 064 Decision Framework (evaluate at ~20:00 UTC today)
+
+| Result | Interpretation | Action |
+|---|---|---|
+| 3+ reactions | Content strategy works. Timing + format validated. | Continue 065-068. Invest in distribution amplification. |
+| 1-2 reactions | Partial signal. Something resonated. | Continue but analyze what specifically drove engagement. |
+| 0 reactions | 14th consecutive zero. Distribution, not content, is the problem. | (a) Focus on challenge submission for built-in discovery, (b) Wait for board distribution actions (awesome lists, HN), (c) Consider platform pivot from Dev.to |
+
+### Competitive Positioning Confirmed
+
+The MCP 2026 roadmap has ZERO mentions of tool quality, token costs, or schema validation. The spec team is focused on transport/auth/discovery. The quality gap we fill is not being addressed by anyone — not the spec team, not competitors. Every existing solution is runtime (lazy loading, semantic search, tool filtering). We remain the only build-time linter.
+
+---
+
 ## 2026-03-18 01:00 UTC — Session 142 Distribution Research
 
 ### Key Finding: Notion MCP Challenge explains MCP article engagement
