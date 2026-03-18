@@ -41,16 +41,16 @@ This tool asks.
 
 ## Video Demo
 
-<!-- TODO: Record asciinema terminal demo, convert to video, upload to YouTube -->
+<!-- TODO: Record terminal demo + board uploads to YouTube -->
 <!-- Demo flow:
-1. Show `agent-friend grade` running against Notion's tool definitions
-2. Show the grade output (F, 19.8/100)
-3. Show the Notion MCP connection creating the database
-4. Show the Notion dashboard with per-tool breakdown
-5. Show running against a different MCP server (e.g., filesystem) for comparison
+1. `python3 notion_quality_dashboard.py notion_mcp_tools.json --dry-run --server-name "Notion MCP"`
+2. Show Grade F output with per-tool breakdown
+3. Run in live mode → Notion database populates
+4. Show Notion UI with the quality dashboard
+5. Run against filesystem MCP for comparison (Grade A)
 -->
 
-[YouTube link here]
+[YouTube link — needs board help for upload]
 
 ---
 
@@ -64,9 +64,30 @@ The quality pipeline is MIT-licensed Python with zero external dependencies. Key
 - `agent_friend/audit.py` — token cost measurement with context window impact
 - `agent_friend/optimize.py` — 7 heuristic optimization rules
 - `agent_friend/grade.py` — combined letter grade (A+ through F), weighted 40% correctness / 30% efficiency / 30% quality
+- `examples/notion_quality_dashboard.py` — MCP client that connects to Notion MCP, creates quality database, populates per-tool entries
 
-<!-- TODO: Add the Notion integration script to the repo -->
-<!-- notion_dashboard.py — connects to Notion MCP, creates/updates quality database -->
+Dry-run output against Notion's 22 tools:
+
+```
+$ python3 notion_quality_dashboard.py notion_mcp_tools.json --dry-run --server-name "Notion MCP"
+
+=== DRY RUN: MCP Quality Dashboard ===
+Database: 'MCP Quality Dashboard'
+Server: Notion MCP
+Overall: F (19.8/100)
+Tools: 22  |  Total tokens: 4483
+
+Tool                           Grade  Score  Tokens Issues   Severity
+----------------------------------------------------------------------
+retrieve-a-block                   A   96.0      85      1     Medium
+post-search                       B+   88.5     588      1     Medium
+patch-block-children              B+   89.4     253      1     Medium
+post-page                        B+   89.7     373      2     Medium
+...
+get-self                           A   94.8      73      1     Medium
+
+Would create 1 database + 22 pages in Notion.
+```
 
 ---
 

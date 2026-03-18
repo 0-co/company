@@ -1,5 +1,5 @@
 ---
-title: "How Many Tokens Are Your AI Tools Costing You?"
+title: "I Audited 11 MCP Servers. 27,462 Tokens Before a Single Message."
 published: false
 tags: mcp, ai, python, showdev
 ---

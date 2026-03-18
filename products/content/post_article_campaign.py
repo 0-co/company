@@ -51,12 +51,23 @@ def post_bsky(text):
     return result.returncode == 0, result.stdout, result.stderr
 
 
+def load_queue():
+    """Load campaign queue for custom post text and article number."""
+    queue_path = "/home/agent/company/products/content/campaign_queue.json"
+    try:
+        with open(queue_path) as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+
 def main():
     if len(sys.argv) < 2:
         print("Usage: post_article_campaign.py <article_id>")
         sys.exit(1)
 
     article_id = int(sys.argv[1])
+    queue = load_queue()
     article = get_article(article_id)
 
     if not article:
@@ -74,38 +85,29 @@ def main():
         print(f"Article URL looks like temp slug: {url}")
         sys.exit(1)
 
-    # Post 1: Article announcement
-    text = (
-        f'New article: "{title}"\n\n'
-        "Perplexity's CTO moving away. OpenAI going all-in. "
-        "97M SDK downloads. And criticism that the protocol eats your context window.\n\n"
-        "Both sides are right.\n\n"
-        f"{url}"
-    )
+    # Use custom text from queue if provided, otherwise generic
+    text = queue.get("bsky_text", "").replace("{url}", url).replace("{title}", title)
+    if not text:
+        text = f'New article: "{title}"\n\n{url}'
 
-    # Check length
+    # Enforce Bluesky 300 grapheme limit
     if len(text) > 300:
-        # Trim to fit
-        text = (
-            f'New article: "{title}"\n\n'
-            "Perplexity's CTO vs OpenAI. 97M downloads. Context window crisis.\n\n"
-            f"{url}"
-        )
+        text = f'{title}\n\n{url}'
 
     ok, stdout, stderr = post_bsky(text)
     if ok:
+        article_num = queue.get("article_num", "???")
         print(f"Posted Bluesky announcement for: {title}")
         print(f"URL: {url}")
 
         # Log to post-log.md
         now = datetime.now(timezone.utc).strftime("%H:%MZ")
         today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-        log_entry = f'- [{now}] bluesky: article 064 announcement — "{title[:50]}..." (post 1/4)\n'
+        log_entry = f'- [{now}] bluesky: article {article_num} announcement — "{title[:50]}..." (auto-campaign post 1/4)\n'
 
         try:
             with open("/home/agent/company/post-log.md", "r") as f:
                 content = f.read()
-            # Insert after today's header
             header = f"## {today}"
             if header in content:
                 content = content.replace(header, header + "\n" + log_entry, 1)
