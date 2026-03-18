@@ -1,14 +1,39 @@
 # Company Status
 
-**Last updated:** 2026-03-18 18:20 UTC (session 163/Day 11)
+**Last updated:** 2026-03-18 18:35 UTC (session 164/Day 11)
 
 ## Current Phase
-**Day 11 — Board inbox cleaned (P1 empty). Tags updated: 8 articles (064-071) now have #buildinpublic. 20:00 UTC reaction check: art 064 = 0 reactions at 2h (normal, no verdict yet). All March 19 automation ready.**
+**Day 11 — Board responded: PRs declined, vault-notion LIVE. Notion challenge: database created + 29 entries populated. Article 3368335 draft updated. Waiting 20:00 UTC reaction check for art 064.**
 
 ## 20:00 UTC Reaction Check (PENDING)
 - Run: `vault-devto GET /articles/me/published?per_page=3 | python3 -c "import sys,json; a=json.load(sys.stdin)[0]; print(a['positive_reactions_count'], a['page_views_count'])"`
 - **If reactions > 0**: Add article 072 to `products/content/article_schedule.json` for March 26. Entry: `{"article_num":"072","article_id":3368431,"date":"2026-03-26","title":"OWASP Published an MCP Top 10. They Missed the Biggest Risk.","note":"OWASP gap piece."}`
 - **If reactions = 0**: Continue pipeline (don't panic — tag change needs 24-48h to surface). Note in decisions.md.
+
+## Session 164 Startup Checklist (March 19)
+1. **Check article 064 reactions** — `vault-devto GET /articles/me/published?per_page=10` → look for ID 3362409 reaction count
+2. **If reactions > 0**: Add article 072 (ID 3368431) to `article_schedule.json` for March 26
+3. **Check SEP-1576 thread** — any replies after kira-autonoma's comment?
+4. **Check Glama** — still "not tested"? If re-scanned, note score
+5. **Check article 065 campaign** — fires at 16:05 UTC Mar 19. Check `/tmp/campaign-065.log`
+6. **Post 4 Bluesky replies** (FINAL priority): (1)@daniel-davia [new safe-mcp.com thread — `bsky_reply_mar19_daniel_davia_2.md`], (2)@ai-nerd Colab MCP [timely], (3)@joozio [context drift question — CIDs ready], (4)@aroussi.com warm contact
+7. **Feature freeze ends**: 16:10 UTC March 19 — can resume work
+8. **Notion challenge**: After freeze, build final submission, submit by March 25
+
+---
+
+## Session 164 (2026-03-18 18:12–ongoing)
+
+### Completed
+1. **Board responses processed** — 2 outbox items: (1) PRs declined (all PR inbox items deleted), (2) vault-notion LIVE + no YouTube needed
+2. **Inbox cleaned to 4 items** — deleted PR items, only Google Search Console, GitHub Marketplace, directory submissions, Reddit remain
+3. **vault-notion tested** — Bot "MCP Quality Dashboard" in workspace "0coCeo's Space". REST API access ✓
+4. **Notion challenge: no video required** — Dev.to challenge doesn't mandate YouTube. Screenshots/terminal output sufficient.
+5. **Notion database created**: "MCP Quality Dashboard" page + "MCP Audit Results" database (ID: `327b482b-7dc4-812a-876e-da49e6e07ae4`)
+6. **29 tool entries populated**: 22 Notion MCP tools + 7 Puppeteer tools. Live in Notion workspace.
+7. **Article 3368335 draft updated**: Replaced YouTube TODO with real terminal output, added #notionchallenge tag. Tags: `devchallenge, notionchallenge, mcp, ai`
+8. **Dry-run verified**: `notion_quality_dashboard.py` produces exact output described in article. ✓
+9. **Art 064 early check** (18:12 UTC): 0 reactions, 3 views — not a verdict, tag change needs 24-48h
 
 ## Session 163 Startup Checklist (March 19)
 1. **Check article 064 reactions** — `vault-devto GET /articles/me/published?per_page=10` → look for ID 3362409 reaction count

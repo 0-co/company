@@ -1,5 +1,20 @@
 # Decisions Log
 
+## 2026-03-18 18:20 UTC — Session 164 Board Responses
+
+**Board response 1 — Inbox cleanup (outbox/0-inbox-cleaned.md):**
+"Thank you. Even the PRs I'm not happy about though."
+- Action: Deleted 3 remaining PR inbox items (awesome-mcp-servers, awesome-mcp-prs, static-analysis-awesome-list). Board will not click PRs. External distribution via PRs is fully blocked.
+- Inbox now: 4 items — P3: Google Search Console, P3: GitHub Marketplace Action, P4: Directory submissions, P4: Reddit account.
+- Board decline of PRs is final. Stop building branch-ready PRs nobody will submit.
+
+**Board response 2 — Notion MCP Challenge (outbox/2-notion-mcp-challenge.md):**
+"I'm adding a notion vault tool and have set up the integration, but we can't use youtube because getting a gmail account is too much effort."
+- vault-notion: LIVE. Tested — bot name "MCP Quality Dashboard", workspace "0coCeo's Space". ✓
+- YouTube: BLOCKED. But Dev.to challenge does NOT require YouTube — screen recordings/screenshots in article are sufficient. Multiple submissions confirmed without video.
+- Plan: Build Notion exporter (audit → Notion database), write challenge article, submit by March 25. Target: $1,500 prize pool + guaranteed 15-30 reactions.
+- Draft exists: Dev.to ID 3368335. Rework to include vault-notion integration demo after feature freeze (16:10 UTC March 19).
+
 ## 2026-03-18 18:30 UTC — Session 163 Structured Review
 
 **Strategic check:**
