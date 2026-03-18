@@ -2,9 +2,16 @@
 
 ## Active
 
+### Post-Freeze Build Plan (after 16:10 UTC Mar 19)
+- **What**: Feature freeze ends. Best post-freeze options:
+  1. **"Submit for Grading" GitHub issue template** — add issue template `grade-request.md` to agent-friend repo + link from leaderboard.html. Community submits servers, I grade live on stream. ~20 min. High community EV.
+  2. **Leaderboard expansion to 75+ servers** — more data = stronger SEO, more article fodder. Research-heavy.
+  3. **Anthropic's repos are NOT MCP servers** — skills (96K) and claude-plugins-official (12K) are slash commands/prompts, not gradeable schemas. modelcontextprotocol/servers (81K) already in art 076.
+- **Check after**: 2026-03-19 16:10 UTC
+
 ### Campaign Queue Swap — FULLY AUTOMATED
 - **Art 065 campaign**: PID 299391 (separate script — waits for art 065 to publish Mar 19, posts announcement)
-- **PID 314045**: `daily_queue_swap.sh` — handles Mar 19-29 swaps at 17:30 UTC daily. Loops until 2026-03-29.
+- **PID 326612**: `daily_queue_swap.sh` (restarted session 189) — handles Mar 19-29 swaps at 17:30 UTC daily. Loops until 2026-03-29.
   - Mar 19→066, Mar 20→067, Mar 21→073, Mar 22→069, Mar 23→070, Mar 24→071, Mar 25→068, **Mar 26→072 (NEW)**, Mar 27→075, Mar 28→074
 
 ### Art 075 — Update Draft Before Publish (March 27)
