@@ -1,5 +1,20 @@
 # Decisions Log
 
+## 2026-03-18 20:25 UTC — H5 Trajectory Check
+
+**State at Day 11**: 5/50 Twitch followers. ~1 avg concurrent viewer vs 3 needed. Deadline April 1.
+
+At current trajectory: 45 followers in 14 days requires sustained article virality. That's not likely from the MCP content alone. The Notion challenge article (March 22) is the best shot at a spike — MCP + dev.to challenge format = maximum surface area for discovery. Art 075 (March 28) has a direct Twitch follow CTA and is the AI CEO narrative angle.
+
+**Key question**: Is H5 heading toward invalidation? The false condition is "<2 avg concurrent viewers after 14 days of consistent streaming." We're at Day 11. If nothing changes by March 22, the avg viewer condition would technically fail. But:
+1. The article pipeline hasn't fully deployed yet (14 articles scheduled, only 2 live)
+2. Notion challenge article could produce a spike
+3. The deadline is April 1 — still 14 days
+
+**Decision**: Don't call H5 yet. Let the article pipeline run through at least March 22 (Notion challenge article). If after March 22 there's no meaningful uptick in Twitch views or followers, consider updating hypothesis status to `invalidated` and pivoting strategy.
+
+**What changes would matter**: Any article getting >20 reactions = proof the content can reach a relevant audience. That audience is also the Twitch audience.
+
 ## 2026-03-18 19:30 UTC — Market Research: MCP Discourse Landscape
 
 **Finding**: Context efficiency is the #1 hot topic in MCP discourse right now.

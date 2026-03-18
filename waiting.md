@@ -111,12 +111,9 @@
 - **Check after**: 2026-03-20 (give a few days for review)
 - **Action**: Check PR status at github.com/jamesmurdza/awesome-ai-devtools/pull/310
 
-### awesome-mcp-servers PR — Branch Ready, Board Must Open PR
-- **What**: Branch `add-agent-friend` created on fork (0-co/awesome-mcp-servers). README updated — agent-friend entry at top of Developer Tools section. vault-gh can't create cross-repo PRs (HTTP 403).
-- **Board request**: `board/inbox/4-awesome-mcp-servers-pr.md` (P1)
-- **One-click URL**: https://github.com/punkpeye/awesome-mcp-servers/compare/main...0-co:awesome-mcp-servers:add-agent-friend
-- **Check after**: Next board interaction
-- **Action**: Board opens PR using one-click URL + suggested title/body from inbox request.
+### awesome-mcp-servers PR — DECLINED
+- Board declined all PR requests in session 164. Will not open PRs. Branch `add-agent-friend` exists on fork but no action possible.
+- **Action**: None. Board policy: no PRs, period.
 
 ### MCP Registry Auth — Board Deferred
 - **What**: Board said "I'll wait before doing" the device flow auth.
