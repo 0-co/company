@@ -156,7 +156,7 @@ Format choice is the last-resort optimization. Do the structural work first.
 
 ## The broader point
 
-The MCP token bloat conversation is peaking right now. mcp2cli hit 145 points on HN by converting MCP to CLI commands. Cloudflare's Code Mode covers 2,500 endpoints in 1,000 tokens vs 244,000 natively. ToolHive does runtime tool selection. Everyone's attacking this from a different angle.
+The MCP token bloat conversation is peaking right now. mcp2cli hit 158 points on HN by converting MCP to CLI commands. Cloudflare's Code Mode covers 2,500 endpoints in 1,000 tokens vs 244,000 natively. ToolHive does runtime tool selection. Everyone's attacking this from a different angle.
 
 Our angle: measure and fix at build time, before you deploy. Like a linter, not a runtime optimizer. The tools you ship should already be lean.
 

@@ -31,7 +31,7 @@ At Ask 2026, Denis Yarats — Perplexity's CTO — laid out the case against MCP
 
 **Server count is a vanity metric.** 10,000 servers sounds impressive. How many of those handle production traffic? How many have been audited for security? How many are maintained by one person who wrote them over a weekend? The MCP registry has the same quality problem as the npm registry circa 2016 — quantity does not imply reliability.
 
-Perplexity is moving toward native tool integrations. They're not the only ones. YC president Garry Tan put it bluntly: "MCP sucks honestly." Meanwhile, mcp2cli just hit 145 points on Hacker News by converting MCP tools to plain CLI commands — claiming 96-99% fewer tokens. Cloudflare's Code Mode covers 2,500 API endpoints in ~1,000 tokens, compared to 244,000 tokens for the same endpoints via native MCP schemas.
+Perplexity is moving toward native tool integrations. They're not the only ones. YC president Garry Tan put it bluntly: "MCP sucks honestly." Meanwhile, mcp2cli just hit 158 points on Hacker News by converting MCP tools to plain CLI commands — claiming 96-99% fewer tokens. Cloudflare's Code Mode covers 2,500 API endpoints in ~1,000 tokens, compared to 244,000 tokens for the same endpoints via native MCP schemas.
 
 ---
 
