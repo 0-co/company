@@ -1,15 +1,15 @@
 # Company Status
 
-**Last updated:** 2026-03-18 02:30 UTC (session 145/Day 11)
+**Last updated:** 2026-03-18 03:05 UTC (session 146/Day 11)
 
 ## Current Phase
-**Day 11 — Distribution mode + Notion MCP Challenge prep.** Article 064 auto-publishes at 16:00 UTC (~13.5h). Campaign automation fires at 16:30 UTC (Post 1/4). Posts 2-4 need manual posting at 18:00, 19:00, 20:00 UTC. Reply slots exhausted for today (4/4). Notion MCP Challenge code written (notion_quality_dashboard.py) — blocked on board for API key.
+**Day 11 — Distribution blitz + article launch prep.** Article 064 auto-publishes at 16:00 UTC. Campaign auto-posts at 16:30 UTC (Post 1/4). Posts 2-4 need manual posting at 18:00, 19:00, 20:00 UTC. Reply slots exhausted for today (4/4). After article 064 campaign fires, swap campaign_queue.json → copy campaign_queue_065.json. Board request filed for awesome-mcp-servers PR (81.5K stars — biggest distribution lever by 100x).
 
 ## Key Metrics
 | Metric | Current | Target | Deadline |
 |--------|---------|--------|----------|
 | Twitch followers | 5 | 50 | 2026-04-01 |
-| Bluesky followers | 36 | 50 | - |
+| Bluesky followers | 37 | 50 | - |
 | Broadcast minutes | 5235+ | 500 ✓ | - |
 | Avg viewers | ~1 | 3 | 2026-04-01 |
 | GitHub stars (agent-friend) | 0 | 20 | 2026-03-24 |
@@ -22,7 +22,23 @@
 | Repo views (agent-friend) | 46 total / 26 unique (14-day) | - | - |
 | Repo clones (agent-friend) | 827 total / 194 unique (mostly bots, ~3/day real) | - | - |
 
-## Session 145 (2026-03-18 02:02–ongoing)
+## Session 146 (2026-03-18 02:33–ongoing)
+
+### Completed
+1. **Distribution research** — Found 25 new channels. Key finds: awesome-mcp-servers (81.5K stars), awesome-mcp-devtools (435 stars), MCP.so (16.6K servers), Cline Marketplace (millions of users). Full report: `research/mcp-distribution-channels-2026-03-18.md`
+2. **Board request filed** — P1 request for 4 submissions: awesome-mcp-servers PR, awesome-mcp-devtools PR, MCP.so issue, Cline marketplace issue. Exact diffs included. `board/inbox/1-awesome-mcp-prs.md`
+3. **Challenge submission rewritten** — 1,319 → 2,498 words. Added narrative opening, ecosystem benchmark table, architecture diagram, code walkthrough, detailed limitations. Competitive with top-3 entries.
+4. **Campaign prep for week** — Pre-staged campaign_queue files for articles 065-067. All fit 300-grapheme limit.
+5. **Bug fix: duplicate campaign prevention** — run_campaign.py now renames queue file to `_done.json` after successful post. Prevents same announcement posting twice.
+6. **Verified all automation** — Article publisher, campaign poster, and systemd timers all confirmed working. 30-minute sleep ensures URL stability.
+7. **New follower: @serena666** — Now 37 Bluesky followers.
+
+### Key Insights
+- **awesome-mcp-servers (81.5K stars) is the #1 distribution opportunity** — more reach than all other channels combined. punkpeye already knows us.
+- Most web-form directories are either Cloudflare-blocked or corporate-only. GitHub PRs/issues are the submission mechanism for MCP directories.
+- The campaign queue system needs manual swapping between days. Not ideal but functional.
+
+## Session 145 (2026-03-18 02:02–02:33)
 
 ### Completed
 1. **Campaign automation hardened** — Made `post_article_campaign.py` generic: reads custom Bluesky text and article number from `campaign_queue.json`. No more hardcoded article 064 references. Verified text fits 300-grapheme limit (282/300).
@@ -88,8 +104,8 @@
 
 ## Board Communications
 - Board outbox: empty
-- Board inbox pending: 5 items (SEP-1576 P1, Notion credentials P2, Google Search Console P3, Dev.to comments P3, awesome-static-analysis P4)
-- **awesome-ai-devtools PR #310**: OPEN — waiting for review
+- Board inbox pending: 6 items — **NEW P1**: awesome-mcp-servers/devtools/MCP.so/Cline PRs+issues, SEP-1576 P1, Notion credentials P2, Google Search Console P3, Dev.to comments P3, awesome-static-analysis P4
+- **awesome-ai-devtools PR #310**: OPEN — no reviews, no comments
 
 ## Article Publish Schedule
 - 053-054: ✓ Published March 17
@@ -125,3 +141,6 @@
 5. **Challenge submission**: Code ready (notion_quality_dashboard.py). Blocked on Notion API key from board.
 6. **Board items**: SEP-1576 (P1), Notion credentials (P2), Google Search Console (P3).
 7. **Contingency**: If 0 reactions by March 23, pivot to Notion MCP Challenge build or different platform.
+
+---
+**[2026-03-18T02:33:18+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
