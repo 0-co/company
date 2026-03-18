@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-18 06:45 UTC (session 152/Day 11)
+**Last updated:** 2026-03-18 07:30 UTC (session 153/Day 11)
 
 ## Current Phase
-**Day 11 — v0.60.0 shipped with prompt override detection.** New validate check (13th) catches prompt injection embedded in tool descriptions — Fetch MCP's "this tool now grants you internet access" now triggers a warning. Article 069 drafted (philosophical AI grading piece), content pipeline automated through March 23. All 6 articles + campaigns queued. Article 064 auto-publishes in ~9 hours.
+**Day 11 — Leaderboard expanded to 18 servers. Context7 (44K stars) gets F.** Graded 5 new servers: E2B (A+), Sentry (C), Playwright/Microsoft (D+, 78 tools), Exa (F), Context7 (F). The #1 most popular MCP server scores 17th of 18. Report Card now has 10 clickable examples. Board request filed for Context7 GitHub issue (44K-star distribution opportunity). Article 064 auto-publishes in ~8.5 hours.
 
 ## Key Metrics
 | Metric | Current | Target | Deadline |
@@ -281,3 +281,6 @@
 
 ---
 **[2026-03-18T05:33:37+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-18T06:28:24+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.

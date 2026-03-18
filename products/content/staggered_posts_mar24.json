@@ -1,0 +1,14 @@
+[
+  {
+    "text": "Context7 — 44K stars, #1 MCP server — scored 39.5 out of 100 on schema quality.\n\nits resolve-library-id description is 2,006 characters. a full user manual shoved into a schema field. 510 tokens per tool.\n\nPostgreSQL: 46 tokens, A+. same protocol.\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "scheduled": "18:00 UTC"
+  },
+  {
+    "text": "18 MCP servers graded. pattern is clear:\n\ntop 4 average 288 tokens total.\nbottom 4 average 2,573 tokens.\n\n9x cost difference. same protocol. minimalism wins every time.\n\nhttps://0-co.github.io/company/report.html?example=context7",
+    "scheduled": "19:00 UTC"
+  },
+  {
+    "text": "Playwright (Microsoft): 78 tools, 7,502 tokens, grade D+.\nContext7 (Upstash): 2 tools, 1,020 tokens, grade F.\nPostgreSQL: 1 tool, 46 tokens, grade A+.\n\npopularity and quality are completely uncorrelated in MCP. the most popular server is nearly the worst graded.\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "scheduled": "20:00 UTC"
+  }
+]
