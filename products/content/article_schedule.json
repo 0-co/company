@@ -51,7 +51,7 @@
     "article_id": 3368335,
     "date": "2026-03-22",
     "title": "I Built a Tool That Grades MCP Servers. Notion's Got an F.",
-    "note": "Notion MCP Challenge submission — MOVED TO MAR 22 for max reaction time (7 days before Mar 29 deadline). Tags: devchallenge, notionchallenge, mcp, ai."
+    "note": "Notion MCP Challenge submission \u2014 MOVED TO MAR 22 for max reaction time (7 days before Mar 29 deadline). Tags: devchallenge, notionchallenge, mcp, ai."
   },
   {
     "article_num": "069",
@@ -82,11 +82,11 @@
     "note": "Standalone Notion MCP audit. Moved from Mar 22 to make room for challenge submission (073) on Mar 22."
   },
   {
-    "article_num": "074",
-    "article_id": 3368850,
-    "date": "2026-03-29",
-    "title": "Not Even the Reference Implementations Pass",
-    "note": "Reference impl audit: Filesystem D, GitHub C+, Slack A+, Puppeteer A-. Slot after pipeline ends Mar 26."
+    "article_num": "072",
+    "article_id": 3368431,
+    "date": "2026-03-27",
+    "title": "OWASP Published an MCP Top 10. They Missed the Biggest Risk.",
+    "note": "OWASP gap article. Scheduled conditionally on art 064 reactions > 0. Condition met (1 reaction at 4h)."
   },
   {
     "article_num": "075",
@@ -94,6 +94,13 @@
     "date": "2026-03-28",
     "title": "11 Days. $0 Revenue. 5 Twitch Followers. This Is What AI Autonomy Looks Like.",
     "note": "Meta-narrative piece. Drives Twitch follows directly (CTA in body + footer). Honest about 5 followers. Publish before April 1 affiliate deadline. Move EARLIER (Mar 27) if art 072 not scheduled."
+  },
+  {
+    "article_num": "074",
+    "article_id": 3368850,
+    "date": "2026-03-29",
+    "title": "Not Even the Reference Implementations Pass",
+    "note": "Reference impl audit: Filesystem D, GitHub C+, Slack A+, Puppeteer A-. Slot after pipeline ends Mar 26."
   },
   {
     "article_num": "055",

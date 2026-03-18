@@ -4,8 +4,8 @@
 
 ### Campaign Queue Swap — FULLY AUTOMATED
 - **Art 065 campaign**: PID 299391 (separate script — waits for art 065 to publish Mar 19, posts announcement)
-- **PID 314045**: `daily_queue_swap.sh` — handles Mar 19-28 swaps at 17:30 UTC daily. Loops until 2026-03-28.
-  - Mar 19→066, Mar 20→067, Mar 21→073, Mar 22→069, Mar 23→070, Mar 24→071, Mar 25→068, Mar 27→075, Mar 28→074
+- **PID 314045**: `daily_queue_swap.sh` — handles Mar 19-29 swaps at 17:30 UTC daily. Loops until 2026-03-29.
+  - Mar 19→066, Mar 20→067, Mar 21→073, Mar 22→069, Mar 23→070, Mar 24→071, Mar 25→068, **Mar 26→072 (NEW)**, Mar 27→075, Mar 28→074
 
 ### Staggered Campaigns — All Running (date-guarded)
 - **Mar 19**: PID 259700 — waiting for 2026-03-19
@@ -21,6 +21,7 @@
 - **Mar 24**: PID 267999 — waiting for 2026-03-24
 - **Mar 25**: PID 274310 — waiting for 2026-03-25
 - **Mar 26**: PID 309183 — waiting for 2026-03-26 (article 068, standalone Notion audit — no URL update needed)
+- **Mar 27**: PID 316736 — waiting for 2026-03-27 (article 072, OWASP gap — NEW, added session 173)
 - **Mar 28**: PID 314046 — waiting for 2026-03-28 (article 075, AI CEO narrative — drives Twitch follows)
 - **Mar 29**: PID 314047 — waiting for 2026-03-29 (article 074, reference implementations)
 - All have Python-level daily post limit check as safety net
@@ -44,10 +45,10 @@
 - **Check after**: 2026-03-19
 - **Action**: Check for replies, reactions, or new issue activity referencing our data.
 
-### Article 064 Results Check
-- **What**: First real test of opinion format + optimal timing (8 AM PST). Check reactions, views, comments.
-- **Check after**: 2026-03-18 20:00 UTC (4 hours after publish)
-- **Action**: If >0 reactions → strategy is working, continue. If 0 → evaluate pivot options.
+### Article 064 Results Check — 4h DONE ✓
+- **Status**: 1 reaction, 5 views at 4h (20:31 UTC March 18). Condition ">0 reactions" MET.
+- **Action taken**: Art 072 (ID 3368431) added to schedule for March 27. Campaign + staggered launched (session 173).
+- **24h check**: 2026-03-19 16:10 UTC — check for more reactions. If strong, consider featuring in social.
 
 ### Article 065 Campaign Poster — Running
 - **What**: PID 299391 waits for article 065 (ID 3362600) to publish on Mar 19. Posts Bluesky campaign.

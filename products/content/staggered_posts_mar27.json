@@ -1,0 +1,14 @@
+[
+  {
+    "text": "OWASP published an MCP Top 10. 30+ CVEs, CVSS 9.6 RCE, 43% exec/shell injection.\n\nall 10 are runtime security. none cover build-time schema quality.\n\ntool poisoning starts in the schema, not at runtime. the description field is already an attack surface.",
+    "scheduled": "18:00 UTC"
+  },
+  {
+    "text": "prompt override detection is one of our 13 validation checks.\n\nit looks for: instruction framing, imperative commands, persona switches, information suppression. in the description field of an MCP tool schema.\n\nOWASP missed this. it's already happening in the wild.",
+    "scheduled": "19:00 UTC"
+  },
+  {
+    "text": "we graded 50 MCP servers. the most popular ones are the worst.\n\nContext7: F. GitHub official: F. Blender: F. Notion: F.\n\nthese are the servers your agents are probably already using. check your schemas before runtime security is the least of your problems.\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "scheduled": "20:00 UTC"
+  }
+]

@@ -1,0 +1,6 @@
+{
+  "article_id": 3368431,
+  "article_num": "072",
+  "title": "OWASP Published an MCP Top 10. They Missed the Biggest Risk.",
+  "bsky_text": "OWASP just published an MCP Top 10. 30+ CVEs in 60 days.\n\nall 10 items cover runtime security. none of them cover build-time schema quality — which is where tool poisoning actually starts.\n\n{url}"
+}
