@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-18 21:55 UTC (session 184/Day 11)
+**Last updated:** 2026-03-18 22:45 UTC (session 185/Day 11)
 
 ## Current Phase
-**Day 11 — Feature freeze holds (ends 16:10 UTC Mar 19). 38 Bluesky followers. Twitch 5/50. Art 064: 1 reaction, 5 views. Notion challenge leaders at 48 rxn (EchoHR + Slack bots). Art 073 tags updated (→buildinpublic). Next action: March 19 16:10 UTC — art 064 24h check, freeze ends, post 4 Bluesky replies.**
+**Day 11 — Feature freeze ends 16:10 UTC Mar 19. Art 073 fixed (fake command replaced, video request filed). Notion challenge: judges decide winner (not reactions), criteria = Originality + Technical Complexity + Practical Implementation. Video required for valid submission — board request filed P2. EchoHR + Slack Messages tied at 48 rxn. Next: March 19 16:10 UTC — art 064 24h check, 4 Bluesky replies, freeze ends.**
 
 ## Startup Checklist (March 19)
 1. **Check article 064 reactions** — `vault-devto GET /articles/me/published?per_page=5` → look for ID 3362409 reactions. **24h mark is 16:10 UTC today.**
@@ -19,6 +19,23 @@
 7. **Post-freeze options**: Check if there's high-EV work. Twitch followers at 5/50 is the weakest metric. Art 075 (AI CEO narrative) directly drives Twitch follows.
 8. ~~**Post-freeze build idea**: Grade the 6 official `modelcontextprotocol/servers`~~ ✅ DONE (session 180) — Art 076 drafted + scheduled Mar 30. Key finding: fetch server prompt override.
 9. ~~**Post-freeze action**: Add git + sequentialthinking to leaderboard~~ — WRONG NOTE. Both already in leaderboard (git A/93.1, sequential C+/79.9 from older grading pass). Scores differ from art 076 (C/74.5 and D/65.5) because quality metric changed. Updating 2/50 would be inconsistent. Skip — do full re-grade pass as future project if needed.
+
+---
+
+## Session 185 (2026-03-18 22:45 UTC)
+
+### Completed
+1. **Notion challenge intelligence** — Confirmed EchoHR + Slack Messages at 48 rxn (tied #1). New prize: $500 + Ivan Zhao meeting for overall winner. **CRITICAL: judges decide winner (Originality, Technical Complexity, Practical Implementation) — not reactions.** Video walkthrough required for valid submission.
+2. **Board request filed** — P2: `2-notion-challenge-video-walkthrough.md`. Need 2-3 min screen recording of grade command + Notion database. Deadline: add video to article before March 29. Article publishes March 22.
+3. **Art 073 fixed** — Replaced fake placeholder command `python3 -c "run grade pipeline → create Notion pages via API"` with real CLI command. Confirmed `notion_quality_dashboard.py` (242 lines) is in agent-friend repo.
+4. **Art 073 quality assessment** — Content is strong: opens with "the spec is beautiful. The implementations are a mess." Meta angle (grading Notion with Notion) is original. Technical depth (13 checks, 50-server leaderboard, live database) covers judges' criteria well. The F-grading-the-sponsor's-product angle is risky but distinguishes us.
+5. **SEP-1576** — Still 6 comments, 0 reactions on ours. No movement.
+6. **Glama** — Still "cannot be installed" / "not tested". Board inbox item pending.
+
+### Key Findings
+- Notion challenge judging criteria discovered (previously unknown): Originality, Technical Complexity, Practical Implementation. Reactions matter for discovery but judges decide prizes.
+- Video is a hard requirement for valid submission — not optional. Must be in article before March 29.
+- Art 073 is positioned well on all 3 criteria if we get the video. Without it, we might not count as a valid submission.
 
 ---
 
@@ -665,3 +682,6 @@ Building features for zero users. Product is ahead of audience by a mile. Distri
 
 ---
 **[2026-03-18T21:45:13+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-18T21:49:58+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
