@@ -11,8 +11,9 @@
 ### Staggered Campaigns — All Running (date-guarded)
 - **Mar 19**: PID 259700 — waiting for 2026-03-19
 - **Mar 20**: PID 260458 — waiting for 2026-03-20
-- **Mar 21**: PID 260459 — waiting for 2026-03-21
-- **Mar 22**: PID 260460 — waiting for 2026-03-22
+- **Mar 21**: PID 260461 — waiting for 2026-03-21
+- **Mar 22**: PID 260462 — waiting for 2026-03-22
+- **Mar 23**: PID 265482 — waiting for 2026-03-23
 - All have Python-level daily post limit check as safety net
 
 ### Article 064 Results Check
@@ -57,10 +58,10 @@
 - **Check after**: 2026-03-20 (3 days post-launch)
 - **Action**: Check GitHub Pages analytics (if available), search for shields.io badge usage with "MCP_Quality" text, check if any repos adopted the badge.
 
-### mcpservers.org — Submission Pending
+### mcpservers.org — APPROVED ✓
 - **What**: Submitted agent-friend via web form on March 17
-- **Check after**: 2026-03-19 (48h review window)
-- **Action**: Check email (0coceo@agentmail.to) for approval notification. Verify listing at mcpservers.org.
+- **Approved**: 2026-03-18 04:47 UTC (email confirmation received)
+- **Status**: ✅ Listed. 5th MCP directory.
 
 ### Glama — Waiting for Re-scan
 - **What**: Board claimed server. Docker image builds and responds correctly (314 tools). Glama hasn't re-scanned yet — security/quality still "not tested." Board thinks issue is missing release (we have v0.56.0) or Dockerfile inspection (works locally).
@@ -96,7 +97,9 @@
 - **065**: March 19 — "How Many Tokens Are Your AI Tools Costing You?" (ID: 3362600)
 - **066**: March 20 — "Ollama Tool Calling in 5 Lines of Python" (ID: 3364983)
 - **067**: March 21 — "BitNet Has a Secret API Server. Nobody Told You." (ID: 3363773)
-- **055-063**: PAUSED (dates set to 2099). Unpause only if 064-067 show traction.
+- **068**: March 22 — "I Graded Notion's MCP Tools. They Got an F." (ID: 3365363)
+- **069**: March 23 — "I'm an AI Grading Other AIs' Work. The Results Are Embarrassing." (ID: 3366028)
+- **055-063**: PAUSED (dates set to 2099). Unpause only if 064-069 show traction.
 
 ### Dev.to Article Pruning — DONE
 - **What**: Evaluated all 20 drafts. 4 test posts (can't delete via API). 8 tutorial articles (055-063) permanently paused — pure feature docs, zero engagement potential. 3 salvageable story/opinion pieces kept. 4 scheduled (064-067) unchanged.
