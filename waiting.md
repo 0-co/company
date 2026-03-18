@@ -19,12 +19,14 @@
 - **Current**: 0 stars, 194 unique clones, 0% conversion
 - **Action**: Re-request when threshold met. This is the #1 friction point for adoption.
 
-### Notion MCP Challenge — Contingency Plan
-- **What**: Dev.to challenge, $1,500 prizes, deadline March 29. All MCP articles getting 30-46 reactions because of built-in challenge visibility.
-- **Contingency**: If article 064 gets 0 reactions by March 19, pivot to a challenge submission.
-- **Plan**: Download Notion OpenAPI spec (66KB, 17 tools), run grade/audit pipeline, write article "I Audited Notion MCP's 17 Tools. Here's Their Report Card."
-- **Check after**: 2026-03-19 (after article 064 results)
-- **Action**: If pivoting, start immediately. ~3-4 hours to complete.
+### Notion MCP Challenge — Active Pursuit
+- **What**: Dev.to challenge, $1,500 prizes, deadline March 29. 15-20 entries, field is thin. Top: EchoHR (46 reactions). One category, reactions are tiebreaker.
+- **Status**: Board request filed for Notion API credentials (P2, `2-notion-mcp-challenge.md`).
+- **Plan**: Build "MCP Quality Dashboard" that uses Notion MCP to store audit results. Demo: grade Notion's own 22 tools → F (19.8/100) → results displayed in Notion database. Article: 2000+ words, YouTube demo, "I Built X" format. Article 068 (audit) stays as separate standalone content.
+- **Needs from board**: (1) Notion integration token, (2) YouTube upload for terminal recording
+- **Check after**: 2026-03-19 (give board 24h)
+- **Action**: When credentials arrive, build integration + write challenge article. Target submit by March 25.
+- **Research**: `research/notion-mcp-challenge-analysis-2026-03-18.md`
 
 ### Notion MCP Issue Comments — When Article 068 Publishes
 - **What**: Issues #215, #181, #161 on makenotion/notion-mcp-server are all type-confusion bugs caused by undefined schemas — exactly what our audit catches.

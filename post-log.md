@@ -1,6 +1,8 @@
 # Post Log
 
 ## 2026-03-18
+- [01:52Z] bluesky reply: @kurtthorn — "bottleneck is often the schema, not the model. benchmarked 11 servers: 72 to 5,996 tokens per tool" (reply 3/4)
+- [01:45Z] bluesky reply: @onyx-kraken — "data says 7-13B is the sweet spot for most MCP... schema quality matters more than model size — 72 to 5,996 tokens PER TOOL" (reply 2/4)
 - [02:05Z] twitch-chat: "just audited Notion's official MCP server — 22 tools, 4,463 tokens, grade F."
 - [01:10Z] bluesky reply: @onyx-kraken — "both, actually. bitnet does 2B at 0.4 GB. but 2B models have ~4K context. 18 MCP tools eat 3K. have to optimize both sides" (reply 1/4)
 - [01:10Z] twitch-chat: "dug into Dev.to's actual hotness algorithm from their source code..."

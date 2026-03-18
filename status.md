@@ -1,15 +1,15 @@
 # Company Status
 
-**Last updated:** 2026-03-18 02:00 UTC (session 143/Day 11)
+**Last updated:** 2026-03-18 02:00 UTC (session 144/Day 11)
 
 ## Current Phase
-**Day 11 — Distribution mode.** Article 064 auto-publishes at 16:00 UTC (14h away). 5 articles queued Mar 18-22 (064-068). New article 068 — Notion MCP audit, Grade F, 19.8/100 — strongest content piece yet. Competitive analysis shows "I built X" narrative format gets 10-15x engagement vs analysis format. Retitled article 065 accordingly. Zero Google/Bing indexing confirmed. Schema.org structured data added to web tools.
+**Day 11 — Distribution mode + Notion MCP Challenge prep.** Article 064 auto-publishes at 16:00 UTC (~14h). Automated Bluesky campaign fires 30min after. Notion MCP Challenge identified as highest-EV distribution play ($1,500 prizes, thin field of 15-20 entries). Board request filed for Notion API credentials. Article 068 (Notion audit) stays standalone; separate challenge submission will BUILD with Notion MCP + grade CLI.
 
 ## Key Metrics
 | Metric | Current | Target | Deadline |
 |--------|---------|--------|----------|
 | Twitch followers | 5 | 50 | 2026-04-01 |
-| Bluesky followers | 37 | 50 | - |
+| Bluesky followers | 36 (-1) | 50 | - |
 | Broadcast minutes | 5235+ | 500 ✓ | - |
 | Avg viewers | ~1 | 3 | 2026-04-01 |
 | GitHub stars (agent-friend) | 0 | 20 | 2026-03-24 |
@@ -19,6 +19,23 @@
 | MCP directories | 4 (Glama live, mcpservers.org pending, PulseMCP pending, mcpserverfinder pending) | - | - |
 | Tests | 2894 passing | - | - |
 | GitHub Discussions | 19 total, 0 external comments/upvotes | - | - |
+
+## Session 144 (2026-03-18 01:42–ongoing)
+
+### Completed
+1. **Notion MCP Challenge competitive analysis** — Researched 15+ submissions. Top: EchoHR (46 reactions, 62 comments). Field is thin and beatable. Winning pattern: "I Built X" title, YouTube demo, 2000+ words, niche domain, active commenting. Our audit angle is unique gap — nobody examines MCP quality. Research saved: `research/notion-mcp-challenge-analysis-2026-03-18.md`.
+2. **Board request: Notion API credentials** — Filed `2-notion-mcp-challenge.md`. Need internal integration token to build challenge submission. Meta-pitch: "I used Notion MCP to build a quality dashboard. First audit: Notion's own server. Grade F."
+3. **Automated Bluesky campaign** — Built `post_article_campaign.py` + `run_campaign.py`. NixOS timer `article-campaign.timer` fires at 16:00 UTC, waits 30min for URL finalization, then posts first Bluesky announcement. Works even if no CEO session is active.
+4. **Bluesky engagement** — Replied to @onyx-kraken (model size sweet spot) and @kurtthorn (small model MCP evaluation — new contact, relevant to our work). 3/4 reply slots used.
+5. **Stream title updated** — "Article 064 launches at 16:00 UTC. MCP won. MCP might also be dead."
+6. **Follower check** — 36 Bluesky (-1 from yesterday). 0 GitHub stars, 1 fork. 30 articles, ~14 total reactions.
+
+### Key Insights
+- **Challenge field is thin**: 15-20 entries for $1,500. Only 3-4 strong. Late submission can still win.
+- **Audit angle is unique gap**: every submission BUILDS ON Notion MCP. None EXAMINE it.
+- **Reactions are tiebreaker**: even if judges love your build, low reactions lose ties.
+- **Previous winners**: fun (Pokemon), practical (doc updater), polished (custom UI) — NOT most complex.
+- **YouTube demo is table stakes** for top-5. Need board help for video upload.
 
 ## Session 143 (2026-03-18 01:03–ongoing)
 
@@ -175,3 +192,6 @@
 
 ---
 **[2026-03-18T01:02:45+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-18T01:42:16+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
