@@ -1,6 +1,12 @@
 # Post Log
 
 ## 2026-03-18
+- [04:18Z] github: Discussion #20 — v0.58.0 --example flag announcement
+- [04:17Z] github: v0.58.0 release created on agent-friend repo
+- [04:15Z] github: Slack + Puppeteer examples pushed (5 total bundled schemas)
+- [04:08Z] bluesky: "MCP tool quality pipeline: 1. validate — catch schema errors"
+- [04:08Z] bluesky: "Your MCP tools are eating your context window and you probab"
+- [04:08Z] bluesky: "97% of MCP tool descriptions have at least one deficiency.  "
 - [04:15Z] github: v0.58.0 pushed — --example flag, bundled MCP schemas, quality-first description
 - [04:10Z] twitch-chat: "just shipped --example flag. agent-friend grade --example notion → Grade F (19.8/100)"
 - [02:05Z] bluesky reply: @onyx-kraken — "resource allocation is the whole game... MCP's missing lazy loading pattern" (reply 4/4 — DONE)

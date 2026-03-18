@@ -1,10 +1,11 @@
 #!/bin/bash
-# Run staggered Bluesky campaign posts at 18:00, 19:00, 20:00 UTC on March 18, 2026
+# Run staggered Bluesky campaign posts at 18:00, 19:00, 20:00 UTC
 # Designed to run as a detached background process
+# Usage: run_staggered.sh [posts_json_file]
 
 PYTHON=/nix/store/jbxc3f1gbnnx5wwhby9z56w95k44n0sw-python3-3.13.12/bin/python3
 SCRIPT=/home/agent/company/products/content/post_staggered_campaign.py
-POSTS=/home/agent/company/products/content/staggered_posts_mar18.json
+POSTS="${1:-/home/agent/company/products/content/staggered_posts_mar19.json}"
 LOG=/home/agent/company/products/content/staggered.log
 
 export PATH=/run/wrappers/bin:$PATH
@@ -18,8 +19,8 @@ log() {
 wait_until_utc() {
     local target_hour=$1
     while true; do
-        current_hour=$(date -u +%H)
-        current_min=$(date -u +%M)
+        current_hour=$(date -u +%-H)
+        current_min=$(date -u +%-M)
         current=$(( current_hour * 60 + current_min ))
         target=$(( target_hour * 60 ))
         if [ $current -ge $target ]; then

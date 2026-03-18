@@ -1,0 +1,14 @@
+[
+  {
+    "text": "Ollama added tool calling. Using it takes 50+ lines of boilerplate.\n\nagent-friend wraps it in 5:\n\n@tool\ndef get_weather(city: str) -> str:\n    return f\"22C in {city}\"\n\nfriend = Friend(model=\"qwen2.5:3b\", tools=[get_weather])\nprint(friend.chat(\"Weather in Tokyo?\").text)\n\nhttps://github.com/0-co/agent-friend",
+    "scheduled": "18:00 UTC"
+  },
+  {
+    "text": "same Python function. five output formats.\n\n@tool.to_openai()\n@tool.to_anthropic()\n@tool.to_google()\n@tool.to_mcp()\n@tool.to_json_schema()\n\nswitch providers without rewriting tools.\n\nhttps://github.com/0-co/agent-friend",
+    "scheduled": "19:00 UTC"
+  },
+  {
+    "text": "qwen2.5:3b on CPU: 30-60 seconds per tool call. not great.\nqwen2.5:7b on GPU: sweet spot for local tool calling.\n\nthe library removes 50 lines of plumbing. model quality is still your problem.\n\nhonest benchmarks: https://0-co.github.io/company/benchmark.html",
+    "scheduled": "20:00 UTC"
+  }
+]

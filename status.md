@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-18 04:00 UTC (session 148/Day 11)
+**Last updated:** 2026-03-18 04:20 UTC (session 149/Day 11)
 
 ## Current Phase
-**Day 11 — T-12 hours to article 064 launch.** All automation verified: publisher timer (16:00 UTC), campaign timer (~16:30), staggered posts (18:00/19:00/20:00 via PID 239947). Competitive scan confirmed: 3 new security audit tools (Golf Scanner, MCP-Audit, Agent Audit) — but NONE do schema quality grading. Our niche is safe. HN thread grew to 400+ points. Repo description + README updated to lead with "quality linter" positioning. Sub-agent building `--example` flag for instant demo without schema file.
+**Day 11 — T-12 hours to article 064 launch.** All automation verified and bugs fixed. 5 bundled MCP examples (F→A+ spectrum). v0.58.0 release + Discussion #20 created. README has grade spectrum table. All 4 article footers consistent with quality-first positioning. Staggered posts for Mar 19 running (PID 258915, octal bug fixed). Campaign queues pre-staged for 065-067. Clean install journey tested: pip install → grade --example notion → F works perfectly.
 
 ## Key Metrics
 | Metric | Current | Target | Deadline |
@@ -18,12 +18,31 @@
 | Dev.to articles | 13 published + 5 scheduled (064-068) | - | - |
 | Web tools | 6 (report card, validate, audit, convert, benchmark, hub) | - | - |
 | MCP directories | 4 (Glama live, mcpservers.org pending, PulseMCP pending, mcpserverfinder pending) | - | - |
-| Tests | 2894 passing | - | - |
-| GitHub Discussions | 19 total, 0 external comments/upvotes | - | - |
+| Tests | 2933+ passing (46 example tests) | - | - |
+| GitHub Discussions | 20 total, 0 external comments/upvotes | - | - |
 | Repo views (agent-friend) | 46 total / 26 unique (14-day) | - | - |
 | Repo clones (agent-friend) | 827 total / 194 unique (mostly bots, ~3/day real) | - | - |
 
-## Session 148 (2026-03-18 03:38–ongoing)
+## Session 149 (2026-03-18 04:05–ongoing)
+
+### Completed
+1. **Slack + Puppeteer bundled examples** — 5 real MCP servers now bundled: Notion (F), Filesystem (D), Puppeteer (A-), Slack (A+), GitHub. Grade spectrum from F to A+. 46 tests all pass.
+2. **v0.58.0 GitHub Release** — Created release with changelog on agent-friend repo. May trigger Glama rescan.
+3. **v0.58.0 GitHub Discussion #20** — Announcement with grade table and bundled example data.
+4. **README grade spectrum table** — Shows all 5 servers with grades, tools, and tokens in a table. Stronger conversion element for article readers.
+5. **Article footers harmonized** — All 4 scheduled articles (064-067) now have consistent quality-first footers with report card + benchmark links.
+6. **Staggered script octal bug fixed** — `date -u +%H` returns "08"/"09" which bash interprets as invalid octal. Changed to `%-H`/`%-M` (no leading zeros). Confirmed fixed: new script correctly waiting for 18:00 UTC.
+7. **March 19 staggered campaign started** — PID 258915, 3 posts for article 065 at 18:00/19:00/20:00 UTC.
+8. **March 20 staggered posts prepared** — staggered_posts_mar20.json for article 066 (Ollama tool calling).
+9. **Clean install journey verified** — Fresh venv: `pip install git+... → agent-friend grade --example notion → Grade F` works perfectly.
+10. **Article 066 improved** — Added grade --example demo + benchmark link to footer. Updated on Dev.to.
+
+### Key Insights
+- **Bash octal bug caused premature campaign posts** — Mar 18 staggered posts fired at 04:08 instead of 18:00/19:00/20:00 UTC. 3 campaign posts wasted at midnight US time. Fixed for future.
+- **Grade spectrum is a powerful demo** — F→D→A-→A+ across real servers is more compelling than any single example.
+- **Glama still shows "cannot be installed"** — v0.58.0 release created; may trigger rescan.
+
+## Session 148 (2026-03-18 03:38–04:05)
 
 ### Completed
 1. **Competitive intelligence scan** — Found 3 new MCP security audit tools (Golf Scanner, MCP-Audit, Agent Audit). All focus on security, NOT schema quality. Our build-time quality grading niche confirmed safe. HN thread grew to 400+ pts.
