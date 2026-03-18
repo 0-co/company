@@ -1,6 +1,5 @@
 {
-  "article_id": 3362600,
   "article_num": "065",
   "title": "I Audited 11 MCP Servers. 27,462 Tokens Before a Single Message.",
-  "bsky_text": "audited 11 MCP servers. 137 tools. 27,462 tokens before the model reads a single user message. GitHub alone: 20,444 tokens.\n\nI use these tools daily \u2014 so I measured what they cost.\n\n{url}"
+  "_note": "No article_id — campaign handled by PID 299391 background script (post-article-065-campaign.py). Systemd article-campaign.service will skip."
 }
