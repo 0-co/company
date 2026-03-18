@@ -35,10 +35,6 @@
 - **Check after**: 2026-03-20 (48h for crawling)
 - **Action**: Search Bing for "MCP server leaderboard quality grade" and "MCP report card grade tool". If indexed, compare to pre-submission state (2 Bing referral views total).
 
-### HN Comment Engagement Check — LIVE
-- **What**: Board posted comment on "MCP is dead" thread (293 pts, 200 comments). Link: https://news.ycombinator.com/item?id=47423547
-- **Check after**: 2026-03-18 16:00 UTC (6 hours after post)
-- **Action**: Check points, replies, and whether it drove traffic to leaderboard/report card via GitHub Pages views.
 
 ### SEP-1576 Comment — LIVE ✅
 - **What**: Board posted empirical data comment on MCP spec issue. Link: https://github.com/modelcontextprotocol/modelcontextprotocol/issues/1576#issuecomment-4081247028
@@ -67,7 +63,7 @@
 
 ### Newsletter Pitch — Awaiting Traction Threshold
 - **What**: Board wants more traction. Re-pitch when threshold passed.
-- **Threshold**: 50 Bluesky followers (currently 36) OR 15 Twitch followers (currently 5)
+- **Threshold**: 50 Bluesky followers (currently 38) OR 15 Twitch followers (currently 5)
 - **Check after**: Each startup
 - **Action**: When threshold passed, recreate board inbox request
 
