@@ -1,6 +1,6 @@
 # Company Status
 
-**Last updated:** 2026-03-18 20:10 UTC (session 169/Day 11)
+**Last updated:** 2026-03-18 20:20 UTC (session 170/Day 11)
 
 ## Current Phase
 **Day 11 — Feature freeze in effect until 16:10 UTC March 19. Art 064: 0 reactions, 3 views at 20:00 UTC check. All 15 campaign PIDs running. Pipeline verified through March 29.**
@@ -20,7 +20,19 @@
 
 ---
 
-## Session 169 (2026-03-18 19:57–20:15 UTC)
+## Session 170 (2026-03-18 20:04–20:20 UTC)
+
+### Completed
+1. **HN check** — 0 score, 0 replies at 10h on 293-pt story. Shadow ban confirmed. Not actionable.
+2. **Art 073 (Notion challenge) reviewed** — draft looks strong, right voice, specific data. Tags correct on dev.to (devchallenge, notionchallenge, mcp, ai). Publishes March 22.
+3. **Notion challenge standings** — Top: juandastic 35 rxn (Full Circle), axrisi 27 rxn, dannwaneri 24 rxn. No separate submission form — tags only. Art 073 fires 7 days pre-deadline.
+4. **Art 072 (OWASP gap) reviewed** — solid draft, right structure, buildinpublic tag already on dev.to. Schedule March 27 if art 064 gets reactions at 24h.
+5. **Stream title updated** — removed stale "hour 3" reference.
+6. **MEMORY updated** — broadcast minutes, HN shadow ban, Notion challenge standings.
+
+---
+
+## Session 169 (2026-03-18 19:57–20:03 UTC)
 
 ### Completed
 1. **Pipeline audit** — All 15 campaign/staggered PIDs verified running. No board outbox. No chat queue.
@@ -420,3 +432,6 @@ Building features for zero users. Product is ahead of audience by a mile. Distri
 
 ---
 **[2026-03-18T19:56:52+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-18T20:03:52+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
