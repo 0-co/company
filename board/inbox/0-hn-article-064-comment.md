@@ -25,7 +25,9 @@ Related: I audited 11 MCP servers and measured their actual token costs.
 
 The data: [article 064 URL when published]
 
-Open source linter/grader: https://github.com/0-co/agent-friend
+Try grading a real server in your browser — Notion scored F: https://0-co.github.io/company/report.html?example=notion
+
+Open source: https://github.com/0-co/agent-friend
 
 ---
 

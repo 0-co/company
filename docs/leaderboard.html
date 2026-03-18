@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCP Server Quality Leaderboard — Grade Rankings for Popular MCP Servers</title>
+  <meta name="description" content="The first public quality ranking of MCP servers. Slack scores A+, Notion scores F. See how your favorite server ranks.">
+  <meta name="keywords" content="MCP server quality, MCP server ranking, MCP leaderboard, best MCP servers, MCP tool quality">
+  <meta property="og:title" content="MCP Server Quality Leaderboard — Grade Rankings for Popular MCP Servers">
+  <meta property="og:description" content="The first public quality ranking of MCP servers. Slack scores A+, Notion scores F. See how your favorite server ranks.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://0-co.github.io/company/leaderboard.html">
+  <link rel="canonical" href="https://0-co.github.io/company/leaderboard.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "MCP Server Quality Leaderboard",
+    "description": "The first public quality ranking of MCP servers by schema quality grade. Grades from A+ to F based on correctness, efficiency, and quality.",
+    "url": "https://0-co.github.io/company/leaderboard.html",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+    "author": {"@type": "Organization", "name": "0-co", "url": "https://github.com/0-co"}
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d1117;
+      --bg-raised: #161b22;
+      --bg-inset: #0a0e14;
+      --border: #21262d;
+      --border-bright: #30363d;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --accent-violet: #a371f7;
+      --accent-gold: #d4a72c;
+      --accent-magenta: #db61a2;
+      --accent-cyan: #3bc9db;
+      --accent-red: #f85149;
+      --accent-green: #3fb950;
+      --accent-orange: #d29922;
+      --mono: 'SF Mono', 'Cascadia Code', 'Fira Code', 'JetBrains Mono', Consolas, monospace;
+      --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse at 15% 0%, rgba(163,113,247,0.07) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 10%, rgba(219,97,162,0.05) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 100%, rgba(212,167,44,0.04) 0%, transparent 55%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    a { color: var(--accent-violet); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Nav */
+    nav {
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .nav-logo {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text) !important;
+    }
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      margin-left: auto;
+    }
+    .nav-links a {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+    .nav-links a.active { color: var(--accent-violet); }
+
+    /* Header */
+    header {
+      padding: 56px 0 40px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .eyebrow {
+      font-size: 0.75rem;
+      font-family: var(--mono);
+      color: var(--accent-violet);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-violet), var(--accent-gold), var(--accent-magenta));
+      background-size: 300% 300%;
+      animation: gradient-shift 8s ease-in-out infinite;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    @keyframes gradient-shift {
+      0%, 100% { background-position: 0% 50%; }
+      25% { background-position: 50% 0%; }
+      50% { background-position: 100% 50%; }
+      75% { background-position: 50% 100%; }
+    }
+
+    .subtitle {
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 12px;
+    }
+
+    .date-line {
+      font-size: 0.8rem;
+      font-family: var(--mono);
+      color: var(--text-muted);
+      opacity: 0.7;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      padding: 40px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stat-card {
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+    }
+
+    .stat-card:nth-child(1)::before { background: linear-gradient(90deg, var(--accent-violet), var(--accent-magenta)); }
+    .stat-card:nth-child(2)::before { background: linear-gradient(90deg, var(--accent-cyan), var(--accent-violet)); }
+    .stat-card:nth-child(3)::before { background: linear-gradient(90deg, var(--accent-gold), var(--accent-green)); }
+    .stat-card:nth-child(4)::before { background: linear-gradient(90deg, var(--accent-magenta), var(--accent-red)); }
+
+    .stat-number {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800;
+      font-family: var(--mono);
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+
+    .stat-card:nth-child(1) .stat-number { color: var(--accent-violet); }
+    .stat-card:nth-child(2) .stat-number { color: var(--accent-cyan); }
+    .stat-card:nth-child(3) .stat-number { color: var(--accent-gold); }
+    .stat-card:nth-child(4) .stat-number { color: var(--accent-magenta); }
+
+    .stat-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-family: var(--mono);
+    }
+
+    /* Section */
+    .section {
+      padding: 40px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    h2 {
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .section-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    /* Leaderboard Table */
+    .leaderboard-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .leaderboard {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .leaderboard thead th {
+      font-size: 0.7rem;
+      font-family: var(--mono);
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border-bright);
+      white-space: nowrap;
+    }
+
+    .leaderboard thead th.r { text-align: right; }
+
+    .leaderboard tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .leaderboard tbody tr:hover {
+      background: rgba(163,113,247,0.06);
+      box-shadow: inset 0 0 40px rgba(163,113,247,0.03);
+    }
+
+    .leaderboard td {
+      padding: 14px 12px;
+      font-size: 0.9rem;
+      vertical-align: middle;
+    }
+
+    .leaderboard td.r {
+      text-align: right;
+      font-family: var(--mono);
+      font-size: 0.85rem;
+    }
+
+    .rank-cell {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      width: 36px;
+    }
+
+    .server-name {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .server-name:hover {
+      color: var(--accent-violet);
+    }
+
+    /* Grade Cells — the star of the show */
+    .grade-cell {
+      width: 72px;
+      text-align: center;
+    }
+
+    .grade-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      font-size: 1.2rem;
+      font-weight: 900;
+      font-family: var(--mono);
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .grade-badge::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 14px;
+      padding: 2px;
+      background: inherit;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0.6;
+    }
+
+    .leaderboard tbody tr:hover .grade-badge {
+      transform: scale(1.08);
+    }
+
+    /* Grade A+ */
+    .grade-aplus {
+      background: rgba(59,201,219,0.12);
+      color: var(--accent-cyan);
+      border: 1px solid rgba(59,201,219,0.35);
+      box-shadow: 0 0 20px rgba(59,201,219,0.15), 0 0 40px rgba(59,201,219,0.05);
+      animation: glow-cyan 3s ease-in-out infinite;
+    }
+
+    @keyframes glow-cyan {
+      0%, 100% { box-shadow: 0 0 20px rgba(59,201,219,0.15), 0 0 40px rgba(59,201,219,0.05); }
+      50% { box-shadow: 0 0 28px rgba(59,201,219,0.25), 0 0 56px rgba(59,201,219,0.1); }
+    }
+
+    /* Grade A- */
+    .grade-aminus {
+      background: rgba(63,185,80,0.12);
+      color: var(--accent-green);
+      border: 1px solid rgba(63,185,80,0.35);
+      box-shadow: 0 0 20px rgba(63,185,80,0.15), 0 0 40px rgba(63,185,80,0.05);
+      animation: glow-green 3s ease-in-out infinite;
+    }
+
+    @keyframes glow-green {
+      0%, 100% { box-shadow: 0 0 20px rgba(63,185,80,0.15), 0 0 40px rgba(63,185,80,0.05); }
+      50% { box-shadow: 0 0 28px rgba(63,185,80,0.25), 0 0 56px rgba(63,185,80,0.1); }
+    }
+
+    /* Grade C+ */
+    .grade-cplus {
+      background: rgba(212,167,44,0.12);
+      color: var(--accent-gold);
+      border: 1px solid rgba(212,167,44,0.35);
+      box-shadow: 0 0 20px rgba(212,167,44,0.12), 0 0 40px rgba(212,167,44,0.04);
+      animation: glow-gold 3s ease-in-out infinite;
+    }
+
+    @keyframes glow-gold {
+      0%, 100% { box-shadow: 0 0 20px rgba(212,167,44,0.12), 0 0 40px rgba(212,167,44,0.04); }
+      50% { box-shadow: 0 0 28px rgba(212,167,44,0.2), 0 0 56px rgba(212,167,44,0.08); }
+    }
+
+    /* Grade D */
+    .grade-d {
+      background: rgba(210,153,34,0.12);
+      color: var(--accent-orange);
+      border: 1px solid rgba(210,153,34,0.35);
+      box-shadow: 0 0 20px rgba(210,153,34,0.12), 0 0 40px rgba(210,153,34,0.04);
+      animation: glow-orange 3s ease-in-out infinite;
+    }
+
+    @keyframes glow-orange {
+      0%, 100% { box-shadow: 0 0 20px rgba(210,153,34,0.12), 0 0 40px rgba(210,153,34,0.04); }
+      50% { box-shadow: 0 0 28px rgba(210,153,34,0.2), 0 0 56px rgba(210,153,34,0.08); }
+    }
+
+    /* Grade F */
+    .grade-f {
+      background: rgba(248,81,73,0.12);
+      color: var(--accent-red);
+      border: 1px solid rgba(248,81,73,0.35);
+      box-shadow: 0 0 20px rgba(248,81,73,0.15), 0 0 40px rgba(248,81,73,0.05);
+      animation: glow-red 3s ease-in-out infinite;
+    }
+
+    @keyframes glow-red {
+      0%, 100% { box-shadow: 0 0 20px rgba(248,81,73,0.15), 0 0 40px rgba(248,81,73,0.05); }
+      50% { box-shadow: 0 0 28px rgba(248,81,73,0.25), 0 0 56px rgba(248,81,73,0.1); }
+    }
+
+    /* Issues badge */
+    .issues-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 0.72rem;
+      font-family: var(--mono);
+      font-weight: 600;
+    }
+
+    .issues-low {
+      background: rgba(63,185,80,0.15);
+      color: var(--accent-green);
+      border: 1px solid rgba(63,185,80,0.3);
+    }
+
+    .issues-med {
+      background: rgba(212,167,44,0.15);
+      color: var(--accent-gold);
+      border: 1px solid rgba(212,167,44,0.3);
+    }
+
+    .issues-high {
+      background: rgba(248,81,73,0.15);
+      color: var(--accent-red);
+      border: 1px solid rgba(248,81,73,0.3);
+    }
+
+    /* Expanded detail row */
+    .detail-row {
+      display: none;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .detail-row.open {
+      display: table-row;
+    }
+
+    .detail-cell {
+      padding: 0 12px 20px 12px;
+    }
+
+    .detail-inner {
+      background: var(--bg-inset);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      animation: slideDown 0.3s ease;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .breakdown-title {
+      font-size: 0.72rem;
+      font-family: var(--mono);
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+
+    .breakdown-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 0;
+    }
+
+    .breakdown-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .breakdown-score {
+      font-size: 0.85rem;
+      font-family: var(--mono);
+      font-weight: 700;
+    }
+
+    .breakdown-bar-bg {
+      flex: 1;
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      margin: 0 12px;
+      overflow: hidden;
+    }
+
+    .breakdown-bar-fill {
+      height: 100%;
+      border-radius: 2px;
+      transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .detail-actions {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .detail-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: all 0.2s;
+      text-align: center;
+    }
+
+    .detail-btn-primary {
+      background: linear-gradient(135deg, var(--accent-violet), #8b5cf6);
+      color: #fff;
+      border: 1px solid var(--accent-violet);
+    }
+
+    .detail-btn-primary:hover {
+      box-shadow: 0 0 24px rgba(163,113,247,0.35);
+      transform: translateY(-1px);
+      text-decoration: none;
+    }
+
+    .detail-btn-secondary {
+      background: var(--bg-raised);
+      color: var(--text);
+      border: 1px solid var(--border-bright);
+    }
+
+    .detail-btn-secondary:hover {
+      border-color: var(--accent-violet);
+      background: rgba(163,113,247,0.08);
+      text-decoration: none;
+    }
+
+    /* Score bar in table */
+    .score-bar-bg {
+      width: 48px;
+      height: 6px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 8px;
+    }
+
+    .score-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: 56px 0;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cta-title {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--accent-violet), var(--accent-gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .cta-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 540px;
+      margin: 0 auto 28px;
+      line-height: 1.7;
+    }
+
+    .cta-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .cta-btn-primary {
+      background: linear-gradient(135deg, var(--accent-violet), #8b5cf6);
+      color: #fff;
+      border: 1px solid var(--accent-violet);
+    }
+
+    .cta-btn-primary:hover {
+      box-shadow: 0 0 24px rgba(163,113,247,0.35);
+      transform: translateY(-1px);
+      text-decoration: none;
+    }
+
+    .cta-btn-secondary {
+      background: var(--bg-inset);
+      color: var(--text);
+      border: 1px solid var(--border-bright);
+    }
+
+    .cta-btn-secondary:hover {
+      border-color: var(--accent-violet);
+      background: rgba(163,113,247,0.08);
+      text-decoration: none;
+    }
+
+    .cli-snippet {
+      display: inline-block;
+      background: var(--bg-inset);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 24px;
+      font-family: var(--mono);
+      font-size: 0.88rem;
+      color: var(--accent-cyan);
+      margin-bottom: 20px;
+      letter-spacing: 0.3px;
+    }
+
+    .cli-snippet .prompt {
+      color: var(--text-muted);
+      user-select: none;
+    }
+
+    .cta-tagline {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: var(--mono);
+      margin-top: 8px;
+    }
+
+    /* Methodology */
+    .methodology {
+      padding: 32px 0 48px;
+    }
+
+    .methodology h3 {
+      font-size: 0.85rem;
+      font-family: var(--mono);
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .methodology ul {
+      list-style: none;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 2;
+    }
+
+    .methodology ul li::before {
+      content: '\00b7';
+      margin-right: 8px;
+      color: var(--accent-violet);
+    }
+
+    .methodology code {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 0;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    footer a {
+      color: var(--accent-violet);
+    }
+
+    footer a:hover { text-decoration: underline; }
+
+    .footer-sub {
+      margin-top: 6px;
+      font-size: 0.72rem;
+      opacity: 0.7;
+    }
+
+    /* Row expand indicator */
+    .expand-hint {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      font-family: var(--mono);
+      opacity: 0.5;
+      transition: opacity 0.2s;
+      margin-left: 6px;
+    }
+
+    .leaderboard tbody tr:hover .expand-hint {
+      opacity: 1;
+    }
+
+    /* Rank #1 special treatment */
+    .rank-1 {
+      position: relative;
+    }
+
+    .rank-1::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, var(--accent-cyan), var(--accent-violet));
+      border-radius: 0 2px 2px 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .leaderboard {
+        min-width: 700px;
+      }
+
+      .detail-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-links {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .cta-btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+      }
+
+      .nav-links { gap: 12px; }
+      .nav-links a { font-size: 0.78rem; }
+    }
+
+    @media (max-width: 480px) {
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .stat-card { padding: 16px 12px; }
+      .stat-number { font-size: 1.4rem; }
+
+      header { padding: 40px 0 32px; }
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-in {
+      opacity: 0;
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .animate-in:nth-child(1) { animation-delay: 0.1s; }
+    .animate-in:nth-child(2) { animation-delay: 0.2s; }
+    .animate-in:nth-child(3) { animation-delay: 0.3s; }
+    .animate-in:nth-child(4) { animation-delay: 0.4s; }
+
+    /* Staggered row animation */
+    .leaderboard tbody tr {
+      opacity: 0;
+      animation: fadeInUp 0.5s ease forwards;
+    }
+    .leaderboard tbody tr:nth-child(1) { animation-delay: 0.15s; }
+    .leaderboard tbody tr:nth-child(2) { animation-delay: 0.25s; }
+    .leaderboard tbody tr:nth-child(3) { animation-delay: 0.35s; }
+    .leaderboard tbody tr:nth-child(4) { animation-delay: 0.45s; }
+    .leaderboard tbody tr:nth-child(5) { animation-delay: 0.55s; }
+    .leaderboard tbody tr:nth-child(6) { animation-delay: 0.65s; }
+    .leaderboard tbody tr:nth-child(7) { animation-delay: 0.75s; }
+    .leaderboard tbody tr:nth-child(8) { animation-delay: 0.85s; }
+    .leaderboard tbody tr:nth-child(9) { animation-delay: 0.95s; }
+    .leaderboard tbody tr:nth-child(10) { animation-delay: 1.05s; }
+
+    /* Detail rows should not animate like data rows */
+    .leaderboard tbody tr.detail-row {
+      opacity: 1;
+      animation: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="container nav-inner">
+      <a class="nav-logo" href="tools.html">0-co</a>
+      <div class="nav-links">
+        <a href="report.html">Report Card</a>
+        <a href="audit.html">Audit</a>
+        <a href="benchmark.html">Benchmark</a>
+        <a href="leaderboard.html" class="active">Leaderboard</a>
+        <a href="https://github.com/0-co/agent-friend">GitHub</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="eyebrow">First-Ever Public Quality Ranking</div>
+      <h1>MCP Server Quality Leaderboard</h1>
+      <p class="subtitle">Ranked by schema quality grade (A+ to F). The first public quality ranking of MCP tool schemas.</p>
+      <p class="date-line">Updated March 2026 &middot; Graded by agent-friend</p>
+    </div>
+  </header>
+
+  <!-- Summary Stats -->
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card animate-in">
+        <div class="stat-number" data-count="5">0</div>
+        <div class="stat-label">Servers Graded</div>
+      </div>
+      <div class="stat-card animate-in">
+        <div class="stat-number" data-value="70.6">0</div>
+        <div class="stat-label">Avg Score / 100</div>
+      </div>
+      <div class="stat-card animate-in">
+        <div class="stat-number" data-count="60">0</div>
+        <div class="stat-label">Total Tools</div>
+      </div>
+      <div class="stat-card animate-in">
+        <div class="stat-number" data-count="8802">0</div>
+        <div class="stat-label">Total Tokens</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Leaderboard -->
+  <div class="container section">
+    <h2>Quality Rankings</h2>
+    <p class="section-desc">Click any row to see the grade breakdown. Grades combine correctness (40%), efficiency (30%), and quality (30%).</p>
+
+    <div class="leaderboard-wrapper">
+      <table class="leaderboard" id="leaderboard">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Server</th>
+            <th>Grade</th>
+            <th class="r">Score</th>
+            <th class="r">Tools</th>
+            <th class="r">Tokens</th>
+            <th class="r">Avg/Tool</th>
+            <th class="r">Issues</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- #1 Slack -->
+          <tr class="data-row rank-1" data-server="slack">
+            <td class="rank-cell">1</td>
+            <td>
+              <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/slack" class="server-name" onclick="event.stopPropagation()">Slack MCP Server</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-aplus">A+</div></td>
+            <td class="r">97.3<span class="score-bar-bg"><span class="score-bar-fill" data-width="97.3" style="background: var(--accent-cyan);"></span></span></td>
+            <td class="r">8</td>
+            <td class="r">721</td>
+            <td class="r">90</td>
+            <td class="r"><span class="issues-badge issues-low">0</span></td>
+          </tr>
+          <tr class="detail-row" data-server="slack">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="100" style="background: var(--accent-cyan);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-cyan);">100</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="91" style="background: var(--accent-green);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-green);">91</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="100" style="background: var(--accent-violet);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-violet);">100</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html?example=slack" class="detail-btn detail-btn-primary">Grade this server yourself</a>
+                  <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/slack" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- #2 Puppeteer -->
+          <tr class="data-row" data-server="puppeteer">
+            <td class="rank-cell">2</td>
+            <td>
+              <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/puppeteer" class="server-name" onclick="event.stopPropagation()">Puppeteer MCP Server</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-aminus">A-</div></td>
+            <td class="r">91.2<span class="score-bar-bg"><span class="score-bar-fill" data-width="91.2" style="background: var(--accent-green);"></span></span></td>
+            <td class="r">7</td>
+            <td class="r">382</td>
+            <td class="r">55</td>
+            <td class="r"><span class="issues-badge issues-low">2</span></td>
+          </tr>
+          <tr class="detail-row" data-server="puppeteer">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="90" style="background: var(--accent-cyan);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-cyan);">90</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="99" style="background: var(--accent-green);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-green);">99</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="85" style="background: var(--accent-violet);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-violet);">85</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html?example=puppeteer" class="detail-btn detail-btn-primary">Grade this server yourself</a>
+                  <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/puppeteer" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- #3 GitHub -->
+          <tr class="data-row" data-server="github">
+            <td class="rank-cell">3</td>
+            <td>
+              <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/github" class="server-name" onclick="event.stopPropagation()">GitHub MCP Server</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-cplus">C+</div></td>
+            <td class="r">79.6<span class="score-bar-bg"><span class="score-bar-fill" data-width="79.6" style="background: var(--accent-gold);"></span></span></td>
+            <td class="r">12</td>
+            <td class="r">1,824</td>
+            <td class="r">152</td>
+            <td class="r"><span class="issues-badge issues-low">3</span></td>
+          </tr>
+          <tr class="detail-row" data-server="github">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="100" style="background: var(--accent-cyan);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-cyan);">100</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="77" style="background: var(--accent-gold);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-gold);">77</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="55" style="background: var(--accent-violet);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-violet);">55</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html?example=github" class="detail-btn detail-btn-primary">Grade this server yourself</a>
+                  <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/github" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- #4 Filesystem -->
+          <tr class="data-row" data-server="filesystem">
+            <td class="rank-cell">4</td>
+            <td>
+              <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem" class="server-name" onclick="event.stopPropagation()">Filesystem MCP Server</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-d">D</div></td>
+            <td class="r">64.9<span class="score-bar-bg"><span class="score-bar-fill" data-width="64.9" style="background: var(--accent-orange);"></span></span></td>
+            <td class="r">11</td>
+            <td class="r">1,392</td>
+            <td class="r">127</td>
+            <td class="r"><span class="issues-badge issues-med">9</span></td>
+          </tr>
+          <tr class="detail-row" data-server="filesystem">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="100" style="background: var(--accent-cyan);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-cyan);">100</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="83" style="background: var(--accent-orange);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-orange);">83</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="0" style="background: var(--accent-violet);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-violet);">0</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html?example=filesystem" class="detail-btn detail-btn-primary">Grade this server yourself</a>
+                  <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- #5 Notion -->
+          <tr class="data-row" data-server="notion">
+            <td class="rank-cell">5</td>
+            <td>
+              <a href="https://github.com/makenotion/notion-mcp-server" class="server-name" onclick="event.stopPropagation()">Notion MCP Server</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-f">F</div></td>
+            <td class="r">19.8<span class="score-bar-bg"><span class="score-bar-fill" data-width="19.8" style="background: var(--accent-red);"></span></span></td>
+            <td class="r">22</td>
+            <td class="r">4,483</td>
+            <td class="r">204</td>
+            <td class="r"><span class="issues-badge issues-high">64</span></td>
+          </tr>
+          <tr class="detail-row" data-server="notion">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="0" style="background: var(--accent-red);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-red);">0</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="66" style="background: var(--accent-red);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-red);">66</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="0" style="background: var(--accent-red);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-red);">0</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html?example=notion" class="detail-btn detail-btn-primary">Grade this server yourself</a>
+                  <a href="https://github.com/makenotion/notion-mcp-server" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CTA Section -->
+  <div class="container cta-section">
+    <div class="cta-title">Grade Your Own MCP Server</div>
+    <p class="cta-desc">Run the grader in your browser or from the command line. Paste a schema, get a letter grade in seconds.</p>
+    <div class="cli-snippet"><span class="prompt">$ </span>agent-friend grade tools.json</div>
+    <div class="cta-links">
+      <a href="report.html" class="cta-btn cta-btn-primary">
+        Open Report Card
+      </a>
+      <a href="https://github.com/0-co/agent-friend/discussions" class="cta-btn cta-btn-secondary">
+        Submit a Server for Grading
+      </a>
+    </div>
+    <p class="cta-tagline">pip install agent-friend &middot; Open source &middot; MIT License</p>
+  </div>
+
+  <!-- Methodology -->
+  <div class="container methodology">
+    <h3>Methodology</h3>
+    <ul>
+      <li>Grades combine three dimensions: Correctness (40%), Efficiency (30%), Quality (30%)</li>
+      <li>Correctness: schema validation against MCP spec (12 checks, strict mode)</li>
+      <li>Efficiency: token cost per tool, naming conventions, description length</li>
+      <li>Quality: parameter documentation, enum usage, description clarity</li>
+      <li>Grading scale: A+ (95-100), A (90-94), A- (87-89), B+ (83-86), B (80-82), B- (77-79), C+ (73-76), C (70-72), C- (67-69), D+ (63-66), D (60-62), D- (57-59), F (0-56)</li>
+      <li>Token estimation: <code>len(json.dumps(schema)) / 4</code> (standard approximation)</li>
+      <li>All grades generated by <code>agent-friend grade</code> CLI (v0.59.0)</li>
+      <li>Data collected March 2026. Server versions at time of analysis</li>
+    </ul>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      Built by <a href="https://0-co.github.io/company/">0-co</a> &mdash; an AI company, live on <a href="https://twitch.tv/0coceo">Twitch</a> &middot;
+      <a href="https://github.com/0-co">GitHub</a> &middot;
+      <a href="https://bsky.app/profile/0coceo.bsky.social">Bluesky</a>
+      <div class="footer-sub">Grades generated by <a href="https://github.com/0-co/agent-friend">agent-friend</a> &mdash; the ESLint for MCP schemas</div>
+    </div>
+  </footer>
+
+  <script>
+    // Animate stat counters
+    function animateCounters() {
+      var counters = document.querySelectorAll('.stat-number[data-count]');
+      counters.forEach(function(el) {
+        var target = parseInt(el.getAttribute('data-count'));
+        var duration = 1500;
+        var startTime = null;
+
+        function step(timestamp) {
+          if (!startTime) startTime = timestamp;
+          var progress = Math.min((timestamp - startTime) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          var current = Math.floor(eased * target);
+          el.textContent = current.toLocaleString();
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            el.textContent = target.toLocaleString();
+          }
+        }
+
+        requestAnimationFrame(step);
+      });
+
+      // Special handler for decimal stat (avg score)
+      var decimalCounters = document.querySelectorAll('.stat-number[data-value]');
+      decimalCounters.forEach(function(el) {
+        var target = parseFloat(el.getAttribute('data-value'));
+        var duration = 1500;
+        var startTime = null;
+
+        function step(timestamp) {
+          if (!startTime) startTime = timestamp;
+          var progress = Math.min((timestamp - startTime) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          var current = eased * target;
+          el.textContent = current.toFixed(1);
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            el.textContent = target.toFixed(1);
+          }
+        }
+
+        requestAnimationFrame(step);
+      });
+    }
+
+    // Animate score bars
+    function animateScoreBars() {
+      var bars = document.querySelectorAll('.score-bar-fill[data-width]');
+      bars.forEach(function(bar, index) {
+        setTimeout(function() {
+          bar.style.width = bar.getAttribute('data-width') + '%';
+        }, 300 + index * 150);
+      });
+    }
+
+    // Animate breakdown bars when detail row opens
+    function animateBreakdownBars(detailRow) {
+      var bars = detailRow.querySelectorAll('.breakdown-bar-fill[data-width]');
+      bars.forEach(function(bar, index) {
+        bar.style.width = '0%';
+        setTimeout(function() {
+          bar.style.width = bar.getAttribute('data-width') + '%';
+        }, 100 + index * 120);
+      });
+    }
+
+    // Row click to expand details
+    function setupRowExpand() {
+      var dataRows = document.querySelectorAll('.data-row');
+      dataRows.forEach(function(row) {
+        row.addEventListener('click', function() {
+          var server = this.getAttribute('data-server');
+          var detailRows = document.querySelectorAll('.detail-row');
+
+          detailRows.forEach(function(dr) {
+            if (dr.getAttribute('data-server') === server) {
+              var isOpen = dr.classList.contains('open');
+              if (isOpen) {
+                dr.classList.remove('open');
+                row.querySelector('.expand-hint').innerHTML = '&#9662;';
+              } else {
+                // Close all other detail rows first
+                detailRows.forEach(function(other) {
+                  other.classList.remove('open');
+                });
+                dataRows.forEach(function(otherRow) {
+                  otherRow.querySelector('.expand-hint').innerHTML = '&#9662;';
+                });
+                dr.classList.add('open');
+                row.querySelector('.expand-hint').innerHTML = '&#9652;';
+                animateBreakdownBars(dr);
+              }
+            }
+          });
+        });
+      });
+    }
+
+    // Init
+    document.addEventListener('DOMContentLoaded', function() {
+      animateCounters();
+      animateScoreBars();
+      setupRowExpand();
+    });
+  </script>
+</body>
+</html>
