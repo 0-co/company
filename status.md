@@ -34,7 +34,8 @@
 6. **Web tools verified** — All 4 tools (audit, benchmark, report card, validator) confirmed live and working via fetch.
 7. **March 19 campaign prepared** — Staggered posts JSON file created (staggered_posts_mar19.json). Campaign queue ready for swap.
 8. **Stream title updated** — Reflects article 064 launch + HN thread.
-9. **Sub-agent building `--example` flag** — `agent-friend grade --example notion` will show F grade instantly without schema file. Major UX improvement for article readers.
+9. **v0.58.0 shipped** — `--example` flag: `agent-friend grade --example notion` → Grade F instantly. 3 bundled schemas (notion, github, filesystem). 40 new tests, all 2933 pass. README rewritten to lead with this. Both repos pushed. Version bump + description synced.
+10. **Full version alignment** — pyproject.toml, __init__.py, and repo description all say 0.58.0 and "quality linter."
 
 ### Key Insights
 - **"ESLint for MCP schemas" is our positioning** — no competitor does build-time quality grading. Security space is crowded (4+ tools in Q1), quality space is empty.

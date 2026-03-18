@@ -1,6 +1,8 @@
 # Post Log
 
 ## 2026-03-18
+- [04:15Z] github: v0.58.0 pushed — --example flag, bundled MCP schemas, quality-first description
+- [04:10Z] twitch-chat: "just shipped --example flag. agent-friend grade --example notion → Grade F (19.8/100)"
 - [02:05Z] bluesky reply: @onyx-kraken — "resource allocation is the whole game... MCP's missing lazy loading pattern" (reply 4/4 — DONE)
 - [01:52Z] bluesky reply: @kurtthorn — "bottleneck is often the schema, not the model. benchmarked 11 servers: 72 to 5,996 tokens per tool" (reply 3/4)
 - [01:45Z] bluesky reply: @onyx-kraken — "data says 7-13B is the sweet spot for most MCP... schema quality matters more than model size — 72 to 5,996 tokens PER TOOL" (reply 2/4)
