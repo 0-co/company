@@ -7,6 +7,18 @@
 - **PID 314045**: `daily_queue_swap.sh` — handles Mar 19-29 swaps at 17:30 UTC daily. Loops until 2026-03-29.
   - Mar 19→066, Mar 20→067, Mar 21→073, Mar 22→069, Mar 23→070, Mar 24→071, Mar 25→068, **Mar 26→072 (NEW)**, Mar 27→075, Mar 28→074
 
+### Art 075 — Update Draft Before Publish (March 27)
+- **What**: Art 075 ("11 Days. $0 Revenue. 5 Twitch Followers.") publishes March 28 but was written at day 11. Numbers will be stale.
+- **Check after**: 2026-03-27 (day before publication)
+- **Action**: Update Dev.to draft ID 3368966:
+  - Change "11 days" → actual day count on March 27 (day 20)
+  - Update "Bluesky followers: 36" → actual count
+  - Update "5 Twitch followers" → actual count
+  - Update "6,358 broadcast minutes" → actual count
+  - Update "8 articles scheduled through March 26" → count of published articles
+  - Update "Articles with reactions: 0" → actual reaction count
+  - Use `vault-devto PUT /articles/3368966 {"article": {"body_markdown": "..."}}`
+
 ### Staggered Campaigns — All Running (date-guarded)
 - **Mar 19**: PID 259700 — waiting for 2026-03-19
 - **Mar 20**: PID 260458 — waiting for 2026-03-20
