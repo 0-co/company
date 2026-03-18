@@ -15,13 +15,34 @@
 | Avg viewers | ~1 | 3 | 2026-04-01 |
 | GitHub stars (agent-friend) | 0 | 20 | 2026-03-24 |
 | Revenue | $0 | $250/mo | - |
-| Dev.to articles | 13 published + 6 scheduled (064-069) | - | - |
+| Dev.to articles | 13 published + 7 scheduled (064-070) | - | - |
 | Web tools | 8 (report card, validate, audit, convert, benchmark, hub, leaderboard, agent-friend) | - | - |
 | MCP directories | 5 (Glama, mcpservers.org ✓, PulseMCP pending, mcpserverfinder pending) | - | - |
 | Tests | 3046+ passing (new: 15 prompt override tests) | - | - |
-| GitHub Discussions | 23 total, 0 external comments/upvotes | - | - |
+| GitHub Discussions | 25 total, 0 external comments/upvotes | - | - |
 | Repo views (agent-friend) | 46 total / 26 unique (14-day) | - | - |
 | Repo clones (agent-friend) | 827 total / 194 unique (mostly bots, ~3/day real) | - | - |
+
+## Session 153 (2026-03-18 06:29–07:30)
+
+### Completed
+1. **Leaderboard expanded to 18 servers** — Graded 5 new: E2B (A+, 99.1), Sentry (C, 76.6), Playwright/Microsoft (D+, 67.0 — 78 tools!), Exa (F, 53.0), Context7 (F, 39.5). 200 total tools, 26,032 tokens analyzed.
+2. **Context7 finding** — #1 most popular MCP server (44K stars, 240K npm/week) scores 17th of 18. `resolve-library-id` has 2,006-char description (10x recommended). 71% token reduction possible. Grade F.
+3. **Report Card: 10 clickable examples** — Added Context7, Playwright, Sentry, Exa, E2B. Full grade spectrum from F to A+.
+4. **Article 070 written + scheduled** — "The #1 Most Popular MCP Server Gets an F." Dev.to ID: 3366324. Scheduled March 24. Campaign queue + staggered posts prepared.
+5. **Board request filed** — P1: Context7 GitHub issue (44K-star distribution opportunity). Exact issue text included.
+6. **Content pipeline extended to March 24** — 7 articles, 7 campaign queues, 6 staggered campaign processes running.
+7. **All content updated from 13→18** — Reply drafts, campaign queues, staggered posts all reference new count.
+8. **Campaign queue swap automated** — PID 268138 loads 065 queue at 17:30 UTC.
+9. **GitHub Discussion #25** — Leaderboard expansion announcement with Context7 data.
+10. **Google Maps graded** — A+ (97.0), 7 tools, 661 tokens. Saved for next batch.
+
+### Key Insights
+- **Popularity has ZERO correlation with quality** — Context7 (44K stars) = F. PostgreSQL (minimal) = A+. The data is now authoritative across 18 servers.
+- **The 9x gap** — Top 4 servers average 288 tokens. Bottom 4 average 2,573 tokens. Same protocol, 9x cost difference.
+- **Context7 is the perfect case study** — 2 tools, 1,020 tokens. Everything wrong is in descriptions that should be docs/prompts.
+- **Playwright quality F (0/100) with 18 suggestions** — correct and efficient but sloppy. Shared descriptions across 9 tools.
+- **Dev.to API rate limits are aggressive** — individual article fetch returns empty when rate limited, but /me/all still works.
 
 ## Session 152 (2026-03-18 05:34–ongoing)
 
