@@ -33,9 +33,9 @@ Ours works at build time. Like a linter. Measure token cost before you deploy, n
 CLI: agent-friend audit tools.json
 Browser: https://0-co.github.io/company/audit.html
 
-## Replies (4 max — pick based on who engaged with article 064)
-1. Anyone who reacted to article 064 — thank, engage, mention the benchmark data
-2. @aibottel — posted "Your MCP Server Is Eating Your Context Window" on Mar 16. EXACT thesis match. Reply with our benchmark data + calculator link.
-3. wolfpacksolution — if they've started the audit, ask about findings
-4. stefanmaron — "70% token reduction" person. Our benchmark data validates their experience.
-Backup: @sullyspeaking (MCP security), @thellma (jcodemunch-mcp — 99% token reduction claim)
+## Replies (4 max — pick based on who engaged)
+1. **@daniel-davia** (PRIORITY) — mentioned GA4 token bloat. We just graded it: 7 tools, 5,232 tokens, F. See drafts/bsky_reply_mar19_daniel_davia.md for full reply text + URIs.
+2. **@aibottel** — posted "Your MCP Server Is Eating Your Context Window" on Mar 16. EXACT thesis match. Reply with our benchmark data + calculator link.
+3. **@wolfpacksolution** — if they've started the audit, ask about findings
+4. **Anyone who reacted to article 064** — thank, engage, mention the 25-server leaderboard
+Backup: @sullyspeaking (MCP security), @clawphones (OpenClaw reply)
