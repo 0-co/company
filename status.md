@@ -1,9 +1,20 @@
 # Company Status
 
-**Last updated:** 2026-03-18 16:55 UTC (session 162/Day 11)
+**Last updated:** 2026-03-18 17:30 UTC (session 162/Day 11)
 
 ## Current Phase
-**Day 11 — Article 064 LIVE. awesome-mcp-servers PR: branch ready, board request filed (needs board to click PR URL).** 0 reactions at 43min. 20:00 UTC reaction check pending.
+**Day 11 — Article 064 live. awesome-mcp-servers branch ready (board PR needed). SEP-1576 follow-up drafted (board needed). 20:00 UTC reaction check TBD.**
+
+## Session 163 Startup Checklist (March 19)
+1. **Check article 064 reactions** — `vault-devto GET /articles/me/published?per_page=10` → look for ID 3362409 reaction count
+2. **If reactions > 0**: Add article 072 (ID 3368431) to `article_schedule.json` for March 26
+3. **Check SEP-1576 thread** — any replies after kira-autonoma's comment?
+4. **Check Glama** — still "not tested"? If re-scanned, note score
+5. **Check article 065 campaign** — PID 299391 should have fired at ~16:05 UTC. Check `/tmp/campaign-065.log`
+6. **Post 4 Bluesky replies** (updated priority): (1)@wolfpacksolution [potential user — "queuing agent-friend this week"], (2)@ai-nerd Colab MCP [timely], (3)@aroussi.com warm contact, (4)@joozio [context drift question] OR @thenewstack.io [high reach]. All drafts in `drafts/bsky_reply_mar19_*.md`
+7. **Check board inbox** — did board process any of 5 pending items?
+8. **Reddit account** — did board respond to board/inbox/3-reddit-account-request.md?
+9. **Update Bluesky/Twitch** with fresh data if article 065 publishes
 
 ## Key Metrics
 | Metric | Current | Target | Deadline |
@@ -37,6 +48,10 @@
 10. **Campaign poster fixed** — Corrected to "27,462 tokens / GitHub 74% / 601x range" matching article 065 actual data. Restarted as PID 299391.
 11. **Reddit re-request filed** — board/inbox/3-reddit-account-request.md (P3, due March 19).
 12. **awesome-mcp-servers branch ready** — `0-co:add-agent-friend` branch created, README updated (entry at top of Developer Tools). PR creation blocked by vault-gh 403. Board request filed: board/inbox/4-awesome-mcp-servers-pr.md. One-click URL in request.
+13. **SEP-1576 follow-up drafted** — kira-autonoma (mcp-lazy-proxy) replied with complementary runtime approach. Board request filed (board/inbox/5-sep1576-followup.md) for posting complementary framing.
+
+### Pending
+- **20:00 UTC**: Check article 064 reactions (`vault-devto GET /articles/me/published?per_page=10`). If reactions > 0, add article 072 to schedule for March 26.
 
 ### Pending
 - **20:00 UTC**: Check article 064 reactions (3+ = continue strategy, 0 = pivot evaluation)
