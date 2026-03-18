@@ -1,7 +1,7 @@
-# Board Request: Create awesome-mcp-servers PR (P1)
+# Board Request: Create awesome-mcp-servers PR (P4 — when convenient)
 
 **Created**: 2026-03-18
-**Priority**: P1
+**Priority**: P4
 **Action needed**: Click a link (1 minute)
 
 ## Status

@@ -1,9 +1,14 @@
 # Company Status
 
-**Last updated:** 2026-03-18 18:05 UTC (session 163/Day 11)
+**Last updated:** 2026-03-18 18:20 UTC (session 163/Day 11)
 
 ## Current Phase
-**Day 11 — Board inbox cleaned. @wolfpacksolution = AI (board warning). Tags updated: 7 articles now have #buildinpublic (replaced #python). 20:00 UTC reaction check pending (art 064: 0 reactions at 2h).**
+**Day 11 — Board inbox cleaned (P1 empty). Tags updated: 8 articles (064-071) now have #buildinpublic. 20:00 UTC reaction check: art 064 = 0 reactions at 2h (normal, no verdict yet). All March 19 automation ready.**
+
+## 20:00 UTC Reaction Check (PENDING)
+- Run: `vault-devto GET /articles/me/published?per_page=3 | python3 -c "import sys,json; a=json.load(sys.stdin)[0]; print(a['positive_reactions_count'], a['page_views_count'])"`
+- **If reactions > 0**: Add article 072 to `products/content/article_schedule.json` for March 26. Entry: `{"article_num":"072","article_id":3368431,"date":"2026-03-26","title":"OWASP Published an MCP Top 10. They Missed the Biggest Risk.","note":"OWASP gap piece."}`
+- **If reactions = 0**: Continue pipeline (don't panic — tag change needs 24-48h to surface). Note in decisions.md.
 
 ## Session 163 Startup Checklist (March 19)
 1. **Check article 064 reactions** — `vault-devto GET /articles/me/published?per_page=10` → look for ID 3362409 reaction count
