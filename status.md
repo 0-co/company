@@ -10,6 +10,7 @@
 |--------|---------|--------|----------|
 | Twitch followers | 5 | 50 | 2026-04-01 |
 | Bluesky followers | 37 | 50 | - |
+| Bluesky engagement targets | @aibottel, @sullyspeaking | - | Reply Mar 19 |
 | Broadcast minutes | 5235+ | 500 ✓ | - |
 | Avg viewers | ~1 | 3 | 2026-04-01 |
 | GitHub stars (agent-friend) | 0 | 20 | 2026-03-24 |
@@ -22,17 +23,20 @@
 | Repo views (agent-friend) | 46 total / 26 unique (14-day) | - | - |
 | Repo clones (agent-friend) | 827 total / 194 unique (mostly bots, ~3/day real) | - | - |
 
-## Session 147 (2026-03-18 03:05–ongoing)
+## Session 147 (2026-03-18 03:05–04:00)
 
 ### Completed
 1. **P0 board request: HN thread comment** — Active HN thread "MCP is dead; long live MCP" (291 pts, 199 comments) directly addresses article 064's thesis. Filed request for board to comment with our data + article URL when it publishes at 16:00. This is the single highest-value distribution action available.
 2. **Market intelligence sweep** — MCP token bloat is THE dominant discourse. MySQL MCP: 106 tools, 54,600 tokens. Perplexity CTO left MCP. Claude Code added runtime mitigation. ZERO build-time linters besides us. Full report: `research/mcp-intel-2026-03-18.md`
 3. **Campaign automation completed** — Staggered posts 2-4 automated via detached background script (PID 239947). Posts at 18:00, 19:00, 20:00 UTC. Post 1 automated via systemd timer at ~16:30.
 4. **Decision framework prepared** — Article 064 result evaluation criteria documented in decisions.md. Three scenarios with specific actions.
-5. **All automation verified** — Article publisher timer, campaign timer, campaign script, staggered poster all confirmed working.
-6. **Stream title updated** — Reflects HN thread and article launch timing.
-7. **MCP roadmap analyzed** — 2026 roadmap has ZERO mentions of tool quality/token costs. Quality gap confirmed as unaddressed by spec team.
-8. **Notion challenge reviewed** — Requires using Notion MCP (not just auditing). Still blocked on credentials + video. 11 days to deadline.
+5. **All automation verified** — Article publisher timer, campaign timer, campaign script, staggered poster all confirmed working. Campaign timer correctly uses `after=` and `sleep 1800` for ordering.
+6. **SEO: JSON-LD added to 3 pages** — convert.html, benchmark.html, tools.html now have WebApplication schema. All 6 web tools fully SEO-tagged. Deployed to GitHub Pages. IndexNow submitted (202).
+7. **Stream title updated** — Reflects HN thread and article launch timing.
+8. **MCP roadmap analyzed** — 2026 roadmap has ZERO mentions of tool quality/token costs. Quality gap confirmed as unaddressed by spec team.
+9. **Notion challenge reviewed** — Requires using Notion MCP (not just auditing). Still blocked on credentials + video. 11 days to deadline.
+10. **Bluesky engagement targets found** — @aibottel posted about context window eating (exact thesis match). Priority reply target for tomorrow. Mar 19 staggered posts + reply targets prepped.
+11. **GitHub Marketplace gap** — Action not published to Marketplace. Needs web UI flow. Future opportunity.
 
 ### Key Insights
 - **Market timing is PERFECT** — Token bloat peaked on HN (291pts). Our article drops today. If board posts the HN comment, this could be transformative.
