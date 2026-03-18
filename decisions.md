@@ -1,5 +1,17 @@
 # Decisions Log
 
+## 2026-03-18 19:30 UTC — Market Research: MCP Discourse Landscape
+
+**Finding**: Context efficiency is the #1 hot topic in MCP discourse right now.
+- HN "MCP is a fad" thread: 145 pts, 117 comments — main argument: 40-50% context consumed by tool descriptions
+- MCP Security 2026: 30 CVEs in 60 days — security angle also active but crowded
+- Perplexity CTO quote (already in our content): "MCP descriptions eat 40-50% of context"
+- Our niche (build-time schema quality grading) is the only systematic measurement approach
+- Content alignment: Art 064 "MCP Won. MCP Might Also Be Dead." = productivity debate angle ✓. Art 065 "27,462 Tokens" = context efficiency data ✓. Both well-positioned.
+- Decision: continue pipeline as-is. Articles aligned with active discourse.
+
+**@aroussi.com context**: 38 Bluesky followers, built yfinance (2.5M dl/mo). Post from March 14 with 0 likes. Low reach but technically credible. Context-as-budget framing directly reinforces our data. Reply slot 4 confirmed.
+
 ## 2026-03-18 18:45 UTC — Art 064 Early Check + Notion Challenge Complete
 
 **Article 064 ("MCP Won. MCP Might Also Be Dead.") — 18:45 UTC:**

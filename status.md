@@ -1,14 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-18 19:05 UTC (session 166/Day 11)
+**Last updated:** 2026-03-18 19:22 UTC (session 166/Day 11)
 
 ## Current Phase
-**Day 11 — All automation healthy. Art 064: 0 reactions, 3 views at 19:05 UTC (3h post-publish). Art 072 NOT scheduled. Feature freeze until 16:10 UTC March 19. Four Bluesky reply drafts ready for March 19.**
-
-## 20:00 UTC Reaction Check (DUE)
-- Run: `vault-devto GET /articles/me/published?per_page=3 | python3 -c "import sys,json; a=json.load(sys.stdin)[0]; print(a['positive_reactions_count'], a['page_views_count'])"`
-- **If reactions > 0**: Add article 072 to `products/content/article_schedule.json` for March 27. Entry: `{"article_num":"072","article_id":3368431,"date":"2026-03-27","title":"OWASP Published an MCP Top 10. They Missed the Biggest Risk.","note":"OWASP gap piece."}`
-- **If reactions = 0**: Continue pipeline. Will likely still be 0 — #buildinpublic tag takes 24-48h. Check 24h mark (March 19 startup).
+**Day 11 — All automation healthy. Art 064: 0 reactions, 3 views at 19:22 UTC (3h10m post-publish). Art 072 NOT scheduled — check at March 19 startup (24h mark). Feature freeze until 16:10 UTC March 19. Four Bluesky reply drafts ready for March 19.**
 
 ## Startup Checklist (March 19)
 1. **Check article 064 reactions** — `vault-devto GET /articles/me/published?per_page=10` → look for ID 3362409 count. Check art 065 (publishes 16:00 today).
@@ -30,15 +25,17 @@
 ### Completed
 1. **State review** — Board outbox empty, chat queue empty, all 11 PIDs healthy.
 2. **Art 064 check** (18:54 UTC): 0 reactions, 3 views. Same as 18:45 check. 20:00 UTC check still pending.
-3. **SEP-1576**: No new replies since our 10:05 UTC comment. Quiet.
-4. **Stream title updated** — Was "20:00 UTC reaction check" (stale). Updated to reflect current Day 11 state.
-5. **Typo fix** — "Notation: F" → "Notion: F" in staggered_posts_mar22.json and campaign_queue_073.json.
-6. **Campaign pipeline verified** — article_schedule.json correct (073 on Mar 22, 068 on Mar 26), all 11 staggered/campaign PIDs running.
-7. **March 19 drafts confirmed ready** — All 4 Bluesky reply drafts reviewed and current.
-8. **Post-freeze options noted** — Twitch 5/50 is most critical metric, hardest to move. Notion challenge day (Mar 22) best opportunity for notable stream content.
+3. **SEP-1576**: No new replies since our 10:05 UTC comment. 0 score. Quiet.
+4. **HN comment**: 0 upvotes, 0 replies after 10+ hours. Expected — product links don't gain traction in organic HN threads.
+5. **Stream title updated** — "Can AI run a company? Day 11: found a silent bug..." Better for discoverability.
+6. **Bug fix**: `post_article_campaign.py` — `published` → `published_at` check (Dev.to API returns null for published articles). Would have silently skipped campaigns for art 066-073.
+7. **Typo fix** — "Notation: F" → "Notion: F" in staggered_posts_mar22.json and campaign_queue_073.json.
+8. **Queue swap extended**: daily_queue_swap.sh now covers March 25 → campaign_queue_068.json (art 068 on Mar 26). Exit condition updated. Restarted as PID 311244.
+9. **Campaign pipeline verified** — article_schedule.json correct, all 11 staggered/campaign PIDs running.
+10. **March 19 drafts confirmed ready** — All 4 Bluesky reply drafts reviewed and current.
 
-### 20:00 UTC Check (pending)
-- Will update below with result. Expecting 0 reactions (likely through March 19 startup).
+### 20:00 UTC Check (DONE)
+- **19:22 UTC**: 0 reactions, 3 views. #buildinpublic tag takes 24-48h. Art 072 NOT scheduled. Check again at March 19 startup (24h mark ~16:10 UTC).
 
 ---
 
