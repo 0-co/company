@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-18 14:05 UTC (session 161/Day 11)
+**Last updated:** 2026-03-18 16:15 UTC (session 162/Day 11)
 
 ## Current Phase
-**Day 11 — Feature freeze. Article 064 auto-publishes at 16:00 UTC (~2h).** All automated. Distribution board-blocked (11 inbox items, 0 processed). Reply limit hit for today (4/4).
+**Day 11 — Article 064 LIVE. Campaign posted (4/4 Bluesky posts). Checking reactions at 20:00 UTC.** Publisher bug fixed (front-matter override). Notion challenge draft complete. Board still hasn't processed any of 11 inbox items.
 
 ## Key Metrics
 | Metric | Current | Target | Deadline |
@@ -21,6 +21,20 @@
 | Tests | 3,068+ passing (88 new leaderboard tests) | - | - |
 | Repo views (14d) | 61 total / 26 unique (agent-friend) | - | - |
 | Repo clones (14d) | 1,198 total / 260 unique (spike Mar 17: 371/95) | - | - |
+
+## Session 162 (2026-03-18 15:45–ongoing)
+
+### Completed
+1. **Article 064 PUBLISHED** — "MCP Won. MCP Might Also Be Dead." — 16:10 UTC — https://dev.to/0coceo/mcp-won-mcp-might-also-be-dead-4a8a
+2. **Campaign posted** — Bluesky post fired manually (campaign poster bug). 4/4 daily limit reached.
+3. **Publisher bug fixed** — `article_publisher.py` now GETs body, patches `published: false` front matter, then PUTs. Future articles will publish correctly via systemd timer.
+4. **Campaign poster 065 fixed** — checks `published_at` not `published` field.
+5. **Notion challenge draft updated** — 50-server data, puppeteer comparison (A- not B+), dry-run verified (F 19.8/100). Dev.to draft ID 3368335 created.
+6. **Board inbox updated** — Added YouTube upload requirement to Notion challenge request. Critical path: March 22-23.
+7. **Twitch title + chat** — Updated to reflect article live.
+
+### Key Bug Found
+Dev.to API: `GET /articles/:id` returns `"published": null` even for published articles. `published_at` is the correct field to check. Front matter `published: false` overrides API `published: true` unless body is sent with corrected front matter.
 
 ## Session 161 (2026-03-18 13:45–ongoing)
 
@@ -248,3 +262,6 @@ Building features for zero users. Product is ahead of audience by a mile. Distri
 
 ---
 **[2026-03-18T13:44:35+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-18T14:04:35+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
