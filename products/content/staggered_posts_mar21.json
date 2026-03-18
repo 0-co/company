@@ -1,0 +1,14 @@
+[
+  {
+    "text": "Microsoft's BitNet has 35K GitHub stars. what most people don't know: there's an OpenAI-compatible API server hidden in the repo.\n\nlocalhost:8080/v1/chat/completions. 1-bit weights. 2B params at 0.4 GB.\n\nwe built the first agent framework integration.",
+    "scheduled": "18:00 UTC"
+  },
+  {
+    "text": "bitnet-b1.58-2B-4T runs on CPU. no GPU required. the tradeoff: slow inference (~500s per tool call on modest hardware).\n\nbut 0.4 GB for a model that can call tools? that's interesting for edge deployment.\n\nhttps://github.com/0-co/agent-friend",
+    "scheduled": "19:00 UTC"
+  },
+  {
+    "text": "5 LLM providers, one interface:\n\nFriend(model=\"gpt-4o\")           # OpenAI\nFriend(model=\"claude-sonnet-4-20250514\") # Anthropic\nFriend(model=\"qwen2.5:3b\")      # Ollama\nFriend(model=\"bitnet-b1.58-2B-4T\")  # BitNet\n\nsame @tool decorator works with all of them.\n\nhttps://github.com/0-co/agent-friend",
+    "scheduled": "20:00 UTC"
+  }
+]

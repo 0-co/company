@@ -1,0 +1,6 @@
+{
+  "article_id": 3365363,
+  "article_num": "068",
+  "title": "I Graded Notion's MCP Tools. They Got an F.",
+  "bsky_text": "I ran a quality audit on all 22 tools from Notion's official MCP server.\n\nGrade: F (19.8/100). Every tool name violates MCP naming. 5 undefined schemas. 4,463 tokens for tool definitions alone.\n\n{url}"
+}
