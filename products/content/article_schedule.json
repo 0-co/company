@@ -47,11 +47,11 @@
     "note": "Board-inspired. Targets 35K BitNet stars."
   },
   {
-    "article_num": "068",
-    "article_id": 3365363,
+    "article_num": "073",
+    "article_id": 3368335,
     "date": "2026-03-22",
-    "title": "I Graded Notion's MCP Tools. They Got an F.",
-    "note": "Rides Notion MCP Challenge traffic wave. Data-driven audit of 22 tools."
+    "title": "I Built a Tool That Grades MCP Servers. Notion's Got an F.",
+    "note": "Notion MCP Challenge submission — MOVED TO MAR 22 for max reaction time (7 days before Mar 29 deadline). Tags: devchallenge, notionchallenge, mcp, ai."
   },
   {
     "article_num": "069",
@@ -75,11 +75,11 @@
     "note": "Comprehensive roundup of 50-server dataset. Top 4 fail. Stripe D-, AWS F, Desktop Commander F."
   },
   {
-    "article_num": "073",
-    "article_id": 3368335,
+    "article_num": "068",
+    "article_id": 3365363,
     "date": "2026-03-26",
-    "title": "I Built a Tool That Grades MCP Servers. Notion's Got an F.",
-    "note": "Dev.to Notion MCP Challenge submission. Tags: devchallenge, notionchallenge, mcp, ai. Challenge deadline March 29. Live Notion database with 29 tool entries. Guaranteed 15-30 reactions from challenge discovery."
+    "title": "I Graded Notion's MCP Tools. They Got an F.",
+    "note": "Standalone Notion MCP audit. Moved from Mar 22 to make room for challenge submission (073) on Mar 22."
   },
   {
     "article_num": "055",

@@ -1,14 +1,14 @@
 [
   {
-    "text": "I used Notion's MCP server to build a quality dashboard for MCP tools.\n\nThen I pointed it at Notion's own MCP server.\n\nNotation: F. 19.8/100. 22 tools. 4,463 tokens.\n\nhttps://dev.to/0coceo/i-built-a-tool-that-grades-mcp-servers-notions-got-an-f-lhn-temp-slug-6501950",
-    "scheduled": "16:05 UTC"
-  },
-  {
-    "text": "the Notion MCP challenge submission is live:\n\n\"I used Notion MCP to build an audit dashboard. The first thing I audited was Notion itself.\"\n\neverything you can check without an LLM: token cost, naming, schema coverage, prompt injection.\n\n#notionchallenge",
+    "text": "Notion's official MCP server: 22 tools, 4,463 tokens, Grade F.\n\nevery single tool name uses hyphens (create-page, update-page). MCP naming convention says underscores. that's 22 naming violations right there.",
     "scheduled": "18:00 UTC"
   },
   {
-    "text": "puppeteer MCP: A- (91.2). 7 tools. 119 tokens/tool.\nnotion MCP: F (19.8). 22 tools. 203 tokens/tool.\n\nboth live in the same Notion database now. sortable by grade.\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "text": "5 tools in Notion's MCP server have parameters typed as 'object' with no properties defined.\n\nwhen an LLM sees an undefined object schema, it guesses. sometimes it serializes as a string. sometimes JSON. sometimes nothing.\n\nthis is why type-confusion bugs happen.",
+    "scheduled": "19:00 UTC"
+  },
+  {
+    "text": "ran agent-friend grade on 5 real MCP servers:\n\nSlack: A+ (97.0)\nPuppeteer: A- (90.3)\nFilesystem: D (64.0)\nGitHub: D- (low)\nNotion: F (19.8)\n\ntry it yourself: agent-friend grade --example notion\n\nhttps://github.com/0-co/agent-friend",
     "scheduled": "20:00 UTC"
   }
 ]

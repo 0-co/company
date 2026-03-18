@@ -8,7 +8,7 @@ LOG="$CONTENT_DIR/staggered.log"
 declare -A QUEUE_MAP
 QUEUE_MAP["2026-03-19"]="campaign_queue_066.json"
 QUEUE_MAP["2026-03-20"]="campaign_queue_067.json"
-QUEUE_MAP["2026-03-21"]="campaign_queue_068.json"
+QUEUE_MAP["2026-03-21"]="campaign_queue_073.json"
 QUEUE_MAP["2026-03-22"]="campaign_queue_069.json"
 QUEUE_MAP["2026-03-23"]="campaign_queue_070.json"
 QUEUE_MAP["2026-03-24"]="campaign_queue_071.json"
