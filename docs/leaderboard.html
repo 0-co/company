@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MCP Server Quality Leaderboard — Grade Rankings for Popular MCP Servers</title>
-  <meta name="description" content="27 MCP servers graded A+ to F. PostgreSQL scores perfect 100, Notion scores F. The first public quality ranking of MCP tool schemas.">
+  <meta name="description" content="50 MCP servers graded A+ to F. PostgreSQL scores perfect 100, Notion scores F. The first public quality ranking of MCP tool schemas.">
   <meta name="keywords" content="MCP server quality, MCP server ranking, MCP leaderboard, best MCP servers, MCP tool quality">
   <meta property="og:title" content="MCP Server Quality Leaderboard — Grade Rankings for Popular MCP Servers">
-  <meta property="og:description" content="27 MCP servers graded A+ to F. PostgreSQL scores perfect 100, Notion scores F. See the full ranking.">
+  <meta property="og:description" content="50 MCP servers graded A+ to F. PostgreSQL scores perfect 100, Notion scores F. See the full ranking.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://0-co.github.io/company/leaderboard.html">
   <link rel="canonical" href="https://0-co.github.io/company/leaderboard.html">
@@ -363,6 +363,24 @@
       50% { box-shadow: 0 0 28px rgba(63,185,80,0.25), 0 0 56px rgba(63,185,80,0.1); }
     }
 
+    /* Grade B+ */
+    .grade-bplus {
+      background: rgba(63,185,80,0.12);
+      color: var(--accent-green);
+      border: 1px solid rgba(63,185,80,0.35);
+      box-shadow: 0 0 20px rgba(63,185,80,0.15), 0 0 40px rgba(63,185,80,0.05);
+      animation: glow-green 3s ease-in-out infinite;
+    }
+
+    /* Grade B */
+    .grade-b {
+      background: rgba(63,185,80,0.11);
+      color: var(--accent-green);
+      border: 1px solid rgba(63,185,80,0.32);
+      box-shadow: 0 0 18px rgba(63,185,80,0.12), 0 0 36px rgba(63,185,80,0.04);
+      animation: glow-green 3s ease-in-out infinite;
+    }
+
     /* Grade B- */
     .grade-bminus {
       background: rgba(63,185,80,0.10);
@@ -457,13 +475,13 @@
       border: 1px solid rgba(63,185,80,0.3);
     }
 
-    .issues-med {
+    .issues-med, .issues-medium {
       background: rgba(212,167,44,0.15);
       color: var(--accent-gold);
       border: 1px solid rgba(212,167,44,0.3);
     }
 
-    .issues-high {
+    .issues-high, .issues-critical {
       background: rgba(248,81,73,0.15);
       color: var(--accent-red);
       border: 1px solid rgba(248,81,73,0.3);
@@ -868,11 +886,148 @@
     .leaderboard tbody tr.data-row:nth-of-type(49) { animation-delay: 2.02s; }
     .leaderboard tbody tr.data-row:nth-of-type(51) { animation-delay: 2.10s; }
     .leaderboard tbody tr.data-row:nth-of-type(53) { animation-delay: 2.18s; }
+    .leaderboard tbody tr.data-row:nth-of-type(55) { animation-delay: 2.26s; }
+    .leaderboard tbody tr.data-row:nth-of-type(57) { animation-delay: 2.34s; }
+    .leaderboard tbody tr.data-row:nth-of-type(59) { animation-delay: 2.42s; }
+    .leaderboard tbody tr.data-row:nth-of-type(61) { animation-delay: 2.50s; }
+    .leaderboard tbody tr.data-row:nth-of-type(63) { animation-delay: 2.58s; }
+    .leaderboard tbody tr.data-row:nth-of-type(65) { animation-delay: 2.66s; }
+    .leaderboard tbody tr.data-row:nth-of-type(67) { animation-delay: 2.74s; }
+    .leaderboard tbody tr.data-row:nth-of-type(69) { animation-delay: 2.82s; }
+    .leaderboard tbody tr.data-row:nth-of-type(71) { animation-delay: 2.90s; }
+    .leaderboard tbody tr.data-row:nth-of-type(73) { animation-delay: 2.98s; }
+    .leaderboard tbody tr.data-row:nth-of-type(75) { animation-delay: 3.06s; }
 
     /* Detail rows should not animate like data rows */
     .leaderboard tbody tr.detail-row {
       opacity: 1;
       animation: none;
+    }
+
+    /* After sort/filter, rows should be immediately visible (no staggered animation) */
+    .leaderboard.interacted tbody tr {
+      animation: none;
+      opacity: 1;
+    }
+
+    /* Sortable headers */
+    .leaderboard thead th.sortable {
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+      transition: color 0.2s;
+    }
+
+    .leaderboard thead th.sortable:hover {
+      color: var(--accent-violet);
+    }
+
+    .leaderboard thead th.sortable .sort-arrow {
+      display: inline-block;
+      margin-left: 4px;
+      font-size: 0.6rem;
+      opacity: 0.3;
+      transition: opacity 0.2s;
+    }
+
+    .leaderboard thead th.sortable:hover .sort-arrow {
+      opacity: 0.6;
+    }
+
+    .leaderboard thead th.sortable.sort-active .sort-arrow {
+      opacity: 1;
+      color: var(--accent-violet);
+    }
+
+    /* Filter controls */
+    .leaderboard-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .search-input {
+      background: var(--bg-inset);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      width: 200px;
+    }
+
+    .search-input::placeholder {
+      color: var(--text-muted);
+      opacity: 0.6;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent-violet);
+      box-shadow: 0 0 12px rgba(163,113,247,0.15);
+    }
+
+    .grade-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .grade-filter-btn {
+      background: var(--bg-inset);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 5px 12px;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .grade-filter-btn:hover {
+      border-color: var(--accent-violet);
+      color: var(--text);
+      background: rgba(163,113,247,0.06);
+    }
+
+    .grade-filter-btn.active {
+      background: rgba(163,113,247,0.12);
+      border-color: var(--accent-violet);
+      color: var(--accent-violet);
+      box-shadow: 0 0 12px rgba(163,113,247,0.12);
+    }
+
+    .grade-filter-sep {
+      width: 1px;
+      height: 20px;
+      background: var(--border);
+      align-self: center;
+    }
+
+    .no-results-row td {
+      text-align: center;
+      padding: 40px 12px;
+      color: var(--text-muted);
+      font-family: var(--mono);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 768px) {
+      .leaderboard-controls {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .search-input {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -906,19 +1061,19 @@
   <div class="container">
     <div class="stats-grid">
       <div class="stat-card animate-in">
-        <div class="stat-number" data-count="27">0</div>
+        <div class="stat-number" data-count="50">0</div>
         <div class="stat-label">Servers Graded</div>
       </div>
       <div class="stat-card animate-in">
-        <div class="stat-number" data-value="69.1">0</div>
+        <div class="stat-number" data-value="67.1">0</div>
         <div class="stat-label">Avg Score / 100</div>
       </div>
       <div class="stat-card animate-in">
-        <div class="stat-number" data-count="510">0</div>
+        <div class="stat-number" data-count="1044">0</div>
         <div class="stat-label">Total Tools</div>
       </div>
       <div class="stat-card animate-in">
-        <div class="stat-number" data-count="96671">0</div>
+        <div class="stat-number" data-count="192869">0</div>
         <div class="stat-label">Total Tokens</div>
       </div>
     </div>
@@ -929,6 +1084,19 @@
     <h2>Quality Rankings</h2>
     <p class="section-desc">Click any row to see the grade breakdown. Grades combine correctness (40%), efficiency (30%), and quality (30%).</p>
 
+    <div class="leaderboard-controls">
+      <input type="text" class="search-input" id="searchInput" placeholder="Search servers..." autocomplete="off">
+      <div class="grade-filters" id="gradeFilters">
+        <button class="grade-filter-btn active" data-grades="all">All</button>
+        <div class="grade-filter-sep"></div>
+        <button class="grade-filter-btn" data-grades="A+,A,A-">A</button>
+        <button class="grade-filter-btn" data-grades="B+,B,B-">B</button>
+        <button class="grade-filter-btn" data-grades="C+,C">C</button>
+        <button class="grade-filter-btn" data-grades="D+,D,D-">D</button>
+        <button class="grade-filter-btn" data-grades="F">F</button>
+      </div>
+    </div>
+
     <div class="leaderboard-wrapper">
       <table class="leaderboard" id="leaderboard">
         <thead>
@@ -936,11 +1104,11 @@
             <th>#</th>
             <th>Server</th>
             <th>Grade</th>
-            <th class="r">Score</th>
-            <th class="r">Tools</th>
-            <th class="r">Tokens</th>
-            <th class="r">Avg/Tool</th>
-            <th class="r">Issues</th>
+            <th class="r sortable sort-active" data-sort="score" data-dir="desc">Score <span class="sort-arrow">&darr;</span></th>
+            <th class="r sortable" data-sort="tools">Tools <span class="sort-arrow">&varr;</span></th>
+            <th class="r sortable" data-sort="tokens">Tokens <span class="sort-arrow">&varr;</span></th>
+            <th class="r sortable" data-sort="avgtool">Avg/Tool <span class="sort-arrow">&varr;</span></th>
+            <th class="r sortable" data-sort="issues">Issues <span class="sort-arrow">&varr;</span></th>
           </tr>
         </thead>
         <tbody>
@@ -1116,9 +1284,52 @@
             </td>
           </tr>
 
-          <!-- #5 Git -->
-          <tr class="data-row" data-server="git">
+          <!-- #5 shadcn-ui MCP -->
+          <tr class="data-row" data-server="shadcn">
             <td class="rank-cell">5</td>
+            <td>
+              <a href="https://github.com/Jpisnice/shadcn-ui-mcp-server" class="server-name" onclick="event.stopPropagation()">shadcn-ui MCP</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-a">A</div></td>
+            <td class="r">93.4<span class="score-bar-bg"><span class="score-bar-fill" data-width="93.4" style="background: var(--accent-green);"></span></span></td>
+            <td class="r">10</td>
+            <td class="r">799</td>
+            <td class="r">80</td>
+            <td class="r"><span class="issues-badge issues-low">1</span></td>
+          </tr>
+          <tr class="detail-row" data-server="shadcn">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="100" style="background: var(--accent-cyan);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-cyan);">100</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="93" style="background: var(--accent-green);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-green);">93</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="85" style="background: var(--accent-green);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-green);">85</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html" class="detail-btn detail-btn-primary">Grade your own server</a>
+                  <a href="https://github.com/Jpisnice/shadcn-ui-mcp-server" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- #6 Git -->
+          <tr class="data-row" data-server="git">
+            <td class="rank-cell">6</td>
             <td>
               <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/git" class="server-name" onclick="event.stopPropagation()">Git MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -1159,9 +1370,9 @@
             </td>
           </tr>
 
-          <!-- #6 Puppeteer -->
+          <!-- #7 Puppeteer -->
           <tr class="data-row" data-server="puppeteer">
-            <td class="rank-cell">6</td>
+            <td class="rank-cell">7</td>
             <td>
               <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/puppeteer" class="server-name" onclick="event.stopPropagation()">Puppeteer MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -1202,9 +1413,95 @@
             </td>
           </tr>
 
-          <!-- #7 Brave Search -->
+          <!-- #8 BrowserMCP -->
+          <tr class="data-row" data-server="browsermcp">
+            <td class="rank-cell">8</td>
+            <td>
+              <a href="https://github.com/BrowserMCP/mcp" class="server-name" onclick="event.stopPropagation()">BrowserMCP</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-bplus">B+</div></td>
+            <td class="r">89.2<span class="score-bar-bg"><span class="score-bar-fill" data-width="89.2" style="background: var(--accent-green);"></span></span></td>
+            <td class="r">13</td>
+            <td class="r">1,001</td>
+            <td class="r">77</td>
+            <td class="r"><span class="issues-badge issues-low">2</span></td>
+          </tr>
+          <tr class="detail-row" data-server="browsermcp">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="100" style="background: var(--accent-cyan);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-cyan);">100</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="94" style="background: var(--accent-green);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-green);">94</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="70" style="background: var(--accent-violet);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-violet);">70</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html" class="detail-btn detail-btn-primary">Grade your own server</a>
+                  <a href="https://github.com/BrowserMCP/mcp" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- #9 WhatsApp MCP -->
+          <tr class="data-row" data-server="whatsapp">
+            <td class="rank-cell">9</td>
+            <td>
+              <a href="https://github.com/lharries/whatsapp-mcp" class="server-name" onclick="event.stopPropagation()">WhatsApp MCP</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-bplus">B+</div></td>
+            <td class="r">87.4<span class="score-bar-bg"><span class="score-bar-fill" data-width="87.4" style="background: var(--accent-green);"></span></span></td>
+            <td class="r">12</td>
+            <td class="r">1,259</td>
+            <td class="r">105</td>
+            <td class="r"><span class="issues-badge issues-low">2</span></td>
+          </tr>
+          <tr class="detail-row" data-server="whatsapp">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="100" style="background: var(--accent-cyan);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-cyan);">100</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="88" style="background: var(--accent-green);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-green);">88</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="70" style="background: var(--accent-violet);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-violet);">70</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html" class="detail-btn detail-btn-primary">Grade your own server</a>
+                  <a href="https://github.com/lharries/whatsapp-mcp" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- #10 Brave Search -->
           <tr class="data-row" data-server="brave">
-            <td class="rank-cell">7</td>
+            <td class="rank-cell">10</td>
             <td>
               <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/brave-search" class="server-name" onclick="event.stopPropagation()">Brave Search MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -1245,9 +1542,9 @@
             </td>
           </tr>
 
-          <!-- #8 Time -->
+          <!-- #11 Time -->
           <tr class="data-row" data-server="time">
-            <td class="rank-cell">8</td>
+            <td class="rank-cell">11</td>
             <td>
               <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/time" class="server-name" onclick="event.stopPropagation()">Time MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -1288,9 +1585,181 @@
             </td>
           </tr>
 
-          <!-- #9 Sequential Thinking -->
+          <!-- #12 FastAPI-MCP -->
+          <tr class="data-row" data-server="fastapi-mcp">
+            <td class="rank-cell">12</td>
+            <td>
+              <a href="https://github.com/tadata-org/fastapi_mcp" class="server-name" onclick="event.stopPropagation()">FastAPI-MCP</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-b">B</div></td>
+            <td class="r">85.6<span class="score-bar-bg"><span class="score-bar-fill" data-width="85.6" style="background: var(--accent-green);"></span></span></td>
+            <td class="r">6</td>
+            <td class="r">796</td>
+            <td class="r">133</td>
+            <td class="r"><span class="issues-badge issues-low">2</span></td>
+          </tr>
+          <tr class="detail-row" data-server="fastapi-mcp">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="100" style="background: var(--accent-cyan);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-cyan);">100</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="82" style="background: var(--accent-green);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-green);">82</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="70" style="background: var(--accent-violet);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-violet);">70</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html" class="detail-btn detail-btn-primary">Grade your own server</a>
+                  <a href="https://github.com/tadata-org/fastapi_mcp" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- #13 GhidraMCP -->
+          <tr class="data-row" data-server="ghidra">
+            <td class="rank-cell">13</td>
+            <td>
+              <a href="https://github.com/LaurieWired/GhidraMCP" class="server-name" onclick="event.stopPropagation()">GhidraMCP</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-b">B</div></td>
+            <td class="r">84.4<span class="score-bar-bg"><span class="score-bar-fill" data-width="84.4" style="background: var(--accent-green);"></span></span></td>
+            <td class="r">27</td>
+            <td class="r">2,161</td>
+            <td class="r">80</td>
+            <td class="r"><span class="issues-badge issues-low">3</span></td>
+          </tr>
+          <tr class="detail-row" data-server="ghidra">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="100" style="background: var(--accent-cyan);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-cyan);">100</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="93" style="background: var(--accent-green);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-green);">93</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="55" style="background: var(--accent-violet);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-violet);">55</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html" class="detail-btn detail-btn-primary">Grade your own server</a>
+                  <a href="https://github.com/LaurieWired/GhidraMCP" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- #14 dbhub -->
+          <tr class="data-row" data-server="dbhub">
+            <td class="rank-cell">14</td>
+            <td>
+              <a href="https://github.com/bytebase/dbhub" class="server-name" onclick="event.stopPropagation()">dbhub</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-bminus">B-</div></td>
+            <td class="r">82.3<span class="score-bar-bg"><span class="score-bar-fill" data-width="82.3" style="background: var(--accent-green);"></span></span></td>
+            <td class="r">2</td>
+            <td class="r">364</td>
+            <td class="r">182</td>
+            <td class="r"><span class="issues-badge issues-low">2</span></td>
+          </tr>
+          <tr class="detail-row" data-server="dbhub">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="100" style="background: var(--accent-cyan);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-cyan);">100</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="71" style="background: var(--accent-green);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-green);">71</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="70" style="background: var(--accent-violet);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-violet);">70</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html" class="detail-btn detail-btn-primary">Grade your own server</a>
+                  <a href="https://github.com/bytebase/dbhub" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- #15 Xiaohongshu MCP -->
+          <tr class="data-row" data-server="xiaohongshu">
+            <td class="rank-cell">15</td>
+            <td>
+              <a href="https://github.com/nicepkg/xiaohongshu-mcp" class="server-name" onclick="event.stopPropagation()">Xiaohongshu MCP Server</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-bminus">B-</div></td>
+            <td class="r">80.2<span class="score-bar-bg"><span class="score-bar-fill" data-width="80.2" style="background: var(--accent-green);"></span></span></td>
+            <td class="r">13</td>
+            <td class="r">2,731</td>
+            <td class="r">210</td>
+            <td class="r"><span class="issues-badge issues-low">2</span></td>
+          </tr>
+          <tr class="detail-row" data-server="xiaohongshu">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="100" style="background: var(--accent-cyan);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-cyan);">100</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="64" style="background: var(--accent-gold);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-gold);">64</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="70" style="background: var(--accent-violet);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-violet);">70</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html" class="detail-btn detail-btn-primary">Grade your own server</a>
+                  <a href="https://github.com/nicepkg/xiaohongshu-mcp" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- #16 Sequential Thinking -->
           <tr class="data-row" data-server="sequentialthinking">
-            <td class="rank-cell">9</td>
+            <td class="rank-cell">16</td>
             <td>
               <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking" class="server-name" onclick="event.stopPropagation()">Sequential Thinking</a>
               <span class="expand-hint">&#9662;</span>
@@ -1331,9 +1800,9 @@
             </td>
           </tr>
 
-          <!-- #10 Google Maps -->
+          <!-- #17 Google Maps -->
           <tr class="data-row" data-server="googlemaps">
-            <td class="rank-cell">10</td>
+            <td class="rank-cell">17</td>
             <td>
               <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/google-maps" class="server-name" onclick="event.stopPropagation()">Google Maps MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -1374,9 +1843,9 @@
             </td>
           </tr>
 
-          <!-- #11 GitHub -->
+          <!-- #18 GitHub -->
           <tr class="data-row" data-server="github">
-            <td class="rank-cell">11</td>
+            <td class="rank-cell">18</td>
             <td>
               <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/github" class="server-name" onclick="event.stopPropagation()">GitHub MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -1417,9 +1886,9 @@
             </td>
           </tr>
 
-          <!-- #12 Memory -->
+          <!-- #19 Memory -->
           <tr class="data-row" data-server="memory">
-            <td class="rank-cell">12</td>
+            <td class="rank-cell">19</td>
             <td>
               <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/memory" class="server-name" onclick="event.stopPropagation()">Memory MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -1460,9 +1929,9 @@
             </td>
           </tr>
 
-          <!-- #13 Sentry -->
+          <!-- #20 Sentry -->
           <tr class="data-row" data-server="sentry">
-            <td class="rank-cell">13</td>
+            <td class="rank-cell">20</td>
             <td>
               <a href="https://github.com/getsentry/sentry-mcp-stdio" class="server-name" onclick="event.stopPropagation()">Sentry MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -1503,9 +1972,9 @@
             </td>
           </tr>
 
-          <!-- #14 Fetch -->
+          <!-- #21 Fetch -->
           <tr class="data-row" data-server="fetch">
-            <td class="rank-cell">14</td>
+            <td class="rank-cell">21</td>
             <td>
               <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/fetch" class="server-name" onclick="event.stopPropagation()">Fetch MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -1546,9 +2015,95 @@
             </td>
           </tr>
 
-          <!-- #15 Playwright -->
+          <!-- #22 Obsidian MCP -->
+          <tr class="data-row" data-server="obsidian">
+            <td class="rank-cell">22</td>
+            <td>
+              <a href="https://github.com/MarkusPfundstein/mcp-obsidian" class="server-name" onclick="event.stopPropagation()">Obsidian MCP</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-c">C</div></td>
+            <td class="r">73.5<span class="score-bar-bg"><span class="score-bar-fill" data-width="73.5" style="background: var(--accent-gold);"></span></span></td>
+            <td class="r">13</td>
+            <td class="r">1,505</td>
+            <td class="r">116</td>
+            <td class="r"><span class="issues-badge issues-medium">5</span></td>
+          </tr>
+          <tr class="detail-row" data-server="obsidian">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="90" style="background: var(--accent-green);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-green);">90</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="85" style="background: var(--accent-green);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-green);">85</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="40" style="background: var(--accent-violet);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-violet);">40</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html" class="detail-btn detail-btn-primary">Grade your own server</a>
+                  <a href="https://github.com/MarkusPfundstein/mcp-obsidian" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- #23 Browserbase MCP -->
+          <tr class="data-row" data-server="browserbase">
+            <td class="rank-cell">23</td>
+            <td>
+              <a href="https://github.com/browserbase/mcp-server-browserbase" class="server-name" onclick="event.stopPropagation()">Browserbase MCP</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-dplus">D+</div></td>
+            <td class="r">69.6<span class="score-bar-bg"><span class="score-bar-fill" data-width="69.6" style="background: var(--accent-gold);"></span></span></td>
+            <td class="r">9</td>
+            <td class="r">962</td>
+            <td class="r">107</td>
+            <td class="r"><span class="issues-badge issues-medium">6</span></td>
+          </tr>
+          <tr class="detail-row" data-server="browserbase">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="90" style="background: var(--accent-green);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-green);">90</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="87" style="background: var(--accent-green);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-green);">87</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="25" style="background: var(--accent-red);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-red);">25</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html" class="detail-btn detail-btn-primary">Grade your own server</a>
+                  <a href="https://github.com/browserbase/mcp-server-browserbase" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- #24 Playwright -->
           <tr class="data-row" data-server="playwright">
-            <td class="rank-cell">15</td>
+            <td class="rank-cell">24</td>
             <td>
               <a href="https://github.com/microsoft/playwright-mcp" class="server-name" onclick="event.stopPropagation()">Playwright MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -1589,9 +2144,52 @@
             </td>
           </tr>
 
-          <!-- #16 Filesystem -->
+          <!-- #25 Serena -->
+          <tr class="data-row" data-server="serena">
+            <td class="rank-cell">25</td>
+            <td>
+              <a href="https://github.com/oraios/serena" class="server-name" onclick="event.stopPropagation()">Serena</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-dplus">D+</div></td>
+            <td class="r">67.0<span class="score-bar-bg"><span class="score-bar-fill" data-width="67.0" style="background: var(--accent-gold);"></span></span></td>
+            <td class="r">43</td>
+            <td class="r">4,181</td>
+            <td class="r">97</td>
+            <td class="r"><span class="issues-badge issues-med">10</span></td>
+          </tr>
+          <tr class="detail-row" data-server="serena">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="100" style="background: var(--accent-cyan);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-cyan);">100</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="90" style="background: var(--accent-green);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-green);">90</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="0" style="background: var(--accent-red);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-red);">0</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html" class="detail-btn detail-btn-primary">Grade your own server</a>
+                  <a href="https://github.com/oraios/serena" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- #26 Filesystem -->
           <tr class="data-row" data-server="filesystem">
-            <td class="rank-cell">16</td>
+            <td class="rank-cell">26</td>
             <td>
               <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem" class="server-name" onclick="event.stopPropagation()">Filesystem MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -1632,9 +2230,9 @@
             </td>
           </tr>
 
-          <!-- #17 Chrome DevTools -->
+          <!-- #27 Chrome DevTools -->
           <tr class="data-row" data-server="chrome-devtools">
-            <td class="rank-cell">17</td>
+            <td class="rank-cell">27</td>
             <td>
               <a href="https://github.com/ChromeDevTools/chrome-devtools-mcp" class="server-name" onclick="event.stopPropagation()">Chrome DevTools MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -1675,9 +2273,181 @@
             </td>
           </tr>
 
-          <!-- #18 Atlassian -->
+
+          <!-- #28 Google genai-toolbox -->
+          <tr class="data-row" data-server="genai-toolbox">
+            <td class="rank-cell">28</td>
+            <td>
+              <a href="https://github.com/googleapis/genai-toolbox" class="server-name" onclick="event.stopPropagation()">Google genai-toolbox</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-d">D</div></td>
+            <td class="r">64.3<span class="score-bar-bg"><span class="score-bar-fill" data-width="64.3" style="background: var(--accent-orange);"></span></span></td>
+            <td class="r">29</td>
+            <td class="r">3,921</td>
+            <td class="r">135</td>
+            <td class="r"><span class="issues-badge issues-high">19</span></td>
+          </tr>
+          <tr class="detail-row" data-server="genai-toolbox">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="100" style="background: var(--accent-cyan);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-cyan);">100</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="81" style="background: var(--accent-green);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-green);">81</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="0" style="background: var(--accent-violet);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-violet);">0</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html" class="detail-btn detail-btn-primary">Grade your own server</a>
+                  <a href="https://github.com/googleapis/genai-toolbox" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- #29 Excel MCP Server -->
+          <tr class="data-row" data-server="excel">
+            <td class="rank-cell">29</td>
+            <td>
+              <a href="https://github.com/haris-musa/excel-mcp-server" class="server-name" onclick="event.stopPropagation()">Excel MCP Server</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-d">D</div></td>
+            <td class="r">63.8<span class="score-bar-bg"><span class="score-bar-fill" data-width="63.8" style="background: var(--accent-gold);"></span></span></td>
+            <td class="r">25</td>
+            <td class="r">3,349</td>
+            <td class="r">134</td>
+            <td class="r"><span class="issues-badge issues-medium">7</span></td>
+          </tr>
+          <tr class="detail-row" data-server="excel">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="80" style="background: var(--accent-green);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-green);">80</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="81" style="background: var(--accent-green);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-green);">81</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="25" style="background: var(--accent-violet);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-violet);">25</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html" class="detail-btn detail-btn-primary">Grade your own server</a>
+                  <a href="https://github.com/haris-musa/excel-mcp-server" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- #30 Stripe Agent Toolkit -->
+          <tr class="data-row" data-server="stripe">
+            <td class="rank-cell">30</td>
+            <td>
+              <a href="https://github.com/stripe/agent-toolkit" class="server-name" onclick="event.stopPropagation()">Stripe Agent Toolkit MCP Server</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-dminus">D-</div></td>
+            <td class="r">62.5<span class="score-bar-bg"><span class="score-bar-fill" data-width="62.5" style="background: var(--accent-orange);"></span></span></td>
+            <td class="r">25</td>
+            <td class="r">4,112</td>
+            <td class="r">164</td>
+            <td class="r"><span class="issues-badge issues-high">24</span></td>
+          </tr>
+          <tr class="detail-row" data-server="stripe">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="100" style="background: var(--accent-cyan);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-cyan);">100</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="75" style="background: var(--accent-green);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-green);">75</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="0" style="background: var(--accent-red);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-red);">0</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html" class="detail-btn detail-btn-primary">Grade your own server</a>
+                  <a href="https://github.com/stripe/agent-toolkit" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <!-- #31 Figma-Context-MCP -->
+          <tr class="data-row" data-server="figma">
+            <td class="rank-cell">31</td>
+            <td>
+              <a href="https://github.com/GLips/Figma-Context-MCP" class="server-name" onclick="event.stopPropagation()">Figma-Context-MCP</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-dminus">D-</div></td>
+            <td class="r">61.9<span class="score-bar-bg"><span class="score-bar-fill" data-width="61.9" style="background: var(--accent-orange);"></span></span></td>
+            <td class="r">2</td>
+            <td class="r">706</td>
+            <td class="r">353</td>
+            <td class="r"><span class="issues-badge issues-medium">4</span></td>
+          </tr>
+          <tr class="detail-row" data-server="figma">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="100" style="background: var(--accent-cyan);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-cyan);">100</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="33" style="background: var(--accent-red);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-red);">33</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="40" style="background: var(--accent-violet);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-violet);">40</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html" class="detail-btn detail-btn-primary">Grade your own server</a>
+                  <a href="https://github.com/GLips/Figma-Context-MCP" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- #32 Atlassian -->
           <tr class="data-row" data-server="atlassian">
-            <td class="rank-cell">18</td>
+            <td class="rank-cell">32</td>
             <td>
               <a href="https://github.com/sooperset/mcp-atlassian" class="server-name" onclick="event.stopPropagation()">Atlassian MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -1718,9 +2488,138 @@
             </td>
           </tr>
 
-          <!-- #19 Blender -->
+          <!-- #33 magic-mcp -->
+          <tr class="data-row" data-server="magic-mcp">
+            <td class="rank-cell">33</td>
+            <td>
+              <a href="https://github.com/21st-dev/magic-mcp" class="server-name" onclick="event.stopPropagation()">magic-mcp</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-f">F</div></td>
+            <td class="r">58.3<span class="score-bar-bg"><span class="score-bar-fill" data-width="58.3" style="background: var(--accent-red);"></span></span></td>
+            <td class="r">4</td>
+            <td class="r">906</td>
+            <td class="r">227</td>
+            <td class="r"><span class="issues-badge issues-medium">7</span></td>
+          </tr>
+          <tr class="detail-row" data-server="magic-mcp">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="100" style="background: var(--accent-cyan);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-cyan);">100</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="61" style="background: var(--accent-gold);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-gold);">61</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="0" style="background: var(--accent-violet);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-violet);">0</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html" class="detail-btn detail-btn-primary">Grade your own server</a>
+                  <a href="https://github.com/21st-dev/magic-mcp" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- #34 Chart MCP Server -->
+          <tr class="data-row" data-server="chart">
+            <td class="rank-cell">34</td>
+            <td>
+              <a href="https://github.com/antvis/mcp-server-chart" class="server-name" onclick="event.stopPropagation()">Chart MCP Server</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-f">F</div></td>
+            <td class="r">56.5<span class="score-bar-bg"><span class="score-bar-fill" data-width="56.5" style="background: var(--accent-red);"></span></span></td>
+            <td class="r">27</td>
+            <td class="r">6,838</td>
+            <td class="r">253</td>
+            <td class="r"><span class="issues-badge issues-critical">52</span></td>
+          </tr>
+          <tr class="detail-row" data-server="chart">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="100" style="background: var(--accent-cyan);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-cyan);">100</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="55" style="background: var(--accent-orange);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-orange);">55</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="0" style="background: var(--accent-violet);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-violet);">0</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html" class="detail-btn detail-btn-primary">Grade your own server</a>
+                  <a href="https://github.com/antvis/mcp-server-chart" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- #35 Google Workspace MCP -->
+          <tr class="data-row" data-server="google-workspace">
+            <td class="rank-cell">35</td>
+            <td>
+              <a href="https://github.com/taylorwilsdon/google_workspace_mcp" class="server-name" onclick="event.stopPropagation()">Google Workspace MCP</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-f">F</div></td>
+            <td class="r">54.8<span class="score-bar-bg"><span class="score-bar-fill" data-width="54.8" style="background: var(--accent-red);"></span></span></td>
+            <td class="r">86</td>
+            <td class="r">13,539</td>
+            <td class="r">157</td>
+            <td class="r"><span class="issues-badge issues-high">21</span></td>
+          </tr>
+          <tr class="detail-row" data-server="google-workspace">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="80" style="background: var(--accent-green);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-green);">80</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="76" style="background: var(--accent-green);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-green);">76</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="0" style="background: var(--accent-violet);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-violet);">0</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html" class="detail-btn detail-btn-primary">Grade your own server</a>
+                  <a href="https://github.com/taylorwilsdon/google_workspace_mcp" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- #36 Blender -->
           <tr class="data-row" data-server="blender">
-            <td class="rank-cell">19</td>
+            <td class="rank-cell">36</td>
             <td>
               <a href="https://github.com/ahujasid/blender-mcp" class="server-name" onclick="event.stopPropagation()">Blender MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -1761,9 +2660,9 @@
             </td>
           </tr>
 
-          <!-- #20 Exa -->
+          <!-- #37 Exa -->
           <tr class="data-row" data-server="exa">
-            <td class="rank-cell">20</td>
+            <td class="rank-cell">37</td>
             <td>
               <a href="https://github.com/exa-labs/exa-mcp-server" class="server-name" onclick="event.stopPropagation()">Exa MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -1804,9 +2703,52 @@
             </td>
           </tr>
 
-          <!-- #21 GitHub Official -->
+
+          <!-- #38 AWS -->
+          <tr class="data-row" data-server="aws">
+            <td class="rank-cell">38</td>
+            <td>
+              <a href="https://github.com/awslabs/mcp" class="server-name" onclick="event.stopPropagation()">AWS MCP Server</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-f">F</div></td>
+            <td class="r">52.2<span class="score-bar-bg"><span class="score-bar-fill" data-width="52.2" style="background: var(--accent-red);"></span></span></td>
+            <td class="r">28</td>
+            <td class="r">7,168</td>
+            <td class="r">256</td>
+            <td class="r"><span class="issues-badge issues-high">63</span></td>
+          </tr>
+          <tr class="detail-row" data-server="aws">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="90" style="background: var(--accent-cyan);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-cyan);">90</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="54" style="background: var(--accent-gold);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-gold);">54</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="0" style="background: var(--accent-red);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-red);">0</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html" class="detail-btn detail-btn-primary">Grade your own server</a>
+                  <a href="https://github.com/awslabs/mcp" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <!-- #39 GitHub Official -->
           <tr class="data-row" data-server="github-official">
-            <td class="rank-cell">21</td>
+            <td class="rank-cell">39</td>
             <td>
               <a href="https://github.com/github/github-mcp-server" class="server-name" onclick="event.stopPropagation()">GitHub MCP Server (Official)</a>
               <span class="expand-hint">&#9662;</span>
@@ -1847,9 +2789,9 @@
             </td>
           </tr>
 
-          <!-- #22 Cloudflare Radar -->
+          <!-- #40 Cloudflare Radar -->
           <tr class="data-row" data-server="cloudflare">
-            <td class="rank-cell">22</td>
+            <td class="rank-cell">40</td>
             <td>
               <a href="https://github.com/cloudflare/mcp-server-cloudflare" class="server-name" onclick="event.stopPropagation()">Cloudflare Radar MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -1890,9 +2832,52 @@
             </td>
           </tr>
 
-          <!-- #23 Tavily -->
+          <!-- #41 PAL MCP Server -->
+          <tr class="data-row" data-server="pal">
+            <td class="rank-cell">41</td>
+            <td>
+              <a href="https://github.com/BeehiveInnovations/pal-mcp-server" class="server-name" onclick="event.stopPropagation()">PAL MCP Server</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-f">F</div></td>
+            <td class="r">49.0<span class="score-bar-bg"><span class="score-bar-fill" data-width="49.0" style="background: var(--accent-red);"></span></span></td>
+            <td class="r">18</td>
+            <td class="r">6,610</td>
+            <td class="r">367</td>
+            <td class="r"><span class="issues-badge issues-high">18</span></td>
+          </tr>
+          <tr class="detail-row" data-server="pal">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="100" style="background: var(--accent-cyan);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-cyan);">100</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="30" style="background: var(--accent-red);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-red);">30</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="0" style="background: var(--accent-violet);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-violet);">0</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html" class="detail-btn detail-btn-primary">Grade your own server</a>
+                  <a href="https://github.com/BeehiveInnovations/pal-mcp-server" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- #42 Tavily -->
           <tr class="data-row" data-server="tavily">
-            <td class="rank-cell">23</td>
+            <td class="rank-cell">42</td>
             <td>
               <a href="https://github.com/tavily-ai/tavily-mcp" class="server-name" onclick="event.stopPropagation()">Tavily MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -1933,9 +2918,95 @@
             </td>
           </tr>
 
-          <!-- #24 GA4 -->
+          <!-- #43 n8n-mcp -->
+          <tr class="data-row" data-server="n8n-mcp">
+            <td class="rank-cell">43</td>
+            <td>
+              <a href="https://github.com/czlonkowski/n8n-mcp" class="server-name" onclick="event.stopPropagation()">n8n-mcp</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-f">F</div></td>
+            <td class="r">47.7<span class="score-bar-bg"><span class="score-bar-fill" data-width="47.7" style="background: var(--accent-red);"></span></span></td>
+            <td class="r">20</td>
+            <td class="r">4,281</td>
+            <td class="r">214</td>
+            <td class="r"><span class="issues-badge issues-high">10</span></td>
+          </tr>
+          <tr class="detail-row" data-server="n8n-mcp">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="30" style="background: var(--accent-red);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-red);">30</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="64" style="background: var(--accent-gold);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-gold);">64</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="55" style="background: var(--accent-violet);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-violet);">55</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html" class="detail-btn detail-btn-primary">Grade your own server</a>
+                  <a href="https://github.com/czlonkowski/n8n-mcp" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- #44 mcp-chrome -->
+          <tr class="data-row" data-server="mcp-chrome">
+            <td class="rank-cell">44</td>
+            <td>
+              <a href="https://github.com/hangwin/mcp-chrome" class="server-name" onclick="event.stopPropagation()">mcp-chrome</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-f">F</div></td>
+            <td class="r">44.9<span class="score-bar-bg"><span class="score-bar-fill" data-width="44.9" style="background: var(--accent-red);"></span></span></td>
+            <td class="r">27</td>
+            <td class="r">8,309</td>
+            <td class="r">308</td>
+            <td class="r"><span class="issues-badge issues-critical">63</span></td>
+          </tr>
+          <tr class="detail-row" data-server="mcp-chrome">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="80" style="background: var(--accent-green);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-green);">80</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="43" style="background: var(--accent-orange);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-orange);">43</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="0" style="background: var(--accent-violet);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-violet);">0</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html" class="detail-btn detail-btn-primary">Grade your own server</a>
+                  <a href="https://github.com/hangwin/mcp-chrome" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- #45 GA4 -->
           <tr class="data-row" data-server="ga4">
-            <td class="rank-cell">24</td>
+            <td class="rank-cell">45</td>
             <td>
               <a href="https://github.com/googleanalytics/google-analytics-mcp" class="server-name" onclick="event.stopPropagation()">Google Analytics (GA4) MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -1976,9 +3047,9 @@
             </td>
           </tr>
 
-          <!-- #25 Context7 -->
+          <!-- #46 Context7 -->
           <tr class="data-row" data-server="context7">
-            <td class="rank-cell">25</td>
+            <td class="rank-cell">46</td>
             <td>
               <a href="https://github.com/upstash/context7" class="server-name" onclick="event.stopPropagation()">Context7 MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -2019,9 +3090,9 @@
             </td>
           </tr>
 
-          <!-- #26 Firecrawl -->
+          <!-- #47 Firecrawl -->
           <tr class="data-row" data-server="firecrawl">
-            <td class="rank-cell">26</td>
+            <td class="rank-cell">47</td>
             <td>
               <a href="https://github.com/mendableai/firecrawl-mcp-server" class="server-name" onclick="event.stopPropagation()">Firecrawl MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -2062,9 +3133,94 @@
             </td>
           </tr>
 
-          <!-- #27 Notion -->
+
+          <!-- #48 Desktop Commander -->
+          <tr class="data-row" data-server="desktop-commander">
+            <td class="rank-cell">48</td>
+            <td>
+              <a href="https://github.com/wonderwhy-er/DesktopCommanderMCP" class="server-name" onclick="event.stopPropagation()">Desktop Commander MCP Server</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-f">F</div></td>
+            <td class="r">30.8<span class="score-bar-bg"><span class="score-bar-fill" data-width="30.8" style="background: var(--accent-red);"></span></span></td>
+            <td class="r">27</td>
+            <td class="r">9,068</td>
+            <td class="r">336</td>
+            <td class="r"><span class="issues-badge issues-high">35</span></td>
+          </tr>
+          <tr class="detail-row" data-server="desktop-commander">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="50" style="background: var(--accent-gold);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-gold);">50</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="36" style="background: var(--accent-orange);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-orange);">36</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="0" style="background: var(--accent-red);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-red);">0</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html" class="detail-btn detail-btn-primary">Grade your own server</a>
+                  <a href="https://github.com/wonderwhy-er/DesktopCommanderMCP" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <!-- #49 Grafana MCP -->
+          <tr class="data-row" data-server="grafana">
+            <td class="rank-cell">49</td>
+            <td>
+              <a href="https://github.com/grafana/mcp-grafana" class="server-name" onclick="event.stopPropagation()">Grafana MCP</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-f">F</div></td>
+            <td class="r">21.9<span class="score-bar-bg"><span class="score-bar-fill" data-width="21.9" style="background: var(--accent-red);"></span></span></td>
+            <td class="r">68</td>
+            <td class="r">11,632</td>
+            <td class="r">171</td>
+            <td class="r"><span class="issues-badge issues-critical">49</span></td>
+          </tr>
+          <tr class="detail-row" data-server="grafana">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="0" style="background: var(--accent-red);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-red);">0</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="73" style="background: var(--accent-green);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-green);">73</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="0" style="background: var(--accent-violet);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-violet);">0</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html" class="detail-btn detail-btn-primary">Grade your own server</a>
+                  <a href="https://github.com/grafana/mcp-grafana" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <!-- #50 Notion -->
           <tr class="data-row" data-server="notion">
-            <td class="rank-cell">27</td>
+            <td class="rank-cell">50</td>
             <td>
               <a href="https://github.com/makenotion/notion-mcp-server" class="server-name" onclick="event.stopPropagation()">Notion MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -2253,11 +3409,219 @@
       });
     }
 
+    // --- Sorting ---
+    // Column index map: Score=3, Tools=4, Tokens=5, Avg/Tool=6, Issues=7
+    var sortColMap = { score: 3, tools: 4, tokens: 5, avgtool: 6, issues: 7 };
+
+    function getNumericValue(dataRow, colIndex) {
+      var td = dataRow.children[colIndex];
+      if (!td) return 0;
+      // For issues column, get text from the issues-badge span
+      var badge = td.querySelector('.issues-badge');
+      if (badge) return parseFloat(badge.textContent) || 0;
+      // For score column, the number is the first text node (before the span)
+      var text = td.textContent.replace(/,/g, '').trim();
+      // Extract just the leading number
+      var match = text.match(/^[\d.]+/);
+      return match ? parseFloat(match[0]) : 0;
+    }
+
+    function getServerPairs() {
+      var tbody = document.querySelector('#leaderboard tbody');
+      var dataRows = tbody.querySelectorAll('tr.data-row');
+      var pairs = [];
+      dataRows.forEach(function(dr) {
+        var server = dr.getAttribute('data-server');
+        var detailRow = tbody.querySelector('tr.detail-row[data-server="' + server + '"]');
+        pairs.push({ dataRow: dr, detailRow: detailRow });
+      });
+      return pairs;
+    }
+
+    function sortTable(sortKey, direction) {
+      var colIndex = sortColMap[sortKey];
+      if (colIndex === undefined) return;
+
+      var table = document.getElementById('leaderboard');
+      var tbody = table.querySelector('tbody');
+      var pairs = getServerPairs();
+
+      pairs.sort(function(a, b) {
+        var va = getNumericValue(a.dataRow, colIndex);
+        var vb = getNumericValue(b.dataRow, colIndex);
+        return direction === 'asc' ? va - vb : vb - va;
+      });
+
+      // Re-append in sorted order
+      pairs.forEach(function(pair) {
+        tbody.appendChild(pair.dataRow);
+        tbody.appendChild(pair.detailRow);
+      });
+
+      // Mark table as interacted (disables staggered animation)
+      table.classList.add('interacted');
+
+      // Renumber ranks and re-apply filtering
+      applyFilters();
+    }
+
+    function setupSorting() {
+      var headers = document.querySelectorAll('.leaderboard thead th.sortable');
+      headers.forEach(function(th) {
+        th.addEventListener('click', function() {
+          var sortKey = this.getAttribute('data-sort');
+          var currentDir = this.getAttribute('data-dir');
+          var newDir = currentDir === 'desc' ? 'asc' : 'desc';
+
+          // Reset all headers
+          headers.forEach(function(h) {
+            h.classList.remove('sort-active');
+            h.removeAttribute('data-dir');
+            h.querySelector('.sort-arrow').innerHTML = '&#8597;';
+          });
+
+          // Set this one
+          this.classList.add('sort-active');
+          this.setAttribute('data-dir', newDir);
+          this.querySelector('.sort-arrow').innerHTML = newDir === 'desc' ? '&darr;' : '&uarr;';
+
+          sortTable(sortKey, newDir);
+        });
+      });
+    }
+
+    // --- Grade Filtering + Search ---
+    var activeGrades = null; // null = all
+    var searchQuery = '';
+
+    function gradeMatchesFilter(gradeText) {
+      if (!activeGrades) return true;
+      return activeGrades.indexOf(gradeText) !== -1;
+    }
+
+    function nameMatchesSearch(dataRow) {
+      if (!searchQuery) return true;
+      var nameEl = dataRow.querySelector('.server-name');
+      if (!nameEl) return false;
+      return nameEl.textContent.toLowerCase().indexOf(searchQuery) !== -1;
+    }
+
+    function applyFilters() {
+      var tbody = document.querySelector('#leaderboard tbody');
+      var dataRows = tbody.querySelectorAll('tr.data-row');
+      var rank = 0;
+      var anyVisible = false;
+
+      dataRows.forEach(function(dr) {
+        var server = dr.getAttribute('data-server');
+        var detailRow = tbody.querySelector('tr.detail-row[data-server="' + server + '"]');
+        var gradeBadge = dr.querySelector('.grade-badge');
+        var gradeText = gradeBadge ? gradeBadge.textContent.trim() : '';
+
+        var gradeOk = gradeMatchesFilter(gradeText);
+        var searchOk = nameMatchesSearch(dr);
+        var visible = gradeOk && searchOk;
+
+        dr.style.display = visible ? '' : 'none';
+        if (detailRow) {
+          if (!visible) {
+            detailRow.classList.remove('open');
+            detailRow.style.display = 'none';
+          } else {
+            // Restore detail-row display rule (CSS controls via .open class)
+            detailRow.style.display = '';
+          }
+        }
+
+        if (visible) {
+          anyVisible = true;
+          rank++;
+          var rankCell = dr.querySelector('.rank-cell');
+          if (rankCell) rankCell.textContent = rank;
+
+          // Manage rank-1 class
+          if (rank === 1) {
+            dr.classList.add('rank-1');
+          } else {
+            dr.classList.remove('rank-1');
+          }
+        }
+      });
+
+      // Handle no-results message
+      var existing = tbody.querySelector('.no-results-row');
+      if (!anyVisible) {
+        if (!existing) {
+          var noRow = document.createElement('tr');
+          noRow.className = 'no-results-row';
+          noRow.innerHTML = '<td colspan="8">No servers match your filters</td>';
+          noRow.style.opacity = '1';
+          noRow.style.animation = 'none';
+          tbody.appendChild(noRow);
+        }
+      } else if (existing) {
+        existing.remove();
+      }
+    }
+
+    function setupGradeFilters() {
+      var btns = document.querySelectorAll('#gradeFilters .grade-filter-btn');
+      btns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          // Toggle active state
+          btns.forEach(function(b) { b.classList.remove('active'); });
+          this.classList.add('active');
+
+          var grades = this.getAttribute('data-grades');
+          if (grades === 'all') {
+            activeGrades = null;
+          } else {
+            activeGrades = grades.split(',');
+          }
+
+          var table = document.getElementById('leaderboard');
+          table.classList.add('interacted');
+          applyFilters();
+        });
+      });
+    }
+
+    function setupSearch() {
+      var input = document.getElementById('searchInput');
+      input.addEventListener('input', function() {
+        searchQuery = this.value.toLowerCase().trim();
+        var table = document.getElementById('leaderboard');
+        table.classList.add('interacted');
+        applyFilters();
+      });
+    }
+
+    // Deep link — auto-scroll and expand a server via URL hash
+    function handleDeepLink() {
+      var hash = window.location.hash.slice(1).toLowerCase();
+      if (!hash) return;
+      var rows = document.querySelectorAll('.data-row');
+      for (var i = 0; i < rows.length; i++) {
+        var server = rows[i].getAttribute('data-server');
+        if (server === hash) {
+          rows[i].click();
+          setTimeout(function() {
+            rows[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 100);
+          break;
+        }
+      }
+    }
+
     // Init
     document.addEventListener('DOMContentLoaded', function() {
       animateCounters();
       animateScoreBars();
       setupRowExpand();
+      setupSorting();
+      setupGradeFilters();
+      setupSearch();
+      handleDeepLink();
     });
   </script>
 </body>
