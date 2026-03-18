@@ -1106,6 +1106,7 @@
       <div id="share-container"></div>
       <div id="pipeline-container"></div>
       <div id="badge-container"></div>
+      <div id="leaderboard-container"></div>
 
       <div id="fix-section">
         <div class="results-divider"></div>
@@ -1187,6 +1188,38 @@
         }
       }
     ], null, 2);
+
+    // Leaderboard benchmark data — 50 popular MCP servers
+    var LEADERBOARD_SCORES = [
+      ["PostgreSQL", 100.0], ["SQLite", 99.7], ["E2B", 99.1], ["Slack", 97.3],
+      ["shadcn-ui", 93.4], ["Git", 93.1], ["Puppeteer", 91.2], ["BrowserMCP", 89.2],
+      ["WhatsApp", 87.4], ["FastAPI-MCP", 85.6], ["GhidraMCP", 84.4], ["Brave Search", 82.6],
+      ["dbhub", 82.3], ["Time", 81.7], ["Xiaohongshu", 80.2], ["Sequential Thinking", 79.9],
+      ["Google Maps", 79.9], ["GitHub", 79.6], ["Memory", 78.4], ["Sentry", 76.6],
+      ["Fetch", 74.4], ["Obsidian", 73.5], ["Browserbase", 69.6], ["Playwright", 67.0],
+      ["Serena", 67.0], ["Filesystem", 64.9], ["Chrome DevTools", 64.9], ["genai-toolbox", 64.3],
+      ["Excel", 63.8], ["Stripe", 62.5], ["Atlassian", 62.2], ["Figma", 61.9],
+      ["magic-mcp", 58.3], ["Chart", 56.5], ["Google Workspace", 54.8], ["Blender", 54.2],
+      ["Exa", 53.0], ["AWS", 52.2], ["GitHub Official", 52.1], ["Cloudflare Radar", 51.4],
+      ["PAL", 49.0], ["Tavily", 48.1], ["n8n", 47.7], ["mcp-chrome", 44.9],
+      ["GA4", 40.0], ["Context7", 39.5], ["Firecrawl", 35.8], ["Desktop Commander", 30.8],
+      ["Grafana", 21.9], ["Notion", 19.8]
+    ];
+
+    function getLeaderboardRank(score) {
+      var rank = 1;
+      for (var i = 0; i < LEADERBOARD_SCORES.length; i++) {
+        if (LEADERBOARD_SCORES[i][1] > score) rank++;
+        else break;
+      }
+      var total = LEADERBOARD_SCORES.length;
+      var above = [];
+      var below = [];
+      var idx = rank - 1; // 0-based insertion point
+      for (var j = Math.max(0, idx - 2); j < idx; j++) above.push(LEADERBOARD_SCORES[j]);
+      for (var k = idx; k < Math.min(total, idx + 2); k++) below.push(LEADERBOARD_SCORES[k]);
+      return { rank: rank, total: total, above: above, below: below };
+    }
 
     var FORMAT_LABELS = {
       openai: 'OpenAI',
@@ -1766,9 +1799,29 @@
           '</div>' +
         '</div>';
 
+      // Leaderboard ranking
+      var lb = getLeaderboardRank(r.overall);
+      var lbHtml = '<div style="background:var(--bg-inset);border:1px solid var(--border-bright);border-radius:10px;padding:20px 24px;margin-top:16px;position:relative;overflow:hidden;">' +
+        '<div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent-cyan),var(--accent-violet));"></div>' +
+        '<div style="font-family:var(--mono);font-size:0.85rem;color:var(--text-muted);margin-bottom:12px;">How you compare to ' + lb.total + ' popular MCP servers:</div>' +
+        '<div style="display:flex;flex-direction:column;gap:4px;font-family:var(--mono);font-size:0.78rem;">';
+      for (var ai = 0; ai < lb.above.length; ai++) {
+        lbHtml += '<div style="color:var(--text-muted);padding:4px 12px;">  ' + lb.above[ai][0] + ' <span style="color:var(--accent-cyan);">(' + lb.above[ai][1] + ')</span></div>';
+      }
+      var rankColor = r.overall >= 80 ? 'var(--accent-green)' : r.overall >= 60 ? 'var(--accent-gold)' : 'var(--accent-red)';
+      lbHtml += '<div style="color:' + rankColor + ';font-weight:700;padding:6px 12px;background:rgba(163,113,247,0.08);border-radius:6px;border-left:3px solid ' + rankColor + ';">' +
+        '  #' + lb.rank + ' Your server (' + r.overall + ')</div>';
+      for (var bi = 0; bi < lb.below.length; bi++) {
+        lbHtml += '<div style="color:var(--text-muted);padding:4px 12px;">  ' + lb.below[bi][0] + ' <span style="color:var(--accent-cyan);">(' + lb.below[bi][1] + ')</span></div>';
+      }
+      lbHtml += '</div>' +
+        '<div style="margin-top:12px;font-family:var(--mono);font-size:0.72rem;"><a href="leaderboard.html" style="color:var(--accent-violet);">Full leaderboard &rarr;</a></div>' +
+        '</div>';
+      document.getElementById('leaderboard-container').innerHTML = lbHtml;
+
       // Share button
       var shareContainer = document.getElementById('share-container');
-      var shareText = 'MCP Report Card: ' + r.overallGrade + ' (' + r.overall + '/100)\n' +
+      var shareText = 'MCP Report Card: ' + r.overallGrade + ' (' + r.overall + '/100) — #' + lb.rank + ' out of ' + lb.total + ' popular MCP servers\n' +
         r.toolCount + ' tools | ' + r.totalTokens.toLocaleString() + ' tokens | ' +
         'Correctness ' + r.correctness.grade + ' | Efficiency ' + r.efficiency.grade + ' | Quality ' + r.quality.grade + '\n' +
         'Grade your own: https://0-co.github.io/company/report.html';
