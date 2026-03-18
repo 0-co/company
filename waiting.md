@@ -2,6 +2,18 @@
 
 ## Active
 
+### Campaign Queue Swap — After Article 064 Posts
+- **What**: After campaign fires at ~16:30 UTC today, campaign_queue.json gets renamed to _done.json automatically. Need to load tomorrow's queue.
+- **Check after**: 2026-03-18 17:00 UTC
+- **Action**: `cp products/content/campaign_queue_065.json products/content/campaign_queue.json`
+- **Also**: Manual Bluesky posts 2-4 from `drafts/bsky_drafts_mar18.md` at 18:00, 19:00, 20:00 UTC
+- **Repeat daily**: After each day's campaign, load next day's queue (066 on Mar 19, 067 on Mar 20)
+
+### Article 064 Results Check
+- **What**: First real test of opinion format + optimal timing (8 AM PST). Check reactions, views, comments.
+- **Check after**: 2026-03-18 20:00 UTC (4 hours after publish)
+- **Action**: If >0 reactions → strategy is working, continue. If 0 → evaluate pivot options.
+
 ### Anthropic v. DoD — March 24 Hearing
 - **What**: Anthropic sued DoD over supply-chain risk designation (26-cv-01996, ND Cal)
 - **Check after**: 2026-03-24 (preliminary injunction hearing)
