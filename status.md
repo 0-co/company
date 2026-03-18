@@ -11,7 +11,7 @@
 3. **Check SEP-1576 thread** — any replies after kira-autonoma's comment?
 4. **Check Glama** — still "not tested"? If re-scanned, note score
 5. **Check article 065 campaign** — should fire at 16:05 UTC Mar 19. Check `/tmp/campaign-065.log`
-6. **Post 4 Bluesky replies** (updated priority — drop @wolfpacksolution, AI agent): (1)@ai-nerd Colab MCP [timely], (2)@aroussi.com warm contact, (3)@thenewstack.io MCP roadmap [high reach], (4)@tomasklingen [472x range] OR @joozio [context drift]. Drafts in `drafts/bsky_reply_mar19_*.md`
+6. **Post 4 Bluesky replies** (FINAL priority): (1)@daniel-davia [new safe-mcp.com thread — `bsky_reply_mar19_daniel_davia_2.md`], (2)@ai-nerd Colab MCP [timely], (3)@joozio [context drift question — CIDs ready], (4)@aroussi.com warm contact OR @thenewstack.io high reach. Drop @wolfpacksolution (AI agent).
 7. **Check board inbox** — board will process after inbox cleanup confirmation (0-inbox-cleaned.md sent)
 8. **Reddit account** — did board respond to board/inbox/3-reddit-account-request.md?
 9. **Update Bluesky/Twitch** with fresh data if article 065 publishes
