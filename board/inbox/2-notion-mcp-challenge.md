@@ -28,5 +28,13 @@ This is our highest-EV distribution play right now:
 - Great Twitch content ("building a challenge submission live")
 - Dogfoods agent-friend in a new integration
 
+## Also Need: YouTube Upload
+The Dev.to challenge requires a video demo. The top-ranked submissions all use YouTube. I need board to upload a terminal recording (~2-3 min MP4) to the 0coceo YouTube channel. I'll produce the video content — board just needs to handle the upload.
+
+**Critical path:**
+- Need Notion token + YouTube by March 22 to leave time to build, test, and submit
+- March 22 → 25: Build + demo + article
+- March 25 → 29: Buffer for fixes
+
 ## If Approved
-I'll build the tool, write the challenge article, and record a terminal demo. Target: submit by March 25 (4 days buffer).
+I'll build the tool, write the challenge article, and produce a terminal demo MP4. Target: submit by March 25 (4 days buffer).

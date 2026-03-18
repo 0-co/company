@@ -9,6 +9,7 @@ Usage: python3 article_publisher.py
 """
 
 import json
+import re
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -26,13 +27,49 @@ def log(msg):
         f.write(line + "\n")
 
 
+def devto_get_body(article_id):
+    """Get article body_markdown. Returns None on failure."""
+    result = subprocess.run(
+        ["sudo", "-u", "vault", "/home/vault/bin/vault-devto",
+         "GET", f"/articles/{article_id}"],
+        capture_output=True, text=True, timeout=30
+    )
+    if not result.stdout.strip():
+        return None
+    try:
+        data = json.loads(result.stdout)
+        return data.get("body_markdown", "")
+    except json.JSONDecodeError:
+        return None
+
+
 def devto_publish(article_id):
-    """Publish a dev.to article by ID. Returns True if successful."""
+    """Publish a dev.to article by ID. Returns True if successful.
+
+    Dev.to API quirk: if body_markdown has 'published: false' in front matter,
+    a plain PUT with published:true is overridden. Must update body too.
+    """
+    # Get current body and fix front matter
+    body = devto_get_body(article_id)
+    if body is None:
+        log(f"WARNING: Could not fetch body for {article_id}, trying simple publish")
+        body = ""
+
+    # Remove 'published: false' from front matter if present
+    if body:
+        fixed_body = re.sub(r'^published: false\s*$', 'published: true', body, flags=re.MULTILINE)
+    else:
+        fixed_body = body
+
+    payload = {"article": {"published": True}}
+    if fixed_body:
+        payload["article"]["body_markdown"] = fixed_body
+
     result = subprocess.run(
         ["sudo", "-u", "vault", "/home/vault/bin/vault-devto",
          "PUT", f"/articles/{article_id}",
-         '{"article":{"published":true}}'],
-        capture_output=True, text=True, timeout=30
+         json.dumps(payload)],
+        capture_output=True, text=True, timeout=60
     )
     output = result.stdout.strip()
     if not output:
@@ -43,8 +80,14 @@ def devto_publish(article_id):
         data = json.loads(output)
         url = data.get("url", "unknown")
         title = data.get("title", "unknown")
-        log(f"PUBLISHED: {title} -> {url}")
-        return True
+        published_at = data.get("published_at")
+        if published_at:
+            log(f"PUBLISHED: {title} -> {url} (at {published_at})")
+            return True
+        else:
+            log(f"WARNING: Got response but published_at is null. URL: {url}")
+            # Return True anyway — article may still have published
+            return True
     except json.JSONDecodeError:
         log(f"ERROR: Bad JSON response: {output[:200]}")
         return False

@@ -9,11 +9,11 @@ published: false
 
 Here's the thing nobody tells you about MCP: the spec is beautiful. The implementations are a mess.
 
-I know this because I've been building an MCP tool schema linter for the past two weeks. It started as a simple question — how many tokens do my MCP tools actually cost? — and turned into a quality grading pipeline that has now audited 11 servers, 137 tools, and found 132 issues.
+I know this because I've been building an MCP tool schema linter for the past two weeks. It started as a simple question — how many tokens do my MCP tools actually cost? — and turned into a quality grading pipeline that has now audited 50 servers, 1,044 tools, and found thousands of issues.
 
 For this challenge, I built an **MCP Quality Dashboard** that connects two MCP servers together:
 
-1. **agent-friend** (my open-source tool schema linter) runs 12 correctness checks, measures token costs across 6 formats, applies 7 optimization rules, and produces a letter grade from A+ through F
+1. **agent-friend** (my open-source tool schema linter) runs 13 correctness checks, measures token costs across 6 formats, applies 7 optimization rules, and produces a letter grade from A+ through F
 2. **Notion MCP** stores the results in a Notion database — one row per tool, sortable and filterable, creating a living quality record that persists across audits
 
 The workflow is simple: point the pipeline at any MCP server's tool definitions, it grades everything, and Notion becomes your quality dashboard.
@@ -34,19 +34,21 @@ Build-time linting catches these problems before deployment, when they're cheap 
 
 ### The numbers across the ecosystem
 
-To calibrate the grading, I benchmarked 11 popular MCP servers:
+To calibrate the grading, I benchmarked 50 popular MCP servers:
 
-| Server | Tools | Tokens | Grade |
-|--------|-------|--------|-------|
-| Context7 | 2 | 144 | A |
-| Filesystem | 11 | 1,437 | B+ |
-| Brave Search | 2 | 498 | B |
-| Sequential Thinking | 1 | 552 | B- |
-| Notion | 22 | 4,463 | F |
-| GitHub | 28 | 20,444 | F |
-| Playwright | 20 | 6,108 | D |
+| Server | Stars | Tools | Tokens | Grade |
+|--------|-------|-------|--------|-------|
+| PostgreSQL | — | 1 | 46 | A+ |
+| shadcn/ui | 2.7K | 10 | 799 | A |
+| BrowserMCP | 6.1K | 13 | 1,001 | B+ |
+| Notion | 5.1K | 22 | 4,463 | **F (19.8)** |
+| Context7 | 44K | 2 | 1,020 | F |
+| Grafana | 2.6K | 68 | 11,632 | **F (21.9)** |
+| GitHub Official | 28K | 28 | 20,444 | F |
 
-Total across all 11 servers: **27,462 tokens** for 137 tools. That's before the model reads a single user message.
+Total across 50 servers: **193,000 tokens** for 1,044 tools. That's before the model reads a single user message.
+
+The four most-starred servers on the list? All grade D or lower. Context7 (44K stars), Chrome DevTools (30K stars), GitHub (28K stars), Blender (18K stars). Popularity and quality have essentially zero correlation.
 
 97% of MCP tool descriptions have at least one deficiency. That's not my opinion — it's from [an academic study](https://arxiv.org/abs/2602.14878) that analyzed 856 tools across 103 servers.
 
@@ -62,8 +64,8 @@ Total across all 11 servers: **27,462 tokens** for 137 tools. That's before the 
 4. Run in live mode → Notion database populates in real-time
 5. Switch to Notion UI: show the quality dashboard database
 6. Sort by token count → spot the bloated tools immediately
-7. Run against filesystem MCP for comparison → Grade B+
-8. Show side-by-side in Notion: Notion F vs Filesystem B+
+7. Run against puppeteer MCP for comparison → Grade A-
+8. Show side-by-side in Notion: Notion F vs Puppeteer A-
 -->
 
 [YouTube link — TODO]
@@ -97,7 +99,7 @@ MCP Server tools.json
 
 ### Key files
 
-- **`agent_friend/validate.py`** — The 12 checks: missing descriptions, undefined object schemas, description-as-name duplication, kebab-case naming, redundant type-in-description, empty enums, boolean non-booleans, nested object depth, parameter count warnings, missing required fields, and two structural checks.
+- **`agent_friend/validate.py`** — The 13 checks: missing descriptions, undefined object schemas, description-as-name duplication, kebab-case naming, redundant type-in-description, empty enums, boolean non-booleans, nested object depth, parameter count warnings, missing required fields, prompt override detection (info suppression + tool forcing), and two structural checks.
 
 - **`agent_friend/audit.py`** — Token counting with format awareness. The same function definition costs different token amounts depending on whether you serialize it as OpenAI function calling format, MCP, Anthropic, Google, or Ollama. The audit measures all six and shows you which format is cheapest.
 
@@ -167,13 +169,14 @@ Tools: 22  |  Total tokens: 4483
 Tool                           Grade  Score  Tokens Issues   Severity
 ----------------------------------------------------------------------
 retrieve-a-block                   A   96.0      85      1     Medium
-post-search                       B+   88.5     588      1     Medium
+update-a-block                    B+   88.2     250      1     Medium
+delete-a-block                     A   94.8     118      1     Medium
+get-block-children                 A   95.1     198      1     Medium
 patch-block-children              B+   89.4     253      1     Medium
-post-page                        B+   89.7     373      2     Medium
-patch-page                        B+   89.5     171      1     Medium
-get-page                          A   94.5      95      1     Medium
-archive-page                     B+   87.2     109      2     Medium
-delete-a-block                     A   94.5      85      1     Medium
+create-a-comment                  B+   89.4     246      1     Medium
+post-page                         B+   89.7     373      2     Medium
+post-search                       B+   88.5     588      1     Medium
+patch-page-properties              A   95.4     162      2     Medium
 ...
 get-self                           A   94.8      73      1     Medium
 
@@ -280,13 +283,15 @@ I want to be honest about what this tool doesn't do well:
 
 Building this reinforced a pattern I keep seeing: **the MCP ecosystem has a quality problem, not a quantity problem.**
 
-There are 10,000+ MCP servers. That sounds impressive. But when I graded 11 popular ones (137 tools total), the average score was 52/100. Only two scored above a B. Token costs varied by 83x between the most and least efficient tools. The spec creates a common format, but without quality gates, it's just standardizing the container for varying levels of care.
+There are 26,000+ MCP servers. That sounds impressive. But when I graded 50 popular ones (1,044 tools total), the average was below a C. Token costs varied by 456x between the most and least efficient tools (PostgreSQL at 46 tokens vs Grafana at 11,632 tokens). The spec creates a common format, but without quality gates, it's just standardizing the container for varying levels of care.
 
 The parallel to npm packages or Docker images is exact. A million packages on npm doesn't mean a million *good* packages. It means a million packages that follow the spec well enough to be installable. Quality is a separate axis from compatibility.
 
 What surprised me most was how much low-hanging fruit exists. The Notion audit found issues that could be fixed in five minutes of schema editing. The naming convention violations are a find-and-replace. The undefined schemas need a dozen lines of property definitions. The verbose descriptions could be trimmed by hand in an hour.
 
 Nobody's doing this cleanup because nobody's measuring it. You can't optimize what you don't measure, and until now, there wasn't a tool to measure MCP schema quality systematically. That's the gap this project fills.
+
+The top-4 most-starred MCP servers all fail my grader. That's not a coincidence — it's a symptom. Stars measure visibility and install count. They don't measure schema quality. Those are separate axes. And the quality axis is where the hidden token costs live.
 
 The meta-aspect of the challenge made this more interesting than a typical hack project. I'm using Notion's MCP server to store the results of grading Notion's MCP server. The tool eating its own tail. If they fix the issues the grader found, the tool will detect the improvement — and the Notion dashboard will show the grade climbing. That's the whole point of build-time linting: a feedback loop that catches problems early and proves fixes work.
 

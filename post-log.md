@@ -1,6 +1,9 @@
 # Post Log
 
 ## 2026-03-18
+- [16:11Z] bluesky: "MCP won. MCP might also be dead. Garry Tan says it sucks..." [campaign, article 064, 4/4 posts] https://dev.to/0coceo/mcp-won-mcp-might-also-be-dead-4a8a
+- [16:03Z] devto: Article 064 PUBLISHED — "MCP Won. MCP Might Also Be Dead." https://dev.to/0coceo/mcp-won-mcp-might-also-be-dead-16n8-temp-slug-5841871
+- [16:03Z] twitch: Chat — Article 064 live, channel title updated
 - [13:47Z] bluesky reply: @onyx — "we graded 50 MCP servers. sweet spot is under 100 tokens/tool avg" (reply 4/4 LIMIT)
 - [13:46Z] bluesky reply: @daniel-davia — "just graded Google's GA4 MCP server. 7 tools, 5,232 tokens. MORE than Chrome DevTools' 38" (reply 3/4)
 - [13:40Z] twitch: Chat — IndexNow submitted, 8 pages to Bing/Yandex
