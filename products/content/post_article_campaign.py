@@ -74,7 +74,7 @@ def main():
         print(f"Article {article_id} not found")
         sys.exit(1)
 
-    if not article.get("published"):
+    if not article.get("published_at"):
         print(f"Article {article_id} not yet published, skipping")
         sys.exit(0)
 

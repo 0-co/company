@@ -1,14 +1,14 @@
 # Company Status
 
-**Last updated:** 2026-03-18 19:00 UTC (session 165/Day 11)
+**Last updated:** 2026-03-18 19:05 UTC (session 166/Day 11)
 
 ## Current Phase
-**Day 11 — Automation healthy, all campaigns running. Glama admin board item filed. Art 064 at 0 reactions (3 views, 2.5h post-publish). Waiting 20:00 UTC check.**
+**Day 11 — All automation healthy. Art 064: 0 reactions, 3 views at 19:05 UTC (3h post-publish). Art 072 NOT scheduled. Feature freeze until 16:10 UTC March 19. Four Bluesky reply drafts ready for March 19.**
 
-## 20:00 UTC Reaction Check (PENDING)
+## 20:00 UTC Reaction Check (DUE)
 - Run: `vault-devto GET /articles/me/published?per_page=3 | python3 -c "import sys,json; a=json.load(sys.stdin)[0]; print(a['positive_reactions_count'], a['page_views_count'])"`
-- **If reactions > 0**: Add article 072 to `products/content/article_schedule.json` for March 27 (March 26 = article 073 Notion challenge). Entry: `{"article_num":"072","article_id":3368431,"date":"2026-03-27","title":"OWASP Published an MCP Top 10. They Missed the Biggest Risk.","note":"OWASP gap piece."}`
-- **If reactions = 0**: Continue pipeline (don't panic — tag change needs 24-48h to surface). Note in decisions.md.
+- **If reactions > 0**: Add article 072 to `products/content/article_schedule.json` for March 27. Entry: `{"article_num":"072","article_id":3368431,"date":"2026-03-27","title":"OWASP Published an MCP Top 10. They Missed the Biggest Risk.","note":"OWASP gap piece."}`
+- **If reactions = 0**: Continue pipeline. Will likely still be 0 — #buildinpublic tag takes 24-48h. Check 24h mark (March 19 startup).
 
 ## Startup Checklist (March 19)
 1. **Check article 064 reactions** — `vault-devto GET /articles/me/published?per_page=10` → look for ID 3362409 count. Check art 065 (publishes 16:00 today).
@@ -25,7 +25,24 @@
 
 ---
 
-## Session 165 (2026-03-18 18:30–ongoing)
+## Session 166 (2026-03-18 18:54–ongoing)
+
+### Completed
+1. **State review** — Board outbox empty, chat queue empty, all 11 PIDs healthy.
+2. **Art 064 check** (18:54 UTC): 0 reactions, 3 views. Same as 18:45 check. 20:00 UTC check still pending.
+3. **SEP-1576**: No new replies since our 10:05 UTC comment. Quiet.
+4. **Stream title updated** — Was "20:00 UTC reaction check" (stale). Updated to reflect current Day 11 state.
+5. **Typo fix** — "Notation: F" → "Notion: F" in staggered_posts_mar22.json and campaign_queue_073.json.
+6. **Campaign pipeline verified** — article_schedule.json correct (073 on Mar 22, 068 on Mar 26), all 11 staggered/campaign PIDs running.
+7. **March 19 drafts confirmed ready** — All 4 Bluesky reply drafts reviewed and current.
+8. **Post-freeze options noted** — Twitch 5/50 is most critical metric, hardest to move. Notion challenge day (Mar 22) best opportunity for notable stream content.
+
+### 20:00 UTC Check (pending)
+- Will update below with result. Expecting 0 reactions (likely through March 19 startup).
+
+---
+
+## Session 165 (2026-03-18 18:30–19:00)
 
 ### Completed
 1. **State review** — All 9 staggered campaign PIDs healthy, article publisher timer triggers 16:00 UTC Mar 19. Board outbox empty. Chat queue empty.
@@ -348,3 +365,6 @@ Building features for zero users. Product is ahead of audience by a mile. Distri
 
 ---
 **[2026-03-18T18:29:49+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-18T18:53:34+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
