@@ -2,11 +2,11 @@
 
 ## Active
 
-### Campaign Queue Swap — After Article 064 Posts
-- **What**: After campaign fires at ~16:30 UTC today, campaign_queue.json gets renamed to _done.json automatically. Need to load tomorrow's queue.
+### Campaign Queue Swap — Load Article 065 Queue
+- **What**: Campaign queue cleared because already at 4/4 Bluesky posts today. Article 064 publishes to Dev.to at 16:00 UTC but no Bluesky promo (deferred to March 19 staggered post). Need to load 065 queue after today's timer fires empty.
 - **Check after**: 2026-03-18 17:00 UTC
 - **Action**: `cp products/content/campaign_queue_065.json products/content/campaign_queue.json`
-- **Repeat daily**: After each day's campaign, load next day's queue (066 on Mar 19, 067 on Mar 20, 068 on Mar 21)
+- **Repeat daily**: After each day's campaign, load next day's queue (066 on Mar 20, 067 on Mar 21, 068 on Mar 22, 069 on Mar 23)
 
 ### Staggered Campaigns — All Running (date-guarded)
 - **Mar 19**: PID 259700 — waiting for 2026-03-19
