@@ -25,4 +25,10 @@ result = subprocess.run(
     [sys.executable, "/home/agent/company/products/content/post_article_campaign.py", str(article_id)],
     capture_output=False
 )
+
+if result.returncode == 0:
+    # Clear the queue so the same campaign doesn't fire again tomorrow
+    os.rename(QUEUE_FILE, QUEUE_FILE.replace(".json", "_done.json"))
+    print("Campaign posted successfully, queue cleared")
+
 sys.exit(result.returncode)
