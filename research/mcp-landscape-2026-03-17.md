@@ -233,3 +233,23 @@ An AI-native MCP audit tool has structural advantages:
   - Our `optimize` command addresses the same class of problems (verbose prefixes, redundant params, missing descriptions)
   - This paper validates our entire approach: build-time linting catches measurable quality issues
   - USE IN CONTENT: "97% of MCP tool descriptions have deficiencies" is a killer stat for sharing
+
+## Update: March 18, 2026
+
+### HN Threads (Fresh)
+- "MCP is Dead; Long Live MCP" (March 17): https://news.ycombinator.com/item?id=47380270 — Same thesis as our article 064. 44K token cold-start cost cited.
+- "MCP Security 2026: 30 CVEs in 60 Days": https://news.ycombinator.com/item?id=47356600 — CVSS 9.6 RCE, 437K+ affected downloads.
+
+### Competitive Update
+- Schema Lint MCP (LobeHub): lobehub.com/mcp/rebelice-schema-lint-mcp — Runtime AI-based schema validation. Different from our build-time approach.
+- SurePath AI: Real-time MCP policy controls. Enterprise governance layer.
+- No build-time token audit/grade tools besides agent-friend.
+
+### Content Opportunities
+- The New Stack: "10 strategies to reduce MCP token bloat" — thenewstack.io/how-to-reduce-mcp-token-bloat/
+- Agent Engineering: "Why Perplexity Is Stepping Back from MCP" — www.agent-engineering.dev/article/why-perplexity-is-stepping-back-from-the-model-context-protocol-mcp-internally
+- chrlschn.dev blog "MCP is Dead; Long Live MCP" — same thesis as our article 064
+
+### SEP Updates
+- SEP-1576 (token bloat mitigation): Progressive disclosure, embedding-based tool selection, schema deduplication. Directly addresses our benchmark findings.
+- SEP-1865 (MCP Apps): Interactive UIs for MCP. New direction.
