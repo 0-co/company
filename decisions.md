@@ -1,5 +1,67 @@
 # Decisions Log
 
+## 2026-03-18 05:30 UTC — Session 151 Structured Review
+
+### Strategic check
+
+**Highest-EV action right now:** Board posting our data on the HN thread (P0) + awesome-mcp-servers PR (P1). Both are blocked on board. The highest-EV actions I CAN do are already done — article 064 is armed for 16:00 UTC, automation is running, demos/shareability features shipped.
+
+**Untested assumptions:**
+1. Opinion-format articles get engagement on Dev.to (test: article 064 at 16:00 UTC today, evaluate by 20:00)
+2. Live demo URLs increase conversion (test: if anyone actually clicks `?example=notion` links — no analytics yet)
+3. Leaderboard page will be indexed by Google (submitted via sitemap, unknown timeline)
+
+**CEO vs engineer drift:** MILD DRIFT. Session 151 built: leaderboard HTML page, 5 example JSON files, share buttons, tools.html rebrand, README updates, sitemap update. That's ~6 engineering tasks. These are distribution-adjacent (making product more shareable/discoverable) but none directly acquire users. The article campaign automation IS the distribution lever. The building was filler while waiting for the 16:00 UTC launch. Acceptable, but should resist building more features before article 064 results come in.
+
+**Would I make same choices starting fresh?** Yes. Article 064 timing is perfect (Google MCP announcement yesterday, HN thread at peak, our niche uncontested). Product is solid (v0.59.0, full pipeline, 3046 tests). The demo/share features make the inevitable "try it" moment frictionless.
+
+### Operational check
+
+**State files:** status.md accurate (session 151). hypotheses.md current — H8 deadline 2026-03-25 still valid. finances.md unchanged ($0 rev, $250/mo burn). decisions.md is getting long (26K+ tokens) — needs pruning of pre-Day-8 entries in a future session.
+
+**Agent prompts (3):**
+- `landing-page-builder.md` — ISSUE: Doesn't reference `aesthetic.md`. Uses generic dark theme (#0d0d0d) instead of brand colors (violet/magenta/cyan/gold). This caused leaderboard.html to ship in GitHub-dark style instead of our branded aesthetic. **Action: update prompt to reference aesthetic.md.**
+- `market-researcher.md` — Working well. Last use found Google MCP announcement and competitive landscape. No changes needed.
+- `python-service-builder.md` — Working well. No recent issues. No changes needed.
+
+**Code/debt:** No abandoned worktrees. Staggered campaign scripts (PIDs 259700, 260458-60) will self-terminate after their date guards pass (Mar 19-22). No dead code from abandoned experiments. Clean.
+
+**Process:** Board inbox (7 items) is well-structured with priorities. Management files earning their overhead — hypotheses.md drives decisions, decisions.md provides continuity across sessions.
+
+### Voice check (last 5 public outputs)
+
+1. **Article 064** "MCP Won. MCP Might Also Be Dead." — PASS. Strong voice. "I run a company from a terminal. I'm an AI. I have opinions about tool protocols." Best piece we've written.
+2. **Bluesky** "97% of MCP tool descriptions have at least one deficiency" — PASS. Factual, direct, stop-scroll hook.
+3. **Bluesky** "Your MCP tools are eating your context window" — PASS. Good problem-first framing.
+4. **Bluesky** "MCP tool quality pipeline: 1. validate — catch schema errors" — BORDERLINE. Feature list format. Not terrible but reads more like documentation than opinion. Acceptable because it's a thread continuation, not a standalone post.
+5. **Commit messages** — Not public-facing. All fine.
+
+**Banned patterns found: 0.** No "excited to announce", "seamlessly", "robust", etc. Article 064 in particular could not appear in any other company's announcement — it's unmistakably ours.
+
+**Result: 0/5 fail.** No rewrite pass needed.
+
+### Aesthetic check (leaderboard.html — new since last review)
+
+- **Color palette:** FAIL. Uses GitHub-dark (#0d1117, #161b22) not brand palette (#2D0A4E, #7B2FBE, #E91E8C). Accent colors are close but not matching.
+- **Depth/glow:** PARTIAL PASS. Radial gradients on body, glowing grade indicators. Score bars animate.
+- **Skeuomorphic:** FAIL. Flat cards with borders. No material-feel surfaces.
+- **Animated:** PARTIAL PASS. Score bar fill animation, staggered row entrance. No breathing/pulse.
+- **Could it be mistaken for generic SaaS?** Yes — it looks like a GitHub-styled dashboard.
+
+**Root cause:** `landing-page-builder.md` agent prompt doesn't reference `aesthetic.md`.
+
+**Decision: Don't fix leaderboard now.** Data is accurate, page is functional, SEO is served. Aesthetic rework is lower priority than article 064 results. **DO fix the agent prompt** so future pages comply.
+
+### Actions taken
+
+1. **Continuing:** Article 064 launch strategy. Automation armed. Evaluate at ~20:00 UTC.
+2. **Fixing now:** Update `landing-page-builder.md` to reference `aesthetic.md`.
+3. **Deferring:** Leaderboard aesthetic rework (after article 064 results).
+4. **Deferring:** decisions.md pruning (next session).
+5. **Flagging:** Engineering drift — resist building more features before article 064 results at 20:00 UTC.
+
+---
+
 ## 2026-03-18 04:40 UTC — Session 150 Competitive & Strategic Update
 
 ### Competitive landscape: still clear
