@@ -1,0 +1,479 @@
+[
+  {
+    "name": "list_projects",
+    "description": "List accessible Sentry projects. View project slugs, IDs, status, settings, features, and organization details.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "organization_slug": {
+          "type": "string",
+          "description": "The slug of the organization to list projects from"
+        },
+        "view": {
+          "type": "string",
+          "enum": [
+            "summary",
+            "detailed"
+          ],
+          "default": "detailed",
+          "description": "View type (default: detailed)"
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "plain",
+            "markdown"
+          ],
+          "default": "markdown",
+          "description": "Output format (default: markdown)"
+        }
+      },
+      "required": [
+        "organization_slug"
+      ]
+    }
+  },
+  {
+    "name": "resolve_short_id",
+    "description": "Retrieve details about an issue using its short ID. Maps short IDs to issue details, project context, and status.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "organization_slug": {
+          "type": "string",
+          "description": "The slug of the organization the issue belongs to"
+        },
+        "short_id": {
+          "type": "string",
+          "description": "The short ID of the issue to resolve (e.g., PROJECT-123)"
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "plain",
+            "markdown"
+          ],
+          "default": "markdown",
+          "description": "Output format (default: markdown)"
+        }
+      },
+      "required": [
+        "organization_slug",
+        "short_id"
+      ]
+    }
+  },
+  {
+    "name": "get_sentry_event",
+    "description": "Retrieve a specific Sentry event from an issue. Requires issue ID/URL and event ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "issue_id_or_url": {
+          "type": "string",
+          "description": "Either a full Sentry issue URL or just the numeric issue ID"
+        },
+        "event_id": {
+          "type": "string",
+          "description": "The specific event ID to retrieve"
+        },
+        "organization_slug": {
+          "type": "string",
+          "description": "The slug of the organization the issue belongs to"
+        },
+        "view": {
+          "type": "string",
+          "enum": [
+            "summary",
+            "detailed"
+          ],
+          "default": "detailed",
+          "description": "View type (default: detailed)"
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "plain",
+            "markdown"
+          ],
+          "default": "markdown",
+          "description": "Output format (default: markdown)"
+        }
+      },
+      "required": [
+        "issue_id_or_url",
+        "event_id",
+        "organization_slug"
+      ]
+    }
+  },
+  {
+    "name": "list_error_events_in_project",
+    "description": "List error events from a specific Sentry project. View recent errors, frequency patterns, and occurrence timestamps.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "organization_slug": {
+          "type": "string",
+          "description": "The slug of the organization the project belongs to"
+        },
+        "project_slug": {
+          "type": "string",
+          "description": "The slug of the project to list events from"
+        },
+        "view": {
+          "type": "string",
+          "enum": [
+            "summary",
+            "detailed"
+          ],
+          "default": "detailed",
+          "description": "View type (default: detailed)"
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "plain",
+            "markdown"
+          ],
+          "default": "markdown",
+          "description": "Output format (default: markdown)"
+        }
+      },
+      "required": [
+        "organization_slug",
+        "project_slug"
+      ]
+    }
+  },
+  {
+    "name": "create_project",
+    "description": "Create a new project in Sentry. Track deployments, releases, and health metrics.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "organization_slug": {
+          "type": "string",
+          "description": "The slug of the organization to create the project in"
+        },
+        "team_slug": {
+          "type": "string",
+          "description": "The slug of the team to associate the project with"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the project to create"
+        },
+        "platform": {
+          "type": "string",
+          "description": "The platform for the project (e.g., python, javascript, etc.)"
+        },
+        "view": {
+          "type": "string",
+          "enum": [
+            "summary",
+            "detailed"
+          ],
+          "default": "detailed",
+          "description": "View type (default: detailed)"
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "plain",
+            "markdown"
+          ],
+          "default": "markdown",
+          "description": "Output format (default: markdown)"
+        }
+      },
+      "required": [
+        "organization_slug",
+        "team_slug",
+        "name"
+      ]
+    }
+  },
+  {
+    "name": "list_project_issues",
+    "description": "List issues from a Sentry project. Monitor issue status, severity, frequency, and timing.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "organization_slug": {
+          "type": "string",
+          "description": "The slug of the organization the project belongs to"
+        },
+        "project_slug": {
+          "type": "string",
+          "description": "The slug of the project to list issues from"
+        },
+        "view": {
+          "type": "string",
+          "enum": [
+            "summary",
+            "detailed"
+          ],
+          "default": "detailed",
+          "description": "View type (default: detailed)"
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "plain",
+            "markdown"
+          ],
+          "default": "markdown",
+          "description": "Output format (default: markdown)"
+        }
+      },
+      "required": [
+        "organization_slug",
+        "project_slug"
+      ]
+    }
+  },
+  {
+    "name": "list_issue_events",
+    "description": "List events for a specific Sentry issue. Analyze event details, metadata, and patterns.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "organization_slug": {
+          "type": "string",
+          "description": "The slug of the organization the issue belongs to"
+        },
+        "issue_id": {
+          "type": "string",
+          "description": "The ID of the issue to list events for"
+        },
+        "view": {
+          "type": "string",
+          "enum": [
+            "summary",
+            "detailed"
+          ],
+          "default": "detailed",
+          "description": "View type (default: detailed)"
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "plain",
+            "markdown"
+          ],
+          "default": "markdown",
+          "description": "Output format (default: markdown)"
+        }
+      },
+      "required": [
+        "organization_slug",
+        "issue_id"
+      ]
+    }
+  },
+  {
+    "name": "get_sentry_issue",
+    "description": "Retrieve and analyze a Sentry issue. Accepts issue URL or ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "issue_id_or_url": {
+          "type": "string",
+          "description": "Either a full Sentry issue URL or just the numeric issue ID"
+        },
+        "organization_slug": {
+          "type": "string",
+          "description": "The slug of the organization the issue belongs to"
+        },
+        "view": {
+          "type": "string",
+          "enum": [
+            "summary",
+            "detailed"
+          ],
+          "default": "detailed",
+          "description": "View type (default: detailed)"
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "plain",
+            "markdown"
+          ],
+          "default": "markdown",
+          "description": "Output format (default: markdown)"
+        }
+      },
+      "required": [
+        "issue_id_or_url",
+        "organization_slug"
+      ]
+    }
+  },
+  {
+    "name": "list_organization_replays",
+    "description": "List replays from a Sentry organization. Monitor user sessions, interactions, errors, and experience issues.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "organization_slug": {
+          "type": "string",
+          "description": "The slug of the organization to list replays from"
+        },
+        "project_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Optional array of project IDs to filter replays by"
+        },
+        "environment": {
+          "type": "string",
+          "description": "Optional environment to filter replays by"
+        },
+        "stats_period": {
+          "type": "string",
+          "description": "Optional time range in format <number><unit> (e.g., '1d'). Units: m, h, d, w"
+        },
+        "start": {
+          "type": "string",
+          "description": "Optional start of time range (UTC ISO8601 or epoch seconds)"
+        },
+        "end": {
+          "type": "string",
+          "description": "Optional end of time range (UTC ISO8601 or epoch seconds)"
+        },
+        "sort": {
+          "type": "string",
+          "description": "Optional field to sort results by"
+        },
+        "query": {
+          "type": "string",
+          "description": "Optional structured query string to filter results"
+        },
+        "per_page": {
+          "type": "number",
+          "description": "Optional limit on number of results to return"
+        },
+        "cursor": {
+          "type": "string",
+          "description": "Optional cursor for pagination"
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "plain",
+            "markdown"
+          ],
+          "default": "markdown",
+          "description": "Output format (default: markdown)"
+        },
+        "view": {
+          "type": "string",
+          "enum": [
+            "summary",
+            "detailed"
+          ],
+          "default": "detailed",
+          "description": "View type (default: detailed)"
+        }
+      },
+      "required": [
+        "organization_slug"
+      ]
+    }
+  },
+  {
+    "name": "setup_sentry",
+    "description": "Set up Sentry for a project returning a DSN and instructions for setup.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "organization_slug": {
+          "type": "string",
+          "description": "The slug of the organization to create the project in"
+        },
+        "team_slug": {
+          "type": "string",
+          "description": "The slug of the team to associate the project with"
+        },
+        "project_name": {
+          "type": "string",
+          "description": "The name of the project to create"
+        },
+        "environment": {
+          "type": "string",
+          "description": "Optional environment name (e.g., production, staging, development)"
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "plain",
+            "markdown"
+          ],
+          "default": "markdown",
+          "description": "Output format (default: markdown)"
+        }
+      },
+      "required": [
+        "organization_slug",
+        "team_slug",
+        "project_name"
+      ]
+    }
+  },
+  {
+    "name": "search_errors_in_file",
+    "description": "Search for Sentry errors occurring in a specific file. Find all issues related to a particular file path or filename.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "organization_slug": {
+          "type": "string",
+          "description": "The slug of the organization in Sentry"
+        },
+        "project_slug": {
+          "type": "string",
+          "description": "The slug of the project in Sentry"
+        },
+        "file_identifier": {
+          "type": "string",
+          "description": "The path or name of the file to search for errors in"
+        },
+        "identifier_type": {
+          "type": "string",
+          "enum": [
+            "filename",
+            "filepath"
+          ],
+          "description": "Whether to search by filename or full filepath"
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "plain",
+            "markdown"
+          ],
+          "default": "markdown",
+          "description": "Output format (default: markdown)"
+        },
+        "view": {
+          "type": "string",
+          "enum": [
+            "summary",
+            "detailed"
+          ],
+          "default": "detailed",
+          "description": "Level of detail in results (default: detailed)"
+        }
+      },
+      "required": [
+        "organization_slug",
+        "project_slug",
+        "file_identifier",
+        "identifier_type"
+      ]
+    }
+  }
+]

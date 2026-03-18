@@ -1038,10 +1038,15 @@
 
       <div class="example-row">
         <span class="example-label">Try a real server:</span>
+        <button class="example-btn example-f" onclick="loadExample('context7')">Context7 <span class="example-grade">F</span></button>
         <button class="example-btn example-f" onclick="loadExample('notion')">Notion <span class="example-grade">F</span></button>
+        <button class="example-btn example-f" onclick="loadExample('exa')">Exa <span class="example-grade">F</span></button>
+        <button class="example-btn example-d" onclick="loadExample('playwright')">Playwright <span class="example-grade">D+</span></button>
         <button class="example-btn example-d" onclick="loadExample('filesystem')">Filesystem <span class="example-grade">D</span></button>
+        <button class="example-btn example-c" onclick="loadExample('sentry')">Sentry <span class="example-grade">C</span></button>
         <button class="example-btn example-c" onclick="loadExample('github')">GitHub <span class="example-grade">C+</span></button>
         <button class="example-btn example-a" onclick="loadExample('puppeteer')">Puppeteer <span class="example-grade">A-</span></button>
+        <button class="example-btn example-aplus" onclick="loadExample('e2b')">E2B <span class="example-grade">A+</span></button>
         <button class="example-btn example-aplus" onclick="loadExample('slack')">Slack <span class="example-grade">A+</span></button>
       </div>
 
@@ -2242,10 +2247,15 @@
 
     // === EXAMPLE LOADER ===
     var EXAMPLE_NAMES = {
+      context7: 'Context7 MCP Server',
       notion: 'Notion MCP Server',
+      exa: 'Exa MCP Server',
+      playwright: 'Playwright MCP Server',
       filesystem: 'Filesystem MCP Server',
+      sentry: 'Sentry MCP Server',
       github: 'GitHub MCP Server',
       puppeteer: 'Puppeteer MCP Server',
+      e2b: 'E2B MCP Server',
       slack: 'Slack MCP Server'
     };
 
