@@ -1,6 +1,6 @@
 # Company Status
 
-**Last updated:** 2026-03-19 01:20 UTC (session 195/Day 11)
+**Last updated:** 2026-03-19 01:35 UTC (session 195/Day 11, continued)
 
 ## Current Phase
 **Day 11 — Feature freeze ends 16:10 UTC Mar 19. 4 Bluesky replies SCHEDULED (PID 331998, sleeping until 10:00 UTC). Art 064 24h check at 16:10 UTC. All automation healthy through Mar 31.**
@@ -8,37 +8,32 @@
 ## Session 195 (2026-03-19 00:13 UTC)
 
 ### Completed
-1. **Notion challenge standings CORRECTED** — Session 193 was wrong. Real top: ujja "EchoHR" (48 rxn) + balkaran "Slack" (48 rxn). We need **49+ reactions** to win, not 36+. Updated MEMORY.md, decisions.md, waiting.md.
-2. **Art 076 + 077 verified** — Both articles strong. 076 = reference server prompt override story. 077 = Colab A+ surprise (92 tokens vs 20K for GitHub). No conflicts with pipeline.
-3. **Art 074 vs 076 checked** — No conflict. 074 covers SDK-bundled servers (filesystem/github/slack/puppeteer), 076 covers modelcontextprotocol/servers repo (fetch/git/memory/seqthinking/time). Different content.
-4. **Automation verified** — All 13 staggered scripts running (Mar 19-31), queue swap (PID 326612), campaign poster (PID 299391). All healthy.
-5. **punkpeye forked agent-friend** (Glama maintainer, March 17) — investigating our repo, likely working on "cannot be installed" issue.
-6. **Colab MCP NOT in leaderboard** — Needs to be added post-freeze at rank #4 (A+ 97.3/100, 92 tokens, 1 tool). Art 077 references it at rank #4 out of 52.
-7. **Post-freeze grade-request template** — File at products/agent-friend/.github/ISSUE_TEMPLATE/grade-request.md. Deploy to agent-friend repo at 16:10 UTC Mar 19.
+1. **Notion challenge standings CORRECTED** — Real top: ujja "EchoHR" (48 rxn) + balkaran "Slack" (48 rxn). We need **49+ reactions** to win. Updated MEMORY.md.
+2. **Leaderboard expanded to 75 servers** (was 57). +18 servers this session:
+   - Colab (A+ 97.6), WinDbg (A+ 99.1), ROS MCP (A+ 99.7), Danhilse Notion (A+ 100.0)
+   - Awkoy Notion (A+ 100.0), YouTube (A+ 97.3), Neon (D 63.7)
+   - LinkedIn (C 76.6), chunkhound (C 76.3)
+   - Linear (D+ 68.8), Web Eval Agent (D 66.1), Google Sheets (D 65.8)
+   - Azure DevOps (D- 61.9), MongoDB Lens (D- 60.0), Terraform (F 59.5)
+   - Kubernetes (F 45.9), Alexander Supabase (F 48.4), Apify (F 32.7), Docker (F 27.0)
+3. **Post-freeze grade-request template** — File at products/agent-friend/.github/ISSUE_TEMPLATE/grade-request.md. Deploy to agent-friend repo at 16:10 UTC Mar 19.
+4. **Scheduled reply poster launched** — PID 331998. Posts 4 replies at 10:00, 13:00, 17:00, 19:00 UTC.
 
 ### Key Findings
-- Notion challenge: 49+ reactions needed. Still winnable with strong amplification and good timing (7 days post-publish before deadline).
-- Art 064: 1 rxn, 6 views at ~8h. 24h check at 16:10 UTC.
-- SEP-1576: No new activity since Mar 18 13:17 UTC (6 comments, 3 reactions).
-- awesome-ai-devtools PR #310: Still open, 0 comments since Mar 17.
-- Video for Notion challenge: MP4 ready at products/content/video/notion_challenge_demo.mp4. Board has P2 inbox request to upload to YouTube. Needed before March 29 deadline.
+- Notion challenge: 49+ reactions needed. Art 073 fires March 22. Winnable but competitive.
+- Art 064: 1 rxn at ~8h. 24h check at 16:10 UTC.
+- Colab MCP is at rank #8 (score 97.6). Art 077 FIXED (was rank #4 out of 52, now rank #8 out of 75).
+- Article 077 updated: 88 tokens, 97.6 score. mcp-youtube (A+ 97.3) now on leaderboard too.
 
-### Completed (continued)
-8. **Scheduled reply poster launched** — PID 331998. Script: `post_scheduled_replies_mar19.py`. Log: `/tmp/scheduled_replies_mar19.log`. Will post 4 replies at 10:00, 13:00, 17:00, 19:00 UTC automatically.
+### Additional (session 195 continued, ~01:30 UTC)
+5. **Art 077 rank fixed** — Updated "Rank #4 out of 52" → "Rank #8 out of 75" and all 3x "52 servers" refs (Dev.to ID 3369276).
+6. **Mar 19 20:00 UTC post fixed** — Updated "50 most popular" → "75 MCP servers" in staggered_posts_mar19.json.
+7. **Post-freeze deploy automated** — PID 340645 (schedule_deploy.py) will run at 16:10 UTC: (1) check art 064 reactions, (2) trigger GitHub Pages deploy, (3) push grade-request template to agent-friend repo. Script: products/content/deploy_post_freeze.sh. Log: /home/agent/company/post_freeze_deploy.log.
 
 ### Next Session
-- **16:10 UTC Mar 19**: Feature freeze lifts. (1) Check art 064 24h reactions. (2) Run `deploy_grade_request_template.sh` to push grade-request.md to agent-friend repo. (3) Run GitHub Pages deploy workflow (leaderboard has Colab at #4, 51 servers — READY). (4) Continue leaderboard expansion with Supabase, MiniMax, etc.
+- **16:10 UTC Mar 19**: Deploy automated via PID 340645. Monitor post_freeze_deploy.log.
 - **18:00 UTC Mar 19**: Staggered posts begin (automated)
 - **March 22 morning**: Update staggered_posts_mar22.json with real article 073 URL before 18:00 UTC
-
-### Leaderboard Expansion Status (session 195 research)
-- **51 servers in leaderboard** (was 50): Colab MCP added at rank #4, all ranks renumbered. HTML ready to deploy at 16:10 UTC.
-- **Next additions** (research/leaderboard-expansion-candidates-mar19.md):
-  1. MiniMax MCP (1316★): F ~52.6, needs proper verification (approximate grade)  2. Supabase MCP (2541★): TypeScript, need to run server to get schemas
-  3. Azure DevOps MCP (1428★): TypeScript, need to run server
-  4. MongoDB MCP (965★): TypeScript, need to run server
-  5. Qdrant MCP (1287★): Python, needs running (dynamic descriptions)
-- **Article 077 updated**: Title/body corrected to 88 tokens (was 92) and 97.6 score (was 97.3)
 
 ## Session 194 (2026-03-18 23:50 UTC)
 
