@@ -28,19 +28,44 @@ def log(msg):
 
 
 def devto_get_body(article_id):
-    """Get article body_markdown. Returns None on failure."""
+    """Get article body_markdown. Returns None on failure.
+
+    Falls back to /articles/me/all if /articles/:id is rate-limited.
+    """
     result = subprocess.run(
         ["sudo", "-u", "vault", "/home/vault/bin/vault-devto",
          "GET", f"/articles/{article_id}"],
         capture_output=True, text=True, timeout=30
     )
-    if not result.stdout.strip():
-        return None
-    try:
-        data = json.loads(result.stdout)
-        return data.get("body_markdown", "")
-    except json.JSONDecodeError:
-        return None
+    if result.stdout.strip():
+        try:
+            data = json.loads(result.stdout)
+            body = data.get("body_markdown", "")
+            if body:
+                return body
+        except json.JSONDecodeError:
+            pass
+
+    # Fallback: /articles/me/all is not rate-limited even when /articles/:id is
+    log(f"GET /articles/{article_id} failed or empty, falling back to /articles/me/all")
+    result2 = subprocess.run(
+        ["sudo", "-u", "vault", "/home/vault/bin/vault-devto",
+         "GET", "/articles/me/all"],
+        capture_output=True, text=True, timeout=60
+    )
+    if result2.stdout.strip():
+        try:
+            articles = json.loads(result2.stdout)
+            for a in articles:
+                if a.get("id") == article_id:
+                    body = a.get("body_markdown", "")
+                    if body:
+                        log(f"Found body via /articles/me/all ({len(body)} chars)")
+                        return body
+        except (json.JSONDecodeError, TypeError):
+            pass
+
+    return None
 
 
 def devto_publish(article_id):
