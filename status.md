@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-19 16:12 UTC (session 201/Day 13)
+**Last updated:** 2026-03-19 16:35 UTC (session 201/Day 13)
 
 ## Current Phase
-**Day 13 — Art 065 PUBLISHED 16:00 UTC. Campaign post sent 16:12 UTC. Glama v0.63.3 fix request filed. Board directives processed.**
+**Day 13 — Art 065 PUBLISHED. v0.63.4 Glama definitive fix shipped. Art 073 tags fixed. Staggered posts queued 18:00/19:00/20:00 UTC.**
 
 ## Session 201 (2026-03-19 13:00 UTC)
 
@@ -24,6 +24,11 @@
 14. **Board outbox processed (cont.)** — Voiceover activated on Twitch (board FYI). Article limit directive: 10 drafts max (pipeline already loaded through Apr 7, no new articles needed). Notion challenge request: board says wait until art 073 is live (March 22). Glama: v0.63.1 fix verified working locally (TTY detection works), issue is Docker rebuild needed — filed 3-glama-rebuild-required.md. Google Search Console: declined by board until near revenue.
 15. **Art 064 24h check** — 1 reaction (unchanged from 4h). Action already taken (art 072 added to schedule). No further action.
 16. **Bluesky: 39 followers** (+1 from 38). Twitch: 5/50 (unchanged).
+17. **Art 065 PUBLISHED** — 16:00 UTC. Campaign post sent manually 16:12 UTC (PID 443230 killed — /articles/me/all returns published_at=null bug). URL: https://dev.to/0coceo/i-audited-11-mcp-servers-22945-tokens-before-a-single-message-31e
+18. **v0.63.4 released** — Glama definitive fix: Dockerfile `mcp>=1.25` was wrong (SDK at 1.12.x). Changed to `mcp>=1.0`. Added `mcp` to optional-deps. Pushed to agent-friend main (commit 6b9a821). Board request filed: 3-glama-v0634-fix.md.
+19. **vault-pypi not in sudoers** — Board said vault-pypi exists but not deployed. Filed 3-pypi-vault-deploy.md.
+20. **Art 073 tags fixed** — Added front matter with `devchallenge, notionchallenge, mcp, buildinpublic` tags for Notion challenge (was missing, would have published without challenge tags).
+21. **SEP-1576**: 0 reactions at 24h. kira-autonoma replied (mcp-lazy-proxy). Low traction channel.
 
 ### Background Processes Running
 - PID 443230: KILLED (bug: /articles/me/all returns published_at=null, campaign posted manually at 16:12)
@@ -32,19 +37,20 @@
 - PID 326612: daily queue swap (Mar 19-Apr 6)
 - PIDs for staggered posts: 259700/260458/260461/260462/265482/267999/274310/309183/316736/314046/314047 + Apr 1-7 PIDs
 
-### Key Metrics (16:12 UTC)
-- Art 064: 1 rxn, 18 views at 24h. Art 065: PUBLISHED 16:00 UTC, campaign post sent.
-- Bluesky: 39 followers | Twitch: 5/50 followers
+### Key Metrics (16:35 UTC)
+- Art 064: 1 rxn, 18 views at 24h. Art 065: 0 rxn, 3 views at 35min.
+- Bluesky: 39 followers | Twitch: 5/50 followers, stream LIVE
 - Leaderboard: 199 servers, 3,974 tools, 511,938 tokens
-- agent-friend: v0.63.3, 3083 tests passing
+- agent-friend: v0.63.4, 3083 tests passing
 
 ### Next Milestones
-- **16:00 UTC**: Art 065 publishes (title: "I Audited 11 MCP Servers. 22,945 Tokens Before a Single Message.")
-- **16:05 UTC**: PID 342801 patches staggered_posts_mar22.json TEMPURL
-- **16:10 UTC**: PID 340645 deploys GitHub Pages (video + leaderboard fixes)
-- **16:10 UTC**: Art 064 24h reaction check
-- **16:30 UTC**: Art 065 campaign poster fires (PID 299391)
-- **18:00/19:00/20:00 UTC**: Staggered posts for art 065
+- **18:00/19:00/20:00 UTC**: Staggered posts for art 065 (PID 259700 running)
+- **Mar 20 16:00 UTC**: Art 066 publishes — "Ollama Tool Calling in 5 Lines of Python"
+- **Mar 22 16:00 UTC**: Art 073 publishes — Notion challenge submission (tags fixed)
+- **Mar 22**: Check staggered_posts_mar22.json TEMPURL was replaced (PID 342802)
+- **Waiting**: Board to deploy Glama v0.63.4 (3-glama-v0634-fix.md)
+- **Waiting**: Board to deploy vault-pypi sudoers (3-pypi-vault-deploy.md)
+- **Mar 27**: Update art 075 with real follower/broadcast counts before Mar 28 publish
 
 ## Session 200 (2026-03-19 10:38 UTC)
 
