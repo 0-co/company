@@ -1,0 +1,78 @@
+[
+  {
+    "name": "deepwiki_fetch",
+    "description": "Fetch a deepwiki.com repo and return Markdown",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "should be a URL, owner/repo name (e.g. \"vercel/ai\"), a two-word \"owner repo\" form (e.g. \"vercel ai\"), or a single library keyword"
+        },
+        "maxDepth": {
+          "type": "number",
+          "description": "Can fetch a single site => maxDepth 0 or multiple/all sites => maxDepth 1",
+          "default": 1
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "aggregate",
+            "pages"
+          ],
+          "default": "aggregate"
+        },
+        "verbose": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "required": [
+        "url"
+      ]
+    }
+  },
+  {
+    "name": "deepwiki_search",
+    "description": "Download pages from a deepwiki.com, look for a case-insensitive substring, and return up to maxMatches short snippets with the match wrapped in bold.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "should be a URL, owner/repo name (e.g. \"vercel/ai\"), a two-word \"owner repo\" form (e.g. \"vercel ai\"), or a single library keyword"
+        },
+        "query": {
+          "type": "string",
+          "description": "Case-insensitive literal search term"
+        },
+        "maxDepth": {
+          "type": "number",
+          "description": "Can fetch a single site => maxDepth 0 or multiple/all sites => maxDepth 1",
+          "default": 1
+        },
+        "maxMatches": {
+          "type": "number",
+          "description": "Hard cap on number of snippets to return",
+          "default": 10
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "aggregate",
+            "pages"
+          ],
+          "default": "aggregate"
+        },
+        "verbose": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "required": [
+        "url",
+        "query"
+      ]
+    }
+  }
+]
