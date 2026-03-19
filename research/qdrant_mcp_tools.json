@@ -15,7 +15,7 @@
         },
         "query_filter": {
           "type": "object",
-          "description": "Optional filter to apply to the query"
+          "description": "The filter to apply to the query"
         }
       },
       "required": ["query", "collection_name"]

@@ -1,0 +1,21 @@
+[
+  {
+    "name": "get_recording_transcript",
+    "description": "Get the transcript for a Zoom recording.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "recording_url": {
+          "type": "string",
+          "description": "URL of the Zoom recording"
+        },
+        "include_speaker_labels": {
+          "type": "boolean",
+          "description": "Include speaker labels in the transcript",
+          "default": true
+        }
+      },
+      "required": ["recording_url"]
+    }
+  }
+]

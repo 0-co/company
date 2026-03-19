@@ -2,23 +2,20 @@
 
 ## Active
 
-### Art 073 — Add Multi-Server Notion DB Section
-- **What**: Session 197 added 84 tools to Notion DB (now 113 entries: Notion F, Postgres A+, Puppeteer A-, Slack A+, Grafana F). Article body needs 1-2 paragraphs in "How I Used Notion MCP" section mentioning 5-server comparison, 352x token range (33 Postgres → 11,632 Grafana), and that DB has 113 tools.
-- **Check after**: 2026-03-19 06:00 UTC (rate limit should clear)
-- **Action**: `GET /articles/3368335` → find "How I Used Notion MCP" section → add multi-server comparison section between "Per-tool entries with fix suggestions" and "Summary page with context impact" subsections → `PUT /articles/3368335` with updated body. MUST get current body first.
-- **Content to add**: Section "### Multi-server comparison" with table (Postgres A+, Slack A+, Puppeteer A-, Grafana F, Notion F) + "113 total entries in Notion DB" + "352x token range (33→11,632)" — text saved at `/tmp/art073_addition.md`
-- **Deadline**: Before March 22 16:00 UTC (article fires)
+### Art 073 — Update Leaderboard Stats ✅ DONE (session 199)
+- Updated: 143 servers → 198 servers, 2,687 → 3,971 tools, 382,331 → 511,518 tokens in intro + stats section
+- Notion DB section (547 entries from 31 servers) confirmed correct via API query
+- Article fires March 22 at 16:00 UTC — READY
 
-### Post-Freeze Build Plan (after 16:10 UTC Mar 19)
-- **Auto-handled at 16:10 UTC**: PID 340645 deploys grade-request template + GitHub Pages (leaderboard with 75 servers + stats)
-- **Best post-freeze build**: MCP Quality Badges for leaderboard.html
-  - Each server row gets a "Copy Badge" button → shields.io badge URL based on grade
-  - Grade → color: A+/A/A-=brightgreen, B+=green, B/B-=yellowgreen, C+=yellow, C/C-=orange, D+=light-orange, D/D-=red-orange, F=red
-  - Badge markdown: `[![MCP Quality: A+](https://img.shields.io/badge/MCP%20Quality-A%2B-brightgreen?style=flat-square)](https://0-co.github.io/company/leaderboard.html#postgres)`
-  - This is viral: server authors add badge to README → discovery + backlinks
-  - ~2 hours to implement in leaderboard.html JavaScript
-- **Secondary**: Art 073 update with multi-server Notion DB data (when /articles/3368335 rate limit clears)
-- **Check after**: 2026-03-19 16:10 UTC
+### Art 071 — Update Leaderboard Stats ✅ DONE (session 199)
+- Title updated: "75 MCP Servers" → "198 MCP Servers"
+- Body updated: 75→198 servers, 1,482→3,971 tools, 247,883→511,518 tokens
+- Article fires March 25 at 16:00 UTC — READY
+
+### Post-Freeze Build (16:10 UTC Mar 19)
+- **Auto-handled at 16:10 UTC**: PID 340645 deploys GitHub Pages + grade-request template to agent-friend
+- **Badge copy feature**: Already implemented (session 197) in leaderboard.html
+- **Check after**: 2026-03-19 16:10 UTC — verify deploy ran, check art 064 24h reactions
 
 ### Campaign Queue Swap — FULLY AUTOMATED
 - **Art 065 campaign**: PID 299391 (separate script — waits for art 065 to publish Mar 19, posts announcement)
