@@ -1,0 +1,296 @@
+[
+  {
+    "name": "company_research_exa",
+    "description": "Research any company to get business information, news, and insights.\n\nBest for: Learning about a company's products, services, recent news, or industry position.\nReturns: Company information from trusted business sources.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "companyName": {
+          "type": "string",
+          "description": "Name of the company to research"
+        },
+        "numResults": {
+          "type": "number",
+          "description": "Number of search results to return (must be a number, default: 3)"
+        }
+      },
+      "required": [
+        "companyName"
+      ]
+    }
+  },
+  {
+    "name": "crawling_exa",
+    "description": "Get the full content of a specific webpage. Use when you have an exact URL.\n\nBest for: Extracting content from a known URL.\nReturns: Full text content and metadata from the page.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "URL to crawl and extract content from"
+        },
+        "maxCharacters": {
+          "type": "number",
+          "description": "Maximum characters to extract (must be a number, default: 3000)"
+        }
+      },
+      "required": [
+        "url"
+      ]
+    }
+  },
+  {
+    "name": "deep_researcher_check",
+    "description": "Check status and get results from a deep research task.\n\nBest for: Getting the research report after calling deep_researcher_start.\nReturns: Research report when complete, or status update if still running.\nImportant: Keep calling with the same research ID until status is 'completed'.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "researchId": {
+          "type": "string",
+          "description": "The research ID returned from deep_researcher_start tool"
+        }
+      },
+      "required": [
+        "researchId"
+      ]
+    }
+  },
+  {
+    "name": "deep_researcher_start",
+    "description": "Start an AI research agent that searches, reads, and writes a detailed report. Takes 15 seconds to 2 minutes.\n\nBest for: Complex research questions needing deep analysis and synthesis.\nReturns: Research ID - use deep_researcher_check to get results.\nImportant: Call deep_researcher_check with the returned research ID to get the report.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "instructions": {
+          "type": "string",
+          "description": "Complex research question or detailed instructions for the AI researcher. Be specific about what you want to research and any particular aspects you want covered."
+        },
+        "model": {
+          "type": "string",
+          "description": "Research model: 'exa-research-fast' (fastest, ~15s, good for simple queries), 'exa-research' (balanced, 15-45s, good for most queries), or 'exa-research-pro' (most comprehensive, 45s-3min, for complex topics). Default: exa-research-fast"
+        }
+      },
+      "required": [
+        "instructions"
+      ]
+    }
+  },
+  {
+    "name": "deep_search_exa",
+    "description": "Deep search with automatic query expansion for thorough research. Generates multiple search variations to find results from multiple angles, then synthesizes a short answer with citations.\n\nBest for: Complex questions needing information from multiple angles.\nReturns: A synthesized answer with citations, plus individual search results with highlights. When structuredOutput is enabled, returns structured JSON instead of markdown.\nNote: Requires an Exa API key. 'deep' mode takes 4-12s, 'deep-reasoning' takes 12-50s.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "objective": {
+          "type": "string",
+          "description": "Natural language description of what the web search is looking for. Try to make the search query atomic - looking for a specific piece of information."
+        },
+        "type": {
+          "type": "string",
+          "description": "Search depth - 'deep': fast deep search (4-12s, default), 'deep-reasoning': thorough with reasoning (12-50s)"
+        },
+        "numResults": {
+          "type": "number",
+          "description": "Number of search results to return (must be a number, default: 8)"
+        },
+        "highlightMaxCharacters": {
+          "type": "number",
+          "description": "Maximum characters for highlights per result (must be a number, default: 4000)"
+        },
+        "systemPrompt": {
+          "type": "string",
+          "description": "Instructions for how the deep search agent should process and format results."
+        },
+        "structuredOutput": {
+          "type": "boolean",
+          "description": "When true, returns a structured JSON response instead of markdown. The API will determine the appropriate structure based on the query. Prefer using outputSchema for more control over the response shape."
+        }
+      },
+      "required": [
+        "objective",
+        "systemPrompt"
+      ]
+    }
+  },
+  {
+    "name": "get_code_context_exa",
+    "description": "Find code examples, documentation, and programming solutions. Searches GitHub, Stack Overflow, and official docs.\n\nBest for: Any programming question - API usage, library examples, code snippets, debugging help.\nReturns: Relevant code and documentation, formatted for easy reading.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Search query to find relevant context for APIs, Libraries, and SDKs. For example, 'React useState hook examples', 'Python pandas dataframe filtering', 'Express.js middleware', 'Next js partial prerendering configuration'"
+        },
+        "tokensNum": {
+          "type": "number",
+          "description": "Number of tokens to return (must be a number, 1000-50000). Default is 5000 tokens. Adjust this value based on how much context you need - use lower values for focused queries and higher values for comprehensive documentation."
+        }
+      },
+      "required": [
+        "query",
+        "tokensNum"
+      ]
+    }
+  },
+  {
+    "name": "linkedin_search_exa",
+    "description": "\u26a0\ufe0f DEPRECATED: This tool is deprecated. Please use 'people_search_exa' instead. This tool will be removed in a future version. For now, it searches for people on LinkedIn using Exa AI - finds professional profiles and people.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Search query for finding people on LinkedIn"
+        },
+        "numResults": {
+          "type": "number",
+          "description": "Number of LinkedIn profile results to return (must be a number, default: 5)"
+        }
+      },
+      "required": [
+        "query"
+      ]
+    }
+  },
+  {
+    "name": "people_search_exa",
+    "description": "Find people and their professional profiles.\n\nBest for: Finding professionals, executives, or anyone with a public profile.\nReturns: Profile information and links.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Search query for finding people"
+        },
+        "numResults": {
+          "type": "number",
+          "description": "Number of profile results to return (must be a number, default: 5)"
+        }
+      },
+      "required": [
+        "query"
+      ]
+    }
+  },
+  {
+    "name": "web_search_exa",
+    "description": "Search the web for any topic and get clean, ready-to-use content.\n\nBest for: Finding current information, news, facts, or answering questions about any topic.\nReturns: Clean text content from top search results, ready for LLM use.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Websearch query"
+        },
+        "numResults": {
+          "type": "number",
+          "description": "Number of search results to return (must be a number, default: 8)"
+        },
+        "livecrawl": {
+          "type": "string",
+          "description": "Live crawl mode - 'fallback': use live crawling as backup if cached content unavailable, 'preferred': prioritize live crawling (default: 'fallback')"
+        },
+        "type": {
+          "type": "string",
+          "description": "Search type - 'auto': balanced search (default), 'fast': quick results"
+        },
+        "category": {
+          "type": "string",
+          "description": "Filter results to a specific category - 'company': company websites and profiles, 'research paper': academic papers and research, 'people': LinkedIn profiles and personal bios"
+        },
+        "contextMaxCharacters": {
+          "type": "number",
+          "description": "Maximum characters for context string optimized for LLMs (must be a number, default: 10000)"
+        }
+      },
+      "required": [
+        "query"
+      ]
+    }
+  },
+  {
+    "name": "web_search_advanced_exa",
+    "description": "Advanced web search with full control over filters, domains, dates, and content options.\n\nBest for: When you need specific filters like date ranges, domain restrictions, or category filters.\nNot recommended for: Simple searches - use web_search_exa instead.\nReturns: Search results with optional highlights, summaries, and subpage content.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Search query - can be a question, statement, or keywords"
+        },
+        "numResults": {
+          "type": "number",
+          "description": "Number of results (must be a number, 1-100, default: 10)"
+        },
+        "type": {
+          "type": "string",
+          "description": "Search type - 'auto': balanced (default), 'fast': quick results, 'neural': semantic search"
+        },
+        "category": {
+          "type": "string",
+          "description": "Filter results to a specific category"
+        },
+        "startPublishedDate": {
+          "type": "string",
+          "description": "Only include results published after this date (ISO 8601: YYYY-MM-DD)"
+        },
+        "endPublishedDate": {
+          "type": "string",
+          "description": "Only include results published before this date (ISO 8601: YYYY-MM-DD)"
+        },
+        "startCrawlDate": {
+          "type": "string",
+          "description": "Only include results crawled after this date (ISO 8601: YYYY-MM-DD)"
+        },
+        "endCrawlDate": {
+          "type": "string",
+          "description": "Only include results crawled before this date (ISO 8601: YYYY-MM-DD)"
+        },
+        "userLocation": {
+          "type": "string",
+          "description": "ISO country code for geo-targeted results (e.g., 'US', 'GB', 'DE')"
+        },
+        "moderation": {
+          "type": "boolean",
+          "description": "Filter out unsafe/inappropriate content"
+        },
+        "textMaxCharacters": {
+          "type": "number",
+          "description": "Max characters for text extraction per result (must be a number)"
+        },
+        "contextMaxCharacters": {
+          "type": "number",
+          "description": "Max characters for context string (must be a number, not included by default)"
+        },
+        "enableSummary": {
+          "type": "boolean",
+          "description": "Enable summary generation for results"
+        },
+        "summaryQuery": {
+          "type": "string",
+          "description": "Focus query for summary generation"
+        },
+        "enableHighlights": {
+          "type": "boolean",
+          "description": "Enable highlights extraction"
+        },
+        "highlightsNumSentences": {
+          "type": "number",
+          "description": "Number of sentences per highlight (must be a number)"
+        },
+        "highlightsPerUrl": {
+          "type": "number",
+          "description": "Number of highlights per URL (must be a number)"
+        },
+        "highlightsQuery": {
+          "type": "string",
+          "description": "Query for highlight relevance"
+        }
+      },
+      "required": [
+        "query"
+      ]
+    }
+  }
+]
