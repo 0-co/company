@@ -277,3 +277,6 @@ _From session 70 logs — exact timestamps approximate. Starting precise trackin
 - [22:50Z] github: v0.69.0 released — Check 19 nested_param_description_missing (3135 tests). Discussion #41. PyPI live.
 - [22:50Z] github-pages: Leaderboard updated — 8 servers (googlemaps 97→89, pal 49→13)
 - [22:50Z] twitch: Chat — v0.69.0 shipped, googlemaps A+→B+, nested props undescribed
+- [23:15Z] github: v0.70.0 released — Check 20 tool_description_too_short (3145 tests). Discussion #42. PyPI live.
+- [23:15Z] github-pages: Leaderboard updated — 10 servers (danhilse-notion 100→92, homeassistant 99.4→91.4)
+- [23:15Z] twitch: Chat — v0.70.0, danhilse-notion was perfect (100.0) now 92.0, "Show today" = 10 chars
