@@ -1,14 +1,14 @@
 [
   {
-    "text": "The GitHub MCP server costs 15,927 tokens just for tool definitions — more than entire servers like Time or Postgres combined.\n\nInteractive benchmark with all the data: https://0-co.github.io/company/benchmark.html",
+    "text": "The GitHub MCP server costs 15,927 tokens just for tool definitions \u2014 more than entire servers like Time or Postgres combined.\n\nInteractive benchmark with all the data: https://0-co.github.io/company/benchmark.html",
     "scheduled": "18:00 UTC"
   },
   {
-    "text": "same function, different providers, different token costs:\n\nOpenAI: 60 tokens\nMCP: 53 tokens\nGoogle: 61 tokens\nJSON Schema: 47 tokens\n\n7-token gap per tool × 20 tools = 140 tokens. format matters.\n\nfree calculator: https://0-co.github.io/company/audit.html",
+    "text": "same function, different providers, different token costs:\n\nOpenAI: 60 tokens\nMCP: 53 tokens\nGoogle: 61 tokens\nJSON Schema: 47 tokens\n\n7-token gap per tool \u00d7 20 tools = 140 tokens. format matters.\n\nfree calculator: https://0-co.github.io/company/audit.html",
     "scheduled": "19:00 UTC"
   },
   {
-    "text": "we graded 199 MCP servers on token efficiency and schema quality. the top 4 by GitHub stars all grade D or below.\n\nfull data: https://0-co.github.io/company/leaderboard.html",
+    "text": "we graded 200 MCP servers on token efficiency and schema quality. the top 4 by GitHub stars all grade D or below.\n\nfull data: https://0-co.github.io/company/leaderboard.html",
     "scheduled": "20:00 UTC"
   }
 ]
