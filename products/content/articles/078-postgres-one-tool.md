@@ -1,7 +1,7 @@
 ---
 title: "98% of MCP Servers Are Worse Than Postgres's One Tool"
 published: false
-description: "PostgreSQL's MCP server has exactly 1 tool, 33 tokens, and a perfect score. 98.5% of the 198 servers I've graded score below it. Here's what Postgres got right."
+description: "PostgreSQL's MCP server has exactly 1 tool, 33 tokens, and a perfect score. 98.5% of the 199 servers I've graded score below it. Here's what Postgres got right."
 tags: mcp, buildinpublic, devtools, postgres
 ---
 
@@ -13,7 +13,7 @@ The PostgreSQL MCP server has exactly one tool.
 
 33 tokens. A+ score. 100.0 out of 100.
 
-I've graded 198 MCP servers. 98.5% of them score below PostgreSQL. That includes servers with 80 tools, 20,000 tokens, and teams large enough to know better.
+I've graded 199 MCP servers. 98.5% of them score below PostgreSQL. That includes servers with 80 tools, 20,000 tokens, and teams large enough to know better.
 
 One tool. 33 tokens. Perfect score. Let that sit.
 
@@ -46,17 +46,17 @@ Nothing to flag. Nothing to fix. It does one thing and describes it correctly.
 
 ## The average server
 
-Across 198 servers graded, the average is:
+Across 199 servers graded, the average is:
 
 - ~20 tools
 - ~2,600 tokens
 - Score: 68.4 (C+)
 
-The worst servers are at 82 tools and 14,127 tokens (Notion, F, 19.8) or 68 tools and 11,632 tokens (Grafana, F, 21.9). The GitHub MCP server has 80 tools and 20,444 tokens — the biggest on the board.
+The worst servers are at 22 tools and 4,483 tokens (Notion, F, 19.8) or 68 tools and 11,632 tokens (Grafana, F, 21.9). The GitHub MCP server has 80 tools and 15,927 tokens — the biggest on the board.
 
 Postgres has 1 tool and 33 tokens.
 
-The 98.5% figure isn't rhetorical. Of the 198 servers graded, 3 others also score 100.0 (SQLite, and two community Notion implementations that someone built properly). Everything else scores below PostgreSQL. The median server uses roughly 80x more tokens than Postgres and scores 32 points lower.
+The 98.5% figure isn't rhetorical. Of the 199 servers graded, 3 others also score 100.0 (SQLite, and two community Notion implementations that someone built properly). Everything else scores below PostgreSQL. The median server uses roughly 80x more tokens than Postgres and scores 32 points lower.
 
 ---
 
@@ -78,7 +78,7 @@ The pattern across low-scoring servers is consistent:
 
 **Descriptions as instruction manuals.** Instead of "Queries the database and returns results," you get three paragraphs explaining query syntax, connection handling, timeout behavior, and what to do if the schema doesn't exist. That information belongs in docs. Tool descriptions get injected into every single prompt, whether it's relevant or not.
 
-**Too many tools.** Notion's official MCP server exposes 82 tools. Most of them are variations on CRUD operations for different object types. The LLM doesn't need a separate `create_page`, `create_database`, `create_block` — it needs `create_object` with a type parameter. Splitting by internal type instead of by user intent produces tool explosion.
+**Too many tools.** Some MCP servers expose 60-80 tools for what should be a handful of operations. The LLM doesn't need a separate `create_page`, `create_database`, `create_block` — it needs `create_object` with a type parameter. Splitting by internal type instead of by user intent produces tool explosion.
 
 **No naming discipline.** Hyphens instead of underscores. Inconsistent verb tenses. Names like `get_list_of_recent_items` instead of `list_items`. The MCP spec uses snake_case and verb-noun patterns. Most servers don't bother.
 
@@ -88,7 +88,7 @@ The pattern across low-scoring servers is consistent:
 
 Every token in a tool description is a token that can't be used for your actual task.
 
-When you load an MCP server, the full tool schemas go into the model's context window before a single message is processed. Load Notion's official server: 14,127 tokens consumed. Load Grafana: 11,632 tokens. Load GitHub: 20,444 tokens.
+When you load an MCP server, the full tool schemas go into the model's context window before a single message is processed. Load Notion's official server: 4,483 tokens consumed. Load Grafana: 11,632 tokens. Load GitHub: 15,927 tokens.
 
 Load PostgreSQL: 33 tokens.
 
@@ -112,7 +112,7 @@ But the key discipline is the same: smaller surface area means fewer tokens, cle
 
 ## The leaderboard
 
-198 servers graded. 511,518 total tokens across the board. Average score 68.4.
+199 servers graded. 511,938 total tokens across the board. Average score 68.4.
 
 Four servers score 100.0: PostgreSQL, SQLite, and two community-built Notion implementations that chose to do it right despite the official server getting an F.
 
