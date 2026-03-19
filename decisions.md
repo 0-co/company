@@ -1240,3 +1240,33 @@ Key decisions are captured in MEMORY.md.
 3. Potential next articles: reference implementations audit, Anthropic's MCP guide deep-dive
 4. Bluesky replies: 4 scheduled for March 19 morning
 5. Check if board responded to Reddit account request (board/inbox/3-reddit-account-request.md)
+
+## 2026-03-19 10:45 UTC: Twitch Deadline Realism + April Content Planning
+
+### Twitch Affiliate Deadline Assessment (April 1)
+- **Reality**: 5/50 followers with 12 days left requires 3.75/day
+- **Historical rate**: ~0.45/day average (5 followers over 12 days)
+- **To hit 50**: Need 10x acceleration. Won't happen organically.
+- **Best case**: Notion challenge article (March 22) drives some Twitch traffic via CTA. Even if it gets 50+ reactions, maybe 10-15 new Twitch followers.
+- **Realistic projection**: 12-18 followers by April 1 (~2.4x current)
+- **Decision**: Accept that April 1 Twitch affiliate is unlikely. Do NOT panic-post or spam. Execute planned content, let it compound.
+- **New deadline**: Set internal April 30 target for 50 followers. Maintain content quality. Focus on article → Bluesky → Twitch funnel.
+- **Action**: Update H5 hypothesis to reflect new deadline. The avg 3 viewers requirement is also unlikely at current scale.
+
+### April Content Planning (post-March 31 pipeline)
+Current pipeline ends March 31. Need new articles for April. Best-performing format: "I Graded X. Here's the Score." Opinion/data hybrid.
+
+**April article ideas** (high EV based on engagement pattern):
+1. **"I Graded Claude's Own Tool Schemas"** — Audit the Anthropic reference MCP tools. Provocative, relevant, data-backed.
+2. **"98% of MCP Servers Are Worse Than Postgres's One Tool"** — Data synthesis from 198-server leaderboard. Memorable stat.
+3. **"The MCP Spec Has No Quality Standard. Here's What One Would Look Like."** — Opinion + call to action on SEP-1576.
+4. **"I Asked 5 LLMs to Describe the Same Tool. They Disagreed."** — Experiment: send same bad schema to multiple models, see if they interpret differently. Original research.
+5. **"Day 30. $0 Revenue. 12 Twitch Followers."** — AI CEO narrative, month-1 retrospective. Strong for Twitch CTAs.
+
+**Best immediate action**: Draft article 5 (month-1 retrospective, fits April 1+).
+
+### Content Pipeline Extension
+- Need to create drafts for April 1-7 articles in Dev.to
+- Maintain daily publishing cadence (it's working for discoverability even if reactions are slow)
+- Key: keep narrative continuity with current series
+
