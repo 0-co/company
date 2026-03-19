@@ -1,0 +1,906 @@
+[
+  {
+    "name": "get_specific_board",
+    "description": "Retrieves information about the current board.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "update_board",
+    "description": "Updates the current board.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name for the board."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the board."
+        },
+        "policy": {
+          "type": "object",
+          "description": "Board policy settings."
+        }
+      }
+    }
+  },
+  {
+    "name": "get_items",
+    "description": "Retrieves a list of items on the current board. Supports filtering by type and pagination.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "string",
+          "description": "Maximum number of results per call (10-50). Default: 10."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "text",
+            "shape",
+            "sticky_note",
+            "image",
+            "document",
+            "card",
+            "app_card",
+            "preview",
+            "frame",
+            "embed"
+          ],
+          "description": "Filter items by type."
+        },
+        "cursor": {
+          "type": "string",
+          "description": "Pagination cursor for the next set of results."
+        }
+      }
+    }
+  },
+  {
+    "name": "update_item_position_or_parent",
+    "description": "Updates the position or parent of a specific item on the current board.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "item_id": {
+          "type": "string",
+          "description": "Unique identifier (ID) of the item to update."
+        },
+        "position": {
+          "type": "object",
+          "description": "Updated position."
+        },
+        "parent": {
+          "type": "object",
+          "description": "Updated parent frame ID."
+        }
+      },
+      "required": [
+        "item_id"
+      ]
+    }
+  },
+  {
+    "name": "delete_item",
+    "description": "Deletes a specific item from the current board.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "item_id": {
+          "type": "string",
+          "description": "Unique identifier (ID) of the item to delete."
+        }
+      },
+      "required": [
+        "item_id"
+      ]
+    }
+  },
+  {
+    "name": "create_sticky_note_item",
+    "description": "Adds a sticky note item to the current board.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "description": "Content and shape of the sticky note.",
+          "properties": {
+            "content": {
+              "type": "string",
+              "description": "The text content."
+            },
+            "shape": {
+              "type": "string",
+              "enum": [
+                "square",
+                "rectangle"
+              ]
+            }
+          }
+        },
+        "style": {
+          "type": "object",
+          "description": "Styling options."
+        },
+        "position": {
+          "type": "object",
+          "description": "Position on the board."
+        },
+        "geometry": {
+          "type": "object",
+          "description": "Initial dimensions."
+        }
+      },
+      "required": [
+        "data"
+      ]
+    }
+  },
+  {
+    "name": "get_sticky_note_item",
+    "description": "Retrieves information for a specific sticky note item on the current board.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "item_id": {
+          "type": "string",
+          "description": "Unique identifier (ID) of the sticky note item."
+        }
+      },
+      "required": [
+        "item_id"
+      ]
+    }
+  },
+  {
+    "name": "update_sticky_note_item",
+    "description": "Updates a sticky note item on the current board.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "item_id": {
+          "type": "string",
+          "description": "Unique identifier (ID) of the sticky note to update."
+        },
+        "data": {
+          "type": "object",
+          "description": "Updated content or shape."
+        },
+        "style": {
+          "type": "object",
+          "description": "Updated styling."
+        },
+        "position": {
+          "type": "object",
+          "description": "Updated position."
+        },
+        "geometry": {
+          "type": "object",
+          "description": "Updated dimensions."
+        }
+      },
+      "required": [
+        "item_id"
+      ]
+    }
+  },
+  {
+    "name": "create_text_item",
+    "description": "Adds a text item to the current board.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "description": "The text content.",
+          "properties": {
+            "content": {
+              "type": "string",
+              "description": "The text content."
+            }
+          },
+          "required": [
+            "content"
+          ]
+        },
+        "style": {
+          "type": "object",
+          "description": "Styling options."
+        },
+        "position": {
+          "type": "object",
+          "description": "Position on the board."
+        },
+        "geometry": {
+          "type": "object",
+          "description": "Width and rotation."
+        }
+      },
+      "required": [
+        "data"
+      ]
+    }
+  },
+  {
+    "name": "get_text_item",
+    "description": "Retrieves information for a specific text item on the current board.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "item_id": {
+          "type": "string",
+          "description": "Unique identifier (ID) of the text item."
+        }
+      },
+      "required": [
+        "item_id"
+      ]
+    }
+  },
+  {
+    "name": "update_text_item",
+    "description": "Updates a text item on the current board.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "item_id": {
+          "type": "string",
+          "description": "Unique identifier (ID) of the text item to update."
+        },
+        "data": {
+          "type": "object",
+          "description": "Updated text content."
+        },
+        "style": {
+          "type": "object",
+          "description": "Updated styling."
+        },
+        "position": {
+          "type": "object",
+          "description": "Updated position."
+        },
+        "geometry": {
+          "type": "object",
+          "description": "Updated dimensions."
+        }
+      },
+      "required": [
+        "item_id"
+      ]
+    }
+  },
+  {
+    "name": "create_shape_item",
+    "description": "Adds a shape item to the current board.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "description": "Content and shape type.",
+          "properties": {
+            "content": {
+              "type": "string"
+            },
+            "shape": {
+              "type": "string",
+              "enum": [
+                "rectangle",
+                "round_rectangle",
+                "circle",
+                "triangle",
+                "rhombus",
+                "parallelogram",
+                "trapezoid",
+                "pentagon",
+                "hexagon",
+                "octagon",
+                "wedge_round_rectangle_callout",
+                "star",
+                "flow_chart_predefined_process",
+                "cloud",
+                "cross",
+                "can",
+                "right_arrow",
+                "left_arrow",
+                "left_right_arrow",
+                "left_brace",
+                "right_brace"
+              ]
+            }
+          }
+        },
+        "style": {
+          "type": "object"
+        },
+        "position": {
+          "type": "object"
+        },
+        "geometry": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    }
+  },
+  {
+    "name": "get_shape_item",
+    "description": "Retrieves information for a specific shape item on the current board.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "item_id": {
+          "type": "string",
+          "description": "Unique identifier (ID) of the shape item."
+        }
+      },
+      "required": [
+        "item_id"
+      ]
+    }
+  },
+  {
+    "name": "update_shape_item",
+    "description": "Updates a shape item on the current board.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "item_id": {
+          "type": "string",
+          "description": "Unique identifier (ID) of the shape item to update."
+        },
+        "data": {
+          "type": "object"
+        },
+        "style": {
+          "type": "object"
+        },
+        "position": {
+          "type": "object"
+        },
+        "geometry": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "item_id"
+      ]
+    }
+  },
+  {
+    "name": "create_card_item",
+    "description": "Adds a card item to the current board.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "description": "Data for the card.",
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "Header text for the card."
+            },
+            "description": {
+              "type": "string"
+            },
+            "dueDate": {
+              "type": "string",
+              "description": "Due date in ISO 8601 format."
+            },
+            "assigneeId": {
+              "type": "string"
+            }
+          }
+        },
+        "style": {
+          "type": "object"
+        },
+        "position": {
+          "type": "object"
+        },
+        "geometry": {
+          "type": "object"
+        },
+        "parent": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    }
+  },
+  {
+    "name": "get_card_item",
+    "description": "Retrieves information for a specific card item on the current board.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "item_id": {
+          "type": "string",
+          "description": "Unique identifier (ID) of the card item."
+        }
+      },
+      "required": [
+        "item_id"
+      ]
+    }
+  },
+  {
+    "name": "update_card_item",
+    "description": "Updates a card item on the current board.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "item_id": {
+          "type": "string",
+          "description": "Unique identifier (ID) of the card to update."
+        },
+        "data": {
+          "type": "object"
+        },
+        "style": {
+          "type": "object"
+        },
+        "position": {
+          "type": "object"
+        },
+        "geometry": {
+          "type": "object"
+        },
+        "parent": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "item_id"
+      ]
+    }
+  },
+  {
+    "name": "create_connector",
+    "description": "Adds a connector between two items on the current board.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "startItem": {
+          "type": "object",
+          "description": "The item where the connector starts.",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "position": {
+              "type": "object"
+            },
+            "snapTo": {
+              "type": "string",
+              "enum": [
+                "auto",
+                "top",
+                "right",
+                "bottom",
+                "left"
+              ]
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "endItem": {
+          "type": "object",
+          "description": "The item where the connector ends.",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "snapTo": {
+              "type": "string",
+              "enum": [
+                "auto",
+                "top",
+                "right",
+                "bottom",
+                "left"
+              ]
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "shape": {
+          "type": "string",
+          "enum": [
+            "straight",
+            "elbowed",
+            "curved"
+          ]
+        },
+        "captions": {
+          "type": "array",
+          "description": "Text captions to display on the connector."
+        },
+        "style": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "startItem",
+        "endItem"
+      ]
+    }
+  },
+  {
+    "name": "get_connectors",
+    "description": "Retrieves a list of connectors for the current board. Supports pagination.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "string"
+        },
+        "cursor": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "get_connector",
+    "description": "Retrieves information for a specific connector on the current board.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "connector_id": {
+          "type": "string",
+          "description": "Unique identifier (ID) of the connector."
+        }
+      },
+      "required": [
+        "connector_id"
+      ]
+    }
+  },
+  {
+    "name": "update_connector",
+    "description": "Updates a connector on the current board.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "connector_id": {
+          "type": "string",
+          "description": "Unique identifier (ID) of the connector to update."
+        },
+        "startItem": {
+          "type": "object"
+        },
+        "endItem": {
+          "type": "object"
+        },
+        "shape": {
+          "type": "string"
+        },
+        "captions": {
+          "type": "array"
+        },
+        "style": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "connector_id"
+      ]
+    }
+  },
+  {
+    "name": "delete_connector",
+    "description": "Deletes a specific connector from the current board.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "connector_id": {
+          "type": "string",
+          "description": "Unique identifier (ID) of the connector to delete."
+        }
+      },
+      "required": [
+        "connector_id"
+      ]
+    }
+  },
+  {
+    "name": "create_document_item_using_url",
+    "description": "Adds a document item to the board using a URL.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "description": "URL and title of the document.",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "URL where the document is hosted."
+            },
+            "title": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "url"
+          ]
+        },
+        "position": {
+          "type": "object"
+        },
+        "geometry": {
+          "type": "object"
+        },
+        "parent": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    }
+  },
+  {
+    "name": "update_document_item_using_url",
+    "description": "Updates a document item on the board.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "item_id": {
+          "type": "string",
+          "description": "Unique identifier (ID) of the document to update."
+        },
+        "data": {
+          "type": "object"
+        },
+        "position": {
+          "type": "object"
+        },
+        "geometry": {
+          "type": "object"
+        },
+        "parent": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "item_id"
+      ]
+    }
+  },
+  {
+    "name": "create_embed_item",
+    "description": "Adds an embed item (e.g., video, website) to the board.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "description": "URL and display options.",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "URL of the content to embed."
+            },
+            "mode": {
+              "type": "string",
+              "enum": [
+                "inline",
+                "modal"
+              ]
+            },
+            "previewUrl": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "url"
+          ]
+        },
+        "position": {
+          "type": "object"
+        },
+        "geometry": {
+          "type": "object"
+        },
+        "parent": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    }
+  },
+  {
+    "name": "update_embed_item",
+    "description": "Updates an embed item on the board.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "item_id": {
+          "type": "string",
+          "description": "Unique identifier (ID) of the embed to update."
+        },
+        "data": {
+          "type": "object"
+        },
+        "position": {
+          "type": "object"
+        },
+        "geometry": {
+          "type": "object"
+        },
+        "parent": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "item_id"
+      ]
+    }
+  },
+  {
+    "name": "create_image_item_using_url",
+    "description": "Adds an image item to the board using a URL.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "description": "URL, title, and alt text.",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "URL of the image."
+            },
+            "title": {
+              "type": "string"
+            },
+            "altText": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "url"
+          ]
+        },
+        "position": {
+          "type": "object"
+        },
+        "geometry": {
+          "type": "object"
+        },
+        "parent": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    }
+  },
+  {
+    "name": "update_image_item_using_url",
+    "description": "Updates an image item on the board.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "item_id": {
+          "type": "string",
+          "description": "Unique identifier (ID) of the image to update."
+        },
+        "data": {
+          "type": "object"
+        },
+        "position": {
+          "type": "object"
+        },
+        "geometry": {
+          "type": "object"
+        },
+        "parent": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "item_id"
+      ]
+    }
+  },
+  {
+    "name": "create_app_card_item",
+    "description": "Adds an app card item to the board.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "description": "Data for the app card.",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "fields": {
+              "type": "array",
+              "description": "Custom fields displayed on the card."
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "disconnected",
+                "connected",
+                "disabled"
+              ]
+            }
+          }
+        },
+        "style": {
+          "type": "object"
+        },
+        "position": {
+          "type": "object"
+        },
+        "geometry": {
+          "type": "object"
+        },
+        "parent": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    }
+  },
+  {
+    "name": "update_app_card_item",
+    "description": "Updates an app card item on the board.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "item_id": {
+          "type": "string",
+          "description": "Unique identifier (ID) of the app card to update."
+        },
+        "data": {
+          "type": "object"
+        },
+        "style": {
+          "type": "object"
+        },
+        "position": {
+          "type": "object"
+        },
+        "geometry": {
+          "type": "object"
+        },
+        "parent": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "item_id"
+      ]
+    }
+  }
+]
