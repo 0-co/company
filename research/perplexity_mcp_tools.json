@@ -1,0 +1,220 @@
+[
+  {
+    "name": "perplexity_ask",
+    "description": "Answer a question using web-grounded AI (Sonar Pro model). Best for: quick factual questions, summaries, explanations, and general Q&A. Returns a text response with numbered citations. Fastest and cheapest option. Supports filtering by recency (hour/day/week/month/year), domain restrictions, and search context size. For in-depth multi-source research, use perplexity_research instead. For step-by-step reasoning and analysis, use perplexity_reason instead.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "messages": {
+          "type": "array",
+          "description": "Array of conversation messages",
+          "items": {
+            "type": "object",
+            "properties": {
+              "role": {
+                "type": "string",
+                "enum": [
+                  "system",
+                  "user",
+                  "assistant"
+                ],
+                "description": "Role of the message sender"
+              },
+              "content": {
+                "type": "string",
+                "description": "The content of the message"
+              }
+            },
+            "required": [
+              "role",
+              "content"
+            ]
+          }
+        },
+        "search_recency_filter": {
+          "type": "string",
+          "enum": [
+            "hour",
+            "day",
+            "week",
+            "month",
+            "year"
+          ],
+          "description": "Filter search results by recency. Use 'hour' for very recent news, 'day' for today's events."
+        },
+        "search_domain_filter": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Restrict search results to specific domains (e.g., ['wikipedia.org', 'arxiv.org'])."
+        },
+        "search_context_size": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "description": "Controls how much web context is retrieved. 'low' (default) is fastest, 'high' provides more context."
+        }
+      },
+      "required": [
+        "messages"
+      ]
+    }
+  },
+  {
+    "name": "perplexity_research",
+    "description": "Conduct deep, multi-source research on a topic (Sonar Deep Research model). Best for: literature reviews, comprehensive overviews, investigative queries needing many sources. Returns a detailed response with numbered citations. Significantly slower than other tools (30+ seconds). For quick factual questions, use perplexity_ask instead. For logical analysis and reasoning, use perplexity_reason instead.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "messages": {
+          "type": "array",
+          "description": "Array of conversation messages",
+          "items": {
+            "type": "object",
+            "properties": {
+              "role": {
+                "type": "string",
+                "enum": [
+                  "system",
+                  "user",
+                  "assistant"
+                ],
+                "description": "Role of the message sender"
+              },
+              "content": {
+                "type": "string",
+                "description": "The content of the message"
+              }
+            },
+            "required": [
+              "role",
+              "content"
+            ]
+          }
+        },
+        "strip_thinking": {
+          "type": "boolean",
+          "description": "If true, removes <think>...</think> tags and their content from the response to save tokens."
+        },
+        "reasoning_effort": {
+          "type": "string",
+          "enum": [
+            "minimal",
+            "low",
+            "medium",
+            "high"
+          ],
+          "description": "Controls depth of deep research reasoning. Higher values produce more thorough analysis."
+        }
+      },
+      "required": [
+        "messages"
+      ]
+    }
+  },
+  {
+    "name": "perplexity_reason",
+    "description": "Analyze a question using step-by-step reasoning with web grounding (Sonar Reasoning Pro model). Best for: math, logic, comparisons, complex arguments, and tasks requiring chain-of-thought. Returns a reasoned response with numbered citations. Supports filtering by recency (hour/day/week/month/year), domain restrictions, and search context size. For quick factual questions, use perplexity_ask instead. For comprehensive multi-source research, use perplexity_research instead.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "messages": {
+          "type": "array",
+          "description": "Array of conversation messages",
+          "items": {
+            "type": "object",
+            "properties": {
+              "role": {
+                "type": "string",
+                "enum": [
+                  "system",
+                  "user",
+                  "assistant"
+                ],
+                "description": "Role of the message sender"
+              },
+              "content": {
+                "type": "string",
+                "description": "The content of the message"
+              }
+            },
+            "required": [
+              "role",
+              "content"
+            ]
+          }
+        },
+        "strip_thinking": {
+          "type": "boolean",
+          "description": "If true, removes <think>...</think> tags and their content from the response."
+        },
+        "search_recency_filter": {
+          "type": "string",
+          "enum": [
+            "hour",
+            "day",
+            "week",
+            "month",
+            "year"
+          ],
+          "description": "Filter search results by recency."
+        },
+        "search_domain_filter": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Restrict search results to specific domains."
+        },
+        "search_context_size": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "description": "Controls how much web context is retrieved."
+        }
+      },
+      "required": [
+        "messages"
+      ]
+    }
+  },
+  {
+    "name": "perplexity_search",
+    "description": "Search the web and return a ranked list of results with titles, URLs, snippets, and dates. Best for: finding specific URLs, checking recent news, verifying facts, discovering sources. Returns formatted results (title, URL, snippet, date) \u2014 no AI synthesis. For AI-generated answers with citations, use perplexity_ask instead.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Search query string"
+        },
+        "max_results": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 20,
+          "description": "Maximum number of results to return (1-20, default: 10)"
+        },
+        "max_tokens_per_page": {
+          "type": "number",
+          "minimum": 256,
+          "maximum": 2048,
+          "description": "Maximum tokens to extract per webpage (default: 1024)"
+        },
+        "country": {
+          "type": "string",
+          "description": "ISO 3166-1 alpha-2 country code for regional results (e.g., 'US', 'GB')"
+        }
+      },
+      "required": [
+        "query"
+      ]
+    }
+  }
+]
