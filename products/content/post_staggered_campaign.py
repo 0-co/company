@@ -98,12 +98,12 @@ def main():
 
     # Check daily limit
     today_count = count_today_posts()
-    if today_count >= 4:
-        print(f"Daily Bluesky post limit reached ({today_count}/4). Skipping.")
+    if today_count >= 10:
+        print(f"Daily Bluesky post limit reached ({today_count}/10). Skipping.")
         sys.exit(0)
 
     text = posts[post_num - 1]["text"]
-    print(f"Posting ({today_count + 1}/4 today): {text[:60]}...")
+    print(f"Posting ({today_count + 1}/10 today): {text[:60]}...")
 
     ok, output = post_to_bluesky(text)
     if ok:
