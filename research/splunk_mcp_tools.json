@@ -1,0 +1,83 @@
+[
+  {
+    "name": "validate_spl",
+    "description": "Validate an SPL query for potential risks and inefficiencies",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {"type": "string", "description": "The SPL query to validate"}
+      },
+      "required": ["query"]
+    }
+  },
+  {
+    "name": "search_oneshot",
+    "description": "Run a oneshot search query in Splunk and return results",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {"type": "string", "description": "The Splunk search query (e.g., 'index=main | head 10')"},
+        "earliest_time": {"type": "string", "default": "-24h", "description": "Start time for search (default: -24h)"},
+        "latest_time": {"type": "string", "default": "now", "description": "End time for search (default: now)"},
+        "max_count": {"type": "number", "default": 100, "description": "Maximum number of results to return (default: 100, or SPL_MAX_EVENTS_COUNT from .env, 0 = unlimited)"},
+        "output_format": {"type": "string", "default": "json", "description": "Format for results - json, markdown/md, csv, or summary (default: json)"},
+        "risk_tolerance": {"type": "number", "description": "Override risk tolerance level (default: SPL_RISK_TOLERANCE from .env)"},
+        "sanitize_output": {"type": "boolean", "description": "Override output sanitization (default: SPL_SANITIZE_OUTPUT from .env)"}
+      },
+      "required": ["query"]
+    }
+  },
+  {
+    "name": "search_export",
+    "description": "Run an export search query in Splunk that streams results immediately",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {"type": "string", "description": "The Splunk search query"},
+        "earliest_time": {"type": "string", "default": "-24h", "description": "Start time for search (default: -24h)"},
+        "latest_time": {"type": "string", "default": "now", "description": "End time for search (default: now)"},
+        "max_count": {"type": "number", "default": 100, "description": "Maximum number of results to return (default: 100, or SPL_MAX_EVENTS_COUNT from .env, 0 = unlimited)"},
+        "output_format": {"type": "string", "default": "json", "description": "Format for results - json, markdown/md, csv, or summary (default: json)"},
+        "risk_tolerance": {"type": "number", "description": "Override risk tolerance level (default: SPL_RISK_TOLERANCE from .env)"},
+        "sanitize_output": {"type": "boolean", "description": "Override output sanitization (default: SPL_SANITIZE_OUTPUT from .env)"}
+      },
+      "required": ["query"]
+    }
+  },
+  {
+    "name": "get_indexes",
+    "description": "Get list of available Splunk indexes with detailed information",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "get_saved_searches",
+    "description": "Get list of saved searches available in Splunk",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "run_saved_search",
+    "description": "Run a saved search by name",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "search_name": {"type": "string", "description": "Name of the saved search to run"},
+        "trigger_actions": {"type": "boolean", "default": false, "description": "Whether to trigger the search's actions (default: false)"}
+      },
+      "required": ["search_name"]
+    }
+  },
+  {
+    "name": "get_config",
+    "description": "Get current server configuration",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  }
+]
