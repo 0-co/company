@@ -1,0 +1,1073 @@
+[
+  {
+    "name": "add-tasks",
+    "description": "Add one or more tasks to a project, section, or parent. Supports assignment to project collaborators.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "tasks": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 25,
+          "items": {
+            "type": "object",
+            "properties": {
+              "content": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "priority": {
+                "type": "integer"
+              },
+              "dueString": {
+                "type": "string"
+              },
+              "deadlineDate": {
+                "type": "string"
+              },
+              "duration": {
+                "type": "string"
+              },
+              "labels": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "projectId": {
+                "type": "string"
+              },
+              "sectionId": {
+                "type": "string"
+              },
+              "parentId": {
+                "type": "string"
+              },
+              "order": {
+                "type": "number"
+              },
+              "responsibleUser": {
+                "type": "string"
+              },
+              "isUncompletable": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "content"
+            ]
+          }
+        }
+      },
+      "required": [
+        "tasks"
+      ]
+    }
+  },
+  {
+    "name": "update-tasks",
+    "description": "Update existing tasks including content, dates, priorities, and assignments.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "tasks": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "content": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "projectId": {
+                "type": "string"
+              },
+              "sectionId": {
+                "type": "string"
+              },
+              "parentId": {
+                "type": "string"
+              },
+              "order": {
+                "type": "number"
+              },
+              "priority": {
+                "type": "integer"
+              },
+              "dueString": {
+                "type": "string"
+              },
+              "deadlineDate": {
+                "type": "string"
+              },
+              "duration": {
+                "type": "string"
+              },
+              "responsibleUser": {
+                "type": "string"
+              },
+              "labels": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "isUncompletable": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          }
+        }
+      },
+      "required": [
+        "tasks"
+      ]
+    }
+  },
+  {
+    "name": "complete-tasks",
+    "description": "Complete one or more tasks by their IDs.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "ids"
+      ]
+    }
+  },
+  {
+    "name": "uncomplete-tasks",
+    "description": "Uncomplete (reopen) one or more completed tasks by their IDs.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "ids"
+      ]
+    }
+  },
+  {
+    "name": "reschedule-tasks",
+    "description": "Reschedule tasks to new dates while preserving their recurring schedules.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "tasks": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "date": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "id",
+              "date"
+            ]
+          }
+        }
+      },
+      "required": [
+        "tasks"
+      ]
+    }
+  },
+  {
+    "name": "find-tasks",
+    "description": "Find tasks by text search, project/section/parent container, responsible user, labels, or filter.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "searchText": {
+          "type": "string"
+        },
+        "projectId": {
+          "type": "string"
+        },
+        "sectionId": {
+          "type": "string"
+        },
+        "parentId": {
+          "type": "string"
+        },
+        "responsibleUser": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 50
+        },
+        "cursor": {
+          "type": "string"
+        },
+        "filter": {
+          "type": "string"
+        },
+        "filterIdOrName": {
+          "type": "string"
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "labelsOperator": {
+          "type": "string",
+          "enum": [
+            "AND",
+            "OR"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "find-tasks-by-date",
+    "description": "Get tasks by date range.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "startDate": {
+          "type": "string"
+        },
+        "overdueOption": {
+          "type": "string",
+          "enum": [
+            "overdue-only",
+            "include-overdue",
+            "exclude-overdue"
+          ]
+        },
+        "daysCount": {
+          "type": "integer"
+        },
+        "limit": {
+          "type": "integer"
+        },
+        "cursor": {
+          "type": "string"
+        },
+        "responsibleUser": {
+          "type": "string"
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "find-completed-tasks",
+    "description": "Get completed tasks.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "getBy": {
+          "type": "string",
+          "enum": [
+            "completion",
+            "due"
+          ]
+        },
+        "since": {
+          "type": "string"
+        },
+        "until": {
+          "type": "string"
+        },
+        "projectId": {
+          "type": "string"
+        },
+        "responsibleUser": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        },
+        "cursor": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "get-overview",
+    "description": "Get a Markdown overview of all projects or a specific project.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  },
+  {
+    "name": "add-projects",
+    "description": "Add one or more new projects.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "projects": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "parentId": {
+                "type": "string"
+              },
+              "isFavorite": {
+                "type": "boolean"
+              },
+              "viewStyle": {
+                "type": "string",
+                "enum": [
+                  "list",
+                  "board",
+                  "calendar"
+                ]
+              },
+              "color": {
+                "type": "string"
+              },
+              "workspace": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "color"
+            ]
+          }
+        }
+      },
+      "required": [
+        "projects"
+      ]
+    }
+  },
+  {
+    "name": "update-projects",
+    "description": "Update multiple existing projects.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "projects": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "name": {
+                "type": "string"
+              },
+              "isFavorite": {
+                "type": "boolean"
+              },
+              "viewStyle": {
+                "type": "string"
+              },
+              "color": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          }
+        }
+      },
+      "required": [
+        "projects"
+      ]
+    }
+  },
+  {
+    "name": "find-projects",
+    "description": "Search for projects by name.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "searchText": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        },
+        "cursor": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "project-management",
+    "description": "Archive or unarchive a project by its ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string",
+          "enum": [
+            "archive",
+            "unarchive"
+          ]
+        },
+        "projectId": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "action",
+        "projectId"
+      ]
+    }
+  },
+  {
+    "name": "project-move",
+    "description": "Move a project between personal and workspace contexts.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string",
+          "enum": [
+            "move-to-workspace",
+            "move-to-personal"
+          ]
+        },
+        "projectId": {
+          "type": "string"
+        },
+        "workspaceId": {
+          "type": "string"
+        },
+        "folderId": {
+          "type": "string"
+        },
+        "visibility": {
+          "type": "string",
+          "enum": [
+            "restricted",
+            "team",
+            "public"
+          ]
+        }
+      },
+      "required": [
+        "action",
+        "projectId"
+      ]
+    }
+  },
+  {
+    "name": "add-sections",
+    "description": "Add one or more new sections to projects.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "sections": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "projectId": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "name",
+              "projectId"
+            ]
+          }
+        }
+      },
+      "required": [
+        "sections"
+      ]
+    }
+  },
+  {
+    "name": "update-sections",
+    "description": "Update multiple existing sections.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "sections": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "id",
+              "name"
+            ]
+          }
+        }
+      },
+      "required": [
+        "sections"
+      ]
+    }
+  },
+  {
+    "name": "find-sections",
+    "description": "Search for sections by name in a project.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "searchText": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "projectId"
+      ]
+    }
+  },
+  {
+    "name": "add-comments",
+    "description": "Add multiple comments to tasks or projects.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "comments": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "taskId": {
+                "type": "string"
+              },
+              "projectId": {
+                "type": "string"
+              },
+              "content": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "content"
+            ]
+          }
+        }
+      },
+      "required": [
+        "comments"
+      ]
+    }
+  },
+  {
+    "name": "find-comments",
+    "description": "Find comments by task, project, or comment ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "taskId": {
+          "type": "string"
+        },
+        "projectId": {
+          "type": "string"
+        },
+        "commentId": {
+          "type": "string"
+        },
+        "cursor": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    }
+  },
+  {
+    "name": "update-comments",
+    "description": "Update multiple existing comments.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "comments": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "content": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "id",
+              "content"
+            ]
+          }
+        }
+      },
+      "required": [
+        "comments"
+      ]
+    }
+  },
+  {
+    "name": "find-project-collaborators",
+    "description": "Search for collaborators by name in a project.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "string"
+        },
+        "searchTerm": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "projectId"
+      ]
+    }
+  },
+  {
+    "name": "manage-assignments",
+    "description": "Bulk assignment operations for multiple tasks.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "operation": {
+          "type": "string",
+          "enum": [
+            "assign",
+            "unassign",
+            "reassign"
+          ]
+        },
+        "taskIds": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 50,
+          "items": {
+            "type": "string"
+          }
+        },
+        "responsibleUser": {
+          "type": "string"
+        },
+        "fromAssigneeUser": {
+          "type": "string"
+        },
+        "dryRun": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "operation",
+        "taskIds"
+      ]
+    }
+  },
+  {
+    "name": "add-labels",
+    "description": "Add one or more new personal labels.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "labels": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "color": {
+                "type": "string"
+              },
+              "order": {
+                "type": "number"
+              },
+              "isFavorite": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "name",
+              "color"
+            ]
+          }
+        }
+      },
+      "required": [
+        "labels"
+      ]
+    }
+  },
+  {
+    "name": "find-labels",
+    "description": "List personal and shared labels with optional search.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "searchText": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "cursor": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "find-filters",
+    "description": "List all personal filters or search by name.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "search": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "add-filters",
+    "description": "Add one or more new personal filters.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filters": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "query": {
+                "type": "string",
+                "minLength": 1
+              },
+              "color": {
+                "type": "string"
+              },
+              "isFavorite": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "name",
+              "query"
+            ]
+          }
+        }
+      },
+      "required": [
+        "filters"
+      ]
+    }
+  },
+  {
+    "name": "update-filters",
+    "description": "Update one or more existing personal filters.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filters": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "name": {
+                "type": "string"
+              },
+              "query": {
+                "type": "string"
+              },
+              "color": {
+                "type": "string"
+              },
+              "isFavorite": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          }
+        }
+      },
+      "required": [
+        "filters"
+      ]
+    }
+  },
+  {
+    "name": "delete-object",
+    "description": "Delete a project, section, task, comment, label, or filter by its ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "project",
+            "section",
+            "task",
+            "comment",
+            "label",
+            "filter"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "type",
+        "id"
+      ]
+    }
+  },
+  {
+    "name": "fetch-object",
+    "description": "Fetch a single task, project, comment, or section by its ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "task",
+            "project",
+            "comment",
+            "section"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "type",
+        "id"
+      ]
+    }
+  },
+  {
+    "name": "reorder-objects",
+    "description": "Reorder sibling projects or sections.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "project",
+            "section"
+          ]
+        },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "order": {
+                "type": "number"
+              },
+              "parentId": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          }
+        }
+      },
+      "required": [
+        "type",
+        "items"
+      ]
+    }
+  },
+  {
+    "name": "user-info",
+    "description": "Get user account details including identification, timezone, task completion progress, and subscription.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "list-workspaces",
+    "description": "Get all workspaces for the authenticated user.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "find-activity",
+    "description": "Retrieve recent activity logs to monitor changes in Todoist.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "objectType": {
+          "type": "string",
+          "enum": [
+            "task",
+            "project",
+            "comment"
+          ]
+        },
+        "objectId": {
+          "type": "string"
+        },
+        "eventType": {
+          "type": "string",
+          "enum": [
+            "added",
+            "updated",
+            "deleted",
+            "completed",
+            "uncompleted",
+            "archived",
+            "unarchived"
+          ]
+        },
+        "projectId": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        },
+        "cursor": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "get-productivity-stats",
+    "description": "Get comprehensive productivity statistics including completion breakdowns and karma score.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "search",
+    "description": "Search across tasks and projects in Todoist.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "query"
+      ]
+    }
+  }
+]

@@ -1,0 +1,23 @@
+[
+  {
+    "name": "send-sms",
+    "description": "Send an SMS message via Twilio",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "to": {
+          "type": "string",
+          "description": "The Twilio To number in +E.164 format (+XXXXXXXXXX)"
+        },
+        "message": {
+          "type": "string",
+          "description": "The message to send"
+        }
+      },
+      "required": [
+        "to",
+        "message"
+      ]
+    }
+  }
+]

@@ -1,0 +1,147 @@
+[
+  {
+    "name": "produce_message",
+    "description": "Produces messages to Kafka topics",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "topic": {
+          "type": "string",
+          "description": "Kafka topic name"
+        },
+        "key": {
+          "type": "string",
+          "description": "Message key (optional)"
+        },
+        "value": {
+          "type": "string",
+          "description": "Message value"
+        }
+      },
+      "required": [
+        "topic",
+        "value"
+      ]
+    }
+  },
+  {
+    "name": "consume_messages",
+    "description": "Consumes messages from Kafka topics in batch operations",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "topics": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of topic names to consume from"
+        },
+        "max_messages": {
+          "type": "integer",
+          "description": "Maximum number of messages to consume"
+        }
+      },
+      "required": [
+        "topics",
+        "max_messages"
+      ]
+    }
+  },
+  {
+    "name": "list_brokers",
+    "description": "Lists all configured Kafka broker addresses",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "describe_topic",
+    "description": "Returns comprehensive metadata about a specific topic including partitions, leaders, replicas, and in-sync replicas",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "topic_name": {
+          "type": "string",
+          "description": "Name of the topic to describe"
+        }
+      },
+      "required": [
+        "topic_name"
+      ]
+    }
+  },
+  {
+    "name": "list_consumer_groups",
+    "description": "Displays all consumer groups in the cluster with their current states",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "describe_consumer_group",
+    "description": "Provides detailed group information including members, assignments, and optionally offset/lag data",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "group_id": {
+          "type": "string",
+          "description": "Consumer group ID"
+        },
+        "include_offsets": {
+          "type": "boolean",
+          "description": "Whether to include offset and lag information"
+        }
+      },
+      "required": [
+        "group_id"
+      ]
+    }
+  },
+  {
+    "name": "describe_configs",
+    "description": "Retrieves configuration settings for Kafka resources like topics or brokers",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "resource_type": {
+          "type": "string",
+          "description": "Type of resource (topic or broker)"
+        },
+        "resource_name": {
+          "type": "string",
+          "description": "Name of the resource"
+        },
+        "config_keys": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Specific config keys to retrieve (optional)"
+        }
+      },
+      "required": [
+        "resource_type",
+        "resource_name"
+      ]
+    }
+  },
+  {
+    "name": "cluster_overview",
+    "description": "Summarizes cluster health including broker status, controller info, and replication metrics",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "list_topics",
+    "description": "Lists all cluster topics with partition counts, replication factors, and internal flags",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  }
+]

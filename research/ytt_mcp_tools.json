@@ -1,0 +1,28 @@
+[
+  {
+    "name": "get_youtube_transcript",
+    "description": "Get the transcript of a YouTube video",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "YouTube URL or video ID",
+          "examples": [
+            "https://youtube.com/watch?v=dQw4w9WgXcQ",
+            "dQw4w9WgXcQ"
+          ]
+        },
+        "lang": {
+          "type": "string",
+          "default": "en",
+          "description": "Language code for transcript (e.g., 'en', 'fr', 'de', 'es')",
+          "pattern": "^[a-z]{2}(-[A-Z]{2})?$"
+        }
+      },
+      "required": [
+        "url"
+      ]
+    }
+  }
+]

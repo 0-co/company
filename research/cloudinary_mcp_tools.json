@@ -1,0 +1,622 @@
+[
+  {
+    "name": "upload-asset",
+    "description": "Upload media assets including images, videos, and raw files to Cloudinary. Supports local file paths, remote URLs, Base64 data URIs, and private storage from S3 or Google Storage.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "resource_type": {
+          "type": "string",
+          "enum": [
+            "image",
+            "video",
+            "raw",
+            "auto"
+          ],
+          "default": "auto"
+        },
+        "upload_request": {
+          "type": "object",
+          "description": "Upload parameters including file source, public_id, folder, tags, transformation, etc."
+        }
+      },
+      "required": [
+        "upload_request"
+      ]
+    }
+  },
+  {
+    "name": "asset-rename",
+    "description": "Updates an existing asset's identifier (public ID) and optionally other metadata in your Cloudinary account",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "resource_type": {
+          "type": "string",
+          "enum": [
+            "image",
+            "video",
+            "raw"
+          ]
+        },
+        "from_public_id": {
+          "type": "string"
+        },
+        "to_public_id": {
+          "type": "string"
+        },
+        "overwrite": {
+          "type": "boolean"
+        },
+        "invalidate": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "resource_type",
+        "from_public_id",
+        "to_public_id"
+      ]
+    }
+  },
+  {
+    "name": "generate-archive",
+    "description": "Creates an archive (ZIP or TGZ file) that contains a set of assets from your product environment.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "resource_type": {
+          "type": "string",
+          "enum": [
+            "image",
+            "video",
+            "raw"
+          ]
+        },
+        "public_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "target_format": {
+          "type": "string",
+          "enum": [
+            "zip",
+            "tgz"
+          ]
+        },
+        "target_public_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "resource_type"
+      ]
+    }
+  },
+  {
+    "name": "download-asset-backup",
+    "description": "Download a backup copy of an asset",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "asset_id": {
+          "type": "string"
+        },
+        "version_id": {
+          "type": "string"
+        },
+        "api_key": {
+          "type": "string"
+        },
+        "signature": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "asset_id",
+        "version_id"
+      ]
+    }
+  },
+  {
+    "name": "delete-asset",
+    "description": "Delete an asset by its asset ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "asset_id": {
+          "type": "string"
+        },
+        "resource_type": {
+          "type": "string",
+          "enum": [
+            "image",
+            "video",
+            "raw"
+          ]
+        },
+        "invalidate": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "asset_id"
+      ]
+    }
+  },
+  {
+    "name": "list-images",
+    "description": "Get image assets. Retrieves a list of image assets. Results can be filtered by various criteria like tags, moderation status, prefix, or specific public IDs.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "prefix": {
+          "type": "string"
+        },
+        "public_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tags": {
+          "type": "boolean"
+        },
+        "next_cursor": {
+          "type": "string"
+        },
+        "max_results": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 500
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ]
+        },
+        "start_at": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "list-videos",
+    "description": "Get video assets. Retrieves a list of video assets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "prefix": {
+          "type": "string"
+        },
+        "public_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "next_cursor": {
+          "type": "string"
+        },
+        "max_results": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 500
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ]
+        },
+        "start_at": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "list-files",
+    "description": "Get raw assets. Retrieves a list of raw assets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "prefix": {
+          "type": "string"
+        },
+        "public_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "next_cursor": {
+          "type": "string"
+        },
+        "max_results": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 500
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "get-asset-details",
+    "description": "Get resource by asset ID. Returns the details of a single resource specified by its asset ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "asset_id": {
+          "type": "string"
+        },
+        "colors": {
+          "type": "boolean",
+          "default": false
+        },
+        "media_metadata": {
+          "type": "boolean",
+          "default": false
+        },
+        "faces": {
+          "type": "boolean",
+          "default": false
+        },
+        "quality_analysis": {
+          "type": "boolean",
+          "default": false
+        },
+        "pages": {
+          "type": "boolean",
+          "default": false
+        },
+        "versions": {
+          "type": "boolean",
+          "default": false
+        },
+        "max_results": {
+          "type": "integer",
+          "default": 10
+        }
+      },
+      "required": [
+        "asset_id"
+      ]
+    }
+  },
+  {
+    "name": "asset-update",
+    "description": "Updates an existing asset's metadata, tags, and other attributes using its asset ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "asset_id": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "context": {
+          "type": "object"
+        },
+        "metadata": {
+          "type": "object"
+        },
+        "invalidate": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "asset_id"
+      ]
+    }
+  },
+  {
+    "name": "list-tags",
+    "description": "Retrieves a list of tags currently applied to assets in your Cloudinary account.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "resource_type": {
+          "type": "string",
+          "enum": [
+            "image",
+            "video",
+            "raw"
+          ]
+        },
+        "prefix": {
+          "type": "string"
+        },
+        "next_cursor": {
+          "type": "string"
+        },
+        "max_results": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 500
+        }
+      },
+      "required": [
+        "resource_type"
+      ]
+    }
+  },
+  {
+    "name": "delete-derived-assets",
+    "description": "Delete derived resources by derived resource ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "derived_resource_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "derived_resource_ids"
+      ]
+    }
+  },
+  {
+    "name": "get-usage-details",
+    "description": "Retrieves comprehensive usage metrics and account statistics including storage, credits, bandwidth, requests, and add-on usage.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "create-asset-relations",
+    "description": "Add related assets by asset ID, establishing bidirectional relationships between assets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "asset_id": {
+          "type": "string"
+        },
+        "assets_to_relate": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "asset_id",
+        "assets_to_relate"
+      ]
+    }
+  },
+  {
+    "name": "delete-asset-relations",
+    "description": "Delete asset relations by asset ID. Unrelates the asset from other assets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "asset_id": {
+          "type": "string"
+        },
+        "assets_to_unrelate": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "asset_id",
+        "assets_to_unrelate"
+      ]
+    }
+  },
+  {
+    "name": "move-folder",
+    "description": "Renames or moves an entire folder (along with all assets it contains) to a new location within your Cloudinary media library.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "folder": {
+          "type": "string"
+        },
+        "to_folder": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "folder",
+        "to_folder"
+      ]
+    }
+  },
+  {
+    "name": "create-folder",
+    "description": "Creates a new empty folder in your Cloudinary media library.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "folder": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "folder"
+      ]
+    }
+  },
+  {
+    "name": "delete-folder",
+    "description": "Deletes an existing folder and all assets within it from your media library.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "folder": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "folder"
+      ]
+    }
+  },
+  {
+    "name": "search-folders",
+    "description": "Searches for folders whose attributes match a given expression. Limited to 2000 results.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "expression": {
+          "type": "string"
+        },
+        "sort_by": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "max_results": {
+          "type": "integer",
+          "default": 50,
+          "maximum": 500
+        },
+        "next_cursor": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "search-assets",
+    "description": "A powerful query interface to filter and retrieve assets and their details using a Lucene-like query language.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "expression": {
+          "type": "string"
+        },
+        "sort_by": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "max_results": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 500
+        },
+        "next_cursor": {
+          "type": "string"
+        },
+        "with_field": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "visual-search-assets",
+    "description": "Finds images in your asset library based on visual similarity or content.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "image_url": {
+          "type": "string"
+        },
+        "image_asset_id": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "max_results": {
+          "type": "integer"
+        }
+      }
+    }
+  },
+  {
+    "name": "get-tx-reference",
+    "description": "Get Cloudinary transformation rules documentation from official docs",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "transform-asset",
+    "description": "Generate derived transformations for existing assets using Cloudinary's explicit API with eager transformations",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "publicId": {
+          "type": "string"
+        },
+        "transformations": {
+          "type": "string"
+        },
+        "resourceType": {
+          "type": "string",
+          "default": "image"
+        },
+        "invalidate": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "required": [
+        "publicId",
+        "transformations"
+      ]
+    }
+  }
+]

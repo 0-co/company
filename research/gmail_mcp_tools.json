@@ -1,0 +1,537 @@
+[
+  {
+    "name": "send_email",
+    "description": "Sends a new email",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "to": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "subject": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "htmlBody": {
+          "type": "string"
+        },
+        "mimeType": {
+          "type": "string",
+          "enum": [
+            "text/plain",
+            "text/html",
+            "multipart/alternative"
+          ]
+        },
+        "cc": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "bcc": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "threadId": {
+          "type": "string"
+        },
+        "inReplyTo": {
+          "type": "string"
+        },
+        "attachments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "to",
+        "subject",
+        "body"
+      ]
+    }
+  },
+  {
+    "name": "draft_email",
+    "description": "Draft a new email",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "to": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "subject": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "htmlBody": {
+          "type": "string"
+        },
+        "mimeType": {
+          "type": "string"
+        },
+        "cc": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "bcc": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "threadId": {
+          "type": "string"
+        },
+        "inReplyTo": {
+          "type": "string"
+        },
+        "attachments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "to",
+        "subject",
+        "body"
+      ]
+    }
+  },
+  {
+    "name": "read_email",
+    "description": "Retrieves the content of a specific email",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "messageId": {
+          "type": "string",
+          "description": "The Gmail message ID"
+        }
+      },
+      "required": [
+        "messageId"
+      ]
+    }
+  },
+  {
+    "name": "search_emails",
+    "description": "Searches for emails using Gmail search syntax",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Gmail search query"
+        },
+        "maxResults": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "query"
+      ]
+    }
+  },
+  {
+    "name": "modify_email",
+    "description": "Modifies email labels (move to different folders)",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "messageId": {
+          "type": "string"
+        },
+        "labelIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "addLabelIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "removeLabelIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "messageId"
+      ]
+    }
+  },
+  {
+    "name": "delete_email",
+    "description": "Permanently deletes an email",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "messageId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "messageId"
+      ]
+    }
+  },
+  {
+    "name": "list_email_labels",
+    "description": "Retrieves all available Gmail labels",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "create_label",
+    "description": "Creates a new Gmail label",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "messageListVisibility": {
+          "type": "string",
+          "enum": [
+            "show",
+            "hide"
+          ]
+        },
+        "labelListVisibility": {
+          "type": "string",
+          "enum": [
+            "labelShow",
+            "labelShowIfUnread",
+            "labelHide"
+          ]
+        }
+      },
+      "required": [
+        "name"
+      ]
+    }
+  },
+  {
+    "name": "update_label",
+    "description": "Updates an existing Gmail label",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "messageListVisibility": {
+          "type": "string"
+        },
+        "labelListVisibility": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  },
+  {
+    "name": "delete_label",
+    "description": "Deletes a Gmail label",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  },
+  {
+    "name": "get_or_create_label",
+    "description": "Gets an existing label by name or creates it if it doesn't exist",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "messageListVisibility": {
+          "type": "string"
+        },
+        "labelListVisibility": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    }
+  },
+  {
+    "name": "batch_modify_emails",
+    "description": "Modifies labels for multiple emails in batches",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "messageIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "addLabelIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "removeLabelIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "batchSize": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "messageIds"
+      ]
+    }
+  },
+  {
+    "name": "batch_delete_emails",
+    "description": "Permanently deletes multiple emails in batches",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "messageIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "batchSize": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "messageIds"
+      ]
+    }
+  },
+  {
+    "name": "create_filter",
+    "description": "Creates a new Gmail filter with custom criteria and actions",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "criteria": {
+          "type": "object",
+          "properties": {
+            "from": {
+              "type": "string"
+            },
+            "to": {
+              "type": "string"
+            },
+            "subject": {
+              "type": "string"
+            },
+            "query": {
+              "type": "string"
+            },
+            "hasAttachment": {
+              "type": "boolean"
+            },
+            "size": {
+              "type": "number"
+            },
+            "sizeComparison": {
+              "type": "string",
+              "enum": [
+                "unspecified",
+                "smaller",
+                "larger"
+              ]
+            }
+          }
+        },
+        "action": {
+          "type": "object",
+          "properties": {
+            "addLabelIds": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "removeLabelIds": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "forward": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": [
+        "criteria",
+        "action"
+      ]
+    }
+  },
+  {
+    "name": "list_filters",
+    "description": "Retrieves all Gmail filters",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "get_filter",
+    "description": "Gets details of a specific Gmail filter",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filterId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "filterId"
+      ]
+    }
+  },
+  {
+    "name": "delete_filter",
+    "description": "Deletes a Gmail filter",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filterId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "filterId"
+      ]
+    }
+  },
+  {
+    "name": "create_filter_from_template",
+    "description": "Creates a filter using a pre-defined template for common scenarios",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "template": {
+          "type": "string",
+          "enum": [
+            "fromSender",
+            "withSubject",
+            "withAttachments",
+            "largeEmails",
+            "containingText",
+            "mailingList"
+          ]
+        },
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "senderEmail": {
+              "type": "string"
+            },
+            "subjectText": {
+              "type": "string"
+            },
+            "searchText": {
+              "type": "string"
+            },
+            "listIdentifier": {
+              "type": "string"
+            },
+            "sizeInBytes": {
+              "type": "number"
+            },
+            "labelIds": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "archive": {
+              "type": "boolean"
+            },
+            "markAsRead": {
+              "type": "boolean"
+            }
+          }
+        }
+      },
+      "required": [
+        "template",
+        "parameters"
+      ]
+    }
+  },
+  {
+    "name": "download_attachment",
+    "description": "Downloads an email attachment to a specified location",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "messageId": {
+          "type": "string"
+        },
+        "attachmentId": {
+          "type": "string"
+        },
+        "filename": {
+          "type": "string"
+        },
+        "savePath": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "messageId",
+        "attachmentId"
+      ]
+    }
+  }
+]

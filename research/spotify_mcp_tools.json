@@ -1,0 +1,532 @@
+[
+  {
+    "name": "searchSpotify",
+    "description": "Search for tracks, albums, artists, or playlists on Spotify",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "The search query"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "track",
+            "album",
+            "artist",
+            "playlist"
+          ]
+        },
+        "limit": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 50,
+          "default": 10
+        }
+      },
+      "required": [
+        "query",
+        "type"
+      ]
+    }
+  },
+  {
+    "name": "getNowPlaying",
+    "description": "Get information about the currently playing track on Spotify, including device and volume info",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "getMyPlaylists",
+    "description": "Get a list of the current user's playlists on Spotify",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 50,
+          "default": 50
+        }
+      }
+    }
+  },
+  {
+    "name": "getPlaylistTracks",
+    "description": "Get a list of tracks in a Spotify playlist",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "playlistId": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "number"
+        },
+        "offset": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "playlistId"
+      ]
+    }
+  },
+  {
+    "name": "getRecentlyPlayed",
+    "description": "Get a list of recently played tracks on Spotify",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 50
+        }
+      }
+    }
+  },
+  {
+    "name": "getUsersSavedTracks",
+    "description": "Get a list of tracks saved in the user's Liked Songs library",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "number"
+        },
+        "offset": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "getQueue",
+    "description": "Get the currently playing track and next items in your Spotify queue",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 50
+        }
+      }
+    }
+  },
+  {
+    "name": "getAvailableDevices",
+    "description": "Get information about the user's available Spotify Connect devices",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "removeUsersSavedTracks",
+    "description": "Remove one or more tracks from the user's Liked Songs library (max 40 per request)",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "trackIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 40
+        }
+      },
+      "required": [
+        "trackIds"
+      ]
+    }
+  },
+  {
+    "name": "playMusic",
+    "description": "Start playing a Spotify track, album, artist, or playlist",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "uri": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "track",
+            "album",
+            "artist",
+            "playlist"
+          ]
+        },
+        "id": {
+          "type": "string"
+        },
+        "deviceId": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "pausePlayback",
+    "description": "Pause Spotify playback on the active device",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "deviceId": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "skipToNext",
+    "description": "Skip to the next track in the current Spotify playback queue",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "deviceId": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "skipToPrevious",
+    "description": "Skip to the previous track in the current Spotify playback queue",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "deviceId": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "resumePlayback",
+    "description": "Resume Spotify playback on the active device",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "deviceId": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "addToQueue",
+    "description": "Adds a track, album, artist or playlist to the playback queue",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "uri": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "track",
+            "album",
+            "artist",
+            "playlist"
+          ]
+        },
+        "id": {
+          "type": "string"
+        },
+        "deviceId": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "setVolume",
+    "description": "Set the playback volume to a specific percentage (0-100). Requires Spotify Premium.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "volumePercent": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "deviceId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "volumePercent"
+      ]
+    }
+  },
+  {
+    "name": "adjustVolume",
+    "description": "Adjust the playback volume up or down by a relative amount. Requires Spotify Premium.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "adjustment": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        },
+        "deviceId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "adjustment"
+      ]
+    }
+  },
+  {
+    "name": "createPlaylist",
+    "description": "Create a new playlist on Spotify",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "public": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    }
+  },
+  {
+    "name": "addTracksToPlaylist",
+    "description": "Add tracks to a Spotify playlist",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "playlistId": {
+          "type": "string"
+        },
+        "trackIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "position": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "playlistId",
+        "trackIds"
+      ]
+    }
+  },
+  {
+    "name": "getPlaylist",
+    "description": "Get details of a specific Spotify playlist including tracks count, description and owner",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "playlistId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "playlistId"
+      ]
+    }
+  },
+  {
+    "name": "updatePlaylist",
+    "description": "Update the details of a Spotify playlist (name, description, public/private, collaborative)",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "playlistId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "public": {
+          "type": "boolean"
+        },
+        "collaborative": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "playlistId"
+      ]
+    }
+  },
+  {
+    "name": "removeTracksFromPlaylist",
+    "description": "Remove one or more tracks from a Spotify playlist (max 100 tracks per request)",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "playlistId": {
+          "type": "string"
+        },
+        "trackIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "maxItems": 100
+        },
+        "snapshotId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "playlistId",
+        "trackIds"
+      ]
+    }
+  },
+  {
+    "name": "reorderPlaylistItems",
+    "description": "Reorder a range of tracks within a Spotify playlist",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "playlistId": {
+          "type": "string"
+        },
+        "rangeStart": {
+          "type": "number"
+        },
+        "insertBefore": {
+          "type": "number"
+        },
+        "rangeLength": {
+          "type": "number"
+        },
+        "snapshotId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "playlistId",
+        "rangeStart",
+        "insertBefore"
+      ]
+    }
+  },
+  {
+    "name": "getAlbums",
+    "description": "Get detailed information about one or more albums by their Spotify IDs",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "albumIds": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 20
+            }
+          ]
+        }
+      },
+      "required": [
+        "albumIds"
+      ]
+    }
+  },
+  {
+    "name": "getAlbumTracks",
+    "description": "Get tracks from a specific album with pagination support",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "albumId": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 50
+        },
+        "offset": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "albumId"
+      ]
+    }
+  },
+  {
+    "name": "saveOrRemoveAlbumForUser",
+    "description": "Save or remove albums from the user's Your Music library",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "albumIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 20
+        },
+        "action": {
+          "type": "string",
+          "enum": [
+            "save",
+            "remove"
+          ]
+        }
+      },
+      "required": [
+        "albumIds",
+        "action"
+      ]
+    }
+  },
+  {
+    "name": "checkUsersSavedAlbums",
+    "description": "Check if albums are saved in the user's Your Music library",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "albumIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 20
+        }
+      },
+      "required": [
+        "albumIds"
+      ]
+    }
+  }
+]
