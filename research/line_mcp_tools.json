@@ -1,0 +1,252 @@
+[
+  {
+    "name": "push_text_message",
+    "description": "Push a simple text message to a user via LINE.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "The user ID to receive a message."
+        },
+        "message": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "text"
+              ]
+            },
+            "text": {
+              "type": "string",
+              "maxLength": 5000
+            }
+          },
+          "required": [
+            "text"
+          ]
+        }
+      },
+      "required": [
+        "userId",
+        "message"
+      ]
+    }
+  },
+  {
+    "name": "push_flex_message",
+    "description": "Push a highly customizable flex message to a user via LINE.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "message": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "flex"
+              ]
+            },
+            "altText": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 400
+            },
+            "contents": {
+              "type": "object"
+            }
+          },
+          "required": [
+            "altText",
+            "contents"
+          ]
+        }
+      },
+      "required": [
+        "userId",
+        "message"
+      ]
+    }
+  },
+  {
+    "name": "broadcast_text_message",
+    "description": "Broadcast a simple text message via LINE to all users.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "text"
+              ]
+            },
+            "text": {
+              "type": "string",
+              "maxLength": 5000
+            }
+          },
+          "required": [
+            "text"
+          ]
+        }
+      },
+      "required": [
+        "message"
+      ]
+    }
+  },
+  {
+    "name": "broadcast_flex_message",
+    "description": "Broadcast a highly customizable flex message via LINE to all users.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "flex"
+              ]
+            },
+            "altText": {
+              "type": "string"
+            },
+            "contents": {
+              "type": "object"
+            }
+          },
+          "required": [
+            "altText",
+            "contents"
+          ]
+        }
+      },
+      "required": [
+        "message"
+      ]
+    }
+  },
+  {
+    "name": "get_profile",
+    "description": "Get detailed profile information of a LINE user.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "The user ID to get a profile."
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "get_message_quota",
+    "description": "Get the message quota and consumption of the LINE Official Account.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "get_rich_menu_list",
+    "description": "Get the list of rich menus associated with your LINE Official Account.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "delete_rich_menu",
+    "description": "Delete a rich menu from your LINE Official Account.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "richMenuId": {
+          "type": "string",
+          "description": "The ID of the rich menu to delete."
+        }
+      },
+      "required": [
+        "richMenuId"
+      ]
+    }
+  },
+  {
+    "name": "set_rich_menu_default",
+    "description": "Set a rich menu as the default rich menu.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "richMenuId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "richMenuId"
+      ]
+    }
+  },
+  {
+    "name": "cancel_rich_menu_default",
+    "description": "Cancel the default rich menu.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create_rich_menu",
+    "description": "Create a rich menu based on the given actions.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "chatBarText": {
+          "type": "string",
+          "description": "Text displayed in the chat bar."
+        },
+        "actions": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 6,
+          "items": {
+            "type": "object"
+          }
+        }
+      },
+      "required": [
+        "chatBarText",
+        "actions"
+      ]
+    }
+  },
+  {
+    "name": "get_follower_ids",
+    "description": "Get a list of user IDs of users who have added the LINE Official Account as a friend.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "number"
+        }
+      },
+      "required": []
+    }
+  }
+]

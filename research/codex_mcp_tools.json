@@ -1,0 +1,145 @@
+[
+  {
+    "name": "codex",
+    "description": "Execute Codex CLI in non-interactive mode for AI assistance",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "prompt": {
+          "type": "string",
+          "description": "The coding task, question, or analysis request"
+        },
+        "sessionId": {
+          "type": "string",
+          "description": "Optional session ID for conversational context."
+        },
+        "resetSession": {
+          "type": "boolean"
+        },
+        "model": {
+          "type": "string"
+        },
+        "reasoningEffort": {
+          "type": "string",
+          "enum": [
+            "none",
+            "minimal",
+            "low",
+            "medium",
+            "high",
+            "xhigh"
+          ]
+        },
+        "sandbox": {
+          "type": "string",
+          "enum": [
+            "read-only",
+            "workspace-write",
+            "danger-full-access"
+          ]
+        },
+        "fullAuto": {
+          "type": "boolean"
+        },
+        "workingDirectory": {
+          "type": "string"
+        },
+        "callbackUri": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "prompt"
+      ]
+    }
+  },
+  {
+    "name": "review",
+    "description": "Run a code review against the current repository using Codex CLI",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "prompt": {
+          "type": "string"
+        },
+        "uncommitted": {
+          "type": "boolean"
+        },
+        "base": {
+          "type": "string"
+        },
+        "commit": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "model": {
+          "type": "string"
+        },
+        "workingDirectory": {
+          "type": "string"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "ping",
+    "description": "Test MCP server connection",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "help",
+    "description": "Get Codex CLI help information",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "list_sessions",
+    "description": "List all active conversation sessions with metadata",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "websearch",
+    "description": "Perform web search using Codex CLI with web search enabled",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string"
+        },
+        "numResults": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 50
+        },
+        "searchDepth": {
+          "type": "string",
+          "enum": [
+            "basic",
+            "full"
+          ]
+        }
+      },
+      "required": [
+        "query"
+      ]
+    }
+  }
+]

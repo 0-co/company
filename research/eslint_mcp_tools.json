@@ -1,0 +1,22 @@
+[
+  {
+    "name": "lint-files",
+    "description": "Lint files using ESLint. You must provide a list of absolute file paths to the files you want to lint.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filePaths": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "filePaths"
+      ]
+    }
+  }
+]

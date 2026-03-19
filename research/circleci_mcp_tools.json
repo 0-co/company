@@ -1,0 +1,439 @@
+[
+  {
+    "name": "analyze_diff",
+    "description": "Analyze a git diff against IDE rules to identify rule violations.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "speedMode": {
+          "type": "boolean",
+          "default": false
+        },
+        "filterBy": {
+          "type": "string",
+          "enum": [
+            "violations",
+            "compliants",
+            "humanReviewRequired",
+            "none"
+          ]
+        },
+        "diff": {
+          "type": "string",
+          "description": "Git diff content to analyze."
+        },
+        "rules": {
+          "type": "string",
+          "description": "Rules to use for analysis."
+        }
+      },
+      "required": [
+        "diff",
+        "rules"
+      ]
+    }
+  },
+  {
+    "name": "config_helper",
+    "description": "Analyze and validate and fix CircleCI configuration files.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "configFile": {
+          "type": "string",
+          "description": "The contents of the circleci config file."
+        }
+      },
+      "required": [
+        "configFile"
+      ]
+    }
+  },
+  {
+    "name": "create_prompt_template",
+    "description": "Generate a prompt template based on feature requirements or a pre-existing prompt.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "prompt": {
+          "type": "string"
+        },
+        "promptOrigin": {
+          "type": "string",
+          "enum": [
+            "codebase",
+            "requirements"
+          ]
+        },
+        "model": {
+          "type": "string"
+        },
+        "temperature": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "prompt",
+        "promptOrigin"
+      ]
+    }
+  },
+  {
+    "name": "download_usage_api_data",
+    "description": "Download usage data from the CircleCI Usage API for a given organization and date range.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "orgId": {
+          "type": "string"
+        },
+        "startDate": {
+          "type": "string"
+        },
+        "endDate": {
+          "type": "string"
+        },
+        "jobId": {
+          "type": "string"
+        },
+        "outputDir": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "orgId",
+        "outputDir"
+      ]
+    }
+  },
+  {
+    "name": "find_underused_resource_classes",
+    "description": "Analyze a CircleCI usage CSV to find jobs with average or max CPU/RAM usage below a threshold.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "csvFilePath": {
+          "type": "string"
+        },
+        "threshold": {
+          "type": "number",
+          "default": 40
+        }
+      },
+      "required": [
+        "csvFilePath"
+      ]
+    }
+  },
+  {
+    "name": "get_build_failure_logs",
+    "description": "Debug CircleCI build failures by retrieving failure logs.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "projectSlug": {
+          "type": "string"
+        },
+        "branch": {
+          "type": "string"
+        },
+        "projectURL": {
+          "type": "string"
+        },
+        "workspaceRoot": {
+          "type": "string"
+        },
+        "gitRemoteURL": {
+          "type": "string"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "find_flaky_tests",
+    "description": "Retrieve information about flaky tests in a CircleCI project.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "projectSlug": {
+          "type": "string"
+        },
+        "workspaceRoot": {
+          "type": "string"
+        },
+        "gitRemoteURL": {
+          "type": "string"
+        },
+        "projectURL": {
+          "type": "string"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "get_job_test_results",
+    "description": "Retrieve test metadata for a CircleCI job.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "projectSlug": {
+          "type": "string"
+        },
+        "branch": {
+          "type": "string"
+        },
+        "workspaceRoot": {
+          "type": "string"
+        },
+        "gitRemoteURL": {
+          "type": "string"
+        },
+        "projectURL": {
+          "type": "string"
+        },
+        "filterByTestsResult": {
+          "type": "string",
+          "enum": [
+            "failure",
+            "success"
+          ]
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "get_latest_pipeline_status",
+    "description": "Retrieve the status of the latest pipeline for a CircleCI project.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "projectSlug": {
+          "type": "string"
+        },
+        "branch": {
+          "type": "string"
+        },
+        "projectURL": {
+          "type": "string"
+        },
+        "workspaceRoot": {
+          "type": "string"
+        },
+        "gitRemoteURL": {
+          "type": "string"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "list_component_versions",
+    "description": "List all versions for a CircleCI component.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "projectSlug": {
+          "type": "string"
+        },
+        "projectID": {
+          "type": "string"
+        },
+        "orgID": {
+          "type": "string"
+        },
+        "componentID": {
+          "type": "string"
+        },
+        "environmentID": {
+          "type": "string"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "list_followed_projects",
+    "description": "List all projects that the user is following on CircleCI.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "recommend_prompt_template_tests",
+    "description": "Generate an array of recommended test cases for a given prompt template.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "template": {
+          "type": "string"
+        },
+        "contextSchema": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "promptOrigin": {
+          "type": "string",
+          "enum": [
+            "codebase",
+            "requirements"
+          ]
+        },
+        "model": {
+          "type": "string"
+        },
+        "temperature": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "template",
+        "contextSchema",
+        "promptOrigin"
+      ]
+    }
+  },
+  {
+    "name": "rerun_workflow",
+    "description": "Rerun a CircleCI workflow from start or from the failed job.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "workflowId": {
+          "type": "string"
+        },
+        "fromFailed": {
+          "type": "boolean"
+        },
+        "workflowURL": {
+          "type": "string"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "run_evaluation_tests",
+    "description": "Run evaluation (prompt) tests on a CircleCI pipeline.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "projectSlug": {
+          "type": "string"
+        },
+        "branch": {
+          "type": "string"
+        },
+        "workspaceRoot": {
+          "type": "string"
+        },
+        "gitRemoteURL": {
+          "type": "string"
+        },
+        "projectURL": {
+          "type": "string"
+        },
+        "pipelineChoiceName": {
+          "type": "string"
+        },
+        "promptFiles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "fileName": {
+                "type": "string"
+              },
+              "fileContent": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "promptFiles"
+      ]
+    }
+  },
+  {
+    "name": "run_pipeline",
+    "description": "Trigger a new CircleCI pipeline and return a URL to monitor its progress.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "projectSlug": {
+          "type": "string"
+        },
+        "branch": {
+          "type": "string"
+        },
+        "workspaceRoot": {
+          "type": "string"
+        },
+        "gitRemoteURL": {
+          "type": "string"
+        },
+        "projectURL": {
+          "type": "string"
+        },
+        "pipelineChoiceName": {
+          "type": "string"
+        },
+        "configContent": {
+          "type": "string"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "run_rollback_pipeline",
+    "description": "Run a rollback pipeline for a CircleCI project.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "projectSlug": {
+          "type": "string"
+        },
+        "projectID": {
+          "type": "string"
+        },
+        "environmentName": {
+          "type": "string"
+        },
+        "componentName": {
+          "type": "string"
+        },
+        "currentVersion": {
+          "type": "string"
+        },
+        "targetVersion": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "parameters": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "environmentName",
+        "componentName",
+        "currentVersion",
+        "targetVersion",
+        "namespace"
+      ]
+    }
+  }
+]
