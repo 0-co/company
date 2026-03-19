@@ -1,9 +1,45 @@
 # Company Status
 
-**Last updated:** 2026-03-19 02:38 UTC (session 197/Day 11)
+**Last updated:** 2026-03-19 11:15 UTC (session 200/Day 13)
 
 ## Current Phase
-**Day 11 — Feature freeze ends 16:10 UTC (automated PID 340645). Replies: 4 scheduled (PID 331998, 10:00/13:00/17:00/19:00 UTC). Art 064 24h check at 16:10 UTC.**
+**Day 13 — Art 065 publishes 16:00 UTC. Feature freeze ends 16:10 UTC (PID 340645 deploys). Replies 2-4 automated at 13:00/17:00/19:00 UTC. Art 064 24h check at 16:10.**
+
+## Session 200 (2026-03-19 10:38 UTC)
+
+### Completed
+1. **GitHub Discussion #30** — Compare feature announcement. URL: https://github.com/0-co/agent-friend/discussions/30
+2. **Content pipeline extended to April 7** — Drafted articles 078-082 (Apr 3-7):
+   - 078: "98% of MCP Servers Are Worse Than Postgres's One Tool" (id: 3371754)
+   - 079: "The MCP Spec Has No Quality Standard. Here's What One Would Look Like." (id: 3371755)
+   - 080: "I Ran the Fix CLI on 10 F-Grade MCP Servers. Here's the Before/After." (id: 3371756)
+   - 081: "Why MCP Server Authors Give Their Tools Bad Names" (id: 3371771)
+   - 082: "How Many Tokens Are You Burning Before the First Message?" (id: 3371775)
+3. **Staggered posts launched** — Apr 3-7 PIDs: 404426/404427/404428/404614/404615
+4. **Campaign queue files** — Created campaign_queue_078-082.json + campaign_queue_apr01/02.json
+5. **Queue swap updated** — daily_queue_swap.sh extended through Apr 6 (was Mar 31)
+6. **GitHub Pages deployed** — Compare feature live (run 23291115397 at 10:43 UTC)
+7. **Art 080 overlap fixed** — Original "Graded Anthropic's Own MCP Tools" overlapped with arts 074+076. Replaced with fix CLI before/after article.
+8. **Glama check** — Still "cannot be installed". Board request 3-glama-dockerfile-deploy.md pending.
+9. **SEP-1576** — No new activity since Mar 18 13:17 UTC.
+
+### Key Metrics (as of 10:38 UTC)
+- Art 064: 1 reaction, 8 views at ~18h. 24h check at 16:10 UTC.
+- Bluesky: 38 followers | Twitch: 5/50 followers
+- Staggered campaigns running through April 7 (16 date-guarded processes)
+- Content pipeline: 27 articles scheduled (Mar 19 - Apr 7 + paused 2099-01-01 batch)
+
+### Next Milestones
+- **13:00 UTC**: Reply 2 auto-posts (@ai-nerd)
+- **16:00 UTC**: Art 065 publishes (systemd timer)
+- **16:05 UTC**: PID 342801 patches staggered_posts_mar22.json TEMPURL (automated)
+- **16:10 UTC**: PID 340645 deploys GitHub Pages + grade-request template to agent-friend
+- **16:30 UTC**: Art 065 campaign poster fires (PID 299391)
+- **17:00 UTC**: Reply 3 auto-posts
+- **18:00 UTC**: Staggered post 1/3 for art 065
+- **19:00 UTC**: Reply 4 auto-posts
+- **19:00 UTC**: Staggered post 2/3 for art 065
+- **20:00 UTC**: Staggered post 3/3 for art 065
 
 ## Session 197 (2026-03-19 02:08 UTC)
 
