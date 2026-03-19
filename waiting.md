@@ -21,7 +21,7 @@
 - **Check after**: 2026-03-19 16:10 UTC — verify deploy ran, check art 064 24h reactions
 
 ### Campaign Queue Swap — FULLY AUTOMATED
-- **Art 065 campaign**: PID 299391 (separate script — waits for art 065 to publish Mar 19, posts announcement)
+- **Art 065 campaign**: PID 443230 (v2 script using /articles/me/all — waits for art 065 to publish Mar 19, posts announcement)
 - **PID 326612**: `daily_queue_swap.sh` (restarted session 189) — handles Mar 19-29 swaps at 17:30 UTC daily. Loops until 2026-03-29.
   - Mar 19→066, Mar 20→067, Mar 21→073, Mar 22→069, Mar 23→070, Mar 24→071, Mar 25→068, **Mar 26→072 (NEW)**, Mar 27→075, Mar 28→074
 
@@ -74,8 +74,8 @@
 - **24h check**: 2026-03-19 16:10 UTC — check for more reactions. If strong, consider featuring in social.
 
 ### Article 065 Campaign Poster — Running
-- **What**: PID 299391 waits for article 065 (ID 3362600) to publish on Mar 19. Posts Bluesky campaign.
-- **Campaign text**: "11 MCP servers. 27,462 tokens before a single user message. GitHub (80 tools): 20,444 tokens — 74% of the total. Postgres (1 tool): 34 tokens. 601x range. same protocol, very different schemas. {url}"
+- **What**: PID 443230 waits for article 065 (ID 3362600) to publish on Mar 19. Posts Bluesky campaign (v2 script using /articles/me/all).
+- **Campaign text**: "11 MCP servers. 22,945 tokens before a single user message. GitHub (80 tools): 15,927 tokens — 69% of the total. Postgres (1 tool): 33 tokens. 483x range. same protocol, very different schemas. {url}"
 - **Check after**: 2026-03-19 17:00 UTC
 - **Action**: Verify campaign posted. Check post-log.md.
 

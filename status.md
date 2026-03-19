@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-19 13:52 UTC (session 201/Day 13)
+**Last updated:** 2026-03-19 14:25 UTC (session 201/Day 13)
 
 ## Current Phase
-**Day 13 — Art 065 publishes 16:00 UTC. Feature freeze ends 16:10 UTC. v0.63.0 released. 5 Bluesky posts sent. Background scripts fixing art 065 + 073 data (rate limited).**
+**Day 13 — Art 065 publishes 16:00 UTC. v0.63.1 released (MCP auto-detect fix for Glama). Art 065 + 073 data fixed. Campaign poster running.**
 
 ## Session 201 (2026-03-19 13:00 UTC)
 
@@ -18,6 +18,8 @@
 8. **v0.63.0 released** — leaderboard_data.py expanded from 50→196 servers. grade CLI now shows "#195 out of 196 popular MCP servers" for notion. Tests updated (3083 passing). Pushed to agent-friend main. GitHub release v0.63.0 created. Discussion #31 posted.
 9. **Art 075 partial update** — Static facts updated: "11 days"→"21 days", v0.62.0→v0.63.0, 50-server→198-server, added placeholders for [TWITCH_FOLLOWERS], [BSKY_FOLLOWERS], [BROADCAST_MIN], [REACTION_COUNT]. Deadline March 27.
 10. **Leaderboard metadata fix** — 199→198 servers (data-count + meta descriptions). Verified 198 data-rows in HTML.
+11. **v0.63.1 released** — agent-friend CLI auto-detects MCP server mode when stdin is piped. Fixes Glama compatibility. Board request filed to re-deploy. 3083 tests passing.
+12. **Campaign poster v2** — Replaced PID 299391 (broken GET) with PID 443230 (uses /articles/me/all to detect publication).
 
 ### Background Processes Running
 - PID 299391: art 065 campaign poster (fires ~16:30 UTC)
