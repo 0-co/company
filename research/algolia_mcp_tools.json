@@ -1,0 +1,1159 @@
+[
+  {
+    "name": "run_query",
+    "description": "Run a query against the Algolia search index with advanced options",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "The query to run against the index"
+        },
+        "indexName": {
+          "type": "string",
+          "description": "The index to search into"
+        },
+        "hitsPerPage": {
+          "type": "number",
+          "description": "The number of hits to return per page"
+        },
+        "page": {
+          "type": "number",
+          "description": "The page number (0-based) to retrieve"
+        },
+        "filters": {
+          "type": "string",
+          "description": "The filter expression using Algolia's filter syntax (e.g., 'category:Book AND price < 100')"
+        },
+        "facets": {
+          "type": "string",
+          "description": "Comma-separated list of attributes to facet on"
+        },
+        "restrictSearchableAttributes": {
+          "type": "string",
+          "description": "Comma-separated list of attributes to search in"
+        }
+      },
+      "required": ["query"]
+    }
+  },
+  {
+    "name": "list_indices",
+    "description": "List the indices in the application",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "get_settings",
+    "description": "Get the settings for the Algolia index",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "set_settings",
+    "description": "Change the settings for the Algolia index",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "object": {
+          "type": "string",
+          "description": "The object to insert or update as a JSON string"
+        }
+      },
+      "required": ["object"]
+    }
+  },
+  {
+    "name": "clear_index",
+    "description": "Clear an index by removing all records",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "copy_index",
+    "description": "Copy an index to a another index",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "indexName": {
+          "type": "string",
+          "description": "The name of the destination index"
+        }
+      },
+      "required": ["indexName"]
+    }
+  },
+  {
+    "name": "move_index",
+    "description": "Move an index to another index",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "indexName": {
+          "type": "string",
+          "description": "The name of the destination index"
+        }
+      },
+      "required": ["indexName"]
+    }
+  },
+  {
+    "name": "delete_index",
+    "description": "Delete an index by removing all assets and configurations",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "get_object",
+    "description": "Get an object by its object ID",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "objectID": {
+          "type": "string",
+          "description": "The object ID to look up"
+        }
+      },
+      "required": ["objectID"]
+    }
+  },
+  {
+    "name": "insert_object",
+    "description": "Insert or update an object in the Algolia index",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "object": {
+          "type": "string",
+          "description": "The object to insert or update as a JSON string (must include an objectID field)"
+        }
+      },
+      "required": ["object"]
+    }
+  },
+  {
+    "name": "insert_objects",
+    "description": "Insert or update multiple objects in the Algolia index",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "objects": {
+          "type": "string",
+          "description": "Array of objects to insert or update as a JSON string (each must include an objectID field)"
+        }
+      },
+      "required": ["objects"]
+    }
+  },
+  {
+    "name": "delete_object",
+    "description": "Delete an object by its object ID",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "objectID": {
+          "type": "string",
+          "description": "The object ID to delete"
+        }
+      },
+      "required": ["objectID"]
+    }
+  },
+  {
+    "name": "search_rules",
+    "description": "Search for rules in the Algolia index",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "The query to search for"
+        },
+        "anchoring": {
+          "type": "string",
+          "description": "When specified, restricts matches to rules with a specific anchoring type. When omitted, all anchoring types may match.",
+          "enum": ["is", "contains", "startsWith", "endsWith"]
+        },
+        "context": {
+          "type": "string",
+          "description": "When specified, restricts matches to contextual rules with a specific context. When omitted, all contexts may match."
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "When specified, restricts matches to rules with a specific enabled status. When omitted, all enabled statuses may match."
+        }
+      },
+      "required": ["query"]
+    }
+  },
+  {
+    "name": "delete_rule",
+    "description": "Delete a rule by its object ID",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "objectID": {
+          "type": "string",
+          "description": "The object ID to delete"
+        }
+      },
+      "required": ["objectID"]
+    }
+  },
+  {
+    "name": "get_synonym",
+    "description": "Get a synonym from the Algolia index by its ID",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "objectID": {
+          "type": "string",
+          "description": "The unique identifier of the synonym to retrieve"
+        }
+      },
+      "required": ["objectID"]
+    }
+  },
+  {
+    "name": "save_synonym",
+    "description": "Save or update a synonym in the Algolia index",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "objectID": {
+          "type": "string",
+          "description": "The unique identifier of the synonym"
+        },
+        "synonym": {
+          "type": "string",
+          "description": "The synonym object as a JSON string. Example schema: {\"objectID\":\"unique_id\",\"type\":\"synonym\",\"synonyms\":[\"word1\",\"word2\",\"word3\"]} or {\"objectID\":\"unique_id\",\"type\":\"oneWaySynonym\",\"input\":\"word1\",\"synonyms\":[\"word2\",\"word3\"]}."
+        }
+      },
+      "required": ["objectID", "synonym"]
+    }
+  },
+  {
+    "name": "search_synonyms",
+    "description": "Search for synonyms in the Algolia index that match a query",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "The query to find synonyms for"
+        }
+      }
+    }
+  },
+  {
+    "name": "delete_synonym",
+    "description": "Delete a synonym by its object ID",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "objectID": {
+          "type": "string",
+          "description": "The object ID to delete"
+        }
+      },
+      "required": ["objectID"]
+    }
+  },
+  {
+    "name": "clear_synonyms",
+    "description": "Clear all synonyms from the Algolia index",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "analytics_get_click_through_rate",
+    "description": "Retrieve the click-through rate (CTR) for all your searches with at least one click event, including a daily breakdown",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "index": {
+          "type": "string",
+          "description": "Index name"
+        },
+        "startDate": {
+          "type": "string",
+          "description": "Start date of the period to analyze, in YYYY-MM-DD format"
+        },
+        "endDate": {
+          "type": "string",
+          "description": "End date of the period to analyze, in YYYY-MM-DD format"
+        },
+        "tags": {
+          "type": "string",
+          "description": "Tags by which to segment the analytics"
+        }
+      },
+      "required": ["index"]
+    }
+  },
+  {
+    "name": "analytics_get_no_results_rate",
+    "description": "Retrieve the fraction of searches that didn't return any results within a time range, including a daily breakdown",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "index": {
+          "type": "string",
+          "description": "Index name"
+        },
+        "startDate": {
+          "type": "string",
+          "description": "Start date of the period to analyze, in YYYY-MM-DD format"
+        },
+        "endDate": {
+          "type": "string",
+          "description": "End date of the period to analyze, in YYYY-MM-DD format"
+        },
+        "tags": {
+          "type": "string",
+          "description": "Tags by which to segment the analytics"
+        }
+      },
+      "required": ["index"]
+    }
+  },
+  {
+    "name": "analytics_get_searches_count",
+    "description": "Retrieve the number of searches within a time range, including a daily breakdown",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "index": {
+          "type": "string",
+          "description": "Index name"
+        },
+        "startDate": {
+          "type": "string",
+          "description": "Start date of the period to analyze, in YYYY-MM-DD format"
+        },
+        "endDate": {
+          "type": "string",
+          "description": "End date of the period to analyze, in YYYY-MM-DD format"
+        },
+        "tags": {
+          "type": "string",
+          "description": "Tags by which to segment the analytics"
+        }
+      },
+      "required": ["index"]
+    }
+  },
+  {
+    "name": "analytics_get_top_searches",
+    "description": "Retrieve the most popular searches for an index",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "index": {
+          "type": "string",
+          "description": "Index name"
+        },
+        "clickAnalytics": {
+          "type": "boolean",
+          "description": "Whether to include metrics related to click and conversion events in the response"
+        },
+        "revenueAnalytics": {
+          "type": "boolean",
+          "description": "Whether to include metrics related to revenue events in the response"
+        },
+        "startDate": {
+          "type": "string",
+          "description": "Start date of the period to analyze, in YYYY-MM-DD format"
+        },
+        "endDate": {
+          "type": "string",
+          "description": "End date of the period to analyze, in YYYY-MM-DD format"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "Attribute by which to order the response items (searchCount, clickThroughRate, conversionRate, averageClickPosition)"
+        },
+        "direction": {
+          "type": "string",
+          "description": "Sorting direction of the results: asc or desc"
+        },
+        "limit": {
+          "type": "number",
+          "description": "Number of items to return (max 1000)"
+        },
+        "offset": {
+          "type": "number",
+          "description": "Position of the first item to return"
+        },
+        "tags": {
+          "type": "string",
+          "description": "Tags by which to segment the analytics"
+        }
+      },
+      "required": ["index"]
+    }
+  },
+  {
+    "name": "analytics_get_users_count",
+    "description": "Retrieve the number of unique users within a time range, including a daily breakdown. By default, Algolia distinguishes search users by their IP address, unless you include a pseudonymous user identifier in your search requests with the userToken API parameter or x-algolia-usertoken request header.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "index": {
+          "type": "string",
+          "description": "Index name"
+        },
+        "startDate": {
+          "type": "string",
+          "description": "Start date of the period to analyze, in YYYY-MM-DD format"
+        },
+        "endDate": {
+          "type": "string",
+          "description": "End date of the period to analyze, in YYYY-MM-DD format"
+        },
+        "tags": {
+          "type": "string",
+          "description": "Tags by which to segment the analytics"
+        }
+      },
+      "required": ["index"]
+    }
+  },
+  {
+    "name": "monitoring_get_clusters_status",
+    "description": "Retrieves the status of all Algolia clusters and instances",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "monitoring_get_cluster_status",
+    "description": "Retrieves the status of selected clusters",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "clusters": {
+          "type": "string",
+          "description": "Subset of clusters, separated by commas (e.g., c1-de,c2-de,c3-de)"
+        }
+      },
+      "required": ["clusters"]
+    }
+  },
+  {
+    "name": "monitoring_get_incidents",
+    "description": "Retrieves known incidents for all clusters",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "monitoring_get_cluster_incidents",
+    "description": "Retrieves known incidents for the selected clusters",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "clusters": {
+          "type": "string",
+          "description": "Subset of clusters, separated by commas (e.g., c1-de,c2-de,c3-de)"
+        }
+      },
+      "required": ["clusters"]
+    }
+  },
+  {
+    "name": "monitoring_get_reachability",
+    "description": "Test whether clusters are reachable or not",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "clusters": {
+          "type": "string",
+          "description": "Subset of clusters, separated by commas (e.g., c1-de,c2-de,c3-de)"
+        }
+      },
+      "required": ["clusters"]
+    }
+  },
+  {
+    "name": "monitoring_get_latency",
+    "description": "Retrieves the average latency for search requests for selected clusters",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "clusters": {
+          "type": "string",
+          "description": "Subset of clusters, separated by commas (e.g., c1-de,c2-de,c3-de)"
+        }
+      },
+      "required": ["clusters"]
+    }
+  },
+  {
+    "name": "monitoring_get_indexing_time",
+    "description": "Retrieves average times for indexing operations for selected clusters",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "clusters": {
+          "type": "string",
+          "description": "Subset of clusters, separated by commas (e.g., c1-de,c2-de,c3-de)"
+        }
+      },
+      "required": ["clusters"]
+    }
+  },
+  {
+    "name": "monitoring_get_metrics",
+    "description": "Retrieves metrics related to your Algolia infrastructure, aggregated over a selected time window",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "metric": {
+          "type": "string",
+          "description": "Metric to report (avg_build_time, ssd_usage, ram_search_usage, ram_indexing_usage, cpu_usage, or * for all)"
+        },
+        "period": {
+          "type": "string",
+          "description": "Period over which to aggregate the metrics (minute, hour, day, week, month)"
+        }
+      },
+      "required": ["metric", "period"]
+    }
+  },
+  {
+    "name": "monitoring_get_servers",
+    "description": "Retrieves the servers that belong to clusters",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "collections_list_collections",
+    "description": "Retrieve a list of all collections",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "indexName": {
+          "type": "string",
+          "description": "Name of the index"
+        },
+        "offset": {
+          "type": "number",
+          "description": "Number of items to skip (default to 0)"
+        },
+        "limit": {
+          "type": "number",
+          "description": "Number of items per fetch (defaults to 10)"
+        },
+        "query": {
+          "type": "string",
+          "description": "Query to filter collections"
+        }
+      },
+      "required": ["indexName"]
+    }
+  },
+  {
+    "name": "collections_get_collection",
+    "description": "Retrieve a collection by ID",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Collection ID"
+        }
+      },
+      "required": ["id"]
+    }
+  },
+  {
+    "name": "collections_upsert_collection",
+    "description": "Upserts a collection",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Collection ID (optional for new collections)"
+        },
+        "indexName": {
+          "type": "string",
+          "description": "Name of the index"
+        },
+        "name": {
+          "type": "string",
+          "description": "Collection name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Collection description"
+        },
+        "add": {
+          "type": "string",
+          "description": "JSON array of objectIDs to add to the collection"
+        },
+        "remove": {
+          "type": "string",
+          "description": "JSON array of objectIDs to remove from the collection"
+        },
+        "conditions": {
+          "type": "string",
+          "description": "JSON object with conditions to filter records"
+        }
+      },
+      "required": ["indexName", "name"]
+    }
+  },
+  {
+    "name": "collections_commit_collection",
+    "description": "Evaluates the changes on a collection and replicates them to the index",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Collection ID"
+        }
+      },
+      "required": ["id"]
+    }
+  },
+  {
+    "name": "collections_delete_collection",
+    "description": "Soft deletes a collection by setting 'deleted' to true",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Collection ID"
+        }
+      },
+      "required": ["id"]
+    }
+  },
+  {
+    "name": "recommend_get_recommendations",
+    "description": "Retrieve recommendations from selected AI models",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "requests": {
+          "type": "string",
+          "description": "JSON array of recommendation requests. Each request must include 'indexName', 'threshold', and a model-specific configuration."
+        }
+      },
+      "required": ["requests"]
+    }
+  },
+  {
+    "name": "recommend_get_recommend_rule",
+    "description": "Retrieve a Recommend rule that you previously created in the Algolia dashboard",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "indexName": {
+          "type": "string",
+          "description": "Name of the index on which to perform the operation"
+        },
+        "model": {
+          "type": "string",
+          "description": "Recommend model (related-products, bought-together, trending-facets, trending-items)"
+        },
+        "objectID": {
+          "type": "string",
+          "description": "Unique record identifier"
+        }
+      },
+      "required": ["indexName", "model", "objectID"]
+    }
+  },
+  {
+    "name": "recommend_search_recommend_rules",
+    "description": "Search for Recommend rules. Use an empty query to list all rules for this recommendation scenario.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "indexName": {
+          "type": "string",
+          "description": "Name of the index on which to perform the operation"
+        },
+        "model": {
+          "type": "string",
+          "description": "Recommend model (related-products, bought-together, trending-facets, trending-items)"
+        },
+        "query": {
+          "type": "string",
+          "description": "Search query"
+        },
+        "context": {
+          "type": "string",
+          "description": "Only search for rules with matching context"
+        },
+        "page": {
+          "type": "number",
+          "description": "Requested page of the API response"
+        },
+        "hitsPerPage": {
+          "type": "number",
+          "description": "Maximum number of hits per page"
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether to only show rules where the value of their 'enabled' property matches this parameter"
+        },
+        "filters": {
+          "type": "string",
+          "description": "Filter expression. This only searches for rules matching the filter expression"
+        }
+      },
+      "required": ["indexName", "model"]
+    }
+  },
+  {
+    "name": "recommend_batch_recommend_rules",
+    "description": "Create or update a batch of Recommend Rules",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "indexName": {
+          "type": "string",
+          "description": "Name of the index on which to perform the operation"
+        },
+        "model": {
+          "type": "string",
+          "description": "Recommend model (related-products, bought-together, trending-facets, trending-items)"
+        },
+        "rules": {
+          "type": "string",
+          "description": "JSON array of Recommend rules to create or update"
+        },
+        "clearExistingRules": {
+          "type": "boolean",
+          "description": "Whether to replace all existing rules with the provided batch"
+        }
+      },
+      "required": ["indexName", "model", "rules"]
+    }
+  },
+  {
+    "name": "recommend_delete_recommend_rule",
+    "description": "Delete a Recommend rule from a recommendation scenario",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "indexName": {
+          "type": "string",
+          "description": "Name of the index on which to perform the operation"
+        },
+        "model": {
+          "type": "string",
+          "description": "Recommend model (related-products, bought-together, trending-facets, trending-items)"
+        },
+        "objectID": {
+          "type": "string",
+          "description": "Unique record identifier"
+        }
+      },
+      "required": ["indexName", "model", "objectID"]
+    }
+  },
+  {
+    "name": "recommend_get_recommend_status",
+    "description": "Check the status of a given task",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "indexName": {
+          "type": "string",
+          "description": "Name of the index on which to perform the operation"
+        },
+        "model": {
+          "type": "string",
+          "description": "Recommend model (related-products, bought-together, trending-facets, trending-items)"
+        },
+        "taskID": {
+          "type": "number",
+          "description": "Unique task identifier"
+        }
+      },
+      "required": ["indexName", "model", "taskID"]
+    }
+  },
+  {
+    "name": "usage_get_daily_metrics",
+    "description": "Returns a list of billing metrics per day for the specified applications",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "applications": {
+          "type": "string",
+          "description": "Comma-separated list of Algolia Application IDs"
+        },
+        "startDate": {
+          "type": "string",
+          "description": "The start date of the period for which the metrics should be returned (YYYY-MM-DD)"
+        },
+        "endDate": {
+          "type": "string",
+          "description": "The end date (included) of the period for which the metrics should be returned (YYYY-MM-DD)"
+        },
+        "metricNames": {
+          "type": "string",
+          "description": "Comma-separated list of metric names to retrieve"
+        }
+      },
+      "required": ["applications", "startDate", "metricNames"]
+    }
+  },
+  {
+    "name": "usage_get_hourly_metrics",
+    "description": "Returns a list of billing metrics per hour for the specified application",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "application": {
+          "type": "string",
+          "description": "Algolia Application ID"
+        },
+        "startTime": {
+          "type": "string",
+          "description": "The start time of the period for which the metrics should be returned (ISO 8601 format)"
+        },
+        "endTime": {
+          "type": "string",
+          "description": "The end time (included) of the period for which the metrics should be returned (ISO 8601 format)"
+        },
+        "metricNames": {
+          "type": "string",
+          "description": "Comma-separated list of metric names to retrieve"
+        }
+      },
+      "required": ["application", "startTime", "metricNames"]
+    }
+  },
+  {
+    "name": "usage_get_metrics_registry",
+    "description": "Returns the list of available metrics",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "applications": {
+          "type": "string",
+          "description": "Comma-separated list of Algolia Application IDs"
+        }
+      },
+      "required": ["applications"]
+    }
+  },
+  {
+    "name": "query_suggestions_list_configs",
+    "description": "Retrieves all Query Suggestions configurations of your Algolia application",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "region": {
+          "type": "string",
+          "description": "Analytics region (us or eu)"
+        }
+      },
+      "required": ["region"]
+    }
+  },
+  {
+    "name": "query_suggestions_get_config",
+    "description": "Retrieves a single Query Suggestions configuration by its index name",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "region": {
+          "type": "string",
+          "description": "Analytics region (us or eu)"
+        },
+        "indexName": {
+          "type": "string",
+          "description": "Query Suggestions index name"
+        }
+      },
+      "required": ["region", "indexName"]
+    }
+  },
+  {
+    "name": "query_suggestions_create_config",
+    "description": "Creates a new Query Suggestions configuration",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "region": {
+          "type": "string",
+          "description": "Analytics region (us or eu)"
+        },
+        "indexName": {
+          "type": "string",
+          "description": "Query Suggestions index name"
+        },
+        "sourceIndices": {
+          "type": "string",
+          "description": "JSON array of source indices configurations"
+        },
+        "languages": {
+          "type": "string",
+          "description": "JSON array of languages or boolean for deduplicating singular and plural suggestions"
+        },
+        "exclude": {
+          "type": "string",
+          "description": "JSON array of words or regular expressions to exclude from the suggestions"
+        },
+        "enablePersonalization": {
+          "type": "boolean",
+          "description": "Whether to turn on personalized query suggestions"
+        },
+        "allowSpecialCharacters": {
+          "type": "boolean",
+          "description": "Whether to include suggestions with special characters"
+        }
+      },
+      "required": ["region", "indexName", "sourceIndices"]
+    }
+  },
+  {
+    "name": "query_suggestions_update_config",
+    "description": "Updates a Query Suggestions configuration",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "region": {
+          "type": "string",
+          "description": "Analytics region (us or eu)"
+        },
+        "indexName": {
+          "type": "string",
+          "description": "Query Suggestions index name"
+        },
+        "sourceIndices": {
+          "type": "string",
+          "description": "JSON array of source indices configurations"
+        },
+        "languages": {
+          "type": "string",
+          "description": "JSON array of languages or boolean for deduplicating singular and plural suggestions"
+        },
+        "exclude": {
+          "type": "string",
+          "description": "JSON array of words or regular expressions to exclude from the suggestions"
+        },
+        "enablePersonalization": {
+          "type": "boolean",
+          "description": "Whether to turn on personalized query suggestions"
+        },
+        "allowSpecialCharacters": {
+          "type": "boolean",
+          "description": "Whether to include suggestions with special characters"
+        }
+      },
+      "required": ["region", "indexName", "sourceIndices"]
+    }
+  },
+  {
+    "name": "query_suggestions_delete_config",
+    "description": "Deletes a Query Suggestions configuration",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "region": {
+          "type": "string",
+          "description": "Analytics region (us or eu)"
+        },
+        "indexName": {
+          "type": "string",
+          "description": "Query Suggestions index name"
+        }
+      },
+      "required": ["region", "indexName"]
+    }
+  },
+  {
+    "name": "query_suggestions_get_config_status",
+    "description": "Reports the status of a Query Suggestions index",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "region": {
+          "type": "string",
+          "description": "Analytics region (us or eu)"
+        },
+        "indexName": {
+          "type": "string",
+          "description": "Query Suggestions index name"
+        }
+      },
+      "required": ["region", "indexName"]
+    }
+  },
+  {
+    "name": "query_suggestions_get_log_file",
+    "description": "Retrieves the logs for a single Query Suggestions index",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "region": {
+          "type": "string",
+          "description": "Analytics region (us or eu)"
+        },
+        "indexName": {
+          "type": "string",
+          "description": "Query Suggestions index name"
+        }
+      },
+      "required": ["region", "indexName"]
+    }
+  },
+  {
+    "name": "abtesting_list_abtests",
+    "description": "List all A/B tests configured for this application",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "offset": {
+          "type": "number",
+          "description": "Position of the first item to return"
+        },
+        "limit": {
+          "type": "number",
+          "description": "Number of items to return"
+        },
+        "indexPrefix": {
+          "type": "string",
+          "description": "Index name prefix. Only A/B tests for indices starting with this string are included in the response"
+        },
+        "indexSuffix": {
+          "type": "string",
+          "description": "Index name suffix. Only A/B tests for indices ending with this string are included in the response"
+        }
+      }
+    }
+  },
+  {
+    "name": "abtesting_get_abtest",
+    "description": "Retrieve the details for an A/B test by its ID",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "description": "Unique A/B test identifier"
+        }
+      },
+      "required": ["id"]
+    }
+  },
+  {
+    "name": "abtesting_create_abtest",
+    "description": "Create a new A/B test",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "A/B test name"
+        },
+        "endAt": {
+          "type": "string",
+          "description": "End date and time of the A/B test, in RFC 3339 format (e.g., 2023-06-17T00:00:00Z)"
+        },
+        "variants": {
+          "type": "string",
+          "description": "A/B test variants as JSON array (exactly 2 variants required). Each variant must have 'index' and 'trafficPercentage' fields, and may optionally have 'description' and 'customSearchParameters' fields."
+        }
+      },
+      "required": ["name", "endAt", "variants"]
+    }
+  },
+  {
+    "name": "abtesting_schedule_abtest",
+    "description": "Schedule an A/B test to be started at a later time",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "A/B test name"
+        },
+        "scheduledAt": {
+          "type": "string",
+          "description": "Date and time when the A/B test is scheduled to start, in RFC 3339 format (e.g., 2023-06-15T15:06:44.400601Z)"
+        },
+        "endAt": {
+          "type": "string",
+          "description": "End date and time of the A/B test, in RFC 3339 format (e.g., 2023-06-17T00:00:00Z)"
+        },
+        "variants": {
+          "type": "string",
+          "description": "A/B test variants as JSON array (exactly 2 variants required). Each variant must have 'index' and 'trafficPercentage' fields, and may optionally have 'description' and 'customSearchParameters' fields."
+        }
+      },
+      "required": ["name", "scheduledAt", "endAt", "variants"]
+    }
+  },
+  {
+    "name": "abtesting_stop_abtest",
+    "description": "Stop an A/B test by its ID. You can't restart stopped A/B tests.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "description": "Unique A/B test identifier"
+        }
+      },
+      "required": ["id"]
+    }
+  },
+  {
+    "name": "abtesting_delete_abtest",
+    "description": "Delete an A/B test by its ID",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "description": "Unique A/B test identifier"
+        }
+      },
+      "required": ["id"]
+    }
+  },
+  {
+    "name": "abtesting_estimate_abtest",
+    "description": "Estimate the sample size and duration of an A/B test based on historical traffic",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "variants": {
+          "type": "string",
+          "description": "A/B test variants as JSON array (exactly 2 variants required). Each variant must have 'index' and 'trafficPercentage' fields, and may optionally have 'description' and 'customSearchParameters' fields."
+        },
+        "configuration": {
+          "type": "string",
+          "description": "A/B test configuration as JSON object. Must include 'minimumDetectableEffect' with 'size' and 'metric' fields. May optionally include 'outliers' and 'emptySearch' settings."
+        }
+      },
+      "required": ["variants", "configuration"]
+    }
+  }
+]

@@ -1,0 +1,523 @@
+[
+  {
+    "name": "convert_time_period_to_epoch_ms",
+    "description": "Convert a time period (for example, 'last 30 minutes') to epoch milliseconds.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "time_period": {
+          "type": "string",
+          "description": "A natural language time period description (e.g., 'last 30 minutes', 'last 24 hours')"
+        }
+      },
+      "required": ["time_period"]
+    }
+  },
+  {
+    "name": "get_dashboard",
+    "description": "Fetch details about a specific dashboard.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "dashboard_guid": {
+          "type": "string",
+          "description": "The GUID of the dashboard to fetch"
+        }
+      },
+      "required": ["dashboard_guid"]
+    }
+  },
+  {
+    "name": "get_entity",
+    "description": "Fetch New Relic entities by GUID or search by name pattern.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "guid": {
+          "type": "string",
+          "description": "The GUID of the entity to fetch"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name pattern to search for entities"
+        },
+        "account_id": {
+          "type": "integer",
+          "description": "The New Relic account ID"
+        }
+      }
+    }
+  },
+  {
+    "name": "list_related_entities",
+    "description": "List entities 1 hop away (related) from a given entity GUID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "entity_guid": {
+          "type": "string",
+          "description": "The GUID of the entity to find related entities for"
+        }
+      },
+      "required": ["entity_guid"]
+    }
+  },
+  {
+    "name": "list_available_new_relic_accounts",
+    "description": "List all account IDs available to the user.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "list_dashboards",
+    "description": "List all dashboards for a New Relic account.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "integer",
+          "description": "The New Relic account ID"
+        }
+      },
+      "required": ["account_id"]
+    }
+  },
+  {
+    "name": "list_entity_types",
+    "description": "List the complete catalog of New Relic entity types with domain/type definitions.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "search_entity_with_tag",
+    "description": "Search for entities using a specific tag key and value.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "tag_key": {
+          "type": "string",
+          "description": "The tag key to search by"
+        },
+        "tag_value": {
+          "type": "string",
+          "description": "The tag value to search by"
+        },
+        "account_id": {
+          "type": "integer",
+          "description": "The New Relic account ID"
+        }
+      },
+      "required": ["tag_key", "tag_value"]
+    }
+  },
+  {
+    "name": "execute_nrql_query",
+    "description": "Execute an NRQL query against NRDB.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "integer",
+          "description": "The New Relic account ID to run the query against"
+        },
+        "query": {
+          "type": "string",
+          "description": "The NRQL query to execute"
+        }
+      },
+      "required": ["account_id", "query"]
+    }
+  },
+  {
+    "name": "natural_language_to_nrql_query",
+    "description": "Execute a query by converting a natural language request into an NRQL query, executing it, and returning the results.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "integer",
+          "description": "The New Relic account ID to run the query against"
+        },
+        "question": {
+          "type": "string",
+          "description": "A natural language question to convert to NRQL and execute"
+        }
+      },
+      "required": ["account_id", "question"]
+    }
+  },
+  {
+    "name": "list_alert_conditions",
+    "description": "List alert condition details for a specific alert policy.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "integer",
+          "description": "The New Relic account ID"
+        },
+        "policy_id": {
+          "type": "integer",
+          "description": "The ID of the alert policy"
+        }
+      },
+      "required": ["account_id", "policy_id"]
+    }
+  },
+  {
+    "name": "search_incident",
+    "description": "List all alert events (both open and close events) with flexible filtering.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "integer",
+          "description": "The New Relic account ID"
+        },
+        "entity_guid": {
+          "type": "string",
+          "description": "Filter incidents by entity GUID"
+        },
+        "start_time_ms": {
+          "type": "integer",
+          "description": "Start time in epoch milliseconds"
+        },
+        "end_time_ms": {
+          "type": "integer",
+          "description": "End time in epoch milliseconds"
+        }
+      },
+      "required": ["account_id"]
+    }
+  },
+  {
+    "name": "list_alert_policies",
+    "description": "List alert policies for the specified account, optionally filtering by policy name.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "integer",
+          "description": "The New Relic account ID"
+        },
+        "policy_name": {
+          "type": "string",
+          "description": "Optional name filter for policies"
+        }
+      },
+      "required": ["account_id"]
+    }
+  },
+  {
+    "name": "list_recent_issues",
+    "description": "Lists all open issues in New Relic for the specified account.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "integer",
+          "description": "The New Relic account ID"
+        }
+      },
+      "required": ["account_id"]
+    }
+  },
+  {
+    "name": "list_synthetic_monitors",
+    "description": "List all synthetic monitors (automated tests that check your services' availability and performance).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "integer",
+          "description": "The New Relic account ID"
+        }
+      },
+      "required": ["account_id"]
+    }
+  },
+  {
+    "name": "analyze_deployment_impact",
+    "description": "Analyze the performance impact of a deployment on a specific entity.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "entity_guid": {
+          "type": "string",
+          "description": "The GUID of the entity to analyze"
+        },
+        "deployment_time_ms": {
+          "type": "integer",
+          "description": "The time of the deployment in epoch milliseconds"
+        },
+        "account_id": {
+          "type": "integer",
+          "description": "The New Relic account ID"
+        }
+      },
+      "required": ["entity_guid", "deployment_time_ms"]
+    }
+  },
+  {
+    "name": "generate_alert_insights_report",
+    "description": "Generate an alert intelligence analysis report for a specific issue.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "issue_id": {
+          "type": "string",
+          "description": "The ID of the issue to analyze"
+        },
+        "account_id": {
+          "type": "integer",
+          "description": "The New Relic account ID"
+        }
+      },
+      "required": ["issue_id", "account_id"]
+    }
+  },
+  {
+    "name": "generate_user_impact_report",
+    "description": "Generate an end-user impact analysis report for a specific issue.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "issue_id": {
+          "type": "string",
+          "description": "The ID of the issue to analyze"
+        },
+        "account_id": {
+          "type": "integer",
+          "description": "The New Relic account ID"
+        }
+      },
+      "required": ["issue_id", "account_id"]
+    }
+  },
+  {
+    "name": "list_entity_error_groups",
+    "description": "Fetch error groups for a specific entity from the Errors Inbox within a time window.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "entity_guid": {
+          "type": "string",
+          "description": "The GUID of the entity"
+        },
+        "start_time_ms": {
+          "type": "integer",
+          "description": "Start of the time window in epoch milliseconds"
+        },
+        "end_time_ms": {
+          "type": "integer",
+          "description": "End of the time window in epoch milliseconds"
+        }
+      },
+      "required": ["entity_guid"]
+    }
+  },
+  {
+    "name": "list_change_events",
+    "description": "List a history of change events from New Relic for the application identified by its entity GUID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "entity_guid": {
+          "type": "string",
+          "description": "The entity GUID of the application"
+        },
+        "account_id": {
+          "type": "integer",
+          "description": "The New Relic account ID"
+        }
+      },
+      "required": ["entity_guid"]
+    }
+  },
+  {
+    "name": "analyze_entity_logs",
+    "description": "Analyze application logs to identify error patterns, anomalous behavior, and recurring issues.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "entity_guid": {
+          "type": "string",
+          "description": "The GUID of the entity whose logs to analyze"
+        },
+        "account_id": {
+          "type": "integer",
+          "description": "The New Relic account ID"
+        },
+        "start_time_ms": {
+          "type": "integer",
+          "description": "Start of the time window in epoch milliseconds"
+        },
+        "end_time_ms": {
+          "type": "integer",
+          "description": "End of the time window in epoch milliseconds"
+        }
+      },
+      "required": ["entity_guid", "account_id"]
+    }
+  },
+  {
+    "name": "analyze_golden_metrics",
+    "description": "Analyze golden metrics (key health indicators: throughput, response time, error rate, and saturation).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "entity_guid": {
+          "type": "string",
+          "description": "The GUID of the entity to analyze"
+        },
+        "account_id": {
+          "type": "integer",
+          "description": "The New Relic account ID"
+        },
+        "start_time_ms": {
+          "type": "integer",
+          "description": "Start of the time window in epoch milliseconds"
+        },
+        "end_time_ms": {
+          "type": "integer",
+          "description": "End of the time window in epoch milliseconds"
+        }
+      },
+      "required": ["entity_guid", "account_id"]
+    }
+  },
+  {
+    "name": "analyze_kafka_metrics",
+    "description": "Analyze Kafka metrics including consumer lag, producer throughput, message latency, and partition balance.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "entity_guid": {
+          "type": "string",
+          "description": "The GUID of the Kafka entity to analyze"
+        },
+        "account_id": {
+          "type": "integer",
+          "description": "The New Relic account ID"
+        },
+        "start_time_ms": {
+          "type": "integer",
+          "description": "Start of the time window in epoch milliseconds"
+        },
+        "end_time_ms": {
+          "type": "integer",
+          "description": "End of the time window in epoch milliseconds"
+        }
+      },
+      "required": ["entity_guid", "account_id"]
+    }
+  },
+  {
+    "name": "analyze_threads",
+    "description": "Analyze thread metric data for a given entity including thread state, CPU usage, and memory consumption.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "entity_guid": {
+          "type": "string",
+          "description": "The GUID of the entity to analyze"
+        },
+        "account_id": {
+          "type": "integer",
+          "description": "The New Relic account ID"
+        },
+        "start_time_ms": {
+          "type": "integer",
+          "description": "Start of the time window in epoch milliseconds"
+        },
+        "end_time_ms": {
+          "type": "integer",
+          "description": "End of the time window in epoch milliseconds"
+        }
+      },
+      "required": ["entity_guid", "account_id"]
+    }
+  },
+  {
+    "name": "analyze_transactions",
+    "description": "Analyze transactions for a specific entity within a time window, identifying slow and error-prone transactions.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "entity_guid": {
+          "type": "string",
+          "description": "The GUID of the entity to analyze"
+        },
+        "account_id": {
+          "type": "integer",
+          "description": "The New Relic account ID"
+        },
+        "start_time_ms": {
+          "type": "integer",
+          "description": "Start of the time window in epoch milliseconds"
+        },
+        "end_time_ms": {
+          "type": "integer",
+          "description": "End of the time window in epoch milliseconds"
+        }
+      },
+      "required": ["entity_guid", "account_id"]
+    }
+  },
+  {
+    "name": "list_garbage_collection_metrics",
+    "description": "List garbage collection and memory metrics for a given account and entity.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "entity_guid": {
+          "type": "string",
+          "description": "The GUID of the entity"
+        },
+        "account_id": {
+          "type": "integer",
+          "description": "The New Relic account ID"
+        },
+        "start_time_ms": {
+          "type": "integer",
+          "description": "Start of the time window in epoch milliseconds"
+        },
+        "end_time_ms": {
+          "type": "integer",
+          "description": "End of the time window in epoch milliseconds"
+        }
+      },
+      "required": ["entity_guid", "account_id"]
+    }
+  },
+  {
+    "name": "list_recent_logs",
+    "description": "List recent logs from New Relic for the specified account and entity GUID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "integer",
+          "description": "The New Relic account ID"
+        },
+        "entity_guid": {
+          "type": "string",
+          "description": "The GUID of the entity to fetch logs for"
+        },
+        "start_time_ms": {
+          "type": "integer",
+          "description": "Start of the time window in epoch milliseconds"
+        },
+        "end_time_ms": {
+          "type": "integer",
+          "description": "End of the time window in epoch milliseconds"
+        }
+      },
+      "required": ["account_id", "entity_guid"]
+    }
+  }
+]

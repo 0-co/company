@@ -1,0 +1,34 @@
+[
+  {
+    "name": "fly-logs",
+    "description": "Get logs for a Fly.io app or specific machine",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "app": {
+          "type": "string",
+          "description": "Name of the app"
+        },
+        "machine": {
+          "type": "string",
+          "description": "Specific machine ID"
+        }
+      },
+      "required": ["app"]
+    }
+  },
+  {
+    "name": "fly-status",
+    "description": "Get status of a Fly.io app",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "app": {
+          "type": "string",
+          "description": "Name of the app"
+        }
+      },
+      "required": ["app"]
+    }
+  }
+]

@@ -1,0 +1,335 @@
+[
+  {
+    "name": "check-railway-status",
+    "description": "Check whether the Railway CLI is installed and if the user is logged in. This tool helps agents verify the Railway CLI setup before attempting to use other Railway tools.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "list-projects",
+    "description": "List all Railway projects for the currently logged in account",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "create-project-and-link",
+    "description": "Create a new Railway project and link it to the current directory",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "projectName": {
+          "type": "string",
+          "description": "The name of the new project"
+        },
+        "workspacePath": {
+          "type": "string",
+          "description": "The path to the workspace to create the project in"
+        }
+      },
+      "required": ["projectName", "workspacePath"]
+    }
+  },
+  {
+    "name": "list-services",
+    "description": "List all services for the currently linked Railway project",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "workspacePath": {
+          "type": "string",
+          "description": "The path to the workspace to list services from"
+        }
+      },
+      "required": ["workspacePath"]
+    }
+  },
+  {
+    "name": "link-service",
+    "description": "Link a service to the current Railway project. If no service is specified, it will list available services",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "workspacePath": {
+          "type": "string",
+          "description": "The path to the workspace to link the service to"
+        },
+        "serviceName": {
+          "type": "string",
+          "description": "The service name to link"
+        }
+      },
+      "required": ["workspacePath"]
+    }
+  },
+  {
+    "name": "create-environment",
+    "description": "Create a new Railway environment for the currently linked project. Optionally duplicate an existing environment and set service variables.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "workspacePath": {
+          "type": "string",
+          "description": "The path to the workspace where the environment should be created"
+        },
+        "environmentName": {
+          "type": "string",
+          "description": "The name for the new environment"
+        },
+        "duplicateEnvironment": {
+          "type": "string",
+          "description": "The name of an existing environment to duplicate"
+        },
+        "serviceVariables": {
+          "type": "array",
+          "description": "Service variables to assign in the new environment (only works when duplicating)",
+          "items": {
+            "type": "object",
+            "properties": {
+              "service": {
+                "type": "string",
+                "description": "The service name or UUID"
+              },
+              "variable": {
+                "type": "string",
+                "description": "The variable assignment (e.g., 'BACKEND_PORT=3000')"
+              }
+            }
+          }
+        }
+      },
+      "required": ["workspacePath", "environmentName"]
+    }
+  },
+  {
+    "name": "link-environment",
+    "description": "Link to a specific Railway environment. If no environment is specified, it will list available environments for selection.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "workspacePath": {
+          "type": "string",
+          "description": "The path to the workspace to link the environment to"
+        },
+        "environmentName": {
+          "type": "string",
+          "description": "The environment name to link to"
+        }
+      },
+      "required": ["workspacePath", "environmentName"]
+    }
+  },
+  {
+    "name": "deploy",
+    "description": "Upload and deploy from the current directory. Supports CI mode, environment, and service options.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "workspacePath": {
+          "type": "string",
+          "description": "The path to the workspace to deploy"
+        },
+        "ci": {
+          "type": "boolean",
+          "description": "Stream build logs only, then exit (equivalent to setting $CI=true)"
+        },
+        "environment": {
+          "type": "string",
+          "description": "Environment to deploy to (defaults to linked environment)"
+        },
+        "service": {
+          "type": "string",
+          "description": "Service to deploy to (defaults to linked service)"
+        }
+      },
+      "required": ["workspacePath"]
+    }
+  },
+  {
+    "name": "deploy-template",
+    "description": "Search and deploy Railway templates. This tool will search for templates using fuzzy search and automatically deploy the selected template to the current Railway project and environment.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "workspacePath": {
+          "type": "string",
+          "description": "The path to the workspace to deploy the template to"
+        },
+        "searchQuery": {
+          "type": "string",
+          "description": "Search query to filter templates by name, description, or category"
+        },
+        "templateIndex": {
+          "type": "number",
+          "description": "Index of the template to deploy (required if multiple templates found)"
+        },
+        "teamId": {
+          "type": "string",
+          "description": "The ID of the team (optional)"
+        }
+      },
+      "required": ["workspacePath", "searchQuery"]
+    }
+  },
+  {
+    "name": "list-deployments",
+    "description": "List deployments for a Railway service with IDs, statuses and other metadata. Requires Railway CLI v4.10.0+.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "workspacePath": {
+          "type": "string",
+          "description": "The path to the workspace to list deployments from"
+        },
+        "service": {
+          "type": "string",
+          "description": "Service name or ID to list deployments for (defaults to linked service)"
+        },
+        "environment": {
+          "type": "string",
+          "description": "Environment to list deployments from (defaults to linked environment)"
+        },
+        "limit": {
+          "type": "number",
+          "description": "Maximum number of deployments to show (default: 20, max: 1000)",
+          "minimum": 1,
+          "maximum": 1000,
+          "default": 20
+        },
+        "json": {
+          "type": "boolean",
+          "description": "Return deployments as structured JSON data. When true, the output will contain ids, statuses, and other metadata",
+          "default": false
+        }
+      },
+      "required": ["workspacePath"]
+    }
+  },
+  {
+    "name": "get-logs",
+    "description": "Get build or deployment logs for the currently linked Railway project. This will only pull the latest successful deployment by default. You can optionally specify a deployment ID, service, and environment. The 'lines' and 'filter' parameters require Railway CLI v4.9.0+.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "workspacePath": {
+          "type": "string",
+          "description": "The path to the workspace to get logs from"
+        },
+        "logType": {
+          "type": "string",
+          "enum": ["build", "deploy"],
+          "description": "Type of logs to retrieve: 'build' for build logs or 'deploy' for deployment logs"
+        },
+        "deploymentId": {
+          "type": "string",
+          "description": "Deployment ID to pull logs from. Omit to pull from latest deployment"
+        },
+        "service": {
+          "type": "string",
+          "description": "Service to view logs from (defaults to linked service)"
+        },
+        "environment": {
+          "type": "string",
+          "description": "Environment to view logs from (defaults to linked environment)"
+        },
+        "lines": {
+          "type": "number",
+          "description": "Number of log lines to return (disables streaming). Requires Railway CLI v4.9.0+."
+        },
+        "filter": {
+          "type": "string",
+          "description": "Filter logs by search terms or attributes. Requires Railway CLI v4.9.0+. Examples: 'error', '@level:error', '@level:warn AND rate limit', '@status:500'."
+        },
+        "json": {
+          "type": "boolean",
+          "description": "JSON provides structured log data with more information (e.g. timestamps) but uses more tokens. Defaults to false to save tokens."
+        }
+      },
+      "required": ["workspacePath", "logType"]
+    }
+  },
+  {
+    "name": "list-variables",
+    "description": "Show variables for the active environment",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "workspacePath": {
+          "type": "string",
+          "description": "The path to the workspace to list variables from"
+        },
+        "service": {
+          "type": "string",
+          "description": "The service to show variables for (optional)"
+        },
+        "environment": {
+          "type": "string",
+          "description": "The environment to show variables for (optional)"
+        },
+        "kv": {
+          "type": "boolean",
+          "description": "Show variables in KV format (optional)"
+        },
+        "json": {
+          "type": "boolean",
+          "description": "Output in JSON format (optional)"
+        }
+      },
+      "required": ["workspacePath"]
+    }
+  },
+  {
+    "name": "set-variables",
+    "description": "Set environment variables for the active environment",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "workspacePath": {
+          "type": "string",
+          "description": "The path to the workspace to set variables in"
+        },
+        "variables": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Array of '{key}={value}' environment variable pairs to set"
+        },
+        "service": {
+          "type": "string",
+          "description": "The service to set variables for (optional)"
+        },
+        "environment": {
+          "type": "string",
+          "description": "The environment to set variables for (optional)"
+        },
+        "skipDeploys": {
+          "type": "boolean",
+          "description": "Skip triggering deploys when setting variables (optional)"
+        }
+      },
+      "required": ["workspacePath", "variables"]
+    }
+  },
+  {
+    "name": "generate-domain",
+    "description": "Generate a domain for the currently linked Railway project. If a domain already exists, it will return the existing domain URL. Optionally specify a service to generate the domain for.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "workspacePath": {
+          "type": "string",
+          "description": "The path to the workspace to generate domain for"
+        },
+        "service": {
+          "type": "string",
+          "description": "The name of the service to generate the domain for (optional)"
+        }
+      },
+      "required": ["workspacePath"]
+    }
+  }
+]
