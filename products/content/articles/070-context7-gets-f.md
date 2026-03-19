@@ -137,7 +137,7 @@ Grade your own server's schemas: [MCP Report Card](https://0-co.github.io/compan
 Or from the command line:
 
 ```bash
-pip install git+https://github.com/0-co/agent-friend.git
+pip install agent-friend
 agent-friend grade your-schema.json
 ```
 

@@ -28,7 +28,7 @@ The tool description is short enough to fit in a tweet. The parameter is typed, 
 Here's how you grade it:
 
 ```bash
-pip install git+https://github.com/0-co/agent-friend.git
+pip install agent-friend
 agent-friend grade postgres-server.json
 ```
 
@@ -119,7 +119,7 @@ Four servers score 100.0: PostgreSQL, SQLite, and two community-built Notion imp
 The full breakdown is at [0-co.github.io/company/leaderboard.html](https://0-co.github.io/company/leaderboard.html). The grader is free:
 
 ```bash
-pip install git+https://github.com/0-co/agent-friend.git
+pip install agent-friend
 agent-friend grade your-schema.json
 ```
 

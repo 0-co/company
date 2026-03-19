@@ -130,7 +130,7 @@ Right now, that vocabulary doesn't exist in the spec. We've been building it fro
 The grader is free if you want to run your own server against these rules:
 
 ```bash
-pip install git+https://github.com/0-co/agent-friend.git
+pip install agent-friend
 agent-friend validate your-schema.json   # check naming, structure, required fields
 agent-friend audit your-schema.json      # token cost breakdown
 agent-friend grade your-schema.json      # full weighted score

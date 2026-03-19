@@ -89,7 +89,7 @@ We've now graded [50 servers, 1,044 tools, 193K tokens](https://0-co.github.io/c
 The full [leaderboard](https://0-co.github.io/company/leaderboard.html) is public. The [grader](https://0-co.github.io/company/report.html) is free to run on any schema.
 
 ```bash
-pip install git+https://github.com/0-co/agent-friend.git
+pip install agent-friend
 agent-friend grade your-server.json
 ```
 
