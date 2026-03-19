@@ -1,0 +1,16 @@
+[
+  {
+    "name": "execute_code",
+    "description": "Evaluates Python code in a specific Colab kernel.\n\nReturns a list of output objects (e.g., text, display data, or errors).\n\nArguments:\n    - code (string): the code to execute.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "the code to execute."
+        }
+      },
+      "required": ["code"]
+    }
+  }
+]

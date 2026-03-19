@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MCP Server Quality Leaderboard — Grade Rankings for Popular MCP Servers</title>
-  <meta name="description" content="50 MCP servers graded A+ to F. PostgreSQL scores perfect 100, Notion scores F. The first public quality ranking of MCP tool schemas.">
+  <meta name="description" content="51 MCP servers graded A+ to F. PostgreSQL scores perfect 100, Notion scores F. The first public quality ranking of MCP tool schemas.">
   <meta name="keywords" content="MCP server quality, MCP server ranking, MCP leaderboard, best MCP servers, MCP tool quality">
   <meta property="og:title" content="MCP Server Quality Leaderboard — Grade Rankings for Popular MCP Servers">
   <meta property="og:description" content="50 MCP servers graded A+ to F. PostgreSQL scores perfect 100, Notion scores F. See the full ranking.">
@@ -1246,9 +1246,52 @@
             </td>
           </tr>
 
-          <!-- #4 Slack -->
-          <tr class="data-row" data-server="slack">
+                    <!-- #4 Google Colab -->
+          <tr class="data-row" data-server="colab">
             <td class="rank-cell">4</td>
+            <td>
+              <a href="https://github.com/googlecolab/colab-mcp" class="server-name" onclick="event.stopPropagation()">Google Colab MCP</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-aplus">A+</div></td>
+            <td class="r">97.6<span class="score-bar-bg"><span class="score-bar-fill" data-width="97.6" style="background: var(--accent-cyan);"></span></span></td>
+            <td class="r">1</td>
+            <td class="r">88</td>
+            <td class="r">88</td>
+            <td class="r"><span class="issues-badge issues-low">0</span></td>
+          </tr>
+          <tr class="detail-row" data-server="colab">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="100" style="background: var(--accent-cyan);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-cyan);">100</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="92" style="background: var(--accent-cyan);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-cyan);">92</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="100" style="background: var(--accent-violet);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-violet);">100</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html" class="detail-btn detail-btn-primary">Grade your own server</a>
+                  <a href="https://github.com/googlecolab/colab-mcp" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+<!-- #5 Slack -->
+          <tr class="data-row" data-server="slack">
+            <td class="rank-cell">5</td>
             <td>
               <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/slack" class="server-name" onclick="event.stopPropagation()">Slack MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -1291,7 +1334,7 @@
 
           <!-- #5 shadcn-ui MCP -->
           <tr class="data-row" data-server="shadcn">
-            <td class="rank-cell">5</td>
+            <td class="rank-cell">6</td>
             <td>
               <a href="https://github.com/Jpisnice/shadcn-ui-mcp-server" class="server-name" onclick="event.stopPropagation()">shadcn-ui MCP</a>
               <span class="expand-hint">&#9662;</span>
@@ -1332,9 +1375,9 @@
             </td>
           </tr>
 
-          <!-- #6 Git -->
+          <!-- #7 Git -->
           <tr class="data-row" data-server="git">
-            <td class="rank-cell">6</td>
+            <td class="rank-cell">7</td>
             <td>
               <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/git" class="server-name" onclick="event.stopPropagation()">Git MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -1375,9 +1418,9 @@
             </td>
           </tr>
 
-          <!-- #7 Puppeteer -->
+          <!-- #8 Puppeteer -->
           <tr class="data-row" data-server="puppeteer">
-            <td class="rank-cell">7</td>
+            <td class="rank-cell">8</td>
             <td>
               <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/puppeteer" class="server-name" onclick="event.stopPropagation()">Puppeteer MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -1418,9 +1461,9 @@
             </td>
           </tr>
 
-          <!-- #8 BrowserMCP -->
+          <!-- #9 BrowserMCP -->
           <tr class="data-row" data-server="browsermcp">
-            <td class="rank-cell">8</td>
+            <td class="rank-cell">9</td>
             <td>
               <a href="https://github.com/BrowserMCP/mcp" class="server-name" onclick="event.stopPropagation()">BrowserMCP</a>
               <span class="expand-hint">&#9662;</span>
@@ -1461,9 +1504,9 @@
             </td>
           </tr>
 
-          <!-- #9 WhatsApp MCP -->
+          <!-- #10 WhatsApp MCP -->
           <tr class="data-row" data-server="whatsapp">
-            <td class="rank-cell">9</td>
+            <td class="rank-cell">10</td>
             <td>
               <a href="https://github.com/lharries/whatsapp-mcp" class="server-name" onclick="event.stopPropagation()">WhatsApp MCP</a>
               <span class="expand-hint">&#9662;</span>
@@ -1504,9 +1547,9 @@
             </td>
           </tr>
 
-          <!-- #10 Brave Search -->
+          <!-- #11 Brave Search -->
           <tr class="data-row" data-server="brave">
-            <td class="rank-cell">10</td>
+            <td class="rank-cell">11</td>
             <td>
               <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/brave-search" class="server-name" onclick="event.stopPropagation()">Brave Search MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -1547,9 +1590,9 @@
             </td>
           </tr>
 
-          <!-- #11 Time -->
+          <!-- #12 Time -->
           <tr class="data-row" data-server="time">
-            <td class="rank-cell">11</td>
+            <td class="rank-cell">12</td>
             <td>
               <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/time" class="server-name" onclick="event.stopPropagation()">Time MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -1592,7 +1635,7 @@
 
           <!-- #12 FastAPI-MCP -->
           <tr class="data-row" data-server="fastapi-mcp">
-            <td class="rank-cell">12</td>
+            <td class="rank-cell">13</td>
             <td>
               <a href="https://github.com/tadata-org/fastapi_mcp" class="server-name" onclick="event.stopPropagation()">FastAPI-MCP</a>
               <span class="expand-hint">&#9662;</span>
@@ -1633,9 +1676,9 @@
             </td>
           </tr>
 
-          <!-- #13 GhidraMCP -->
+          <!-- #14 GhidraMCP -->
           <tr class="data-row" data-server="ghidra">
-            <td class="rank-cell">13</td>
+            <td class="rank-cell">14</td>
             <td>
               <a href="https://github.com/LaurieWired/GhidraMCP" class="server-name" onclick="event.stopPropagation()">GhidraMCP</a>
               <span class="expand-hint">&#9662;</span>
@@ -1676,9 +1719,9 @@
             </td>
           </tr>
 
-          <!-- #14 dbhub -->
+          <!-- #15 dbhub -->
           <tr class="data-row" data-server="dbhub">
-            <td class="rank-cell">14</td>
+            <td class="rank-cell">15</td>
             <td>
               <a href="https://github.com/bytebase/dbhub" class="server-name" onclick="event.stopPropagation()">dbhub</a>
               <span class="expand-hint">&#9662;</span>
@@ -1719,9 +1762,9 @@
             </td>
           </tr>
 
-          <!-- #15 Xiaohongshu MCP -->
+          <!-- #16 Xiaohongshu MCP -->
           <tr class="data-row" data-server="xiaohongshu">
-            <td class="rank-cell">15</td>
+            <td class="rank-cell">16</td>
             <td>
               <a href="https://github.com/nicepkg/xiaohongshu-mcp" class="server-name" onclick="event.stopPropagation()">Xiaohongshu MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -1762,9 +1805,9 @@
             </td>
           </tr>
 
-          <!-- #16 Sequential Thinking -->
+          <!-- #17 Sequential Thinking -->
           <tr class="data-row" data-server="sequentialthinking">
-            <td class="rank-cell">16</td>
+            <td class="rank-cell">17</td>
             <td>
               <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking" class="server-name" onclick="event.stopPropagation()">Sequential Thinking</a>
               <span class="expand-hint">&#9662;</span>
@@ -1805,9 +1848,9 @@
             </td>
           </tr>
 
-          <!-- #17 Google Maps -->
+          <!-- #18 Google Maps -->
           <tr class="data-row" data-server="googlemaps">
-            <td class="rank-cell">17</td>
+            <td class="rank-cell">18</td>
             <td>
               <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/google-maps" class="server-name" onclick="event.stopPropagation()">Google Maps MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -1848,9 +1891,9 @@
             </td>
           </tr>
 
-          <!-- #18 GitHub -->
+          <!-- #19 GitHub -->
           <tr class="data-row" data-server="github">
-            <td class="rank-cell">18</td>
+            <td class="rank-cell">19</td>
             <td>
               <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/github" class="server-name" onclick="event.stopPropagation()">GitHub MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -1891,9 +1934,9 @@
             </td>
           </tr>
 
-          <!-- #19 Memory -->
+          <!-- #20 Memory -->
           <tr class="data-row" data-server="memory">
-            <td class="rank-cell">19</td>
+            <td class="rank-cell">20</td>
             <td>
               <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/memory" class="server-name" onclick="event.stopPropagation()">Memory MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -1934,9 +1977,9 @@
             </td>
           </tr>
 
-          <!-- #20 Sentry -->
+          <!-- #21 Sentry -->
           <tr class="data-row" data-server="sentry">
-            <td class="rank-cell">20</td>
+            <td class="rank-cell">21</td>
             <td>
               <a href="https://github.com/getsentry/sentry-mcp-stdio" class="server-name" onclick="event.stopPropagation()">Sentry MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -1977,9 +2020,9 @@
             </td>
           </tr>
 
-          <!-- #21 Fetch -->
+          <!-- #22 Fetch -->
           <tr class="data-row" data-server="fetch">
-            <td class="rank-cell">21</td>
+            <td class="rank-cell">22</td>
             <td>
               <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/fetch" class="server-name" onclick="event.stopPropagation()">Fetch MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -2020,9 +2063,9 @@
             </td>
           </tr>
 
-          <!-- #22 Obsidian MCP -->
+          <!-- #23 Obsidian MCP -->
           <tr class="data-row" data-server="obsidian">
-            <td class="rank-cell">22</td>
+            <td class="rank-cell">23</td>
             <td>
               <a href="https://github.com/MarkusPfundstein/mcp-obsidian" class="server-name" onclick="event.stopPropagation()">Obsidian MCP</a>
               <span class="expand-hint">&#9662;</span>
@@ -2063,9 +2106,9 @@
             </td>
           </tr>
 
-          <!-- #23 Browserbase MCP -->
+          <!-- #24 Browserbase MCP -->
           <tr class="data-row" data-server="browserbase">
-            <td class="rank-cell">23</td>
+            <td class="rank-cell">24</td>
             <td>
               <a href="https://github.com/browserbase/mcp-server-browserbase" class="server-name" onclick="event.stopPropagation()">Browserbase MCP</a>
               <span class="expand-hint">&#9662;</span>
@@ -2106,9 +2149,9 @@
             </td>
           </tr>
 
-          <!-- #24 Playwright -->
+          <!-- #25 Playwright -->
           <tr class="data-row" data-server="playwright">
-            <td class="rank-cell">24</td>
+            <td class="rank-cell">25</td>
             <td>
               <a href="https://github.com/microsoft/playwright-mcp" class="server-name" onclick="event.stopPropagation()">Playwright MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -2149,9 +2192,9 @@
             </td>
           </tr>
 
-          <!-- #25 Serena -->
+          <!-- #26 Serena -->
           <tr class="data-row" data-server="serena">
-            <td class="rank-cell">25</td>
+            <td class="rank-cell">26</td>
             <td>
               <a href="https://github.com/oraios/serena" class="server-name" onclick="event.stopPropagation()">Serena</a>
               <span class="expand-hint">&#9662;</span>
@@ -2192,9 +2235,9 @@
             </td>
           </tr>
 
-          <!-- #26 Filesystem -->
+          <!-- #27 Filesystem -->
           <tr class="data-row" data-server="filesystem">
-            <td class="rank-cell">26</td>
+            <td class="rank-cell">27</td>
             <td>
               <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem" class="server-name" onclick="event.stopPropagation()">Filesystem MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -2235,9 +2278,9 @@
             </td>
           </tr>
 
-          <!-- #27 Chrome DevTools -->
+          <!-- #28 Chrome DevTools -->
           <tr class="data-row" data-server="chrome-devtools">
-            <td class="rank-cell">27</td>
+            <td class="rank-cell">28</td>
             <td>
               <a href="https://github.com/ChromeDevTools/chrome-devtools-mcp" class="server-name" onclick="event.stopPropagation()">Chrome DevTools MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -2281,7 +2324,7 @@
 
           <!-- #28 Google genai-toolbox -->
           <tr class="data-row" data-server="genai-toolbox">
-            <td class="rank-cell">28</td>
+            <td class="rank-cell">29</td>
             <td>
               <a href="https://github.com/googleapis/genai-toolbox" class="server-name" onclick="event.stopPropagation()">Google genai-toolbox</a>
               <span class="expand-hint">&#9662;</span>
@@ -2322,9 +2365,9 @@
             </td>
           </tr>
 
-          <!-- #29 Excel MCP Server -->
+          <!-- #30 Excel MCP Server -->
           <tr class="data-row" data-server="excel">
-            <td class="rank-cell">29</td>
+            <td class="rank-cell">30</td>
             <td>
               <a href="https://github.com/haris-musa/excel-mcp-server" class="server-name" onclick="event.stopPropagation()">Excel MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -2365,9 +2408,9 @@
             </td>
           </tr>
 
-          <!-- #30 Stripe Agent Toolkit -->
+          <!-- #31 Stripe Agent Toolkit -->
           <tr class="data-row" data-server="stripe">
-            <td class="rank-cell">30</td>
+            <td class="rank-cell">31</td>
             <td>
               <a href="https://github.com/stripe/agent-toolkit" class="server-name" onclick="event.stopPropagation()">Stripe Agent Toolkit MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -2409,7 +2452,7 @@
           </tr>
           <!-- #31 Figma-Context-MCP -->
           <tr class="data-row" data-server="figma">
-            <td class="rank-cell">31</td>
+            <td class="rank-cell">32</td>
             <td>
               <a href="https://github.com/GLips/Figma-Context-MCP" class="server-name" onclick="event.stopPropagation()">Figma-Context-MCP</a>
               <span class="expand-hint">&#9662;</span>
@@ -2450,9 +2493,9 @@
             </td>
           </tr>
 
-          <!-- #32 Atlassian -->
+          <!-- #33 Atlassian -->
           <tr class="data-row" data-server="atlassian">
-            <td class="rank-cell">32</td>
+            <td class="rank-cell">33</td>
             <td>
               <a href="https://github.com/sooperset/mcp-atlassian" class="server-name" onclick="event.stopPropagation()">Atlassian MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -2495,7 +2538,7 @@
 
           <!-- #33 magic-mcp -->
           <tr class="data-row" data-server="magic-mcp">
-            <td class="rank-cell">33</td>
+            <td class="rank-cell">34</td>
             <td>
               <a href="https://github.com/21st-dev/magic-mcp" class="server-name" onclick="event.stopPropagation()">magic-mcp</a>
               <span class="expand-hint">&#9662;</span>
@@ -2536,9 +2579,9 @@
             </td>
           </tr>
 
-          <!-- #34 Chart MCP Server -->
+          <!-- #35 Chart MCP Server -->
           <tr class="data-row" data-server="chart">
-            <td class="rank-cell">34</td>
+            <td class="rank-cell">35</td>
             <td>
               <a href="https://github.com/antvis/mcp-server-chart" class="server-name" onclick="event.stopPropagation()">Chart MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -2579,9 +2622,9 @@
             </td>
           </tr>
 
-          <!-- #35 Google Workspace MCP -->
+          <!-- #36 Google Workspace MCP -->
           <tr class="data-row" data-server="google-workspace">
-            <td class="rank-cell">35</td>
+            <td class="rank-cell">36</td>
             <td>
               <a href="https://github.com/taylorwilsdon/google_workspace_mcp" class="server-name" onclick="event.stopPropagation()">Google Workspace MCP</a>
               <span class="expand-hint">&#9662;</span>
@@ -2622,9 +2665,9 @@
             </td>
           </tr>
 
-          <!-- #36 Blender -->
+          <!-- #37 Blender -->
           <tr class="data-row" data-server="blender">
-            <td class="rank-cell">36</td>
+            <td class="rank-cell">37</td>
             <td>
               <a href="https://github.com/ahujasid/blender-mcp" class="server-name" onclick="event.stopPropagation()">Blender MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -2665,9 +2708,9 @@
             </td>
           </tr>
 
-          <!-- #37 Exa -->
+          <!-- #38 Exa -->
           <tr class="data-row" data-server="exa">
-            <td class="rank-cell">37</td>
+            <td class="rank-cell">38</td>
             <td>
               <a href="https://github.com/exa-labs/exa-mcp-server" class="server-name" onclick="event.stopPropagation()">Exa MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -2709,9 +2752,9 @@
           </tr>
 
 
-          <!-- #38 AWS -->
+          <!-- #39 AWS -->
           <tr class="data-row" data-server="aws">
-            <td class="rank-cell">38</td>
+            <td class="rank-cell">39</td>
             <td>
               <a href="https://github.com/awslabs/mcp" class="server-name" onclick="event.stopPropagation()">AWS MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -2751,9 +2794,9 @@
               </div>
             </td>
           </tr>
-          <!-- #39 GitHub Official -->
+          <!-- #40 GitHub Official -->
           <tr class="data-row" data-server="github-official">
-            <td class="rank-cell">39</td>
+            <td class="rank-cell">40</td>
             <td>
               <a href="https://github.com/github/github-mcp-server" class="server-name" onclick="event.stopPropagation()">GitHub MCP Server (Official)</a>
               <span class="expand-hint">&#9662;</span>
@@ -2794,9 +2837,9 @@
             </td>
           </tr>
 
-          <!-- #40 Cloudflare Radar -->
+          <!-- #41 Cloudflare Radar -->
           <tr class="data-row" data-server="cloudflare">
-            <td class="rank-cell">40</td>
+            <td class="rank-cell">41</td>
             <td>
               <a href="https://github.com/cloudflare/mcp-server-cloudflare" class="server-name" onclick="event.stopPropagation()">Cloudflare Radar MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -2837,9 +2880,9 @@
             </td>
           </tr>
 
-          <!-- #41 PAL MCP Server -->
+          <!-- #42 PAL MCP Server -->
           <tr class="data-row" data-server="pal">
-            <td class="rank-cell">41</td>
+            <td class="rank-cell">42</td>
             <td>
               <a href="https://github.com/BeehiveInnovations/pal-mcp-server" class="server-name" onclick="event.stopPropagation()">PAL MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -2880,9 +2923,9 @@
             </td>
           </tr>
 
-          <!-- #42 Tavily -->
+          <!-- #43 Tavily -->
           <tr class="data-row" data-server="tavily">
-            <td class="rank-cell">42</td>
+            <td class="rank-cell">43</td>
             <td>
               <a href="https://github.com/tavily-ai/tavily-mcp" class="server-name" onclick="event.stopPropagation()">Tavily MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -2925,7 +2968,7 @@
 
           <!-- #43 n8n-mcp -->
           <tr class="data-row" data-server="n8n-mcp">
-            <td class="rank-cell">43</td>
+            <td class="rank-cell">44</td>
             <td>
               <a href="https://github.com/czlonkowski/n8n-mcp" class="server-name" onclick="event.stopPropagation()">n8n-mcp</a>
               <span class="expand-hint">&#9662;</span>
@@ -2968,7 +3011,7 @@
 
           <!-- #44 mcp-chrome -->
           <tr class="data-row" data-server="mcp-chrome">
-            <td class="rank-cell">44</td>
+            <td class="rank-cell">45</td>
             <td>
               <a href="https://github.com/hangwin/mcp-chrome" class="server-name" onclick="event.stopPropagation()">mcp-chrome</a>
               <span class="expand-hint">&#9662;</span>
@@ -3009,9 +3052,9 @@
             </td>
           </tr>
 
-          <!-- #45 GA4 -->
+          <!-- #46 GA4 -->
           <tr class="data-row" data-server="ga4">
-            <td class="rank-cell">45</td>
+            <td class="rank-cell">46</td>
             <td>
               <a href="https://github.com/googleanalytics/google-analytics-mcp" class="server-name" onclick="event.stopPropagation()">Google Analytics (GA4) MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -3052,9 +3095,9 @@
             </td>
           </tr>
 
-          <!-- #46 Context7 -->
+          <!-- #47 Context7 -->
           <tr class="data-row" data-server="context7">
-            <td class="rank-cell">46</td>
+            <td class="rank-cell">47</td>
             <td>
               <a href="https://github.com/upstash/context7" class="server-name" onclick="event.stopPropagation()">Context7 MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -3095,9 +3138,9 @@
             </td>
           </tr>
 
-          <!-- #47 Firecrawl -->
+          <!-- #48 Firecrawl -->
           <tr class="data-row" data-server="firecrawl">
-            <td class="rank-cell">47</td>
+            <td class="rank-cell">48</td>
             <td>
               <a href="https://github.com/mendableai/firecrawl-mcp-server" class="server-name" onclick="event.stopPropagation()">Firecrawl MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -3139,9 +3182,9 @@
           </tr>
 
 
-          <!-- #48 Desktop Commander -->
+          <!-- #49 Desktop Commander -->
           <tr class="data-row" data-server="desktop-commander">
-            <td class="rank-cell">48</td>
+            <td class="rank-cell">49</td>
             <td>
               <a href="https://github.com/wonderwhy-er/DesktopCommanderMCP" class="server-name" onclick="event.stopPropagation()">Desktop Commander MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -3181,9 +3224,9 @@
               </div>
             </td>
           </tr>
-          <!-- #49 Grafana MCP -->
+          <!-- #50 Grafana MCP -->
           <tr class="data-row" data-server="grafana">
-            <td class="rank-cell">49</td>
+            <td class="rank-cell">50</td>
             <td>
               <a href="https://github.com/grafana/mcp-grafana" class="server-name" onclick="event.stopPropagation()">Grafana MCP</a>
               <span class="expand-hint">&#9662;</span>
@@ -3223,9 +3266,9 @@
               </div>
             </td>
           </tr>
-          <!-- #50 Notion -->
+          <!-- #51 Notion -->
           <tr class="data-row" data-server="notion">
-            <td class="rank-cell">50</td>
+            <td class="rank-cell">51</td>
             <td>
               <a href="https://github.com/makenotion/notion-mcp-server" class="server-name" onclick="event.stopPropagation()">Notion MCP Server</a>
               <span class="expand-hint">&#9662;</span>
