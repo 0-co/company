@@ -1,0 +1,270 @@
+[
+  {
+    "name": "model_search",
+    "description": "Find Machine Learning models hosted on Hugging Face. Returns comprehensive information about matching models including downloads, likes, tags, and direct links.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Search term. Leave blank and specify sort and limit to get e.g. Top 20 trending models"
+        },
+        "author": {
+          "type": "string",
+          "description": "Organization or user who created the model (e.g. google, meta-llama, microsoft)"
+        },
+        "task": {
+          "type": "string",
+          "description": "Model task type (e.g. text-generation, image-classification, translation)"
+        },
+        "library": {
+          "type": "string",
+          "description": "Framework the model uses (e.g. transformers, diffusers, timm)"
+        },
+        "sort": {
+          "type": "string",
+          "description": "Sort order: trendingScore, downloads, likes, createdAt, lastModified"
+        },
+        "limit": {
+          "type": "number",
+          "description": "Maximum number of results to return"
+        }
+      }
+    }
+  },
+  {
+    "name": "model_details",
+    "description": "Get detailed information about a model from the Hugging Face Hub including architecture, training data, evaluation results, and direct download links.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "model_id": {
+          "type": "string",
+          "description": "The model ID to retrieve details for (e.g. google/gemma-2b)"
+        }
+      },
+      "required": [
+        "model_id"
+      ]
+    }
+  },
+  {
+    "name": "dataset_search",
+    "description": "Find Datasets hosted on the Hugging Face hub. Returns comprehensive information about matching datasets including downloads, likes, tags, and direct links.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Search term for finding datasets"
+        },
+        "author": {
+          "type": "string",
+          "description": "Organization or user who created the dataset"
+        },
+        "task": {
+          "type": "string",
+          "description": "Task category for the dataset"
+        },
+        "sort": {
+          "type": "string",
+          "description": "Sort order: trendingScore, downloads, likes, createdAt, lastModified"
+        },
+        "limit": {
+          "type": "number",
+          "description": "Maximum number of results to return"
+        }
+      }
+    }
+  },
+  {
+    "name": "dataset_details",
+    "description": "Get detailed information about a specific dataset on Hugging Face including description, features, splits, and usage examples.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "dataset_id": {
+          "type": "string",
+          "description": "The dataset ID to retrieve details for (e.g. openai/gsm8k)"
+        }
+      },
+      "required": [
+        "dataset_id"
+      ]
+    }
+  },
+  {
+    "name": "paper_search",
+    "description": "Find Machine Learning research papers on the Hugging Face hub. Returns paper details including authors, abstract, and links.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Search query for finding papers"
+        },
+        "limit": {
+          "type": "number",
+          "description": "Maximum number of results to return"
+        }
+      }
+    }
+  },
+  {
+    "name": "hub_repo_search",
+    "description": "Search Hugging Face repositories with a shared query interface for models, datasets, and spaces. Returns results across all repository types.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Search term for finding repositories"
+        },
+        "repo_type": {
+          "type": "string",
+          "description": "Type of repository: model, dataset, or space"
+        },
+        "limit": {
+          "type": "number",
+          "description": "Maximum number of results to return"
+        }
+      }
+    }
+  },
+  {
+    "name": "hub_repo_details",
+    "description": "Get details for one or more Hugging Face repos (model, dataset, or space) including metadata, files, and usage statistics.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "repo_id": {
+          "type": "string",
+          "description": "The repository ID (e.g. username/repo-name)"
+        },
+        "repo_type": {
+          "type": "string",
+          "description": "Type: model, dataset, or space"
+        }
+      },
+      "required": [
+        "repo_id"
+      ]
+    }
+  },
+  {
+    "name": "duplicate_space",
+    "description": "Duplicate a Hugging Face Space into the user's account. Creates a new space with the same configuration and files.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "sourceSpaceId": {
+          "type": "string",
+          "description": "Space ID to copy (e.g. username/space-name)"
+        },
+        "newSpaceId": {
+          "type": "string",
+          "description": "Name for the new space (optional, defaults to source space-name)"
+        },
+        "hardware": {
+          "type": "string",
+          "description": "Either freecpu or zerogpu (defaults based on source). Both options are in the free tier."
+        },
+        "private": {
+          "type": "boolean",
+          "description": "Whether the new space should be public or private"
+        }
+      },
+      "required": [
+        "sourceSpaceId"
+      ]
+    }
+  },
+  {
+    "name": "space_info",
+    "description": "Get information about a Hugging Face Space including its runtime, hardware, and status.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "space_id": {
+          "type": "string",
+          "description": "The space ID (e.g. username/space-name)"
+        }
+      },
+      "required": [
+        "space_id"
+      ]
+    }
+  },
+  {
+    "name": "space_files",
+    "description": "List files in a Hugging Face Space repository.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "space_id": {
+          "type": "string",
+          "description": "The space ID (e.g. username/space-name)"
+        },
+        "path": {
+          "type": "string",
+          "description": "Optional subdirectory path to list files from"
+        }
+      },
+      "required": [
+        "space_id"
+      ]
+    }
+  },
+  {
+    "name": "hf_doc_search",
+    "description": "Search Hugging Face documentation using semantic search. Returns relevant documentation sections.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Search query for documentation"
+        },
+        "library": {
+          "type": "string",
+          "description": "Specific library to search docs for (e.g. transformers, diffusers, datasets)"
+        }
+      },
+      "required": [
+        "query"
+      ]
+    }
+  },
+  {
+    "name": "hf_doc_fetch",
+    "description": "Fetch a specific Hugging Face documentation page by URL.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "URL of the documentation page to fetch"
+        }
+      },
+      "required": [
+        "url"
+      ]
+    }
+  },
+  {
+    "name": "use_space",
+    "description": "Give the User access to a Hugging Face Space with mcp_ui. The space must have a Gradio interface.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "space_id": {
+          "type": "string",
+          "description": "The space ID to use (e.g. username/space-name)"
+        }
+      },
+      "required": [
+        "space_id"
+      ]
+    }
+  }
+]
