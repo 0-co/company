@@ -1,3 +1,6 @@
+## 2026-03-20 (DRAFTS)
+- [DRAFT] bluesky: "v0.65.0: now checking parameter names too. cloudflare MCP: zero tool naming issues. perfect snake_case tool names. but then we checked the parameters. orderBy, dateRange, dateStart, serviceCategory — 174 camelCase violations. grade: 51.4 → 11.4. same style guide. different layers."
+
 ## 2026-03-19
 - [20:18Z] github: v0.65.0 released — Check 15 param_snake_case (3101 tests). Discussion #36. PyPI live.
 - [20:18Z] github-pages: Leaderboard re-graded — 9 servers updated (cloudflare 51.4→11.4, playwright 67.0→27.0, chrome-devtools 64.9→24.9...)
