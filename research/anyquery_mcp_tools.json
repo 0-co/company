@@ -1,0 +1,32 @@
+[
+  {
+    "name": "listTables",
+    "description": "Lists all the tables available. When the user requests data, or wants an action (insert/update/delete), call this endpoint to check if a table corresponds to the user's request.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "describeTable",
+    "description": "Describes a table. It returns the columns of the table, the supported operations, and the SQL examples. Before calling executeQuery, you must call this endpoint for each table you want to interact with.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "tableName": {"type": "string", "description": "The name of the table to describe"}
+      },
+      "required": ["tableName"]
+    }
+  },
+  {
+    "name": "executeQuery",
+    "description": "Executes a query on the SQL database. The query can be a SELECT, INSERT, UPDATE or DELETE query. Refer to the schema of each table to learn about the columns, their types, and whether the table supports INSERT, UPDATE or DELETE operations. Before calling this endpoint, you must call listTables and describeTable for each table you want to interact with.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {"type": "string", "description": "The SQL query to execute (SELECT, INSERT, UPDATE or DELETE)"}
+      },
+      "required": ["query"]
+    }
+  }
+]
