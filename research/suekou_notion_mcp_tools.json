@@ -1,0 +1,559 @@
+[
+  {
+    "name": "notion_append_block_children",
+    "description": "Append new children blocks to a specified parent block in Notion. Requires insert content capabilities.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "block_id": {
+          "type": "string",
+          "description": "The ID of the parent block. It should be a 32-character string (excluding hyphens) formatted as 8-4-4-4-12 with hyphens (-)."
+        },
+        "children": {
+          "type": "array",
+          "description": "Array of block objects to append. Each block must follow the Notion block schema.",
+          "items": {
+            "type": "object"
+          }
+        },
+        "after": {
+          "type": "string",
+          "description": "The ID of the existing block to append after."
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "json",
+            "markdown"
+          ],
+          "description": "Specify the response format. 'json' returns the original data structure, 'markdown' returns a more readable format. Use 'markdown' when the user only needs to read the page, 'json' when they need to write or modify it.",
+          "default": "markdown"
+        }
+      },
+      "required": [
+        "block_id",
+        "children"
+      ]
+    }
+  },
+  {
+    "name": "notion_retrieve_block",
+    "description": "Retrieve a block from Notion",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "block_id": {
+          "type": "string",
+          "description": "The ID of the block to retrieve. It should be a 32-character string (excluding hyphens) formatted as 8-4-4-4-12 with hyphens (-)."
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "json",
+            "markdown"
+          ],
+          "description": "Specify the response format. 'json' returns the original data structure, 'markdown' returns a more readable format. Use 'markdown' when the user only needs to read the page, 'json' when they need to write or modify it.",
+          "default": "markdown"
+        }
+      },
+      "required": [
+        "block_id"
+      ]
+    }
+  },
+  {
+    "name": "notion_retrieve_block_children",
+    "description": "Retrieve the children of a block",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "block_id": {
+          "type": "string",
+          "description": "The ID of the block. It should be a 32-character string (excluding hyphens) formatted as 8-4-4-4-12 with hyphens (-)."
+        },
+        "start_cursor": {
+          "type": "string",
+          "description": "Pagination cursor for next page of results"
+        },
+        "page_size": {
+          "type": "number",
+          "description": "Number of results per page (max 100)"
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "json",
+            "markdown"
+          ],
+          "description": "Specify the response format. 'json' returns the original data structure, 'markdown' returns a more readable format. Use 'markdown' when the user only needs to read the page, 'json' when they need to write or modify it.",
+          "default": "markdown"
+        }
+      },
+      "required": [
+        "block_id"
+      ]
+    }
+  },
+  {
+    "name": "notion_delete_block",
+    "description": "Delete a block in Notion",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "block_id": {
+          "type": "string",
+          "description": "The ID of the block to delete. It should be a 32-character string (excluding hyphens) formatted as 8-4-4-4-12 with hyphens (-)."
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "json",
+            "markdown"
+          ],
+          "description": "Specify the response format. 'json' returns the original data structure, 'markdown' returns a more readable format. Use 'markdown' when the user only needs to read the page, 'json' when they need to write or modify it.",
+          "default": "markdown"
+        }
+      },
+      "required": [
+        "block_id"
+      ]
+    }
+  },
+  {
+    "name": "notion_update_block",
+    "description": "Update the content of a block in Notion based on its type. The update replaces the entire value for a given field.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "block_id": {
+          "type": "string",
+          "description": "The ID of the block to update. It should be a 32-character string (excluding hyphens) formatted as 8-4-4-4-12 with hyphens (-)."
+        },
+        "block": {
+          "type": "object",
+          "description": "The updated content for the block. Must match the block type schema."
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "json",
+            "markdown"
+          ],
+          "description": "Specify the response format. 'json' returns the original data structure, 'markdown' returns a more readable format. Use 'markdown' when the user only needs to read the page, 'json' when they need to write or modify it.",
+          "default": "markdown"
+        }
+      },
+      "required": [
+        "block_id",
+        "block"
+      ]
+    }
+  },
+  {
+    "name": "notion_retrieve_page",
+    "description": "Retrieve a page from Notion",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "page_id": {
+          "type": "string",
+          "description": "The ID of the page to retrieve. It should be a 32-character string (excluding hyphens) formatted as 8-4-4-4-12 with hyphens (-)."
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "json",
+            "markdown"
+          ],
+          "description": "Specify the response format. 'json' returns the original data structure, 'markdown' returns a more readable format. Use 'markdown' when the user only needs to read the page, 'json' when they need to write or modify it.",
+          "default": "markdown"
+        }
+      },
+      "required": [
+        "page_id"
+      ]
+    }
+  },
+  {
+    "name": "notion_update_page_properties",
+    "description": "Update properties of a page or an item in a Notion database",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "page_id": {
+          "type": "string",
+          "description": "The ID of the page or database item to update. It should be a 32-character string (excluding hyphens) formatted as 8-4-4-4-12 with hyphens (-)."
+        },
+        "properties": {
+          "type": "object",
+          "description": "Properties to update. These correspond to the columns or fields in the database."
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "json",
+            "markdown"
+          ],
+          "description": "Specify the response format. 'json' returns the original data structure, 'markdown' returns a more readable format. Use 'markdown' when the user only needs to read the page, 'json' when they need to write or modify it.",
+          "default": "markdown"
+        }
+      },
+      "required": [
+        "page_id",
+        "properties"
+      ]
+    }
+  },
+  {
+    "name": "notion_list_all_users",
+    "description": "List all users in the Notion workspace. Note: Requires Notion Enterprise plan and Organization API key.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "start_cursor": {
+          "type": "string",
+          "description": "Pagination start cursor"
+        },
+        "page_size": {
+          "type": "number",
+          "description": "Number of users to retrieve (max 100)"
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "json",
+            "markdown"
+          ],
+          "description": "Specify the response format. 'json' returns the original data structure, 'markdown' returns a more readable format. Use 'markdown' when the user only needs to read the page, 'json' when they need to write or modify it.",
+          "default": "markdown"
+        }
+      }
+    }
+  },
+  {
+    "name": "notion_retrieve_user",
+    "description": "Retrieve a specific user by user_id in Notion. Note: Requires Notion Enterprise plan and Organization API key.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "description": "The ID of the user to retrieve. It should be a 32-character string (excluding hyphens) formatted as 8-4-4-4-12 with hyphens (-)."
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "json",
+            "markdown"
+          ],
+          "description": "Specify the response format. 'json' returns the original data structure, 'markdown' returns a more readable format. Use 'markdown' when the user only needs to read the page, 'json' when they need to write or modify it.",
+          "default": "markdown"
+        }
+      },
+      "required": [
+        "user_id"
+      ]
+    }
+  },
+  {
+    "name": "notion_retrieve_bot_user",
+    "description": "Retrieve the bot user associated with the current token in Notion",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "format": {
+          "type": "string",
+          "enum": [
+            "json",
+            "markdown"
+          ],
+          "description": "Specify the response format. 'json' returns the original data structure, 'markdown' returns a more readable format. Use 'markdown' when the user only needs to read the page, 'json' when they need to write or modify it.",
+          "default": "markdown"
+        }
+      }
+    }
+  },
+  {
+    "name": "notion_create_database",
+    "description": "Create a database in Notion",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "parent_page_id": {
+          "type": "string",
+          "description": "The ID of the parent page. It should be a 32-character string (excluding hyphens) formatted as 8-4-4-4-12 with hyphens (-)."
+        },
+        "title": {
+          "type": "array",
+          "description": "Title of the database as rich text array.",
+          "items": {
+            "type": "object"
+          }
+        },
+        "properties": {
+          "type": "object",
+          "description": "Property schema for the database columns."
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "json",
+            "markdown"
+          ],
+          "description": "Specify the response format. 'json' returns the original data structure, 'markdown' returns a more readable format. Use 'markdown' when the user only needs to read the page, 'json' when they need to write or modify it.",
+          "default": "markdown"
+        }
+      },
+      "required": [
+        "parent_page_id",
+        "properties"
+      ]
+    }
+  },
+  {
+    "name": "notion_query_database",
+    "description": "Query a database in Notion",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "database_id": {
+          "type": "string",
+          "description": "The ID of the database to query. It should be a 32-character string (excluding hyphens) formatted as 8-4-4-4-12 with hyphens (-)."
+        },
+        "filter": {
+          "type": "object",
+          "description": "Filter conditions for the query."
+        },
+        "sorts": {
+          "type": "array",
+          "description": "Sort conditions for the query.",
+          "items": {
+            "type": "object"
+          }
+        },
+        "start_cursor": {
+          "type": "string",
+          "description": "Pagination cursor"
+        },
+        "page_size": {
+          "type": "number",
+          "description": "Number of results per page (max 100)"
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "json",
+            "markdown"
+          ],
+          "description": "Specify the response format. 'json' returns the original data structure, 'markdown' returns a more readable format. Use 'markdown' when the user only needs to read the page, 'json' when they need to write or modify it.",
+          "default": "markdown"
+        }
+      },
+      "required": [
+        "database_id"
+      ]
+    }
+  },
+  {
+    "name": "notion_retrieve_database",
+    "description": "Retrieve a database in Notion",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "database_id": {
+          "type": "string",
+          "description": "The ID of the database to retrieve. It should be a 32-character string (excluding hyphens) formatted as 8-4-4-4-12 with hyphens (-)."
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "json",
+            "markdown"
+          ],
+          "description": "Specify the response format. 'json' returns the original data structure, 'markdown' returns a more readable format. Use 'markdown' when the user only needs to read the page, 'json' when they need to write or modify it.",
+          "default": "markdown"
+        }
+      },
+      "required": [
+        "database_id"
+      ]
+    }
+  },
+  {
+    "name": "notion_update_database",
+    "description": "Update a database in Notion",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "database_id": {
+          "type": "string",
+          "description": "The ID of the database to update. It should be a 32-character string (excluding hyphens) formatted as 8-4-4-4-12 with hyphens (-)."
+        },
+        "title": {
+          "type": "array",
+          "description": "New title as rich text array.",
+          "items": {
+            "type": "object"
+          }
+        },
+        "properties": {
+          "type": "object",
+          "description": "Updated property schema."
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "json",
+            "markdown"
+          ],
+          "description": "Specify the response format. 'json' returns the original data structure, 'markdown' returns a more readable format. Use 'markdown' when the user only needs to read the page, 'json' when they need to write or modify it.",
+          "default": "markdown"
+        }
+      },
+      "required": [
+        "database_id"
+      ]
+    }
+  },
+  {
+    "name": "notion_create_database_item",
+    "description": "Create a new item (page) in a Notion database",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "database_id": {
+          "type": "string",
+          "description": "The ID of the database. It should be a 32-character string (excluding hyphens) formatted as 8-4-4-4-12 with hyphens (-)."
+        },
+        "properties": {
+          "type": "object",
+          "description": "Properties for the new item matching the database schema."
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "json",
+            "markdown"
+          ],
+          "description": "Specify the response format. 'json' returns the original data structure, 'markdown' returns a more readable format. Use 'markdown' when the user only needs to read the page, 'json' when they need to write or modify it.",
+          "default": "markdown"
+        }
+      },
+      "required": [
+        "database_id",
+        "properties"
+      ]
+    }
+  },
+  {
+    "name": "notion_create_comment",
+    "description": "Create a comment in Notion. This requires the integration to have insert comment capabilities.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "parent_id": {
+          "type": "string",
+          "description": "The ID of the page or block to add the comment to. It should be a 32-character string (excluding hyphens) formatted as 8-4-4-4-12 with hyphens (-)."
+        },
+        "discussion_id": {
+          "type": "string",
+          "description": "ID of an existing discussion thread to add to."
+        },
+        "rich_text": {
+          "type": "array",
+          "description": "Comment content as rich text array.",
+          "items": {
+            "type": "object"
+          }
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "json",
+            "markdown"
+          ],
+          "description": "Specify the response format. 'json' returns the original data structure, 'markdown' returns a more readable format. Use 'markdown' when the user only needs to read the page, 'json' when they need to write or modify it.",
+          "default": "markdown"
+        }
+      },
+      "required": [
+        "rich_text"
+      ]
+    }
+  },
+  {
+    "name": "notion_retrieve_comments",
+    "description": "Retrieve a list of unresolved comments from a Notion page or block. Requires the integration to have read comment capabilities.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "block_id": {
+          "type": "string",
+          "description": "The ID of the page or block. It should be a 32-character string (excluding hyphens) formatted as 8-4-4-4-12 with hyphens (-)."
+        },
+        "start_cursor": {
+          "type": "string",
+          "description": "Pagination cursor"
+        },
+        "page_size": {
+          "type": "number",
+          "description": "Number of results per page (max 100)"
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "json",
+            "markdown"
+          ],
+          "description": "Specify the response format. 'json' returns the original data structure, 'markdown' returns a more readable format. Use 'markdown' when the user only needs to read the page, 'json' when they need to write or modify it.",
+          "default": "markdown"
+        }
+      },
+      "required": [
+        "block_id"
+      ]
+    }
+  },
+  {
+    "name": "notion_search",
+    "description": "Search pages or databases by title in Notion",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Text to search for in page and database titles."
+        },
+        "filter_value": {
+          "type": "string",
+          "description": "Filter by type: page or database.",
+          "enum": [
+            "page",
+            "database"
+          ]
+        },
+        "sort_direction": {
+          "type": "string",
+          "description": "Sort direction: ascending or descending."
+        },
+        "start_cursor": {
+          "type": "string",
+          "description": "Pagination cursor"
+        },
+        "page_size": {
+          "type": "number",
+          "description": "Number of results per page (max 100)"
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "json",
+            "markdown"
+          ],
+          "description": "Specify the response format. 'json' returns the original data structure, 'markdown' returns a more readable format. Use 'markdown' when the user only needs to read the page, 'json' when they need to write or modify it.",
+          "default": "markdown"
+        }
+      }
+    }
+  }
+]
