@@ -1,0 +1,735 @@
+[
+  {
+    "name": "list_users",
+    "description": "List all the users from the Okta organization with pagination support. If search, filter, or q is specified, it will list only those users that satisfy the condition. Use after and limit for pagination. Use fetch_all=True to automatically fetch all pages of results. By default, it will only fetch users whose status is not DEPROVISIONED.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "search": {
+          "type": "string",
+          "description": "The value of the search string when searching for some specific set of users.",
+          "default": ""
+        },
+        "filter": {
+          "type": "string",
+          "description": "A filter string to filter users by Okta profile attributes."
+        },
+        "q": {
+          "type": "string",
+          "description": "A query string to search users by Okta profile attributes."
+        },
+        "fetch_all": {
+          "type": "boolean",
+          "description": "If True, automatically fetch all pages of results.",
+          "default": false
+        },
+        "after": {
+          "type": "string",
+          "description": "Pagination cursor for fetching results after this point."
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Maximum number of users to return per page (min 20, max 100)."
+        }
+      }
+    }
+  },
+  {
+    "name": "get_user_profile_attributes",
+    "description": "List all user profile attributes supported by your Okta org. This is helpful in case you need to check if the user profile attribute is valid.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "get_user",
+    "description": "Get a user by ID from the Okta organization.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "description": "The ID of the user to retrieve."
+        }
+      },
+      "required": ["user_id"]
+    }
+  },
+  {
+    "name": "create_user",
+    "description": "Create a user in the Okta organization with the provided profile.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "profile": {
+          "type": "object",
+          "description": "The profile of the user to create."
+        }
+      },
+      "required": ["profile"]
+    }
+  },
+  {
+    "name": "update_user",
+    "description": "Update a user in the Okta organization with the provided profile.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "description": "The ID of the user to update."
+        },
+        "profile": {
+          "type": "object",
+          "description": "The updated profile of the user."
+        }
+      },
+      "required": ["user_id", "profile"]
+    }
+  },
+  {
+    "name": "deactivate_user",
+    "description": "Deactivates a user from the Okta organization. The user will be asked for confirmation before the deactivation proceeds. Deactivating the user is a prerequisite for deleting the user.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "description": "The ID of the user to deactivate."
+        }
+      },
+      "required": ["user_id"]
+    }
+  },
+  {
+    "name": "delete_deactivated_user",
+    "description": "Delete a user from the Okta organization who has already been deactivated or deprovisioned. The user will be asked for confirmation before the deletion proceeds.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "description": "The ID of the deactivated or deprovisioned user to delete."
+        }
+      },
+      "required": ["user_id"]
+    }
+  },
+  {
+    "name": "list_groups",
+    "description": "List all the groups from the Okta organization with pagination support. If search, filter, or q is specified, it will list only those groups that satisfy the condition.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "search": {
+          "type": "string",
+          "description": "The value of the search string when searching for some specific set of groups.",
+          "default": ""
+        },
+        "filter": {
+          "type": "string",
+          "description": "A filter string to filter groups by Okta profile attributes."
+        },
+        "q": {
+          "type": "string",
+          "description": "A query string to search groups by Okta profile attributes."
+        },
+        "fetch_all": {
+          "type": "boolean",
+          "description": "If True, automatically fetch all pages of results.",
+          "default": false
+        },
+        "after": {
+          "type": "string",
+          "description": "Pagination cursor for fetching results after this point."
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Maximum number of groups to return per page (min 20, max 100)."
+        }
+      }
+    }
+  },
+  {
+    "name": "get_group",
+    "description": "Get a group by ID from the Okta organization.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "group_id": {
+          "type": "string",
+          "description": "The ID of the group to retrieve."
+        }
+      },
+      "required": ["group_id"]
+    }
+  },
+  {
+    "name": "create_group",
+    "description": "Create a new group in the Okta organization.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the group to create."
+        },
+        "description": {
+          "type": "string",
+          "description": "The description of the group."
+        }
+      },
+      "required": ["name"]
+    }
+  },
+  {
+    "name": "delete_group",
+    "description": "Delete a group from the Okta organization. The user will be asked for confirmation before the deletion proceeds.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "group_id": {
+          "type": "string",
+          "description": "The ID of the group to delete."
+        }
+      },
+      "required": ["group_id"]
+    }
+  },
+  {
+    "name": "confirm_delete_group",
+    "description": "Confirm and execute group deletion after receiving confirmation. This tool MUST ONLY be called after the human user has explicitly typed DELETE as confirmation.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "group_id": {
+          "type": "string",
+          "description": "The ID of the group to delete."
+        },
+        "confirmation": {
+          "type": "string",
+          "description": "Must be 'DELETE' to confirm deletion."
+        }
+      },
+      "required": ["group_id", "confirmation"]
+    }
+  },
+  {
+    "name": "update_group",
+    "description": "Update a group in the Okta organization.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "group_id": {
+          "type": "string",
+          "description": "The ID of the group to update."
+        },
+        "name": {
+          "type": "string",
+          "description": "The updated name of the group."
+        },
+        "description": {
+          "type": "string",
+          "description": "The updated description of the group."
+        }
+      },
+      "required": ["group_id"]
+    }
+  },
+  {
+    "name": "list_group_users",
+    "description": "List all users in a group from the Okta organization.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "group_id": {
+          "type": "string",
+          "description": "The ID of the group to list users for."
+        }
+      },
+      "required": ["group_id"]
+    }
+  },
+  {
+    "name": "list_group_apps",
+    "description": "List all applications assigned to a group in the Okta organization.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "group_id": {
+          "type": "string",
+          "description": "The ID of the group to list apps for."
+        }
+      },
+      "required": ["group_id"]
+    }
+  },
+  {
+    "name": "add_user_to_group",
+    "description": "Add a user to a group in the Okta organization.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "group_id": {
+          "type": "string",
+          "description": "The ID of the group."
+        },
+        "user_id": {
+          "type": "string",
+          "description": "The ID of the user to add."
+        }
+      },
+      "required": ["group_id", "user_id"]
+    }
+  },
+  {
+    "name": "remove_user_from_group",
+    "description": "Remove a user from a group in the Okta organization.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "group_id": {
+          "type": "string",
+          "description": "The ID of the group."
+        },
+        "user_id": {
+          "type": "string",
+          "description": "The ID of the user to remove."
+        }
+      },
+      "required": ["group_id", "user_id"]
+    }
+  },
+  {
+    "name": "list_applications",
+    "description": "List all applications from the Okta organization.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "q": {
+          "type": "string",
+          "description": "Searches for applications by label, property, or link."
+        },
+        "after": {
+          "type": "string",
+          "description": "Specifies the pagination cursor for the next page of results."
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Specifies the number of results per page (min 20, max 100)."
+        },
+        "filter": {
+          "type": "string",
+          "description": "Filters applications by status, user.id, group.id, or credentials.signing.kid."
+        },
+        "expand": {
+          "type": "string",
+          "description": "Expands the app user object to include the user's profile or expand the app group object to include the group's profile."
+        },
+        "include_non_deleted": {
+          "type": "boolean",
+          "description": "Include non-deleted applications in the results."
+        }
+      }
+    }
+  },
+  {
+    "name": "get_application",
+    "description": "Get an application by ID from the Okta organization.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "app_id": {
+          "type": "string",
+          "description": "The ID of the application to retrieve."
+        },
+        "expand": {
+          "type": "string",
+          "description": "Expands the app user object to include the user's profile or expand the app group object."
+        }
+      },
+      "required": ["app_id"]
+    }
+  },
+  {
+    "name": "create_application",
+    "description": "Create a new application in the Okta organization.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "app_config": {
+          "type": "object",
+          "description": "The application configuration including name, label, signOnMode, settings, etc."
+        },
+        "activate": {
+          "type": "boolean",
+          "description": "Execute activation lifecycle operation after creation.",
+          "default": true
+        }
+      },
+      "required": ["app_config"]
+    }
+  },
+  {
+    "name": "update_application",
+    "description": "Update an application by ID in the Okta organization.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "app_id": {
+          "type": "string",
+          "description": "The ID of the application to update."
+        },
+        "app_config": {
+          "type": "object",
+          "description": "The updated application configuration."
+        }
+      },
+      "required": ["app_id", "app_config"]
+    }
+  },
+  {
+    "name": "delete_application",
+    "description": "Delete an application by ID from the Okta organization. The user will be asked for confirmation before the deletion proceeds.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "app_id": {
+          "type": "string",
+          "description": "The ID of the application to delete."
+        }
+      },
+      "required": ["app_id"]
+    }
+  },
+  {
+    "name": "confirm_delete_application",
+    "description": "Confirm and execute application deletion after receiving confirmation. This function MUST ONLY be called after the human user has explicitly typed DELETE as confirmation. NEVER call this function automatically after delete_application.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "app_id": {
+          "type": "string",
+          "description": "The ID of the application to delete."
+        },
+        "confirmation": {
+          "type": "string",
+          "description": "Must be 'DELETE' to confirm deletion."
+        }
+      },
+      "required": ["app_id", "confirmation"]
+    }
+  },
+  {
+    "name": "activate_application",
+    "description": "Activate an application in the Okta organization.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "app_id": {
+          "type": "string",
+          "description": "The ID of the application to activate."
+        }
+      },
+      "required": ["app_id"]
+    }
+  },
+  {
+    "name": "deactivate_application",
+    "description": "Deactivate an application in the Okta organization.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "app_id": {
+          "type": "string",
+          "description": "The ID of the application to deactivate."
+        }
+      },
+      "required": ["app_id"]
+    }
+  },
+  {
+    "name": "list_policies",
+    "description": "List all the policies from the Okta organization. Available policy types: OKTA_SIGN_ON, PASSWORD, MFA_ENROLL, IDP_DISCOVERY, ACCESS_POLICY, PROFILE_ENROLLMENT, POST_AUTH_SESSION, ENTITY_RISK.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Specifies the type of policy to return. Available: OKTA_SIGN_ON, PASSWORD, MFA_ENROLL, IDP_DISCOVERY, ACCESS_POLICY, PROFILE_ENROLLMENT, POST_AUTH_SESSION, ENTITY_RISK."
+        },
+        "status": {
+          "type": "string",
+          "description": "Refines the query by the status of the policy - ACTIVE or INACTIVE."
+        },
+        "q": {
+          "type": "string",
+          "description": "A query string to search policies by name."
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Number of results to return (min 20, max 100).",
+          "default": 20
+        },
+        "after": {
+          "type": "string",
+          "description": "Specifies the pagination cursor for the next page of policies."
+        }
+      },
+      "required": ["type"]
+    }
+  },
+  {
+    "name": "get_policy",
+    "description": "Retrieve a specific policy by ID from the Okta organization.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "policy_id": {
+          "type": "string",
+          "description": "The ID of the policy to retrieve."
+        }
+      },
+      "required": ["policy_id"]
+    }
+  },
+  {
+    "name": "create_policy",
+    "description": "Create a new policy in the Okta organization.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "policy_data": {
+          "type": "object",
+          "description": "The policy configuration data."
+        }
+      },
+      "required": ["policy_data"]
+    }
+  },
+  {
+    "name": "update_policy",
+    "description": "Update a policy in the Okta organization.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "policy_id": {
+          "type": "string",
+          "description": "The ID of the policy to update."
+        },
+        "policy_data": {
+          "type": "object",
+          "description": "The updated policy configuration data."
+        }
+      },
+      "required": ["policy_id", "policy_data"]
+    }
+  },
+  {
+    "name": "delete_policy",
+    "description": "Delete a policy from the Okta organization.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "policy_id": {
+          "type": "string",
+          "description": "The ID of the policy to delete."
+        }
+      },
+      "required": ["policy_id"]
+    }
+  },
+  {
+    "name": "activate_policy",
+    "description": "Activate a policy in the Okta organization.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "policy_id": {
+          "type": "string",
+          "description": "The ID of the policy to activate."
+        }
+      },
+      "required": ["policy_id"]
+    }
+  },
+  {
+    "name": "deactivate_policy",
+    "description": "Deactivate a policy in the Okta organization.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "policy_id": {
+          "type": "string",
+          "description": "The ID of the policy to deactivate."
+        }
+      },
+      "required": ["policy_id"]
+    }
+  },
+  {
+    "name": "list_policy_rules",
+    "description": "List all rules for a specific policy in the Okta organization.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "policy_id": {
+          "type": "string",
+          "description": "The ID of the policy to list rules for."
+        }
+      },
+      "required": ["policy_id"]
+    }
+  },
+  {
+    "name": "get_policy_rule",
+    "description": "Get a specific rule from a policy in the Okta organization.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "policy_id": {
+          "type": "string",
+          "description": "The ID of the policy."
+        },
+        "rule_id": {
+          "type": "string",
+          "description": "The ID of the rule to retrieve."
+        }
+      },
+      "required": ["policy_id", "rule_id"]
+    }
+  },
+  {
+    "name": "create_policy_rule",
+    "description": "Create a new rule for a policy in the Okta organization.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "policy_id": {
+          "type": "string",
+          "description": "The ID of the policy to create the rule in."
+        },
+        "rule_data": {
+          "type": "object",
+          "description": "The rule configuration data."
+        }
+      },
+      "required": ["policy_id", "rule_data"]
+    }
+  },
+  {
+    "name": "update_policy_rule",
+    "description": "Update a rule in a policy in the Okta organization.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "policy_id": {
+          "type": "string",
+          "description": "The ID of the policy."
+        },
+        "rule_id": {
+          "type": "string",
+          "description": "The ID of the rule to update."
+        },
+        "rule_data": {
+          "type": "object",
+          "description": "The updated rule configuration data."
+        }
+      },
+      "required": ["policy_id", "rule_id", "rule_data"]
+    }
+  },
+  {
+    "name": "delete_policy_rule",
+    "description": "Delete a rule from a policy in the Okta organization.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "policy_id": {
+          "type": "string",
+          "description": "The ID of the policy."
+        },
+        "rule_id": {
+          "type": "string",
+          "description": "The ID of the rule to delete."
+        }
+      },
+      "required": ["policy_id", "rule_id"]
+    }
+  },
+  {
+    "name": "activate_policy_rule",
+    "description": "Activate a rule in a policy in the Okta organization.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "policy_id": {
+          "type": "string",
+          "description": "The ID of the policy."
+        },
+        "rule_id": {
+          "type": "string",
+          "description": "The ID of the rule to activate."
+        }
+      },
+      "required": ["policy_id", "rule_id"]
+    }
+  },
+  {
+    "name": "deactivate_policy_rule",
+    "description": "Deactivate a rule in a policy in the Okta organization.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "policy_id": {
+          "type": "string",
+          "description": "The ID of the policy."
+        },
+        "rule_id": {
+          "type": "string",
+          "description": "The ID of the rule to deactivate."
+        }
+      },
+      "required": ["policy_id", "rule_id"]
+    }
+  },
+  {
+    "name": "get_logs",
+    "description": "Retrieve system logs from the Okta organization with pagination support.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "fetch_all": {
+          "type": "boolean",
+          "description": "If True, automatically fetch all pages of results.",
+          "default": false
+        },
+        "after": {
+          "type": "string",
+          "description": "Pagination cursor for fetching results after this point."
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Maximum number of log entries to return per page (min 20, max 100)."
+        },
+        "since": {
+          "type": "string",
+          "description": "Filter logs since this timestamp (ISO 8601 format)."
+        },
+        "until": {
+          "type": "string",
+          "description": "Filter logs until this timestamp (ISO 8601 format)."
+        },
+        "filter": {
+          "type": "string",
+          "description": "Filter expression for log events."
+        },
+        "q": {
+          "type": "string",
+          "description": "Query string to search log events."
+        }
+      }
+    }
+  }
+]

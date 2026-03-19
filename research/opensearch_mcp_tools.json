@@ -1,0 +1,668 @@
+[
+  {
+    "name": "ListIndexTool",
+    "description": "Lists indices in the OpenSearch cluster. If an index name or pattern is specified, return only information about the provided index or index pattern. The include_detail flag controls output: if False, returns only index name(s); if True (default), returns full metadata.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "opensearch_cluster_name": {
+          "type": "string",
+          "description": "The name of the OpenSearch cluster"
+        },
+        "index": {
+          "type": "string",
+          "description": "The name of the index or index pattern to get information for.",
+          "default": ""
+        },
+        "include_detail": {
+          "type": "boolean",
+          "description": "Whether to include detailed information. If False, returns only index name(s). If True, returns full metadata.",
+          "default": true
+        }
+      },
+      "required": ["opensearch_cluster_name"]
+    }
+  },
+  {
+    "name": "IndexMappingTool",
+    "description": "Get the mapping information for an OpenSearch index.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "opensearch_cluster_name": {
+          "type": "string",
+          "description": "The name of the OpenSearch cluster"
+        },
+        "index": {
+          "type": "string",
+          "description": "The name of the index to get mapping information for"
+        }
+      },
+      "required": ["opensearch_cluster_name", "index"]
+    }
+  },
+  {
+    "name": "SearchIndexTool",
+    "description": "Search an OpenSearch index using query DSL. For keyword-type fields use field name DIRECTLY. For date/time range queries MUST include format parameter.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "opensearch_cluster_name": {
+          "type": "string",
+          "description": "The name of the OpenSearch cluster"
+        },
+        "index": {
+          "type": "string",
+          "description": "The name of the index to search in"
+        },
+        "query_dsl": {
+          "description": "The search query in OpenSearch query DSL format."
+        },
+        "format": {
+          "type": "string",
+          "description": "Output format: json or csv",
+          "default": "json"
+        },
+        "size": {
+          "type": "integer",
+          "description": "Number of search results to return. Maximum allowed value is 100.",
+          "default": 10
+        }
+      },
+      "required": ["opensearch_cluster_name", "index", "query_dsl"]
+    }
+  },
+  {
+    "name": "GetShardsTool",
+    "description": "Get shard information for an OpenSearch index.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "opensearch_cluster_name": {
+          "type": "string",
+          "description": "The name of the OpenSearch cluster"
+        },
+        "index": {
+          "type": "string",
+          "description": "The name of the index to get shard information for"
+        }
+      },
+      "required": ["opensearch_cluster_name", "index"]
+    }
+  },
+  {
+    "name": "GetClusterStateTool",
+    "description": "Get the cluster state of an OpenSearch cluster.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "opensearch_cluster_name": {
+          "type": "string",
+          "description": "The name of the OpenSearch cluster"
+        },
+        "metric": {
+          "type": "string",
+          "description": "Limit the information returned to the specified metrics. Options: _all, blocks, metadata, nodes, routing_table, routing_nodes, master_node, version"
+        },
+        "index": {
+          "type": "string",
+          "description": "Limit the information returned to the specified indices"
+        }
+      },
+      "required": ["opensearch_cluster_name"]
+    }
+  },
+  {
+    "name": "GetSegmentsTool",
+    "description": "Get segment information for OpenSearch indices.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "opensearch_cluster_name": {
+          "type": "string",
+          "description": "The name of the OpenSearch cluster"
+        },
+        "index": {
+          "type": "string",
+          "description": "Limit the information returned to the specified indices. If not provided, returns segments for all indices."
+        }
+      },
+      "required": ["opensearch_cluster_name"]
+    }
+  },
+  {
+    "name": "CatNodesTool",
+    "description": "Get node information for an OpenSearch cluster in cat format.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "opensearch_cluster_name": {
+          "type": "string",
+          "description": "The name of the OpenSearch cluster"
+        },
+        "metrics": {
+          "type": "string",
+          "description": "A comma-separated list of metrics to display. Available: id, name, ip, port, role, master, heap.percent, ram.percent, cpu, load_1m, load_5m, load_15m, disk.total, disk.used, disk.avail, disk.used_percent"
+        }
+      },
+      "required": ["opensearch_cluster_name"]
+    }
+  },
+  {
+    "name": "GetIndexInfoTool",
+    "description": "Get detailed information for an OpenSearch index. Wildcards are supported.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "opensearch_cluster_name": {
+          "type": "string",
+          "description": "The name of the OpenSearch cluster"
+        },
+        "index": {
+          "type": "string",
+          "description": "The name of the index to get detailed information for. Wildcards are supported."
+        }
+      },
+      "required": ["opensearch_cluster_name", "index"]
+    }
+  },
+  {
+    "name": "GetIndexStatsTool",
+    "description": "Get statistics for an OpenSearch index. Wildcards are supported.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "opensearch_cluster_name": {
+          "type": "string",
+          "description": "The name of the OpenSearch cluster"
+        },
+        "index": {
+          "type": "string",
+          "description": "The name of the index to get statistics for. Wildcards are supported."
+        },
+        "metric": {
+          "type": "string",
+          "description": "Limit the information returned to the specified metrics. Options: _all, completion, docs, fielddata, flush, get, indexing, merge, query_cache, refresh, request_cache, search, segments, store, warmer, bulk"
+        }
+      },
+      "required": ["opensearch_cluster_name", "index"]
+    }
+  },
+  {
+    "name": "GetQueryInsightsTool",
+    "description": "Get query insights (top queries) from an OpenSearch cluster.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "opensearch_cluster_name": {
+          "type": "string",
+          "description": "The name of the OpenSearch cluster"
+        }
+      },
+      "required": ["opensearch_cluster_name"]
+    }
+  },
+  {
+    "name": "GetNodesHotThreadsTool",
+    "description": "Get hot threads information from OpenSearch nodes.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "opensearch_cluster_name": {
+          "type": "string",
+          "description": "The name of the OpenSearch cluster"
+        }
+      },
+      "required": ["opensearch_cluster_name"]
+    }
+  },
+  {
+    "name": "GetAllocationTool",
+    "description": "Get allocation information for an OpenSearch cluster.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "opensearch_cluster_name": {
+          "type": "string",
+          "description": "The name of the OpenSearch cluster"
+        }
+      },
+      "required": ["opensearch_cluster_name"]
+    }
+  },
+  {
+    "name": "GetLongRunningTasksTool",
+    "description": "Get information about long-running tasks in an OpenSearch cluster.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "opensearch_cluster_name": {
+          "type": "string",
+          "description": "The name of the OpenSearch cluster"
+        },
+        "limit": {
+          "type": "integer",
+          "description": "The maximum number of tasks to return.",
+          "default": 10
+        }
+      },
+      "required": ["opensearch_cluster_name"]
+    }
+  },
+  {
+    "name": "GetNodesTool",
+    "description": "Get node information from an OpenSearch cluster.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "opensearch_cluster_name": {
+          "type": "string",
+          "description": "The name of the OpenSearch cluster"
+        },
+        "node_id": {
+          "type": "string",
+          "description": "A comma-separated list of node IDs or names. Supports filters like _local, _master, master:true, data:false. Defaults to _all."
+        },
+        "metric": {
+          "type": "string",
+          "description": "A comma-separated list of metric groups. Options: settings, os, process, jvm, thread_pool, transport, http, plugins, ingest, aggregations, indices. Defaults to all metrics."
+        }
+      },
+      "required": ["opensearch_cluster_name"]
+    }
+  },
+  {
+    "name": "CreateSearchConfigurationTool",
+    "description": "Create a search configuration in OpenSearch for use in experiments.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "opensearch_cluster_name": {
+          "type": "string",
+          "description": "The name of the OpenSearch cluster"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the search configuration"
+        },
+        "index": {
+          "type": "string",
+          "description": "The index to search"
+        },
+        "query": {
+          "type": "string",
+          "description": "The search query in OpenSearch DSL format as a JSON string. Use %SearchText% as a placeholder for the search term."
+        }
+      },
+      "required": ["opensearch_cluster_name", "name", "index", "query"]
+    }
+  },
+  {
+    "name": "GetSearchConfigurationTool",
+    "description": "Get a search configuration by ID from OpenSearch.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "opensearch_cluster_name": {
+          "type": "string",
+          "description": "The name of the OpenSearch cluster"
+        },
+        "search_configuration_id": {
+          "type": "string",
+          "description": "ID of the search configuration to retrieve"
+        }
+      },
+      "required": ["opensearch_cluster_name", "search_configuration_id"]
+    }
+  },
+  {
+    "name": "DeleteSearchConfigurationTool",
+    "description": "Delete a search configuration from OpenSearch.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "opensearch_cluster_name": {
+          "type": "string",
+          "description": "The name of the OpenSearch cluster"
+        },
+        "search_configuration_id": {
+          "type": "string",
+          "description": "ID of the search configuration to delete"
+        }
+      },
+      "required": ["opensearch_cluster_name", "search_configuration_id"]
+    }
+  },
+  {
+    "name": "GetQuerySetTool",
+    "description": "Get a query set by ID from OpenSearch.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "opensearch_cluster_name": {
+          "type": "string",
+          "description": "The name of the OpenSearch cluster"
+        },
+        "query_set_id": {
+          "type": "string",
+          "description": "ID of the query set to retrieve"
+        }
+      },
+      "required": ["opensearch_cluster_name", "query_set_id"]
+    }
+  },
+  {
+    "name": "CreateQuerySetTool",
+    "description": "Create a query set in OpenSearch for use in search quality experiments.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "opensearch_cluster_name": {
+          "type": "string",
+          "description": "The name of the OpenSearch cluster"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the query set"
+        },
+        "queries": {
+          "type": "string",
+          "description": "JSON array of queries, e.g. [\"query1\", \"query2\"] or [{\"queryText\": \"query1\"}]"
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional description of the query set",
+          "default": ""
+        }
+      },
+      "required": ["opensearch_cluster_name", "name", "queries"]
+    }
+  },
+  {
+    "name": "SampleQuerySetTool",
+    "description": "Sample queries from an OpenSearch index to create a query set.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "opensearch_cluster_name": {
+          "type": "string",
+          "description": "The name of the OpenSearch cluster"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the query set"
+        },
+        "query_set_size": {
+          "type": "integer",
+          "description": "Number of top queries to sample",
+          "default": 20
+        },
+        "sampling": {
+          "type": "string",
+          "enum": ["topn", "random", "pptss", "all"],
+          "description": "Sampling method: topn (most frequent), random, pptss (probability-proportional-to-size), all",
+          "default": "topn"
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional description of the query set",
+          "default": ""
+        }
+      },
+      "required": ["opensearch_cluster_name", "name"]
+    }
+  },
+  {
+    "name": "DeleteQuerySetTool",
+    "description": "Delete a query set from OpenSearch.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "opensearch_cluster_name": {
+          "type": "string",
+          "description": "The name of the OpenSearch cluster"
+        },
+        "query_set_id": {
+          "type": "string",
+          "description": "ID of the query set to delete"
+        }
+      },
+      "required": ["opensearch_cluster_name", "query_set_id"]
+    }
+  },
+  {
+    "name": "GetJudgmentListTool",
+    "description": "Get a judgment list by ID from OpenSearch.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "opensearch_cluster_name": {
+          "type": "string",
+          "description": "The name of the OpenSearch cluster"
+        },
+        "judgment_id": {
+          "type": "string",
+          "description": "ID of the judgment list to retrieve"
+        }
+      },
+      "required": ["opensearch_cluster_name", "judgment_id"]
+    }
+  },
+  {
+    "name": "CreateJudgmentListTool",
+    "description": "Create a judgment list in OpenSearch for relevance evaluation.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "opensearch_cluster_name": {
+          "type": "string",
+          "description": "The name of the OpenSearch cluster"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the judgment list"
+        },
+        "judgment_ratings": {
+          "type": "string",
+          "description": "JSON array of query-ratings objects. Each object must have 'query' (string) and 'ratings' (array of {\"docId\": string, \"rating\": number})."
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional description of the judgment list",
+          "default": ""
+        }
+      },
+      "required": ["opensearch_cluster_name", "name", "judgment_ratings"]
+    }
+  },
+  {
+    "name": "CreateUBIJudgmentListTool",
+    "description": "Create a judgment list derived from UBI (User Behavior Insights) click data in OpenSearch.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "opensearch_cluster_name": {
+          "type": "string",
+          "description": "The name of the OpenSearch cluster"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the judgment list"
+        },
+        "click_model": {
+          "type": "string",
+          "description": "Click model used to derive relevance from UBI click data. Common value: 'coec' (Clicks Over Expected Clicks)"
+        },
+        "max_rank": {
+          "type": "integer",
+          "description": "Maximum rank position to consider when computing click signals",
+          "default": 20
+        },
+        "start_date": {
+          "type": "string",
+          "description": "Start date for UBI event filtering in ISO format (YYYY-MM-DD)"
+        },
+        "end_date": {
+          "type": "string",
+          "description": "End date for UBI event filtering in ISO format (YYYY-MM-DD)"
+        }
+      },
+      "required": ["opensearch_cluster_name", "name", "click_model"]
+    }
+  },
+  {
+    "name": "DeleteJudgmentListTool",
+    "description": "Delete a judgment list from OpenSearch.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "opensearch_cluster_name": {
+          "type": "string",
+          "description": "The name of the OpenSearch cluster"
+        },
+        "judgment_id": {
+          "type": "string",
+          "description": "ID of the judgment list to delete"
+        }
+      },
+      "required": ["opensearch_cluster_name", "judgment_id"]
+    }
+  },
+  {
+    "name": "CreateLLMJudgmentListTool",
+    "description": "Create a judgment list using LLM-generated relevance ratings in OpenSearch.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "opensearch_cluster_name": {
+          "type": "string",
+          "description": "The name of the OpenSearch cluster"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the judgment list"
+        },
+        "query_set_id": {
+          "type": "string",
+          "description": "ID of the query set to use for generating judgments"
+        },
+        "search_configuration_id": {
+          "type": "string",
+          "description": "ID of the search configuration that defines how documents are retrieved"
+        },
+        "model_id": {
+          "type": "string",
+          "description": "ID of the ML Commons model connector used to generate LLM relevance ratings"
+        },
+        "size": {
+          "type": "integer",
+          "description": "Number of top documents to retrieve per query for rating",
+          "default": 5
+        },
+        "context_fields": {
+          "type": "string",
+          "description": "JSON array of document field names to include as context for the LLM, e.g. [\"title\", \"description\"]. Defaults to all fields.",
+          "default": "[]"
+        }
+      },
+      "required": ["opensearch_cluster_name", "name", "query_set_id", "search_configuration_id", "model_id"]
+    }
+  },
+  {
+    "name": "GetExperimentTool",
+    "description": "Get an experiment by ID from OpenSearch.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "opensearch_cluster_name": {
+          "type": "string",
+          "description": "The name of the OpenSearch cluster"
+        },
+        "experiment_id": {
+          "type": "string",
+          "description": "ID of the experiment to retrieve"
+        }
+      },
+      "required": ["opensearch_cluster_name", "experiment_id"]
+    }
+  },
+  {
+    "name": "CreateExperimentTool",
+    "description": "Create a search quality experiment in OpenSearch. Supports PAIRWISE_COMPARISON (2 configs), POINTWISE_EVALUATION (1 config + judgments), and HYBRID_OPTIMIZER (1 config + judgments).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "opensearch_cluster_name": {
+          "type": "string",
+          "description": "The name of the OpenSearch cluster"
+        },
+        "query_set_id": {
+          "type": "string",
+          "description": "ID of the query set to use for the experiment"
+        },
+        "search_configuration_ids": {
+          "type": "string",
+          "description": "JSON array of search configuration IDs. PAIRWISE_COMPARISON requires exactly 2, POINTWISE_EVALUATION and HYBRID_OPTIMIZER require exactly 1."
+        },
+        "experiment_type": {
+          "type": "string",
+          "enum": ["PAIRWISE_COMPARISON", "POINTWISE_EVALUATION", "HYBRID_OPTIMIZER"],
+          "description": "Type of experiment."
+        },
+        "size": {
+          "type": "integer",
+          "description": "Number of results to retrieve per query",
+          "default": 10
+        },
+        "judgment_list_ids": {
+          "type": "string",
+          "description": "JSON array of judgment list IDs. Required for POINTWISE_EVALUATION and HYBRID_OPTIMIZER."
+        }
+      },
+      "required": ["opensearch_cluster_name", "query_set_id", "search_configuration_ids", "experiment_type"]
+    }
+  },
+  {
+    "name": "DeleteExperimentTool",
+    "description": "Delete an experiment from OpenSearch.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "opensearch_cluster_name": {
+          "type": "string",
+          "description": "The name of the OpenSearch cluster"
+        },
+        "experiment_id": {
+          "type": "string",
+          "description": "ID of the experiment to delete"
+        }
+      },
+      "required": ["opensearch_cluster_name", "experiment_id"]
+    }
+  },
+  {
+    "name": "GenericOpenSearchApiTool",
+    "description": "Execute a generic OpenSearch API call with a specified HTTP method, path, and optional request body.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "opensearch_cluster_name": {
+          "type": "string",
+          "description": "The name of the OpenSearch cluster"
+        },
+        "method": {
+          "type": "string",
+          "description": "HTTP method (GET, POST, PUT, DELETE, etc.)"
+        },
+        "path": {
+          "type": "string",
+          "description": "OpenSearch API path (e.g., /_cluster/health)"
+        },
+        "body": {
+          "description": "Optional request body for the API call"
+        }
+      },
+      "required": ["opensearch_cluster_name", "method", "path"]
+    }
+  }
+]

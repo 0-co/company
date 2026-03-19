@@ -1,0 +1,78 @@
+[
+  {
+    "name": "get_sandbox_access_token",
+    "description": "Get a workable access token for the Plaid sandbox environment. So that we can test the integration with sandbox mocked data. For a success response, the tool will return both access_token and item_id. BEFORE you call this tool: You MUST ask the user if they would like to provide the webhook url to listen to events update. You MUST ask the user if they would like to provide the customized account data to be associated with the access token. If they do, you MUST use the tool get_mock_data_prompt to generate the mock data with the format we accept.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "initial_products": {
+          "type": "string",
+          "description": "The plaid products to use for the access token, separated by commas. You should not pass `balance` in this array. The Balance product is fetched on demand so it doesn't require initialization through Link. Instead, you initialize with the other products you need (for example, auth, identity, or transactions)"
+        },
+        "webhook": {
+          "type": "string",
+          "description": "The webhook to use for listening to events from the sandbox environment. This is optional.",
+          "default": ""
+        },
+        "customized_account_data": {
+          "type": "string",
+          "description": "The customized test used account data to be associated with the access token. User can use the tool get_mock_data_prompt to generate the mock data with the format we accept. You should always ask the user if they want to use customized account data for the test. If they want to, use this tool to generate the mock data and pass the generated data to this tool.",
+          "default": ""
+        }
+      },
+      "required": ["initial_products"]
+    }
+  },
+  {
+    "name": "search_documentation",
+    "description": "Search Plaid documentation for relevant information. You MUST use this tool when the user asks questions about Plaid's products, or API endpoints. You MUST use this tool when you run into any coding issues or errors you cannot resolve and need more information about the API endpoints or products.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "question": {
+          "type": "string",
+          "description": "question to ask in natural language, please be specific and concise"
+        }
+      },
+      "required": ["question"]
+    }
+  },
+  {
+    "name": "get_mock_data_prompt",
+    "description": "Get the mock data prompt for the AI agent to generate mock data for testing purposes. You must have a real time generation display of the mock data to the end user. You must ask user if they would like to persist the mock data to a local file, and if they do, you MUST write the mock data to a file named mock_data.json in the current working directory.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "num_of_transactions": {
+          "type": "string",
+          "description": "number of transactions to generate",
+          "default": "10"
+        }
+      },
+      "required": ["num_of_transactions"]
+    }
+  },
+  {
+    "name": "simulate_webhook",
+    "description": "Simulate a Plaid webhook event in the sandbox environment to test your application's webhook handling. This tool triggers specific webhook events like transaction updates, account status changes, or transfer notifications. Specify the access_token for the item and the webhook_code representing the event type you want to trigger. Unless user specifies the webhook_code and webhook_type, you MUST use the tool search_documentation to find the right webhook_code and webhook_type.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "access_token": {
+          "type": "string",
+          "description": "A valid Plaid access token for the Item you want to trigger a webhook for. You can obtain this token from a successful /item/public_token/exchange response or using the get_sandbox_access_token tool."
+        },
+        "webhook_code": {
+          "type": "string",
+          "description": "The specific webhook event code to simulate (e.g., 'DEFAULT_UPDATE', 'SYNC_UPDATES_AVAILABLE', 'TRANSACTIONS_REMOVED'). Common codes include 'DEFAULT_UPDATE' for new transactions, 'HISTORICAL_UPDATE' for initial transaction fetch, and 'USER_PERMISSION_REVOKED' for revoked access."
+        },
+        "webhook_type": {
+          "type": "string",
+          "description": "The category of webhook to fire (e.g., 'TRANSACTIONS', 'ITEM', 'AUTH'). Must be compatible with the webhook_code. For example, 'DEFAULT_UPDATE' requires 'TRANSACTIONS' type.",
+          "default": ""
+        }
+      },
+      "required": ["access_token", "webhook_code"]
+    }
+  }
+]

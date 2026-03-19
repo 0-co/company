@@ -1,0 +1,941 @@
+[
+  {
+    "name": "list_videos",
+    "description": "List your Loom videos, sorted by most recent. Returns video IDs and names. Use get_video for metadata on a specific video, or get_video_details for comprehensive info including transcript and comments.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "description": "Max videos to return (default 50)",
+          "default": 50,
+          "minimum": 1,
+          "maximum": 200
+        }
+      }
+    }
+  },
+  {
+    "name": "search_videos",
+    "description": "Search Loom videos by keyword. Returns matching video IDs and names.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Search query"
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Max results to return (default 50)",
+          "default": 50,
+          "minimum": 1,
+          "maximum": 200
+        }
+      },
+      "required": ["query"]
+    }
+  },
+  {
+    "name": "get_video",
+    "description": "Get metadata for a Loom video including name, duration, owner, views, and creation date.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "description": "The Loom video ID"
+        }
+      },
+      "required": ["video_id"]
+    }
+  },
+  {
+    "name": "get_transcript",
+    "description": "Get the full transcript of a Loom video with timestamps and speaker names.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "description": "The Loom video ID"
+        },
+        "save_dir": {
+          "type": "string",
+          "description": "Optional directory path to save the transcript file"
+        }
+      },
+      "required": ["video_id"]
+    }
+  },
+  {
+    "name": "get_captions",
+    "description": "Get WebVTT captions of a Loom video with start and end timestamps per cue.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "description": "The Loom video ID"
+        },
+        "save_dir": {
+          "type": "string",
+          "description": "Optional directory path to save the captions file"
+        }
+      },
+      "required": ["video_id"]
+    }
+  },
+  {
+    "name": "get_summary",
+    "description": "Get the AI-generated summary of a Loom video (1-2 concise sentences).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "description": "The Loom video ID"
+        }
+      },
+      "required": ["video_id"]
+    }
+  },
+  {
+    "name": "get_chapters",
+    "description": "Get AI-generated chapter markers with timestamps for a Loom video. Useful for navigating long videos.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "description": "The Loom video ID"
+        }
+      },
+      "required": ["video_id"]
+    }
+  },
+  {
+    "name": "get_comments",
+    "description": "Get comments on a Loom video, including threaded replies and timestamps.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "description": "The Loom video ID"
+        }
+      },
+      "required": ["video_id"]
+    }
+  },
+  {
+    "name": "get_download_url",
+    "description": "Get a signed download URL for the MP4 file of a Loom video. The URL is temporary and expires. If no URL is available, use regenerate_mp4 first.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "description": "The Loom video ID"
+        }
+      },
+      "required": ["video_id"]
+    }
+  },
+  {
+    "name": "get_tasks",
+    "description": "Get AI-generated action items (tasks) from a Loom video, including assignee, status, and description.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "description": "The Loom video ID"
+        }
+      },
+      "required": ["video_id"]
+    }
+  },
+  {
+    "name": "get_reactions",
+    "description": "Get emoji reactions on a Loom video, including who reacted and at what timestamp.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "description": "The Loom video ID"
+        }
+      },
+      "required": ["video_id"]
+    }
+  },
+  {
+    "name": "get_meeting_notes",
+    "description": "Get the Confluence meeting notes URL linked to a Loom video.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "description": "The Loom video ID"
+        }
+      },
+      "required": ["video_id"]
+    }
+  },
+  {
+    "name": "list_folders",
+    "description": "List your Loom folders, sorted by most recent.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "description": "Max folders to return (default 50)",
+          "default": 50
+        }
+      }
+    }
+  },
+  {
+    "name": "list_spaces",
+    "description": "List your Loom spaces (workspaces).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "get_space",
+    "description": "Get details of a Loom space including name, privacy level, and whether it's the default space.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "space_id": {
+          "type": "string",
+          "description": "The Loom space ID"
+        }
+      },
+      "required": ["space_id"]
+    }
+  },
+  {
+    "name": "get_backlinks",
+    "description": "Get external references (backlinks) to a Loom video — where it's been shared or embedded.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "description": "The Loom video ID"
+        }
+      },
+      "required": ["video_id"]
+    }
+  },
+  {
+    "name": "get_key_takeaways",
+    "description": "Get AI-generated key takeaways from a Loom video as a bullet list.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "description": "The Loom video ID"
+        }
+      },
+      "required": ["video_id"]
+    }
+  },
+  {
+    "name": "get_tags",
+    "description": "Get tags on a Loom video.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "description": "The Loom video ID"
+        }
+      },
+      "required": ["video_id"]
+    }
+  },
+  {
+    "name": "get_description",
+    "description": "Get the AI-generated description of a Loom video with timestamped sections and bullet points.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "description": "The Loom video ID"
+        }
+      },
+      "required": ["video_id"]
+    }
+  },
+  {
+    "name": "get_confluence_pages",
+    "description": "Get Confluence pages linked to a Loom video.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "description": "The Loom video ID"
+        }
+      },
+      "required": ["video_id"]
+    }
+  },
+  {
+    "name": "search_folders",
+    "description": "Search your Loom folders by name.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Search query for folder names"
+        }
+      },
+      "required": ["query"]
+    }
+  },
+  {
+    "name": "get_last_watch_time",
+    "description": "Get the last timestamp (in seconds) where you stopped watching a Loom video.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "description": "The Loom video ID"
+        }
+      },
+      "required": ["video_id"]
+    }
+  },
+  {
+    "name": "get_watch_later_count",
+    "description": "Get the number of videos in your Watch Later list.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "get_total_videos_count",
+    "description": "Get the total number of videos created by a user.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "get_frequent_reactions",
+    "description": "Get your most frequently used emoji reaction types. Also useful to discover valid reaction type values before calling add_reaction.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "get_comment_reactions",
+    "description": "Get emoji reactions on a specific comment.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "comment_id": {
+          "type": "string",
+          "description": "The comment GUID"
+        }
+      },
+      "required": ["comment_id"]
+    }
+  },
+  {
+    "name": "get_video_details",
+    "description": "Get all available information for a Loom video in one call: metadata, transcript, summary, chapters, comments, tasks, and reactions.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "description": "The Loom video ID"
+        },
+        "save_dir": {
+          "type": "string",
+          "description": "Optional directory path to save content files"
+        }
+      },
+      "required": ["video_id"]
+    }
+  },
+  {
+    "name": "get_user",
+    "description": "Get a Loom user's profile by their ID — name, email, company, and avatar.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "description": "The Loom user ID"
+        }
+      },
+      "required": ["user_id"]
+    }
+  },
+  {
+    "name": "search_workspace_tags",
+    "description": "Search for tags in your Loom workspace.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Search query for tags"
+        }
+      },
+      "required": ["query"]
+    }
+  },
+  {
+    "name": "get_folder",
+    "description": "Get details of a Loom folder including name, visibility, and creator.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "folder_id": {
+          "type": "string",
+          "description": "The Loom folder ID"
+        }
+      },
+      "required": ["folder_id"]
+    }
+  },
+  {
+    "name": "update_video_name",
+    "description": "Rename a Loom video. Overwrites the existing name.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "description": "The Loom video ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "The new video name"
+        }
+      },
+      "required": ["video_id", "name"]
+    }
+  },
+  {
+    "name": "update_video_description",
+    "description": "Update the description of a Loom video. Overwrites the existing description.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "description": "The Loom video ID"
+        },
+        "description": {
+          "type": "string",
+          "description": "The new video description"
+        }
+      },
+      "required": ["video_id", "description"]
+    }
+  },
+  {
+    "name": "update_video_settings",
+    "description": "Update settings on a Loom video such as download_enabled, comments_enabled, etc.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "description": "The Loom video ID"
+        },
+        "settings": {
+          "type": "object",
+          "description": "Settings to update (e.g., download_enabled, comments_enabled)"
+        }
+      },
+      "required": ["video_id", "settings"]
+    }
+  },
+  {
+    "name": "create_comment",
+    "description": "Post a comment on a Loom video. Each call creates a new comment.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "description": "The Loom video ID"
+        },
+        "text": {
+          "type": "string",
+          "description": "The comment text"
+        },
+        "timestamp": {
+          "type": "number",
+          "description": "Optional video timestamp in seconds to anchor the comment"
+        }
+      },
+      "required": ["video_id", "text"]
+    }
+  },
+  {
+    "name": "edit_comment",
+    "description": "Edit an existing comment on a Loom video. Overwrites the comment text.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "comment_id": {
+          "type": "string",
+          "description": "The comment GUID"
+        },
+        "text": {
+          "type": "string",
+          "description": "The new comment text"
+        }
+      },
+      "required": ["comment_id", "text"]
+    }
+  },
+  {
+    "name": "delete_comment",
+    "description": "Delete a comment from a Loom video. This cannot be undone.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "comment_id": {
+          "type": "string",
+          "description": "The comment GUID"
+        }
+      },
+      "required": ["comment_id"]
+    }
+  },
+  {
+    "name": "create_task",
+    "description": "Create an action item (task) on a Loom video. Each call creates a new task.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "description": "The Loom video ID"
+        },
+        "text": {
+          "type": "string",
+          "description": "The task description"
+        },
+        "assignee_id": {
+          "type": "string",
+          "description": "Optional user ID to assign the task to"
+        }
+      },
+      "required": ["video_id", "text"]
+    }
+  },
+  {
+    "name": "update_task",
+    "description": "Update the content of an action item (task) on a Loom video.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "task_id": {
+          "type": "string",
+          "description": "The task ID"
+        },
+        "text": {
+          "type": "string",
+          "description": "The updated task text"
+        }
+      },
+      "required": ["task_id", "text"]
+    }
+  },
+  {
+    "name": "delete_task",
+    "description": "Delete an action item (task) from a Loom video. This cannot be undone.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "task_id": {
+          "type": "string",
+          "description": "The task ID"
+        }
+      },
+      "required": ["task_id"]
+    }
+  },
+  {
+    "name": "approve_task",
+    "description": "Mark an action item (task) as approved on a Loom video.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "task_id": {
+          "type": "string",
+          "description": "The task ID"
+        }
+      },
+      "required": ["task_id"]
+    }
+  },
+  {
+    "name": "respond_to_task",
+    "description": "Respond to an action item (task) on a Loom video.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "task_id": {
+          "type": "string",
+          "description": "The task ID"
+        },
+        "response": {
+          "type": "string",
+          "description": "The response text"
+        }
+      },
+      "required": ["task_id", "response"]
+    }
+  },
+  {
+    "name": "add_reaction",
+    "description": "Add an emoji reaction to a Loom video at a specific timestamp. Use get_frequent_reactions to discover valid reaction type values.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "description": "The Loom video ID"
+        },
+        "time": {
+          "type": "number",
+          "description": "Timestamp in seconds for the reaction"
+        },
+        "reaction_type": {
+          "type": "string",
+          "description": "The reaction type (e.g., 'heart', '+1', 'fire')"
+        }
+      },
+      "required": ["video_id", "time", "reaction_type"]
+    }
+  },
+  {
+    "name": "delete_reaction",
+    "description": "Delete an emoji reaction from a Loom video.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "reaction_id": {
+          "type": "string",
+          "description": "The reaction ID"
+        }
+      },
+      "required": ["reaction_id"]
+    }
+  },
+  {
+    "name": "toggle_following",
+    "description": "Follow or unfollow a Loom video to get notifications.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "description": "The Loom video ID"
+        },
+        "follow": {
+          "type": "boolean",
+          "description": "True to follow, False to unfollow"
+        }
+      },
+      "required": ["video_id", "follow"]
+    }
+  },
+  {
+    "name": "delete_video",
+    "description": "Permanently delete a Loom video. This cannot be undone. To temporarily remove a video, use archive_videos instead. To recover a recently deleted video, use recover_video.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "description": "The Loom video ID"
+        }
+      },
+      "required": ["video_id"]
+    }
+  },
+  {
+    "name": "archive_videos",
+    "description": "Archive or unarchive Loom videos. Archived videos are hidden but not deleted.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_ids": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "List of Loom video IDs to archive"
+        },
+        "archive": {
+          "type": "boolean",
+          "description": "True to archive, False to unarchive",
+          "default": true
+        }
+      },
+      "required": ["video_ids"]
+    }
+  },
+  {
+    "name": "duplicate_video",
+    "description": "Duplicate a Loom video. Creates a new copy each time.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "description": "The Loom video ID"
+        }
+      },
+      "required": ["video_id"]
+    }
+  },
+  {
+    "name": "add_to_watch_later",
+    "description": "Add a Loom video to your Watch Later list.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "description": "The Loom video ID"
+        },
+        "minutes_from_utc": {
+          "type": "integer",
+          "description": "Timezone offset in minutes from UTC (default 0)",
+          "default": 0
+        }
+      },
+      "required": ["video_id"]
+    }
+  },
+  {
+    "name": "remove_from_watch_later",
+    "description": "Remove a Loom video from your Watch Later list.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "description": "The Loom video ID"
+        }
+      },
+      "required": ["video_id"]
+    }
+  },
+  {
+    "name": "create_folder",
+    "description": "Create a new Loom folder. Each call creates a new folder.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The folder name"
+        }
+      },
+      "required": ["name"]
+    }
+  },
+  {
+    "name": "rename_folder",
+    "description": "Rename a Loom folder.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "folder_id": {
+          "type": "string",
+          "description": "The Loom folder ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "The new folder name"
+        }
+      },
+      "required": ["folder_id", "name"]
+    }
+  },
+  {
+    "name": "delete_folders",
+    "description": "Delete one or more Loom folders. This cannot be undone.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "folder_ids": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "List of Loom folder IDs to delete"
+        }
+      },
+      "required": ["folder_ids"]
+    }
+  },
+  {
+    "name": "move_videos",
+    "description": "Move one or more Loom videos to a different folder.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_ids": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "List of Loom video IDs to move"
+        },
+        "folder_id": {
+          "type": "string",
+          "description": "The destination folder ID"
+        }
+      },
+      "required": ["video_ids", "folder_id"]
+    }
+  },
+  {
+    "name": "move_folders",
+    "description": "Move one or more Loom folders into a different parent folder.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "folder_ids": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "List of Loom folder IDs to move"
+        },
+        "destination_folder_id": {
+          "type": "string",
+          "description": "The destination parent folder ID"
+        }
+      },
+      "required": ["folder_ids", "destination_folder_id"]
+    }
+  },
+  {
+    "name": "recover_video",
+    "description": "Recover a deleted Loom video from the trash.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "description": "The Loom video ID"
+        }
+      },
+      "required": ["video_id"]
+    }
+  },
+  {
+    "name": "pin_video",
+    "description": "Pin or unpin a Loom video in your library.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "description": "The Loom video ID"
+        },
+        "pinned": {
+          "type": "boolean",
+          "description": "True to pin, False to unpin",
+          "default": true
+        }
+      },
+      "required": ["video_id"]
+    }
+  },
+  {
+    "name": "add_comment_reaction",
+    "description": "Add an emoji reaction to a comment on a Loom video.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "comment_id": {
+          "type": "string",
+          "description": "The comment GUID"
+        },
+        "reaction": {
+          "type": "string",
+          "description": "The reaction emoji string (e.g. 'heart', '+1', 'fire')"
+        },
+        "comment_type": {
+          "type": "string",
+          "description": "Comment type: COMMENT or REPLY",
+          "default": "COMMENT"
+        }
+      },
+      "required": ["comment_id", "reaction"]
+    }
+  },
+  {
+    "name": "toggle_following_tag",
+    "description": "Follow or unfollow a tag in your Loom workspace to get notifications.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "tag": {
+          "type": "string",
+          "description": "The tag name to follow/unfollow"
+        },
+        "follow": {
+          "type": "boolean",
+          "description": "True to follow, False to unfollow"
+        }
+      },
+      "required": ["tag", "follow"]
+    }
+  },
+  {
+    "name": "share_videos_to_spaces",
+    "description": "Share one or more Loom videos to one or more spaces.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_ids": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "List of Loom video IDs to share"
+        },
+        "space_ids": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "List of Loom space IDs to share to"
+        }
+      },
+      "required": ["video_ids", "space_ids"]
+    }
+  },
+  {
+    "name": "regenerate_mp4",
+    "description": "Trigger MP4 regeneration for a Loom video. Use this when get_download_url reports that no URL is available. Regeneration is asynchronous — after triggering, wait ~30 seconds then retry get_download_url.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "description": "The Loom video ID"
+        }
+      },
+      "required": ["video_id"]
+    }
+  }
+]

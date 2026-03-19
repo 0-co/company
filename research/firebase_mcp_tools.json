@@ -1,0 +1,793 @@
+[
+  {
+    "name": "firebase_get_environment",
+    "description": "Use this to retrieve the current Firebase environment configuration for the Firebase CLI and Firebase MCP server, including current authenticated user, project directory, active Firebase Project, and more.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "firebase_update_environment",
+    "description": "Use this to update environment config for the Firebase CLI and Firebase MCP server, such as project directory, active project, active user account, accept terms of service, and more.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project_dir": {
+          "type": "string",
+          "description": "Change the current project directory - this should be a directory that has a firebase.json file (or will have one)."
+        },
+        "active_project": {
+          "type": "string",
+          "description": "Change the active project for the current project directory. Should be a Firebase project ID or configured project alias."
+        },
+        "active_user_account": {
+          "type": "string",
+          "description": "The email address of the signed-in user to authenticate as when interacting with the current project directory."
+        }
+      }
+    }
+  },
+  {
+    "name": "firebase_login",
+    "description": "Use this to sign the user into the Firebase CLI and Firebase MCP server. This requires a Google Account.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "authCode": {
+          "type": "string",
+          "description": "The authorization code from the login flow"
+        }
+      }
+    }
+  },
+  {
+    "name": "firebase_logout",
+    "description": "Use this to sign the user out of the Firebase CLI and Firebase MCP server.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "The email of the account to log out. If not provided, all accounts will be logged out."
+        }
+      }
+    }
+  },
+  {
+    "name": "firebase_list_projects",
+    "description": "Use this to retrieve a list of Firebase Projects that the signed-in user has access to.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "page_size": {
+          "type": "number",
+          "description": "the number of projects to list per page (defaults to 1000)",
+          "default": 20
+        },
+        "page_token": {
+          "type": "string",
+          "description": "the page token to start listing from"
+        }
+      }
+    }
+  },
+  {
+    "name": "firebase_get_project",
+    "description": "Use this to retrieve information about the currently active Firebase Project.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "firebase_create_project",
+    "description": "Use this to create a new Firebase Project.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project_id": {
+          "type": "string",
+          "description": "The project ID to create or use."
+        },
+        "display_name": {
+          "type": "string",
+          "description": "The user-friendly display name for the project."
+        }
+      },
+      "required": ["project_id"]
+    }
+  },
+  {
+    "name": "firebase_list_apps",
+    "description": "Use this to retrieve a list of the Firebase Apps registered in the currently active Firebase project. Firebase Apps can be iOS, Android, or Web.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "platform": {
+          "type": "string",
+          "enum": ["ios", "android", "web", "all"],
+          "description": "the specific platform to list (omit to list all platforms)"
+        }
+      }
+    }
+  },
+  {
+    "name": "firebase_create_app",
+    "description": "Use this to create a new Firebase App in the currently active Firebase Project. Firebase Apps can be iOS, Android, or Web.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "display_name": {
+          "type": "string",
+          "description": "The user-friendly display name for your app."
+        },
+        "platform": {
+          "type": "string",
+          "enum": ["web", "ios", "android"],
+          "description": "The platform for which to create an app."
+        },
+        "android_config": {
+          "type": "object",
+          "description": "Configuration for Android apps. Required if platform is 'android'.",
+          "properties": {
+            "package_name": {
+              "type": "string",
+              "description": "The package name for your Android app (e.g., com.example.myapp)."
+            }
+          }
+        },
+        "ios_config": {
+          "type": "object",
+          "description": "Configuration for iOS apps. Required if platform is 'ios'.",
+          "properties": {
+            "bundle_id": {
+              "type": "string",
+              "description": "The bundle ID for your iOS app (e.g., com.example.myapp)."
+            },
+            "app_store_id": {
+              "type": "string",
+              "description": "The App Store ID for your iOS app."
+            }
+          }
+        }
+      },
+      "required": ["platform"]
+    }
+  },
+  {
+    "name": "firebase_create_android_sha",
+    "description": "Use this to add the specified SHA certificate hash to the specified Firebase Android App.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "app_id": {
+          "type": "string",
+          "description": "The Android app ID to add the SHA certificate to."
+        },
+        "sha_hash": {
+          "type": "string",
+          "description": "The SHA certificate hash to add (SHA-1 or SHA-256)."
+        }
+      },
+      "required": ["app_id", "sha_hash"]
+    }
+  },
+  {
+    "name": "firebase_get_sdk_config",
+    "description": "Use this to retrieve the Firebase configuration information for a Firebase App. You must specify EITHER a platform OR the Firebase App ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "platform": {
+          "type": "string",
+          "enum": ["ios", "android", "web"],
+          "description": "The platform for which you want config. One of 'platform' or 'app_id' must be provided."
+        },
+        "app_id": {
+          "type": "string",
+          "description": "The specific app ID to fetch. One of 'platform' or 'app_id' must be provided."
+        }
+      }
+    }
+  },
+  {
+    "name": "firebase_get_security_rules",
+    "description": "Use this to retrieve the security rules for a specified Firebase service. If there are multiple instances of that service in the product, the rules for the default instance are returned.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["firestore", "rtdb", "storage"],
+          "description": "The service to get rules for."
+        }
+      },
+      "required": ["type"]
+    }
+  },
+  {
+    "name": "firebase_validate_security_rules",
+    "description": "Use this to validate Firebase security rules for Firestore, Realtime Database, or Storage.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["firestore", "rtdb", "storage"],
+          "description": "The service to validate rules for."
+        },
+        "rules": {
+          "type": "string",
+          "description": "The security rules content to validate."
+        }
+      },
+      "required": ["type", "rules"]
+    }
+  },
+  {
+    "name": "firebase_init",
+    "description": "Use this to initialize selected Firebase services in the workspace (Cloud Firestore database, Firebase Data Connect, Firebase Realtime Database, Firebase AI Logic). All services are optional; specify only the products you want to set up.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "features": {
+          "type": "object",
+          "description": "Firebase services to initialize.",
+          "properties": {
+            "database": {
+              "type": "object",
+              "description": "Provide this object to initialize Firebase Realtime Database.",
+              "properties": {
+                "rules_filename": {
+                  "type": "string",
+                  "description": "The file to use for Realtime Database Security Rules.",
+                  "default": "database.rules.json"
+                },
+                "rules": {
+                  "type": "string",
+                  "description": "The security rules to use for Realtime Database Security Rules."
+                }
+              }
+            },
+            "firestore": {
+              "type": "object",
+              "description": "Provide this object to initialize Cloud Firestore.",
+              "properties": {
+                "database_id": {
+                  "type": "string",
+                  "description": "The database ID to use for Firestore.",
+                  "default": "(default)"
+                },
+                "location_id": {
+                  "type": "string",
+                  "description": "The GCP region ID to set up the Firestore database.",
+                  "default": "nam5"
+                },
+                "rules_filename": {
+                  "type": "string",
+                  "description": "The file to use for Firestore Security Rules.",
+                  "default": "firestore.rules"
+                }
+              }
+            }
+          }
+        }
+      },
+      "required": ["features"]
+    }
+  },
+  {
+    "name": "firestore_query_collection",
+    "description": "Use this to retrieve one or more Firestore documents from a collection in a database in the current project by a collection with a full document path.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "database": {
+          "type": "string",
+          "description": "Database id to use. Defaults to `(default)` if unspecified."
+        },
+        "collection_path": {
+          "type": "string",
+          "description": "A collection path (e.g. `collectionName/` or `parentCollection/parentDocument/collectionName`)"
+        },
+        "filters": {
+          "type": "array",
+          "description": "the multiple filters to use in querying against the existing collection.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "compare_value": {
+                "type": "object",
+                "description": "One and only one value may be specified per filters object.",
+                "properties": {
+                  "string_value": {"type": "string", "description": "The string value to compare against."},
+                  "boolean_value": {"type": "string", "description": "The boolean value to compare against."},
+                  "string_array_value": {"type": "array", "items": {"type": "string"}, "description": "The string array value to compare against."},
+                  "integer_value": {"type": "number", "description": "The integer value to compare against."},
+                  "double_value": {"type": "number", "description": "The double value to compare against."}
+                }
+              },
+              "field": {"type": "string", "description": "the field searching against"},
+              "op": {
+                "type": "string",
+                "enum": ["OPERATOR_UNSPECIFIED", "LESS_THAN", "LESS_THAN_OR_EQUAL", "GREATER_THAN", "GREATER_THAN_OR_EQUAL", "EQUAL", "NOT_EQUAL", "ARRAY_CONTAINS", "ARRAY_CONTAINS_ANY", "IN", "NOT_IN"],
+                "description": "the equality evaluator to use"
+              }
+            }
+          }
+        },
+        "order": {
+          "type": "object",
+          "description": "Specifies the field and direction to order the results.",
+          "properties": {
+            "orderBy": {"type": "string", "description": "the field to order by"},
+            "orderByDirection": {"type": "string", "enum": ["ASCENDING", "DESCENDING"], "description": "the direction to order values"}
+          }
+        },
+        "limit": {
+          "type": "number",
+          "description": "The maximum amount of records to return. Default is 10."
+        },
+        "use_emulator": {
+          "type": "boolean",
+          "description": "Target the Firestore emulator if true.",
+          "default": false
+        }
+      },
+      "required": ["collection_path", "filters"]
+    }
+  },
+  {
+    "name": "auth_get_users",
+    "description": "Use this to retrieve one or more Firebase Auth users based on a list of UIDs or a list of emails.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "uids": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "A list of user UIDs to retrieve."
+        },
+        "emails": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "A list of user emails to retrieve."
+        },
+        "phone_numbers": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "A list of user phone numbers to retrieve."
+        },
+        "limit": {
+          "type": "number",
+          "description": "The numbers of users to return. 500 is the upper limit. Defaults to 100.",
+          "default": 100
+        }
+      }
+    }
+  },
+  {
+    "name": "auth_update_user",
+    "description": "Use this to disable, enable, or set a custom claim on a specific user's account.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "the UID of the user to update"
+        },
+        "disabled": {
+          "type": "boolean",
+          "description": "true disables the user, false enables the user"
+        },
+        "claim": {
+          "type": "object",
+          "description": "Custom claim to set on the user.",
+          "properties": {
+            "key": {"type": "string", "description": "the name (key) of the claim to update, e.g. 'admin'"},
+            "value": {
+              "description": "Set the value of the custom claim to the specified simple scalar value."
+            },
+            "json_value": {"type": "string", "description": "Set the claim to a complex JSON value by providing stringified JSON."}
+          },
+          "required": ["key"]
+        }
+      },
+      "required": ["uid"]
+    }
+  },
+  {
+    "name": "auth_set_sms_region_policy",
+    "description": "Use this to set an SMS region policy for Firebase Authentication to restrict the regions which can receive text messages based on an ALLOW or DENY list of country codes.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "policy_type": {
+          "type": "string",
+          "enum": ["ALLOW", "DENY"],
+          "description": "with an ALLOW policy, only the specified country codes can use SMS auth. with a DENY policy, all countries can use SMS auth except the ones specified"
+        },
+        "country_codes": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "the country codes to allow or deny based on ISO 3166"
+        }
+      },
+      "required": ["policy_type", "country_codes"]
+    }
+  },
+  {
+    "name": "functions_list_functions",
+    "description": "List all deployed functions in your Firebase project.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "functions_get_logs",
+    "description": "Use this to retrieve a page of Cloud Functions log entries using Google Cloud Logging advanced filters.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "function_names": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Optional list of deployed Cloud Function IDs to filter logs (e.g. ['fnA','fnB'])."
+        },
+        "page_size": {
+          "type": "integer",
+          "description": "Maximum number of log entries to return.",
+          "default": 50
+        },
+        "order": {
+          "type": "string",
+          "enum": ["asc", "desc"],
+          "description": "Sort order by timestamp",
+          "default": "desc"
+        },
+        "page_token": {
+          "type": "string",
+          "description": "Opaque page token returned from a previous call to continue pagination."
+        },
+        "min_severity": {
+          "type": "string",
+          "enum": ["DEFAULT", "DEBUG", "INFO", "NOTICE", "WARNING", "ERROR", "CRITICAL", "ALERT", "EMERGENCY"],
+          "description": "Filters results to entries at or above the provided severity level."
+        },
+        "start_time": {
+          "type": "string",
+          "description": "RFC3339 timestamp (YYYY-MM-DDTHH:MM:SSZ). Only entries with timestamp greater than or equal to this are returned."
+        },
+        "end_time": {
+          "type": "string",
+          "description": "RFC3339 timestamp (YYYY-MM-DDTHH:MM:SSZ). Only entries with timestamp less than or equal to this are returned."
+        },
+        "filter": {
+          "type": "string",
+          "description": "Additional Google Cloud Logging advanced filter text that will be AND'ed with the generated filter."
+        }
+      }
+    }
+  },
+  {
+    "name": "messaging_send_message",
+    "description": "Use this to send a message to a Firebase Cloud Messaging registration token or topic. ONLY ONE of `registration_token` or `topic` may be supplied in a specific call.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "registration_token": {
+          "type": "string",
+          "description": "A specific device registration token for delivery. Supply either this or topic."
+        },
+        "topic": {
+          "type": "string",
+          "description": "A topic name for delivery. Supply either this or registration_token."
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the push notification message."
+        },
+        "body": {
+          "type": "string",
+          "description": "The body of the push notification message."
+        },
+        "image": {
+          "type": "string",
+          "description": "The URL of an image that will be displayed with the notification."
+        }
+      }
+    }
+  },
+  {
+    "name": "realtimedatabase_get_data",
+    "description": "Use this to retrieve data from the specified location in a Firebase Realtime Database.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "databaseUrl": {
+          "type": "string",
+          "description": "connect to the database at url. If omitted, use default database instance <project>-default-rtdb.firebasedatabase.app. Can point to emulator URL."
+        },
+        "path": {
+          "type": "string",
+          "description": "The path to the data to read. (ex: /my/cool/path)"
+        }
+      },
+      "required": ["path"]
+    }
+  },
+  {
+    "name": "realtimedatabase_set_data",
+    "description": "Use this to write data to the specified location in a Firebase Realtime Database.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "databaseUrl": {
+          "type": "string",
+          "description": "connect to the database at url. If omitted, use default database instance. Can point to emulator URL."
+        },
+        "path": {
+          "type": "string",
+          "description": "The path to the data to write. (ex: /my/cool/path)"
+        },
+        "data": {
+          "type": "string",
+          "description": "The JSON to write. (ex: {\"alphabet\": [\"a\", \"b\", \"c\"]})"
+        }
+      },
+      "required": ["path", "data"]
+    }
+  },
+  {
+    "name": "storage_get_object_download_url",
+    "description": "Use this to retrieve the download URL for an object in a Cloud Storage for Firebase bucket.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "bucket": {
+          "type": "string",
+          "description": "The bucket name in Firebase Storage. If not provided, defaults to the project's default bucket."
+        },
+        "object_path": {
+          "type": "string",
+          "description": "The path to the object in Firebase storage without the bucket name attached"
+        },
+        "use_emulator": {
+          "type": "boolean",
+          "description": "Target the Storage emulator if true.",
+          "default": false
+        }
+      },
+      "required": ["object_path"]
+    }
+  },
+  {
+    "name": "remoteconfig_get_template",
+    "description": "Use this to retrieve the specified Firebase Remote Config template from the currently active Firebase Project.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "version_number": {
+          "type": "string",
+          "description": "The version number of the template to retrieve. If not provided, retrieves the active template."
+        }
+      }
+    }
+  },
+  {
+    "name": "remoteconfig_update_template",
+    "description": "Use this to publish a new remote config template or roll back to a specific version for the project.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "template": {
+          "type": "object",
+          "description": "The Remote Config template object to publish."
+        },
+        "version_number": {
+          "type": "number",
+          "description": "The version number to roll back to."
+        },
+        "force": {
+          "type": "boolean",
+          "description": "If true, the publish will bypass ETag validation and overwrite the current template."
+        }
+      }
+    }
+  },
+  {
+    "name": "apphosting_list_backends",
+    "description": "Use this to retrieve a list of App Hosting backends in the current project. An empty list means that there are no backends.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "location": {
+          "type": "string",
+          "description": "Limit the listed backends to this region. By default, it will list all backends across all regions.",
+          "default": "-"
+        }
+      }
+    }
+  },
+  {
+    "name": "apphosting_fetch_logs",
+    "description": "Use this to fetch the most recent logs for a specified App Hosting backend. If buildLogs is specified, the logs from the build process for the latest build are returned.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "buildLogs": {
+          "type": "boolean",
+          "description": "If specified, the logs for the most recent build will be returned instead of the logs for the service.",
+          "default": false
+        },
+        "backendId": {
+          "type": "string",
+          "description": "The ID of the backend for which to fetch logs."
+        },
+        "location": {
+          "type": "string",
+          "description": "The specific region for the backend."
+        }
+      },
+      "required": ["backendId", "location"]
+    }
+  },
+  {
+    "name": "apptesting_run_test",
+    "description": "Run a remote test using Firebase App Distribution and Firebase Test Lab.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "appId": {
+          "type": "string",
+          "description": "The Firebase App ID."
+        },
+        "releaseBinaryFile": {
+          "type": "string",
+          "description": "Path to the binary release (APK)."
+        },
+        "testDevices": {
+          "type": "array",
+          "description": "List of devices to run the test on.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "model": {"type": "string"},
+              "version": {"type": "string"},
+              "locale": {"type": "string"},
+              "orientation": {"type": "string"}
+            }
+          }
+        },
+        "testCase": {
+          "type": "object",
+          "description": "Test case containing steps.",
+          "properties": {
+            "steps": {
+              "type": "array",
+              "description": "Test case steps.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "goal": {"type": "string", "description": "A goal to be accomplished during the test."},
+                  "hint": {"type": "string", "description": "Hint text containing suggestions to help the agent accomplish the goal."},
+                  "finalScreenAssertion": {"type": "string", "description": "A description of what the screen should look like at the end of the step."}
+                },
+                "required": ["goal"]
+              }
+            }
+          }
+        }
+      },
+      "required": ["appId", "releaseBinaryFile", "testCase"]
+    }
+  },
+  {
+    "name": "apptesting_check_status",
+    "description": "Check the status of an apptesting release test and/or get available devices that can be used for automated tests.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "release_test_name": {
+          "type": "string",
+          "description": "The name of the release test returned by the run_test tool. If set, the tool will fetch the release test."
+        },
+        "getAvailableDevices": {
+          "type": "boolean",
+          "description": "If set to true, the tool will get the available devices that can be used for automated tests using the app testing agent."
+        }
+      }
+    }
+  },
+  {
+    "name": "crashlytics_get_issue",
+    "description": "Gets data for a Crashlytics issue, which can be used as a starting point for debugging.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "appId": {
+          "type": "string",
+          "description": "The Firebase App ID."
+        },
+        "issueId": {
+          "type": "string",
+          "description": "The Crashlytics issue ID."
+        }
+      },
+      "required": ["appId", "issueId"]
+    }
+  },
+  {
+    "name": "crashlytics_update_issue",
+    "description": "Use this to update the state of a Crashlytics issue.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "appId": {
+          "type": "string",
+          "description": "The Firebase App ID."
+        },
+        "issueId": {
+          "type": "string",
+          "description": "The Crashlytics issue ID."
+        },
+        "state": {
+          "type": "string",
+          "enum": ["OPEN", "CLOSED"],
+          "description": "The new state for the issue."
+        }
+      },
+      "required": ["appId", "issueId", "state"]
+    }
+  },
+  {
+    "name": "dataconnect_list_services",
+    "description": "Use this to list existing local and backend Firebase Data Connect services.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "dataconnect_execute",
+    "description": "Use this to execute a GraphQL operation against a Data Connect service or its emulator.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "operationName": {
+          "type": "string",
+          "description": "The name of the GraphQL operation to execute."
+        },
+        "variables": {
+          "type": "object",
+          "description": "Variables for the GraphQL operation."
+        },
+        "serviceId": {
+          "type": "string",
+          "description": "The Data Connect service ID."
+        },
+        "use_emulator": {
+          "type": "boolean",
+          "description": "Target the Data Connect emulator if true.",
+          "default": false
+        }
+      },
+      "required": ["operationName"]
+    }
+  },
+  {
+    "name": "dataconnect_compile",
+    "description": "Use this to compile a Data Connect schema or connector.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "serviceId": {
+          "type": "string",
+          "description": "The Data Connect service ID."
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,369 @@
+[
+  {
+    "name": "execute_query",
+    "description": "Execute a SQL query against an InfluxDB database (all versions). Returns results in the specified format (defaults to JSON). Large Dataset Warning: InfluxDB might contain massive time-series data. Always use COUNT(*) first to check size, then LIMIT/OFFSET for large results (>1000 rows). Cloud Dedicated/Clustered & Cloud Serverless (v3) Requirements: GROUP BY: Include all group columns in SELECT; Aggregations: Cast and alias COUNT (e.g., CAST(COUNT(*) AS DOUBLE) AS count).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "database": {
+          "type": "string",
+          "description": "Name of the database/bucket to query"
+        },
+        "query": {
+          "type": "string",
+          "description": "SQL query to execute."
+        },
+        "format": {
+          "type": "string",
+          "enum": ["json", "csv", "parquet", "jsonl", "pretty"],
+          "description": "Output format for query results",
+          "default": "json"
+        }
+      },
+      "required": ["database", "query"],
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "get_measurements",
+    "description": "Get a list of all measurements (tables) in a database/bucket (all versions). Uses the InfluxDB information_schema.columns to discover tables.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "database": {
+          "type": "string",
+          "description": "Name of the database/bucket to list measurements from"
+        }
+      },
+      "required": ["database"],
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "get_measurement_schema",
+    "description": "Get the schema (column information) for a specific measurement/table (all versions). Shows column names, types, and categories (time/tag/field).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "database": {
+          "type": "string",
+          "description": "Name of the database/bucket containing the measurement"
+        },
+        "measurement": {
+          "type": "string",
+          "description": "Name of the measurement to describe"
+        }
+      },
+      "required": ["database", "measurement"],
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "write_line_protocol",
+    "description": "Write data to InfluxDB using line protocol format (all versions). Supports single records or batches. Line Protocol Syntax: measurement,tag1=value1,tag2=value2 field1=value1,field2=value2 timestamp. Field Value Types: Strings: \"quoted string\"; Floats: 123.45; Integers: 123i (note the 'i' suffix); Booleans: t or f. Always specify correct precision parameter to match your timestamp format.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "database": {
+          "type": "string",
+          "description": "Name of the database/bucket to write to"
+        },
+        "data": {
+          "type": "string",
+          "description": "Line protocol formatted data. For multiple records, separate each line with \\n"
+        },
+        "precision": {
+          "type": "string",
+          "enum": ["nanosecond", "microsecond", "millisecond", "second"],
+          "description": "Precision of timestamps"
+        },
+        "acceptPartial": {
+          "type": "boolean",
+          "description": "Accept partial writes",
+          "default": true
+        },
+        "noSync": {
+          "type": "boolean",
+          "description": "Acknowledge without waiting for WAL persistence",
+          "default": false
+        }
+      },
+      "required": ["database", "data", "precision"],
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "create_database",
+    "description": "Create a new database in InfluxDB. Database names must follow InfluxDB naming rules: alphanumeric characters, dashes (-), underscores (_), and forward slashes (/) are allowed. Must start with a letter or number. Maximum 64 characters. For Cloud Dedicated/Clustered: maxTables, maxColumnsPerTable, retentionPeriod. For Cloud Serverless: description, retentionPeriod.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the database to create (alphanumeric, -, _, / allowed; max 64 chars; must start with letter/number)",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9\\-_/]*$",
+          "maxLength": 64
+        },
+        "description": {
+          "type": "string",
+          "description": "Description for the bucket/database (Cloud Serverless only)"
+        },
+        "maxTables": {
+          "type": "number",
+          "description": "Maximum number of tables (Cloud Dedicated/Clustered only, default: 500)",
+          "minimum": 1
+        },
+        "maxColumnsPerTable": {
+          "type": "number",
+          "description": "Maximum columns per table (Cloud Dedicated/Clustered only, default: 200)",
+          "minimum": 1
+        },
+        "retentionPeriod": {
+          "type": "number",
+          "description": "Retention period in nanoseconds (Cloud Dedicated/Clustered: default 0 = no expiration, Cloud Serverless: default 30 days)",
+          "minimum": 0
+        }
+      },
+      "required": ["name"]
+    }
+  },
+  {
+    "name": "serverless_list_schemas",
+    "description": "List all measurement schemas in a Cloud Serverless bucket. Only available for buckets with explicit schema type. Shows schema names, column definitions, and metadata.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "bucketName": {
+          "type": "string",
+          "description": "Name of the Cloud Serverless bucket"
+        }
+      },
+      "required": ["bucketName"]
+    }
+  },
+  {
+    "name": "serverless_get_schema",
+    "description": "Get detailed information about a specific measurement schema in a Cloud Serverless bucket. Shows column definitions, data types, and schema metadata.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "bucketName": {
+          "type": "string",
+          "description": "Name of the Cloud Serverless bucket"
+        },
+        "schemaName": {
+          "type": "string",
+          "description": "Name of the schema to retrieve"
+        }
+      },
+      "required": ["bucketName", "schemaName"]
+    }
+  },
+  {
+    "name": "serverless_create_schema",
+    "description": "Create a new measurement schema in a Cloud Serverless bucket with explicit schema type. Define columns with their types (tag, field, timestamp) and data types.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "bucketName": {
+          "type": "string",
+          "description": "Name of the Cloud Serverless bucket"
+        },
+        "schemaName": {
+          "type": "string",
+          "description": "Name of the schema to create"
+        },
+        "columns": {
+          "type": "array",
+          "description": "Array of column definitions",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Column name"
+              },
+              "type": {
+                "type": "string",
+                "enum": ["tag", "field", "timestamp"],
+                "description": "Column type"
+              },
+              "dataType": {
+                "type": "string",
+                "enum": ["string", "float", "integer", "boolean", "time"],
+                "description": "Data type of the column"
+              }
+            },
+            "required": ["name", "type"]
+          }
+        }
+      },
+      "required": ["bucketName", "schemaName", "columns"]
+    }
+  },
+  {
+    "name": "serverless_update_schema",
+    "description": "Add new columns to an existing measurement schema in a Cloud Serverless bucket. IMPORTANT: You can only ADD new columns, not modify existing ones. The endpoint requires ALL columns (existing + new) to be sent. Use get_schema first to retrieve current columns, then include them along with new columns in this update.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "bucketName": {
+          "type": "string",
+          "description": "Name of the Cloud Serverless bucket"
+        },
+        "schemaName": {
+          "type": "string",
+          "description": "Name of the schema to update"
+        },
+        "columns": {
+          "type": "array",
+          "description": "Array of ALL columns (existing + new). Must include all existing columns.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Column name"
+              },
+              "type": {
+                "type": "string",
+                "enum": ["tag", "field", "timestamp"],
+                "description": "Column type"
+              },
+              "dataType": {
+                "type": "string",
+                "enum": ["string", "float", "integer", "boolean", "time"],
+                "description": "Data type of the column"
+              }
+            },
+            "required": ["name", "type"]
+          }
+        }
+      },
+      "required": ["bucketName", "schemaName", "columns"]
+    }
+  },
+  {
+    "name": "cloud_list_database_tokens",
+    "description": "List all database tokens for InfluxDB Cloud-Dedicated/Clustered cluster. Returns token information including permissions and creation dates.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "cloud_get_database_token",
+    "description": "Get details of a specific database token by ID for InfluxDB Cloud-Dedicated/Clustered cluster.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "tokenId": {
+          "type": "string",
+          "description": "ID of the database token to retrieve"
+        }
+      },
+      "required": ["tokenId"]
+    }
+  },
+  {
+    "name": "cloud_create_database_token",
+    "description": "Create a new database token for InfluxDB Cloud-Dedicated/Clustered cluster. Specify exact permissions per database or create a no-access token. Permissions format: [{\"database\": \"db_name\", \"action\": \"read|write\"}, ...]",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "Description for the token"
+        },
+        "permissions": {
+          "type": "array",
+          "description": "Array of permission objects. Each has database and action (read|write). Use [] for no-access token.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "database": {
+                "type": "string",
+                "description": "Database name, use * for all databases"
+              },
+              "action": {
+                "type": "string",
+                "enum": ["read", "write"],
+                "description": "Permission action"
+              }
+            },
+            "required": ["database", "action"]
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "cloud_update_database_token",
+    "description": "Update an existing database token for InfluxDB Cloud-Dedicated/Clustered cluster. Can update description and/or permissions. Note: Permissions completely replace existing ones - include all desired permissions.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "tokenId": {
+          "type": "string",
+          "description": "ID of the token to update"
+        },
+        "description": {
+          "type": "string",
+          "description": "Updated description for the token"
+        },
+        "permissions": {
+          "type": "array",
+          "description": "New permissions (replaces all existing). Each has database and action (read|write).",
+          "items": {
+            "type": "object",
+            "properties": {
+              "database": {
+                "type": "string",
+                "description": "Database name"
+              },
+              "action": {
+                "type": "string",
+                "enum": ["read", "write"]
+              }
+            },
+            "required": ["database", "action"]
+          }
+        }
+      },
+      "required": ["tokenId"]
+    }
+  },
+  {
+    "name": "cloud_delete_database_token",
+    "description": "Delete a database token from InfluxDB Cloud-Dedicated/Clustered cluster. This action cannot be undone.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "tokenId": {
+          "type": "string",
+          "description": "ID of the token to delete"
+        }
+      },
+      "required": ["tokenId"]
+    }
+  },
+  {
+    "name": "load_database_context",
+    "description": "Check for and load custom database context if available. Always check this first as it can significantly speed up analysis and clarify data nuances. User-provided context is optional but when present, it contains valuable information about database structure, business context, or personal notes.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "get_help",
+    "description": "Get help and troubleshooting guidance for InfluxDB operations. Supports specific categories or keyword search.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": false
+    }
+  }
+]
