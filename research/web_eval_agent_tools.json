@@ -1,0 +1,36 @@
+[
+  {
+    "name": "web_eval_agent",
+    "description": "Evaluate the user experience / interface of a web application.\n\nThis tool allows the AI to assess the quality of user experience and interface design of a web application by performing specific tasks and analyzing the interaction flow.\n\nBefore this tool is used, the web application should already be running locally on a port.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Required. The localhost URL of the web application to evaluate, including the port number. Example: http://localhost:3000, http://localhost:8080, etc. Try to avoid using the path segments of the URL, and instead use the root URL."
+        },
+        "task": {
+          "type": "string",
+          "description": "Required. The specific UX/UI aspect to test (e.g., \"test the checkout flow\", \"evaluate the navigation menu usability\", \"check form validation feedback\"). Be as detailed as possible in your task description. It could be anywhere from 2 sentences to 2 paragraphs."
+        },
+        "headless_browser": {
+          "type": "boolean",
+          "description": "Optional. Whether to hide the browser window popup during evaluation. If headless_browser is True, only the operative control center browser will show, and no popup browser will be shown."
+        }
+      }
+    }
+  },
+  {
+    "name": "setup_browser_state",
+    "description": "Sets up and saves browser state for future use.\n\nThis tool should only be called in one scenario:\n1. The user explicitly requests to set up browser state/authentication\n\nLaunches a non-headless browser for user interaction, allows login/authentication, and saves the browser state (cookies, local storage, etc.) to a local file.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Optional URL to navigate to upon opening the browser."
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,2460 @@
+[
+  {
+    "name": "advsec_get_alerts",
+    "description": "Retrieve Advanced Security alerts for a repository.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps project."
+        },
+        "repository": {
+          "type": "string",
+          "description": "The name or ID of the repository to get alerts for."
+        },
+        "ruleId": {
+          "type": "string",
+          "description": "Filter alerts by rule ID."
+        },
+        "ruleName": {
+          "type": "string",
+          "description": "Filter alerts by rule name."
+        },
+        "toolName": {
+          "type": "string",
+          "description": "Filter alerts by tool name."
+        },
+        "ref": {
+          "type": "string",
+          "description": "Filter alerts by git reference (branch). If not provided and onlyDefaultBranch is true, only includes alerts from default branch."
+        },
+        "onlyDefaultBranch": {
+          "type": "string",
+          "description": "If true, only return alerts found on the default branch. Defaults to true."
+        },
+        "top": {
+          "type": "string",
+          "description": "Maximum number of alerts to return. Defaults to 100."
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "Order results by specified field. Defaults to 'severity'."
+        },
+        "continuationToken": {
+          "type": "string",
+          "description": "Continuation token for pagination."
+        }
+      }
+    }
+  },
+  {
+    "name": "advsec_get_alert_details",
+    "description": "Get detailed information about a specific Advanced Security alert.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps project."
+        },
+        "repository": {
+          "type": "string",
+          "description": "The name or ID of the repository containing the alert."
+        },
+        "alertId": {
+          "type": "string",
+          "description": "The ID of the alert to retrieve details for."
+        },
+        "ref": {
+          "type": "string",
+          "description": "Git reference (branch) to filter the alert."
+        }
+      }
+    }
+  },
+  {
+    "name": "core_list_project_teams",
+    "description": "Retrieve a list of teams for an Azure DevOps project. If a project is not specified, you will be prompted to select one.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps project. Reuse from prior context if already known. If not provided, a project selection prompt will be shown."
+        },
+        "mine": {
+          "type": "string",
+          "description": "If true, only return teams that the authenticated user is a member of."
+        },
+        "top": {
+          "type": "string",
+          "description": "The maximum number of teams to return. Defaults to 100."
+        },
+        "skip": {
+          "type": "string",
+          "description": "The number of teams to skip for pagination. Defaults to 0."
+        }
+      }
+    }
+  },
+  {
+    "name": "core_list_projects",
+    "description": "Retrieve a list of projects in your Azure DevOps organization.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "stateFilter": {
+          "type": "string",
+          "description": "Filter projects by their state. Defaults to 'wellFormed'."
+        },
+        "top": {
+          "type": "string",
+          "description": "The maximum number of projects to return. Defaults to 100."
+        },
+        "skip": {
+          "type": "string",
+          "description": "The number of projects to skip for pagination. Defaults to 0."
+        },
+        "continuationToken": {
+          "type": "string",
+          "description": "Continuation token for pagination. Used to fetch the next set of results if available."
+        },
+        "projectNameFilter": {
+          "type": "string",
+          "description": "Filter projects by name. Supports partial matches."
+        }
+      }
+    }
+  },
+  {
+    "name": "core_get_identity_ids",
+    "description": "Retrieve Azure DevOps identity IDs for a provided search filter.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "searchFilter": {
+          "type": "string",
+          "description": "Search filter (unique name, display name, email) to retrieve identity IDs for."
+        }
+      }
+    }
+  },
+  {
+    "name": "pipelines_get_build_definitions",
+    "description": "Retrieves a list of build definitions for a given project.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Project ID or name to get build definitions for"
+        },
+        "repositoryId": {
+          "type": "string",
+          "description": "Repository ID to filter build definitions"
+        },
+        "repositoryType": {
+          "type": "string",
+          "description": "Type of repository to filter build definitions"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the build definition to filter"
+        },
+        "path": {
+          "type": "string",
+          "description": "Path of the build definition to filter"
+        },
+        "top": {
+          "type": "string",
+          "description": "Maximum number of build definitions to return"
+        },
+        "continuationToken": {
+          "type": "string",
+          "description": "Token for continuing paged results"
+        },
+        "minMetricsTime": {
+          "type": "string",
+          "description": "Minimum metrics time to filter build definitions"
+        },
+        "definitionIds": {
+          "type": "string",
+          "description": "Array of build definition IDs to filter"
+        },
+        "builtAfter": {
+          "type": "string",
+          "description": "Return definitions that have builds after this date"
+        },
+        "notBuiltAfter": {
+          "type": "string",
+          "description": "Return definitions that do not have builds after this date"
+        },
+        "includeAllProperties": {
+          "type": "string",
+          "description": "Whether to include all properties in the results"
+        },
+        "includeLatestBuilds": {
+          "type": "string",
+          "description": "Whether to include the latest builds for each definition"
+        },
+        "taskIdFilter": {
+          "type": "string",
+          "description": "Task ID to filter build definitions"
+        },
+        "processType": {
+          "type": "string",
+          "description": "Process type to filter build definitions"
+        },
+        "yamlFilename": {
+          "type": "string",
+          "description": "YAML filename to filter build definitions"
+        }
+      }
+    }
+  },
+  {
+    "name": "pipelines_create_pipeline",
+    "description": "Creates a pipeline definition with YAML configuration for a given project.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Project ID or name to run the build in."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the new pipeline."
+        },
+        "folder": {
+          "type": "string",
+          "description": "Folder path for the new pipeline. Defaults to '\\\\' if not specified."
+        },
+        "yamlPath": {
+          "type": "string",
+          "description": "The path to the pipeline's YAML file in the repository"
+        },
+        "repositoryType": {
+          "type": "string",
+          "description": "The type of repository where the pipeline's YAML file is located."
+        },
+        "repositoryName": {
+          "type": "string",
+          "description": "The name of the repository. In case of GitHub repository, this is the full name (:owner/:repo) - e.g. octocat/Hello-World."
+        },
+        "repositoryId": {
+          "type": "string",
+          "description": "The ID of the repository."
+        },
+        "repositoryConnectionId": {
+          "type": "string",
+          "description": "The service connection ID for GitHub repositories. Not required for Azure Repos Git."
+        }
+      }
+    }
+  },
+  {
+    "name": "pipelines_get_build_definition_revisions",
+    "description": "Retrieves a list of revisions for a specific build definition.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Project ID or name to get the build definition revisions for"
+        },
+        "definitionId": {
+          "type": "string",
+          "description": "ID of the build definition to get revisions for"
+        }
+      }
+    }
+  },
+  {
+    "name": "pipelines_get_builds",
+    "description": "Retrieves a list of builds for a given project.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Project ID or name to get builds for"
+        },
+        "definitions": {
+          "type": "string",
+          "description": "Array of build definition IDs to filter builds"
+        },
+        "queues": {
+          "type": "string",
+          "description": "Array of queue IDs to filter builds"
+        },
+        "buildNumber": {
+          "type": "string",
+          "description": "Build number to filter builds"
+        },
+        "minTime": {
+          "type": "string",
+          "description": "Minimum finish time to filter builds"
+        },
+        "maxTime": {
+          "type": "string",
+          "description": "Maximum finish time to filter builds"
+        },
+        "requestedFor": {
+          "type": "string",
+          "description": "User ID or name who requested the build"
+        },
+        "reasonFilter": {
+          "type": "string",
+          "description": "Reason filter for the build (see BuildReason enum)"
+        },
+        "statusFilter": {
+          "type": "string",
+          "description": "Status filter for the build (see BuildStatus enum)"
+        },
+        "resultFilter": {
+          "type": "string",
+          "description": "Result filter for the build (see BuildResult enum)"
+        },
+        "tagFilters": {
+          "type": "string",
+          "description": "Array of tags to filter builds"
+        },
+        "properties": {
+          "type": "string",
+          "description": "Array of property names to include in the results"
+        },
+        "top": {
+          "type": "string",
+          "description": "Maximum number of builds to return"
+        },
+        "continuationToken": {
+          "type": "string",
+          "description": "Token for continuing paged results"
+        },
+        "maxBuildsPerDefinition": {
+          "type": "string",
+          "description": "Maximum number of builds per definition"
+        },
+        "deletedFilter": {
+          "type": "string",
+          "description": "Filter for deleted builds (see QueryDeletedOption enum)"
+        },
+        "branchName": {
+          "type": "string",
+          "description": "Branch name to filter builds"
+        },
+        "buildIds": {
+          "type": "string",
+          "description": "Array of build IDs to retrieve"
+        },
+        "repositoryId": {
+          "type": "string",
+          "description": "Repository ID to filter builds"
+        },
+        "repositoryType": {
+          "type": "string",
+          "description": "Type of repository to filter builds"
+        }
+      }
+    }
+  },
+  {
+    "name": "pipelines_get_build_log",
+    "description": "Retrieves the logs for a specific build.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Project ID or name to get the build log for"
+        },
+        "buildId": {
+          "type": "string",
+          "description": "ID of the build to get the log for"
+        }
+      }
+    }
+  },
+  {
+    "name": "pipelines_get_build_log_by_id",
+    "description": "Get a specific build log by log ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Project ID or name to get the build log for"
+        },
+        "buildId": {
+          "type": "string",
+          "description": "ID of the build to get the log for"
+        },
+        "logId": {
+          "type": "string",
+          "description": "ID of the log to retrieve"
+        },
+        "startLine": {
+          "type": "string",
+          "description": "Starting line number for the log content, defaults to 0"
+        },
+        "endLine": {
+          "type": "string",
+          "description": "Ending line number for the log content, defaults to the end of the log"
+        }
+      }
+    }
+  },
+  {
+    "name": "pipelines_get_build_changes",
+    "description": "Get the changes associated with a specific build.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Project ID or name to get the build changes for"
+        },
+        "buildId": {
+          "type": "string",
+          "description": "ID of the build to get changes for"
+        },
+        "continuationToken": {
+          "type": "string",
+          "description": "Continuation token for pagination"
+        },
+        "top": {
+          "type": "string",
+          "description": "Number of changes to retrieve, defaults to 100"
+        },
+        "includeSourceChange": {
+          "type": "string",
+          "description": "Whether to include source changes in the results, defaults to false"
+        }
+      }
+    }
+  },
+  {
+    "name": "pipelines_get_run",
+    "description": "Gets a run for a particular pipeline.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Project ID or name to run the build in"
+        },
+        "pipelineId": {
+          "type": "string",
+          "description": "ID of the pipeline to run"
+        },
+        "runId": {
+          "type": "string",
+          "description": "ID of the run to get"
+        }
+      }
+    }
+  },
+  {
+    "name": "pipelines_list_runs",
+    "description": "Gets top 10000 runs for a particular pipeline.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Project ID or name to run the build in"
+        },
+        "pipelineId": {
+          "type": "string",
+          "description": "ID of the pipeline to run"
+        }
+      }
+    }
+  },
+  {
+    "name": "pipelines_run_pipeline",
+    "description": "Starts a new run of a pipeline.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Project ID or name to run the build in"
+        },
+        "pipelineId": {
+          "type": "string",
+          "description": "ID of the pipeline to run"
+        },
+        "pipelineVersion": {
+          "type": "string",
+          "description": "Version of the pipeline to run. If not provided, the latest version will be used."
+        },
+        "previewRun": {
+          "type": "string",
+          "description": "If true, returns the final YAML document after parsing templates without creating a new run."
+        },
+        "stagesToSkip": {
+          "type": "string",
+          "description": "A list of stages to skip."
+        },
+        "templateParameters": {
+          "type": "string",
+          "description": "Custom build parameters as key-value pairs"
+        },
+        "variables": {
+          "type": "string",
+          "description": "A dictionary of variables to pass to the pipeline."
+        },
+        "yamlOverride": {
+          "type": "string",
+          "description": "YAML override for the pipeline run."
+        }
+      }
+    }
+  },
+  {
+    "name": "pipelines_get_build_status",
+    "description": "Fetches the status of a specific build.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Project ID or name to get the build status for"
+        },
+        "buildId": {
+          "type": "string",
+          "description": "ID of the build to get the status for"
+        }
+      }
+    }
+  },
+  {
+    "name": "pipelines_update_build_stage",
+    "description": "Updates the stage of a specific build.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Project ID or name to update the build stage for"
+        },
+        "buildId": {
+          "type": "string",
+          "description": "ID of the build to update"
+        },
+        "stageName": {
+          "type": "string",
+          "description": "Name of the stage to update"
+        },
+        "status": {
+          "type": "string",
+          "description": "New status for the stage"
+        },
+        "forceRetryAllJobs": {
+          "type": "string",
+          "description": "Whether to force retry all jobs in the stage."
+        }
+      }
+    }
+  },
+  {
+    "name": "pipelines_list_artifacts",
+    "description": "Lists artifacts for a given build.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The name or ID of the project."
+        },
+        "buildId": {
+          "type": "string",
+          "description": "The ID of the build."
+        }
+      }
+    }
+  },
+  {
+    "name": "pipelines_download_artifact",
+    "description": "Downloads a pipeline artifact.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The name or ID of the project."
+        },
+        "buildId": {
+          "type": "string",
+          "description": "The ID of the build."
+        },
+        "artifactName": {
+          "type": "string",
+          "description": "The name of the artifact to download."
+        },
+        "destinationPath": {
+          "type": "string",
+          "description": "The local path to download the artifact to. If not provided, returns binary content as base64."
+        }
+      }
+    }
+  },
+  {
+    "name": "repo_create_pull_request",
+    "description": "Create a new pull request.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "sourceRefName": {
+          "type": "string",
+          "description": "The source branch name for the pull request, e.g., 'refs/heads/feature-branch'."
+        },
+        "targetRefName": {
+          "type": "string",
+          "description": "The target branch name for the pull request, e.g., 'refs/heads/main'."
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the pull request."
+        },
+        "description": {
+          "type": "string",
+          "description": "The description of the pull request. Must not be longer than 4000 characters. Optional."
+        },
+        "isDraft": {
+          "type": "string",
+          "description": "Indicates whether the pull request is a draft. Defaults to false."
+        },
+        "project": {
+          "type": "string",
+          "description": "Project ID or project name. Required when repositoryId is a repository name instead of a GUID."
+        },
+        "workItems": {
+          "type": "string",
+          "description": "Work item IDs to associate with the pull request, space-separated."
+        },
+        "forkSourceRepositoryId": {
+          "type": "string",
+          "description": "The ID of the fork repository that the pull request originates from. Optional, used when creating a pull request from a fork."
+        },
+        "labels": {
+          "type": "string",
+          "description": "Array of label names to add to the pull request after creation."
+        }
+      }
+    }
+  },
+  {
+    "name": "repo_create_branch",
+    "description": "Create a new branch in the repository.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "branchName": {
+          "type": "string",
+          "description": "The name of the new branch to create, e.g., 'feature-branch'."
+        },
+        "sourceBranchName": {
+          "type": "string",
+          "description": "The name of the source branch to create the new branch from. Defaults to 'main'."
+        },
+        "sourceCommitId": {
+          "type": "string",
+          "description": "The commit ID to create the branch from. If not provided, uses the latest commit of the source branch."
+        },
+        "project": {
+          "type": "string",
+          "description": "Project ID or project name. Required when repositoryId is a repository name instead of a GUID."
+        }
+      }
+    }
+  },
+  {
+    "name": "repo_update_pull_request",
+    "description": "Update a Pull Request by ID with specified fields, including setting autocomplete with various completion options.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "repositoryId": {
+          "type": "string",
+          "description": "The ID or name of the repository where the pull request exists. When using a repository name instead of a GUID, the project parameter must also be provided."
+        },
+        "pullRequestId": {
+          "type": "string",
+          "description": "The ID of the pull request to update."
+        },
+        "project": {
+          "type": "string",
+          "description": "Project ID or project name. Required when repositoryId is a repository name instead of a GUID."
+        },
+        "title": {
+          "type": "string",
+          "description": "The new title for the pull request."
+        },
+        "description": {
+          "type": "string",
+          "description": "The new description for the pull request. Must not be longer than 4000 characters."
+        },
+        "isDraft": {
+          "type": "string",
+          "description": "Whether the pull request should be a draft."
+        },
+        "targetRefName": {
+          "type": "string",
+          "description": "The new target branch name (e.g., 'refs/heads/main')."
+        },
+        "status": {
+          "type": "string",
+          "description": "The new status of the pull request. Can be 'Active' or 'Abandoned'."
+        },
+        "autoComplete": {
+          "type": "string",
+          "description": "Set the pull request to autocomplete when all requirements are met."
+        },
+        "deleteSourceBranch": {
+          "type": "string",
+          "description": "Whether to delete the source branch when the pull request autocompletes. Defaults to false."
+        },
+        "transitionWorkItems": {
+          "type": "string",
+          "description": "Whether to transition associated work items to the next state when the pull request autocompletes. Defaults to true."
+        },
+        "bypassReason": {
+          "type": "string",
+          "description": "Reason for bypassing branch policies. When provided, branch policies will be automatically bypassed during autocompletion."
+        },
+        "labels": {
+          "type": "string",
+          "description": "Array of label names to replace existing labels on the pull request. This will remove all current labels and add the specified ones."
+        }
+      }
+    }
+  },
+  {
+    "name": "repo_update_pull_request_reviewers",
+    "description": "Add or remove reviewers for an existing pull request.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "repositoryId": {
+          "type": "string",
+          "description": "The ID or name of the repository where the pull request exists. When using a repository name instead of a GUID, the project parameter must also be provided."
+        },
+        "pullRequestId": {
+          "type": "string",
+          "description": "The ID of the pull request to update."
+        },
+        "reviewerIds": {
+          "type": "string",
+          "description": "List of reviewer ids to add or remove from the pull request."
+        },
+        "action": {
+          "type": "string",
+          "description": "Action to perform on the reviewers. Can be 'add' or 'remove'."
+        },
+        "project": {
+          "type": "string",
+          "description": "Project ID or project name. Required when repositoryId is a repository name instead of a GUID."
+        }
+      }
+    }
+  },
+  {
+    "name": "repo_list_repos_by_project",
+    "description": "Retrieve a list of repositories for a given project",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps project."
+        },
+        "top": {
+          "type": "string",
+          "description": "The maximum number of repositories to return."
+        },
+        "skip": {
+          "type": "string",
+          "description": "The number of repositories to skip. Defaults to 0."
+        },
+        "repoNameFilter": {
+          "type": "string",
+          "description": "Optional filter to search for repositories by name. If provided, only repositories with names containing this string will be returned."
+        }
+      }
+    }
+  },
+  {
+    "name": "repo_list_pull_requests_by_repo_or_project",
+    "description": "Retrieve a list of pull requests for a given repository. Either repositoryId or project must be provided.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Project ID or project name. Required when repositoryId is a repository name instead of a GUID, or to scope the search to a specific project."
+        },
+        "top": {
+          "type": "string",
+          "description": "The maximum number of pull requests to return."
+        },
+        "skip": {
+          "type": "string",
+          "description": "The number of pull requests to skip."
+        },
+        "created_by_me": {
+          "type": "string",
+          "description": "Filter pull requests created by the current user."
+        },
+        "created_by_user": {
+          "type": "string",
+          "description": "Filter pull requests created by a specific user (provide email or unique name). Takes precedence over created_by_me if both are provided."
+        },
+        "i_am_reviewer": {
+          "type": "string",
+          "description": "Filter pull requests where the current user is a reviewer."
+        },
+        "sourceRefName": {
+          "type": "string",
+          "description": "Filter pull requests from this source branch (e.g., 'refs/heads/feature-branch')."
+        },
+        "targetRefName": {
+          "type": "string",
+          "description": "Filter pull requests into this target branch (e.g., 'refs/heads/main')."
+        }
+      }
+    }
+  },
+  {
+    "name": "repo_list_pull_request_threads",
+    "description": "Retrieve a list of comment threads for a pull request.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "pullRequestId": {
+          "type": "string",
+          "description": "The ID of the pull request for which to retrieve threads."
+        },
+        "project": {
+          "type": "string",
+          "description": "Project ID or project name. Required when repositoryId is a repository name instead of a GUID."
+        },
+        "iteration": {
+          "type": "string",
+          "description": "The iteration ID for which to retrieve threads. Optional, defaults to the latest iteration."
+        },
+        "baseIteration": {
+          "type": "string",
+          "description": "The base iteration ID for which to retrieve threads. Optional, defaults to the latest base iteration."
+        },
+        "top": {
+          "type": "string",
+          "description": "The maximum number of threads to return after filtering."
+        },
+        "skip": {
+          "type": "string",
+          "description": "The number of threads to skip after filtering."
+        },
+        "fullResponse": {
+          "type": "string",
+          "description": "Return full thread JSON response instead of trimmed data."
+        },
+        "authorEmail": {
+          "type": "string",
+          "description": "Filter threads by the email of the thread author (first comment author)."
+        },
+        "authorDisplayName": {
+          "type": "string",
+          "description": "Filter threads by the display name of the thread author (first comment author). Case-insensitive partial matching."
+        }
+      }
+    }
+  },
+  {
+    "name": "repo_list_pull_request_thread_comments",
+    "description": "Retrieve a list of comments in a pull request thread.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "pullRequestId": {
+          "type": "string",
+          "description": "The ID of the pull request for which to retrieve thread comments."
+        },
+        "threadId": {
+          "type": "string",
+          "description": "The ID of the thread for which to retrieve comments."
+        },
+        "project": {
+          "type": "string",
+          "description": "Project ID or project name. Required when repositoryId is a repository name instead of a GUID."
+        },
+        "top": {
+          "type": "string",
+          "description": "The maximum number of comments to return."
+        },
+        "skip": {
+          "type": "string",
+          "description": "The number of comments to skip."
+        },
+        "fullResponse": {
+          "type": "string",
+          "description": "Return full comment JSON response instead of trimmed data."
+        }
+      }
+    }
+  },
+  {
+    "name": "repo_list_branches_by_repo",
+    "description": "Retrieve a list of branches for a given repository.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "top": {
+          "type": "string",
+          "description": "The maximum number of branches to return. Defaults to 100."
+        },
+        "filterContains": {
+          "type": "string",
+          "description": "Filter to find branches that contain this string in their name."
+        },
+        "project": {
+          "type": "string",
+          "description": "Project ID or project name. Required when repositoryId is a repository name instead of a GUID."
+        }
+      }
+    }
+  },
+  {
+    "name": "repo_list_my_branches_by_repo",
+    "description": "Retrieve a list of my branches for a given repository Id.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "top": {
+          "type": "string",
+          "description": "The maximum number of branches to return."
+        },
+        "filterContains": {
+          "type": "string",
+          "description": "Filter to find branches that contain this string in their name."
+        },
+        "project": {
+          "type": "string",
+          "description": "Project ID or project name. Required when repositoryId is a repository name instead of a GUID."
+        }
+      }
+    }
+  },
+  {
+    "name": "repo_get_repo_by_name_or_id",
+    "description": "Get the repository by project and repository name or ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Project name or ID where the repository is located."
+        },
+        "repositoryNameOrId": {
+          "type": "string",
+          "description": "Repository name or ID."
+        }
+      }
+    }
+  },
+  {
+    "name": "repo_get_branch_by_name",
+    "description": "Get a branch by its name.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "repositoryId": {
+          "type": "string",
+          "description": "The ID or name of the repository where the branch is located. When using a repository name instead of a GUID, the project parameter must also be provided."
+        },
+        "branchName": {
+          "type": "string",
+          "description": "The name of the branch to retrieve, e.g., 'main' or 'feature-branch'."
+        },
+        "project": {
+          "type": "string",
+          "description": "Project ID or project name. Required when repositoryId is a repository name instead of a GUID."
+        }
+      }
+    }
+  },
+  {
+    "name": "repo_get_pull_request_by_id",
+    "description": "Get a pull request by its ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "pullRequestId": {
+          "type": "string",
+          "description": "The ID of the pull request to retrieve."
+        },
+        "project": {
+          "type": "string",
+          "description": "Project ID or project name. Required when repositoryId is a repository name instead of a GUID."
+        },
+        "includeWorkItemRefs": {
+          "type": "string",
+          "description": "Whether to reference work items associated with the pull request."
+        },
+        "includeLabels": {
+          "type": "string",
+          "description": "Whether to include a summary of labels in the response."
+        }
+      }
+    }
+  },
+  {
+    "name": "repo_reply_to_comment",
+    "description": "Replies to a specific comment on a pull request.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "pullRequestId": {
+          "type": "string",
+          "description": "The ID of the pull request where the comment thread exists."
+        },
+        "threadId": {
+          "type": "string",
+          "description": "The ID of the thread to which the comment will be added."
+        },
+        "content": {
+          "type": "string",
+          "description": "The content of the comment to be added."
+        },
+        "project": {
+          "type": "string",
+          "description": "Project ID or project name. Required when repositoryId is a repository name instead of a GUID."
+        },
+        "fullResponse": {
+          "type": "string",
+          "description": "Return full comment JSON response instead of a simple confirmation message."
+        }
+      }
+    }
+  },
+  {
+    "name": "repo_create_pull_request_thread",
+    "description": "Creates a new comment thread on a pull request.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "pullRequestId": {
+          "type": "string",
+          "description": "The ID of the pull request where the comment thread exists."
+        },
+        "content": {
+          "type": "string",
+          "description": "The content of the comment to be added."
+        },
+        "project": {
+          "type": "string",
+          "description": "Project ID or project name. Required when repositoryId is a repository name instead of a GUID."
+        },
+        "filePath": {
+          "type": "string",
+          "description": "The path of the file where the comment thread will be created. (optional)"
+        },
+        "rightFileStartLine": {
+          "type": "string",
+          "description": "Position of first character of the thread's span in right file. The line number of a thread's position. Starts at 1. (optional)"
+        }
+      }
+    }
+  },
+  {
+    "name": "repo_update_pull_request_thread",
+    "description": "Updates an existing comment thread on a pull request.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "pullRequestId": {
+          "type": "string",
+          "description": "The ID of the pull request where the comment thread exists."
+        },
+        "threadId": {
+          "type": "string",
+          "description": "The ID of the thread to update."
+        },
+        "project": {
+          "type": "string",
+          "description": "Project ID or project name. Required when repositoryId is a repository name instead of a GUID."
+        }
+      }
+    }
+  },
+  {
+    "name": "repo_search_commits",
+    "description": "Search for commits in a repository with comprehensive filtering capabilities. Supports searching by description/comment text, time range, author, committer, specific commit IDs, and more. This is the unified tool for all commit search operations.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Project name or ID"
+        },
+        "repository": {
+          "type": "string",
+          "description": "Repository name or ID"
+        },
+        "fromCommit": {
+          "type": "string",
+          "description": "Starting commit ID"
+        },
+        "toCommit": {
+          "type": "string",
+          "description": "Ending commit ID"
+        },
+        "version": {
+          "type": "string",
+          "description": "The name of the branch, tag or commit to filter commits by"
+        },
+        "skip": {
+          "type": "string",
+          "description": "Number of commits to skip"
+        },
+        "top": {
+          "type": "string",
+          "description": "Maximum number of commits to return"
+        },
+        "includeLinks": {
+          "type": "string",
+          "description": "Include commit links"
+        },
+        "includeWorkItems": {
+          "type": "string",
+          "description": "Include associated work items"
+        },
+        "searchText": {
+          "type": "string",
+          "description": "Search text to filter commits by description/comment. Supports partial matching."
+        },
+        "author": {
+          "type": "string",
+          "description": "Filter commits by author email or display name"
+        },
+        "authorEmail": {
+          "type": "string",
+          "description": "Filter commits by exact author email address"
+        },
+        "committer": {
+          "type": "string",
+          "description": "Filter commits by committer email or display name"
+        },
+        "committerEmail": {
+          "type": "string",
+          "description": "Filter commits by exact committer email address"
+        },
+        "fromDate": {
+          "type": "string",
+          "description": "Filter commits from this date (ISO 8601 format, e.g., '2024-01-01T00:00:00Z')"
+        },
+        "toDate": {
+          "type": "string",
+          "description": "Filter commits to this date (ISO 8601 format, e.g., '2024-12-31T23:59:59Z')"
+        },
+        "commitIds": {
+          "type": "string",
+          "description": "Array of specific commit IDs to retrieve. When provided, other filters are ignored except top/skip."
+        },
+        "historySimplificationMode": {
+          "type": "string",
+          "description": "How to simplify the commit history"
+        }
+      }
+    }
+  },
+  {
+    "name": "repo_list_pull_requests_by_commits",
+    "description": "Lists pull requests by commit IDs to find which pull requests contain specific commits",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Project name or ID"
+        },
+        "repository": {
+          "type": "string",
+          "description": "Repository name or ID"
+        },
+        "commits": {
+          "type": "string",
+          "description": "Array of commit IDs to query for"
+        }
+      }
+    }
+  },
+  {
+    "name": "repo_vote_pull_request",
+    "description": "Cast a vote on a pull request. Automatically adds the current user as a reviewer if they are not already one.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "repositoryId": {
+          "type": "string",
+          "description": "The ID or name of the repository. When using a repository name instead of a GUID, the project parameter must also be provided."
+        },
+        "pullRequestId": {
+          "type": "string",
+          "description": "The ID of the pull request."
+        },
+        "vote": {
+          "type": "string",
+          "description": "The vote to cast: Approved(10), Suggestions(5), None(0), Waiting(-5), Rejected(-10)."
+        },
+        "project": {
+          "type": "string",
+          "description": "Project ID or project name. Required when repositoryId is a repository name instead of a GUID."
+        }
+      }
+    }
+  },
+  {
+    "name": "repo_list_directory",
+    "description": "List files and folders in a directory within a repository. Useful for exploring the structure of a codebase or finding related files.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "repositoryId": {
+          "type": "string",
+          "description": "The ID or name of the repository."
+        },
+        "path": {
+          "type": "string",
+          "description": "The directory path to list (e.g., '/src' or '/src/components'). Defaults to repository root."
+        },
+        "project": {
+          "type": "string",
+          "description": "Project ID or name. Required if repositoryId is a name rather than a GUID."
+        },
+        "version": {
+          "type": "string",
+          "description": "The version identifier - branch name (e.g., 'main'), tag name, or commit SHA. Defaults to the repository's default branch."
+        },
+        "versionType": {
+          "type": "string",
+          "description": "The type of version identifier: 'Branch', 'Commit', or 'Tag'. Defaults to 'Branch'."
+        },
+        "recursive": {
+          "type": "string",
+          "description": "Whether to list items recursively. Defaults to false."
+        },
+        "recursionDepth": {
+          "type": "string",
+          "description": "Maximum depth for recursive listing (1-10). Only applies when recursive is true. Defaults to 1."
+        }
+      }
+    }
+  },
+  {
+    "name": "search_code",
+    "description": "Search Azure DevOps Repositories for a given search text",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "searchText": {
+          "type": "string",
+          "description": "Keywords to search for in code repositories"
+        },
+        "project": {
+          "type": "string",
+          "description": "Filter by projects"
+        },
+        "repository": {
+          "type": "string",
+          "description": "Filter by repositories"
+        },
+        "path": {
+          "type": "string",
+          "description": "Filter by paths"
+        },
+        "branch": {
+          "type": "string",
+          "description": "Filter by branches"
+        },
+        "includeFacets": {
+          "type": "string",
+          "description": "Include facets in the search results"
+        },
+        "skip": {
+          "type": "string",
+          "description": "Number of results to skip"
+        },
+        "top": {
+          "type": "string",
+          "description": "Maximum number of results to return"
+        }
+      }
+    }
+  },
+  {
+    "name": "search_wiki",
+    "description": "Search Azure DevOps Wiki for a given search text",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "searchText": {
+          "type": "string",
+          "description": "Keywords to search for wiki pages"
+        },
+        "project": {
+          "type": "string",
+          "description": "Filter by projects"
+        },
+        "wiki": {
+          "type": "string",
+          "description": "Filter by wiki names"
+        },
+        "includeFacets": {
+          "type": "string",
+          "description": "Include facets in the search results"
+        },
+        "skip": {
+          "type": "string",
+          "description": "Number of results to skip"
+        },
+        "top": {
+          "type": "string",
+          "description": "Maximum number of results to return"
+        }
+      }
+    }
+  },
+  {
+    "name": "search_workitem",
+    "description": "Get Azure DevOps Work Item search results for a given search text",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "searchText": {
+          "type": "string",
+          "description": "Search text to find in work items"
+        },
+        "project": {
+          "type": "string",
+          "description": "Filter by projects"
+        },
+        "areaPath": {
+          "type": "string",
+          "description": "Filter by area paths"
+        },
+        "workItemType": {
+          "type": "string",
+          "description": "Filter by work item types"
+        },
+        "state": {
+          "type": "string",
+          "description": "Filter by work item states"
+        },
+        "assignedTo": {
+          "type": "string",
+          "description": "Filter by assigned to users"
+        },
+        "includeFacets": {
+          "type": "string",
+          "description": "Include facets in the search results"
+        },
+        "skip": {
+          "type": "string",
+          "description": "Number of results to skip for pagination"
+        },
+        "top": {
+          "type": "string",
+          "description": "Number of results to return"
+        }
+      }
+    }
+  },
+  {
+    "name": "testplan_list_test_plans",
+    "description": "Retrieve a paginated list of test plans from an Azure DevOps project. Allows filtering for active plans and toggling detailed information.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The unique identifier (ID or name) of the Azure DevOps project."
+        },
+        "filterActivePlans": {
+          "type": "string",
+          "description": "Filter to include only active test plans. Defaults to true."
+        },
+        "includePlanDetails": {
+          "type": "string",
+          "description": "Include detailed information about each test plan."
+        },
+        "continuationToken": {
+          "type": "string",
+          "description": "Token to continue fetching test plans from a previous request."
+        }
+      }
+    }
+  },
+  {
+    "name": "testplan_create_test_plan",
+    "description": "Creates a new test plan in the project.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The unique identifier (ID or name) of the Azure DevOps project where the test plan will be created."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the test plan to be created."
+        },
+        "iteration": {
+          "type": "string",
+          "description": "The iteration path for the test plan"
+        },
+        "description": {
+          "type": "string",
+          "description": "The description of the test plan"
+        },
+        "startDate": {
+          "type": "string",
+          "description": "The start date of the test plan"
+        },
+        "endDate": {
+          "type": "string",
+          "description": "The end date of the test plan"
+        },
+        "areaPath": {
+          "type": "string",
+          "description": "The area path for the test plan"
+        }
+      }
+    }
+  },
+  {
+    "name": "testplan_create_test_suite",
+    "description": "Creates a new test suite in a test plan.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Project ID or project name"
+        },
+        "planId": {
+          "type": "string",
+          "description": "ID of the test plan that contains the suites"
+        },
+        "parentSuiteId": {
+          "type": "string",
+          "description": "ID of the parent suite under which the new suite will be created, if not given by user this can be id of a root suite of the test plan"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the child test suite"
+        }
+      }
+    }
+  },
+  {
+    "name": "testplan_add_test_cases_to_suite",
+    "description": "Adds existing test cases to a test suite.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The unique identifier (ID or name) of the Azure DevOps project."
+        },
+        "planId": {
+          "type": "string",
+          "description": "The ID of the test plan."
+        },
+        "suiteId": {
+          "type": "string",
+          "description": "The ID of the test suite."
+        },
+        "testCaseIds": {
+          "type": "string",
+          "description": "The ID(s) of the test case(s) to add. "
+        }
+      }
+    }
+  },
+  {
+    "name": "testplan_create_test_case",
+    "description": "Creates a new test case work item.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The unique identifier (ID or name) of the Azure DevOps project."
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the test case."
+        },
+        "priority": {
+          "type": "string",
+          "description": "The priority of the test case."
+        },
+        "areaPath": {
+          "type": "string",
+          "description": "The area path for the test case."
+        },
+        "iterationPath": {
+          "type": "string",
+          "description": "The iteration path for the test case."
+        },
+        "testsWorkItemId": {
+          "type": "string",
+          "description": "Optional work item id that will be set as a Microsoft.VSTS.Common.TestedBy-Reverse link to the test case."
+        }
+      }
+    }
+  },
+  {
+    "name": "testplan_update_test_case_steps",
+    "description": "Update an existing test case work item.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the test case work item to update."
+        }
+      }
+    }
+  },
+  {
+    "name": "testplan_list_test_cases",
+    "description": "Gets a list of test cases in the test plan.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The unique identifier (ID or name) of the Azure DevOps project."
+        },
+        "planid": {
+          "type": "string",
+          "description": "The ID of the test plan."
+        },
+        "suiteid": {
+          "type": "string",
+          "description": "The ID of the test suite."
+        }
+      }
+    }
+  },
+  {
+    "name": "testplan_show_test_results_from_build_id",
+    "description": "Gets a list of test results for a given project and build ID. Can filter by test outcome (e.g. Failed, Passed, Aborted). Returns test case titles, error messages, stack traces, and outcomes. Efficiently handles builds with large numbers of test runs.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The unique identifier (ID or name) of the Azure DevOps project."
+        },
+        "buildid": {
+          "type": "string",
+          "description": "The ID of the build."
+        },
+        "outcomes": {
+          "type": "string",
+          "description": "Filter results by test outcome, e.g. ['Failed', 'Passed', 'Aborted']."
+        }
+      }
+    }
+  },
+  {
+    "name": "testplan_list_test_suites",
+    "description": "Retrieve a paginated list of test suites from an Azure DevOps project and Test Plan Id.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The unique identifier (ID or name) of the Azure DevOps project."
+        },
+        "planId": {
+          "type": "string",
+          "description": "The ID of the test plan."
+        },
+        "continuationToken": {
+          "type": "string",
+          "description": "Token to continue fetching test plans from a previous request."
+        }
+      }
+    }
+  },
+  {
+    "name": "wiki_get_wiki",
+    "description": "Get the wiki by wikiIdentifier",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "wikiIdentifier": {
+          "type": "string",
+          "description": "The unique identifier of the wiki."
+        },
+        "project": {
+          "type": "string",
+          "description": "The project name or ID where the wiki is located. If not provided, the default project will be used."
+        }
+      }
+    }
+  },
+  {
+    "name": "wiki_list_wikis",
+    "description": "Retrieve a list of wikis for an organization or project.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The project name or ID to filter wikis. If not provided, all wikis in the organization will be returned."
+        }
+      }
+    }
+  },
+  {
+    "name": "wiki_list_pages",
+    "description": "Retrieve a list of wiki pages for a specific wiki and project.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "wikiIdentifier": {
+          "type": "string",
+          "description": "The unique identifier of the wiki."
+        },
+        "project": {
+          "type": "string",
+          "description": "The project name or ID where the wiki is located."
+        },
+        "top": {
+          "type": "string",
+          "description": "The maximum number of pages to return. Defaults to 20."
+        },
+        "continuationToken": {
+          "type": "string",
+          "description": "Token for pagination to retrieve the next set of pages."
+        },
+        "pageViewsForDays": {
+          "type": "string",
+          "description": "Number of days to retrieve page views for. If not specified, page views are not included."
+        }
+      }
+    }
+  },
+  {
+    "name": "wiki_get_page",
+    "description": "Retrieve wiki page metadata by path. This tool does not return page content.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "wikiIdentifier": {
+          "type": "string",
+          "description": "The unique identifier of the wiki."
+        },
+        "project": {
+          "type": "string",
+          "description": "The project name or ID where the wiki is located."
+        },
+        "path": {
+          "type": "string",
+          "description": "The path of the wiki page (e.g., '/Home' or '/Documentation/Setup')."
+        }
+      }
+    }
+  },
+  {
+    "name": "wiki_get_page_content",
+    "description": "Retrieve wiki page content. Provide either a 'url' parameter OR the combination of 'wikiIdentifier' and 'project' parameters.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "wikiIdentifier": {
+          "type": "string",
+          "description": "The unique identifier of the wiki. Required if url is not provided."
+        },
+        "project": {
+          "type": "string",
+          "description": "The project name or ID where the wiki is located. Required if url is not provided."
+        },
+        "path": {
+          "type": "string",
+          "description": "The path of the wiki page to retrieve content for. Optional, defaults to root page if not provided."
+        }
+      }
+    }
+  },
+  {
+    "name": "wiki_create_or_update_page",
+    "description": "Create or update a wiki page with content.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "wikiIdentifier": {
+          "type": "string",
+          "description": "The unique identifier or name of the wiki."
+        },
+        "path": {
+          "type": "string",
+          "description": "The path of the wiki page (e.g., '/Home' or '/Documentation/Setup')."
+        },
+        "content": {
+          "type": "string",
+          "description": "The content of the wiki page in markdown format."
+        },
+        "project": {
+          "type": "string",
+          "description": "The project name or ID where the wiki is located. If not provided, the default project will be used."
+        },
+        "etag": {
+          "type": "string",
+          "description": "ETag for editing existing pages (optional, will be fetched if not provided)."
+        },
+        "branch": {
+          "type": "string",
+          "description": "The branch name for the wiki repository. Defaults to 'wikiMaster' which is the default branch for Azure DevOps wikis."
+        }
+      }
+    }
+  },
+  {
+    "name": "wit_list_backlogs",
+    "description": "Receive a list of backlogs for a given project and team.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps project."
+        },
+        "team": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps team."
+        }
+      }
+    }
+  },
+  {
+    "name": "wit_list_backlog_work_items",
+    "description": "Retrieve a list of backlogs of for a given project, team, and backlog category",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps project."
+        },
+        "team": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps team."
+        },
+        "backlogId": {
+          "type": "string",
+          "description": "The ID of the backlog category to retrieve work items from."
+        }
+      }
+    }
+  },
+  {
+    "name": "wit_my_work_items",
+    "description": "Retrieve a list of work items relevent to the authenticated user.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps project."
+        },
+        "top": {
+          "type": "string",
+          "description": "The maximum number of work items to return. Defaults to 50."
+        },
+        "includeCompleted": {
+          "type": "string",
+          "description": "Whether to include completed work items. Defaults to false."
+        }
+      }
+    }
+  },
+  {
+    "name": "wit_get_work_items_batch_by_ids",
+    "description": "Retrieve list of work items by IDs in batch.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps project."
+        },
+        "ids": {
+          "type": "string",
+          "description": "The IDs of the work items to retrieve."
+        },
+        "fields": {
+          "type": "string",
+          "description": "Optional list of fields to include in the response. If not provided, a hardcoded default set of fields will be used."
+        }
+      }
+    }
+  },
+  {
+    "name": "wit_get_work_item",
+    "description": "Get a single work item by ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the work item to retrieve."
+        },
+        "project": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps project."
+        },
+        "fields": {
+          "type": "string",
+          "description": "Optional list of fields to include in the response. If not provided, all fields will be returned."
+        },
+        "asOf": {
+          "type": "string",
+          "description": "Optional date string to retrieve the work item as of a specific time. If not provided, the current state will be returned."
+        }
+      }
+    }
+  },
+  {
+    "name": "wit_list_work_item_comments",
+    "description": "Retrieve list of comments for a work item by ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps project."
+        },
+        "workItemId": {
+          "type": "string",
+          "description": "The ID of the work item to retrieve comments for."
+        },
+        "top": {
+          "type": "string",
+          "description": "Optional number of comments to retrieve. Defaults to all comments."
+        }
+      }
+    }
+  },
+  {
+    "name": "wit_add_work_item_comment",
+    "description": "Add comment to a work item by ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps project."
+        },
+        "workItemId": {
+          "type": "string",
+          "description": "The ID of the work item to add a comment to."
+        },
+        "comment": {
+          "type": "string",
+          "description": "The text of the comment to add to the work item."
+        }
+      }
+    }
+  },
+  {
+    "name": "wit_update_work_item_comment",
+    "description": "Update an existing comment on a work item by ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps project."
+        },
+        "workItemId": {
+          "type": "string",
+          "description": "The ID of the work item."
+        },
+        "commentId": {
+          "type": "string",
+          "description": "The ID of the comment to update."
+        },
+        "text": {
+          "type": "string",
+          "description": "The updated comment text."
+        }
+      }
+    }
+  },
+  {
+    "name": "wit_list_work_item_revisions",
+    "description": "Retrieve list of revisions for a work item by ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps project."
+        },
+        "workItemId": {
+          "type": "string",
+          "description": "The ID of the work item to retrieve revisions for."
+        },
+        "top": {
+          "type": "string",
+          "description": "Optional number of revisions to retrieve. If not provided, all revisions will be returned."
+        },
+        "skip": {
+          "type": "string",
+          "description": "Optional number of revisions to skip for pagination. Defaults to 0."
+        }
+      }
+    }
+  },
+  {
+    "name": "wit_add_child_work_items",
+    "description": "Create one or many child work items from a parent by work item type and parent id.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "parentId": {
+          "type": "string",
+          "description": "The ID of the parent work item to create a child work item under."
+        },
+        "project": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps project."
+        },
+        "workItemType": {
+          "type": "string",
+          "description": "The type of the child work item to create."
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the child work item."
+        },
+        "description": {
+          "type": "string",
+          "description": "The description of the child work item."
+        },
+        "format": {
+          "type": "string",
+          "description": "Format for the description on the child work item, e.g., 'Markdown', 'Html'. Defaults to 'Html'."
+        },
+        "areaPath": {
+          "type": "string",
+          "description": "Optional area path for the child work item."
+        },
+        "iterationPath": {
+          "type": "string",
+          "description": "Optional iteration path for the child work item."
+        }
+      }
+    }
+  },
+  {
+    "name": "wit_link_work_item_to_pull_request",
+    "description": "Link a single work item to an existing pull request.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "string",
+          "description": "The project ID of the Azure DevOps project (note: project name is not valid)."
+        },
+        "repositoryId": {
+          "type": "string",
+          "description": "The ID of the repository containing the pull request. Do not use the repository name here, use the ID instead."
+        },
+        "pullRequestId": {
+          "type": "string",
+          "description": "The ID of the pull request to link to."
+        },
+        "workItemId": {
+          "type": "string",
+          "description": "The ID of the work item to link to the pull request."
+        },
+        "pullRequestProjectId": {
+          "type": "string",
+          "description": "The project ID containing the pull request. If not provided, defaults to the work item's project ID (for same-project linking)."
+        }
+      }
+    }
+  },
+  {
+    "name": "wit_get_work_items_for_iteration",
+    "description": "Retrieve a list of work items for a specified iteration.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps project."
+        },
+        "team": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps team. If not provided, the default team will be used."
+        },
+        "iterationId": {
+          "type": "string",
+          "description": "The ID of the iteration to retrieve work items for."
+        }
+      }
+    }
+  },
+  {
+    "name": "wit_update_work_item",
+    "description": "Update a work item by ID with specified fields.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the work item to update."
+        },
+        "path": {
+          "type": "string",
+          "description": "The path of the field to update, e.g., '/fields/System.Title'."
+        },
+        "value": {
+          "type": "string",
+          "description": "The new value for the field. This is required for 'Add' and 'Replace' operations, and should be omitted for 'Remove' operations."
+        }
+      }
+    }
+  },
+  {
+    "name": "wit_get_work_item_type",
+    "description": "Get a specific work item type.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps project."
+        },
+        "workItemType": {
+          "type": "string",
+          "description": "The name of the work item type to retrieve."
+        }
+      }
+    }
+  },
+  {
+    "name": "wit_create_work_item",
+    "description": "Create a new work item in a specified project and work item type.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps project."
+        },
+        "workItemType": {
+          "type": "string",
+          "description": "The type of work item to create, e.g., 'Task', 'Bug', etc."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the field, e.g., 'System.Title'."
+        },
+        "value": {
+          "type": "string",
+          "description": "The value of the field."
+        },
+        "format": {
+          "type": "string",
+          "description": "the format of the field value, e.g., 'Html', 'Markdown'. Optional, defaults to 'Html'."
+        }
+      }
+    }
+  },
+  {
+    "name": "wit_get_query",
+    "description": "Get a query by its ID or path.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps project."
+        },
+        "query": {
+          "type": "string",
+          "description": "The ID or path of the query to retrieve."
+        },
+        "depth": {
+          "type": "string",
+          "description": "Optional depth parameter to specify how deep to expand the query. Defaults to 0."
+        },
+        "includeDeleted": {
+          "type": "string",
+          "description": "Whether to include deleted items in the query results. Defaults to false."
+        },
+        "useIsoDateFormat": {
+          "type": "string",
+          "description": "Whether to use ISO date format in the response. Defaults to false."
+        }
+      }
+    }
+  },
+  {
+    "name": "wit_get_query_results_by_id",
+    "description": "Retrieve the results of a work item query given the query ID. Supports full or IDs-only response types.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the query to retrieve results for."
+        },
+        "project": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps project. If not provided, the default project will be used."
+        },
+        "team": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps team. If not provided, the default team will be used."
+        },
+        "timePrecision": {
+          "type": "string",
+          "description": "Whether to include time precision in the results. Defaults to false."
+        },
+        "top": {
+          "type": "string",
+          "description": "The maximum number of results to return. Defaults to 50."
+        },
+        "responseType": {
+          "type": "string",
+          "description": "Response type: 'full' returns complete query results (default), 'ids' returns only work item IDs for reduced payload size."
+        }
+      }
+    }
+  },
+  {
+    "name": "wit_update_work_items_batch",
+    "description": "Update work items in batch",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "op": {
+          "type": "string",
+          "description": "The operation to perform on the field."
+        },
+        "id": {
+          "type": "string",
+          "description": "The ID of the work item to update."
+        },
+        "path": {
+          "type": "string",
+          "description": "The path of the field to update, e.g., '/fields/System.Title'."
+        },
+        "value": {
+          "type": "string",
+          "description": "The new value for the field. This is required for 'add' and 'replace' operations, and should be omitted for 'remove' operations."
+        },
+        "format": {
+          "type": "string",
+          "description": "The format of the field value. Only to be used for large text fields. e.g., 'Html', 'Markdown'. Optional, defaults to 'Html'."
+        }
+      }
+    }
+  },
+  {
+    "name": "wit_work_items_link",
+    "description": "Link work items together in batch.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps project."
+        },
+        "id": {
+          "type": "string",
+          "description": "The ID of the work item to update."
+        },
+        "linkToId": {
+          "type": "string",
+          "description": "The ID of the work item to link to."
+        },
+        "comment": {
+          "type": "string",
+          "description": "Optional comment to include with the link. This can be used to provide additional context for the link being created."
+        }
+      }
+    }
+  },
+  {
+    "name": "wit_work_item_unlink",
+    "description": "Remove one or many links from a single work item",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps project."
+        },
+        "id": {
+          "type": "string",
+          "description": "The ID of the work item to remove the links from."
+        },
+        "url": {
+          "type": "string",
+          "description": "Optional URL to match for the link to remove. If not provided, all links of the specified type will be removed."
+        }
+      }
+    }
+  },
+  {
+    "name": "wit_add_artifact_link",
+    "description": "Add artifact links (repository, branch, commit, builds) to work items. You can either provide the full vstfs URI or the individual components to build it automatically.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "workItemId": {
+          "type": "string",
+          "description": "The ID of the work item to add the artifact link to."
+        },
+        "project": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps project."
+        },
+        "artifactUri": {
+          "type": "string",
+          "description": "The complete VSTFS URI of the artifact to link. If provided, individual component parameters are ignored."
+        },
+        "projectId": {
+          "type": "string",
+          "description": "The project ID (GUID) containing the artifact. Required for Git artifacts when artifactUri is not provided."
+        },
+        "repositoryId": {
+          "type": "string",
+          "description": "The repository ID (GUID) containing the artifact. Required for Git artifacts when artifactUri is not provided."
+        },
+        "branchName": {
+          "type": "string",
+          "description": "The branch name (e.g., 'main'). Required when linkType is 'Branch'."
+        },
+        "commitId": {
+          "type": "string",
+          "description": "The commit SHA hash. Required when linkType is 'Fixed in Commit'."
+        },
+        "pullRequestId": {
+          "type": "string",
+          "description": "The pull request ID. Required when linkType is 'Pull Request'."
+        },
+        "buildId": {
+          "type": "string",
+          "description": "The build ID. Required when linkType is 'Build', 'Found in build', or 'Integrated in build'."
+        },
+        "comment": {
+          "type": "string",
+          "description": "Comment to include with the artifact link."
+        }
+      }
+    }
+  },
+  {
+    "name": "work_list_team_iterations",
+    "description": "Retrieve a list of iterations for a specific team in a project. If a project or team is not specified, you will be prompted to select one.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps project. Reuse from prior context if already known. If not provided, a project selection prompt will be shown."
+        },
+        "team": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps team. Reuse from prior context if already known. If not provided, a team selection prompt will be shown."
+        },
+        "timeframe": {
+          "type": "string",
+          "description": "The timeframe for which to retrieve iterations. Currently, only 'current' is supported."
+        }
+      }
+    }
+  },
+  {
+    "name": "work_create_iterations",
+    "description": "Create new iterations in a specified Azure DevOps project.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps project."
+        },
+        "iterationName": {
+          "type": "string",
+          "description": "The name of the iteration to create."
+        },
+        "startDate": {
+          "type": "string",
+          "description": "The start date of the iteration in ISO format (e.g., '2023-01-01T00:00:00Z'). Optional."
+        },
+        "finishDate": {
+          "type": "string",
+          "description": "The finish date of the iteration in ISO format (e.g., '2023-01-31T23:59:59Z'). Optional."
+        }
+      }
+    }
+  },
+  {
+    "name": "work_list_iterations",
+    "description": "List all iterations in a specified Azure DevOps project. If a project is not specified, you will be prompted to select one.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps project. Reuse from prior context if already known. If not provided, a project selection prompt will be shown."
+        },
+        "depth": {
+          "type": "string",
+          "description": "Depth of children to fetch."
+        },
+        "excludedIds": {
+          "type": "string",
+          "description": "An optional array of iteration IDs, and thier children, that should not be returned."
+        }
+      }
+    }
+  },
+  {
+    "name": "work_assign_iterations",
+    "description": "Assign existing iterations to a specific team in a project.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps project."
+        },
+        "team": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps team."
+        },
+        "identifier": {
+          "type": "string",
+          "description": "The identifier of the iteration to assign."
+        },
+        "path": {
+          "type": "string",
+          "description": "The path of the iteration to assign, e.g., 'Project/Iteration'."
+        }
+      }
+    }
+  },
+  {
+    "name": "work_get_team_capacity",
+    "description": "Get the team capacity of a specific team and iteration in a project. If a project is not specified, you will be prompted to select one.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The name or Id of the Azure DevOps project. Reuse from prior context if already known. If not provided, a project selection prompt will be shown."
+        },
+        "team": {
+          "type": "string",
+          "description": "The name or Id of the Azure DevOps team. Reuse from prior context if already known."
+        },
+        "iterationId": {
+          "type": "string",
+          "description": "The Iteration Id to get capacity for."
+        }
+      }
+    }
+  },
+  {
+    "name": "work_update_team_capacity",
+    "description": "Update the team capacity of a team member for a specific iteration in a project.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The name or Id of the Azure DevOps project."
+        },
+        "team": {
+          "type": "string",
+          "description": "The name or Id of the Azure DevOps team."
+        },
+        "teamMemberId": {
+          "type": "string",
+          "description": "The team member Id for the specific team member."
+        },
+        "iterationId": {
+          "type": "string",
+          "description": "The Iteration Id to update the capacity for."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the activity (e.g., 'Development')."
+        },
+        "capacityPerDay": {
+          "type": "string",
+          "description": "The capacity per day for this activity."
+        },
+        "start": {
+          "type": "string",
+          "description": "Start date of the day off in ISO format."
+        },
+        "end": {
+          "type": "string",
+          "description": "End date of the day off in ISO format."
+        }
+      }
+    }
+  },
+  {
+    "name": "work_get_iteration_capacities",
+    "description": "Get an iteration's capacity for all teams in iteration and project. If a project is not specified, you will be prompted to select one.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The name or Id of the Azure DevOps project. Reuse from prior context if already known. If not provided, a project selection prompt will be shown."
+        },
+        "iterationId": {
+          "type": "string",
+          "description": "The Iteration Id to get capacity for."
+        }
+      }
+    }
+  },
+  {
+    "name": "work_get_team_settings",
+    "description": "Get team settings including default iteration, backlog iteration, and default area path for a team. If a project or team is not specified, you will be prompted to select one.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps project. Reuse from prior context if already known. If not provided, a project selection prompt will be shown."
+        },
+        "team": {
+          "type": "string",
+          "description": "The name or ID of the Azure DevOps team. Reuse from prior context if already known. If not provided, a team selection prompt will be shown."
+        }
+      }
+    }
+  }
+]
