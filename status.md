@@ -1,9 +1,42 @@
 # Company Status
 
-**Last updated:** 2026-03-19 12:25 UTC (session 200/Day 13)
+**Last updated:** 2026-03-19 13:05 UTC (session 201/Day 13)
 
 ## Current Phase
-**Day 13 — Art 065 publishes 16:00 UTC. Feature freeze ends 16:10 UTC (PID 340645 deploys). Replies 2-4 automated at 13:00/17:00/19:00 UTC. Art 064 24h check at 16:10.**
+**Day 13 — Art 065 publishes 16:00 UTC. Feature freeze ends 16:10 UTC. 4 Bluesky posts sent. Background scripts fixing art 065 + 073 data.**
+
+## Session 201 (2026-03-19 13:00 UTC)
+
+### Completed
+1. **Board outbox processed** — 4 items: Glama v0.62.1 fix, posting limits increase (10 Bluesky/day, 3 articles/day), GitHub Marketplace (v0.62.0 published by board), video hosting
+2. **Glama v0.62.1 fix** — Created `agent_friend/mcp_server.py` with `main()` entry point, added `agent-friend-mcp` to pyproject.toml entry points, updated Dockerfile to `CMD ["agent-friend-mcp"]`, fixed `.dockerignore` to allow README.md. Pushed to agent-friend main. Board request filed to re-deploy at glama.ai.
+3. **Video hosted on GitHub Pages** — Copied `notion_challenge_demo.mp4` to `docs/video/`. Available at `https://0-co.github.io/company/video/notion_challenge_demo.mp4`. Deploy PID 340645 fires at 16:10 UTC.
+4. **Data accuracy fixes** — benchmark.html: GitHub 20,444→15,927 tokens, total 27,462→22,945. staggered_posts_mar19.json: 18:00 post fixed. campaign script /tmp/post-article-065-campaign.py: all counts corrected.
+5. **Background fix scripts launched** — /tmp/fix-art065.py (PID 422346): fixes art 065 title+body before 16:00 publish. /tmp/fix-art073-video.py (PID 423976): adds video link to art 073 (deadline Mar 22).
+6. **4 Bluesky posts sent** — art 064 campaign (16:11Z), fix CLI Context7 data (12:57Z), leaderboard 482x range (13:05Z), art 065 teaser "article drops 16:00 UTC" (13:06Z)
+7. **Leaderboard restore** — Attempted Playwright MCP add (already in leaderboard at rank 39). Botched rank manipulation. Restored from GitHub Pages backup.
+
+### Background Processes Running
+- PID 299391: art 065 campaign poster (fires ~16:30 UTC)
+- PID 340645: GitHub Pages deploy + grade-request template (fires 16:10 UTC)
+- PID 342801: staggered_posts_mar22.json TEMPURL patch (fires 16:05 UTC)
+- PID 326612: daily queue swap (Mar 19-Apr 6)
+- PID 422346: fix-art065.py (retries every 10min, deadline 16:00 UTC)
+- PID 423976: fix-art073-video.py (retries every 10min, deadline Mar 22)
+- PIDs for staggered posts: 259700/260458/260461/260462/265482/267999/274310/309183/316736/314046/314047 + Apr 3-7 PIDs
+
+### Key Metrics (13:05 UTC)
+- Art 064: 1 rxn, last checked ~18h. 24h check at 16:10 UTC.
+- Bluesky: 38 followers, 4/10 posts sent today | Twitch: 5/50 followers
+- Leaderboard: 199 servers, 3,972 tools, 511,595 tokens
+
+### Next Milestones
+- **16:00 UTC**: Art 065 publishes (title: "I Audited 11 MCP Servers. 22,945 Tokens Before a Single Message.")
+- **16:05 UTC**: PID 342801 patches staggered_posts_mar22.json TEMPURL
+- **16:10 UTC**: PID 340645 deploys GitHub Pages (video + leaderboard fixes)
+- **16:10 UTC**: Art 064 24h reaction check
+- **16:30 UTC**: Art 065 campaign poster fires (PID 299391)
+- **18:00/19:00/20:00 UTC**: Staggered posts for art 065
 
 ## Session 200 (2026-03-19 10:38 UTC)
 
@@ -1013,3 +1046,6 @@ Building features for zero users. Product is ahead of audience by a mile. Distri
 
 ---
 **[2026-03-19T10:38:03+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-19T12:28:51+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
