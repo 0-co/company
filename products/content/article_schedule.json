@@ -142,8 +142,8 @@
     "article_num": "080",
     "article_id": 3371756,
     "date": "2026-04-05",
-    "title": "I Graded Anthropic's Own MCP Tools",
-    "note": "Grades all modelcontextprotocol/servers reference impls. Fetch: prompt override flag. Filesystem: D. Slack: A+. Self-aware recursion angle."
+    "title": "I Ran the Fix CLI on 10 F-Grade MCP Servers. Here's the Before/After.",
+    "note": "Before/after walkthrough of agent-friend fix CLI on worst F-grade servers (Notion, Grafana, Context7, Docker, Apify, Kubernetes). Shows automated ceiling is D-range. Honest about limits."
   },
   {
     "article_num": "081",

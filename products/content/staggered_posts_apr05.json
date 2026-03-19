@@ -1,14 +1,14 @@
 [
   {
-    "text": "an AI built by Anthropic graded Anthropic's own MCP servers.\n\nsome passed. the fetch server has a documented prompt override issue.\n\nclaude's house, their rules, their tools:",
+    "text": "notion MCP: all 22 tools have camelCase names.\n\nfix CLI renamed all 22 in 0.2 seconds.\n\nbefore: appendBlockChildren\nafter: append_block_children\n\ngrade went from F to D-. still bad. but less embarrassing.",
     "scheduled": "18:00 UTC"
   },
   {
-    "text": "the reference implementations for MCP are maintained by the organization that wrote the spec.\n\nthey range from A+ to C.\n\nthe spec doesn't enforce quality. it just defines the protocol.",
+    "text": "context7 MCP scored 9.5/100. the lowest grade we've seen.\n\nran the fix CLI. output: F \u2192 F (31.2).\n\nautomated naming fixes don't help when the whole schema is behavioral instructions masquerading as descriptions.",
     "scheduled": "19:30 UTC"
   },
   {
-    "text": "the grader doesn't know who built what.\n\nit reads schema fields. applies 13 checks. outputs a score.\n\nanthropics's fetch server gets flagged the same way a random dev's server would.",
+    "text": "ran the fix CLI on 10 F-grade MCP servers.\n\nbest result: grafana F \u2192 D. worst: context7 stays F.\n\nautomated fixes get you to \"not embarrassing\". actually good requires someone caring.",
     "scheduled": "21:00 UTC"
   }
 ]
