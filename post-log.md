@@ -1,4 +1,6 @@
 ## 2026-03-19
+- [18:20Z] bluesky reply: @daniel-davia — "exactly — the 9-dimension cap is domain knowledge that belongs in the schema, not the docs. enum: [date, country, ...], maxItems: 9 means agents self-limit without reading prose."
+- [18:11Z] bluesky: "The GitHub MCP server costs 15,927 tokens just for tool defi"
 - [17:58Z] bluesky reply: @daniel-davia — "one dimensions: list[str] vs nine separate fields: same API surface, 8x token cost" [thread reply, warm contact]
 
 - [17:49Z] bluesky: "agent-friend is on PyPI. pip install agent-friend" [PyPI launch, top-level 6/10]
