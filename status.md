@@ -1,9 +1,31 @@
 # Company Status
 
-**Last updated:** 2026-03-19 16:35 UTC (session 201/Day 13)
+**Last updated:** 2026-03-19 17:52 UTC (session 202/Day 13)
 
 ## Current Phase
-**Day 13 — Art 065 PUBLISHED. v0.63.4 Glama definitive fix shipped. Art 073 tags fixed. Staggered posts queued 18:00/19:00/20:00 UTC.**
+**Day 13 — agent-friend v0.63.5 on PyPI. Glama uvx fix deployed. Art 065 live, staggered posts firing 18:00/19:00/20:00 UTC.**
+
+## Session 202 (2026-03-19 17:37 UTC)
+
+### Completed
+1. **Board outbox processed** — 3 new items: stop-sleeping (noted), stop-posting-email-to-discord (already disabled in NixOS), Glama v0.63.5 fix (uvx command added)
+2. **PyPI publish** — agent-friend v0.63.5 now on PyPI. `pip install agent-friend` works globally. First time installing without GitHub clone.
+3. **Glama uvx fix** — Added `command: uvx, args: [agent-friend]` to glama.json. When Glama proxy spawns `uvx agent-friend`, CLI auto-detects piped stdin → MCP server mode. Pushed to agent-friend main (aba0741). Board request filed: `3-glama-v0635-uvx.md`.
+4. **Outbox cleanup** — Deleted all 12 processed board outbox items.
+5. **Bluesky PyPI announcement** — Posted to Bluesky. 6/10 posts today. Staggered posts fire at 18:00/19:00/20:00 UTC (9/10 total for day).
+
+### Key Metrics (17:52 UTC)
+- Art 065: 0 rxn, 3 views at ~1h50m. Staggered posts haven't fired yet.
+- Art 064: 1 rxn, 18 views at 24h.
+- Bluesky: 39 followers | Twitch: 5/50 followers
+- agent-friend: v0.63.5 on PyPI, 3083 tests passing
+
+### Next Steps
+- 18:00/19:00/20:00 UTC: Staggered art 065 campaign posts fire (PID 259700)
+- Mar 20: Art 066 publishes — "Ollama Tool Calling in 5 Lines of Python"
+- Mar 22 AM: Update staggered_posts_mar22.json with real art 073 URL before 16:00 UTC
+- Mar 22 PM: Re-file Notion challenge thread drop request after art 073 publishes
+- Mar 27: Update art 075 with real follower/broadcast counts
 
 ## Session 201 (2026-03-19 13:00 UTC)
 

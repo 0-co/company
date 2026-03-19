@@ -92,16 +92,16 @@
 - **Check after**: Each startup
 - **Action**: When threshold passed, recreate board inbox request
 
-### PyPI Publishing — Vault Tool Missing from Sudoers
-- **What**: Board approved. Said "you now have a vault tool to communicate with PyPI over API." But vault-pypi is NOT in sudoers and NOT findable in system.
-- **Board request filed**: `3-pypi-vault-deploy.md` (needs sudoers entry + vault script created)
-- **Check after**: 2026-03-20 (after board adds vault-pypi)
-- **Action**: Once vault-pypi is accessible, publish agent-friend 0.63.4 to PyPI.
+### PyPI Publishing — ✅ DONE (2026-03-19, session 202)
+- Published agent-friend v0.63.5 to PyPI. `pip install agent-friend` works globally.
+- URL: https://pypi.org/project/agent-friend/0.63.5/
+- Wheel + sdist uploaded via vault-pypi (twine). Announced on Bluesky at 17:49 UTC.
 
 ### Notion MCP Challenge Thread Drop — March 22
 - **Board directive**: Only send the axrisi thread drop request AFTER art 073 is live (March 22). Board rebuke: "respect my time, only give me requests when they're actionable."
 - **Action on March 22 (after 16:00 UTC)**: Re-create board inbox item `3-notion-challenge-thread-drop.md` with actual art 073 URL. File it AFTER art 073 URL is confirmed live.
-- **Comment to post**: Pre-written in outbox `2-notion-challenge-thread-drop-mar22.md` (replace [ARTICLE_URL]).
+- **Comment to post**: Drop link to art 073 in axrisi's "Drop Your Challenge Submission Here" thread. Text: "Built a tool that grades MCP schemas A+ to F. Notion's official server gets an F. [ARTICLE_URL] #notionchallenge"
+- **NOTE**: Outbox item deleted (session 202). Must re-file board inbox request on March 22 with real URL.
 
 ### Notion MCP Challenge — FULLY READY
 - **What**: Dev.to challenge, $1,500 prizes, deadline March 29. 65+ entries. Real standings as of March 18: ujja "EchoHR" 48 rxn, balkaran "Slack" 48 rxn. **We need 49+ reactions to win.** (Session 193 claimed 36+ — WRONG. Session 195 re-verified with 3 pages of results.)
@@ -128,10 +128,10 @@
 - **Approved**: 2026-03-18 04:47 UTC (email confirmation received)
 - **Status**: ✅ Listed. 5th MCP directory.
 
-### Glama — v0.63.5 Fix Pending Board Deploy
-- **Root cause chain**: v0.63.1 (CLI ran), v0.63.3 (bad entry point), v0.63.4 (mcp>=1.25 non-existent), v0.63.5 (mcp in [all] + requires-python>=3.9 failed uv)
-- **v0.63.5 fix**: `mcp>=1.0; python_version >= '3.10'` in dependencies. On Python 3.14 (Glama) installs, on Python 3.9 skips.
-- **v0.63.5 pushed** (commit 55b0f47). Board request: `3-glama-v0635-fix.md`
+### Glama — uvx fix pending board deploy (session 202)
+- **Root cause chain**: v0.63.3-v0.63.5 fixed the Docker build. v0.63.5 passed but Glama proxy failed with `spawn agent-friend ENOENT` — proxy tries to run `agent-friend` locally, not in Docker.
+- **Session 202 fix**: Added `command: uvx, args: [agent-friend]` to glama.json (commit aba0741 on agent-friend main). Since we're now on PyPI, `uvx agent-friend` auto-installs + runs CLI which detects piped stdin → MCP server mode.
+- **Board request**: `3-glama-v0635-uvx.md`
 - **Check after**: 2026-03-20 (after board deploys)
 - **Action**: After board deploys, check glama.ai/mcp/servers/0-co/agent-friend for "installable" status.
 
