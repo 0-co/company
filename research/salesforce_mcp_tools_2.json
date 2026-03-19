@@ -1,0 +1,278 @@
+[
+  {
+    "name": "list_devops_center_projects",
+    "description": "List all DevOps Center projects in a specific org.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "usernameOrAlias": {
+          "type": "string",
+          "description": "Username or alias for the Salesforce org"
+        }
+      },
+      "required": [
+        "usernameOrAlias"
+      ]
+    }
+  },
+  {
+    "name": "list_devops_center_work_items",
+    "description": "List all the work items for a specific DevOps Center project.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "usernameOrAlias": {
+          "type": "string",
+          "description": "Username or alias for the Salesforce org"
+        },
+        "project": {
+          "type": "object",
+          "properties": {
+            "Id": {
+              "type": "string",
+              "description": "Selected project's Id"
+            },
+            "Name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ],
+          "description": "DevOps project selected from list_devops_center_projects"
+        }
+      },
+      "required": [
+        "usernameOrAlias",
+        "project"
+      ]
+    }
+  },
+  {
+    "name": "create_devops_center_work_item",
+    "description": "Creates a new DevOps Center Work Item in the specified project.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "usernameOrAlias": {
+          "type": "string"
+        },
+        "projectId": {
+          "type": "string",
+          "description": "DevOps Center Project ID"
+        },
+        "subject": {
+          "type": "string",
+          "description": "Work item subject"
+        },
+        "description": {
+          "type": "string",
+          "description": "Work item description"
+        }
+      },
+      "required": [
+        "usernameOrAlias",
+        "projectId",
+        "subject"
+      ]
+    }
+  },
+  {
+    "name": "promote_devops_center_work_item",
+    "description": "Promote an approved work item to the next stage in the DevOps Center pipeline.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "usernameOrAlias": {
+          "type": "string"
+        },
+        "workItemNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Exact Work Item Names to promote"
+        }
+      },
+      "required": [
+        "usernameOrAlias",
+        "workItemNames"
+      ]
+    }
+  },
+  {
+    "name": "detect_devops_center_merge_conflict",
+    "description": "Detects merge conflicts for a selected work item or in given source branch.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "usernameOrAlias": {
+          "type": "string"
+        },
+        "workItemName": {
+          "type": "string",
+          "description": "Exact Work Item Name"
+        },
+        "sourcebranch": {
+          "type": "string",
+          "description": "Source branch of the Work Item"
+        },
+        "localPath": {
+          "type": "string",
+          "description": "Local path to the repository"
+        }
+      },
+      "required": [
+        "localPath"
+      ]
+    }
+  },
+  {
+    "name": "resolve_devops_center_merge_conflict",
+    "description": "Resolves merge conflicts for a selected work item by name.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "usernameOrAlias": {
+          "type": "string"
+        },
+        "workItemName": {
+          "type": "string",
+          "description": "Exact Work Item Name (mandatory)"
+        },
+        "localPath": {
+          "type": "string",
+          "description": "Local path to the repository"
+        }
+      },
+      "required": [
+        "usernameOrAlias",
+        "workItemName",
+        "localPath"
+      ]
+    }
+  },
+  {
+    "name": "checkout_devops_center_work_item",
+    "description": "Checks out the branch associated with a selected work item by name.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "usernameOrAlias": {
+          "type": "string"
+        },
+        "workItemName": {
+          "type": "string",
+          "description": "Exact Work Item Name to check out"
+        },
+        "localPath": {
+          "type": "string",
+          "description": "Directory path where the repository should be cloned/checked out"
+        }
+      },
+      "required": [
+        "usernameOrAlias",
+        "workItemName",
+        "localPath"
+      ]
+    }
+  },
+  {
+    "name": "commit_devops_center_work_item",
+    "description": "Commit SFDX project changes and register the commit SHA in DevOps Center.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "usernameOrAlias": {
+          "type": "string"
+        },
+        "workItemName": {
+          "type": "string",
+          "description": "Exact Work Item Name to commit"
+        },
+        "commitMessage": {
+          "type": "string",
+          "description": "Commit message describing the changes"
+        },
+        "repoPath": {
+          "type": "string",
+          "description": "Absolute path to the git repository root"
+        }
+      },
+      "required": [
+        "usernameOrAlias",
+        "workItemName",
+        "commitMessage",
+        "repoPath"
+      ]
+    }
+  },
+  {
+    "name": "update_devops_center_work_item_status",
+    "description": "Update the status of a DevOps Center work item to 'In Progress' or 'Ready to Promote'.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "usernameOrAlias": {
+          "type": "string"
+        },
+        "workItemName": {
+          "type": "string",
+          "description": "Exact Work Item Name to update (e.g. WI-00000001)"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "In Progress",
+            "Ready to Promote"
+          ]
+        }
+      },
+      "required": [
+        "usernameOrAlias",
+        "workItemName",
+        "status"
+      ]
+    }
+  },
+  {
+    "name": "check_devops_center_commit_status",
+    "description": "Check the current status of a work item committed to DevOps Center.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "usernameOrAlias": {
+          "type": "string"
+        },
+        "requestId": {
+          "type": "string",
+          "description": "Request ID from the commit operation to check status for"
+        }
+      },
+      "required": [
+        "usernameOrAlias",
+        "requestId"
+      ]
+    }
+  },
+  {
+    "name": "create_devops_center_pull_request",
+    "description": "Commit local changes to a DevOps Center work item's feature branch and create a pull request.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "workItemName": {
+          "type": "string",
+          "description": "Exact Work Item Name to create pull request"
+        },
+        "usernameOrAlias": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "workItemName",
+        "usernameOrAlias"
+      ]
+    }
+  }
+]

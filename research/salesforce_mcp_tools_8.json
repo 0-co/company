@@ -1,0 +1,626 @@
+[
+  {
+    "name": "salesforce_search_objects",
+    "description": "Search for Salesforce standard and custom objects by name pattern. Examples: 'Account' finds Account, AccountHistory; 'Order' finds WorkOrder, ServiceOrder__c etc.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "searchPattern": {
+          "type": "string",
+          "description": "Search pattern to find objects (e.g. 'Account Coverage' finds 'AccountCoverage__c')"
+        }
+      },
+      "required": [
+        "searchPattern"
+      ]
+    }
+  },
+  {
+    "name": "salesforce_describe_object",
+    "description": "Get detailed schema metadata including all fields, relationships, and field properties of any Salesforce object. Examples: 'Account' shows all Account fields; 'Case' shows all Case fields including relationships.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "objectName": {
+          "type": "string",
+          "description": "API name of the object (e.g. 'Account', 'Contact', 'Custom_Object__c')"
+        }
+      },
+      "required": [
+        "objectName"
+      ]
+    }
+  },
+  {
+    "name": "salesforce_query_records",
+    "description": "Query records from any Salesforce object using SOQL, including relationship queries (parent-to-child, child-to-parent, multi-level). For GROUP BY/aggregate queries use salesforce_aggregate_query.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "objectName": {
+          "type": "string",
+          "description": "API name of the object to query"
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of fields to retrieve, including relationship fields (dot notation and subqueries)"
+        },
+        "whereClause": {
+          "type": "string",
+          "description": "WHERE clause (can include conditions on related objects)"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "ORDER BY clause"
+        },
+        "limit": {
+          "type": "number",
+          "description": "Maximum number of records to return"
+        }
+      },
+      "required": [
+        "objectName",
+        "fields"
+      ]
+    }
+  },
+  {
+    "name": "salesforce_dml_records",
+    "description": "Perform data manipulation operations (insert, update, delete, upsert) on Salesforce records.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "operation": {
+          "type": "string",
+          "enum": [
+            "insert",
+            "update",
+            "delete",
+            "upsert"
+          ],
+          "description": "Type of DML operation"
+        },
+        "objectName": {
+          "type": "string",
+          "description": "API name of the object"
+        },
+        "records": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "Array of records to process"
+        },
+        "externalIdField": {
+          "type": "string",
+          "description": "External ID field name for upsert operations"
+        }
+      },
+      "required": [
+        "operation",
+        "objectName",
+        "records"
+      ]
+    }
+  },
+  {
+    "name": "salesforce_execute_anonymous",
+    "description": "Execute anonymous Apex code in Salesforce. Results include compilation success/failure, execution success/failure, and debug logs.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "apexCode": {
+          "type": "string",
+          "description": "Apex code to execute anonymously"
+        },
+        "logLevel": {
+          "type": "string",
+          "enum": [
+            "NONE",
+            "ERROR",
+            "WARN",
+            "INFO",
+            "DEBUG",
+            "FINE",
+            "FINER",
+            "FINEST"
+          ],
+          "description": "Log level for debug logs (defaults to DEBUG)"
+        }
+      },
+      "required": [
+        "apexCode"
+      ]
+    }
+  },
+  {
+    "name": "salesforce_manage_debug_logs",
+    "description": "Manage debug logs for Salesforce users \u2014 enable, disable, or retrieve logs.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "operation": {
+          "type": "string",
+          "enum": [
+            "enable",
+            "disable",
+            "retrieve"
+          ],
+          "description": "Operation to perform"
+        },
+        "username": {
+          "type": "string",
+          "description": "Username of the Salesforce user"
+        },
+        "logLevel": {
+          "type": "string",
+          "enum": [
+            "NONE",
+            "ERROR",
+            "WARN",
+            "INFO",
+            "DEBUG",
+            "FINE",
+            "FINER",
+            "FINEST"
+          ],
+          "description": "Log level (required for 'enable')"
+        },
+        "expirationTime": {
+          "type": "number",
+          "description": "Minutes until expiration (default 30)"
+        },
+        "limit": {
+          "type": "number",
+          "description": "Max logs to retrieve (default 10)"
+        },
+        "logId": {
+          "type": "string",
+          "description": "ID of a specific log to retrieve"
+        },
+        "includeBody": {
+          "type": "boolean",
+          "description": "Include full log content (default false)"
+        }
+      },
+      "required": [
+        "operation",
+        "username"
+      ]
+    }
+  },
+  {
+    "name": "salesforce_manage_field",
+    "description": "Create new custom fields or modify existing fields on any Salesforce object. Supports all field types: Text, Number, Date, Lookup, Master-Detail, Picklist, etc.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "operation": {
+          "type": "string",
+          "enum": [
+            "create",
+            "update"
+          ]
+        },
+        "objectName": {
+          "type": "string",
+          "description": "API name of the object"
+        },
+        "fieldName": {
+          "type": "string",
+          "description": "API name for the field (without __c suffix)"
+        },
+        "label": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Checkbox",
+            "Currency",
+            "Date",
+            "DateTime",
+            "Email",
+            "Number",
+            "Percent",
+            "Phone",
+            "Picklist",
+            "MultiselectPicklist",
+            "Text",
+            "TextArea",
+            "LongTextArea",
+            "Html",
+            "Url",
+            "Lookup",
+            "MasterDetail"
+          ]
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "unique": {
+          "type": "boolean"
+        },
+        "externalId": {
+          "type": "boolean"
+        },
+        "length": {
+          "type": "number"
+        },
+        "precision": {
+          "type": "number"
+        },
+        "scale": {
+          "type": "number"
+        },
+        "referenceTo": {
+          "type": "string",
+          "description": "Object to reference (for Lookup/MasterDetail)"
+        },
+        "relationshipLabel": {
+          "type": "string"
+        },
+        "relationshipName": {
+          "type": "string"
+        },
+        "deleteConstraint": {
+          "type": "string",
+          "enum": [
+            "Cascade",
+            "Restrict",
+            "SetNull"
+          ]
+        }
+      },
+      "required": [
+        "operation",
+        "objectName",
+        "fieldName"
+      ]
+    }
+  },
+  {
+    "name": "salesforce_manage_field_permissions",
+    "description": "Manage Field Level Security (Field Permissions) for custom and standard fields. Grant/revoke read/edit access for specific profiles or permission sets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "operation": {
+          "type": "string",
+          "enum": [
+            "grant",
+            "revoke",
+            "view"
+          ]
+        },
+        "objectName": {
+          "type": "string",
+          "description": "API name of the object"
+        },
+        "fieldName": {
+          "type": "string",
+          "description": "API name of the field"
+        },
+        "profileNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Profile names to grant/revoke access"
+        },
+        "readable": {
+          "type": "boolean",
+          "description": "Grant/revoke read access (default true)"
+        },
+        "editable": {
+          "type": "boolean",
+          "description": "Grant/revoke edit access (default true)"
+        }
+      },
+      "required": [
+        "operation",
+        "objectName",
+        "fieldName"
+      ]
+    }
+  },
+  {
+    "name": "salesforce_manage_object",
+    "description": "Create new custom objects or modify existing ones in Salesforce. Supports create/update with field, relationship, and sharing model settings.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "operation": {
+          "type": "string",
+          "enum": [
+            "create",
+            "update"
+          ]
+        },
+        "objectName": {
+          "type": "string",
+          "description": "API name (without __c suffix)"
+        },
+        "label": {
+          "type": "string"
+        },
+        "pluralLabel": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "nameFieldLabel": {
+          "type": "string"
+        },
+        "nameFieldType": {
+          "type": "string",
+          "enum": [
+            "Text",
+            "AutoNumber"
+          ]
+        },
+        "nameFieldFormat": {
+          "type": "string",
+          "description": "Display format for AutoNumber (e.g. 'A-{0000}')"
+        },
+        "sharingModel": {
+          "type": "string",
+          "enum": [
+            "ReadWrite",
+            "Read",
+            "Private",
+            "ControlledByParent"
+          ]
+        }
+      },
+      "required": [
+        "operation",
+        "objectName"
+      ]
+    }
+  },
+  {
+    "name": "salesforce_read_apex",
+    "description": "Read Apex classes from Salesforce. Supports reading by class name or listing by name pattern with wildcards (* and ?).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "className": {
+          "type": "string",
+          "description": "Name of a specific Apex class to read"
+        },
+        "namePattern": {
+          "type": "string",
+          "description": "Pattern to match Apex class names (wildcards * and ?)"
+        },
+        "includeMetadata": {
+          "type": "boolean",
+          "description": "Whether to include metadata (API version, length, last modified)"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "salesforce_read_apex_trigger",
+    "description": "Read Apex triggers from Salesforce. Supports reading by trigger name or listing by name pattern with wildcards.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "triggerName": {
+          "type": "string",
+          "description": "Name of a specific Apex trigger to read"
+        },
+        "namePattern": {
+          "type": "string",
+          "description": "Pattern to match trigger names (wildcards * and ?)"
+        },
+        "includeMetadata": {
+          "type": "boolean",
+          "description": "Include metadata (API version, object type, last modified)"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "salesforce_search_all",
+    "description": "Search across multiple Salesforce objects using SOSL (Salesforce Object Search Language). Supports wildcards, field-level filtering, and WITH clauses.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "searchTerm": {
+          "type": "string",
+          "description": "Text to search for (supports wildcards * and ?)"
+        },
+        "searchIn": {
+          "type": "string",
+          "enum": [
+            "ALL FIELDS",
+            "NAME FIELDS",
+            "EMAIL FIELDS",
+            "PHONE FIELDS",
+            "SIDEBAR FIELDS"
+          ]
+        },
+        "objects": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "fields": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "where": {
+                "type": "string"
+              },
+              "orderBy": {
+                "type": "string"
+              },
+              "limit": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "name",
+              "fields"
+            ]
+          }
+        },
+        "withClauses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "DATA CATEGORY",
+                  "DIVISION",
+                  "METADATA",
+                  "NETWORK",
+                  "PRICEBOOKID",
+                  "SNIPPET",
+                  "SECURITY_ENFORCED"
+                ]
+              },
+              "value": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "searchTerm",
+        "objects"
+      ]
+    }
+  },
+  {
+    "name": "salesforce_write_apex",
+    "description": "Create or update Apex classes in Salesforce. Class body must be valid Apex code.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "operation": {
+          "type": "string",
+          "enum": [
+            "create",
+            "update"
+          ]
+        },
+        "className": {
+          "type": "string",
+          "description": "Name of the Apex class to create or update"
+        },
+        "apiVersion": {
+          "type": "string",
+          "description": "API version (e.g. '58.0')"
+        },
+        "body": {
+          "type": "string",
+          "description": "Full body of the Apex class"
+        }
+      },
+      "required": [
+        "operation",
+        "className",
+        "body"
+      ]
+    }
+  },
+  {
+    "name": "salesforce_write_apex_trigger",
+    "description": "Create or update Apex triggers in Salesforce. Trigger body must be valid Apex trigger code.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "operation": {
+          "type": "string",
+          "enum": [
+            "create",
+            "update"
+          ]
+        },
+        "triggerName": {
+          "type": "string",
+          "description": "Name of the Apex trigger"
+        },
+        "objectName": {
+          "type": "string",
+          "description": "Salesforce object the trigger is for (required for 'create')"
+        },
+        "apiVersion": {
+          "type": "string",
+          "description": "API version (e.g. '58.0')"
+        },
+        "body": {
+          "type": "string",
+          "description": "Full body of the Apex trigger"
+        }
+      },
+      "required": [
+        "operation",
+        "triggerName",
+        "body"
+      ]
+    }
+  },
+  {
+    "name": "salesforce_aggregate_query",
+    "description": "Execute SOQL queries with GROUP BY, aggregate functions (COUNT, SUM, AVG, MIN, MAX, COUNT_DISTINCT), and HAVING clauses. Use for queries that summarize and group data. For regular non-aggregate queries use salesforce_query_records.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "objectName": {
+          "type": "string",
+          "description": "API name of the object to query"
+        },
+        "selectFields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Fields to select \u2014 mix of group fields and aggregates. Format: 'FieldName' or 'COUNT(Id) AliasName'"
+        },
+        "groupByFields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Fields to group by \u2014 must include all non-aggregate fields from selectFields"
+        },
+        "whereClause": {
+          "type": "string",
+          "description": "WHERE clause to filter rows BEFORE grouping"
+        },
+        "havingClause": {
+          "type": "string",
+          "description": "HAVING clause to filter results AFTER grouping (for aggregate conditions)"
+        },
+        "orderBy": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "objectName",
+        "selectFields",
+        "groupByFields"
+      ]
+    }
+  }
+]

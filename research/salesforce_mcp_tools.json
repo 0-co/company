@@ -1,0 +1,1746 @@
+[
+  {
+    "name": "get_username",
+    "description": "Intelligently determines the appropriate username or alias for Salesforce operations.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "defaultTargetOrg": {
+          "type": "boolean",
+          "description": "Resolve the default target org username",
+          "default": false
+        },
+        "defaultDevHub": {
+          "type": "boolean",
+          "description": "Resolve the default target devhub org username",
+          "default": false
+        },
+        "directory": {
+          "type": "string",
+          "description": "The directory to run this tool from (absolute path)"
+        }
+      },
+      "required": [
+        "directory"
+      ]
+    }
+  },
+  {
+    "name": "list_all_orgs",
+    "description": "Lists all configured Salesforce orgs. Only use if the user explicitly asks for a list of orgs.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "directory": {
+          "type": "string",
+          "description": "The directory to run this tool from (absolute path)"
+        }
+      },
+      "required": [
+        "directory"
+      ]
+    }
+  },
+  {
+    "name": "run_soql_query",
+    "description": "Run a SOQL query against a Salesforce org.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "SOQL query to run"
+        },
+        "usernameOrAlias": {
+          "type": "string",
+          "description": "The username or alias for the Salesforce org"
+        },
+        "directory": {
+          "type": "string",
+          "description": "The directory to run this tool from (absolute path)"
+        },
+        "useToolingApi": {
+          "type": "boolean",
+          "description": "Use Tooling API for the operation"
+        }
+      },
+      "required": [
+        "query",
+        "usernameOrAlias",
+        "directory"
+      ]
+    }
+  },
+  {
+    "name": "deploy_metadata",
+    "description": "Deploy metadata to an org from your local project.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "ignoreConflicts": {
+          "type": "boolean",
+          "description": "Ignore conflicts and deploy local files, even if they overwrite changes in the org."
+        },
+        "sourceDir": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Path to the local source files to deploy."
+        },
+        "manifest": {
+          "type": "string",
+          "description": "Full file path for manifest (XML file) of components to deploy."
+        },
+        "apexTestLevel": {
+          "type": "string",
+          "enum": [
+            "NoTestRun",
+            "RunLocalTests",
+            "RunAllTestsInOrg"
+          ],
+          "description": "Apex test level to use during deployment."
+        },
+        "apexTests": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Apex test classes to run during deployment."
+        },
+        "usernameOrAlias": {
+          "type": "string",
+          "description": "The username or alias for the Salesforce org"
+        },
+        "directory": {
+          "type": "string",
+          "description": "The directory to run this tool from (absolute path)"
+        }
+      },
+      "required": [
+        "usernameOrAlias",
+        "directory"
+      ]
+    }
+  },
+  {
+    "name": "retrieve_metadata",
+    "description": "Retrieve metadata from an org to your local project.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "ignoreConflicts": {
+          "type": "boolean",
+          "default": false,
+          "description": "Ignore conflicts and save files to local filesystem."
+        },
+        "sourceDir": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Path to the local source files to retrieve."
+        },
+        "manifest": {
+          "type": "string",
+          "description": "Full file path for manifest (XML file) of components to retrieve."
+        },
+        "usernameOrAlias": {
+          "type": "string",
+          "description": "The username or alias for the Salesforce org"
+        },
+        "directory": {
+          "type": "string",
+          "description": "The directory to run this tool from (absolute path)"
+        }
+      },
+      "required": [
+        "usernameOrAlias",
+        "directory"
+      ]
+    }
+  },
+  {
+    "name": "run_apex_test",
+    "description": "Run Apex tests in an org.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "testLevel": {
+          "type": "string",
+          "enum": [
+            "RunLocalTests",
+            "RunAllTestsInOrg",
+            "RunSpecifiedTests"
+          ],
+          "description": "Apex test level"
+        },
+        "classNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Apex test classes to run"
+        },
+        "methodNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Specific test method names"
+        },
+        "async": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to wait for tests to finish"
+        },
+        "suiteName": {
+          "type": "string",
+          "description": "A suite of apex test classes to run"
+        },
+        "testRunId": {
+          "type": "string",
+          "description": "ID of an in-progress or completed apex test run"
+        },
+        "verbose": {
+          "type": "boolean",
+          "default": false,
+          "description": "Include more test information in context"
+        },
+        "codeCoverage": {
+          "type": "boolean",
+          "default": false,
+          "description": "Calculate code coverage"
+        },
+        "usernameOrAlias": {
+          "type": "string",
+          "description": "The username or alias for the Salesforce org"
+        },
+        "directory": {
+          "type": "string",
+          "description": "The directory to run this tool from (absolute path)"
+        }
+      },
+      "required": [
+        "testLevel",
+        "usernameOrAlias",
+        "directory"
+      ]
+    }
+  },
+  {
+    "name": "run_agent_test",
+    "description": "Run Agent tests in an org (aiEvaluationDefinition tests only, NOT Apex tests).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "agentApiName": {
+          "type": "string",
+          "description": "Agent test to run (aiEvaluationDefinition name)"
+        },
+        "usernameOrAlias": {
+          "type": "string",
+          "description": "The username or alias for the Salesforce org"
+        },
+        "directory": {
+          "type": "string",
+          "description": "The directory to run this tool from (absolute path)"
+        },
+        "async": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to wait for tests to finish or return test id immediately"
+        }
+      },
+      "required": [
+        "agentApiName",
+        "usernameOrAlias",
+        "directory"
+      ]
+    }
+  },
+  {
+    "name": "assign_permission_set",
+    "description": "Assign a permission set to one or more org users.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "permissionSetName": {
+          "type": "string",
+          "description": "A single permission set to assign"
+        },
+        "usernameOrAlias": {
+          "type": "string",
+          "description": "The username or alias for the Salesforce org"
+        },
+        "onBehalfOf": {
+          "type": "string",
+          "description": "A username or alias to assign the permission set to on behalf of (only when explicitly requested)"
+        },
+        "directory": {
+          "type": "string",
+          "description": "The directory to run this tool from (absolute path)"
+        }
+      },
+      "required": [
+        "permissionSetName",
+        "usernameOrAlias",
+        "directory"
+      ]
+    }
+  },
+  {
+    "name": "create_scratch_org",
+    "description": "Creates a scratch org with the specified parameters.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "directory": {
+          "type": "string",
+          "description": "The directory to run this tool from (absolute path)"
+        },
+        "devHub": {
+          "type": "string",
+          "description": "The default devhub username"
+        },
+        "duration": {
+          "type": "number",
+          "default": 7,
+          "description": "Number of days before the org expires"
+        },
+        "edition": {
+          "type": "string",
+          "enum": [
+            "developer",
+            "enterprise",
+            "group",
+            "professional",
+            "partner-developer",
+            "partner-enterprise",
+            "partner-group",
+            "partner-professional"
+          ]
+        },
+        "definitionFile": {
+          "type": "string",
+          "default": "config/project-scratch-def.json",
+          "description": "Path to scratch definition JSON file"
+        },
+        "alias": {
+          "type": "string",
+          "description": "Alias for the scratch org"
+        },
+        "async": {
+          "type": "boolean",
+          "default": false,
+          "description": "Return immediately with org ID (true) or wait for completion (false)"
+        },
+        "setDefault": {
+          "type": "boolean",
+          "description": "Set newly created scratch org as default-target-org"
+        },
+        "snapshot": {
+          "type": "string",
+          "description": "Snapshot name to use when creating a scratch org"
+        },
+        "sourceOrg": {
+          "type": "string",
+          "description": "15-character ID of the org shape to base the scratch org on"
+        },
+        "username": {
+          "type": "string",
+          "description": "Username of the scratch org admin user"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description given to the scratch org"
+        },
+        "orgName": {
+          "type": "string",
+          "description": "Name of the scratch org"
+        },
+        "adminEmail": {
+          "type": "string",
+          "description": "Email address for the org's admin user"
+        }
+      },
+      "required": [
+        "directory",
+        "devHub"
+      ]
+    }
+  },
+  {
+    "name": "delete_org",
+    "description": "Deletes a specified Salesforce org. ALWAYS confirm with the user before deleting.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "directory": {
+          "type": "string",
+          "description": "The directory to run this tool from (absolute path)"
+        },
+        "usernameOrAlias": {
+          "type": "string",
+          "description": "The username or alias of the org to delete"
+        }
+      },
+      "required": [
+        "directory",
+        "usernameOrAlias"
+      ]
+    }
+  },
+  {
+    "name": "open_org",
+    "description": "Open a Salesforce org in the browser. You can specify a metadata file you want to open.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filePath": {
+          "type": "string",
+          "description": "File path of the metadata to open (must be an existing file path in the project)"
+        },
+        "usernameOrAlias": {
+          "type": "string",
+          "description": "The username or alias for the Salesforce org"
+        },
+        "directory": {
+          "type": "string",
+          "description": "The directory to run this tool from (absolute path)"
+        }
+      },
+      "required": [
+        "usernameOrAlias",
+        "directory"
+      ]
+    }
+  },
+  {
+    "name": "resume_tool_operation",
+    "description": "Resume a long running operation that was not completed by another tool.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "jobId": {
+          "type": "string",
+          "description": "The job id of the long running operation to resume"
+        },
+        "wait": {
+          "type": "number",
+          "default": 30,
+          "description": "Amount of time to wait for the operation to complete in minutes"
+        },
+        "usernameOrAlias": {
+          "type": "string",
+          "description": "The username or alias for the Salesforce org"
+        },
+        "directory": {
+          "type": "string",
+          "description": "The directory to run this tool from (absolute path)"
+        }
+      },
+      "required": [
+        "jobId",
+        "usernameOrAlias",
+        "directory"
+      ]
+    }
+  },
+  {
+    "name": "create_org_snapshot",
+    "description": "Creates a new snapshot of an org.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "directory": {
+          "type": "string",
+          "description": "The directory to run this tool from (absolute path)"
+        },
+        "devHub": {
+          "type": "string",
+          "description": "The default devhub username"
+        },
+        "sourceOrg": {
+          "type": "string",
+          "description": "The org username or alias to create a snapshot of"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of snapshot"
+        },
+        "name": {
+          "type": "string",
+          "description": "Unique name of snapshot (max 15 chars)"
+        }
+      },
+      "required": [
+        "directory",
+        "devHub",
+        "sourceOrg"
+      ]
+    }
+  },
+  {
+    "name": "list_devops_center_projects",
+    "description": "List all DevOps Center projects in a specific org.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "usernameOrAlias": {
+          "type": "string",
+          "description": "Username or alias for the Salesforce org"
+        }
+      },
+      "required": [
+        "usernameOrAlias"
+      ]
+    }
+  },
+  {
+    "name": "list_devops_center_work_items",
+    "description": "List all the work items for a specific DevOps Center project.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "usernameOrAlias": {
+          "type": "string",
+          "description": "Username or alias for the Salesforce org"
+        },
+        "project": {
+          "type": "object",
+          "properties": {
+            "Id": {
+              "type": "string",
+              "description": "Selected project's Id"
+            },
+            "Name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id"
+          ],
+          "description": "DevOps project selected from list_devops_center_projects"
+        }
+      },
+      "required": [
+        "usernameOrAlias",
+        "project"
+      ]
+    }
+  },
+  {
+    "name": "create_devops_center_work_item",
+    "description": "Creates a new DevOps Center Work Item in the specified project.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "usernameOrAlias": {
+          "type": "string"
+        },
+        "projectId": {
+          "type": "string",
+          "description": "DevOps Center Project ID"
+        },
+        "subject": {
+          "type": "string",
+          "description": "Work item subject"
+        },
+        "description": {
+          "type": "string",
+          "description": "Work item description"
+        }
+      },
+      "required": [
+        "usernameOrAlias",
+        "projectId",
+        "subject"
+      ]
+    }
+  },
+  {
+    "name": "promote_devops_center_work_item",
+    "description": "Promote an approved work item to the next stage in the DevOps Center pipeline.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "usernameOrAlias": {
+          "type": "string"
+        },
+        "workItemNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Exact Work Item Names to promote"
+        }
+      },
+      "required": [
+        "usernameOrAlias",
+        "workItemNames"
+      ]
+    }
+  },
+  {
+    "name": "detect_devops_center_merge_conflict",
+    "description": "Detects merge conflicts for a selected work item or in given source branch.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "usernameOrAlias": {
+          "type": "string"
+        },
+        "workItemName": {
+          "type": "string",
+          "description": "Exact Work Item Name"
+        },
+        "sourcebranch": {
+          "type": "string",
+          "description": "Source branch of the Work Item"
+        },
+        "localPath": {
+          "type": "string",
+          "description": "Local path to the repository"
+        }
+      },
+      "required": [
+        "localPath"
+      ]
+    }
+  },
+  {
+    "name": "resolve_devops_center_merge_conflict",
+    "description": "Resolves merge conflicts for a selected work item by name.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "usernameOrAlias": {
+          "type": "string"
+        },
+        "workItemName": {
+          "type": "string",
+          "description": "Exact Work Item Name (mandatory)"
+        },
+        "localPath": {
+          "type": "string",
+          "description": "Local path to the repository"
+        }
+      },
+      "required": [
+        "usernameOrAlias",
+        "workItemName",
+        "localPath"
+      ]
+    }
+  },
+  {
+    "name": "checkout_devops_center_work_item",
+    "description": "Checks out the branch associated with a selected work item by name.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "usernameOrAlias": {
+          "type": "string"
+        },
+        "workItemName": {
+          "type": "string",
+          "description": "Exact Work Item Name to check out"
+        },
+        "localPath": {
+          "type": "string",
+          "description": "Directory path where the repository should be cloned/checked out"
+        }
+      },
+      "required": [
+        "usernameOrAlias",
+        "workItemName",
+        "localPath"
+      ]
+    }
+  },
+  {
+    "name": "commit_devops_center_work_item",
+    "description": "Commit SFDX project changes and register the commit SHA in DevOps Center.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "usernameOrAlias": {
+          "type": "string"
+        },
+        "workItemName": {
+          "type": "string",
+          "description": "Exact Work Item Name to commit"
+        },
+        "commitMessage": {
+          "type": "string",
+          "description": "Commit message describing the changes"
+        },
+        "repoPath": {
+          "type": "string",
+          "description": "Absolute path to the git repository root"
+        }
+      },
+      "required": [
+        "usernameOrAlias",
+        "workItemName",
+        "commitMessage",
+        "repoPath"
+      ]
+    }
+  },
+  {
+    "name": "update_devops_center_work_item_status",
+    "description": "Update the status of a DevOps Center work item to 'In Progress' or 'Ready to Promote'.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "usernameOrAlias": {
+          "type": "string"
+        },
+        "workItemName": {
+          "type": "string",
+          "description": "Exact Work Item Name to update (e.g. WI-00000001)"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "In Progress",
+            "Ready to Promote"
+          ]
+        }
+      },
+      "required": [
+        "usernameOrAlias",
+        "workItemName",
+        "status"
+      ]
+    }
+  },
+  {
+    "name": "check_devops_center_commit_status",
+    "description": "Check the current status of a work item committed to DevOps Center.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "usernameOrAlias": {
+          "type": "string"
+        },
+        "requestId": {
+          "type": "string",
+          "description": "Request ID from the commit operation to check status for"
+        }
+      },
+      "required": [
+        "usernameOrAlias",
+        "requestId"
+      ]
+    }
+  },
+  {
+    "name": "create_devops_center_pull_request",
+    "description": "Commit local changes to a DevOps Center work item's feature branch and create a pull request.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "workItemName": {
+          "type": "string",
+          "description": "Exact Work Item Name to create pull request"
+        },
+        "usernameOrAlias": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "workItemName",
+        "usernameOrAlias"
+      ]
+    }
+  },
+  {
+    "name": "run_code_analyzer",
+    "description": "Performs static analysis against code. Validates best practices, security vulnerabilities, and performance issues. Returns JSON with path to results file.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Array of 1-10 ABSOLUTE file paths to scan"
+        },
+        "selector": {
+          "type": "string",
+          "description": "Optional selector for rules. Examples: 'Security:pmd', 'Critical', '(Security,Performance):eslint'"
+        }
+      },
+      "required": [
+        "target"
+      ]
+    }
+  },
+  {
+    "name": "list_code_analyzer_rules",
+    "description": "Select Code Analyzer rules based on criteria. Returns a JSON array of rules matching a colon-separated selector.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "selector": {
+          "type": "string",
+          "description": "A colon-separated selector for Code Analyzer rules (e.g. 'Security:pmd', 'Critical')"
+        },
+        "allowFullList": {
+          "type": "boolean",
+          "description": "Opt-in to return the full list of rules. Defaults to false."
+        }
+      },
+      "required": [
+        "selector"
+      ]
+    }
+  },
+  {
+    "name": "query_code_analyzer_results",
+    "description": "Query a Code Analyzer results JSON file and return filtered violations. Use after run_code_analyzer.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "resultsFile": {
+          "type": "string",
+          "description": "Absolute path to a results JSON file produced by the code analyzer"
+        },
+        "selector": {
+          "type": "string",
+          "description": "Selector string: colon-separated tokens e.g. 'Security:(pmd,eslint):High'"
+        },
+        "topN": {
+          "type": "integer",
+          "description": "Return at most this many violations (default 25, max 1000)"
+        },
+        "allowLargeResultSet": {
+          "type": "boolean",
+          "description": "Opt-in to request more than default top N violations"
+        },
+        "sortBy": {
+          "type": "string",
+          "enum": [
+            "severity",
+            "rule",
+            "engine",
+            "file",
+            "none"
+          ]
+        },
+        "sortDirection": {
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ]
+        }
+      },
+      "required": [
+        "resultsFile",
+        "selector"
+      ]
+    }
+  },
+  {
+    "name": "describe_code_analyzer_rule",
+    "description": "Get the description of a Code Analyzer rule, including how it can be fixed.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "ruleName": {
+          "type": "string",
+          "description": "The name of the rule"
+        },
+        "engineName": {
+          "type": "string",
+          "description": "The engine to which the rule belongs"
+        }
+      },
+      "required": [
+        "ruleName",
+        "engineName"
+      ]
+    }
+  },
+  {
+    "name": "get_ast_nodes_to_generate_xpath",
+    "description": "First step for creating a PMD XPath-based custom rule. Generates an XPath expression from sample code that violates a pattern.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "sampleCode": {
+          "type": "string",
+          "description": "Sample code which violates the rule"
+        },
+        "language": {
+          "type": "string",
+          "description": "Programming language of the sample code (e.g. 'apex', 'javascript', 'xml')"
+        },
+        "engine": {
+          "type": "string",
+          "description": "Target analysis engine (e.g. 'pmd')"
+        }
+      },
+      "required": [
+        "sampleCode",
+        "language",
+        "engine"
+      ]
+    }
+  },
+  {
+    "name": "create_custom_rule",
+    "description": "Create a custom rule using a provided XPath expression. Use after get_ast_nodes_to_generate_xpath.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "xpath": {
+          "type": "string",
+          "description": "XPath expression that matches the violation (required for PMD)"
+        },
+        "ruleName": {
+          "type": "string",
+          "description": "Name for the custom rule"
+        },
+        "description": {
+          "type": "string",
+          "description": "Short description or message for the rule"
+        },
+        "language": {
+          "type": "string",
+          "description": "Language for the rule (e.g. 'apex')"
+        },
+        "engine": {
+          "type": "string",
+          "description": "Analysis engine (e.g. 'pmd')"
+        },
+        "priority": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "PMD priority (1-5)"
+        },
+        "workingDirectory": {
+          "type": "string",
+          "description": "Workspace directory where code-analyzer.yml will be created or updated"
+        }
+      },
+      "required": [
+        "ruleName",
+        "description",
+        "language",
+        "engine",
+        "priority",
+        "workingDirectory"
+      ]
+    }
+  },
+  {
+    "name": "get_mobile_lwc_offline_analysis",
+    "description": "Analyzes LWC components for mobile-specific issues and provides detailed recommendations for improvements. Checks if components are mobile-ready.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the LWC component"
+        },
+        "namespace": {
+          "type": "string",
+          "default": "c",
+          "description": "Namespace of the LWC component"
+        },
+        "js": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "description": "Path to component file relative to LWC bundle root"
+            },
+            "content": {
+              "type": "string",
+              "description": "Content of the file"
+            }
+          },
+          "required": [
+            "path",
+            "content"
+          ],
+          "description": "LWC component JavaScript file"
+        },
+        "html": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "content": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "path",
+              "content"
+            ]
+          },
+          "description": "LWC component HTML templates"
+        },
+        "css": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "LWC component CSS files (optional)"
+        },
+        "jsMetaXml": {
+          "type": "object",
+          "description": "LWC component .js-meta.xml configuration file (optional)"
+        }
+      },
+      "required": [
+        "name",
+        "js",
+        "html"
+      ]
+    }
+  },
+  {
+    "name": "get_mobile_lwc_offline_guidance",
+    "description": "Provides structured review instructions to detect and remediate Mobile Offline code violations in Lightning web components (LWCs) for Salesforce Mobile Apps.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create_mobile_lwc_app_review",
+    "description": "Provides TypeScript-based API documentation for Salesforce LWC App Review Service, for implementing the App Review feature in an LWC.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create_mobile_lwc_ar_space_capture",
+    "description": "Provides TypeScript-based API documentation for Salesforce LWC AR Space Capture, for implementing AR Space Capture in an LWC.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create_mobile_lwc_barcode_scanner",
+    "description": "Provides TypeScript-based API documentation for Salesforce LWC Barcode Scanner, for implementing Barcode Scanner in an LWC.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create_mobile_lwc_biometrics",
+    "description": "Provides TypeScript-based API documentation for Salesforce LWC Biometrics Service, for implementing the Biometrics feature in an LWC.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create_mobile_lwc_calendar",
+    "description": "Provides TypeScript-based API documentation for Salesforce LWC Calendar Service, for implementing the Calendar feature in an LWC.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create_mobile_lwc_contacts",
+    "description": "Provides TypeScript-based API documentation for Salesforce LWC Contacts Service, for implementing the Contacts feature in an LWC.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create_mobile_lwc_document_scanner",
+    "description": "Provides TypeScript-based API documentation for Salesforce LWC Document Scanner, for implementing Document Scanner in an LWC.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create_mobile_lwc_geofencing",
+    "description": "Provides TypeScript-based API documentation for Salesforce LWC Geofencing Service, for implementing Geofencing in an LWC.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create_mobile_lwc_location",
+    "description": "Provides TypeScript-based API documentation for Salesforce LWC Location Service, for implementing Location Services in an LWC.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create_mobile_lwc_nfc",
+    "description": "Provides TypeScript-based API documentation for Salesforce LWC NFC Service, for implementing NFC in an LWC.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create_mobile_lwc_payments",
+    "description": "Provides TypeScript-based API documentation for Salesforce LWC Payments Service, for implementing Payments in an LWC.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "salesforce_search_objects",
+    "description": "Search for Salesforce standard and custom objects by name pattern. Examples: 'Account' finds Account, AccountHistory; 'Order' finds WorkOrder, ServiceOrder__c etc.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "searchPattern": {
+          "type": "string",
+          "description": "Search pattern to find objects (e.g. 'Account Coverage' finds 'AccountCoverage__c')"
+        }
+      },
+      "required": [
+        "searchPattern"
+      ]
+    }
+  },
+  {
+    "name": "salesforce_describe_object",
+    "description": "Get detailed schema metadata including all fields, relationships, and field properties of any Salesforce object. Examples: 'Account' shows all Account fields; 'Case' shows all Case fields including relationships.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "objectName": {
+          "type": "string",
+          "description": "API name of the object (e.g. 'Account', 'Contact', 'Custom_Object__c')"
+        }
+      },
+      "required": [
+        "objectName"
+      ]
+    }
+  },
+  {
+    "name": "salesforce_query_records",
+    "description": "Query records from any Salesforce object using SOQL, including relationship queries (parent-to-child, child-to-parent, multi-level). For GROUP BY/aggregate queries use salesforce_aggregate_query.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "objectName": {
+          "type": "string",
+          "description": "API name of the object to query"
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of fields to retrieve, including relationship fields (dot notation and subqueries)"
+        },
+        "whereClause": {
+          "type": "string",
+          "description": "WHERE clause (can include conditions on related objects)"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "ORDER BY clause"
+        },
+        "limit": {
+          "type": "number",
+          "description": "Maximum number of records to return"
+        }
+      },
+      "required": [
+        "objectName",
+        "fields"
+      ]
+    }
+  },
+  {
+    "name": "salesforce_dml_records",
+    "description": "Perform data manipulation operations (insert, update, delete, upsert) on Salesforce records.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "operation": {
+          "type": "string",
+          "enum": [
+            "insert",
+            "update",
+            "delete",
+            "upsert"
+          ],
+          "description": "Type of DML operation"
+        },
+        "objectName": {
+          "type": "string",
+          "description": "API name of the object"
+        },
+        "records": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "Array of records to process"
+        },
+        "externalIdField": {
+          "type": "string",
+          "description": "External ID field name for upsert operations"
+        }
+      },
+      "required": [
+        "operation",
+        "objectName",
+        "records"
+      ]
+    }
+  },
+  {
+    "name": "salesforce_execute_anonymous",
+    "description": "Execute anonymous Apex code in Salesforce. Results include compilation success/failure, execution success/failure, and debug logs.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "apexCode": {
+          "type": "string",
+          "description": "Apex code to execute anonymously"
+        },
+        "logLevel": {
+          "type": "string",
+          "enum": [
+            "NONE",
+            "ERROR",
+            "WARN",
+            "INFO",
+            "DEBUG",
+            "FINE",
+            "FINER",
+            "FINEST"
+          ],
+          "description": "Log level for debug logs (defaults to DEBUG)"
+        }
+      },
+      "required": [
+        "apexCode"
+      ]
+    }
+  },
+  {
+    "name": "salesforce_manage_debug_logs",
+    "description": "Manage debug logs for Salesforce users \u2014 enable, disable, or retrieve logs.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "operation": {
+          "type": "string",
+          "enum": [
+            "enable",
+            "disable",
+            "retrieve"
+          ],
+          "description": "Operation to perform"
+        },
+        "username": {
+          "type": "string",
+          "description": "Username of the Salesforce user"
+        },
+        "logLevel": {
+          "type": "string",
+          "enum": [
+            "NONE",
+            "ERROR",
+            "WARN",
+            "INFO",
+            "DEBUG",
+            "FINE",
+            "FINER",
+            "FINEST"
+          ],
+          "description": "Log level (required for 'enable')"
+        },
+        "expirationTime": {
+          "type": "number",
+          "description": "Minutes until expiration (default 30)"
+        },
+        "limit": {
+          "type": "number",
+          "description": "Max logs to retrieve (default 10)"
+        },
+        "logId": {
+          "type": "string",
+          "description": "ID of a specific log to retrieve"
+        },
+        "includeBody": {
+          "type": "boolean",
+          "description": "Include full log content (default false)"
+        }
+      },
+      "required": [
+        "operation",
+        "username"
+      ]
+    }
+  },
+  {
+    "name": "salesforce_manage_field",
+    "description": "Create new custom fields or modify existing fields on any Salesforce object. Supports all field types: Text, Number, Date, Lookup, Master-Detail, Picklist, etc.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "operation": {
+          "type": "string",
+          "enum": [
+            "create",
+            "update"
+          ]
+        },
+        "objectName": {
+          "type": "string",
+          "description": "API name of the object"
+        },
+        "fieldName": {
+          "type": "string",
+          "description": "API name for the field (without __c suffix)"
+        },
+        "label": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Checkbox",
+            "Currency",
+            "Date",
+            "DateTime",
+            "Email",
+            "Number",
+            "Percent",
+            "Phone",
+            "Picklist",
+            "MultiselectPicklist",
+            "Text",
+            "TextArea",
+            "LongTextArea",
+            "Html",
+            "Url",
+            "Lookup",
+            "MasterDetail"
+          ]
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "unique": {
+          "type": "boolean"
+        },
+        "externalId": {
+          "type": "boolean"
+        },
+        "length": {
+          "type": "number"
+        },
+        "precision": {
+          "type": "number"
+        },
+        "scale": {
+          "type": "number"
+        },
+        "referenceTo": {
+          "type": "string",
+          "description": "Object to reference (for Lookup/MasterDetail)"
+        },
+        "relationshipLabel": {
+          "type": "string"
+        },
+        "relationshipName": {
+          "type": "string"
+        },
+        "deleteConstraint": {
+          "type": "string",
+          "enum": [
+            "Cascade",
+            "Restrict",
+            "SetNull"
+          ]
+        }
+      },
+      "required": [
+        "operation",
+        "objectName",
+        "fieldName"
+      ]
+    }
+  },
+  {
+    "name": "salesforce_manage_field_permissions",
+    "description": "Manage Field Level Security (Field Permissions) for custom and standard fields. Grant/revoke read/edit access for specific profiles or permission sets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "operation": {
+          "type": "string",
+          "enum": [
+            "grant",
+            "revoke",
+            "view"
+          ]
+        },
+        "objectName": {
+          "type": "string",
+          "description": "API name of the object"
+        },
+        "fieldName": {
+          "type": "string",
+          "description": "API name of the field"
+        },
+        "profileNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Profile names to grant/revoke access"
+        },
+        "readable": {
+          "type": "boolean",
+          "description": "Grant/revoke read access (default true)"
+        },
+        "editable": {
+          "type": "boolean",
+          "description": "Grant/revoke edit access (default true)"
+        }
+      },
+      "required": [
+        "operation",
+        "objectName",
+        "fieldName"
+      ]
+    }
+  },
+  {
+    "name": "salesforce_manage_object",
+    "description": "Create new custom objects or modify existing ones in Salesforce. Supports create/update with field, relationship, and sharing model settings.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "operation": {
+          "type": "string",
+          "enum": [
+            "create",
+            "update"
+          ]
+        },
+        "objectName": {
+          "type": "string",
+          "description": "API name (without __c suffix)"
+        },
+        "label": {
+          "type": "string"
+        },
+        "pluralLabel": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "nameFieldLabel": {
+          "type": "string"
+        },
+        "nameFieldType": {
+          "type": "string",
+          "enum": [
+            "Text",
+            "AutoNumber"
+          ]
+        },
+        "nameFieldFormat": {
+          "type": "string",
+          "description": "Display format for AutoNumber (e.g. 'A-{0000}')"
+        },
+        "sharingModel": {
+          "type": "string",
+          "enum": [
+            "ReadWrite",
+            "Read",
+            "Private",
+            "ControlledByParent"
+          ]
+        }
+      },
+      "required": [
+        "operation",
+        "objectName"
+      ]
+    }
+  },
+  {
+    "name": "salesforce_read_apex",
+    "description": "Read Apex classes from Salesforce. Supports reading by class name or listing by name pattern with wildcards (* and ?).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "className": {
+          "type": "string",
+          "description": "Name of a specific Apex class to read"
+        },
+        "namePattern": {
+          "type": "string",
+          "description": "Pattern to match Apex class names (wildcards * and ?)"
+        },
+        "includeMetadata": {
+          "type": "boolean",
+          "description": "Whether to include metadata (API version, length, last modified)"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "salesforce_read_apex_trigger",
+    "description": "Read Apex triggers from Salesforce. Supports reading by trigger name or listing by name pattern with wildcards.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "triggerName": {
+          "type": "string",
+          "description": "Name of a specific Apex trigger to read"
+        },
+        "namePattern": {
+          "type": "string",
+          "description": "Pattern to match trigger names (wildcards * and ?)"
+        },
+        "includeMetadata": {
+          "type": "boolean",
+          "description": "Include metadata (API version, object type, last modified)"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "salesforce_search_all",
+    "description": "Search across multiple Salesforce objects using SOSL (Salesforce Object Search Language). Supports wildcards, field-level filtering, and WITH clauses.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "searchTerm": {
+          "type": "string",
+          "description": "Text to search for (supports wildcards * and ?)"
+        },
+        "searchIn": {
+          "type": "string",
+          "enum": [
+            "ALL FIELDS",
+            "NAME FIELDS",
+            "EMAIL FIELDS",
+            "PHONE FIELDS",
+            "SIDEBAR FIELDS"
+          ]
+        },
+        "objects": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "fields": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "where": {
+                "type": "string"
+              },
+              "orderBy": {
+                "type": "string"
+              },
+              "limit": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "name",
+              "fields"
+            ]
+          }
+        },
+        "withClauses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "DATA CATEGORY",
+                  "DIVISION",
+                  "METADATA",
+                  "NETWORK",
+                  "PRICEBOOKID",
+                  "SNIPPET",
+                  "SECURITY_ENFORCED"
+                ]
+              },
+              "value": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "searchTerm",
+        "objects"
+      ]
+    }
+  },
+  {
+    "name": "salesforce_write_apex",
+    "description": "Create or update Apex classes in Salesforce. Class body must be valid Apex code.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "operation": {
+          "type": "string",
+          "enum": [
+            "create",
+            "update"
+          ]
+        },
+        "className": {
+          "type": "string",
+          "description": "Name of the Apex class to create or update"
+        },
+        "apiVersion": {
+          "type": "string",
+          "description": "API version (e.g. '58.0')"
+        },
+        "body": {
+          "type": "string",
+          "description": "Full body of the Apex class"
+        }
+      },
+      "required": [
+        "operation",
+        "className",
+        "body"
+      ]
+    }
+  },
+  {
+    "name": "salesforce_write_apex_trigger",
+    "description": "Create or update Apex triggers in Salesforce. Trigger body must be valid Apex trigger code.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "operation": {
+          "type": "string",
+          "enum": [
+            "create",
+            "update"
+          ]
+        },
+        "triggerName": {
+          "type": "string",
+          "description": "Name of the Apex trigger"
+        },
+        "objectName": {
+          "type": "string",
+          "description": "Salesforce object the trigger is for (required for 'create')"
+        },
+        "apiVersion": {
+          "type": "string",
+          "description": "API version (e.g. '58.0')"
+        },
+        "body": {
+          "type": "string",
+          "description": "Full body of the Apex trigger"
+        }
+      },
+      "required": [
+        "operation",
+        "triggerName",
+        "body"
+      ]
+    }
+  },
+  {
+    "name": "salesforce_aggregate_query",
+    "description": "Execute SOQL queries with GROUP BY, aggregate functions (COUNT, SUM, AVG, MIN, MAX, COUNT_DISTINCT), and HAVING clauses. Use for queries that summarize and group data. For regular non-aggregate queries use salesforce_query_records.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "objectName": {
+          "type": "string",
+          "description": "API name of the object to query"
+        },
+        "selectFields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Fields to select \u2014 mix of group fields and aggregates. Format: 'FieldName' or 'COUNT(Id) AliasName'"
+        },
+        "groupByFields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Fields to group by \u2014 must include all non-aggregate fields from selectFields"
+        },
+        "whereClause": {
+          "type": "string",
+          "description": "WHERE clause to filter rows BEFORE grouping"
+        },
+        "havingClause": {
+          "type": "string",
+          "description": "HAVING clause to filter results AFTER grouping (for aggregate conditions)"
+        },
+        "orderBy": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "objectName",
+        "selectFields",
+        "groupByFields"
+      ]
+    }
+  }
+]

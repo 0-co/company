@@ -1,0 +1,484 @@
+[
+  {
+    "name": "get_username",
+    "description": "Intelligently determines the appropriate username or alias for Salesforce operations.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "defaultTargetOrg": {
+          "type": "boolean",
+          "description": "Resolve the default target org username",
+          "default": false
+        },
+        "defaultDevHub": {
+          "type": "boolean",
+          "description": "Resolve the default target devhub org username",
+          "default": false
+        },
+        "directory": {
+          "type": "string",
+          "description": "The directory to run this tool from (absolute path)"
+        }
+      },
+      "required": [
+        "directory"
+      ]
+    }
+  },
+  {
+    "name": "list_all_orgs",
+    "description": "Lists all configured Salesforce orgs. Only use if the user explicitly asks for a list of orgs.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "directory": {
+          "type": "string",
+          "description": "The directory to run this tool from (absolute path)"
+        }
+      },
+      "required": [
+        "directory"
+      ]
+    }
+  },
+  {
+    "name": "run_soql_query",
+    "description": "Run a SOQL query against a Salesforce org.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "SOQL query to run"
+        },
+        "usernameOrAlias": {
+          "type": "string",
+          "description": "The username or alias for the Salesforce org"
+        },
+        "directory": {
+          "type": "string",
+          "description": "The directory to run this tool from (absolute path)"
+        },
+        "useToolingApi": {
+          "type": "boolean",
+          "description": "Use Tooling API for the operation"
+        }
+      },
+      "required": [
+        "query",
+        "usernameOrAlias",
+        "directory"
+      ]
+    }
+  },
+  {
+    "name": "deploy_metadata",
+    "description": "Deploy metadata to an org from your local project.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "ignoreConflicts": {
+          "type": "boolean",
+          "description": "Ignore conflicts and deploy local files, even if they overwrite changes in the org."
+        },
+        "sourceDir": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Path to the local source files to deploy."
+        },
+        "manifest": {
+          "type": "string",
+          "description": "Full file path for manifest (XML file) of components to deploy."
+        },
+        "apexTestLevel": {
+          "type": "string",
+          "enum": [
+            "NoTestRun",
+            "RunLocalTests",
+            "RunAllTestsInOrg"
+          ],
+          "description": "Apex test level to use during deployment."
+        },
+        "apexTests": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Apex test classes to run during deployment."
+        },
+        "usernameOrAlias": {
+          "type": "string",
+          "description": "The username or alias for the Salesforce org"
+        },
+        "directory": {
+          "type": "string",
+          "description": "The directory to run this tool from (absolute path)"
+        }
+      },
+      "required": [
+        "usernameOrAlias",
+        "directory"
+      ]
+    }
+  },
+  {
+    "name": "retrieve_metadata",
+    "description": "Retrieve metadata from an org to your local project.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "ignoreConflicts": {
+          "type": "boolean",
+          "default": false,
+          "description": "Ignore conflicts and save files to local filesystem."
+        },
+        "sourceDir": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Path to the local source files to retrieve."
+        },
+        "manifest": {
+          "type": "string",
+          "description": "Full file path for manifest (XML file) of components to retrieve."
+        },
+        "usernameOrAlias": {
+          "type": "string",
+          "description": "The username or alias for the Salesforce org"
+        },
+        "directory": {
+          "type": "string",
+          "description": "The directory to run this tool from (absolute path)"
+        }
+      },
+      "required": [
+        "usernameOrAlias",
+        "directory"
+      ]
+    }
+  },
+  {
+    "name": "run_apex_test",
+    "description": "Run Apex tests in an org.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "testLevel": {
+          "type": "string",
+          "enum": [
+            "RunLocalTests",
+            "RunAllTestsInOrg",
+            "RunSpecifiedTests"
+          ],
+          "description": "Apex test level"
+        },
+        "classNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Apex test classes to run"
+        },
+        "methodNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Specific test method names"
+        },
+        "async": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to wait for tests to finish"
+        },
+        "suiteName": {
+          "type": "string",
+          "description": "A suite of apex test classes to run"
+        },
+        "testRunId": {
+          "type": "string",
+          "description": "ID of an in-progress or completed apex test run"
+        },
+        "verbose": {
+          "type": "boolean",
+          "default": false,
+          "description": "Include more test information in context"
+        },
+        "codeCoverage": {
+          "type": "boolean",
+          "default": false,
+          "description": "Calculate code coverage"
+        },
+        "usernameOrAlias": {
+          "type": "string",
+          "description": "The username or alias for the Salesforce org"
+        },
+        "directory": {
+          "type": "string",
+          "description": "The directory to run this tool from (absolute path)"
+        }
+      },
+      "required": [
+        "testLevel",
+        "usernameOrAlias",
+        "directory"
+      ]
+    }
+  },
+  {
+    "name": "run_agent_test",
+    "description": "Run Agent tests in an org (aiEvaluationDefinition tests only, NOT Apex tests).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "agentApiName": {
+          "type": "string",
+          "description": "Agent test to run (aiEvaluationDefinition name)"
+        },
+        "usernameOrAlias": {
+          "type": "string",
+          "description": "The username or alias for the Salesforce org"
+        },
+        "directory": {
+          "type": "string",
+          "description": "The directory to run this tool from (absolute path)"
+        },
+        "async": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to wait for tests to finish or return test id immediately"
+        }
+      },
+      "required": [
+        "agentApiName",
+        "usernameOrAlias",
+        "directory"
+      ]
+    }
+  },
+  {
+    "name": "assign_permission_set",
+    "description": "Assign a permission set to one or more org users.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "permissionSetName": {
+          "type": "string",
+          "description": "A single permission set to assign"
+        },
+        "usernameOrAlias": {
+          "type": "string",
+          "description": "The username or alias for the Salesforce org"
+        },
+        "onBehalfOf": {
+          "type": "string",
+          "description": "A username or alias to assign the permission set to on behalf of (only when explicitly requested)"
+        },
+        "directory": {
+          "type": "string",
+          "description": "The directory to run this tool from (absolute path)"
+        }
+      },
+      "required": [
+        "permissionSetName",
+        "usernameOrAlias",
+        "directory"
+      ]
+    }
+  },
+  {
+    "name": "create_scratch_org",
+    "description": "Creates a scratch org with the specified parameters.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "directory": {
+          "type": "string",
+          "description": "The directory to run this tool from (absolute path)"
+        },
+        "devHub": {
+          "type": "string",
+          "description": "The default devhub username"
+        },
+        "duration": {
+          "type": "number",
+          "default": 7,
+          "description": "Number of days before the org expires"
+        },
+        "edition": {
+          "type": "string",
+          "enum": [
+            "developer",
+            "enterprise",
+            "group",
+            "professional",
+            "partner-developer",
+            "partner-enterprise",
+            "partner-group",
+            "partner-professional"
+          ]
+        },
+        "definitionFile": {
+          "type": "string",
+          "default": "config/project-scratch-def.json",
+          "description": "Path to scratch definition JSON file"
+        },
+        "alias": {
+          "type": "string",
+          "description": "Alias for the scratch org"
+        },
+        "async": {
+          "type": "boolean",
+          "default": false,
+          "description": "Return immediately with org ID (true) or wait for completion (false)"
+        },
+        "setDefault": {
+          "type": "boolean",
+          "description": "Set newly created scratch org as default-target-org"
+        },
+        "snapshot": {
+          "type": "string",
+          "description": "Snapshot name to use when creating a scratch org"
+        },
+        "sourceOrg": {
+          "type": "string",
+          "description": "15-character ID of the org shape to base the scratch org on"
+        },
+        "username": {
+          "type": "string",
+          "description": "Username of the scratch org admin user"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description given to the scratch org"
+        },
+        "orgName": {
+          "type": "string",
+          "description": "Name of the scratch org"
+        },
+        "adminEmail": {
+          "type": "string",
+          "description": "Email address for the org's admin user"
+        }
+      },
+      "required": [
+        "directory",
+        "devHub"
+      ]
+    }
+  },
+  {
+    "name": "delete_org",
+    "description": "Deletes a specified Salesforce org. ALWAYS confirm with the user before deleting.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "directory": {
+          "type": "string",
+          "description": "The directory to run this tool from (absolute path)"
+        },
+        "usernameOrAlias": {
+          "type": "string",
+          "description": "The username or alias of the org to delete"
+        }
+      },
+      "required": [
+        "directory",
+        "usernameOrAlias"
+      ]
+    }
+  },
+  {
+    "name": "open_org",
+    "description": "Open a Salesforce org in the browser. You can specify a metadata file you want to open.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filePath": {
+          "type": "string",
+          "description": "File path of the metadata to open (must be an existing file path in the project)"
+        },
+        "usernameOrAlias": {
+          "type": "string",
+          "description": "The username or alias for the Salesforce org"
+        },
+        "directory": {
+          "type": "string",
+          "description": "The directory to run this tool from (absolute path)"
+        }
+      },
+      "required": [
+        "usernameOrAlias",
+        "directory"
+      ]
+    }
+  },
+  {
+    "name": "resume_tool_operation",
+    "description": "Resume a long running operation that was not completed by another tool.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "jobId": {
+          "type": "string",
+          "description": "The job id of the long running operation to resume"
+        },
+        "wait": {
+          "type": "number",
+          "default": 30,
+          "description": "Amount of time to wait for the operation to complete in minutes"
+        },
+        "usernameOrAlias": {
+          "type": "string",
+          "description": "The username or alias for the Salesforce org"
+        },
+        "directory": {
+          "type": "string",
+          "description": "The directory to run this tool from (absolute path)"
+        }
+      },
+      "required": [
+        "jobId",
+        "usernameOrAlias",
+        "directory"
+      ]
+    }
+  },
+  {
+    "name": "create_org_snapshot",
+    "description": "Creates a new snapshot of an org.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "directory": {
+          "type": "string",
+          "description": "The directory to run this tool from (absolute path)"
+        },
+        "devHub": {
+          "type": "string",
+          "description": "The default devhub username"
+        },
+        "sourceOrg": {
+          "type": "string",
+          "description": "The org username or alias to create a snapshot of"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of snapshot"
+        },
+        "name": {
+          "type": "string",
+          "description": "Unique name of snapshot (max 15 chars)"
+        }
+      },
+      "required": [
+        "directory",
+        "devHub",
+        "sourceOrg"
+      ]
+    }
+  }
+]

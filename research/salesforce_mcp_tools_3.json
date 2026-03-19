@@ -1,0 +1,185 @@
+[
+  {
+    "name": "run_code_analyzer",
+    "description": "Performs static analysis against code. Validates best practices, security vulnerabilities, and performance issues. Returns JSON with path to results file.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Array of 1-10 ABSOLUTE file paths to scan"
+        },
+        "selector": {
+          "type": "string",
+          "description": "Optional selector for rules. Examples: 'Security:pmd', 'Critical', '(Security,Performance):eslint'"
+        }
+      },
+      "required": [
+        "target"
+      ]
+    }
+  },
+  {
+    "name": "list_code_analyzer_rules",
+    "description": "Select Code Analyzer rules based on criteria. Returns a JSON array of rules matching a colon-separated selector.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "selector": {
+          "type": "string",
+          "description": "A colon-separated selector for Code Analyzer rules (e.g. 'Security:pmd', 'Critical')"
+        },
+        "allowFullList": {
+          "type": "boolean",
+          "description": "Opt-in to return the full list of rules. Defaults to false."
+        }
+      },
+      "required": [
+        "selector"
+      ]
+    }
+  },
+  {
+    "name": "query_code_analyzer_results",
+    "description": "Query a Code Analyzer results JSON file and return filtered violations. Use after run_code_analyzer.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "resultsFile": {
+          "type": "string",
+          "description": "Absolute path to a results JSON file produced by the code analyzer"
+        },
+        "selector": {
+          "type": "string",
+          "description": "Selector string: colon-separated tokens e.g. 'Security:(pmd,eslint):High'"
+        },
+        "topN": {
+          "type": "integer",
+          "description": "Return at most this many violations (default 25, max 1000)"
+        },
+        "allowLargeResultSet": {
+          "type": "boolean",
+          "description": "Opt-in to request more than default top N violations"
+        },
+        "sortBy": {
+          "type": "string",
+          "enum": [
+            "severity",
+            "rule",
+            "engine",
+            "file",
+            "none"
+          ]
+        },
+        "sortDirection": {
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ]
+        }
+      },
+      "required": [
+        "resultsFile",
+        "selector"
+      ]
+    }
+  },
+  {
+    "name": "describe_code_analyzer_rule",
+    "description": "Get the description of a Code Analyzer rule, including how it can be fixed.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "ruleName": {
+          "type": "string",
+          "description": "The name of the rule"
+        },
+        "engineName": {
+          "type": "string",
+          "description": "The engine to which the rule belongs"
+        }
+      },
+      "required": [
+        "ruleName",
+        "engineName"
+      ]
+    }
+  },
+  {
+    "name": "get_ast_nodes_to_generate_xpath",
+    "description": "First step for creating a PMD XPath-based custom rule. Generates an XPath expression from sample code that violates a pattern.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "sampleCode": {
+          "type": "string",
+          "description": "Sample code which violates the rule"
+        },
+        "language": {
+          "type": "string",
+          "description": "Programming language of the sample code (e.g. 'apex', 'javascript', 'xml')"
+        },
+        "engine": {
+          "type": "string",
+          "description": "Target analysis engine (e.g. 'pmd')"
+        }
+      },
+      "required": [
+        "sampleCode",
+        "language",
+        "engine"
+      ]
+    }
+  },
+  {
+    "name": "create_custom_rule",
+    "description": "Create a custom rule using a provided XPath expression. Use after get_ast_nodes_to_generate_xpath.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "xpath": {
+          "type": "string",
+          "description": "XPath expression that matches the violation (required for PMD)"
+        },
+        "ruleName": {
+          "type": "string",
+          "description": "Name for the custom rule"
+        },
+        "description": {
+          "type": "string",
+          "description": "Short description or message for the rule"
+        },
+        "language": {
+          "type": "string",
+          "description": "Language for the rule (e.g. 'apex')"
+        },
+        "engine": {
+          "type": "string",
+          "description": "Analysis engine (e.g. 'pmd')"
+        },
+        "priority": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "PMD priority (1-5)"
+        },
+        "workingDirectory": {
+          "type": "string",
+          "description": "Workspace directory where code-analyzer.yml will be created or updated"
+        }
+      },
+      "required": [
+        "ruleName",
+        "description",
+        "language",
+        "engine",
+        "priority",
+        "workingDirectory"
+      ]
+    }
+  }
+]

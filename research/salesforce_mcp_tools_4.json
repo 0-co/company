@@ -1,0 +1,181 @@
+[
+  {
+    "name": "get_mobile_lwc_offline_analysis",
+    "description": "Analyzes LWC components for mobile-specific issues and provides detailed recommendations for improvements. Checks if components are mobile-ready.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the LWC component"
+        },
+        "namespace": {
+          "type": "string",
+          "default": "c",
+          "description": "Namespace of the LWC component"
+        },
+        "js": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "description": "Path to component file relative to LWC bundle root"
+            },
+            "content": {
+              "type": "string",
+              "description": "Content of the file"
+            }
+          },
+          "required": [
+            "path",
+            "content"
+          ],
+          "description": "LWC component JavaScript file"
+        },
+        "html": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "content": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "path",
+              "content"
+            ]
+          },
+          "description": "LWC component HTML templates"
+        },
+        "css": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "LWC component CSS files (optional)"
+        },
+        "jsMetaXml": {
+          "type": "object",
+          "description": "LWC component .js-meta.xml configuration file (optional)"
+        }
+      },
+      "required": [
+        "name",
+        "js",
+        "html"
+      ]
+    }
+  },
+  {
+    "name": "get_mobile_lwc_offline_guidance",
+    "description": "Provides structured review instructions to detect and remediate Mobile Offline code violations in Lightning web components (LWCs) for Salesforce Mobile Apps.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create_mobile_lwc_app_review",
+    "description": "Provides TypeScript-based API documentation for Salesforce LWC App Review Service, for implementing the App Review feature in an LWC.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create_mobile_lwc_ar_space_capture",
+    "description": "Provides TypeScript-based API documentation for Salesforce LWC AR Space Capture, for implementing AR Space Capture in an LWC.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create_mobile_lwc_barcode_scanner",
+    "description": "Provides TypeScript-based API documentation for Salesforce LWC Barcode Scanner, for implementing Barcode Scanner in an LWC.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create_mobile_lwc_biometrics",
+    "description": "Provides TypeScript-based API documentation for Salesforce LWC Biometrics Service, for implementing the Biometrics feature in an LWC.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create_mobile_lwc_calendar",
+    "description": "Provides TypeScript-based API documentation for Salesforce LWC Calendar Service, for implementing the Calendar feature in an LWC.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create_mobile_lwc_contacts",
+    "description": "Provides TypeScript-based API documentation for Salesforce LWC Contacts Service, for implementing the Contacts feature in an LWC.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create_mobile_lwc_document_scanner",
+    "description": "Provides TypeScript-based API documentation for Salesforce LWC Document Scanner, for implementing Document Scanner in an LWC.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create_mobile_lwc_geofencing",
+    "description": "Provides TypeScript-based API documentation for Salesforce LWC Geofencing Service, for implementing Geofencing in an LWC.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create_mobile_lwc_location",
+    "description": "Provides TypeScript-based API documentation for Salesforce LWC Location Service, for implementing Location Services in an LWC.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create_mobile_lwc_nfc",
+    "description": "Provides TypeScript-based API documentation for Salesforce LWC NFC Service, for implementing NFC in an LWC.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create_mobile_lwc_payments",
+    "description": "Provides TypeScript-based API documentation for Salesforce LWC Payments Service, for implementing Payments in an LWC.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  }
+]

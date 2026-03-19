@@ -1,0 +1,927 @@
+[
+  {
+    "name": "get_workspace_seats",
+    "description": "Get information about seats (user licenses) in a ClickUp workspace.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "workspace_id": {
+          "type": "string",
+          "description": "The ID of the workspace to get seats information for"
+        }
+      },
+      "required": [
+        "workspace_id"
+      ]
+    }
+  },
+  {
+    "name": "get_workspaces",
+    "description": "Get a list of all ClickUp workspaces accessible to the authenticated user.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "get_tasks",
+    "description": "Get tasks from a ClickUp list.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "list_id": {
+          "type": "string",
+          "description": "The ID of the list to get tasks from"
+        },
+        "include_closed": {
+          "type": "boolean"
+        },
+        "subtasks": {
+          "type": "boolean"
+        },
+        "page": {
+          "type": "number"
+        },
+        "order_by": {
+          "type": "string"
+        },
+        "reverse": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "list_id"
+      ]
+    }
+  },
+  {
+    "name": "get_task_details",
+    "description": "Get detailed information about a specific ClickUp task.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "task_id": {
+          "type": "string",
+          "description": "The ID of the task to get"
+        },
+        "include_subtasks": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "task_id"
+      ]
+    }
+  },
+  {
+    "name": "create_task",
+    "description": "Create a new task in a ClickUp list.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "list_id": {
+          "type": "string",
+          "description": "The ID of the list to create the task in"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "assignees": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "status": {
+          "type": "string"
+        },
+        "priority": {
+          "type": "number"
+        },
+        "due_date": {
+          "type": "number"
+        },
+        "due_date_time": {
+          "type": "boolean"
+        },
+        "time_estimate": {
+          "type": "number"
+        },
+        "start_date": {
+          "type": "number"
+        },
+        "start_date_time": {
+          "type": "boolean"
+        },
+        "notify_all": {
+          "type": "boolean"
+        },
+        "parent": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "list_id",
+        "name"
+      ]
+    }
+  },
+  {
+    "name": "update_task",
+    "description": "Update an existing ClickUp task's properties.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "task_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "assignees": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "status": {
+          "type": "string"
+        },
+        "priority": {
+          "type": "number"
+        },
+        "due_date": {
+          "type": "number"
+        },
+        "due_date_time": {
+          "type": "boolean"
+        },
+        "time_estimate": {
+          "type": "number"
+        },
+        "start_date": {
+          "type": "number"
+        },
+        "start_date_time": {
+          "type": "boolean"
+        },
+        "notify_all": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "task_id"
+      ]
+    }
+  },
+  {
+    "name": "get_lists",
+    "description": "Get lists from a ClickUp folder or space.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "container_type": {
+          "type": "string",
+          "enum": [
+            "folder",
+            "space"
+          ]
+        },
+        "container_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "container_type",
+        "container_id"
+      ]
+    }
+  },
+  {
+    "name": "create_folder",
+    "description": "Create a new folder in a ClickUp space.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "space_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "space_id",
+        "name"
+      ]
+    }
+  },
+  {
+    "name": "update_folder",
+    "description": "Update an existing ClickUp folder's name.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "folder_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "folder_id",
+        "name"
+      ]
+    }
+  },
+  {
+    "name": "delete_folder",
+    "description": "Delete a folder from ClickUp.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "folder_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "folder_id"
+      ]
+    }
+  },
+  {
+    "name": "get_folderless_lists",
+    "description": "Get lists not in any folder within a ClickUp space.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "space_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "space_id"
+      ]
+    }
+  },
+  {
+    "name": "create_list",
+    "description": "Create a new list in a ClickUp folder or space.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "container_type": {
+          "type": "string",
+          "enum": [
+            "folder",
+            "space"
+          ]
+        },
+        "container_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "container_type",
+        "container_id",
+        "name"
+      ]
+    }
+  },
+  {
+    "name": "create_folderless_list",
+    "description": "Create a new list directly in a ClickUp space.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "space_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "space_id",
+        "name"
+      ]
+    }
+  },
+  {
+    "name": "get_list",
+    "description": "Get details about a specific ClickUp list.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "list_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "list_id"
+      ]
+    }
+  },
+  {
+    "name": "update_list",
+    "description": "Update an existing ClickUp list's name.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "list_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "list_id",
+        "name"
+      ]
+    }
+  },
+  {
+    "name": "delete_list",
+    "description": "Delete a list from ClickUp.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "list_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "list_id"
+      ]
+    }
+  },
+  {
+    "name": "add_task_to_list",
+    "description": "Add an existing task to a ClickUp list.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "list_id": {
+          "type": "string"
+        },
+        "task_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "list_id",
+        "task_id"
+      ]
+    }
+  },
+  {
+    "name": "remove_task_from_list",
+    "description": "Remove a task from a ClickUp list without deleting it.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "list_id": {
+          "type": "string"
+        },
+        "task_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "list_id",
+        "task_id"
+      ]
+    }
+  },
+  {
+    "name": "create_list_from_template_in_folder",
+    "description": "Create a new list in a ClickUp folder using a template.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "folder_id": {
+          "type": "string"
+        },
+        "template_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "folder_id",
+        "template_id",
+        "name"
+      ]
+    }
+  },
+  {
+    "name": "create_list_from_template_in_space",
+    "description": "Create a new list in a ClickUp space using a template.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "space_id": {
+          "type": "string"
+        },
+        "template_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "space_id",
+        "template_id",
+        "name"
+      ]
+    }
+  },
+  {
+    "name": "get_spaces",
+    "description": "Get spaces from a ClickUp workspace.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "workspace_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "workspace_id"
+      ]
+    }
+  },
+  {
+    "name": "get_space",
+    "description": "Get details about a specific ClickUp space.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "space_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "space_id"
+      ]
+    }
+  },
+  {
+    "name": "create_checklist",
+    "description": "Create a new checklist in a ClickUp task.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "task_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "task_id",
+        "name"
+      ]
+    }
+  },
+  {
+    "name": "update_checklist",
+    "description": "Update an existing ClickUp checklist's name.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "checklist_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "checklist_id",
+        "name"
+      ]
+    }
+  },
+  {
+    "name": "delete_checklist",
+    "description": "Delete a checklist from a ClickUp task.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "checklist_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "checklist_id"
+      ]
+    }
+  },
+  {
+    "name": "create_checklist_item",
+    "description": "Create a new item in a ClickUp checklist.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "checklist_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "assignee": {
+          "type": "number"
+        },
+        "resolved": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "checklist_id",
+        "name"
+      ]
+    }
+  },
+  {
+    "name": "update_checklist_item",
+    "description": "Update an existing ClickUp checklist item.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "checklist_id": {
+          "type": "string"
+        },
+        "checklist_item_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "assignee": {
+          "type": "number"
+        },
+        "resolved": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "checklist_id",
+        "checklist_item_id"
+      ]
+    }
+  },
+  {
+    "name": "delete_checklist_item",
+    "description": "Delete an item from a ClickUp checklist.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "checklist_id": {
+          "type": "string"
+        },
+        "checklist_item_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "checklist_id",
+        "checklist_item_id"
+      ]
+    }
+  },
+  {
+    "name": "get_task_comments",
+    "description": "Get comments for a ClickUp task.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "task_id": {
+          "type": "string"
+        },
+        "start": {
+          "type": "number"
+        },
+        "start_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "task_id"
+      ]
+    }
+  },
+  {
+    "name": "create_task_comment",
+    "description": "Create a new comment on a ClickUp task.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "task_id": {
+          "type": "string"
+        },
+        "comment_text": {
+          "type": "string"
+        },
+        "assignee": {
+          "type": "number"
+        },
+        "notify_all": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "task_id",
+        "comment_text"
+      ]
+    }
+  },
+  {
+    "name": "get_chat_view_comments",
+    "description": "Get comments for a ClickUp chat view.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "view_id": {
+          "type": "string"
+        },
+        "start": {
+          "type": "number"
+        },
+        "start_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "view_id"
+      ]
+    }
+  },
+  {
+    "name": "create_chat_view_comment",
+    "description": "Create a new comment in a ClickUp chat view.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "view_id": {
+          "type": "string"
+        },
+        "comment_text": {
+          "type": "string"
+        },
+        "notify_all": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "view_id",
+        "comment_text"
+      ]
+    }
+  },
+  {
+    "name": "get_list_comments",
+    "description": "Get comments for a ClickUp list.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "list_id": {
+          "type": "string"
+        },
+        "start": {
+          "type": "number"
+        },
+        "start_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "list_id"
+      ]
+    }
+  },
+  {
+    "name": "create_list_comment",
+    "description": "Create a new comment on a ClickUp list.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "list_id": {
+          "type": "string"
+        },
+        "comment_text": {
+          "type": "string"
+        },
+        "assignee": {
+          "type": "number"
+        },
+        "notify_all": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "list_id",
+        "comment_text"
+      ]
+    }
+  },
+  {
+    "name": "update_comment",
+    "description": "Update an existing ClickUp comment's properties.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "comment_id": {
+          "type": "string"
+        },
+        "comment_text": {
+          "type": "string"
+        },
+        "assignee": {
+          "type": "number"
+        },
+        "resolved": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "comment_id",
+        "comment_text"
+      ]
+    }
+  },
+  {
+    "name": "delete_comment",
+    "description": "Delete a comment from ClickUp.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "comment_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "comment_id"
+      ]
+    }
+  },
+  {
+    "name": "get_threaded_comments",
+    "description": "Get threaded comments (replies) for a parent comment.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "comment_id": {
+          "type": "string"
+        },
+        "start": {
+          "type": "number"
+        },
+        "start_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "comment_id"
+      ]
+    }
+  },
+  {
+    "name": "create_threaded_comment",
+    "description": "Create a new threaded comment (reply) to a parent comment.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "comment_id": {
+          "type": "string"
+        },
+        "comment_text": {
+          "type": "string"
+        },
+        "notify_all": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "comment_id",
+        "comment_text"
+      ]
+    }
+  },
+  {
+    "name": "get_doc_content",
+    "description": "Get the content of a specific ClickUp doc.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "doc_id": {
+          "type": "string"
+        },
+        "workspace_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "doc_id",
+        "workspace_id"
+      ]
+    }
+  },
+  {
+    "name": "search_docs",
+    "description": "Search for docs in a ClickUp workspace using a query string.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "workspace_id": {
+          "type": "string"
+        },
+        "query": {
+          "type": "string"
+        },
+        "cursor": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "workspace_id",
+        "query"
+      ]
+    }
+  },
+  {
+    "name": "get_docs_from_workspace",
+    "description": "Get all docs from a ClickUp workspace.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "workspace_id": {
+          "type": "string"
+        },
+        "cursor": {
+          "type": "string"
+        },
+        "deleted": {
+          "type": "boolean"
+        },
+        "archived": {
+          "type": "boolean"
+        },
+        "limit": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "workspace_id"
+      ]
+    }
+  },
+  {
+    "name": "get_doc_pages",
+    "description": "Get the pages of a specific ClickUp doc.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "doc_id": {
+          "type": "string"
+        },
+        "workspace_id": {
+          "type": "string"
+        },
+        "content_format": {
+          "type": "string",
+          "enum": [
+            "text/md",
+            "text/plain"
+          ]
+        }
+      },
+      "required": [
+        "doc_id",
+        "workspace_id"
+      ]
+    }
+  }
+]
