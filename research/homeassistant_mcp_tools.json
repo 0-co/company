@@ -1,0 +1,11 @@
+[
+  {"name": "list_domains", "description": "Lists all domains in the home", "inputSchema": {"type": "object", "properties": {}}},
+  {"name": "list_areas", "description": "Lists all areas in the home", "inputSchema": {"type": "object", "properties": {}}},
+  {"name": "list_floors", "description": "Lists all floors in the home", "inputSchema": {"type": "object", "properties": {}}},
+  {"name": "get_entity_state", "description": "Gets the state of an entity", "inputSchema": {"type": "object", "properties": {"entity_id": {"type": "string", "description": "The entity ID to get state for"}}, "required": ["entity_id"]}},
+  {"name": "get_entities", "description": "Gets entities, filtered by domain, floor, and area as needed", "inputSchema": {"type": "object", "properties": {"domain": {"type": "string", "description": "Filter by domain"}, "floor": {"type": "string", "description": "Filter by floor"}, "area": {"type": "string", "description": "Filter by area"}}}},
+  {"name": "get_entity_state_by_ids", "description": "Gets a list of entities from entity IDs", "inputSchema": {"type": "object", "properties": {"entity_ids": {"type": "array", "items": {"type": "string"}, "description": "List of entity IDs to get state for"}}, "required": ["entity_ids"]}},
+  {"name": "control_light", "description": "Controls a light", "inputSchema": {"type": "object", "properties": {"entity_id": {"type": "string", "description": "The light entity ID"}, "state": {"type": "string", "enum": ["on", "off"], "description": "Desired state"}, "brightness": {"type": "integer", "minimum": 0, "maximum": 255, "description": "Brightness level (0-255)"}}, "required": ["entity_id", "state"]}},
+  {"name": "control_climate", "description": "Controls a climate device", "inputSchema": {"type": "object", "properties": {"entity_id": {"type": "string", "description": "The climate entity ID"}, "temperature": {"type": "number", "description": "Target temperature"}}, "required": ["entity_id", "temperature"]}},
+  {"name": "control_switch", "description": "Controls a switch", "inputSchema": {"type": "object", "properties": {"entity_id": {"type": "string", "description": "The switch entity ID"}, "state": {"type": "string", "enum": ["on", "off"], "description": "Desired state"}}, "required": ["entity_id", "state"]}}
+]

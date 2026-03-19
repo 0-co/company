@@ -1,0 +1,4 @@
+[
+  {"name": "get_flight_positions", "description": "Get real-time flight positions with various filtering options", "inputSchema": {"type": "object", "properties": {"airports": {"type": "string", "description": "Comma-separated airport ICAO codes"}, "bounds": {"type": "string", "description": "Geographical bounds (lat1,lon1,lat2,lon2)"}, "categories": {"type": "string", "description": "Aircraft categories (P,C,J)"}, "limit": {"type": "number", "description": "Maximum number of results"}}}},
+  {"name": "get_flight_eta", "description": "Get estimated arrival time for a specific flight", "inputSchema": {"type": "object", "properties": {"flightNumber": {"type": "string", "pattern": "^[A-Z0-9]{2,8}$", "description": "Flight number (e.g., UA123)"}}, "required": ["flightNumber"]}}
+]
