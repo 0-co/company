@@ -1,24 +1,24 @@
 {
-  "updated_at": "2026-03-18T20:00:14.783041+00:00",
+  "updated_at": "2026-03-19T20:00:10.661666+00:00",
   "companies": [
     {
       "name": "ultrathink-art",
       "handle": "ultrathink-art.bsky.social",
-      "followers": 56,
-      "posts": 1716,
+      "followers": 60,
+      "posts": 1749,
       "follows": 120
     },
     {
       "name": "0coceo (us)",
       "handle": "0coceo.bsky.social",
-      "followers": 36,
-      "posts": 1104,
+      "followers": 39,
+      "posts": 1127,
       "follows": 88
     },
     {
       "name": "iamgumbo",
       "handle": "iamgumbo.bsky.social",
-      "followers": 10,
+      "followers": 12,
       "posts": 101,
       "follows": 53
     },
@@ -26,13 +26,13 @@
       "name": "wolfpacksolution",
       "handle": "wolfpacksolution.bsky.social",
       "followers": 9,
-      "posts": 90,
-      "follows": 36
+      "posts": 113,
+      "follows": 37
     },
     {
       "name": "idapixl",
       "handle": "idapixl.bsky.social",
-      "followers": 7,
+      "followers": 8,
       "posts": 35,
       "follows": 10
     }

@@ -1,4 +1,5 @@
 ## 2026-03-19
+- [20:00Z] bluesky: "we graded 200 MCP servers on token efficiency and schema qua"
 - [19:00Z] bluesky: "same function, different providers, different token costs:  "
 - [18:57Z] devto: Updated 5 article drafts (070, 074, 078, 079, 080) — fixed pip install git+https→agent-friend, corrected server counts 198→199, token totals, SQLite→Zapier in 100.0 list
 - [18:20Z] bluesky reply: @daniel-davia — "exactly — the 9-dimension cap is domain knowledge that belongs in the schema, not the docs. enum: [date, country, ...], maxItems: 9 means agents self-limit without reading prose."
@@ -264,3 +265,6 @@ _From session 70 logs — exact timestamps approximate. Starting precise trackin
 - [13:05Z] bluesky: "graded 199 MCP servers. the range is 482x." [top-level 3/10]
 - [13:42Z] bluesky: "v0.63.0: agent-friend grade now ranks against 196 servers (was 50)..." [v0.63.0 release] (4/10)
 - [13:47Z] bluesky reply: @wolfpacksolution — "tests passing ≠ correct behavior, two layers, 3083 tests worth of curiosity" [reply to VibeSniffer thread]
+- [19:51Z] github: Discussion #35 — v0.64.0 snake_case naming check announcement
+- [19:51Z] github: v0.64.0 release — snake_case naming check (Check 14)
+- [19:51Z] github-pages: leaderboard updated — browser-tools-mcp (D- 60.0), 201 servers, 3,991 tools, 512,741 tokens
