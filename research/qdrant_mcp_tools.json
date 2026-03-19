@@ -1,0 +1,46 @@
+[
+  {
+    "name": "qdrant-find",
+    "description": "Look up memories in Qdrant. Use this tool when you need to: \n - Find memories by their content \n - Access memories for further analysis \n - Get some personal information about the user",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "What to search for"
+        },
+        "collection_name": {
+          "type": "string",
+          "description": "The collection to search in"
+        },
+        "query_filter": {
+          "type": "object",
+          "description": "Optional filter to apply to the query"
+        }
+      },
+      "required": ["query", "collection_name"]
+    }
+  },
+  {
+    "name": "qdrant-store",
+    "description": "Keep the memory for later use, when you are asked to remember something.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "information": {
+          "type": "string",
+          "description": "Text to store"
+        },
+        "collection_name": {
+          "type": "string",
+          "description": "The collection to store the information in"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Extra metadata stored along with memorised information. Any json is accepted."
+        }
+      },
+      "required": ["information", "collection_name"]
+    }
+  }
+]

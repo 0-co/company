@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MCP Server Quality Leaderboard — Grade Rankings for Popular MCP Servers</title>
-  <meta name="description" content="51 MCP servers graded A+ to F. PostgreSQL scores perfect 100, Notion scores F. The first public quality ranking of MCP tool schemas.">
+  <meta name="description" content="54 MCP servers graded A+ to F. PostgreSQL scores perfect 100, Notion scores F. The first public quality ranking of MCP tool schemas.">
   <meta name="keywords" content="MCP server quality, MCP server ranking, MCP leaderboard, best MCP servers, MCP tool quality">
   <meta property="og:title" content="MCP Server Quality Leaderboard — Grade Rankings for Popular MCP Servers">
-  <meta property="og:description" content="50 MCP servers graded A+ to F. PostgreSQL scores perfect 100, Notion scores F. See the full ranking.">
+  <meta property="og:description" content="54 MCP servers graded A+ to F. PostgreSQL scores perfect 100, Notion scores F. See the full ranking.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://0-co.github.io/company/leaderboard.html">
   <link rel="canonical" href="https://0-co.github.io/company/leaderboard.html">
@@ -1935,8 +1935,51 @@
           </tr>
 
           <!-- #20 Memory -->
-          <tr class="data-row" data-server="memory">
+                    <!-- #20 Qdrant MCP -->
+          <tr class="data-row" data-server="qdrant">
             <td class="rank-cell">20</td>
+            <td>
+              <a href="https://github.com/qdrant/mcp-server-qdrant" class="server-name" onclick="event.stopPropagation()">Qdrant MCP</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-cplus">C+</div></td>
+            <td class="r">78.9<span class="score-bar-bg"><span class="score-bar-fill" data-width="78.9" style="background: var(--accent-gold);"></span></span></td>
+            <td class="r">2</td>
+            <td class="r">257</td>
+            <td class="r">129</td>
+            <td class="r"><span class="issues-badge issues-medium">4</span></td>
+          </tr>
+          <tr class="detail-row" data-server="qdrant">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="60" style="background: var(--accent-gold);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-gold);">60</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="83" style="background: var(--accent-green);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-green);">83</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="100" style="background: var(--accent-cyan);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-cyan);">100</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html" class="detail-btn detail-btn-primary">Grade your own server</a>
+                  <a href="https://github.com/qdrant/mcp-server-qdrant" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+<tr class="data-row" data-server="memory">
+            <td class="rank-cell">21</td>
             <td>
               <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/memory" class="server-name" onclick="event.stopPropagation()">Memory MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -1977,9 +2020,9 @@
             </td>
           </tr>
 
-          <!-- #21 Sentry -->
+          <!-- #22 Sentry -->
           <tr class="data-row" data-server="sentry">
-            <td class="rank-cell">21</td>
+            <td class="rank-cell">22</td>
             <td>
               <a href="https://github.com/getsentry/sentry-mcp-stdio" class="server-name" onclick="event.stopPropagation()">Sentry MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -2020,9 +2063,9 @@
             </td>
           </tr>
 
-          <!-- #22 Fetch -->
+          <!-- #23 Fetch -->
           <tr class="data-row" data-server="fetch">
-            <td class="rank-cell">22</td>
+            <td class="rank-cell">23</td>
             <td>
               <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/fetch" class="server-name" onclick="event.stopPropagation()">Fetch MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -2063,9 +2106,9 @@
             </td>
           </tr>
 
-          <!-- #23 Obsidian MCP -->
+          <!-- #24 Obsidian MCP -->
           <tr class="data-row" data-server="obsidian">
-            <td class="rank-cell">23</td>
+            <td class="rank-cell">24</td>
             <td>
               <a href="https://github.com/MarkusPfundstein/mcp-obsidian" class="server-name" onclick="event.stopPropagation()">Obsidian MCP</a>
               <span class="expand-hint">&#9662;</span>
@@ -2106,9 +2149,9 @@
             </td>
           </tr>
 
-          <!-- #24 Browserbase MCP -->
+          <!-- #25 Browserbase MCP -->
           <tr class="data-row" data-server="browserbase">
-            <td class="rank-cell">24</td>
+            <td class="rank-cell">25</td>
             <td>
               <a href="https://github.com/browserbase/mcp-server-browserbase" class="server-name" onclick="event.stopPropagation()">Browserbase MCP</a>
               <span class="expand-hint">&#9662;</span>
@@ -2149,9 +2192,9 @@
             </td>
           </tr>
 
-          <!-- #25 Playwright -->
+          <!-- #26 Playwright -->
           <tr class="data-row" data-server="playwright">
-            <td class="rank-cell">25</td>
+            <td class="rank-cell">26</td>
             <td>
               <a href="https://github.com/microsoft/playwright-mcp" class="server-name" onclick="event.stopPropagation()">Playwright MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -2192,9 +2235,9 @@
             </td>
           </tr>
 
-          <!-- #26 Serena -->
+          <!-- #27 Serena -->
           <tr class="data-row" data-server="serena">
-            <td class="rank-cell">26</td>
+            <td class="rank-cell">27</td>
             <td>
               <a href="https://github.com/oraios/serena" class="server-name" onclick="event.stopPropagation()">Serena</a>
               <span class="expand-hint">&#9662;</span>
@@ -2235,9 +2278,9 @@
             </td>
           </tr>
 
-          <!-- #27 Filesystem -->
+          <!-- #28 Filesystem -->
           <tr class="data-row" data-server="filesystem">
-            <td class="rank-cell">27</td>
+            <td class="rank-cell">28</td>
             <td>
               <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem" class="server-name" onclick="event.stopPropagation()">Filesystem MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -2278,9 +2321,9 @@
             </td>
           </tr>
 
-          <!-- #28 Chrome DevTools -->
+          <!-- #29 Chrome DevTools -->
           <tr class="data-row" data-server="chrome-devtools">
-            <td class="rank-cell">28</td>
+            <td class="rank-cell">29</td>
             <td>
               <a href="https://github.com/ChromeDevTools/chrome-devtools-mcp" class="server-name" onclick="event.stopPropagation()">Chrome DevTools MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -2324,7 +2367,7 @@
 
           <!-- #28 Google genai-toolbox -->
           <tr class="data-row" data-server="genai-toolbox">
-            <td class="rank-cell">29</td>
+            <td class="rank-cell">30</td>
             <td>
               <a href="https://github.com/googleapis/genai-toolbox" class="server-name" onclick="event.stopPropagation()">Google genai-toolbox</a>
               <span class="expand-hint">&#9662;</span>
@@ -2365,9 +2408,9 @@
             </td>
           </tr>
 
-          <!-- #30 Excel MCP Server -->
+          <!-- #31 Excel MCP Server -->
           <tr class="data-row" data-server="excel">
-            <td class="rank-cell">30</td>
+            <td class="rank-cell">31</td>
             <td>
               <a href="https://github.com/haris-musa/excel-mcp-server" class="server-name" onclick="event.stopPropagation()">Excel MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -2408,9 +2451,52 @@
             </td>
           </tr>
 
-          <!-- #31 Stripe Agent Toolkit -->
+                    <!-- #32 Supabase MCP -->
+          <tr class="data-row" data-server="supabase">
+            <td class="rank-cell">32</td>
+            <td>
+              <a href="https://github.com/supabase-community/supabase-mcp" class="server-name" onclick="event.stopPropagation()">Supabase MCP</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-d">D</div></td>
+            <td class="r">63.5<span class="score-bar-bg"><span class="score-bar-fill" data-width="63.5" style="background: var(--accent-gold);"></span></span></td>
+            <td class="r">32</td>
+            <td class="r">2,330</td>
+            <td class="r">73</td>
+            <td class="r"><span class="issues-badge issues-medium">8</span></td>
+          </tr>
+          <tr class="detail-row" data-server="supabase">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="80" style="background: var(--accent-green);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-green);">80</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="95" style="background: var(--accent-cyan);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-cyan);">95</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="10" style="background: var(--accent-violet);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-violet);">10</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html" class="detail-btn detail-btn-primary">Grade your own server</a>
+                  <a href="https://github.com/supabase-community/supabase-mcp" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+<!-- #33 Stripe Agent Toolkit -->
           <tr class="data-row" data-server="stripe">
-            <td class="rank-cell">31</td>
+            <td class="rank-cell">33</td>
             <td>
               <a href="https://github.com/stripe/agent-toolkit" class="server-name" onclick="event.stopPropagation()">Stripe Agent Toolkit MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -2452,7 +2538,7 @@
           </tr>
           <!-- #31 Figma-Context-MCP -->
           <tr class="data-row" data-server="figma">
-            <td class="rank-cell">32</td>
+            <td class="rank-cell">34</td>
             <td>
               <a href="https://github.com/GLips/Figma-Context-MCP" class="server-name" onclick="event.stopPropagation()">Figma-Context-MCP</a>
               <span class="expand-hint">&#9662;</span>
@@ -2493,9 +2579,9 @@
             </td>
           </tr>
 
-          <!-- #33 Atlassian -->
+          <!-- #35 Atlassian -->
           <tr class="data-row" data-server="atlassian">
-            <td class="rank-cell">33</td>
+            <td class="rank-cell">35</td>
             <td>
               <a href="https://github.com/sooperset/mcp-atlassian" class="server-name" onclick="event.stopPropagation()">Atlassian MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -2538,7 +2624,7 @@
 
           <!-- #33 magic-mcp -->
           <tr class="data-row" data-server="magic-mcp">
-            <td class="rank-cell">34</td>
+            <td class="rank-cell">36</td>
             <td>
               <a href="https://github.com/21st-dev/magic-mcp" class="server-name" onclick="event.stopPropagation()">magic-mcp</a>
               <span class="expand-hint">&#9662;</span>
@@ -2579,9 +2665,9 @@
             </td>
           </tr>
 
-          <!-- #35 Chart MCP Server -->
+          <!-- #37 Chart MCP Server -->
           <tr class="data-row" data-server="chart">
-            <td class="rank-cell">35</td>
+            <td class="rank-cell">37</td>
             <td>
               <a href="https://github.com/antvis/mcp-server-chart" class="server-name" onclick="event.stopPropagation()">Chart MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -2622,9 +2708,9 @@
             </td>
           </tr>
 
-          <!-- #36 Google Workspace MCP -->
+          <!-- #38 Google Workspace MCP -->
           <tr class="data-row" data-server="google-workspace">
-            <td class="rank-cell">36</td>
+            <td class="rank-cell">38</td>
             <td>
               <a href="https://github.com/taylorwilsdon/google_workspace_mcp" class="server-name" onclick="event.stopPropagation()">Google Workspace MCP</a>
               <span class="expand-hint">&#9662;</span>
@@ -2665,9 +2751,9 @@
             </td>
           </tr>
 
-          <!-- #37 Blender -->
+          <!-- #39 Blender -->
           <tr class="data-row" data-server="blender">
-            <td class="rank-cell">37</td>
+            <td class="rank-cell">39</td>
             <td>
               <a href="https://github.com/ahujasid/blender-mcp" class="server-name" onclick="event.stopPropagation()">Blender MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -2708,9 +2794,9 @@
             </td>
           </tr>
 
-          <!-- #38 Exa -->
+          <!-- #40 Exa -->
           <tr class="data-row" data-server="exa">
-            <td class="rank-cell">38</td>
+            <td class="rank-cell">40</td>
             <td>
               <a href="https://github.com/exa-labs/exa-mcp-server" class="server-name" onclick="event.stopPropagation()">Exa MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -2752,9 +2838,9 @@
           </tr>
 
 
-          <!-- #39 AWS -->
+          <!-- #41 AWS -->
           <tr class="data-row" data-server="aws">
-            <td class="rank-cell">39</td>
+            <td class="rank-cell">41</td>
             <td>
               <a href="https://github.com/awslabs/mcp" class="server-name" onclick="event.stopPropagation()">AWS MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -2794,9 +2880,9 @@
               </div>
             </td>
           </tr>
-          <!-- #40 GitHub Official -->
+          <!-- #42 GitHub Official -->
           <tr class="data-row" data-server="github-official">
-            <td class="rank-cell">40</td>
+            <td class="rank-cell">42</td>
             <td>
               <a href="https://github.com/github/github-mcp-server" class="server-name" onclick="event.stopPropagation()">GitHub MCP Server (Official)</a>
               <span class="expand-hint">&#9662;</span>
@@ -2837,9 +2923,9 @@
             </td>
           </tr>
 
-          <!-- #41 Cloudflare Radar -->
+          <!-- #43 Cloudflare Radar -->
           <tr class="data-row" data-server="cloudflare">
-            <td class="rank-cell">41</td>
+            <td class="rank-cell">43</td>
             <td>
               <a href="https://github.com/cloudflare/mcp-server-cloudflare" class="server-name" onclick="event.stopPropagation()">Cloudflare Radar MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -2880,9 +2966,9 @@
             </td>
           </tr>
 
-          <!-- #42 PAL MCP Server -->
+          <!-- #44 PAL MCP Server -->
           <tr class="data-row" data-server="pal">
-            <td class="rank-cell">42</td>
+            <td class="rank-cell">44</td>
             <td>
               <a href="https://github.com/BeehiveInnovations/pal-mcp-server" class="server-name" onclick="event.stopPropagation()">PAL MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -2923,9 +3009,9 @@
             </td>
           </tr>
 
-          <!-- #43 Tavily -->
+          <!-- #45 Tavily -->
           <tr class="data-row" data-server="tavily">
-            <td class="rank-cell">43</td>
+            <td class="rank-cell">45</td>
             <td>
               <a href="https://github.com/tavily-ai/tavily-mcp" class="server-name" onclick="event.stopPropagation()">Tavily MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -2968,7 +3054,7 @@
 
           <!-- #43 n8n-mcp -->
           <tr class="data-row" data-server="n8n-mcp">
-            <td class="rank-cell">44</td>
+            <td class="rank-cell">46</td>
             <td>
               <a href="https://github.com/czlonkowski/n8n-mcp" class="server-name" onclick="event.stopPropagation()">n8n-mcp</a>
               <span class="expand-hint">&#9662;</span>
@@ -3011,7 +3097,7 @@
 
           <!-- #44 mcp-chrome -->
           <tr class="data-row" data-server="mcp-chrome">
-            <td class="rank-cell">45</td>
+            <td class="rank-cell">47</td>
             <td>
               <a href="https://github.com/hangwin/mcp-chrome" class="server-name" onclick="event.stopPropagation()">mcp-chrome</a>
               <span class="expand-hint">&#9662;</span>
@@ -3052,9 +3138,52 @@
             </td>
           </tr>
 
-          <!-- #46 GA4 -->
-          <tr class="data-row" data-server="ga4">
-            <td class="rank-cell">46</td>
+          <!-- #48 GA4 -->
+                    <!-- #48 MongoDB MCP -->
+          <tr class="data-row" data-server="mongodb">
+            <td class="rank-cell">48</td>
+            <td>
+              <a href="https://github.com/mongodb-js/mongodb-mcp-server" class="server-name" onclick="event.stopPropagation()">MongoDB MCP</a>
+              <span class="expand-hint">&#9662;</span>
+            </td>
+            <td class="grade-cell"><div class="grade-badge grade-f">F</div></td>
+            <td class="r">42.0<span class="score-bar-bg"><span class="score-bar-fill" data-width="42.0" style="background: var(--accent-red);"></span></span></td>
+            <td class="r">46</td>
+            <td class="r">2,076</td>
+            <td class="r">45</td>
+            <td class="r"><span class="issues-badge issues-high">44</span></td>
+          </tr>
+          <tr class="detail-row" data-server="mongodb">
+            <td colspan="8" class="detail-cell">
+              <div class="detail-inner">
+                <div class="breakdown-section">
+                  <div class="breakdown-title">Grade Breakdown</div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Correctness (40%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="0" style="background: var(--accent-red);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-red);">0</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Efficiency (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="100" style="background: var(--accent-cyan);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-cyan);">100</span>
+                  </div>
+                  <div class="breakdown-item">
+                    <span class="breakdown-label">Quality (30%)</span>
+                    <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" data-width="40" style="background: var(--accent-gold);"></div></div>
+                    <span class="breakdown-score" style="color: var(--accent-gold);">40</span>
+                  </div>
+                </div>
+                <div class="detail-actions">
+                  <a href="report.html" class="detail-btn detail-btn-primary">Grade your own server</a>
+                  <a href="https://github.com/mongodb-js/mongodb-mcp-server" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+<tr class="data-row" data-server="ga4">
+            <td class="rank-cell">49</td>
             <td>
               <a href="https://github.com/googleanalytics/google-analytics-mcp" class="server-name" onclick="event.stopPropagation()">Google Analytics (GA4) MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -3095,9 +3224,9 @@
             </td>
           </tr>
 
-          <!-- #47 Context7 -->
+          <!-- #50 Context7 -->
           <tr class="data-row" data-server="context7">
-            <td class="rank-cell">47</td>
+            <td class="rank-cell">50</td>
             <td>
               <a href="https://github.com/upstash/context7" class="server-name" onclick="event.stopPropagation()">Context7 MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -3138,9 +3267,9 @@
             </td>
           </tr>
 
-          <!-- #48 Firecrawl -->
+          <!-- #51 Firecrawl -->
           <tr class="data-row" data-server="firecrawl">
-            <td class="rank-cell">48</td>
+            <td class="rank-cell">51</td>
             <td>
               <a href="https://github.com/mendableai/firecrawl-mcp-server" class="server-name" onclick="event.stopPropagation()">Firecrawl MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -3182,9 +3311,9 @@
           </tr>
 
 
-          <!-- #49 Desktop Commander -->
+          <!-- #52 Desktop Commander -->
           <tr class="data-row" data-server="desktop-commander">
-            <td class="rank-cell">49</td>
+            <td class="rank-cell">52</td>
             <td>
               <a href="https://github.com/wonderwhy-er/DesktopCommanderMCP" class="server-name" onclick="event.stopPropagation()">Desktop Commander MCP Server</a>
               <span class="expand-hint">&#9662;</span>
@@ -3224,9 +3353,9 @@
               </div>
             </td>
           </tr>
-          <!-- #50 Grafana MCP -->
+          <!-- #53 Grafana MCP -->
           <tr class="data-row" data-server="grafana">
-            <td class="rank-cell">50</td>
+            <td class="rank-cell">53</td>
             <td>
               <a href="https://github.com/grafana/mcp-grafana" class="server-name" onclick="event.stopPropagation()">Grafana MCP</a>
               <span class="expand-hint">&#9662;</span>
@@ -3266,9 +3395,9 @@
               </div>
             </td>
           </tr>
-          <!-- #51 Notion -->
+          <!-- #54 Notion -->
           <tr class="data-row" data-server="notion">
-            <td class="rank-cell">51</td>
+            <td class="rank-cell">54</td>
             <td>
               <a href="https://github.com/makenotion/notion-mcp-server" class="server-name" onclick="event.stopPropagation()">Notion MCP Server</a>
               <span class="expand-hint">&#9662;</span>

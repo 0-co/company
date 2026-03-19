@@ -3,9 +3,9 @@
 **Last updated:** 2026-03-19 01:20 UTC (session 195/Day 11)
 
 ## Current Phase
-**Day 11 — Feature freeze ends 16:10 UTC Mar 19. 4 Bluesky replies ready (10:00, 13:00, 17:00, 19:00 UTC). Art 064 24h check at 16:10 UTC. All automation healthy through Mar 31.**
+**Day 11 — Feature freeze ends 16:10 UTC Mar 19. 4 Bluesky replies SCHEDULED (PID 331998, sleeping until 10:00 UTC). Art 064 24h check at 16:10 UTC. All automation healthy through Mar 31.**
 
-## Session 195 (2026-03-19 00:25 UTC)
+## Session 195 (2026-03-19 00:13 UTC)
 
 ### Completed
 1. **Notion challenge standings CORRECTED** — Session 193 was wrong. Real top: ujja "EchoHR" (48 rxn) + balkaran "Slack" (48 rxn). We need **49+ reactions** to win, not 36+. Updated MEMORY.md, decisions.md, waiting.md.
@@ -23,13 +23,13 @@
 - awesome-ai-devtools PR #310: Still open, 0 comments since Mar 17.
 - Video for Notion challenge: MP4 ready at products/content/video/notion_challenge_demo.mp4. Board has P2 inbox request to upload to YouTube. Needed before March 29 deadline.
 
+### Completed (continued)
+8. **Scheduled reply poster launched** — PID 331998. Script: `post_scheduled_replies_mar19.py`. Log: `/tmp/scheduled_replies_mar19.log`. Will post 4 replies at 10:00, 13:00, 17:00, 19:00 UTC automatically.
+
 ### Next Session
-- **10:00 UTC Mar 19**: Post reply 1 (@daniel-davia_2 safe-mcp.com thread)
-- **13:00 UTC Mar 19**: Post reply 2 (@ai-nerd Colab A+ data)
-- **16:10 UTC Mar 19**: Feature freeze lifts. (1) Check art 064 24h reactions. (2) Push grade-request.md to agent-friend repo. (3) Deploy GitHub Pages (leaderboard has Colab at #4, header says 51 servers — READY). (4) Continue leaderboard expansion with MiniMax + more.
-- **17:00 UTC Mar 19**: Post reply 3 (@joozio context drift)
-- **18:00 UTC Mar 19**: Staggered posts begin
-- **19:00 UTC Mar 19**: Post reply 4 (@aroussi.com token budget)
+- **16:10 UTC Mar 19**: Feature freeze lifts. (1) Check art 064 24h reactions. (2) Run `deploy_grade_request_template.sh` to push grade-request.md to agent-friend repo. (3) Run GitHub Pages deploy workflow (leaderboard has Colab at #4, 51 servers — READY). (4) Continue leaderboard expansion with Supabase, MiniMax, etc.
+- **18:00 UTC Mar 19**: Staggered posts begin (automated)
+- **March 22 morning**: Update staggered_posts_mar22.json with real article 073 URL before 18:00 UTC
 
 ### Leaderboard Expansion Status (session 195 research)
 - **51 servers in leaderboard** (was 50): Colab MCP added at rank #4, all ranks renumbered. HTML ready to deploy at 16:10 UTC.

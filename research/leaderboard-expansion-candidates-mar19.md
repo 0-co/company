@@ -2,8 +2,8 @@
 
 Current leaderboard: 51 servers. Target: 75+. Need 24+ more.
 
-## Ready to Add (already have grade data)
-- **Google Colab MCP** (googlecolab/colab-mcp, 222 stars) — A+ (97.3/100), 1 tool (execute_code), 92 tokens. Add at rank #4. Already referenced in article 077.
+## Already Added ✓
+- **Google Colab MCP** (googlecolab/colab-mcp, 222 stars) — A+ (97.6/100), 1 tool (execute_code), 88 tokens. Rank #4. In leaderboard.html. Art 077 updated. Deploy at 16:10 UTC.
 
 ## Top Priority (not in leaderboard, need to grade)
 

@@ -1,0 +1,370 @@
+[
+  {
+    "name": "aggregate",
+    "description": "Run an aggregation against a MongoDB collection",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "collection-indexes",
+    "description": "Describe the indexes for a collection",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "collection-schema",
+    "description": "Describe the schema for a collection",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "collection-storage-size",
+    "description": "Gets the size of the collection",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "connect",
+    "description": "Connect to a MongoDB instance",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "count",
+    "description": "Gets the number of documents in a MongoDB collection using db.collection.count() and query as an optional filter parameter",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "create-collection",
+    "description": "Creates a new collection in a database. If the database doesn't exist, it will be created automatically.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "create-index",
+    "description": "Create an index for a collection",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "db-stats",
+    "description": "Returns statistics that reflect the use state of a single database",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "delete-many",
+    "description": "Removes all documents that match the filter from a MongoDB collection",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "drop-collection",
+    "description": "Removes a collection or view from the database. The method also removes any indexes associated with the dropped collection.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "drop-database",
+    "description": "Removes the specified database, deleting the associated data files",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "drop-index",
+    "description": "Drop an index for the provided database and collection.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "explain",
+    "description": "Returns statistics describing the execution of the winning plan chosen by the query optimizer for the evaluated method",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "export",
+    "description": "Export a query or aggregation results in the specified EJSON format.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "find",
+    "description": "Run a find query against a MongoDB collection",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "insert-many",
+    "description": "Insert an array of documents into a MongoDB collection. If the list of documents is above com.mongodb/maxRequestPayloadBytes, consider inserting them in batches.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "list-collections",
+    "description": "List all collections for a given database",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "list-databases",
+    "description": "List all databases for a MongoDB connection",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "mongodb-logs",
+    "description": "Returns the most recent logged mongod events",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "rename-collection",
+    "description": "Renames a collection in a MongoDB database",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "switch-connection",
+    "description": "Switch to a different MongoDB connection",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "update-many",
+    "description": "Updates all documents that match the specified filter for a collection. If the list of documents is above com.mongodb/maxRequestPayloadBytes, consider updating them in batches.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "atlas-connect-cluster",
+    "description": "Connect to MongoDB Atlas cluster",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "atlas-create-access-list",
+    "description": "Allow Ip/CIDR ranges to access your MongoDB Atlas clusters.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "atlas-create-db-user",
+    "description": "Create an MongoDB Atlas database user",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "atlas-create-free-cluster",
+    "description": "Create a free MongoDB Atlas cluster",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "atlas-create-project",
+    "description": "Create a MongoDB Atlas project",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "atlas-get-performance-advisor",
+    "description": "Get MongoDB Atlas performance advisor recommendations and suggestions, which includes the operations: suggested indexes, drop index suggestions, schema suggestions, and a sample of the most recent (max 50) slow query logs",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "atlas-inspect-access-list",
+    "description": "Inspect Ip/CIDR ranges with access to your MongoDB Atlas clusters.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "atlas-inspect-cluster",
+    "description": "Inspect metadata of a MongoDB Atlas cluster",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "atlas-list-alerts",
+    "description": "List MongoDB Atlas alerts",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "atlas-list-clusters",
+    "description": "List MongoDB Atlas clusters",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "atlas-list-db-users",
+    "description": "List MongoDB Atlas database users",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "atlas-list-orgs",
+    "description": "List MongoDB Atlas organizations",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "atlas-list-projects",
+    "description": "List MongoDB Atlas projects",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "atlas-streams-build",
+    "description": "Create Atlas Stream Processing resources. Use this tool for 'set up a Kafka pipeline', 'create a workspace', 'add a connection', or 'deploy a processor'. Use resource='workspace' to create a new workspace. Use resource='connection' to add a data source or sink. Use resource='processor' to deploy a stream processor. Use resource='privatelink' to set up private networking.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "atlas-streams-discover",
+    "description": "Discover and inspect Atlas Stream Processing resources. Use for 'why is my processor failing', 'what workspaces do I have', 'show processor stats', or 'check processor health'. Use 'list-workspaces', 'inspect-processor', 'diagnose-processor', 'get-logs' actions.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "atlas-streams-manage",
+    "description": "Manage Atlas Stream Processing resources: start/stop processors, modify pipelines, update configurations. Common workflow: stop-processor \u2192 modify-processor \u2192 start-processor.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "atlas-streams-teardown",
+    "description": "Delete Atlas Stream Processing resources. Use for 'remove my workspace', 'delete all processors', or 'clean up my streams environment'. Performs basic safety checks before deletion.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "atlas-local-connect-deployment",
+    "description": "Connect to a MongoDB Atlas Local deployment",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "atlas-local-create-deployment",
+    "description": "Create a MongoDB Atlas local deployment. Default image is preview. When the user does not specify an image tag, inform them that preview is used by default.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "atlas-local-delete-deployment",
+    "description": "Delete a MongoDB Atlas local deployment",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "atlas-local-list-deployments",
+    "description": "List MongoDB Atlas local deployments",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "list-knowledge-sources",
+    "description": "List available data sources in the MongoDB Assistant knowledge base. Use this to explore available data sources or to find search filter parameters to use in search-knowledge.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "search-knowledge",
+    "description": "Search for information in the MongoDB Assistant knowledge base. This includes official documentation, curated expert guidance, and other resources provided by MongoDB. Supports filtering by data source and version.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  }
+]
