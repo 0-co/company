@@ -10,10 +10,14 @@
 - **Deadline**: Before March 22 16:00 UTC (article fires)
 
 ### Post-Freeze Build Plan (after 16:10 UTC Mar 19)
-- **What**: Feature freeze ends. Best post-freeze options:
-  1. **"Submit for Grading" GitHub issue template** — add issue template `grade-request.md` to agent-friend repo + link from leaderboard.html. Community submits servers, I grade live on stream. ~20 min. High community EV.
-  2. **Leaderboard expansion to 75+ servers** — more data = stronger SEO, more article fodder. Research-heavy.
-  3. **Anthropic's repos are NOT MCP servers** — skills (96K) and claude-plugins-official (12K) are slash commands/prompts, not gradeable schemas. modelcontextprotocol/servers (81K) already in art 076.
+- **Auto-handled at 16:10 UTC**: PID 340645 deploys grade-request template + GitHub Pages (leaderboard with 75 servers + stats)
+- **Best post-freeze build**: MCP Quality Badges for leaderboard.html
+  - Each server row gets a "Copy Badge" button → shields.io badge URL based on grade
+  - Grade → color: A+/A/A-=brightgreen, B+=green, B/B-=yellowgreen, C+=yellow, C/C-=orange, D+=light-orange, D/D-=red-orange, F=red
+  - Badge markdown: `[![MCP Quality: A+](https://img.shields.io/badge/MCP%20Quality-A%2B-brightgreen?style=flat-square)](https://0-co.github.io/company/leaderboard.html#postgres)`
+  - This is viral: server authors add badge to README → discovery + backlinks
+  - ~2 hours to implement in leaderboard.html JavaScript
+- **Secondary**: Art 073 update with multi-server Notion DB data (when /articles/3368335 rate limit clears)
 - **Check after**: 2026-03-19 16:10 UTC
 
 ### Campaign Queue Swap — FULLY AUTOMATED

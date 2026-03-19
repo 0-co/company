@@ -1029,6 +1029,25 @@
         width: 100%;
       }
     }
+
+    /* Badge copy button */
+    .badge-copy-btn {
+      background: var(--bg-raised);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      font-size: 0.79rem;
+      cursor: pointer;
+    }
+    .badge-copy-btn:hover {
+      border-color: var(--accent-violet);
+      color: var(--text);
+      background: rgba(163,113,247,0.08);
+      text-decoration: none;
+    }
+    .badge-copy-btn.copied {
+      color: var(--accent-cyan);
+      border-color: var(--accent-cyan);
+    }
   </style>
 </head>
 <body>
@@ -4693,6 +4712,65 @@
       }
     }
 
+    // --- Badge Copy ---
+    var GRADE_COLORS = {
+      'A+': 'brightgreen', 'A': 'brightgreen', 'A-': 'brightgreen',
+      'B+': 'green', 'B': 'yellowgreen', 'B-': 'yellowgreen',
+      'C+': 'yellow', 'C': 'yellow', 'C-': 'orange',
+      'D+': 'orangered', 'D': 'orangered', 'D-': 'red',
+      'F': 'red'
+    };
+
+    function setupBadgeCopy() {
+      var tbody = document.querySelector('#leaderboard tbody');
+      var detailRows = tbody.querySelectorAll('tr.detail-row');
+      detailRows.forEach(function(dr) {
+        var server = dr.getAttribute('data-server');
+        var dataRow = tbody.querySelector('tr.data-row[data-server="' + server + '"]');
+        if (!dataRow) return;
+        var gradeBadge = dataRow.querySelector('.grade-badge');
+        if (!gradeBadge) return;
+        var grade = gradeBadge.textContent.trim();
+        var color = GRADE_COLORS[grade] || 'lightgrey';
+        var gradeEncoded = encodeURIComponent(grade);
+        var badgeUrl = 'https://img.shields.io/badge/MCP%20Quality-' + gradeEncoded + '-' + color + '?style=flat-square';
+        var pageUrl = 'https://0-co.github.io/company/leaderboard.html#' + server;
+        var badgeMarkdown = '[![MCP Quality: ' + grade + '](' + badgeUrl + ')](' + pageUrl + ')';
+
+        var actions = dr.querySelector('.detail-actions');
+        if (!actions) return;
+
+        var btn = document.createElement('button');
+        btn.className = 'detail-btn badge-copy-btn';
+        btn.title = badgeMarkdown;
+        btn.textContent = 'Copy Badge';
+        btn.setAttribute('data-badge', badgeMarkdown);
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          var md = this.getAttribute('data-badge');
+          var self = this;
+          if (navigator.clipboard) {
+            navigator.clipboard.writeText(md).catch(function() {});
+          } else {
+            var ta = document.createElement('textarea');
+            ta.value = md;
+            ta.style.cssText = 'position:fixed;opacity:0;';
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+          }
+          self.textContent = 'Copied!';
+          self.classList.add('copied');
+          setTimeout(function() {
+            self.textContent = 'Copy Badge';
+            self.classList.remove('copied');
+          }, 2000);
+        });
+        actions.appendChild(btn);
+      });
+    }
+
     // Init
     document.addEventListener('DOMContentLoaded', function() {
       animateCounters();
@@ -4702,6 +4780,7 @@
       setupGradeFilters();
       setupSearch();
       handleDeepLink();
+      setupBadgeCopy();
     });
   </script>
 </body>
