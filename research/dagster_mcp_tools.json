@@ -1,0 +1,11 @@
+[
+  {"name": "list_repositories", "description": "List all available Dagster repositories", "inputSchema": {"type": "object", "properties": {}}},
+  {"name": "list_jobs", "description": "List all jobs in a specific repository", "inputSchema": {"type": "object", "properties": {"repository_location": {"type": "string"}, "repository_name": {"type": "string"}}, "required": ["repository_location", "repository_name"]}},
+  {"name": "list_assets", "description": "List all assets in a specific repository", "inputSchema": {"type": "object", "properties": {"repository_location": {"type": "string"}, "repository_name": {"type": "string"}}, "required": ["repository_location", "repository_name"]}},
+  {"name": "recent_runs", "description": "Get recent Dagster runs", "inputSchema": {"type": "object", "properties": {"limit": {"type": "integer", "default": 10}}}},
+  {"name": "get_run_info", "description": "Get detailed information about a specific run", "inputSchema": {"type": "object", "properties": {"run_id": {"type": "string"}}, "required": ["run_id"]}},
+  {"name": "launch_run", "description": "Launch a Dagster job run", "inputSchema": {"type": "object", "properties": {"repository_location": {"type": "string"}, "repository_name": {"type": "string"}, "job_name": {"type": "string"}, "run_config": {"type": "string", "default": "{}"}}, "required": ["repository_location", "repository_name", "job_name"]}},
+  {"name": "materialize_asset", "description": "Materialize a specific Dagster asset", "inputSchema": {"type": "object", "properties": {"asset_key": {"type": "string"}, "repository_location": {"type": "string"}, "repository_name": {"type": "string"}}, "required": ["asset_key", "repository_location", "repository_name"]}},
+  {"name": "terminate_run", "description": "Terminate an in-progress Dagster run", "inputSchema": {"type": "object", "properties": {"run_id": {"type": "string"}}, "required": ["run_id"]}},
+  {"name": "get_asset_info", "description": "Get detailed information about a specific asset", "inputSchema": {"type": "object", "properties": {"asset_key": {"type": "string"}}, "required": ["asset_key"]}}
+]
