@@ -1,0 +1,119 @@
+[
+  {
+    "name": "add_memory",
+    "description": "Store a new preference, fact, or conversation snippet. Requires at least one: user_id, agent_id, or run_id.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "text": {"type": "string", "description": "Plain sentence summarizing what to store. Required even if `messages` is provided."},
+        "messages": {"type": "array", "items": {"type": "object", "properties": {"role": {"type": "string"}, "content": {"type": "string"}}, "required": ["role", "content"]}, "description": "Structured conversation history with `role`/`content`. Use when you have multiple turns."},
+        "user_id": {"type": "string", "description": "Override the default user scope for this write."},
+        "agent_id": {"type": "string", "description": "Optional agent identifier."},
+        "app_id": {"type": "string", "description": "Optional app identifier."},
+        "run_id": {"type": "string", "description": "Optional run identifier."},
+        "metadata": {"type": "object", "description": "Attach arbitrary metadata JSON to the memory."},
+        "enable_graph": {"type": "boolean", "description": "Set true only if the caller explicitly wants Mem0 graph memory."}
+      },
+      "required": ["text"]
+    }
+  },
+  {
+    "name": "search_memories",
+    "description": "Run a semantic search over existing memories.\n\nUse filters to narrow results. Common filter patterns:\n- Single user: {\"AND\": [{\"user_id\": \"john\"}]}\n- Agent memories: {\"AND\": [{\"agent_id\": \"agent_name\"}]}\n- Recent memories: {\"AND\": [{\"user_id\": \"john\"}, {\"created_at\": {\"gte\": \"2024-01-01\"}}]}\n- Multiple users: {\"AND\": [{\"user_id\": {\"in\": [\"john\", \"jane\"]}}]}\n- Cross-entity: {\"OR\": [{\"user_id\": \"john\"}, {\"agent_id\": \"agent_name\"}]}\n\nuser_id is automatically added to filters if not provided.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {"type": "string", "description": "Natural language description of what to find."},
+        "filters": {"type": "object", "description": "Additional filter clauses (user_id injected automatically)."},
+        "limit": {"type": "integer", "description": "Maximum number of results to return."},
+        "enable_graph": {"type": "boolean", "description": "Set true only when the user explicitly wants graph-derived memories."}
+      },
+      "required": ["query"]
+    }
+  },
+  {
+    "name": "get_memories",
+    "description": "Page through memories using filters instead of search.\n\nUse filters to list specific memories. Common filter patterns:\n- Single user: {\"AND\": [{\"user_id\": \"john\"}]}\n- Agent memories: {\"AND\": [{\"agent_id\": \"agent_name\"}]}\n- Recent memories: {\"AND\": [{\"user_id\": \"john\"}, {\"created_at\": {\"gte\": \"2024-01-01\"}}]}\n- Multiple users: {\"AND\": [{\"user_id\": {\"in\": [\"john\", \"jane\"]}}]}\n\nPagination: Use page (1-indexed) and page_size for browsing results.\nuser_id is automatically added to filters if not provided.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filters": {"type": "object", "description": "Structured filters; user_id injected automatically."},
+        "page": {"type": "integer", "description": "1-indexed page number when paginating."},
+        "page_size": {"type": "integer", "description": "Number of memories per page (default 10)."},
+        "enable_graph": {"type": "boolean", "description": "Set true only if the caller explicitly wants graph-derived memories."}
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "delete_all_memories",
+    "description": "Delete every memory in the given user/agent/app/run but keep the entity.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "user_id": {"type": "string", "description": "User scope to delete; defaults to server user."},
+        "agent_id": {"type": "string", "description": "Optional agent scope to delete."},
+        "app_id": {"type": "string", "description": "Optional app scope to delete."},
+        "run_id": {"type": "string", "description": "Optional run scope to delete."}
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "list_entities",
+    "description": "List which users/agents/apps/runs currently hold memories.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "get_memory",
+    "description": "Fetch a single memory once you know its memory_id.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "memory_id": {"type": "string", "description": "Exact memory_id to fetch."}
+      },
+      "required": ["memory_id"]
+    }
+  },
+  {
+    "name": "update_memory",
+    "description": "Overwrite an existing memory's text.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "memory_id": {"type": "string", "description": "Exact memory_id to overwrite."},
+        "text": {"type": "string", "description": "Replacement text for the memory."}
+      },
+      "required": ["memory_id", "text"]
+    }
+  },
+  {
+    "name": "delete_memory",
+    "description": "Delete one memory after the user confirms its memory_id.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "memory_id": {"type": "string", "description": "Exact memory_id to delete."}
+      },
+      "required": ["memory_id"]
+    }
+  },
+  {
+    "name": "delete_entities",
+    "description": "Remove a user/agent/app/run record entirely (and cascade-delete its memories).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "user_id": {"type": "string", "description": "Delete this user and its memories."},
+        "agent_id": {"type": "string", "description": "Delete this agent and its memories."},
+        "app_id": {"type": "string", "description": "Delete this app and its memories."},
+        "run_id": {"type": "string", "description": "Delete this run and its memories."}
+      },
+      "required": []
+    }
+  }
+]
