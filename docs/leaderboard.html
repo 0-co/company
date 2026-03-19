@@ -1048,7 +1048,71 @@
       color: var(--accent-cyan);
       border-color: var(--accent-cyan);
     }
-  </style>
+  
+    /* Compare Panel */
+    .compare-panel {
+      display: none;
+      background: var(--bg-inset);
+      border: 1px solid var(--accent-cyan);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1rem 0;
+    }
+    .compare-panel.visible { display: block; }
+    .compare-header {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--accent-cyan);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .compare-title { flex: 1; }
+    .compare-share-link { font-size: 0.8rem; color: var(--text-muted); text-decoration: none; }
+    .compare-share-link:hover { color: var(--accent-cyan); }
+    .compare-close-btn {
+      cursor: pointer;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      background: none;
+      border: none;
+      padding: 0 0.25rem;
+      line-height: 1;
+    }
+    .compare-close-btn:hover { color: var(--text-primary); }
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 600px) { .compare-grid { grid-template-columns: 1fr; } }
+    .compare-card {
+      background: var(--bg-surface);
+      border-radius: 8px;
+      padding: 1rem;
+    }
+    .compare-name {
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+    }
+    .compare-stat {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.25rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+    .compare-stat:last-child { border-bottom: none; }
+    .compare-stat .val { font-weight: 500; }
+    .stat-win { color: #4ade80 !important; font-weight: 600 !important; }
+    .stat-lose { color: #f87171 !important; }
+    .compare-highlight { background: rgba(0,200,200,0.06) !important; outline: 1px solid var(--accent-cyan); }
+    .compare-note { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.75rem; text-align: center; }
+</style>
 </head>
 <body>
   <div id="twitch-banner" style="background:linear-gradient(90deg,#6441a5,#9146ff);padding:8px 16px;text-align:center;font-size:0.8rem;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;position:relative;">
@@ -1121,7 +1185,18 @@
       </div>
     </div>
 
-    <div class="leaderboard-wrapper">
+        <!-- Compare Panel -->
+    <div class="compare-panel" id="compare-panel">
+      <div class="compare-header">
+        <span class="compare-title">⚡ Side-by-Side Comparison</span>
+        <a class="compare-share-link" id="compare-share-link" href="#">🔗 Share link</a>
+        <button class="compare-close-btn" onclick="exitCompare()" title="Close compare">✕</button>
+      </div>
+      <div class="compare-grid" id="compare-grid"></div>
+      <div class="compare-note">Green = better · Red = worse · Share the URL to send this comparison</div>
+    </div>
+
+<div class="leaderboard-wrapper">
       <table class="leaderboard" id="leaderboard">
         <thead>
           <tr>
@@ -9706,7 +9781,119 @@
     }
 
     // Deep link — auto-scroll and expand a server via URL hash
+    
+    // === Compare Feature ===
+    function getServerData(serverId) {
+      var row = document.querySelector('.data-row[data-server="' + serverId + '"]');
+      if (!row) return null;
+      var cells = row.querySelectorAll('td');
+      var score = parseFloat(cells[3] ? cells[3].textContent : 0) || 0;
+      var tools = parseInt(cells[4] ? cells[4].textContent : 0) || 0;
+      var tokens = parseInt(cells[5] ? cells[5].textContent.replace(/,/g,'') : 0) || 0;
+      var avgTool = parseInt(cells[6] ? cells[6].textContent : 0) || 0;
+      var issuesCell = cells[7] ? cells[7].textContent : '0';
+      var issues = parseInt(issuesCell.replace(/[^\d]/g,'')) || 0;
+      var gradeEl = row.querySelector('.grade-badge');
+      var nameEl = row.querySelector('.server-name');
+      return {
+        name: nameEl ? nameEl.textContent.trim() : serverId,
+        grade: gradeEl ? gradeEl.textContent.trim() : '?',
+        score: score,
+        tools: tools,
+        tokens: tokens,
+        avgTool: avgTool,
+        issues: issues
+      };
+    }
+
+    function showCompare(serverA, serverB) {
+      var a = getServerData(serverA);
+      var b = getServerData(serverB);
+      if (!a || !b) {
+        console.log('Compare: server not found', serverA, serverB);
+        return;
+      }
+
+      function winLose(va, vb, higherBetter) {
+        if (va === vb) return ['', ''];
+        return higherBetter ?
+          (va > vb ? ['stat-win', 'stat-lose'] : ['stat-lose', 'stat-win']) :
+          (va < vb ? ['stat-win', 'stat-lose'] : ['stat-lose', 'stat-win']);
+      }
+      var sw = winLose(a.score, b.score, true);
+      var tw = winLose(a.tokens, b.tokens, false);
+      var aw = winLose(a.avgTool, b.avgTool, false);
+      var iw = winLose(a.issues, b.issues, false);
+
+      function statRow(label, va, vb, wa, wb) {
+        return '<div class="compare-stat"><span>' + label + '</span>' +
+          '<span class="val ' + wa + '">' + va + '</span><span class="val ' + wb + '">' + vb + '</span></div>';
+      }
+
+      function card(d, scoreW, tokW, avgW, issW) {
+        return '<div class="compare-card">' +
+          '<div class="compare-name">' + d.name + '</div>' +
+          '<div class="compare-stat"><span>Grade</span><span class="val ' + scoreW + '">' + d.grade + '</span></div>' +
+          '<div class="compare-stat"><span>Score</span><span class="val ' + scoreW + '">' + d.score.toFixed(1) + '</span></div>' +
+          '<div class="compare-stat"><span>Tools</span><span class="val">' + d.tools + '</span></div>' +
+          '<div class="compare-stat"><span>Tokens</span><span class="val ' + tokW + '">' + d.tokens.toLocaleString() + '</span></div>' +
+          '<div class="compare-stat"><span>Avg/Tool</span><span class="val ' + avgW + '">' + d.avgTool + '</span></div>' +
+          '<div class="compare-stat"><span>Issues</span><span class="val ' + issW + '">' + d.issues + '</span></div>' +
+          '</div>';
+      }
+
+      var grid = document.getElementById('compare-grid');
+      if (grid) {
+        grid.innerHTML = card(a, sw[0], tw[0], aw[0], iw[0]) + card(b, sw[1], tw[1], aw[1], iw[1]);
+      }
+
+      var shareLink = document.getElementById('compare-share-link');
+      if (shareLink) {
+        var url = window.location.href.split('#')[0] + '#compare=' + serverA + ',' + serverB;
+        shareLink.href = url;
+        shareLink.textContent = '🔗 Share this comparison';
+      }
+
+      var panel = document.getElementById('compare-panel');
+      if (panel) {
+        panel.classList.add('visible');
+        setTimeout(function() {
+          panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
+
+      // Highlight rows
+      document.querySelectorAll('.data-row.compare-highlight').forEach(function(r) {
+        r.classList.remove('compare-highlight');
+      });
+      var rowA = document.querySelector('.data-row[data-server="' + serverA + '"]');
+      var rowB = document.querySelector('.data-row[data-server="' + serverB + '"]');
+      if (rowA) rowA.classList.add('compare-highlight');
+      if (rowB) rowB.classList.add('compare-highlight');
+    }
+
+    function exitCompare() {
+      var panel = document.getElementById('compare-panel');
+      if (panel) panel.classList.remove('visible');
+      document.querySelectorAll('.data-row.compare-highlight').forEach(function(r) {
+        r.classList.remove('compare-highlight');
+      });
+      history.replaceState(null, '', window.location.pathname);
+    }
+
+    function handleCompareFromHash() {
+      var hash = window.location.hash.slice(1);
+      if (!hash.startsWith('compare=')) return false;
+      var parts = hash.slice(8).split(',');
+      if (parts.length >= 2) {
+        showCompare(parts[0].trim(), parts[1].trim());
+        return true;
+      }
+      return false;
+    }
+
     function handleDeepLink() {
+      if (handleCompareFromHash()) return;
       var hash = window.location.hash.slice(1).toLowerCase();
       if (!hash) return;
       var rows = document.querySelectorAll('.data-row');
