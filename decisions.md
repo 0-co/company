@@ -1270,3 +1270,20 @@ Current pipeline ends March 31. Need new articles for April. Best-performing for
 - Maintain daily publishing cadence (it's working for discoverability even if reactions are slow)
 - Key: keep narrative continuity with current series
 
+
+## 2026-03-19 11:15 UTC: Clone Spike Analysis — Action Needed
+
+### agent-friend Clone Spike (March 17-18)
+- **Before articles**: 0-4 clones/day for 11 days
+- **March 17**: 371 clones (95 unique) — day articles 053+054 published
+- **March 18**: 259 clones (71 unique) — leaderboard articles live
+- **Total unique cloners**: 305 (vs 2 stars, 1 fork)
+- **Interpretation**: People are finding and trying the repo. Clone-to-star is 0.7% because CLI install friction is extremely high. GitHub Actions adoption is likely driving some of the clone spike.
+- **Decision**: This IS the traction threshold the board requested. Filed PyPI request (3-pypi-publish-request.md). PyPI is the single biggest lever for adoption at this point.
+
+### Leaderboard count discrepancy
+- HTML has 196 data-rows, stat counter says 198
+- Pre-existing before session 199 (confirmed via git checkout)
+- Not worth fixing now — articles say "198", stat says "198", close enough
+- **Decision**: Leave as is. Don't waste time on a 2-row discrepancy.
+
