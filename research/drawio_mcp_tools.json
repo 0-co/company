@@ -1,0 +1,206 @@
+[
+  {
+    "name": "get-selected-cell",
+    "description": "This tool allows you to retrieve selected cell (whether vertex or edge) on the current page of a Draw.io diagram. The response is a JSON containing attributes of the cell.",
+    "inputSchema": {"type": "object", "properties": {}, "required": []}
+  },
+  {
+    "name": "add-rectangle",
+    "description": "This tool allows you to add new Rectangle vertex cell (object) on the current page of a Draw.io diagram. It accepts multiple optional input parameter.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "x": {"type": "number", "description": "X-axis position of the Rectangle vertex cell", "default": 100},
+        "y": {"type": "number", "description": "Y-axis position of the Rectangle vertex cell", "default": 100},
+        "width": {"type": "number", "description": "Width of the Rectangle vertex cell", "default": 200},
+        "height": {"type": "number", "description": "Height of the Rectangle vertex cell", "default": 100},
+        "text": {"type": "string", "description": "Text content placed inside of the Rectangle vertex cell", "default": "New Cell"},
+        "style": {"type": "string", "description": "Semi-colon separated list of Draw.io visual styles, in the form of `key=value`. Example: `whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;`"}
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "add-edge",
+    "description": "This tool creates an edge, sometimes called also a relation, between two vertexes (cells).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "source_id": {"type": "string", "description": "Source ID of a cell. It is represented by `id` attribute."},
+        "target_id": {"type": "string", "description": "Target ID of a cell. It is represented by `id` attribute."},
+        "text": {"type": "string", "description": "Text content placed over the edge cell"},
+        "style": {"type": "string", "description": "Semi-colon separated list of Draw.io visual styles, in the form of `key=value`. Example: `edgeStyle=orthogonalEdgeStyle;rounded=0;`"}
+      },
+      "required": ["source_id", "target_id"]
+    }
+  },
+  {
+    "name": "delete-cell-by-id",
+    "description": "Deletes a cell, whether it is a vertex or edge.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "cell_id": {"type": "string", "description": "The ID of a cell to delete. The cell can be either vertex or edge. The ID is located in `id` attribute."}
+      },
+      "required": ["cell_id"]
+    }
+  },
+  {
+    "name": "get-shape-categories",
+    "description": "Retrieves available shape categories from the diagram's library. Library is split into multiple categories.",
+    "inputSchema": {"type": "object", "properties": {}, "required": []}
+  },
+  {
+    "name": "get-shapes-in-category",
+    "description": "Retrieve all shapes in the provided category from the diagram's library. A shape primarily contains `style` based on which you can create new vertex cells.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "category_id": {"type": "string", "description": "Identifier (ID / key) of the category from which all the shapes should be retrieved."}
+      },
+      "required": ["category_id"]
+    }
+  },
+  {
+    "name": "get-shape-by-name",
+    "description": "Retrieve a specific shape by its name from all available shapes in the diagram's library. It returns the shape and also the category it belongs.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "shape_name": {"type": "string", "description": "Name of the shape to retrieve from the shape library of the current diagram."}
+      },
+      "required": ["shape_name"]
+    }
+  },
+  {
+    "name": "add-cell-of-shape",
+    "description": "This tool allows you to add new vertex cell (object) on the current page of a Draw.io diagram by its shape name. It accepts multiple optional input parameter.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "shape_name": {"type": "string", "description": "Name of the shape to retrieved from the shape library of the current diagram."},
+        "x": {"type": "number", "description": "X-axis position of the vertex cell of the shape", "default": 100},
+        "y": {"type": "number", "description": "Y-axis position of the vertex cell of the shape", "default": 100},
+        "width": {"type": "number", "description": "Width of the vertex cell of the shape", "default": 200},
+        "height": {"type": "number", "description": "Height of the vertex cell of the shape", "default": 100},
+        "text": {"type": "string", "description": "Text content placed inside of the vertex cell of the shape"},
+        "style": {"type": "string", "description": "Semi-colon separated list of Draw.io visual styles, in the form of `key=value`. Example: `whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;`"}
+      },
+      "required": ["shape_name"]
+    }
+  },
+  {
+    "name": "set-cell-shape",
+    "description": "Updates the visual style of an existing vertex cell to match a library shape by name.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "cell_id": {"type": "string", "description": "Identifier (`id` attribute) of the cell whose shape should change."},
+        "shape_name": {"type": "string", "description": "Name of the library shape whose style should be applied to the existing cell."}
+      },
+      "required": ["cell_id", "shape_name"]
+    }
+  },
+  {
+    "name": "set-cell-data",
+    "description": "Sets or updates a custom attribute on an existing cell.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "cell_id": {"type": "string", "description": "Identifier (`id` attribute) of the cell to update with custom data."},
+        "key": {"type": "string", "description": "Name of the attribute to set on the cell."},
+        "value": {"type": "string", "description": "Value to store for the attribute."}
+      },
+      "required": ["cell_id", "key", "value"]
+    }
+  },
+  {
+    "name": "edit-cell",
+    "description": "Update properties of an existing vertex/shape cell by its ID. Only provided fields are modified; unspecified properties remain unchanged.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "cell_id": {"type": "string", "description": "Identifier (`id` attribute) of the cell to update. Applies to vertex/shape cells."},
+        "text": {"type": "string", "description": "Replace the cell's text/label content."},
+        "x": {"type": "number", "description": "Set a new X-axis position for the cell."},
+        "y": {"type": "number", "description": "Set a new Y-axis position for the cell."},
+        "width": {"type": "number", "description": "Set a new width for the cell."},
+        "height": {"type": "number", "description": "Set a new height for the cell."},
+        "style": {"type": "string", "description": "Replace the cell's style string (semi-colon separated `key=value` pairs)."}
+      },
+      "required": ["cell_id"]
+    }
+  },
+  {
+    "name": "edit-edge",
+    "description": "Update properties of an existing edge by its ID. Only provided fields are modified; unspecified properties remain unchanged.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "cell_id": {"type": "string", "description": "Identifier (`id` attribute) of the edge cell to update. The ID must reference an edge."},
+        "text": {"type": "string", "description": "Replace the edge's label text."},
+        "source_id": {"type": "string", "description": "Reassign the edge's source terminal to a different cell ID."},
+        "target_id": {"type": "string", "description": "Reassign the edge's target terminal to a different cell ID."},
+        "style": {"type": "string", "description": "Replace the edge's style string (semi-colon separated `key=value` pairs)."}
+      },
+      "required": ["cell_id"]
+    }
+  },
+  {
+    "name": "list-paged-model",
+    "description": "Retrieves a paginated view of all cells (vertices and edges) in the current Draw.io diagram. This tool provides access to the complete model data with essential fields only, sanitized to remove circular dependencies and excessive data. It allows to filter based on multiple criteria and attribute boolean logic. Useful for programmatic inspection of diagram structure without overwhelming response sizes.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "page": {"type": "number", "description": "Zero-based page number for pagination. Page 0 returns the first batch of cells. Default is 0.", "default": 0},
+        "page_size": {"type": "number", "description": "Maximum number of cells to return in a single page. Must be between 1 and 1000. Default is 50.", "default": 50},
+        "filter": {"type": "object", "description": "Optional filter criteria to apply to cells before pagination"}
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "list-layers",
+    "description": "Lists all available layers in the diagram with their IDs and names.",
+    "inputSchema": {"type": "object", "properties": {}, "required": []}
+  },
+  {
+    "name": "set-active-layer",
+    "description": "Sets the active layer for creating new elements. All subsequent element creation will happen in this layer.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "layer_id": {"type": "string", "description": "ID of the layer to set as active"}
+      },
+      "required": ["layer_id"]
+    }
+  },
+  {
+    "name": "move-cell-to-layer",
+    "description": "Moves a cell from its current layer to a target layer.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "cell_id": {"type": "string", "description": "ID of the cell to move"},
+        "target_layer_id": {"type": "string", "description": "ID of the target layer where the cell will be moved"}
+      },
+      "required": ["cell_id", "target_layer_id"]
+    }
+  },
+  {
+    "name": "get-active-layer",
+    "description": "Gets the currently active layer information.",
+    "inputSchema": {"type": "object", "properties": {}, "required": []}
+  },
+  {
+    "name": "create-layer",
+    "description": "Creates a new layer in the diagram.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {"type": "string", "description": "Name for the new layer"}
+      },
+      "required": ["name"]
+    }
+  }
+]
