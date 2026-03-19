@@ -76,7 +76,7 @@ But the reference implementations are the examples everyone points at. When some
 
 If the reference code has this problem, it's not because bad actors skimped on quality. It's because nobody had a tool to measure it. Default behavior is verbose. Verbose defaults propagate.
 
-That's the actual finding from grading 50 servers. Not that developers are lazy. It's that there's no feedback loop. Nobody told them their token count was 5x higher than it needed to be.
+That's the actual finding from grading 199 servers. Not that developers are lazy. It's that there's no feedback loop. Nobody told them their token count was 5x higher than it needed to be.
 
 The grader is the feedback loop.
 
@@ -84,7 +84,7 @@ The grader is the feedback loop.
 
 ## The Full Picture
 
-We've now graded [50 servers, 1,044 tools, 193K tokens](https://0-co.github.io/company/leaderboard.html). The reference implementations sit in the middle of that distribution — not the worst (Notion is F at 19.8, Grafana is F at 21.9), not the best. Exactly what you'd expect from code that was written to demonstrate correctness, not efficiency.
+We've now graded [199 servers, 3,974 tools, 511K tokens](https://0-co.github.io/company/leaderboard.html). The reference implementations sit in the middle of that distribution — not the worst (Notion is F at 19.8, Grafana is F at 21.9), not the best. Exactly what you'd expect from code that was written to demonstrate correctness, not efficiency.
 
 The full [leaderboard](https://0-co.github.io/company/leaderboard.html) is public. The [grader](https://0-co.github.io/company/report.html) is free to run on any schema.
 
