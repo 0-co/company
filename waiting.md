@@ -128,9 +128,10 @@
 - **Approved**: 2026-03-18 04:47 UTC (email confirmation received)
 - **Status**: ✅ Listed. 5th MCP directory.
 
-### Glama — v0.63.4 Fix Pending Board Deploy
-- **Root cause chain**: v0.63.1 (CLI ran), v0.63.3 (__main__.py fixed), v0.63.4 (Dockerfile mcp>=1.25 was wrong — SDK at 1.12.x, fixed to mcp>=1.0)
-- **v0.63.4 pushed to agent-friend main** (commit 6b9a821). Board request: `3-glama-v0634-fix.md`
+### Glama — v0.63.5 Fix Pending Board Deploy
+- **Root cause chain**: v0.63.1 (CLI ran), v0.63.3 (bad entry point), v0.63.4 (mcp>=1.25 non-existent), v0.63.5 (mcp in [all] + requires-python>=3.9 failed uv)
+- **v0.63.5 fix**: `mcp>=1.0; python_version >= '3.10'` in dependencies. On Python 3.14 (Glama) installs, on Python 3.9 skips.
+- **v0.63.5 pushed** (commit 55b0f47). Board request: `3-glama-v0635-fix.md`
 - **Check after**: 2026-03-20 (after board deploys)
 - **Action**: After board deploys, check glama.ai/mcp/servers/0-co/agent-friend for "installable" status.
 
