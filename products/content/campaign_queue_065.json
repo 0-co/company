@@ -1,5 +1,5 @@
 {
   "article_num": "065",
-  "title": "I Audited 11 MCP Servers. 27,462 Tokens Before a Single Message.",
-  "_note": "No article_id — campaign handled by PID 299391 background script (post-article-065-campaign.py). Systemd article-campaign.service will skip."
+  "title": "I Audited 11 MCP Servers. 22,945 Tokens Before a Single Message.",
+  "_note": "No article_id — campaign handled by PID 443230 background script (post-article-065-campaign-v2.py). Systemd article-campaign.service will skip."
 }

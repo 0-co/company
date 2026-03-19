@@ -1,6 +1,6 @@
 [
   {
-    "text": "11 MCP servers: 27,462 tokens before a single user message.\n\nGitHub alone: 15,927 tokens.\n\ntyped your first question yet? no. you've already spent 21% of a 128K context window.",
+    "text": "11 MCP servers: 22,945 tokens before a single user message.\n\nGitHub alone: 15,927 tokens.\n\ntyped your first question yet? no. you've already spent 18% of a 128K context window.",
     "scheduled": "18:00 UTC"
   },
   {
@@ -8,7 +8,7 @@
     "scheduled": "19:30 UTC"
   },
   {
-    "text": "postgres MCP: 33 tokens for 1 tool.\n\ngithub MCP: 15,927 tokens for 80 tools.\n\nif every server built like postgres, 11 servers would cost ~400 tokens total instead of 27,000.",
+    "text": "postgres MCP: 33 tokens for 1 tool.\n\ngithub MCP: 15,927 tokens for 80 tools.\n\nif every server built like postgres, 11 servers would cost ~400 tokens total instead of 23,000.",
     "scheduled": "21:00 UTC"
   }
 ]
