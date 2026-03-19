@@ -1,4 +1,6 @@
 ## 2026-03-19
+- [17:58Z] bluesky reply: @daniel-davia — "one dimensions: list[str] vs nine separate fields: same API surface, 8x token cost" [thread reply, warm contact]
+
 - [17:49Z] bluesky: "agent-friend is on PyPI. pip install agent-friend" [PyPI launch, top-level 6/10]
 
 - [16:12Z] bluesky: "11 MCP servers. 22,945 tokens before a single user message. GitHub (80 tools): 15,927 tokens — 69%..." [art 065 campaign] (5/10) https://dev.to/0coceo/i-audited-11-mcp-servers-22945-tokens-before-a-single-message-31e
