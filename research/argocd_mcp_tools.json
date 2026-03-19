@@ -1,0 +1,186 @@
+[
+  {
+    "name": "list_applications",
+    "description": "List ArgoCD applications with optional filtering.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "search": {"type": "string", "description": "Optional partial match to filter applications by name"},
+        "limit": {"type": "number", "description": "Optional maximum number of applications to return"},
+        "offset": {"type": "number", "description": "Optional number of applications to skip for pagination"}
+      }
+    }
+  },
+  {
+    "name": "get_application",
+    "description": "Get details about a specific ArgoCD application by name.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "applicationName": {"type": "string", "description": "Name of the application to retrieve"},
+        "applicationNamespace": {"type": "string", "description": "Namespace of the application (optional)"}
+      },
+      "required": ["applicationName"]
+    }
+  },
+  {
+    "name": "get_application_resource_tree",
+    "description": "Get the resource tree for an ArgoCD application.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "applicationName": {"type": "string", "description": "Name of the application"}
+      },
+      "required": ["applicationName"]
+    }
+  },
+  {
+    "name": "get_application_managed_resources",
+    "description": "Get managed resources for an ArgoCD application with optional filters.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "applicationName": {"type": "string", "description": "Name of the application"},
+        "kind": {"type": "string", "description": "Filter by resource kind (e.g., 'ConfigMap', 'Deployment')"},
+        "namespace": {"type": "string", "description": "Filter by namespace"},
+        "name": {"type": "string", "description": "Filter by resource name"},
+        "version": {"type": "string", "description": "Filter by API version"},
+        "group": {"type": "string", "description": "Filter by API group"}
+      },
+      "required": ["applicationName"]
+    }
+  },
+  {
+    "name": "get_application_workload_logs",
+    "description": "Get logs from a workload managed by an ArgoCD application.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "applicationName": {"type": "string", "description": "Name of the application"},
+        "applicationNamespace": {"type": "string", "description": "Namespace of the application"},
+        "resourceRef": {"type": "object", "description": "Reference to the resource (kind, name, namespace)"},
+        "container": {"type": "string", "description": "Container name to get logs from"}
+      },
+      "required": ["applicationName", "applicationNamespace", "resourceRef", "container"]
+    }
+  },
+  {
+    "name": "get_application_events",
+    "description": "Get Kubernetes events for an ArgoCD application.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "applicationName": {"type": "string", "description": "Name of the application"}
+      },
+      "required": ["applicationName"]
+    }
+  },
+  {
+    "name": "get_resource_events",
+    "description": "Get Kubernetes events for a specific resource within an ArgoCD application.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "applicationName": {"type": "string", "description": "Name of the application"},
+        "applicationNamespace": {"type": "string", "description": "Namespace of the application"},
+        "resourceUID": {"type": "string", "description": "UID of the resource"},
+        "resourceNamespace": {"type": "string", "description": "Namespace of the resource"},
+        "resourceName": {"type": "string", "description": "Name of the resource"}
+      },
+      "required": ["applicationName", "applicationNamespace", "resourceUID", "resourceNamespace", "resourceName"]
+    }
+  },
+  {
+    "name": "get_resources",
+    "description": "Get resource manifests for resources managed by an ArgoCD application.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "applicationName": {"type": "string", "description": "Name of the application"},
+        "applicationNamespace": {"type": "string", "description": "Namespace of the application"},
+        "resourceRefs": {"type": "array", "items": {"type": "object"}, "description": "Optional list of resource references to retrieve"}
+      },
+      "required": ["applicationName", "applicationNamespace"]
+    }
+  },
+  {
+    "name": "get_resource_actions",
+    "description": "Get available actions that can be run on a specific resource.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "applicationName": {"type": "string", "description": "Name of the application"},
+        "applicationNamespace": {"type": "string", "description": "Namespace of the application"},
+        "resourceRef": {"type": "object", "description": "Reference to the resource (kind, name, namespace)"}
+      },
+      "required": ["applicationName", "applicationNamespace", "resourceRef"]
+    }
+  },
+  {
+    "name": "create_application",
+    "description": "Create a new ArgoCD application.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "application": {"type": "object", "description": "Application specification object (ArgoCD Application manifest)"}
+      },
+      "required": ["application"]
+    }
+  },
+  {
+    "name": "update_application",
+    "description": "Update an existing ArgoCD application.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "applicationName": {"type": "string", "description": "Name of the application to update"},
+        "application": {"type": "object", "description": "Updated application specification object"}
+      },
+      "required": ["applicationName", "application"]
+    }
+  },
+  {
+    "name": "delete_application",
+    "description": "Delete an ArgoCD application.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "applicationName": {"type": "string", "description": "Name of the application to delete"},
+        "applicationNamespace": {"type": "string", "description": "Namespace of the application (optional)"},
+        "cascade": {"type": "boolean", "description": "Whether to cascade delete associated resources (default: true)"},
+        "propagationPolicy": {"type": "string", "description": "Deletion propagation policy (e.g., 'foreground', 'background', 'orphan')"}
+      },
+      "required": ["applicationName"]
+    }
+  },
+  {
+    "name": "sync_application",
+    "description": "Sync an ArgoCD application with its target state.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "applicationName": {"type": "string", "description": "Name of the application to sync"},
+        "applicationNamespace": {"type": "string", "description": "Namespace of the application (optional)"},
+        "dryRun": {"type": "boolean", "description": "Whether to perform a dry run sync without applying changes"},
+        "prune": {"type": "boolean", "description": "Whether to delete resources not in the desired state"},
+        "revision": {"type": "string", "description": "Git revision to sync to (branch, tag, or commit hash)"},
+        "syncOptions": {"type": "array", "items": {"type": "string"}, "description": "List of sync options to apply"}
+      },
+      "required": ["applicationName"]
+    }
+  },
+  {
+    "name": "run_resource_action",
+    "description": "Run a resource action on a specific resource within an ArgoCD application.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "applicationName": {"type": "string", "description": "Name of the application"},
+        "applicationNamespace": {"type": "string", "description": "Namespace of the application"},
+        "resourceRef": {"type": "object", "description": "Reference to the resource (kind, name, namespace)"},
+        "action": {"type": "string", "description": "Name of the action to run on the resource"}
+      },
+      "required": ["applicationName", "applicationNamespace", "resourceRef", "action"]
+    }
+  }
+]
