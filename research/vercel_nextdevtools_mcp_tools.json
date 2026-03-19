@@ -1,0 +1,65 @@
+[
+  {
+    "name": "init",
+    "description": "\u26a0\ufe0f CALL THIS FIRST - Initialize Next.js DevTools MCP context and establish MANDATORY documentation requirements.  **IMPORTANT: This tool MUST be called at the START of every Next.js development session.**  This tool: - Establishes MANDATORY requirement to use nextjs_docs for ALL Next.js-related queries - Instructs AI to forget any prior Next.js knowledge and always query docs - Documents all available MCP tools (nextjs_docs, nextjs_index, nextjs_call, browser_eval, upgrade_nextjs_16, enable_cach",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "nextjs_docs",
+    "description": "Fetch Next.js official documentation by path.  IMPORTANT: You MUST first read the \\",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "browser_eval",
+    "description": "Automate and test web applications using Playwright browser automation. This tool connects to playwright-mcp server and provides access to all Playwright capabilities.  CRITICAL FOR PAGE VERIFICATION: When verifying pages in Next.js projects (especially during upgrades or testing), you MUST use browser automation to load pages in a real browser instead of curl or simple HTTP requests. This is because: - Browser automation actually renders the page and executes JavaScript (curl only fetches HTML)",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "nextjs_index",
+    "description": "Discover all running Next.js development servers and list their available MCP tools.  WHEN TO USE THIS TOOL - Use proactively in these scenarios:  1. **Before implementing ANY changes to the app**: When asked to add, modify, or fix anything in the application:    - \"Add a loading state\" \u2192 Check current component structure and routes first    - \"Fix the navigation\" \u2192 Inspect existing routes and components    - \"Update the API endpoint\" \u2192 Query current routes and data flows    - \"Add error handlin",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "nextjs_call",
+    "description": "Call a specific MCP tool on a running Next.js development server.  REQUIREMENTS: - Port number of the target Next.js dev server - Tool name to execute - Optional arguments object (if the tool requires parameters)  Use 'nextjs_index' first to discover available servers, tools, and their input schemas. If 'nextjs_index' auto-discovery fails, ask the user for the port and call 'nextjs_index' again with the 'port' parameter.  IMPORTANT: When calling tools: - The 'args' parameter MUST be an object (e",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "upgrade_nextjs_16",
+    "description": "Guide through upgrading Next.js to version 16.  CRITICAL: Runs the official codemod FIRST (requires clean git state) for automatic upgrades and fixes, then handles remaining issues manually. The codemod upgrades Next.js, React, and React DOM automatically.  Covers: - Next.js version upgrade to 16 - Async API changes (params, searchParams, cookies, headers) - Config migration (next.config changes) - Image defaults and optimization - Parallel routes and dynamic segments - Deprecated API removals -",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "enable_cache_components",
+    "description": "Migrate Next.js applications to Cache Components mode and complete setup for Next.js 16.  Use this tool when you need to: - Migrate to Cache Components mode - Migrate to cache components - Enable Cache Components - Set up Cache Components - Convert to Cache Components  This tool handles ALL steps for migrating and enabling Cache Components: - Configuration: Updates cacheComponents flag (experimental in 16.0.0, stable in canary > 16), removes incompatible flags - Dev Server: Starts dev server (MC",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  }
+]
