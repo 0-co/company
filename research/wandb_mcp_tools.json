@@ -1,0 +1,184 @@
+[
+  {
+    "name": "query_weave_traces_tool",
+    "description": "Query Weave traces, trace metadata, and trace costs with filtering and sorting options. Use for LLM traces, AI agent execution paths, chain-of-thought debugging, and LLM evaluation results. NOT for experiment runs or metrics.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "entity_name": {
+          "type": "string",
+          "description": "The W&B entity (username or team name)"
+        },
+        "project_name": {
+          "type": "string",
+          "description": "The W&B project name"
+        },
+        "filters": {
+          "type": "object",
+          "description": "Optional filter dict (e.g. {\"op_name\": \"...\", \"trace_roots_only\": true})"
+        },
+        "sort_by": {
+          "type": "string",
+          "description": "Field to sort by: started_at, total_cost, completion_cost, prompt_cost",
+          "default": "started_at"
+        },
+        "sort_direction": {
+          "type": "string",
+          "enum": ["asc", "desc"],
+          "default": "desc"
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Maximum number of traces to return",
+          "default": 10000000
+        },
+        "include_costs": {
+          "type": "boolean",
+          "default": true
+        },
+        "include_feedback": {
+          "type": "boolean",
+          "default": true
+        },
+        "columns": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Specific columns to return"
+        },
+        "expand_columns": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Columns to expand without truncation"
+        },
+        "truncate_length": {
+          "type": "integer",
+          "default": 200,
+          "description": "Max character length for string values"
+        },
+        "return_full_data": {
+          "type": "boolean",
+          "default": false,
+          "description": "Return full untruncated data"
+        },
+        "metadata_only": {
+          "type": "boolean",
+          "default": false,
+          "description": "Return only metadata (no inputs/outputs)"
+        }
+      },
+      "required": ["entity_name", "project_name"]
+    }
+  },
+  {
+    "name": "count_weave_traces_tool",
+    "description": "Count Weave traces and return the total storage size in bytes for the given filters. Only provides COUNT and STORAGE SIZE, not actual trace data. Use for Weave/LLM observability data, not W&B Models experiment data.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "entity_name": {
+          "type": "string",
+          "description": "The W&B entity (username or team name)"
+        },
+        "project_name": {
+          "type": "string",
+          "description": "The W&B project name"
+        },
+        "filters": {
+          "type": "object",
+          "description": "Optional filter dict"
+        }
+      },
+      "required": ["entity_name", "project_name"]
+    }
+  },
+  {
+    "name": "query_wandb_tool",
+    "description": "Execute an arbitrary GraphQL query against the Weights & Biases Models API. Use for experiment runs, metrics, artifacts, model registry, sweeps, and reports. NOT for Weave traces.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "GraphQL query string"
+        },
+        "variables": {
+          "type": "object",
+          "description": "Optional GraphQL variables dict"
+        },
+        "max_items": {
+          "type": "integer",
+          "description": "Maximum total items to return across pages",
+          "default": 100
+        },
+        "items_per_page": {
+          "type": "integer",
+          "description": "Items per page for pagination",
+          "default": 20
+        }
+      },
+      "required": ["query"]
+    }
+  },
+  {
+    "name": "create_wandb_report_tool",
+    "description": "Create a new Weights & Biases Report to document analysis and findings. Only call if the user explicitly asks to create a report or save to W&B. Always return the report link to the user.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "entity_name": {
+          "type": "string",
+          "description": "W&B entity (username or team)"
+        },
+        "project_name": {
+          "type": "string",
+          "description": "W&B project name"
+        },
+        "title": {
+          "type": "string",
+          "description": "Report title"
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional report description"
+        },
+        "markdown_report_text": {
+          "type": "string",
+          "description": "Markdown content for the report body",
+          "default": ""
+        },
+        "plots_html": {
+          "type": "object",
+          "description": "Optional dict of plot HTML (kept for backwards compatibility, ignored)"
+        }
+      },
+      "required": ["entity_name", "project_name", "title"]
+    }
+  },
+  {
+    "name": "query_wandb_entity_projects",
+    "description": "Fetch all projects for a specific W&B entity. Use when the user hasn't specified a project name or queries are failing due to missing/incorrect project name. If no entity provided, fetches for current user and their teams.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "entity": {
+          "type": "string",
+          "description": "The W&B entity (username or team name). Optional — if omitted, returns projects for the current user and their teams."
+        }
+      }
+    }
+  },
+  {
+    "name": "query_wandb_support_bot",
+    "description": "Query the Weights & Biases support bot (wandbot) for help with W&B platform questions. Covers experiment tracking, runs, sweeps, artifacts, registry, reports, tables, charts, Weave tracing, and Weave Evaluations.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "question": {
+          "type": "string",
+          "description": "User's question about a Weights & Biases product or feature"
+        }
+      },
+      "required": ["question"]
+    }
+  }
+]
