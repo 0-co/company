@@ -1,0 +1,874 @@
+[
+  {
+    "name": "get_profiles",
+    "description": "Get profiles from Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filter": {
+          "type": "string",
+          "description": "Filter query for profiles"
+        },
+        "page_size": {
+          "type": "number",
+          "description": "Number of profiles per page (1-100)",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "page_cursor": {
+          "type": "string",
+          "description": "Cursor for pagination"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "get_profile",
+    "description": "Get a specific profile from Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "ID of the profile to retrieve"
+        }
+      },
+      "required": ["id"]
+    }
+  },
+  {
+    "name": "create_profile",
+    "description": "Create a new profile in Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "Email address of the profile"
+        },
+        "phone_number": {
+          "type": "string",
+          "description": "Phone number of the profile"
+        },
+        "external_id": {
+          "type": "string",
+          "description": "External ID for the profile"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "First name of the profile"
+        },
+        "last_name": {
+          "type": "string",
+          "description": "Last name of the profile"
+        },
+        "properties": {
+          "type": "object",
+          "description": "Additional properties for the profile"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "update_profile",
+    "description": "Update an existing profile in Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "ID of the profile to update"
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the profile"
+        },
+        "phone_number": {
+          "type": "string",
+          "description": "Phone number of the profile"
+        },
+        "external_id": {
+          "type": "string",
+          "description": "External ID for the profile"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "First name of the profile"
+        },
+        "last_name": {
+          "type": "string",
+          "description": "Last name of the profile"
+        },
+        "properties": {
+          "type": "object",
+          "description": "Additional properties for the profile"
+        }
+      },
+      "required": ["id"]
+    }
+  },
+  {
+    "name": "delete_profile",
+    "description": "Delete a profile from Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "ID of the profile to delete"
+        }
+      },
+      "required": ["id"]
+    }
+  },
+  {
+    "name": "get_lists",
+    "description": "Get lists from Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filter": {
+          "type": "string",
+          "description": "Filter query for lists"
+        },
+        "page_size": {
+          "type": "number",
+          "description": "Number of lists per page (1-100)",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "page_cursor": {
+          "type": "string",
+          "description": "Cursor for pagination"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "get_list",
+    "description": "Get a specific list from Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "ID of the list to retrieve"
+        }
+      },
+      "required": ["id"]
+    }
+  },
+  {
+    "name": "create_list",
+    "description": "Create a new list in Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the list"
+        },
+        "list_type": {
+          "type": "string",
+          "enum": ["list", "segment"],
+          "description": "Type of list to create"
+        }
+      },
+      "required": ["name", "list_type"]
+    }
+  },
+  {
+    "name": "add_profiles_to_list",
+    "description": "Add profiles to a list in Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "list_id": {
+          "type": "string",
+          "description": "ID of the list to add profiles to"
+        },
+        "profile_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Array of profile IDs to add to the list"
+        }
+      },
+      "required": ["list_id", "profile_ids"]
+    }
+  },
+  {
+    "name": "get_segments",
+    "description": "Get segments from Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filter": {
+          "type": "string",
+          "description": "Filter query for segments"
+        },
+        "page_size": {
+          "type": "number",
+          "description": "Number of segments per page (1-100)",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "page_cursor": {
+          "type": "string",
+          "description": "Cursor for pagination"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "get_segment",
+    "description": "Get a specific segment from Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "ID of the segment to retrieve"
+        }
+      },
+      "required": ["id"]
+    }
+  },
+  {
+    "name": "get_events",
+    "description": "Get events from Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filter": {
+          "type": "string",
+          "description": "Filter query for events"
+        },
+        "page_size": {
+          "type": "number",
+          "description": "Number of events per page (1-100)",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "page_cursor": {
+          "type": "string",
+          "description": "Cursor for pagination"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "create_event",
+    "description": "Create a new event in Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "metric": {
+          "type": "object",
+          "description": "Metric information for the event",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Name of the metric"
+            }
+          },
+          "required": ["name"]
+        },
+        "profile": {
+          "type": "object",
+          "description": "Profile information for the event",
+          "properties": {
+            "email": {
+              "type": "string",
+              "format": "email",
+              "description": "Email address of the profile"
+            }
+          },
+          "required": ["email"]
+        },
+        "properties": {
+          "type": "object",
+          "description": "Additional properties for the event"
+        },
+        "time": {
+          "type": "string",
+          "description": "ISO timestamp for the event"
+        },
+        "value": {
+          "type": "number",
+          "description": "Numeric value for the event"
+        }
+      },
+      "required": ["metric", "profile"]
+    }
+  },
+  {
+    "name": "get_metrics",
+    "description": "Get metrics from Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filter": {
+          "type": "string",
+          "description": "Filter query for metrics"
+        },
+        "page_size": {
+          "type": "number",
+          "description": "Number of metrics per page (1-100)",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "page_cursor": {
+          "type": "string",
+          "description": "Cursor for pagination"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "get_metric",
+    "description": "Get a specific metric from Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "ID of the metric to retrieve"
+        }
+      },
+      "required": ["id"]
+    }
+  },
+  {
+    "name": "get_campaigns",
+    "description": "Get campaigns from Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filter": {
+          "type": "string",
+          "description": "Filter query for campaigns"
+        },
+        "page_size": {
+          "type": "number",
+          "description": "Number of campaigns per page (1-100)",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "page_cursor": {
+          "type": "string",
+          "description": "Cursor for pagination"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "get_campaign",
+    "description": "Get a specific campaign from Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "ID of the campaign to retrieve"
+        }
+      },
+      "required": ["id"]
+    }
+  },
+  {
+    "name": "get_flows",
+    "description": "Get flows from Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filter": {
+          "type": "string",
+          "description": "Filter query for flows"
+        },
+        "page_size": {
+          "type": "number",
+          "description": "Number of flows per page (1-100)",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "page_cursor": {
+          "type": "string",
+          "description": "Cursor for pagination"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "get_flow",
+    "description": "Get a specific flow from Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "ID of the flow to retrieve"
+        }
+      },
+      "required": ["id"]
+    }
+  },
+  {
+    "name": "update_flow_status",
+    "description": "Update the status of a flow in Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "ID of the flow to update"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["draft", "manual", "live"],
+          "description": "New status for the flow"
+        }
+      },
+      "required": ["id", "status"]
+    }
+  },
+  {
+    "name": "get_templates",
+    "description": "Get templates from Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filter": {
+          "type": "string",
+          "description": "Filter query for templates"
+        },
+        "page_size": {
+          "type": "number",
+          "description": "Number of templates per page (1-100)",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "page_cursor": {
+          "type": "string",
+          "description": "Cursor for pagination"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "get_template",
+    "description": "Get a specific template from Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "ID of the template to retrieve"
+        }
+      },
+      "required": ["id"]
+    }
+  },
+  {
+    "name": "create_template",
+    "description": "Create a new template in Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the template"
+        },
+        "html": {
+          "type": "string",
+          "description": "HTML content of the template"
+        },
+        "text": {
+          "type": "string",
+          "description": "Text content of the template"
+        }
+      },
+      "required": ["name", "html"]
+    }
+  },
+  {
+    "name": "get_catalogs",
+    "description": "Get catalogs from Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "page_size": {
+          "type": "number",
+          "description": "Number of catalogs per page (1-100)",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "page_cursor": {
+          "type": "string",
+          "description": "Cursor for pagination"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "get_catalog_items",
+    "description": "Get items from a catalog in Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "catalog_id": {
+          "type": "string",
+          "description": "ID of the catalog"
+        },
+        "filter": {
+          "type": "string",
+          "description": "Filter query for catalog items"
+        },
+        "page_size": {
+          "type": "number",
+          "description": "Number of items per page (1-100)",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "page_cursor": {
+          "type": "string",
+          "description": "Cursor for pagination"
+        }
+      },
+      "required": ["catalog_id"]
+    }
+  },
+  {
+    "name": "get_catalog_item",
+    "description": "Get a specific item from a catalog in Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "catalog_id": {
+          "type": "string",
+          "description": "ID of the catalog"
+        },
+        "item_id": {
+          "type": "string",
+          "description": "ID of the catalog item"
+        }
+      },
+      "required": ["catalog_id", "item_id"]
+    }
+  },
+  {
+    "name": "get_tags",
+    "description": "Get tags from Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filter": {
+          "type": "string",
+          "description": "Filter query for tags"
+        },
+        "page_size": {
+          "type": "number",
+          "description": "Number of tags per page (1-100)",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "page_cursor": {
+          "type": "string",
+          "description": "Cursor for pagination"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "create_tag",
+    "description": "Create a new tag in Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the tag"
+        },
+        "tag_type": {
+          "type": "string",
+          "enum": ["system", "custom"],
+          "description": "Type of tag"
+        }
+      },
+      "required": ["name", "tag_type"]
+    }
+  },
+  {
+    "name": "add_tag_to_resource",
+    "description": "Add a tag to a resource in Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "tag_id": {
+          "type": "string",
+          "description": "ID of the tag"
+        },
+        "resource_type": {
+          "type": "string",
+          "enum": ["list", "segment", "flow", "campaign", "template"],
+          "description": "Type of resource to tag"
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "ID of the resource to tag"
+        }
+      },
+      "required": ["tag_id", "resource_type", "resource_id"]
+    }
+  },
+  {
+    "name": "get_webhooks",
+    "description": "Get webhooks from Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "page_size": {
+          "type": "number",
+          "description": "Number of webhooks per page (1-100)",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "page_cursor": {
+          "type": "string",
+          "description": "Cursor for pagination"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "create_webhook",
+    "description": "Create a new webhook in Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "endpoint": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URL endpoint to receive webhook notifications"
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Array of event types to subscribe to"
+        },
+        "profile_id": {
+          "type": "string",
+          "description": "Optional profile identifier for authentication setup"
+        }
+      },
+      "required": ["endpoint", "events"]
+    }
+  },
+  {
+    "name": "delete_webhook",
+    "description": "Delete a webhook from Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "ID of the webhook to delete"
+        }
+      },
+      "required": ["id"]
+    }
+  },
+  {
+    "name": "request_profile_deletion",
+    "description": "Request deletion of a profile for data privacy compliance",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "Email of the profile to delete"
+        },
+        "phone_number": {
+          "type": "string",
+          "description": "Phone number of the profile to delete"
+        },
+        "profile_id": {
+          "type": "string",
+          "description": "ID of the profile to delete"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "get_coupons",
+    "description": "Get coupons from Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filter": {
+          "type": "string",
+          "description": "Filter query for coupons"
+        },
+        "page_size": {
+          "type": "number",
+          "description": "Number of coupons per page (1-100)",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "page_cursor": {
+          "type": "string",
+          "description": "Cursor for pagination"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "create_coupon_code",
+    "description": "Create a new coupon code in Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "coupon_id": {
+          "type": "string",
+          "description": "ID of the coupon"
+        },
+        "code": {
+          "type": "string",
+          "description": "Coupon code"
+        }
+      },
+      "required": ["coupon_id", "code"]
+    }
+  },
+  {
+    "name": "get_forms",
+    "description": "Get forms from Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filter": {
+          "type": "string",
+          "description": "Filter query for forms"
+        },
+        "page_size": {
+          "type": "number",
+          "description": "Number of forms per page (1-100)",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "page_cursor": {
+          "type": "string",
+          "description": "Cursor for pagination"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "get_form",
+    "description": "Get a specific form from Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "ID of the form to retrieve"
+        }
+      },
+      "required": ["id"]
+    }
+  },
+  {
+    "name": "get_product_reviews",
+    "description": "Get product reviews from Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filter": {
+          "type": "string",
+          "description": "Filter query for product reviews"
+        },
+        "page_size": {
+          "type": "number",
+          "description": "Number of reviews per page (1-100)",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "page_cursor": {
+          "type": "string",
+          "description": "Cursor for pagination"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "get_product_review",
+    "description": "Get a specific product review from Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "ID of the product review to retrieve"
+        }
+      },
+      "required": ["id"]
+    }
+  },
+  {
+    "name": "get_images",
+    "description": "Get images from Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filter": {
+          "type": "string",
+          "description": "Filter query for images"
+        },
+        "page_size": {
+          "type": "number",
+          "description": "Number of images per page (1-100)",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "page_cursor": {
+          "type": "string",
+          "description": "Cursor for pagination"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "get_image",
+    "description": "Get a specific image from Klaviyo",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "ID of the image to retrieve"
+        }
+      },
+      "required": ["id"]
+    }
+  }
+]

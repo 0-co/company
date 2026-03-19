@@ -1,0 +1,165 @@
+[
+  {
+    "name": "list_databases",
+    "description": "List all databases configured in Metabase",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "list_tables",
+    "description": "List all tables in a specific database with metadata",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "database_id": {
+          "type": "integer",
+          "description": "The database identifier"
+        }
+      },
+      "required": ["database_id"]
+    }
+  },
+  {
+    "name": "get_table_fields",
+    "description": "Get all fields/columns in a specific table",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "table_id": {
+          "type": "integer",
+          "description": "Table identifier"
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Maximum number of fields to return",
+          "default": 20
+        }
+      },
+      "required": ["table_id"]
+    }
+  },
+  {
+    "name": "execute_query",
+    "description": "Execute a native SQL query against a Metabase database",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "database_id": {
+          "type": "integer",
+          "description": "Target database identifier"
+        },
+        "query": {
+          "type": "string",
+          "description": "SQL statement to execute"
+        },
+        "native_parameters": {
+          "type": "array",
+          "description": "Optional query parameters for parameterized queries",
+          "items": {
+            "type": "object"
+          }
+        }
+      },
+      "required": ["database_id", "query"]
+    }
+  },
+  {
+    "name": "list_cards",
+    "description": "List all saved questions/cards in Metabase",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "execute_card",
+    "description": "Execute a saved Metabase question/card and retrieve results",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "card_id": {
+          "type": "integer",
+          "description": "Card identifier to execute"
+        },
+        "parameters": {
+          "type": "object",
+          "description": "Optional card parameters to pass during execution"
+        }
+      },
+      "required": ["card_id"]
+    }
+  },
+  {
+    "name": "create_card",
+    "description": "Create a new question/card in Metabase",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the card/question"
+        },
+        "database_id": {
+          "type": "integer",
+          "description": "Target database identifier"
+        },
+        "query": {
+          "type": "string",
+          "description": "SQL query for the card"
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional description for the card"
+        },
+        "collection_id": {
+          "type": "integer",
+          "description": "Optional collection ID to place the card in"
+        },
+        "visualization_settings": {
+          "type": "object",
+          "description": "Optional visualization settings for the card"
+        }
+      },
+      "required": ["name", "database_id", "query"]
+    }
+  },
+  {
+    "name": "list_collections",
+    "description": "List all collections in Metabase",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create_collection",
+    "description": "Create a new collection in Metabase",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the collection"
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional description for the collection"
+        },
+        "color": {
+          "type": "string",
+          "description": "Optional color for the collection (hex code)"
+        },
+        "parent_id": {
+          "type": "integer",
+          "description": "Optional parent collection ID for nested collections"
+        }
+      },
+      "required": ["name"]
+    }
+  }
+]

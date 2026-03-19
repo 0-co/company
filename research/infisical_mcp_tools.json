@@ -1,0 +1,306 @@
+[
+  {
+    "name": "create-secret",
+    "description": "Create a new secret in Infisical",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "string",
+          "description": "The ID of the project to create the secret in"
+        },
+        "environmentSlug": {
+          "type": "string",
+          "description": "The slug of the environment to create the secret in"
+        },
+        "secretName": {
+          "type": "string",
+          "description": "The name of the secret to create"
+        },
+        "secretValue": {
+          "type": "string",
+          "description": "The value of the secret"
+        },
+        "secretPath": {
+          "type": "string",
+          "description": "The path where the secret should be stored. Defaults to '/'",
+          "default": "/"
+        }
+      },
+      "required": ["projectId", "environmentSlug", "secretName"]
+    }
+  },
+  {
+    "name": "delete-secret",
+    "description": "Delete a secret in Infisical",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "string",
+          "description": "The ID of the project containing the secret"
+        },
+        "environmentSlug": {
+          "type": "string",
+          "description": "The slug of the environment containing the secret"
+        },
+        "secretName": {
+          "type": "string",
+          "description": "The name of the secret to delete"
+        },
+        "secretPath": {
+          "type": "string",
+          "description": "The path where the secret is stored. Defaults to '/'",
+          "default": "/"
+        }
+      },
+      "required": ["projectId", "environmentSlug", "secretName"]
+    }
+  },
+  {
+    "name": "update-secret",
+    "description": "Update a secret in Infisical",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "string",
+          "description": "The ID of the project containing the secret"
+        },
+        "environmentSlug": {
+          "type": "string",
+          "description": "The slug of the environment containing the secret"
+        },
+        "secretName": {
+          "type": "string",
+          "description": "The name of the secret to update"
+        },
+        "newSecretName": {
+          "type": "string",
+          "description": "Optional new name for the secret"
+        },
+        "secretValue": {
+          "type": "string",
+          "description": "The new value for the secret"
+        },
+        "secretPath": {
+          "type": "string",
+          "description": "The path where the secret is stored. Defaults to '/'",
+          "default": "/"
+        }
+      },
+      "required": ["projectId", "environmentSlug", "secretName"]
+    }
+  },
+  {
+    "name": "list-secrets",
+    "description": "List all secrets in a given Infisical project and environment",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "string",
+          "description": "The ID of the project to list secrets from"
+        },
+        "environmentSlug": {
+          "type": "string",
+          "description": "The slug of the environment to list secrets from"
+        },
+        "secretPath": {
+          "type": "string",
+          "description": "The path to list secrets from. Defaults to '/'",
+          "default": "/"
+        },
+        "expandSecretReferences": {
+          "type": "boolean",
+          "description": "Whether to expand secret references in values. Defaults to false",
+          "default": false
+        },
+        "includeImports": {
+          "type": "boolean",
+          "description": "Whether to include imported secrets. Defaults to false",
+          "default": false
+        }
+      },
+      "required": ["projectId", "environmentSlug"]
+    }
+  },
+  {
+    "name": "get-secret",
+    "description": "Get a secret in Infisical",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "string",
+          "description": "The ID of the project containing the secret"
+        },
+        "environmentSlug": {
+          "type": "string",
+          "description": "The slug of the environment containing the secret"
+        },
+        "secretName": {
+          "type": "string",
+          "description": "The name of the secret to retrieve"
+        },
+        "secretPath": {
+          "type": "string",
+          "description": "The path where the secret is stored. Defaults to '/'",
+          "default": "/"
+        },
+        "expandSecretReferences": {
+          "type": "boolean",
+          "description": "Whether to expand secret references in the value. Defaults to false",
+          "default": false
+        },
+        "includeImports": {
+          "type": "boolean",
+          "description": "Whether to include imported secrets. Defaults to false",
+          "default": false
+        }
+      },
+      "required": ["projectId", "environmentSlug", "secretName"]
+    }
+  },
+  {
+    "name": "create-project",
+    "description": "Create a new project in Infisical",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "projectName": {
+          "type": "string",
+          "description": "The name of the project to create"
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of project to create"
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional description for the project"
+        },
+        "slug": {
+          "type": "string",
+          "description": "Optional slug for the project"
+        },
+        "projectTemplate": {
+          "type": "string",
+          "description": "Optional template to use for the project"
+        },
+        "kmsKeyId": {
+          "type": "string",
+          "description": "Optional KMS key ID for encryption"
+        }
+      },
+      "required": ["projectName", "type"]
+    }
+  },
+  {
+    "name": "create-environment",
+    "description": "Create a new environment in Infisical",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "string",
+          "description": "The ID of the project to create the environment in"
+        },
+        "name": {
+          "type": "string",
+          "description": "The display name of the environment"
+        },
+        "slug": {
+          "type": "string",
+          "description": "The slug identifier for the environment"
+        },
+        "position": {
+          "type": "integer",
+          "description": "Optional position/order for the environment"
+        }
+      },
+      "required": ["projectId", "name", "slug"]
+    }
+  },
+  {
+    "name": "create-folder",
+    "description": "Create a new folder in Infisical",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "string",
+          "description": "The ID of the project to create the folder in"
+        },
+        "environment": {
+          "type": "string",
+          "description": "The environment slug where the folder should be created"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the folder"
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional description for the folder"
+        },
+        "path": {
+          "type": "string",
+          "description": "The path where the folder should be created. Defaults to '/'",
+          "default": "/"
+        }
+      },
+      "required": ["projectId", "environment", "name"]
+    }
+  },
+  {
+    "name": "invite-members-to-project",
+    "description": "Invite members to a project in Infisical",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "string",
+          "description": "The ID of the project to invite members to"
+        },
+        "emails": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Optional list of email addresses to invite"
+        },
+        "usernames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Optional list of usernames to invite"
+        },
+        "roleSlugs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Optional list of role slugs to assign to the invited members"
+        }
+      },
+      "required": ["projectId"]
+    }
+  },
+  {
+    "name": "list-projects",
+    "description": "List all projects in Infisical that the machine identity has access to",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Optional filter for project type. Defaults to 'all'",
+          "default": "all"
+        }
+      },
+      "required": []
+    }
+  }
+]

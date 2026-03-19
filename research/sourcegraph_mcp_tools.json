@@ -1,0 +1,329 @@
+[
+  {
+    "name": "read_file",
+    "description": "Retrieve file contents with line support and revision options. File size limit is 128KB. Use line ranges for larger files.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "repo": {
+          "type": "string",
+          "description": "The repository name to read the file from"
+        },
+        "path": {
+          "type": "string",
+          "description": "The file path within the repository"
+        },
+        "startLine": {
+          "type": "integer",
+          "description": "Optional starting line number for partial file reads"
+        },
+        "endLine": {
+          "type": "integer",
+          "description": "Optional ending line number for partial file reads"
+        },
+        "revision": {
+          "type": "string",
+          "description": "Optional revision (branch, tag, or commit) to read from"
+        }
+      },
+      "required": ["repo", "path"]
+    }
+  },
+  {
+    "name": "list_files",
+    "description": "Display files and directories within repository paths",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "repo": {
+          "type": "string",
+          "description": "The repository name to list files from"
+        },
+        "path": {
+          "type": "string",
+          "description": "Optional directory path within the repository to list"
+        },
+        "revision": {
+          "type": "string",
+          "description": "Optional revision (branch, tag, or commit) to list files from"
+        }
+      },
+      "required": ["repo"]
+    }
+  },
+  {
+    "name": "list_repos",
+    "description": "Search repositories by name with pagination capabilities",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Search query to filter repositories by name"
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Maximum number of repositories to return. Default is 50",
+          "default": 50
+        },
+        "after": {
+          "type": "string",
+          "description": "Pagination cursor for fetching the next page of results"
+        },
+        "before": {
+          "type": "string",
+          "description": "Pagination cursor for fetching the previous page of results"
+        }
+      },
+      "required": ["query"]
+    }
+  },
+  {
+    "name": "keyword_search",
+    "description": "Execute exact keyword searches with boolean operators and filters. Supports repo:, file:, rev: filters.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "The keyword search query. Supports operators like AND, OR, NOT and filters like repo:, file:, rev:"
+        }
+      },
+      "required": ["query"]
+    }
+  },
+  {
+    "name": "nls_search",
+    "description": "Perform semantic searching with linguistic flexibility. Supports repo:, file:, rev: filters.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "The natural language search query. Supports filters like repo:, file:, rev:"
+        }
+      },
+      "required": ["query"]
+    }
+  },
+  {
+    "name": "go_to_definition",
+    "description": "Locate symbol definitions from usage points",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "repo": {
+          "type": "string",
+          "description": "The repository name containing the symbol"
+        },
+        "path": {
+          "type": "string",
+          "description": "The file path where the symbol is referenced"
+        },
+        "symbol": {
+          "type": "string",
+          "description": "The symbol name to find the definition for"
+        },
+        "revision": {
+          "type": "string",
+          "description": "Optional revision (branch, tag, or commit)"
+        }
+      },
+      "required": ["repo", "path", "symbol"]
+    }
+  },
+  {
+    "name": "find_references",
+    "description": "Identify all symbol usages across codebase",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "repo": {
+          "type": "string",
+          "description": "The repository name containing the symbol definition"
+        },
+        "path": {
+          "type": "string",
+          "description": "The file path where the symbol is defined"
+        },
+        "symbol": {
+          "type": "string",
+          "description": "The symbol name to find all references for"
+        },
+        "revision": {
+          "type": "string",
+          "description": "Optional revision (branch, tag, or commit)"
+        }
+      },
+      "required": ["repo", "path", "symbol"]
+    }
+  },
+  {
+    "name": "commit_search",
+    "description": "Query commits by message, author, content, and dates",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "repos": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Array of repository names to search commits in"
+        },
+        "messageTerms": {
+          "type": "string",
+          "description": "Optional terms to search for in commit messages"
+        },
+        "authors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Optional list of authors to filter commits by"
+        },
+        "contentTerms": {
+          "type": "string",
+          "description": "Optional terms to search for in commit content/diff"
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Optional list of file paths to filter commits by"
+        },
+        "after": {
+          "type": "string",
+          "description": "Optional date to filter commits after (ISO 8601 format)"
+        },
+        "before": {
+          "type": "string",
+          "description": "Optional date to filter commits before (ISO 8601 format)"
+        }
+      },
+      "required": ["repos"]
+    }
+  },
+  {
+    "name": "diff_search",
+    "description": "Analyze code changes across repositories",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "pattern": {
+          "type": "string",
+          "description": "Pattern to search for in diffs"
+        },
+        "repos": {
+          "type": "string",
+          "description": "Repository name(s) to search diffs in"
+        },
+        "added": {
+          "type": "boolean",
+          "description": "Optional flag to filter for added lines only"
+        },
+        "removed": {
+          "type": "boolean",
+          "description": "Optional flag to filter for removed lines only"
+        },
+        "author": {
+          "type": "string",
+          "description": "Optional author to filter diffs by"
+        },
+        "after": {
+          "type": "string",
+          "description": "Optional date to filter diffs after (ISO 8601 format)"
+        },
+        "before": {
+          "type": "string",
+          "description": "Optional date to filter diffs before (ISO 8601 format)"
+        }
+      },
+      "required": ["pattern", "repos"]
+    }
+  },
+  {
+    "name": "compare_revisions",
+    "description": "Contrast modifications between two versions",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "repo": {
+          "type": "string",
+          "description": "The repository name to compare revisions in"
+        },
+        "base": {
+          "type": "string",
+          "description": "The base revision (branch, tag, or commit) to compare from"
+        },
+        "head": {
+          "type": "string",
+          "description": "The head revision (branch, tag, or commit) to compare to"
+        },
+        "first": {
+          "type": "integer",
+          "description": "Number of commits to show. Default is 50",
+          "default": 50
+        },
+        "after": {
+          "type": "string",
+          "description": "Optional pagination cursor"
+        }
+      },
+      "required": ["repo", "base", "head"]
+    }
+  },
+  {
+    "name": "get_contributor_repos",
+    "description": "Discover repositories with contributor activity",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "author": {
+          "type": "string",
+          "description": "The contributor's username or email to search for"
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Maximum number of repositories to return. Default is 20",
+          "default": 20
+        },
+        "minCommits": {
+          "type": "integer",
+          "description": "Minimum number of commits required to include a repository. Default is 1",
+          "default": 1
+        }
+      },
+      "required": ["author"]
+    }
+  },
+  {
+    "name": "deepsearch",
+    "description": "Initiate Deep Search conversations for complex codebase questions",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "question": {
+          "type": "string",
+          "description": "The complex question to ask about the codebase"
+        }
+      },
+      "required": ["question"]
+    }
+  },
+  {
+    "name": "deepsearch_read",
+    "description": "Retrieve existing Deep Search conversation content",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "description": "The identifier for the Deep Search conversation. Accepts URLs or read tokens."
+        }
+      },
+      "required": ["identifier"]
+    }
+  }
+]

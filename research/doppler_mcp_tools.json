@@ -1,0 +1,512 @@
+[
+  {
+    "_note": "Doppler MCP server dynamically generates tools from the Doppler OpenAPI specification. The tool list is not static and varies based on configuration flags (--read-only, --project, --config). The following tools represent the documented tool set based on README and API documentation.",
+    "name": "workplace_get",
+    "description": "Get information about the Doppler workplace/organization",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "workplace_update",
+    "description": "Update workplace/organization settings",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "New name for the workplace"
+        },
+        "billing_email": {
+          "type": "string",
+          "description": "Billing email address for the workplace"
+        },
+        "security_email": {
+          "type": "string",
+          "description": "Security email address for the workplace"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "users_list",
+    "description": "List all users in the Doppler workplace",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "Page number for pagination"
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "Number of users per page"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "groups_list",
+    "description": "List all groups in the Doppler workplace",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "Page number for pagination"
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "Number of groups per page"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "service_accounts_list",
+    "description": "List all service accounts in the Doppler workplace",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "Page number for pagination"
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "Number of service accounts per page"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "projects_list",
+    "description": "List all projects in Doppler",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "Page number for pagination"
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "Number of projects per page"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "projects_create",
+    "description": "Create a new Doppler project",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the project"
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional description for the project"
+        }
+      },
+      "required": ["name"]
+    }
+  },
+  {
+    "name": "projects_get",
+    "description": "Get details for a specific Doppler project",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The project slug or ID"
+        }
+      },
+      "required": ["project"]
+    }
+  },
+  {
+    "name": "projects_delete",
+    "description": "Delete a Doppler project",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The project slug or ID to delete"
+        }
+      },
+      "required": ["project"]
+    }
+  },
+  {
+    "name": "environments_list",
+    "description": "List all environments within a Doppler project",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The project slug or ID"
+        }
+      },
+      "required": ["project"]
+    }
+  },
+  {
+    "name": "environments_create",
+    "description": "Create a new environment within a Doppler project",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The project slug or ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the environment"
+        },
+        "slug": {
+          "type": "string",
+          "description": "Slug identifier for the environment"
+        }
+      },
+      "required": ["project", "name", "slug"]
+    }
+  },
+  {
+    "name": "environments_get",
+    "description": "Get details for a specific environment within a project",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The project slug or ID"
+        },
+        "environment": {
+          "type": "string",
+          "description": "The environment slug or ID"
+        }
+      },
+      "required": ["project", "environment"]
+    }
+  },
+  {
+    "name": "configs_list",
+    "description": "List all configs (branches) within a Doppler project",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The project slug or ID"
+        },
+        "environment": {
+          "type": "string",
+          "description": "Optional environment slug to filter configs by"
+        },
+        "page": {
+          "type": "integer",
+          "description": "Page number for pagination"
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "Number of configs per page"
+        }
+      },
+      "required": ["project"]
+    }
+  },
+  {
+    "name": "configs_create",
+    "description": "Create a new config (branch) within a Doppler project",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The project slug or ID"
+        },
+        "environment": {
+          "type": "string",
+          "description": "The environment slug to create the config in"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the config"
+        }
+      },
+      "required": ["project", "environment", "name"]
+    }
+  },
+  {
+    "name": "configs_get",
+    "description": "Get details for a specific Doppler config",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The project slug or ID"
+        },
+        "config": {
+          "type": "string",
+          "description": "The config name"
+        }
+      },
+      "required": ["project", "config"]
+    }
+  },
+  {
+    "name": "configs_update",
+    "description": "Update a Doppler config",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The project slug or ID"
+        },
+        "config": {
+          "type": "string",
+          "description": "The config name"
+        },
+        "name": {
+          "type": "string",
+          "description": "New name for the config"
+        }
+      },
+      "required": ["project", "config"]
+    }
+  },
+  {
+    "name": "configs_lock",
+    "description": "Lock a Doppler config to prevent modifications",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The project slug or ID"
+        },
+        "config": {
+          "type": "string",
+          "description": "The config name to lock"
+        }
+      },
+      "required": ["project", "config"]
+    }
+  },
+  {
+    "name": "configs_unlock",
+    "description": "Unlock a previously locked Doppler config",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The project slug or ID"
+        },
+        "config": {
+          "type": "string",
+          "description": "The config name to unlock"
+        }
+      },
+      "required": ["project", "config"]
+    }
+  },
+  {
+    "name": "secrets_list",
+    "description": "List all secrets in a Doppler config",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The project slug or ID"
+        },
+        "config": {
+          "type": "string",
+          "description": "The config name to list secrets from"
+        },
+        "include_dynamic_secrets": {
+          "type": "boolean",
+          "description": "Whether to include dynamic secrets in the response"
+        },
+        "include_managed_secrets": {
+          "type": "boolean",
+          "description": "Whether to include managed secrets in the response"
+        }
+      },
+      "required": ["project", "config"]
+    }
+  },
+  {
+    "name": "secrets_get",
+    "description": "Get a specific secret value from a Doppler config",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The project slug or ID"
+        },
+        "config": {
+          "type": "string",
+          "description": "The config name"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the secret to retrieve"
+        }
+      },
+      "required": ["project", "config", "name"]
+    }
+  },
+  {
+    "name": "secrets_update",
+    "description": "Update or create secrets in a Doppler config",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The project slug or ID"
+        },
+        "config": {
+          "type": "string",
+          "description": "The config name"
+        },
+        "secrets": {
+          "type": "object",
+          "description": "Key-value pairs of secrets to update or create"
+        }
+      },
+      "required": ["project", "config", "secrets"]
+    }
+  },
+  {
+    "name": "secrets_download",
+    "description": "Download all secrets from a Doppler config as a file",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The project slug or ID"
+        },
+        "config": {
+          "type": "string",
+          "description": "The config name to download secrets from"
+        },
+        "format": {
+          "type": "string",
+          "enum": ["json", "env", "yaml", "docker", "env-no-quotes"],
+          "description": "Output format for the downloaded secrets"
+        }
+      },
+      "required": ["project", "config"]
+    }
+  },
+  {
+    "name": "integrations_list",
+    "description": "List all integrations in the Doppler workplace",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "syncs_list",
+    "description": "List all sync configurations in Doppler",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The project slug or ID"
+        },
+        "config": {
+          "type": "string",
+          "description": "The config name to list syncs for"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "webhooks_list",
+    "description": "List all webhooks configured in Doppler",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Optional project slug to filter webhooks by"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "config_logs_list",
+    "description": "List activity logs for a Doppler config",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The project slug or ID"
+        },
+        "config": {
+          "type": "string",
+          "description": "The config name to list logs for"
+        },
+        "page": {
+          "type": "integer",
+          "description": "Page number for pagination"
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "Number of logs per page"
+        }
+      },
+      "required": ["project", "config"]
+    }
+  },
+  {
+    "name": "config_logs_rollback",
+    "description": "Roll back a Doppler config to a previous state using a log entry",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The project slug or ID"
+        },
+        "config": {
+          "type": "string",
+          "description": "The config name to roll back"
+        },
+        "log": {
+          "type": "string",
+          "description": "The log ID to roll back to"
+        }
+      },
+      "required": ["project", "config", "log"]
+    }
+  }
+]
