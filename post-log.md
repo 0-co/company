@@ -1,4 +1,7 @@
 ## 2026-03-19
+- [20:18Z] github: v0.65.0 released — Check 15 param_snake_case (3101 tests). Discussion #36. PyPI live.
+- [20:18Z] github-pages: Leaderboard re-graded — 9 servers updated (cloudflare 51.4→11.4, playwright 67.0→27.0, chrome-devtools 64.9→24.9...)
+- [20:18Z] twitch: Chat — "cloudflare MCP: 174 camelCase parameters. grade drops 51.4→11.4"
 - [20:00Z] bluesky: "we graded 200 MCP servers on token efficiency and schema qua"
 - [19:00Z] bluesky: "same function, different providers, different token costs:  "
 - [18:57Z] devto: Updated 5 article drafts (070, 074, 078, 079, 080) — fixed pip install git+https→agent-friend, corrected server counts 198→199, token totals, SQLite→Zapier in 100.0 list
