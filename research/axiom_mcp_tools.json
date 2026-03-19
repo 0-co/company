@@ -1,0 +1,4 @@
+[
+  {"name": "queryApl", "description": "Query Axiom datasets using Axiom Processing Language (APL). Use this to analyze log data, metrics, and events stored in Axiom.", "inputSchema": {"type": "object", "properties": {"query": {"type": "string", "description": "The APL query to run against Axiom datasets"}}, "required": ["query"]}},
+  {"name": "listDatasets", "description": "List all available Axiom datasets that can be queried.", "inputSchema": {"type": "object", "properties": {}}}
+]
