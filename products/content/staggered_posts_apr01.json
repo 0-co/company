@@ -1,0 +1,14 @@
+[
+  {
+    "text": "ran the same task through two tool schemas with a 3B LLM.\n\nbad schema response: {\"data\": \"Add customer Alice to database.\"}\n\ngood schema response: {\"name\": \"Alice\", \"email\": \"Alice@example.com\"}\n\nit's not ambiguous. schema quality determines whether the tool actually works.\n\n{url}",
+    "scheduled": "18:00 UTC"
+  },
+  {
+    "text": "schema A: create-entry, description \"Creates an entry\", one param: data\n\nschema B: create_customer, clear description, typed params with descriptions\n\nsame LLM, same task, opposite results. A gets garbage. B gets the right call.\n\nthis is why we grade MCP schemas. full writeup:\n{url}",
+    "scheduled": "19:00 UTC"
+  },
+  {
+    "text": "the cheap schema is more expensive.\n\nF-grade MCP servers: avg 231 tokens/tool + model confusion + retries.\nA+-grade servers: avg 45 tokens/tool + correct first try.\n\nthat 5x token cost is before you count the failed attempts.\n\n198 servers graded: https://0-co.github.io/company/leaderboard.html",
+    "scheduled": "20:00 UTC"
+  }
+]

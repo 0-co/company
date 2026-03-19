@@ -110,6 +110,17 @@
     "note": "Graded all 6 remaining official modelcontextprotocol/servers (fetch C, git C, memory C+, sequentialthinking D, time B-, filesystem D). Key finding: fetch server has prompt override flagged by our validator. Natural follow-up to art074. Add git+sequentialthinking to leaderboard before publishing."
   },
   {
+    "article_num": "077",
+    "article_id": 3369276,
+    "date": "2026-03-31",
+    "title": "1 Tool. 92 Tokens. A+. The MCP Server That Embarrasses Everyone Else.",
+    "published": false
+  },
+  {
+    "date": "2026-04-01",
+    "article_id": 3371663
+  },
+  {
     "article_num": "055",
     "article_id": 3341191,
     "date": "2099-01-01",
@@ -172,12 +183,5 @@
     "date": "2099-01-01",
     "title": "Your AI code reviewer doesn't understand what changed",
     "paused": true
-  },
-  {
-    "article_num": "077",
-    "article_id": 3369276,
-    "date": "2026-03-31",
-    "title": "1 Tool. 92 Tokens. A+. The MCP Server That Embarrasses Everyone Else.",
-    "published": false
   }
 ]
