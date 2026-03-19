@@ -63,21 +63,19 @@
 - **Action**: Search Bing for "MCP server leaderboard quality grade" and "MCP report card grade tool". If indexed, compare to pre-submission state (2 Bing referral views total).
 
 
-### SEP-1576 Comment — LIVE ✅
-- **What**: Board posted empirical data comment on MCP spec issue. Link: https://github.com/modelcontextprotocol/modelcontextprotocol/issues/1576#issuecomment-4081247028
-- **Check after**: 2026-03-19
-- **Action**: Check for replies, reactions, or new issue activity referencing our data.
+### SEP-1576 Comment — 0 reactions (checked 2026-03-19)
+- **Status**: 0 reactions. kira-autonoma (mcp-lazy-proxy) replied with their proxy tool — complementary framing ("spec fix would be proper fix").
+- **Note**: Comment says "27,462 tokens" (old data) — can't edit (vault-gh can't write external repos).
+- **Action**: None. This channel has low engagement. Consider closing this item.
 
 ### Article 064 Results Check — 4h DONE ✓
 - **Status**: 1 reaction, 5 views at 4h (20:31 UTC March 18). Condition ">0 reactions" MET.
 - **Action taken**: Art 072 (ID 3368431) added to schedule for March 27. Campaign + staggered launched (session 173).
 - **24h check**: 2026-03-19 16:10 UTC — check for more reactions. If strong, consider featuring in social.
 
-### Article 065 Campaign Poster — Running
-- **What**: PID 443230 waits for article 065 (ID 3362600) to publish on Mar 19. Posts Bluesky campaign (v2 script using /articles/me/all).
-- **Campaign text**: "11 MCP servers. 22,945 tokens before a single user message. GitHub (80 tools): 15,927 tokens — 69% of the total. Postgres (1 tool): 33 tokens. 483x range. same protocol, very different schemas. {url}"
-- **Check after**: 2026-03-19 17:00 UTC
-- **Action**: Verify campaign posted. Check post-log.md.
+### Article 065 Campaign Poster — ✅ DONE (16:12 UTC Mar 19)
+- Campaign posted manually at 16:12 UTC (PID 443230 killed — /articles/me/all returns published_at=null bug)
+- URL: https://dev.to/0coceo/i-audited-11-mcp-servers-22945-tokens-before-a-single-message-31e
 
 ### GitHub Issue Targets — PERMANENTLY BLOCKED
 - **Status**: vault-gh can read external repos but CANNOT write/comment (addComment 403 confirmed session 163). Board declined to do distribution tasks (inbox cleaned). This channel is closed.
@@ -94,11 +92,11 @@
 - **Check after**: Each startup
 - **Action**: When threshold passed, recreate board inbox request
 
-### PyPI Publishing — Awaiting Traction
-- **What**: Board said "ask again with demonstrated traction."
-- **Threshold**: 10+ GitHub stars OR evidence of actual usage
-- **Current**: 0 stars, 194 unique clones, 0% conversion
-- **Action**: Re-request when threshold met. This is the #1 friction point for adoption.
+### PyPI Publishing — Vault Tool Missing from Sudoers
+- **What**: Board approved. Said "you now have a vault tool to communicate with PyPI over API." But vault-pypi is NOT in sudoers and NOT findable in system.
+- **Board request filed**: `3-pypi-vault-deploy.md` (needs sudoers entry + vault script created)
+- **Check after**: 2026-03-20 (after board adds vault-pypi)
+- **Action**: Once vault-pypi is accessible, publish agent-friend 0.63.4 to PyPI.
 
 ### Notion MCP Challenge Thread Drop — March 22
 - **Board directive**: Only send the axrisi thread drop request AFTER art 073 is live (March 22). Board rebuke: "respect my time, only give me requests when they're actionable."
@@ -130,11 +128,11 @@
 - **Approved**: 2026-03-18 04:47 UTC (email confirmation received)
 - **Status**: ✅ Listed. 5th MCP directory.
 
-### Glama — Needs Docker Rebuild (v0.63.1)
-- **What**: v0.63.1 fixes Glama compatibility (TTY detection → agent-friend auto-starts MCP server when stdin piped). Tested locally: works. v0.63.1 pushed to GitHub. Board request filed: `3-glama-rebuild-required.md`.
-- **Board error (14:33 UTC Mar 19)**: Still showing CLI help text — deploy button restarts container, doesn't rebuild image.
-- **Check after**: 2026-03-20 (after board rebuilds)
-- **Action**: After board reports rebuild done, check glama.ai/mcp/servers/0-co/agent-friend for working status + security/quality scores.
+### Glama — v0.63.4 Fix Pending Board Deploy
+- **Root cause chain**: v0.63.1 (CLI ran), v0.63.3 (__main__.py fixed), v0.63.4 (Dockerfile mcp>=1.25 was wrong — SDK at 1.12.x, fixed to mcp>=1.0)
+- **v0.63.4 pushed to agent-friend main** (commit 6b9a821). Board request: `3-glama-v0634-fix.md`
+- **Check after**: 2026-03-20 (after board deploys)
+- **Action**: After board deploys, check glama.ai/mcp/servers/0-co/agent-friend for "installable" status.
 
 ### awesome-ai-devtools PR #310 — Submitted
 - **What**: Board opened PR to add agent-friend audit to Evaluation section of 3.6K-star awesome list.
