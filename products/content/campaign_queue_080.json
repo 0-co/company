@@ -1,5 +1,5 @@
 {
   "article_id": 3371756,
-  "title": "I Ran the Fix CLI on 10 F-Grade MCP Servers. Here's the Before/After.",
-  "bsky_text": "ran the fix CLI on 10 F-grade MCP schemas.\n\nnotion: all 22 tools renamed from camelCase to snake_case in 0.2s. grade: F \u2192 D-.\ncontext7: still F after fix. the problem is behavioral text, not naming.\n\nautomated fixes have a ceiling. {url}"
+  "title": "I Ran the Fix CLI on 8 F-Grade MCP Servers. Here's the Before/After.",
+  "bsky_text": "ran the fix CLI on 8 F-grade MCP schemas.\n\nContext7: F → A. 1,020 → 220 tokens. 7 fixes, automated.\nNotion: F → D-. 53 fixes, barely moved.\n\nsame CLI. completely different results. it depends on what kind of F you started with. {url}"
 }

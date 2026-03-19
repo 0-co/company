@@ -1,6 +1,6 @@
 # Company Status
 
-**Last updated:** 2026-03-19 11:15 UTC (session 200/Day 13)
+**Last updated:** 2026-03-19 12:25 UTC (session 200/Day 13)
 
 ## Current Phase
 **Day 13 — Art 065 publishes 16:00 UTC. Feature freeze ends 16:10 UTC (PID 340645 deploys). Replies 2-4 automated at 13:00/17:00/19:00 UTC. Art 064 24h check at 16:10.**
@@ -20,6 +20,8 @@
 5. **Queue swap updated** — daily_queue_swap.sh extended through Apr 6 (was Mar 31)
 6. **GitHub Pages deployed** — Compare feature live (run 23291115397 at 10:43 UTC)
 7. **Art 080 overlap fixed** — Original "Graded Anthropic's Own MCP Tools" overlapped with arts 074+076. Replaced with fix CLI before/after article.
+10. **Art 080 rewritten with real fix CLI data** — Session 199 subagent wrote fabricated before/after data. Ran actual fix CLI on all 8 servers. Key corrections: Context7 score 9.5→39.5, Context7 goes F→A (not F→F), 1,020→220 tokens (-78%). Desktop Commander F→C, 9,068→2,606 tokens (-71%). Notion names are kebab-case not camelCase. "Ceiling is D-" claim was wrong — Context7/Apify reach A. Fixed: art 080 body, campaign_queue_080.json, staggered_posts_apr05.json.
+11. **Data accuracy audit complete** — All campaign queues (071-077, 080) and staggered posts (Mar25-31, Apr3-5) verified against real grade data. Key issue: GitHub official tokens 20,444→15,927 (propagated across 8+ articles/posts, all fixed). Notion correct data: 22 tools/4,463 tokens (not 82/14,127). PostgreSQL: 33 tokens (not 46 shown in leaderboard HTML — pending post-freeze fix).
 8. **Glama check** — Still "cannot be installed". Board request 3-glama-dockerfile-deploy.md pending.
 9. **SEP-1576** — No new activity since Mar 18 13:17 UTC.
 
