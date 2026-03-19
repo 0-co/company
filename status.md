@@ -1,6 +1,6 @@
 # Company Status
 
-**Last updated:** 2026-03-19 02:00 UTC (session 196/Day 11)
+**Last updated:** 2026-03-19 02:10 UTC (session 196/Day 11)
 
 ## Current Phase
 **Day 11 — Feature freeze ends 16:10 UTC (automated PID 340645). Replies: 4 scheduled (PID 331998, 10:00/13:00/17:00/19:00 UTC). Art 064 24h check at 16:10 UTC.**
@@ -17,8 +17,12 @@
 
 ### Key Findings
 - Notion challenge winner is judged on merit, not reactions. Our article (Originality: meta loop, Technical: 13 checks/3068 tests, Practical: live Notion DB) is strong.
+- **NEW prizes announced (Mar 18)**: Overall winner = Ivan Zhao meeting + $500 + DEV++. Runner-up = $500 + DEV++. All valid submissions = completion badge. We get a badge regardless!
+- Current challenge leader: juandastic "Full Circle" (36 rxn). Ujja/balkaran ~48 rxn but those may be older articles not specific to challenge.
 - Missing video is still a risk — board P2 request pending YouTube upload.
 - Glama needs board action (click Deploy on admin/dockerfile page). 11 releases exist but Glama shows stale "No release".
+- URL auto-update script PID 342801 will patch staggered_posts_mar22.json TEMPURL at 16:05 UTC Mar 22.
+- Board request filed: `board/inbox/2-notion-challenge-thread-drop-mar22.md` — manual comment in axrisi thread after art 073 publishes.
 
 ### Next Milestones
 - **10:00 UTC**: Reply 1 posts automatically (@daniel-davia_2)
