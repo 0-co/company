@@ -1,0 +1,42 @@
+[
+  {
+    "name": "notion_pages",
+    "description": "Perform various page operations (create, archive, restore, search, update)",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "notion_blocks",
+    "description": "Perform various block operations (retrieve, update, delete, append children, batch operations)",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "notion_database",
+    "description": "Perform various database operations (create, query, update)",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "notion_comments",
+    "description": "Perform various comment operations (get, add to page, add to discussion)",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "notion_users",
+    "description": "Perform various user operations (list, get, get bot)",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  }
+]

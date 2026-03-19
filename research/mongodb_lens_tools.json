@@ -1,0 +1,338 @@
+[
+  {
+    "name": "connect-mongodb",
+    "description": "Connect to a different MongoDB URI or alias",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "connect-original",
+    "description": "Connect back to the original MongoDB URI used at startup",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "add-connection-alias",
+    "description": "Add a new MongoDB connection alias",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "list-connections",
+    "description": "List all configured MongoDB connection aliases",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "list-databases",
+    "description": "List all accessible MongoDB databases",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "current-database",
+    "description": "Get the name of the current database",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "create-database",
+    "description": "Create a new MongoDB database with option to switch",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "use-database",
+    "description": "Switch to a specific database",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "drop-database",
+    "description": "Drop a database (requires confirmation)",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "create-user",
+    "description": "Create a new database user",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "drop-user",
+    "description": "Drop an existing database user",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "list-collections",
+    "description": "List collections in the current database",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "create-collection",
+    "description": "Create a new collection with options",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "drop-collection",
+    "description": "Drop a collection (requires confirmation)",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "rename-collection",
+    "description": "Rename an existing collection",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "validate-collection",
+    "description": "Run validation on a collection to check for inconsistencies",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "distinct-values",
+    "description": "Get unique values for a field",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "find-documents",
+    "description": "Run queries with filters and projections",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "count-documents",
+    "description": "Count documents with optional filter",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "insert-document",
+    "description": "Insert one or multiple documents into a collection",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "update-document",
+    "description": "Update specific documents in a collection",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "delete-document",
+    "description": "Delete document(s) (requires confirmation)",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "aggregate-data",
+    "description": "Run aggregation pipelines",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "create-index",
+    "description": "Create new index on collection",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "drop-index",
+    "description": "Drop an existing index from a collection",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "get-stats",
+    "description": "Get database or collection statistics",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "analyze-schema",
+    "description": "Automatically infer schema from collection",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "generate-schema-validator",
+    "description": "Generate a JSON Schema validator for a collection",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "compare-schemas",
+    "description": "Compare schemas between two collections",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "explain-query",
+    "description": "Analyze query performance",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "analyze-query-patterns",
+    "description": "Analyze query patterns and suggest optimizations",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "bulk-operations",
+    "description": "Perform bulk inserts, updates, or deletes",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "create-timeseries",
+    "description": "Create a time series collection for temporal data",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "collation-query",
+    "description": "Find documents with language-specific collation rules",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "text-search",
+    "description": "Perform full-text search across text-indexed fields",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "geo-query",
+    "description": "Run geospatial queries with various operators",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "transaction",
+    "description": "Execute multiple operations in a single transaction",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "watch-changes",
+    "description": "Watch for changes in a collection using change streams",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "gridfs-operation",
+    "description": "Manage large files with GridFS",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "clear-cache",
+    "description": "Clear memory caches to ensure fresh data",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "shard-status",
+    "description": "Get sharding status for database or collections",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "export-data",
+    "description": "Export query results to formatted JSON or CSV",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  }
+]
