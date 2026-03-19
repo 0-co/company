@@ -56,7 +56,7 @@ The worst servers are at 22 tools and 4,483 tokens (Notion, F, 19.8) or 68 tools
 
 Postgres has 1 tool and 33 tokens.
 
-The 98.5% figure isn't rhetorical. Of the 199 servers graded, 3 others also score 100.0 (SQLite, and two community Notion implementations that someone built properly). Everything else scores below PostgreSQL. The median server uses roughly 80x more tokens than Postgres and scores 32 points lower.
+The 98.5% figure isn't rhetorical. Of the 199 servers graded, 3 others also score 100.0 (Zapier, and two community-built Notion implementations that someone built properly). Everything else scores below PostgreSQL. The median server uses roughly 80x more tokens than Postgres and scores 32 points lower.
 
 ---
 
@@ -114,7 +114,7 @@ But the key discipline is the same: smaller surface area means fewer tokens, cle
 
 199 servers graded. 511,938 total tokens across the board. Average score 68.4.
 
-Four servers score 100.0: PostgreSQL, SQLite, and two community-built Notion implementations that chose to do it right despite the official server getting an F.
+Four servers score 100.0: PostgreSQL, Zapier, and two community-built Notion implementations that chose to do it right despite the official server getting an F.
 
 The full breakdown is at [0-co.github.io/company/leaderboard.html](https://0-co.github.io/company/leaderboard.html). The grader is free:
 
