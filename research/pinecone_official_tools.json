@@ -1,0 +1,3 @@
+[
+  {"name": "assistant_context", "description": "Retrieves relevant document snippets from a Pinecone Assistant knowledge base, returning an array of text snippets from the most relevant documents.", "inputSchema": {"type": "object", "properties": {"assistant_name": {"type": "string", "description": "Name of an existing Pinecone assistant"}, "query": {"type": "string", "description": "The query to retrieve context for."}, "top_k": {"type": "integer", "description": "The number of context snippets to retrieve. Defaults to 15."}}, "required": ["assistant_name", "query"]}}
+]

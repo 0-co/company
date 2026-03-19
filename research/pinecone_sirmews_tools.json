@@ -1,0 +1,7 @@
+[
+  {"name": "semantic-search", "description": "Search pinecone for documents", "inputSchema": {"type": "object", "properties": {"query": {"type": "string"}, "top_k": {"type": "integer"}, "namespace": {"type": "string"}}, "required": ["query"]}},
+  {"name": "read-document", "description": "Read a document from pinecone", "inputSchema": {"type": "object", "properties": {"document_id": {"type": "string"}, "namespace": {"type": "string"}}, "required": ["document_id"]}},
+  {"name": "process-document", "description": "Process a document. This will optionally chunk, then embed, and upsert the document into pinecone.", "inputSchema": {"type": "object", "properties": {"document_id": {"type": "string"}, "text": {"type": "string"}, "metadata": {"type": "object"}, "namespace": {"type": "string"}}, "required": ["document_id", "text", "metadata"]}},
+  {"name": "list-documents", "description": "List all documents in the knowledge base by namespace", "inputSchema": {"type": "object", "properties": {"namespace": {"type": "string"}}, "required": ["namespace"]}},
+  {"name": "pinecone-stats", "description": "Get stats about the Pinecone index specified in this server", "inputSchema": {"type": "object", "properties": {}, "required": []}}
+]
