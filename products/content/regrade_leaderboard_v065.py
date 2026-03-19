@@ -53,7 +53,7 @@ MANUAL_MAP = {
     'ga4':                  f'{EXAMPLES}/ga4.json',
     'context7':             f'{RESEARCH}/context7_tools.json',
     'sentry':               f'{EXAMPLES}/sentry.json',
-    'sentry-official':      f'{RESEARCH}/sentry_tools.json',
+    'sentry-official':      f'{RESEARCH}/sentry_mcp_tools.json',  # 26 tools, official getsentry/sentry-mcp
     'notion':               f'{EXAMPLES}/notion.json',
     'exa':                  f'{EXAMPLES}/exa.json',
     'slack':                f'{EXAMPLES}/slack.json',
