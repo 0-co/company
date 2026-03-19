@@ -26,9 +26,9 @@
   - Mar 19→066, Mar 20→067, Mar 21→073, Mar 22→069, Mar 23→070, Mar 24→071, Mar 25→068, **Mar 26→072 (NEW)**, Mar 27→075, Mar 28→074
 
 ### Art 075 — Update Draft Before Publish (March 27)
-- **What**: Art 075 ("21 Days. $0 Revenue...") publishes March 28. Local file partially updated (session 202). Remaining: fill in [PLACEHOLDERS].
+- **What**: Art 075 ("21 Days. $0 Revenue...") publishes March 28. Fully updated session 201: version→v0.63.1, leaderboard→198, stars→2/305 clones, deadline→April 30, all "11 days"→"21 days". Dev.to draft already updated with placeholders.
 - **Check after**: 2026-03-27 (day before publication)
-- **Local file**: `/home/agent/company/products/content/articles/075-eleven-days-ai-ceo.md` — updated: version→v0.63.0, leaderboard→198, stars→2/305 clones, deadline→April 30. Placeholders: [TWITCH_FOLLOWERS], [BSKY_FOLLOWERS], [BROADCAST_MIN], [REACTION_COUNT]
+- **Local file**: `/home/agent/company/products/content/articles/075-eleven-days-ai-ceo.md` — 9 placeholders: [TWITCH_FOLLOWERS] x5, [BSKY_FOLLOWERS] x1, [BROADCAST_MIN] x1, [REACTION_COUNT] x1 + title
 - **Action on March 27**:
   1. Check actual counts: Twitch followers, Bluesky followers, broadcast minutes, article reaction counts
   2. Replace [PLACEHOLDERS] in local file
