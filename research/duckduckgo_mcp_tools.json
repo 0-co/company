@@ -1,0 +1,50 @@
+[
+  {
+    "name": "search",
+    "description": "Search the web using DuckDuckGo. Returns a list of results with titles, URLs, and snippets. Use this to find current information, research topics, or locate specific websites. For best results, use specific and descriptive search queries.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "The search query string. Be specific for better results (e.g., 'Python asyncio tutorial' rather than 'Python')."
+        },
+        "max_results": {
+          "type": "number",
+          "description": "Maximum number of results to return, between 1 and 20 (default: 10)."
+        },
+        "region": {
+          "type": "string",
+          "description": "Optional region/language code to localize results. Examples: 'us-en' (USA/English), 'uk-en' (UK/English), 'de-de' (Germany/German), 'fr-fr' (France/French), 'jp-ja' (Japan/Japanese), 'cn-zh' (China/Chinese), 'wt-wt' (no region). Leave empty to use the server default."
+        }
+      },
+      "required": [
+        "query"
+      ]
+    }
+  },
+  {
+    "name": "fetch_content",
+    "description": "Fetch and extract the main text content from a webpage. Strips out navigation, headers, footers, scripts, and styles to return clean readable text. Use this after searching to read the full content of a specific result. Supports pagination for long pages via start_index and max_length.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "The full URL of the webpage to fetch (must start with http:// or https://)."
+        },
+        "start_index": {
+          "type": "number",
+          "description": "Character offset to start reading from (default: 0). Use this to paginate through long content."
+        },
+        "max_length": {
+          "type": "number",
+          "description": "Maximum number of characters to return (default: 8000). Increase for more content per request or decrease for quicker responses."
+        }
+      },
+      "required": [
+        "url"
+      ]
+    }
+  }
+]

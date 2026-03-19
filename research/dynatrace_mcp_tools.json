@@ -1,0 +1,278 @@
+[
+  {
+    "name": "execute_dql",
+    "description": "Execute Dynatrace Query Language statements to retrieve logs, events, spans, and metrics from Grail. Costs depend on volume (GB scanned).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "DQL query string"
+        }
+      },
+      "required": [
+        "query"
+      ]
+    }
+  },
+  {
+    "name": "list_problems",
+    "description": "Enumerate and retrieve details about problems detected in monitored services for the last 12 hours. An additional filter can be provided using DQL filter.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filter": {
+          "type": "string",
+          "description": "Optional DQL filter"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "get_problem_details",
+    "description": "Obtain comprehensive information about specific problems",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "problemId": {
+          "type": "string",
+          "description": "Problem ID"
+        }
+      },
+      "required": [
+        "problemId"
+      ]
+    }
+  },
+  {
+    "name": "list_security_problems",
+    "description": "Retrieve vulnerability and security issue inventory",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filter": {
+          "type": "string",
+          "description": "Optional filter"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "get_security_problem_details",
+    "description": "Access detailed vulnerability analysis data",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vulnerabilityId": {
+          "type": "string",
+          "description": "Vulnerability ID"
+        }
+      },
+      "required": [
+        "vulnerabilityId"
+      ]
+    }
+  },
+  {
+    "name": "get_entity_details",
+    "description": "Fetch comprehensive information about monitored entities (services, applications, infrastructure components)",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "entityId": {
+          "type": "string",
+          "description": "Entity ID on Dynatrace"
+        }
+      },
+      "required": [
+        "entityId"
+      ]
+    }
+  },
+  {
+    "name": "get_entity_ownership",
+    "description": "Determine ownership and responsibility assignments for monitored entities",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "entityId": {
+          "type": "string",
+          "description": "Entity ID"
+        }
+      },
+      "required": [
+        "entityId"
+      ]
+    }
+  },
+  {
+    "name": "send_slack_message",
+    "description": "Deliver notifications to Slack via configured Slack Connector",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "Message content"
+        }
+      },
+      "required": [
+        "message"
+      ]
+    }
+  },
+  {
+    "name": "create_workflow",
+    "description": "Establish automation workflows through Dynatrace AutomationEngine",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "workflowDefinition": {
+          "type": "object",
+          "description": "Workflow definition object"
+        }
+      },
+      "required": [
+        "workflowDefinition"
+      ]
+    }
+  },
+  {
+    "name": "send_event",
+    "description": "Submit event data to Dynatrace",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "eventData": {
+          "type": "object",
+          "description": "Event data"
+        }
+      },
+      "required": [
+        "eventData"
+      ]
+    }
+  },
+  {
+    "name": "send_email",
+    "description": "Transmit email notifications. Requires email:emails:send permission.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "recipient": {
+          "type": "string",
+          "description": "Email recipient"
+        },
+        "subject": {
+          "type": "string",
+          "description": "Email subject"
+        },
+        "body": {
+          "type": "string",
+          "description": "Email body"
+        }
+      },
+      "required": [
+        "recipient",
+        "subject",
+        "body"
+      ]
+    }
+  },
+  {
+    "name": "list_documents",
+    "description": "Enumerate Notebooks, Dashboards, Launchpads, and other platform documents. Requires document:documents:read permission.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "read_document",
+    "description": "Access and retrieve document contents. Requires document:documents:read permission.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "documentId": {
+          "type": "string",
+          "description": "Document ID"
+        }
+      },
+      "required": [
+        "documentId"
+      ]
+    }
+  },
+  {
+    "name": "create_document",
+    "description": "Generate new documents within Dynatrace. Requires document:documents:write permission.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Document title"
+        },
+        "content": {
+          "type": "string",
+          "description": "Document content"
+        }
+      },
+      "required": [
+        "title",
+        "content"
+      ]
+    }
+  },
+  {
+    "name": "nl2dql",
+    "description": "Convert natural language queries into Dynatrace Query Language (AI-Powered, Preview)",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "naturalLanguageQuery": {
+          "type": "string",
+          "description": "Natural language query string"
+        }
+      },
+      "required": [
+        "naturalLanguageQuery"
+      ]
+    }
+  },
+  {
+    "name": "dql2nl",
+    "description": "Generate plain English explanations of DQL queries (AI-Powered, Preview)",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "dqlQuery": {
+          "type": "string",
+          "description": "DQL query to explain"
+        }
+      },
+      "required": [
+        "dqlQuery"
+      ]
+    }
+  },
+  {
+    "name": "davis_copilot_chat",
+    "description": "Engage contextual AI assistance for Dynatrace-related questions",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Query for Davis Copilot"
+        }
+      },
+      "required": [
+        "query"
+      ]
+    }
+  }
+]

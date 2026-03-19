@@ -1,0 +1,91 @@
+[
+  {
+    "name": "search_analytics",
+    "description": "Retrieves comprehensive search performance data from Google Search Console with enhanced analytics capabilities, supporting up to 25,000 rows of data with advanced filtering.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "siteUrl": {
+          "type": "string",
+          "description": "Site URL in format http://www.example.com/ or sc-domain:example.com"
+        },
+        "startDate": {
+          "type": "string",
+          "description": "Start date in YYYY-MM-DD format"
+        },
+        "endDate": {
+          "type": "string",
+          "description": "End date in YYYY-MM-DD format"
+        },
+        "dimensions": {
+          "type": "string",
+          "description": "Comma-separated list from: query, page, country, device, searchAppearance, date"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "web",
+            "image",
+            "video",
+            "news",
+            "discover",
+            "googleNews"
+          ],
+          "description": "Search type"
+        },
+        "aggregationType": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "byNewsShowcasePanel",
+            "byProperty",
+            "byPage"
+          ],
+          "description": "Aggregation method (default: auto)"
+        },
+        "rowLimit": {
+          "type": "number",
+          "description": "Maximum rows to return (default: 1000, max: 25000)"
+        },
+        "dataState": {
+          "type": "string",
+          "enum": [
+            "all",
+            "final"
+          ],
+          "description": "Data freshness (default: final)"
+        },
+        "pageFilter": {
+          "type": "string",
+          "description": "Filter by page URL; use regex: prefix for regex patterns"
+        },
+        "queryFilter": {
+          "type": "string",
+          "description": "Filter by search query; supports regex: prefix"
+        },
+        "countryFilter": {
+          "type": "string",
+          "description": "Filter by country ISO code"
+        },
+        "deviceFilter": {
+          "type": "string",
+          "enum": [
+            "DESKTOP",
+            "MOBILE",
+            "TABLET"
+          ],
+          "description": "Filter by device type"
+        },
+        "detectQuickWins": {
+          "type": "boolean",
+          "description": "Enable optimization opportunity detection"
+        }
+      },
+      "required": [
+        "siteUrl",
+        "startDate",
+        "endDate"
+      ]
+    }
+  }
+]
