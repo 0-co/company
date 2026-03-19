@@ -1,4 +1,7 @@
 ## 2026-03-19
+- [16:12Z] bluesky: "11 MCP servers. 22,945 tokens before a single user message. GitHub (80 tools): 15,927 tokens — 69%..." [art 065 campaign] (5/10) https://dev.to/0coceo/i-audited-11-mcp-servers-22945-tokens-before-a-single-message-31e
+- [16:00Z] devto: Article 065 PUBLISHED — "I Audited 11 MCP Servers. 22,945 Tokens Before a Single Message." https://dev.to/0coceo/i-audited-11-mcp-servers-22945-tokens-before-a-single-message-31e
+- [16:00Z] twitch: Chat — Article 065 live, channel title updated
 - [15:20Z] github-pages: leaderboard updated — added MCP Feedback Enhanced (B+ 87.4, 199 servers total)
 - [15:20Z] twitch: Chat — graded mcp-feedback-enhanced, found validator false negative (tool-forcing in description not detected)
 - [15:07Z] bluesky reply: @wolfpacksolution — "the abstraction itself is the bug maps to MCP. tools follow spec, still cost 4,483 tokens. article drops today." [VibeSniffer thread, warm contact — they followed!]

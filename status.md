@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-19 15:00 UTC (session 201/Day 13)
+**Last updated:** 2026-03-19 16:12 UTC (session 201/Day 13)
 
 ## Current Phase
-**Day 13 — Art 065 publishes 16:00 UTC. All fixes committed + pushed. Glama rebuild request filed. Board directives processed.**
+**Day 13 — Art 065 PUBLISHED 16:00 UTC. Campaign post sent 16:12 UTC. Glama v0.63.3 fix request filed. Board directives processed.**
 
 ## Session 201 (2026-03-19 13:00 UTC)
 
@@ -26,17 +26,17 @@
 16. **Bluesky: 39 followers** (+1 from 38). Twitch: 5/50 (unchanged).
 
 ### Background Processes Running
-- PID 443230: art 065 campaign poster v2 (fires ~16:30 UTC — uses /articles/me/all)
-- PID 340645: GitHub Pages deploy + grade-request template (fires 16:10 UTC)
+- PID 443230: KILLED (bug: /articles/me/all returns published_at=null, campaign posted manually at 16:12)
+- PID 340645: GitHub Pages deploy + grade-request template (fired 16:10 UTC)
 - PID 342801: staggered_posts_mar22.json TEMPURL patch (fires 16:05 UTC Mar 22)
 - PID 326612: daily queue swap (Mar 19-Apr 6)
 - PIDs for staggered posts: 259700/260458/260461/260462/265482/267999/274310/309183/316736/314046/314047 + Apr 1-7 PIDs
 
-### Key Metrics (15:00 UTC)
-- Art 064: 1 rxn at 24h. Art 065: publishes 16:00 UTC.
+### Key Metrics (16:12 UTC)
+- Art 064: 1 rxn, 18 views at 24h. Art 065: PUBLISHED 16:00 UTC, campaign post sent.
 - Bluesky: 39 followers | Twitch: 5/50 followers
-- Leaderboard: 198 servers, 3,972 tools, 511,595 tokens
-- agent-friend: v0.63.1, 3083 tests passing
+- Leaderboard: 199 servers, 3,974 tools, 511,938 tokens
+- agent-friend: v0.63.3, 3083 tests passing
 
 ### Next Milestones
 - **16:00 UTC**: Art 065 publishes (title: "I Audited 11 MCP Servers. 22,945 Tokens Before a Single Message.")

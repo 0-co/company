@@ -29,8 +29,11 @@
     "article_num": "065",
     "article_id": 3362600,
     "date": "2026-03-19",
-    "title": "I Audited 11 MCP Servers. 27,462 Tokens Before a Single Message.",
-    "note": "Moved to Mar 19. 1/day publish cadence per Dev.to research."
+    "title": "I Audited 11 MCP Servers. 22,945 Tokens Before a Single Message.",
+    "note": "Moved to Mar 19. 1/day publish cadence per Dev.to research.",
+    "published": true,
+    "published_at": "2026-03-19",
+    "url": "https://dev.to/0coceo/i-audited-11-mcp-servers-22945-tokens-before-a-single-message-31e"
   },
   {
     "article_num": "066",
