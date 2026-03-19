@@ -1,0 +1,1350 @@
+[
+  {
+    "name": "get_initial_context",
+    "description": "Initialize connection to Contentful and get initial context. Always call this first before using any other tools.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "get_content_type",
+    "description": "Get details about a specific Contentful content type",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "contentTypeId": {
+          "type": "string",
+          "description": "The ID of the content type to retrieve details for"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "contentTypeId"
+      ]
+    }
+  },
+  {
+    "name": "list_content_types",
+    "description": "List all available content types in a Contentful space",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "number"
+        },
+        "skip": {
+          "type": "number"
+        },
+        "order": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "create_content_type",
+    "description": "Create a new content type",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "displayField": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "contentTypeId": {
+          "type": "string"
+        },
+        "fields": {
+          "type": "array"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "displayField",
+        "fields"
+      ]
+    }
+  },
+  {
+    "name": "update_content_type",
+    "description": "Update an existing content type in Contentful",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "contentTypeId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "displayField": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "fields": {
+          "type": "array"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "contentTypeId"
+      ]
+    }
+  },
+  {
+    "name": "delete_content_type",
+    "description": "Delete a content type",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "contentTypeId": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "contentTypeId"
+      ]
+    }
+  },
+  {
+    "name": "publish_content_type",
+    "description": "Publish a content type",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "contentTypeId": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "contentTypeId"
+      ]
+    }
+  },
+  {
+    "name": "unpublish_content_type",
+    "description": "Unpublish a content type",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "contentTypeId": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "contentTypeId"
+      ]
+    }
+  },
+  {
+    "name": "search_entries",
+    "description": "Search for specific entries in your Contentful space",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string"
+        },
+        "contentTypeId": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "number"
+        },
+        "skip": {
+          "type": "number"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "create_entry",
+    "description": "Create a new entry in a Contentful space",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "contentTypeId": {
+          "type": "string"
+        },
+        "fields": {
+          "type": "object"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "contentTypeId",
+        "fields"
+      ]
+    }
+  },
+  {
+    "name": "get_entry",
+    "description": "Retrieve an existing entry",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "entryId": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "entryId"
+      ]
+    }
+  },
+  {
+    "name": "update_entry",
+    "description": "Update an existing entry in Contentful",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "entryId": {
+          "type": "string"
+        },
+        "fields": {
+          "type": "object"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "entryId",
+        "fields"
+      ]
+    }
+  },
+  {
+    "name": "delete_entry",
+    "description": "Delete a specific content entry from your Contentful space",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "entryId": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "entryId"
+      ]
+    }
+  },
+  {
+    "name": "publish_entry",
+    "description": "Publish one or more entries in Contentful",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "entryId": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "entryId"
+      ]
+    }
+  },
+  {
+    "name": "unpublish_entry",
+    "description": "Unpublish an entry in Contentful",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "entryId": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "entryId"
+      ]
+    }
+  },
+  {
+    "name": "archive_entry",
+    "description": "Archive an entry in Contentful",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "entryId": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "entryId"
+      ]
+    }
+  },
+  {
+    "name": "unarchive_entry",
+    "description": "Unarchive an entry in Contentful",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "entryId": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "entryId"
+      ]
+    }
+  },
+  {
+    "name": "upload_asset",
+    "description": "Upload a new asset",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "file": {
+          "type": "object"
+        },
+        "description": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "file"
+      ]
+    }
+  },
+  {
+    "name": "list_assets",
+    "description": "List assets in a Contentful space",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "number"
+        },
+        "skip": {
+          "type": "number"
+        },
+        "query": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "get_asset",
+    "description": "Retrieve an asset",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "assetId": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "assetId"
+      ]
+    }
+  },
+  {
+    "name": "update_asset",
+    "description": "Update an asset",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "assetId": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "assetId"
+      ]
+    }
+  },
+  {
+    "name": "delete_asset",
+    "description": "Delete an asset",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "assetId": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "assetId"
+      ]
+    }
+  },
+  {
+    "name": "publish_asset",
+    "description": "Publish an asset in Contentful",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "assetId": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "assetId"
+      ]
+    }
+  },
+  {
+    "name": "unpublish_asset",
+    "description": "Unpublish an asset in Contentful",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "assetId": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "assetId"
+      ]
+    }
+  },
+  {
+    "name": "archive_asset",
+    "description": "Archive an asset in Contentful",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "assetId": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "assetId"
+      ]
+    }
+  },
+  {
+    "name": "unarchive_asset",
+    "description": "Unarchive an asset in Contentful",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "assetId": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "assetId"
+      ]
+    }
+  },
+  {
+    "name": "list_environments",
+    "description": "List all environments in a space",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "spaceId": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "create_environment",
+    "description": "Create a new environment",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    }
+  },
+  {
+    "name": "delete_environment",
+    "description": "Delete an environment",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "environmentId": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "environmentId"
+      ]
+    }
+  },
+  {
+    "name": "list_locales",
+    "description": "List all locales in a Contentful environment",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "get_locale",
+    "description": "Retrieve a specific locale from your Contentful environment",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "localeId": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "localeId"
+      ]
+    }
+  },
+  {
+    "name": "create_locale",
+    "description": "Create a new locale in Contentful",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "fallbackCode": {
+          "type": "string"
+        },
+        "optional": {
+          "type": "boolean"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "name"
+      ]
+    }
+  },
+  {
+    "name": "update_locale",
+    "description": "Update a locale in Contentful",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "localeId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "fallbackCode": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "localeId"
+      ]
+    }
+  },
+  {
+    "name": "delete_locale",
+    "description": "Delete a locale from Contentful",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "localeId": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "localeId"
+      ]
+    }
+  },
+  {
+    "name": "list_tags",
+    "description": "List all tags in a Contentful environment",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "number"
+        },
+        "skip": {
+          "type": "number"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "create_tag",
+    "description": "Create a new tag in Contentful",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "visibility": {
+          "type": "string",
+          "enum": [
+            "public",
+            "private"
+          ]
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "id",
+        "visibility"
+      ]
+    }
+  },
+  {
+    "name": "list_editor_interfaces",
+    "description": "List editor interfaces for content types in Contentful",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "get_editor_interface",
+    "description": "Get the editor interface for a content type",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "contentTypeId": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "contentTypeId"
+      ]
+    }
+  },
+  {
+    "name": "update_editor_interface",
+    "description": "Update the editor interface for a content type",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "contentTypeId": {
+          "type": "string"
+        },
+        "controls": {
+          "type": "array"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "contentTypeId"
+      ]
+    }
+  },
+  {
+    "name": "list_orgs",
+    "description": "List all organizations that the user has access to",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "get_org",
+    "description": "Get details of a specific organization",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "organizationId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "organizationId"
+      ]
+    }
+  },
+  {
+    "name": "list_spaces",
+    "description": "List all available spaces",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "get_space",
+    "description": "Get details of a space",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "spaceId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "spaceId"
+      ]
+    }
+  },
+  {
+    "name": "create_ai_action",
+    "description": "Create a new AI action in Contentful",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "instruction": {
+          "type": "object"
+        },
+        "spaceId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "instruction"
+      ]
+    }
+  },
+  {
+    "name": "invoke_ai_action",
+    "description": "Invoke an AI action in Contentful",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "aiActionId": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "aiActionId"
+      ]
+    }
+  },
+  {
+    "name": "get_ai_action_invocation",
+    "description": "Get details of an AI action invocation",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "aiActionId": {
+          "type": "string"
+        },
+        "invocationId": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "aiActionId",
+        "invocationId"
+      ]
+    }
+  },
+  {
+    "name": "delete_ai_action",
+    "description": "Delete a specific AI action from your Contentful space",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "aiActionId": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "aiActionId"
+      ]
+    }
+  },
+  {
+    "name": "get_ai_action",
+    "description": "Get details of a specific AI action",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "aiActionId": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "aiActionId"
+      ]
+    }
+  },
+  {
+    "name": "list_ai_actions",
+    "description": "List all AI actions in a Contentful space",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "spaceId": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "publish_ai_action",
+    "description": "Publish an AI action in Contentful",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "aiActionId": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "aiActionId"
+      ]
+    }
+  },
+  {
+    "name": "unpublish_ai_action",
+    "description": "Unpublish an AI action in Contentful",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "aiActionId": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "aiActionId"
+      ]
+    }
+  },
+  {
+    "name": "update_ai_action",
+    "description": "Update an AI action in Contentful",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "aiActionId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "instruction": {
+          "type": "object"
+        },
+        "spaceId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "aiActionId"
+      ]
+    }
+  },
+  {
+    "name": "create_concept",
+    "description": "Create a new taxonomy concept in Contentful",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "uri": {
+          "type": "string"
+        },
+        "prefLabel": {
+          "type": "object"
+        },
+        "spaceId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "prefLabel"
+      ]
+    }
+  },
+  {
+    "name": "get_concept",
+    "description": "Get a taxonomy concept from Contentful",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "conceptId": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "conceptId"
+      ]
+    }
+  },
+  {
+    "name": "list_concepts",
+    "description": "List all taxonomy concepts in a Contentful space",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "number"
+        },
+        "spaceId": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "update_concept",
+    "description": "Update a taxonomy concept in Contentful",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "conceptId": {
+          "type": "string"
+        },
+        "prefLabel": {
+          "type": "object"
+        },
+        "spaceId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "conceptId"
+      ]
+    }
+  },
+  {
+    "name": "delete_concept",
+    "description": "Delete a taxonomy concept from Contentful",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "conceptId": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "conceptId"
+      ]
+    }
+  },
+  {
+    "name": "create_concept_scheme",
+    "description": "Create a new concept scheme in Contentful",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "prefLabel": {
+          "type": "object"
+        },
+        "spaceId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "prefLabel"
+      ]
+    }
+  },
+  {
+    "name": "get_concept_scheme",
+    "description": "Get a concept scheme from Contentful",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "conceptSchemeId": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "conceptSchemeId"
+      ]
+    }
+  },
+  {
+    "name": "list_concept_schemes",
+    "description": "List all concept schemes in a Contentful space",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "number"
+        },
+        "spaceId": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "update_concept_scheme",
+    "description": "Update a concept scheme in Contentful",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "conceptSchemeId": {
+          "type": "string"
+        },
+        "prefLabel": {
+          "type": "object"
+        },
+        "spaceId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "conceptSchemeId"
+      ]
+    }
+  },
+  {
+    "name": "delete_concept_scheme",
+    "description": "Delete a concept scheme from Contentful",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "conceptSchemeId": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "conceptSchemeId"
+      ]
+    }
+  },
+  {
+    "name": "space_to_space_migration_handler",
+    "description": "Enable or disable the space-to-space migration workflow tools",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "enableWorkflow": {
+          "type": "boolean",
+          "description": "Set to true to enable the workflow tools, false to disable them"
+        }
+      },
+      "required": [
+        "enableWorkflow"
+      ]
+    }
+  },
+  {
+    "name": "space_to_space_param_collection",
+    "description": "Collect parameters for space-to-space migration",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "confirmation": {
+          "type": "boolean"
+        },
+        "spaceId": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "export_space",
+    "description": "Export a space to a file",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "exportDir": {
+          "type": "string"
+        },
+        "saveFile": {
+          "type": "boolean"
+        },
+        "includeDrafts": {
+          "type": "boolean"
+        },
+        "includeArchived": {
+          "type": "boolean"
+        },
+        "spaceId": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "import_space",
+    "description": "Import space content from an exported file",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "contentFile": {
+          "type": "string"
+        },
+        "spaceId": {
+          "type": "string"
+        },
+        "environmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "contentFile"
+      ]
+    }
+  }
+]

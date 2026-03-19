@@ -1,0 +1,363 @@
+[
+  {
+    "name": "redis_database_create_new",
+    "description": "Create a new Upstash redis database.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {"type": "string", "description": "Name of the database."},
+        "primary_region": {
+          "type": "string",
+          "enum": ["us-east-1", "us-west-1", "us-west-2", "eu-west-1", "eu-central-1", "ap-southeast-1", "ap-southeast-2", "sa-east-1"],
+          "description": "Primary Region of the Global Database."
+        },
+        "read_regions": {
+          "type": "array",
+          "items": {"type": "string", "enum": ["us-east-1", "us-west-1", "us-west-2", "eu-west-1", "eu-central-1", "ap-southeast-1", "ap-southeast-2", "sa-east-1"]},
+          "description": "Array of read regions of the db"
+        }
+      },
+      "required": ["name", "primary_region"]
+    }
+  },
+  {
+    "name": "redis_database_delete",
+    "description": "Delete an Upstash redis database.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "database_id": {"type": "string", "description": "The ID of the database to delete."}
+      },
+      "required": ["database_id"]
+    }
+  },
+  {
+    "name": "redis_database_list_databases",
+    "description": "List all Upstash redis databases. Only their names and ids.",
+    "inputSchema": {"type": "object", "properties": {}}
+  },
+  {
+    "name": "redis_database_get_details",
+    "description": "Get further details of a specific Upstash redis database.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "database_id": {"type": "string", "description": "The ID of the database to get details for."}
+      },
+      "required": ["database_id"]
+    }
+  },
+  {
+    "name": "redis_database_update_regions",
+    "description": "Update the read regions of an Upstash redis database.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string", "description": "The ID of your database."},
+        "read_regions": {
+          "type": "array",
+          "items": {"type": "string", "enum": ["us-east-1", "us-west-1", "us-west-2", "eu-west-1", "eu-central-1", "ap-southeast-1", "ap-southeast-2", "sa-east-1"]},
+          "description": "Array of the new read regions of the database."
+        }
+      },
+      "required": ["id", "read_regions"]
+    }
+  },
+  {
+    "name": "redis_database_reset_password",
+    "description": "Reset the password of an Upstash redis database.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string", "description": "The ID of your database."}
+      },
+      "required": ["id"]
+    }
+  },
+  {
+    "name": "redis_database_get_statistics",
+    "description": "Get comprehensive usage statistics of an Upstash redis database.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string", "description": "The ID of your database."},
+        "period": {
+          "type": "string",
+          "enum": ["1h", "3h", "12h", "1d", "3d", "7d"],
+          "description": "The period for sampled stats."
+        },
+        "stat_type": {
+          "type": "string",
+          "enum": ["read_latency_mean", "write_latency_mean", "keyspace", "throughput", "diskusage"],
+          "description": "The type of sampled stat to get (defaults to 'throughput')"
+        }
+      },
+      "required": ["id", "period"]
+    }
+  },
+  {
+    "name": "redis_database_manage_backup",
+    "description": "Create, delete, or restore backups for a specific Upstash redis database.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "database_id": {"type": "string", "description": "The ID of the database to manage backups for."},
+        "operation": {
+          "type": "string",
+          "enum": ["create", "delete", "restore"],
+          "description": "The backup operation to perform: create, delete, or restore."
+        },
+        "backup_name": {"type": "string", "description": "Name for the backup (required for create operation)."},
+        "backup_id": {"type": "string", "description": "ID of the backup (required for delete and restore operations)."}
+      },
+      "required": ["database_id", "operation"]
+    }
+  },
+  {
+    "name": "redis_database_list_backups",
+    "description": "List all backups of a specific Upstash redis database.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "database_id": {"type": "string", "description": "The ID of the database to list backups for."}
+      },
+      "required": ["database_id"]
+    }
+  },
+  {
+    "name": "redis_database_set_daily_backup",
+    "description": "Enable or disable daily backups for a specific Upstash redis database.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "database_id": {"type": "string", "description": "The ID of the database to enable or disable daily backups for."},
+        "enable": {"type": "boolean", "description": "Whether to enable or disable daily backups."}
+      },
+      "required": ["database_id", "enable"]
+    }
+  },
+  {
+    "name": "redis_database_run_redis_commands",
+    "description": "Run one or more Redis commands on a specific Upstash redis database.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "database_id": {"type": "string", "description": "The ID of the database to run commands on."},
+        "database_rest_url": {"type": "string", "description": "The REST URL of the database."},
+        "database_rest_token": {"type": "string", "description": "The REST token of the database."},
+        "commands": {
+          "type": "array",
+          "items": {"type": "array", "items": {"type": "string"}},
+          "description": "The Redis commands to run."
+        }
+      },
+      "required": ["commands"]
+    }
+  },
+  {
+    "name": "qstash_get_user_token",
+    "description": "Get the QSTASH_TOKEN and QSTASH_URL of the current user.",
+    "inputSchema": {"type": "object", "properties": {}}
+  },
+  {
+    "name": "qstash_publish_message",
+    "description": "Publish a message to a destination URL using QStash.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "destination": {"type": "string", "description": "The destination URL to send the message to."},
+        "body": {"type": "string", "description": "Request body (JSON string or plain text)"},
+        "method": {"type": "string", "enum": ["GET", "POST", "PUT", "DELETE", "PATCH"], "description": "HTTP method (optional, defaults to POST)"},
+        "delay": {"type": "string", "description": "Delay before message delivery (e.g., '10s', '5m', '1h')"},
+        "retries": {"type": "number", "description": "Number of retries on failure, default is 3"},
+        "callback": {"type": "string", "description": "Callback URL for successful delivery"},
+        "failureCallback": {"type": "string", "description": "Callback URL for failed delivery"},
+        "timeout": {"type": "string", "description": "Request timeout (e.g., '30s', '1h')"},
+        "queueName": {"type": "string", "description": "Queue name to use"},
+        "extraHeaders": {"type": "object", "additionalProperties": {"type": "string"}, "description": "Extra headers to add to the request"},
+        "region": {"type": "string", "enum": ["eu", "us", "local"], "description": "QStash region to use"}
+      },
+      "required": ["destination"]
+    }
+  },
+  {
+    "name": "qstash_logs_list",
+    "description": "List QStash logs with optional filtering.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "cursor": {"type": "string", "description": "Cursor for pagination"},
+        "messageId": {"type": "string", "description": "Filter logs by message ID"},
+        "state": {
+          "type": "string",
+          "enum": ["CREATED", "ACTIVE", "RETRY", "ERROR", "IN_PROGRESS", "DELIVERED", "FAILED", "CANCEL_REQUESTED", "CANCELLED"],
+          "description": "Filter logs by state"
+        },
+        "url": {"type": "string", "description": "Filter logs by URL"},
+        "fromDate": {"type": "number", "description": "Filter logs from date (Unix timestamp in milliseconds)"},
+        "toDate": {"type": "number", "description": "Filter logs to date (Unix timestamp in milliseconds)"},
+        "count": {"type": "number", "description": "Number of logs to return (max 1000)"}
+      }
+    }
+  },
+  {
+    "name": "qstash_logs_get",
+    "description": "Get details of a single QStash log item by message ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "messageId": {"type": "string", "description": "The message ID to get details for"}
+      },
+      "required": ["messageId"]
+    }
+  },
+  {
+    "name": "qstash_dlq_list",
+    "description": "List messages in the QStash Dead Letter Queue (DLQ).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "cursor": {"type": "string", "description": "Cursor for pagination"},
+        "messageId": {"type": "string", "description": "Filter DLQ messages by message ID"},
+        "url": {"type": "string", "description": "Filter DLQ messages by URL"},
+        "fromDate": {"type": "number", "description": "Filter from date (Unix timestamp in milliseconds)"},
+        "toDate": {"type": "number", "description": "Filter to date (Unix timestamp in milliseconds)"},
+        "count": {"type": "number", "description": "Number of messages to return (max 100)"}
+      }
+    }
+  },
+  {
+    "name": "qstash_dlq_get",
+    "description": "Get details of a single DLQ message by DLQ ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "dlqId": {"type": "string", "description": "The DLQ ID of the message to retrieve"}
+      },
+      "required": ["dlqId"]
+    }
+  },
+  {
+    "name": "qstash_schedules_list",
+    "description": "List all QStash schedules.",
+    "inputSchema": {"type": "object", "properties": {}}
+  },
+  {
+    "name": "qstash_schedules_manage",
+    "description": "Create, update, pause, resume, or delete QStash schedules.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "operation": {
+          "type": "string",
+          "enum": ["create", "update", "pause", "resume", "delete"],
+          "description": "The operation to perform"
+        },
+        "scheduleId": {"type": "string", "description": "Schedule ID (required for update, pause, resume, delete operations)"},
+        "destination": {"type": "string", "description": "Destination URL or topic name (required for create/update)"},
+        "cron": {"type": "string", "description": "Cron expression (required for create/update)"},
+        "method": {"type": "string", "enum": ["GET", "POST", "PUT", "DELETE", "PATCH"], "description": "HTTP method"},
+        "body": {"type": "string", "description": "Request body"},
+        "retries": {"type": "number", "description": "Number of retries on failure"}
+      },
+      "required": ["operation"]
+    }
+  },
+  {
+    "name": "workflow_logs_list",
+    "description": "List Upstash Workflow logs with optional filtering.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "cursor": {"type": "string", "description": "Cursor for pagination"},
+        "workflowRunId": {"type": "string", "description": "Filter by specific workflow run ID"},
+        "count": {"type": "number", "description": "Number of workflow runs to return"},
+        "state": {
+          "type": "string",
+          "enum": ["RUN_STARTED", "RUN_SUCCESS", "RUN_FAILED", "RUN_CANCELED"],
+          "description": "Filter by workflow state"
+        }
+      }
+    }
+  },
+  {
+    "name": "workflow_logs_get",
+    "description": "Get details of a single workflow run by workflow run ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "workflowRunId": {"type": "string", "description": "The workflow run ID to get details for"}
+      },
+      "required": ["workflowRunId"]
+    }
+  },
+  {
+    "name": "workflow_dlq_list",
+    "description": "List failed workflow runs in the Dead Letter Queue (DLQ).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "cursor": {"type": "string", "description": "Cursor for pagination"},
+        "workflowRunId": {"type": "string", "description": "Filter by workflow run ID"},
+        "count": {"type": "number", "description": "Number of DLQ messages to return"}
+      }
+    }
+  },
+  {
+    "name": "workflow_dlq_get",
+    "description": "Get details of a single failed workflow run from the DLQ.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "dlqId": {"type": "string", "description": "The DLQ ID of the failed workflow run to retrieve"}
+      },
+      "required": ["dlqId"]
+    }
+  },
+  {
+    "name": "workflow_dlq_manage",
+    "description": "Delete, restart, or resume failed workflow runs in the DLQ.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "dlqId": {"type": "string", "description": "The DLQ ID of the failed workflow run"},
+        "action": {
+          "type": "string",
+          "enum": ["delete", "restart", "resume"],
+          "description": "The action to perform"
+        }
+      },
+      "required": ["dlqId", "action"]
+    }
+  },
+  {
+    "name": "util_timestamps_to_date",
+    "description": "Use this tool to convert a timestamp to a human-readable date",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "timestamps": {
+          "type": "array",
+          "items": {"type": "number"},
+          "description": "Array of timestamps to convert"
+        }
+      },
+      "required": ["timestamps"]
+    }
+  },
+  {
+    "name": "util_dates_to_timestamps",
+    "description": "Use this tool to convert an array of ISO 8601 dates to an array of timestamps",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "dates": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Array of dates to convert"
+        }
+      },
+      "required": ["dates"]
+    }
+  }
+]
