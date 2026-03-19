@@ -1,0 +1,1596 @@
+[
+  {
+    "name": "createCollection",
+    "description": "Creates a collection using the [Postman Collection v2.1.0 schema format](https://schema.postman.com/collection/json/v2.1.0/draft-07/docs/index.html).\n\n**Note:**\n\nIf you do not include the `workspace` query parameter, the system creates the collection in the oldest personal Internal workspace you own.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "workspace": {
+          "type": "string",
+          "description": "The workspace's ID."
+        },
+        "collection": {
+          "type": "object",
+          "properties": {
+            "info": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "The collection's name. Must not be empty.",
+                  "minLength": 1
+                },
+                "description": {
+                  "type": "string",
+                  "description": "The collection's description."
+                },
+                "schema": {
+                  "enum": [
+                    "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+                  ],
+                  "description": "The \"https://schema.getpostman.com/json/collection/v2.1.0/collection.json\" Postman Collection Format v2.1.0 schema."
+                }
+              },
+              "description": "Information about the collection.",
+              "required": [
+                "name",
+                "schema"
+              ]
+            },
+            "item": {
+              "type": "array",
+              "description": "Requests and folders for the collection.",
+              "items": {
+                "type": "object"
+              }
+            },
+            "variable": {
+              "type": "array",
+              "description": "Collection-level variables.",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          "description": "Information about the collection.",
+          "required": [
+            "info"
+          ]
+        }
+      },
+      "required": [
+        "workspace",
+        "collection"
+      ]
+    }
+  },
+  {
+    "name": "createEnvironment",
+    "description": "Creates an environment.\n\n**Note:**\n\n- The request body size cannot exceed the maximum allowed size of 30MB.\n- If you receive an HTTP `411 Length Required` error response, manually pass the `Content-Length` header and its value in the request header.\n- If you do not include the `workspace` query parameter, the system creates the environment in the oldest personal Internal workspace you own.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "workspace": {
+          "type": "string",
+          "description": "The workspace's ID."
+        },
+        "environment": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The environment's name."
+            },
+            "values": {
+              "type": "array",
+              "description": "Information about the environment's variables.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean",
+                    "description": "If true, the variable is enabled."
+                  },
+                  "key": {
+                    "type": "string",
+                    "description": "The variable's name."
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "The variable's value."
+                  },
+                  "type": {
+                    "enum": [
+                      "secret",
+                      "default"
+                    ],
+                    "description": "The variable's type:\n- `secret` \u2014 The variable value is masked.\n- `default` \u2014 The variable value is visible in plain text."
+                  },
+                  "description": {
+                    "type": "string",
+                    "maxLength": 512,
+                    "description": "The variable's description."
+                  }
+                }
+              }
+            }
+          },
+          "description": "Information about the environment."
+        }
+      },
+      "required": [
+        "workspace"
+      ]
+    }
+  },
+  {
+    "name": "createMock",
+    "description": "Creates a mock server in a collection.\n\n- Pass the collection UID (ownerId-collectionId), not the bare collection ID.\n- If you only have a `collectionId`, resolve the UID first:\n  1) Prefer GET `/collections/{collectionId}` and read `uid`, or\n  2) Construct `{ownerId}-{collectionId}` using ownerId from GET `/me`:\n    - For team-owned collections: `ownerId = me.teamId`\n    - For personal collections: `ownerId = me.user.id`\n- Use the `workspace` query to place the mock in a specific workspace. Prefer explicit workspace scoping.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "workspace": {
+          "type": "string",
+          "description": "The workspace's ID."
+        },
+        "mock": {
+          "type": "object",
+          "properties": {
+            "collection": {
+              "type": "string",
+              "description": "The unique ID of the mock's associated collection."
+            },
+            "environment": {
+              "type": "string",
+              "description": "The unique ID of the mock's associated environment."
+            },
+            "name": {
+              "type": "string",
+              "description": "The mock server's name."
+            },
+            "private": {
+              "type": "boolean",
+              "default": false,
+              "description": "If true, the mock server is set private. By default, mock servers are public and can receive requests from anyone and anywhere."
+            }
+          },
+          "description": "Mock server configuration."
+        }
+      },
+      "required": [
+        "workspace"
+      ]
+    }
+  },
+  {
+    "name": "createSpec",
+    "description": "Creates an API specification in Postman's [Spec Hub](https://learning.postman.com/docs/design-apis/specifications/overview/). Specifications can be single or multi-file.\n\n**Note:**\n- Postman supports OpenAPI 2.0, OpenAPI 3.0, OpenAPI 3.1, AsyncAPI 2.0, protobuf 2 and 3, and GraphQL specifications.\n- If the file path contains a `/` (forward slash) character, then a folder is created. For example, if the path is the `components/schemas.json` value, then a `components` folder is created with the `schemas.json` file inside.\n- Multi-file specifications can only have one root file.\n- Files cannot exceed a maximum of 10 MB in size.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "workspaceId": {
+          "type": "string",
+          "description": "The workspace's ID."
+        },
+        "name": {
+          "type": "string",
+          "description": "The specification's name."
+        },
+        "type": {
+          "enum": [
+            "OPENAPI:2.0",
+            "OPENAPI:3.0",
+            "OPENAPI:3.1",
+            "ASYNCAPI:2.0",
+            "PROTOBUF:2",
+            "PROTOBUF:3",
+            "GRAPHQL"
+          ],
+          "description": "The specification's type."
+        },
+        "files": {
+          "type": "array",
+          "description": "A list of the specification's files and their contents.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string",
+                "description": "The file's path. Accepts .json, .yaml, .proto and .graphql file types."
+              },
+              "content": {
+                "type": "string",
+                "description": "The file's stringified contents."
+              },
+              "type": {
+                "enum": [
+                  "DEFAULT",
+                  "ROOT"
+                ],
+                "description": "The type of file. This property is required when creating multi-file specifications."
+              }
+            },
+            "required": [
+              "path",
+              "content"
+            ]
+          }
+        }
+      },
+      "required": [
+        "workspaceId",
+        "name",
+        "type",
+        "files"
+      ]
+    }
+  },
+  {
+    "name": "createSpecFile",
+    "description": "Creates an API specification file.\n\n**Note:**\n\n- If the file path contains a `/` (forward slash) character, then a folder is created. For example, if the path is the `components/schemas.json` value, then a `components` folder is created with the `schemas.json` file inside.\n- Creating a spec file assigns it the `DEFAULT` file type.\n- Multi-file specifications can only have one root file.\n- Files cannot exceed a maximum of 10 MB in size.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "specId": {
+          "type": "string",
+          "description": "The spec's ID."
+        },
+        "path": {
+          "type": "string",
+          "description": "The file's path. Accepts JSON or YAML files."
+        },
+        "content": {
+          "type": "string",
+          "description": "The file's stringified contents."
+        }
+      },
+      "required": [
+        "specId",
+        "path",
+        "content"
+      ]
+    }
+  },
+  {
+    "name": "createWorkspace",
+    "description": "Creates a new [workspace](https://learning.postman.com/docs/collaborating-in-postman/using-workspaces/creating-workspaces/).\n\n**Note:**\n\n- This endpoint returns a 403 `Forbidden` response if the user does not have permission to create workspaces. [Admins and Super Admins](https://learning.postman.com/docs/collaborating-in-postman/roles-and-permissions/#team-roles) can configure workspace permissions to restrict users and/or user groups from creating workspaces or require approvals for the creation of team workspaces.\n- Private and [Partner Workspaces](https://learning.postman.com/docs/collaborating-in-postman/using-workspaces/partner-workspaces/) are available on Postman [**Team** and **Enterprise** plans](https://www.postman.com/pricing).\n- There are rate limits when publishing public workspaces.\n- Public team workspace names must be unique.\n- The `teamId` property must be passed in the request body if [Postman Organizations](https://learning.postman.com/docs/administration/onboarding-checklist) is enabled.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "workspace": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The workspace's name."
+            },
+            "type": {
+              "enum": [
+                "personal",
+                "private",
+                "public",
+                "team",
+                "partner"
+              ],
+              "description": "The type of workspace."
+            },
+            "description": {
+              "type": "string",
+              "description": "The workspace's description."
+            },
+            "about": {
+              "type": "string",
+              "description": "A brief summary about the workspace."
+            },
+            "teamId": {
+              "type": "string",
+              "description": "The team ID to assign to the workspace."
+            }
+          },
+          "description": "Information about the workspace.",
+          "required": [
+            "name",
+            "type"
+          ]
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "generateCollection",
+    "description": "Creates a collection from the given API specification.\nThe specification must already exist or be created before it can be used to generate a collection.\nThe response contains a polling link to the task status.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "specId": {
+          "type": "string",
+          "description": "The spec's ID."
+        },
+        "elementType": {
+          "enum": [
+            "collection"
+          ],
+          "description": "The `collection` element type."
+        },
+        "name": {
+          "type": "string",
+          "description": "The generated collection's name."
+        },
+        "options": {
+          "type": "object",
+          "properties": {
+            "requestNameSource": {
+              "enum": [
+                "Fallback",
+                "URL"
+              ],
+              "default": "Fallback",
+              "description": "Determines how the generated collection's requests are named."
+            },
+            "indentCharacter": {
+              "enum": [
+                "Tab",
+                "Space"
+              ],
+              "default": "Space",
+              "description": "The option for setting the indentation character type."
+            },
+            "parametersResolution": {
+              "type": "string",
+              "default": "Example",
+              "description": "Determines how parameter values are generated in the collection."
+            },
+            "folderStrategy": {
+              "enum": [
+                "Paths",
+                "Tags"
+              ],
+              "default": "Paths",
+              "description": "Whether to create folders based on the specification's `paths` or `tags` properties."
+            },
+            "includeAuthInfoInExample": {
+              "type": "boolean",
+              "default": true,
+              "description": "If true, include the authentication parameters in the example request."
+            },
+            "enableOptionalParameters": {
+              "type": "boolean",
+              "default": true,
+              "description": "If true, enables optional parameters in the collection and its requests."
+            },
+            "keepImplicitHeaders": {
+              "type": "boolean",
+              "default": false,
+              "description": "If true, keep the implicit headers from the OpenAPI specification."
+            },
+            "includeDeprecated": {
+              "type": "boolean",
+              "default": true,
+              "description": "If true, includes all deprecated operations, parameters, and properties."
+            },
+            "alwaysInheritAuthentication": {
+              "type": "boolean",
+              "default": false,
+              "description": "Whether authentication details should be included in all requests."
+            },
+            "nestedFolderHierarchy": {
+              "type": "boolean",
+              "default": false,
+              "description": "If true, creates subfolders in the generated collection based on the order of the endpoints' tags."
+            }
+          },
+          "description": "The advanced creation options and their values."
+        }
+      },
+      "required": [
+        "specId",
+        "elementType",
+        "name",
+        "options"
+      ]
+    }
+  },
+  {
+    "name": "generateSpecFromCollection",
+    "description": "Generates an API specification for the given collection. The response contains a polling link to the task status.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "collectionUid": {
+          "type": "string",
+          "description": "The collection's unique ID."
+        },
+        "elementType": {
+          "enum": [
+            "spec"
+          ],
+          "description": "The `spec` value."
+        },
+        "name": {
+          "type": "string",
+          "description": "The API specification's name."
+        },
+        "type": {
+          "enum": [
+            "OPENAPI:3.0"
+          ],
+          "description": "The specification's type."
+        },
+        "format": {
+          "enum": [
+            "JSON",
+            "YAML"
+          ],
+          "description": "The format of the API specification."
+        }
+      },
+      "required": [
+        "collectionUid",
+        "elementType",
+        "name",
+        "type",
+        "format"
+      ]
+    }
+  },
+  {
+    "name": "getAllSpecs",
+    "description": "Gets all API specifications in a workspace.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "workspaceId": {
+          "type": "string",
+          "description": "The workspace's ID."
+        },
+        "cursor": {
+          "type": "string",
+          "description": "The pointer to the first record of the set of paginated results."
+        },
+        "limit": {
+          "type": "integer",
+          "default": 10,
+          "description": "The maximum number of rows to return in the response."
+        }
+      },
+      "required": [
+        "workspaceId"
+      ]
+    }
+  },
+  {
+    "name": "getAuthenticatedUser",
+    "description": "Gets information about the authenticated user.\n- This endpoint provides \"current user\" context (`user.id`, `username`, `teamId`, roles).\n- When a user asks for \"my \u2026\" (e.g., \"my workspaces, my information, etc.\"), call this first to resolve the user ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "getCollection",
+    "description": "Get information about a collection. By default this tool returns the lightweight collection map (metadata + recursive itemRefs).\nUse the model parameter to opt in to Postman's full API responses:\n- model=minimal \u2014 root-level folder/request IDs only\n- model=full \u2014 full Postman collection payload.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "collectionId": {
+          "type": "string",
+          "description": "The collection's ID."
+        },
+        "access_key": {
+          "type": "string",
+          "description": "Optional access key for shared collections."
+        },
+        "model": {
+          "enum": [
+            "minimal",
+            "full"
+          ],
+          "description": "Optional response shape override. Omit to receive the lightweight collection map."
+        }
+      },
+      "required": [
+        "collectionId"
+      ]
+    }
+  },
+  {
+    "name": "getCollections",
+    "description": "The workspace ID query is required for this endpoint. If not provided, the LLM should ask the user to provide it.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "workspace": {
+          "type": "string",
+          "description": "The workspace's ID."
+        },
+        "name": {
+          "type": "string",
+          "description": "Filter results by collections that match the given name."
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 99,
+          "description": "The maximum number of rows to return in the response."
+        },
+        "offset": {
+          "type": "integer",
+          "description": "The zero-based offset of the first item to return."
+        }
+      },
+      "required": [
+        "workspace"
+      ]
+    }
+  },
+  {
+    "name": "getEnvironment",
+    "description": "Gets information about an environment.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "environmentId": {
+          "type": "string",
+          "description": "The environment's ID."
+        }
+      },
+      "required": [
+        "environmentId"
+      ]
+    }
+  },
+  {
+    "name": "getEnvironments",
+    "description": "Gets information about all of your [environments](https://learning.postman.com/docs/sending-requests/managing-environments/).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "workspace": {
+          "type": "string",
+          "description": "The workspace's ID."
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "getGeneratedCollectionSpecs",
+    "description": "Gets the API specification generated for the given collection.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "collectionUid": {
+          "type": "string",
+          "description": "The collection's unique ID."
+        },
+        "elementType": {
+          "enum": [
+            "spec"
+          ],
+          "description": "The `spec` value."
+        }
+      },
+      "required": [
+        "collectionUid",
+        "elementType"
+      ]
+    }
+  },
+  {
+    "name": "getMock",
+    "description": "Gets information about a mock server.\n- Resource: Mock server entity. Response includes the associated `collection` UID and `mockUrl`.\n- Use the `collection` UID to navigate back to the source collection.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "mockId": {
+          "type": "string",
+          "description": "The mock's ID."
+        }
+      },
+      "required": [
+        "mockId"
+      ]
+    }
+  },
+  {
+    "name": "getMocks",
+    "description": "Gets all active mock servers. By default, returns only mock servers you created across all workspaces.\n\n- Always pass either the `workspace` or `teamId` query to scope results. Prefer `workspace` when known.\n- If you need team-scoped results, set `teamId` from the current user: call GET `/me` and use `me.teamId`.\n- If both `teamId` and `workspace` are passed, only `workspace` is used.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "teamId": {
+          "type": "string",
+          "description": "Return only results that belong to the given team ID."
+        },
+        "workspace": {
+          "type": "string",
+          "description": "Return only results found in the given workspace ID."
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "getSpec",
+    "description": "Gets information about an API specification.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "specId": {
+          "type": "string",
+          "description": "The spec's ID."
+        }
+      },
+      "required": [
+        "specId"
+      ]
+    }
+  },
+  {
+    "name": "getSpecCollections",
+    "description": "Gets all of an API specification's generated collections.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "specId": {
+          "type": "string",
+          "description": "The spec's ID."
+        },
+        "elementType": {
+          "enum": [
+            "collection"
+          ],
+          "description": "The `collection` element type."
+        },
+        "limit": {
+          "type": "integer",
+          "default": 10,
+          "description": "The maximum number of rows to return in the response."
+        },
+        "cursor": {
+          "type": "string",
+          "description": "The pointer to the first record of the set of paginated results."
+        }
+      },
+      "required": [
+        "specId",
+        "elementType"
+      ]
+    }
+  },
+  {
+    "name": "getSpecDefinition",
+    "description": "Gets the complete contents of an API specification's definition.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "specId": {
+          "type": "string",
+          "description": "The spec's ID."
+        }
+      },
+      "required": [
+        "specId"
+      ]
+    }
+  },
+  {
+    "name": "getSpecFile",
+    "description": "Gets the contents of an API specification's file.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "specId": {
+          "type": "string",
+          "description": "The spec's ID."
+        },
+        "filePath": {
+          "type": "string",
+          "description": "The path to the file."
+        }
+      },
+      "required": [
+        "specId",
+        "filePath"
+      ]
+    }
+  },
+  {
+    "name": "getSpecFiles",
+    "description": "Gets all the files in an API specification.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "specId": {
+          "type": "string",
+          "description": "The spec's ID."
+        }
+      },
+      "required": [
+        "specId"
+      ]
+    }
+  },
+  {
+    "name": "getTaggedEntities",
+    "description": "**Requires an Enterprise plan.** Tagging is only available on Postman Enterprise plans. This tool returns a 404 error on Free, Basic, and Professional accounts.\n\nGets Postman elements (entities) by a given tag.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "slug": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*[a-z0-9]+$",
+          "minLength": 2,
+          "maxLength": 64,
+          "description": "The tag's ID within a team or individual (non-team) user scope."
+        },
+        "limit": {
+          "type": "integer",
+          "maximum": 50,
+          "default": 10,
+          "description": "The maximum number of tagged elements to return in a single call."
+        },
+        "direction": {
+          "enum": [
+            "asc",
+            "desc"
+          ],
+          "default": "desc",
+          "description": "The ascending (`asc`) or descending (`desc`) order to sort the results."
+        },
+        "cursor": {
+          "type": "string",
+          "description": "The cursor to get the next set of results in the paginated response."
+        },
+        "entityType": {
+          "enum": [
+            "api",
+            "collection",
+            "workspace"
+          ],
+          "description": "Filter results for the given entity type."
+        }
+      },
+      "required": [
+        "slug"
+      ]
+    }
+  },
+  {
+    "name": "getWorkspace",
+    "description": "Gets information about a workspace.\n\n**Note:**\n\nThis endpoint's response contains the `visibility` field which determines who can access the workspace.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "workspaceId": {
+          "type": "string",
+          "description": "The workspace's ID."
+        },
+        "include": {
+          "enum": [
+            "mocks:deactivated",
+            "scim"
+          ],
+          "description": "Include the following information in the endpoint's response."
+        }
+      },
+      "required": [
+        "workspaceId"
+      ]
+    }
+  },
+  {
+    "name": "getWorkspaces",
+    "description": "Gets all workspaces you have access to.\n- For \"my \u2026\" requests, first call GET `/me` and pass `createdBy={me.user.id}`.\n- This endpoint's response contains the visibility field which determines who can access the workspace.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "personal",
+            "team",
+            "private",
+            "public",
+            "partner"
+          ],
+          "description": "The type of workspace to filter the response by."
+        },
+        "createdBy": {
+          "type": "integer",
+          "description": "Return only workspaces created by the specified Postman user ID."
+        },
+        "include": {
+          "enum": [
+            "mocks:deactivated",
+            "scim"
+          ],
+          "description": "Include the following information in the endpoint's response."
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "publishMock",
+    "description": "Publishes a mock server. Publishing a mock server sets its **Access Control** configuration setting to public.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "mockId": {
+          "type": "string",
+          "description": "The mock's ID."
+        }
+      },
+      "required": [
+        "mockId"
+      ]
+    }
+  },
+  {
+    "name": "putCollection",
+    "description": "Replaces the contents of a collection using the [Postman Collection v2.1.0 schema format](https://schema.postman.com/collection/json/v2.1.0/draft-07/docs/index.html).\n\n**Note:**\n\n- The maximum collection size this endpoint accepts cannot exceed 100 MB.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "collectionId": {
+          "type": "string",
+          "description": "The collection's ID."
+        },
+        "collection": {
+          "type": "object",
+          "description": "The complete collection object in Postman v2.1.0 format."
+        }
+      },
+      "required": [
+        "collectionId",
+        "collection"
+      ]
+    }
+  },
+  {
+    "name": "putEnvironment",
+    "description": "Replaces all the contents of an environment with the given information.\n\n**Note:**\n\n- The request body size cannot exceed the maximum allowed size of 30MB.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "environmentId": {
+          "type": "string",
+          "description": "The environment's ID."
+        },
+        "environment": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The environment's name."
+            },
+            "values": {
+              "type": "array",
+              "description": "Information about the environment's variables.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "key": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "enum": [
+                      "secret",
+                      "default"
+                    ]
+                  },
+                  "description": {
+                    "type": "string",
+                    "maxLength": 512
+                  }
+                }
+              }
+            }
+          },
+          "description": "Information about the environment."
+        }
+      },
+      "required": [
+        "environmentId"
+      ]
+    }
+  },
+  {
+    "name": "syncCollectionWithSpec",
+    "description": "Syncs a collection generated from an API specification. This is an asynchronous endpoint that returns an HTTP `202 Accepted` response.\n\n**Note:**\n\n- This endpoint only supports the OpenAPI 3.0 specification type.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "collectionUid": {
+          "type": "string",
+          "description": "The collection's unique ID."
+        },
+        "specId": {
+          "type": "string",
+          "description": "The spec's ID."
+        }
+      },
+      "required": [
+        "collectionUid",
+        "specId"
+      ]
+    }
+  },
+  {
+    "name": "syncSpecWithCollection",
+    "description": "Syncs an API specification linked to a collection. This is an asynchronous endpoint that returns an HTTP `202 Accepted` response.\n\n**Note:**\n\n- This endpoint only supports the OpenAPI 3.0 specification type.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "specId": {
+          "type": "string",
+          "description": "The spec's ID."
+        },
+        "collectionUid": {
+          "type": "string",
+          "description": "The collection's unique ID."
+        }
+      },
+      "required": [
+        "specId",
+        "collectionUid"
+      ]
+    }
+  },
+  {
+    "name": "updateMock",
+    "description": "Updates a mock server.\n- Resource: Mock server entity associated with a collection UID.\n- Use this to change name, environment, privacy, or default server response.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "mockId": {
+          "type": "string",
+          "description": "The mock's ID."
+        },
+        "mock": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The mock server's name."
+            },
+            "environment": {
+              "type": "string",
+              "description": "The associated environment's unique ID."
+            },
+            "description": {
+              "type": "string",
+              "description": "The mock server's description."
+            },
+            "private": {
+              "type": "boolean",
+              "default": false,
+              "description": "If true, the mock server is set private."
+            },
+            "versionTag": {
+              "type": "string",
+              "description": "The API's version tag ID."
+            },
+            "collection": {
+              "type": "string",
+              "description": "The associated collection's unique ID."
+            },
+            "config": {
+              "type": "object",
+              "properties": {
+                "serverResponseId": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "The server response ID."
+                }
+              },
+              "description": "The mock server's configuration settings."
+            }
+          },
+          "description": "Mock server update object.",
+          "required": [
+            "collection"
+          ]
+        }
+      },
+      "required": [
+        "mockId"
+      ]
+    }
+  },
+  {
+    "name": "updateSpecFile",
+    "description": "Updates an API specification's file.\n\n**Note:**\n\n- This endpoint does not accept an empty request body. You must pass one of the accepted values.\n- This endpoint does not accept multiple request body properties in a single call.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "specId": {
+          "type": "string",
+          "description": "The spec's ID."
+        },
+        "filePath": {
+          "type": "string",
+          "description": "The path to the file."
+        },
+        "name": {
+          "type": "string",
+          "description": "The file's name."
+        },
+        "type": {
+          "enum": [
+            "DEFAULT",
+            "ROOT"
+          ],
+          "description": "The type of file."
+        },
+        "content": {
+          "type": "string",
+          "description": "The specification's stringified contents."
+        }
+      },
+      "required": [
+        "specId",
+        "filePath"
+      ]
+    }
+  },
+  {
+    "name": "updateSpecProperties",
+    "description": "Updates an API specification's properties, such as its name.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "specId": {
+          "type": "string",
+          "description": "The spec's ID."
+        },
+        "name": {
+          "type": "string",
+          "description": "The spec's name."
+        }
+      },
+      "required": [
+        "specId",
+        "name"
+      ]
+    }
+  },
+  {
+    "name": "updateWorkspace",
+    "description": "Updates a workspace.\n\n**Note:**\n\n- This endpoint does not support the following visibility changes for Free and Solo plans.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "workspaceId": {
+          "type": "string",
+          "description": "The workspace's ID."
+        },
+        "workspace": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The workspace's new name."
+            },
+            "type": {
+              "enum": [
+                "private",
+                "personal",
+                "team",
+                "public"
+              ],
+              "description": "The new workspace visibility type."
+            },
+            "description": {
+              "type": "string",
+              "description": "The new workspace description."
+            },
+            "about": {
+              "type": "string",
+              "description": "A brief summary about the workspace."
+            }
+          },
+          "description": "Workspace update object."
+        }
+      },
+      "required": [
+        "workspaceId"
+      ]
+    }
+  },
+  {
+    "name": "createCollectionRequest",
+    "description": "Creates a request in a collection. For a complete list of properties, refer to the **Request** entry in the [Postman Collection Format documentation](https://schema.postman.com/collection/json/v2.1.0/draft-07/docs/index.html).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "collectionId": {
+          "type": "string",
+          "description": "The collection's ID."
+        },
+        "folderId": {
+          "type": "string",
+          "description": "The folder ID in which to create the request."
+        },
+        "name": {
+          "type": "string",
+          "description": "The request's name."
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The request's description."
+        },
+        "method": {
+          "enum": [
+            "GET",
+            "PUT",
+            "POST",
+            "PATCH",
+            "DELETE",
+            "COPY",
+            "HEAD",
+            "OPTIONS",
+            "LINK",
+            "UNLINK",
+            "PURGE",
+            "LOCK",
+            "UNLOCK",
+            "PROPFIND",
+            "VIEW"
+          ],
+          "description": "The request's HTTP method."
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The request's URL."
+        },
+        "headerData": {
+          "type": "array",
+          "description": "The request's headers.",
+          "items": {
+            "type": "object"
+          }
+        },
+        "queryParams": {
+          "type": "array",
+          "description": "The request's query parameters.",
+          "items": {
+            "type": "object"
+          }
+        },
+        "dataMode": {
+          "enum": [
+            "raw",
+            "urlencoded",
+            "formdata",
+            "binary",
+            "graphql"
+          ],
+          "description": "The request body's data mode."
+        },
+        "data": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "The request body's form data."
+        },
+        "rawModeData": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The request body's raw mode data."
+        },
+        "graphqlModeData": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "The request body's GraphQL mode data."
+        },
+        "dataOptions": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "Additional configurations for request body data modes."
+        },
+        "auth": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "The request's authentication information."
+        },
+        "events": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "A list of scripts configured to run when specific events occur."
+        }
+      },
+      "required": [
+        "collectionId"
+      ]
+    }
+  },
+  {
+    "name": "createCollectionResponse",
+    "description": "Creates a request response in a collection. For a complete list of request body properties, refer to the **Response** entry in the [Postman Collection Format documentation](https://schema.postman.com/collection/json/v2.1.0/draft-07/docs/index.html).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "collectionId": {
+          "type": "string",
+          "description": "The collection's ID."
+        },
+        "request": {
+          "type": "string",
+          "description": "The parent request's ID."
+        },
+        "name": {
+          "type": "string",
+          "description": "The response's name."
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The response's description."
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The associated request's URL."
+        },
+        "method": {
+          "enum": [
+            "GET",
+            "PUT",
+            "POST",
+            "PATCH",
+            "DELETE",
+            "COPY",
+            "HEAD",
+            "OPTIONS",
+            "LINK",
+            "UNLINK",
+            "PURGE",
+            "LOCK",
+            "UNLOCK",
+            "PROPFIND",
+            "VIEW"
+          ],
+          "description": "The request's HTTP method."
+        },
+        "headers": {
+          "type": "array",
+          "description": "A list of headers.",
+          "items": {
+            "type": "object"
+          }
+        },
+        "dataMode": {
+          "enum": [
+            "raw",
+            "urlencoded",
+            "formdata",
+            "binary",
+            "graphql"
+          ],
+          "description": "The associated request body's data mode."
+        },
+        "rawModeData": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The associated request body's raw mode data."
+        },
+        "dataOptions": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "Additional configurations for request body data modes."
+        },
+        "responseCode": {
+          "type": "object",
+          "description": "The response's HTTP response code information."
+        },
+        "status": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The response's HTTP status text."
+        },
+        "time": {
+          "type": "string",
+          "description": "The time taken by the request to complete."
+        },
+        "cookies": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The response's cookie data."
+        },
+        "mime": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The response's MIME type."
+        },
+        "text": {
+          "type": "string",
+          "description": "The raw text of the response body."
+        },
+        "language": {
+          "type": "string",
+          "description": "The response body's language type."
+        },
+        "rawDataType": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The response's raw data type."
+        },
+        "requestObject": {
+          "type": "string",
+          "description": "A JSON-stringified representation of the associated request."
+        }
+      },
+      "required": [
+        "collectionId",
+        "request"
+      ]
+    }
+  },
+  {
+    "name": "duplicateCollection",
+    "description": "Creates a duplicate of the given collection in another workspace.\n\nUse the GET `/collection-duplicate-tasks/{taskId}` endpoint to get the duplication task's current status.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "collectionId": {
+          "type": "string",
+          "description": "The collection's unique ID."
+        },
+        "workspace": {
+          "type": "string",
+          "description": "The workspace ID in which to duplicate the collection."
+        },
+        "suffix": {
+          "type": "string",
+          "description": "An optional suffix to append to the duplicated collection's name."
+        }
+      },
+      "required": [
+        "collectionId",
+        "workspace"
+      ]
+    }
+  },
+  {
+    "name": "getDuplicateCollectionTaskStatus",
+    "description": "Gets the status of a collection duplication task.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "taskId": {
+          "type": "string",
+          "description": "The task's unique ID."
+        }
+      },
+      "required": [
+        "taskId"
+      ]
+    }
+  },
+  {
+    "name": "runCollection",
+    "description": "Runs a Postman collection by ID with detailed test results and execution statistics. Supports optional environment for variable substitution.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "collectionId": {
+          "type": "string",
+          "description": "The collection ID in the format <OWNER_ID>-<UUID>."
+        },
+        "environmentId": {
+          "type": "string",
+          "description": "Optional environment ID to use for variable substitution during the run."
+        },
+        "stopOnError": {
+          "type": "boolean",
+          "description": "Gracefully halt on errors (default: false)"
+        },
+        "stopOnFailure": {
+          "type": "boolean",
+          "description": "Gracefully halt on test failures (default: false)"
+        },
+        "abortOnError": {
+          "type": "boolean",
+          "description": "Abruptly halt on errors (default: false)"
+        },
+        "abortOnFailure": {
+          "type": "boolean",
+          "description": "Abruptly halt on test failures (default: false)"
+        },
+        "iterationCount": {
+          "type": "number",
+          "description": "Number of iterations to run (default: 1)"
+        },
+        "requestTimeout": {
+          "type": "number",
+          "description": "Request timeout in milliseconds (default: 60000)"
+        },
+        "scriptTimeout": {
+          "type": "number",
+          "description": "Script timeout in milliseconds (default: 5000)"
+        }
+      },
+      "required": [
+        "collectionId"
+      ]
+    }
+  },
+  {
+    "name": "getEnabledTools",
+    "description": "IMPORTANT: Run this tool first when a requested tool is unavailable. Returns information about which tools are enabled in the full and minimal tool sets, helping you identify available alternatives.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "updateCollectionRequest",
+    "description": "Updates a request in a collection. For a complete list of properties, refer to the **Request** entry in the [Postman Collection Format documentation](https://schema.postman.com/collection/json/v2.1.0/draft-07/docs/index.html).\n\n**Note:**\n\n- You must pass a collection ID (not a collection UID) in this endpoint.\n- This endpoint does not support changing the folder of a request.\n- This endpoint acts like a PATCH method.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "requestId": {
+          "type": "string",
+          "description": "The request's ID."
+        },
+        "collectionId": {
+          "type": "string",
+          "description": "The collection's ID."
+        },
+        "name": {
+          "type": "string",
+          "description": "The request's name."
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The request's description."
+        },
+        "method": {
+          "enum": [
+            "GET",
+            "PUT",
+            "POST",
+            "PATCH",
+            "DELETE",
+            "COPY",
+            "HEAD",
+            "OPTIONS",
+            "LINK",
+            "UNLINK",
+            "PURGE",
+            "LOCK",
+            "UNLOCK",
+            "PROPFIND",
+            "VIEW"
+          ],
+          "description": "The request's HTTP method."
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The request's URL."
+        },
+        "headerData": {
+          "type": "array",
+          "description": "The request's headers.",
+          "items": {
+            "type": "object"
+          }
+        },
+        "queryParams": {
+          "type": "array",
+          "description": "The request's query parameters.",
+          "items": {
+            "type": "object"
+          }
+        },
+        "dataMode": {
+          "enum": [
+            "raw",
+            "urlencoded",
+            "formdata",
+            "binary",
+            "graphql"
+          ],
+          "description": "The request body's data mode."
+        },
+        "data": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "The request body's form data."
+        },
+        "rawModeData": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The request body's raw mode data."
+        },
+        "graphqlModeData": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "The request body's GraphQL mode data."
+        },
+        "dataOptions": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "Additional configurations for request body data modes."
+        },
+        "auth": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "The request's authentication information."
+        },
+        "events": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "A list of scripts configured to run when specific events occur."
+        }
+      },
+      "required": [
+        "requestId",
+        "collectionId"
+      ]
+    }
+  }
+]

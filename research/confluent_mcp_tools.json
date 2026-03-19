@@ -1,0 +1,1837 @@
+[
+  {
+    "name": "list-topics",
+    "description": "List all topics in the Kafka cluster.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create-topics",
+    "description": "Create one or more Kafka topics.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "topicNames": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Names of kafka topics to create"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "topicNames"
+      ]
+    }
+  },
+  {
+    "name": "delete-topics",
+    "description": "Delete the topic with the given names.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "topicNames": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Names of kafka topics to delete"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "topicNames"
+      ]
+    }
+  },
+  {
+    "name": "produce-message",
+    "description": "Produce records to a Kafka topic. Supports Confluent Schema Registry serialization (AVRO, JSON, PROTOBUF) for both key and value.\n\nBefore producing, check if the topic has a registered schema for <topicName>-value and <topicName>-key. If a schema exists, set useSchemaRegistry to true and specify the appropriate schemaType. For saving user messages/history, use the kafka topic named mcp-conversations unless otherwise specified. If the topic does not exist, it can be created via the create-topics tool.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "topicName": {
+          "type": "string",
+          "description": "Name of the kafka topic to produce the message to",
+          "minLength": 1
+        },
+        "value": {
+          "type": "object",
+          "properties": {
+            "message": {
+              "oneOf": [
+                {
+                  "type": "object"
+                },
+                {
+                  "type": "string"
+                }
+              ],
+              "description": "The payload to produce. If using schema registry, this should be an object matching the schema. Otherwise, a string."
+            },
+            "useSchemaRegistry": {
+              "type": "boolean",
+              "default": false,
+              "description": "If true, use schema registry for serialization. If false, send as raw string/JSON."
+            },
+            "schemaType": {
+              "enum": [
+                "AVRO",
+                "JSON",
+                "PROTOBUF"
+              ],
+              "description": "Schema type to use. If omitted, sends as raw string/JSON."
+            },
+            "schema": {
+              "type": "string",
+              "description": "Schema definition to register (as JSON string for AVRO/JSON, or .proto for PROTOBUF). If omitted, uses latest registered schema."
+            },
+            "subject": {
+              "type": "string",
+              "description": "Schema Registry subject. Defaults to {topicName}-value or {topicName}-key."
+            },
+            "normalize": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "message"
+          ]
+        },
+        "key": {
+          "type": "object",
+          "properties": {
+            "message": {
+              "oneOf": [
+                {
+                  "type": "object"
+                },
+                {
+                  "type": "string"
+                }
+              ],
+              "description": "The payload to produce. If using schema registry, this should be an object matching the schema. Otherwise, a string."
+            },
+            "useSchemaRegistry": {
+              "type": "boolean",
+              "default": false,
+              "description": "If true, use schema registry for serialization. If false, send as raw string/JSON."
+            },
+            "schemaType": {
+              "enum": [
+                "AVRO",
+                "JSON",
+                "PROTOBUF"
+              ],
+              "description": "Schema type to use. If omitted, sends as raw string/JSON."
+            },
+            "schema": {
+              "type": "string",
+              "description": "Schema definition to register (as JSON string for AVRO/JSON, or .proto for PROTOBUF). If omitted, uses latest registered schema."
+            },
+            "subject": {
+              "type": "string",
+              "description": "Schema Registry subject. Defaults to {topicName}-value or {topicName}-key."
+            },
+            "normalize": {
+              "type": "boolean"
+            }
+          }
+        }
+      },
+      "required": [
+        "topicName",
+        "value"
+      ]
+    }
+  },
+  {
+    "name": "consume-messages",
+    "description": "Consumes messages from one or more Kafka topics. Supports automatic deserialization of Schema Registry encoded messages (AVRO, JSON, PROTOBUF).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "topicNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "description": "Names of the Kafka topics to consume from."
+        },
+        "maxMessages": {
+          "type": "number",
+          "default": 10,
+          "description": "Maximum number of messages to consume before stopping."
+        },
+        "timeoutMs": {
+          "type": "number",
+          "default": 10000,
+          "description": "Maximum time in milliseconds to wait for messages before stopping."
+        },
+        "value": {
+          "type": "object",
+          "properties": {
+            "useSchemaRegistry": {
+              "type": "boolean",
+              "default": false,
+              "description": "Whether to use schema registry for deserialization. If false, messages will be returned as raw."
+            },
+            "subject": {
+              "type": "string",
+              "description": "Schema registry subject. Defaults to 'topicName-value' or 'topicName-key'."
+            }
+          }
+        },
+        "key": {
+          "type": "object",
+          "properties": {
+            "useSchemaRegistry": {
+              "type": "boolean",
+              "default": false,
+              "description": "Whether to use schema registry for deserialization. If false, messages will be returned as raw."
+            },
+            "subject": {
+              "type": "string",
+              "description": "Schema registry subject. Defaults to 'topicName-value' or 'topicName-key'."
+            }
+          }
+        }
+      },
+      "required": [
+        "topicNames",
+        "value"
+      ]
+    }
+  },
+  {
+    "name": "alter-topic-config",
+    "description": "Alter topic configuration in Confluent Cloud.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base URL of the Confluent Cloud Kafka REST API."
+        },
+        "clusterId": {
+          "type": "string",
+          "description": "The unique identifier for the Kafka cluster."
+        },
+        "topicName": {
+          "type": "string",
+          "description": "Name of the topic to alter",
+          "minLength": 1
+        },
+        "topicConfigs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Configuration parameter name",
+                "minLength": 1
+              },
+              "value": {
+                "type": "string",
+                "description": "Configuration parameter value"
+              },
+              "operation": {
+                "enum": [
+                  "SET",
+                  "DELETE"
+                ],
+                "description": "Operation type"
+              }
+            },
+            "required": [
+              "name",
+              "value",
+              "operation"
+            ]
+          },
+          "minItems": 1
+        },
+        "validateOnly": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "required": [
+        "topicName",
+        "topicConfigs"
+      ]
+    }
+  },
+  {
+    "name": "get-topic-config",
+    "description": "Retrieve configuration details for a specific Kafka topic.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base URL of the Confluent Cloud Kafka REST API."
+        },
+        "clusterId": {
+          "type": "string",
+          "description": "The unique identifier for the Kafka cluster."
+        },
+        "topicName": {
+          "type": "string",
+          "description": "Name of the topic to get configuration for",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "topicName"
+      ]
+    }
+  },
+  {
+    "name": "list-flink-statements",
+    "description": "Retrieve a sorted, filtered, paginated list of all statements.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base URL of the Flink REST API."
+        },
+        "organizationId": {
+          "type": "string",
+          "description": "The unique identifier for the organization."
+        },
+        "environmentId": {
+          "type": "string",
+          "description": "The unique identifier for the environment."
+        },
+        "computePoolId": {
+          "type": "string",
+          "description": "Filter the results by exact match for compute_pool."
+        },
+        "pageSize": {
+          "type": "number",
+          "default": 100,
+          "maximum": 100,
+          "minimum": 0,
+          "description": "A pagination size for collection requests. Default is 100 (max)."
+        },
+        "pageToken": {
+          "type": "string",
+          "maxLength": 255,
+          "description": "An opaque pagination token for collection requests."
+        },
+        "labelSelector": {
+          "type": "string",
+          "description": "A comma-separated label selector to filter the statements."
+        },
+        "statusPhase": {
+          "type": "string",
+          "description": "Filter by status phase: PENDING, RUNNING, COMPLETED, FAILED, STOPPED, etc."
+        }
+      }
+    }
+  },
+  {
+    "name": "create-flink-statement",
+    "description": "Make a request to create a statement.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base URL of the Flink REST API."
+        },
+        "organizationId": {
+          "type": "string",
+          "description": "The unique identifier for the organization."
+        },
+        "environmentId": {
+          "type": "string",
+          "description": "The unique identifier for the environment."
+        },
+        "computePoolId": {
+          "type": "string",
+          "description": "The id associated with the compute pool in context."
+        },
+        "statement": {
+          "type": "string",
+          "maxLength": 131072,
+          "minLength": 1,
+          "description": "The raw Flink SQL text statement. Create table statements may not be necessary as topics in confluent cloud will be detected as created schemas. Make sure to show and describe tables before creating new ones."
+        },
+        "statementName": {
+          "type": "string",
+          "pattern": "[a-z0-9]([-a-z0-9]*([-a-z0-9])?)?(\\.[a-z0-9]([-a-z0-9]*([-a-z0-9])?)*)*",
+          "maxLength": 100,
+          "minLength": 1,
+          "description": "The user provided name of the resource, unique within this environment."
+        },
+        "catalogName": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The catalog name to be used for the statement. Typically the confluent environment name."
+        },
+        "databaseName": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The database name to be used for the statement. Typically the Kafka cluster name."
+        }
+      },
+      "required": [
+        "statement",
+        "statementName",
+        "catalogName",
+        "databaseName"
+      ]
+    }
+  },
+  {
+    "name": "read-flink-statement",
+    "description": "Make a request to read a statement and its results",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base URL of the Flink REST API."
+        },
+        "organizationId": {
+          "type": "string",
+          "description": "The unique identifier for the organization."
+        },
+        "environmentId": {
+          "type": "string",
+          "description": "The unique identifier for the environment."
+        },
+        "statementName": {
+          "type": "string",
+          "pattern": "[a-z0-9]([-a-z0-9]*([-a-z0-9])?)?(\\.[a-z0-9]([-a-z0-9]*([-a-z0-9])?)*)*",
+          "maxLength": 100,
+          "minLength": 1,
+          "description": "The user provided name of the resource, unique within this environment."
+        },
+        "timeoutInMilliseconds": {
+          "type": "number",
+          "default": 60000,
+          "description": "The function implements pagination. It will continue to fetch results using the next page token until either there are no more results or the timeout is reached. Tables backed by kafka topics can be thought of as never-ending streams as data could be continuously produced in near real-time. Therefore, if you wish to sample values from a stream, you may want to set a timeout. If you are reading a statement after creating it, you may need to retry a couple times to ensure that the statement is ready and receiving data."
+        }
+      },
+      "required": [
+        "statementName"
+      ]
+    }
+  },
+  {
+    "name": "delete-flink-statements",
+    "description": "Make a request to delete a statement.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base URL of the Flink REST API."
+        },
+        "organizationId": {
+          "type": "string",
+          "description": "The unique identifier for the organization."
+        },
+        "environmentId": {
+          "type": "string",
+          "description": "The unique identifier for the environment."
+        },
+        "statementName": {
+          "type": "string",
+          "pattern": "[a-z0-9]([-a-z0-9]*([-a-z0-9])?)?(\\.[a-z0-9]([-a-z0-9]*([-a-z0-9])?)*)*",
+          "maxLength": 100,
+          "minLength": 1,
+          "description": "The user provided name of the resource, unique within this environment."
+        }
+      },
+      "required": [
+        "statementName"
+      ]
+    }
+  },
+  {
+    "name": "get-flink-statement-exceptions",
+    "description": "Retrieve the 10 most recent exceptions for a Flink SQL statement. Useful for diagnosing failed or failing statements.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base URL of the Flink REST API."
+        },
+        "organizationId": {
+          "type": "string",
+          "description": "The unique identifier for the organization."
+        },
+        "environmentId": {
+          "type": "string",
+          "description": "The unique identifier for the environment."
+        },
+        "statementName": {
+          "type": "string",
+          "pattern": "[a-z0-9]([-a-z0-9]*([-a-z0-9])?)?(\\.[a-z0-9]([-a-z0-9]*([-a-z0-9])?)*)*",
+          "maxLength": 100,
+          "minLength": 1,
+          "description": "The name of the Flink SQL statement to get exceptions for."
+        }
+      },
+      "required": [
+        "statementName"
+      ]
+    }
+  },
+  {
+    "name": "list-flink-catalogs",
+    "description": "List all catalogs available in the Flink environment via INFORMATION_SCHEMA.CATALOGS.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base URL of the Flink REST API."
+        },
+        "organizationId": {
+          "type": "string",
+          "description": "The unique identifier for the organization."
+        },
+        "environmentId": {
+          "type": "string",
+          "description": "The unique identifier for the environment."
+        },
+        "computePoolId": {
+          "type": "string",
+          "description": "The id associated with the compute pool in context."
+        }
+      }
+    }
+  },
+  {
+    "name": "list-flink-databases",
+    "description": "List all databases (schemas) in a Flink catalog via INFORMATION_SCHEMA.SCHEMATA. Returns catalog and database names.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base URL of the Flink REST API."
+        },
+        "organizationId": {
+          "type": "string",
+          "description": "The unique identifier for the organization."
+        },
+        "environmentId": {
+          "type": "string",
+          "description": "The unique identifier for the environment."
+        },
+        "computePoolId": {
+          "type": "string",
+          "description": "The id associated with the compute pool in context."
+        },
+        "catalogName": {
+          "type": "string",
+          "description": "The Flink catalog name (environment ID, e.g., env-xxxxx). Omit to use defaults."
+        }
+      }
+    }
+  },
+  {
+    "name": "list-flink-tables",
+    "description": "List all tables in a Flink database via INFORMATION_SCHEMA.TABLES. Returns table names and types.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base URL of the Flink REST API."
+        },
+        "organizationId": {
+          "type": "string",
+          "description": "The unique identifier for the organization."
+        },
+        "environmentId": {
+          "type": "string",
+          "description": "The unique identifier for the environment."
+        },
+        "computePoolId": {
+          "type": "string",
+          "description": "The id associated with the compute pool in context."
+        },
+        "catalogName": {
+          "type": "string",
+          "description": "The Flink catalog name (environment ID, e.g., env-xxxxx). Omit to use defaults."
+        },
+        "databaseName": {
+          "type": "string",
+          "description": "The database/schema name (Kafka cluster ID, e.g., lkc-xxxxx). Omit to list all tables across the catalog."
+        }
+      }
+    }
+  },
+  {
+    "name": "describe-flink-table",
+    "description": "Get full schema details for a Flink table via INFORMATION_SCHEMA.COLUMNS. Returns column names, data types (including $rowtime), nullability, and metadata column info.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base URL of the Flink REST API."
+        },
+        "organizationId": {
+          "type": "string",
+          "description": "The unique identifier for the organization."
+        },
+        "environmentId": {
+          "type": "string",
+          "description": "The unique identifier for the environment."
+        },
+        "computePoolId": {
+          "type": "string",
+          "description": "The id associated with the compute pool in context."
+        },
+        "catalogName": {
+          "type": "string",
+          "description": "The Flink catalog name (environment ID, e.g., env-xxxxx). Omit to use defaults."
+        },
+        "databaseName": {
+          "type": "string",
+          "description": "The database/schema name. Can be cluster ID (lkc-xxxxx) or friendly name. Optional."
+        },
+        "tableName": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The name of the table to describe."
+        }
+      },
+      "required": [
+        "tableName"
+      ]
+    }
+  },
+  {
+    "name": "get-flink-table-info",
+    "description": "Get table metadata via INFORMATION_SCHEMA.TABLES. Returns watermark configuration, distribution info, and table type.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base URL of the Flink REST API."
+        },
+        "organizationId": {
+          "type": "string",
+          "description": "The unique identifier for the organization."
+        },
+        "environmentId": {
+          "type": "string",
+          "description": "The unique identifier for the environment."
+        },
+        "computePoolId": {
+          "type": "string",
+          "description": "The id associated with the compute pool in context."
+        },
+        "catalogName": {
+          "type": "string",
+          "description": "The Flink catalog name (environment ID, e.g., env-xxxxx). Omit to use defaults."
+        },
+        "databaseName": {
+          "type": "string",
+          "description": "The database/schema name. Can be cluster ID (lkc-xxxxx) or friendly name. Optional."
+        },
+        "tableName": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The name of the table to get info for."
+        }
+      },
+      "required": [
+        "tableName"
+      ]
+    }
+  },
+  {
+    "name": "check-flink-statement-health",
+    "description": "Perform an aggregate health check for a Flink SQL statement. Returns status (healthy/warning/critical), current phase, recent exceptions, and diagnostic details.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base URL of the Flink REST API."
+        },
+        "organizationId": {
+          "type": "string",
+          "description": "The unique identifier for the organization."
+        },
+        "environmentId": {
+          "type": "string",
+          "description": "The unique identifier for the environment."
+        },
+        "statementName": {
+          "type": "string",
+          "pattern": "[a-z0-9]([-a-z0-9]*([-a-z0-9])?)?(\\.[a-z0-9]([-a-z0-9]*([-a-z0-9])?)*)*",
+          "maxLength": 100,
+          "minLength": 1,
+          "description": "The name of the Flink SQL statement to check health for."
+        }
+      },
+      "required": [
+        "statementName"
+      ]
+    }
+  },
+  {
+    "name": "detect-flink-statement-issues",
+    "description": "Detect issues for a Flink SQL statement by analyzing status, exceptions, and performance metrics. Identifies problems like failures, backpressure, consumer lag, late data, memory issues, and provides suggested fixes.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base URL of the Flink REST API."
+        },
+        "organizationId": {
+          "type": "string",
+          "description": "The unique identifier for the organization."
+        },
+        "environmentId": {
+          "type": "string",
+          "description": "The unique identifier for the environment."
+        },
+        "computePoolId": {
+          "type": "string",
+          "description": "The compute pool ID. Required for metrics analysis."
+        },
+        "statementName": {
+          "type": "string",
+          "pattern": "[a-z0-9]([-a-z0-9]*([-a-z0-9])?)?(\\.[a-z0-9]([-a-z0-9]*([-a-z0-9])?)*)*",
+          "maxLength": 100,
+          "minLength": 1,
+          "description": "The name of the Flink SQL statement to detect issues for."
+        },
+        "includeMetrics": {
+          "type": "boolean",
+          "default": true,
+          "description": "Include performance metrics analysis (backpressure, lag, etc.). Requires CONFLUENT_CLOUD_API_KEY."
+        }
+      },
+      "required": [
+        "statementName"
+      ]
+    }
+  },
+  {
+    "name": "get-flink-statement-profile",
+    "description": "Get Query Profiler data for a Flink SQL statement. Returns the task graph with human-readable task/operator names, per-task metrics (records in/out, state size, busyness, idleness, backpressure, watermarks), and automated issue detection (backpressure bottlenecks, consumer lag, late data, large state).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base URL of the Flink REST API."
+        },
+        "organizationId": {
+          "type": "string",
+          "description": "The unique identifier for the organization."
+        },
+        "environmentId": {
+          "type": "string",
+          "description": "The unique identifier for the environment."
+        },
+        "computePoolId": {
+          "type": "string",
+          "description": "The compute pool ID where the statement runs."
+        },
+        "statementName": {
+          "type": "string",
+          "pattern": "[a-z0-9]([-a-z0-9]*([-a-z0-9])?)?(\\.[a-z0-9]([-a-z0-9]*([-a-z0-9])?)*)*",
+          "maxLength": 100,
+          "minLength": 1,
+          "description": "The name of the Flink SQL statement."
+        },
+        "intervalMinutes": {
+          "type": "number",
+          "default": 5,
+          "minimum": 1,
+          "maximum": 60,
+          "description": "Time window in minutes to query metrics for (1-60). Default is 5."
+        },
+        "includeAnalysis": {
+          "type": "boolean",
+          "default": true,
+          "description": "Include automated issue detection based on metrics (backpressure, lag, state size, etc.)."
+        }
+      },
+      "required": [
+        "statementName"
+      ]
+    }
+  },
+  {
+    "name": "list-connectors",
+    "description": "Retrieve a list of \"names\" of the active connectors. You can then make a read request for a specific connector by name.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base URL of the Kafka Connect REST API."
+        },
+        "environmentId": {
+          "type": "string",
+          "description": "The unique identifier for the environment this resource belongs to."
+        },
+        "clusterId": {
+          "type": "string",
+          "description": "The unique identifier for the Kafka cluster."
+        }
+      }
+    }
+  },
+  {
+    "name": "read-connector",
+    "description": "Get information about the connector.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base URL of the Kafka Connect REST API."
+        },
+        "environmentId": {
+          "type": "string",
+          "description": "The unique identifier for the environment this resource belongs to."
+        },
+        "clusterId": {
+          "type": "string",
+          "description": "The unique identifier for the Kafka cluster."
+        },
+        "connectorName": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The unique name of the connector."
+        }
+      },
+      "required": [
+        "connectorName"
+      ]
+    }
+  },
+  {
+    "name": "create-connector",
+    "description": "Create a new connector. Returns the new connector information if successful.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base URL of the Kafka Connect REST API."
+        },
+        "environmentId": {
+          "type": "string",
+          "description": "The unique identifier for the environment this resource belongs to."
+        },
+        "clusterId": {
+          "type": "string",
+          "description": "The unique identifier for the Kafka cluster."
+        },
+        "connectorName": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The name of the connector to create."
+        },
+        "connectorConfig": {
+          "type": "object",
+          "properties": {
+            "connector.class": {
+              "type": "string",
+              "description": "Required for Managed Connector, Ignored for Custom Connector. The connector class name, e.g., BigQuerySink, GcsSink, etc."
+            },
+            "confluent.connector.type": {
+              "type": "string",
+              "default": "MANAGED",
+              "description": "Required for Custom Connector. The connector type"
+            },
+            "confluent.custom.plugin.id": {
+              "type": "string",
+              "description": "Required for Custom Connector. The custom plugin id of custom connector"
+            },
+            "confluent.custom.connection.endpoints": {
+              "type": "string",
+              "description": "Optional for Custom Connector. Egress endpoint(s) for the connector"
+            },
+            "confluent.custom.schema.registry.auto": {
+              "type": "string",
+              "default": "FALSE",
+              "description": "Optional for Custom Connector. Automatically add required schema registry properties"
+            }
+          },
+          "additionalProperties": {
+            "type": "string"
+          },
+          "required": [
+            "connector.class"
+          ]
+        }
+      },
+      "required": [
+        "connectorName",
+        "connectorConfig"
+      ]
+    }
+  },
+  {
+    "name": "delete-connector",
+    "description": "Delete an existing connector. Returns success message if deletion was successful.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base URL of the Kafka Connect REST API."
+        },
+        "environmentId": {
+          "type": "string",
+          "description": "The unique identifier for the environment this resource belongs to."
+        },
+        "clusterId": {
+          "type": "string",
+          "description": "The unique identifier for the Kafka cluster."
+        },
+        "connectorName": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The name of the connector to delete."
+        }
+      },
+      "required": [
+        "connectorName"
+      ]
+    }
+  },
+  {
+    "name": "search-topics-by-tag",
+    "description": "List all topics in the Kafka cluster with the specified tag.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base URL of the Schema Registry REST API."
+        },
+        "topicTag": {
+          "type": "string",
+          "description": "The tag we wish to search for"
+        },
+        "limit": {
+          "type": "number",
+          "default": 100,
+          "maximum": 500,
+          "description": "The maximum number of topics to return."
+        },
+        "offset": {
+          "type": "number",
+          "default": 0,
+          "description": "The offset to start the search from. Used for pagination."
+        }
+      }
+    }
+  },
+  {
+    "name": "search-topics-by-name",
+    "description": "List all topics in the Kafka cluster matching the specified name.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base URL of the Schema Registry REST API."
+        },
+        "topicName": {
+          "type": "string",
+          "description": "The topic name to search for"
+        }
+      },
+      "required": [
+        "topicName"
+      ]
+    }
+  },
+  {
+    "name": "list-schemas",
+    "description": "List all schemas in the Schema Registry.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "latestOnly": {
+          "type": "boolean",
+          "default": true,
+          "description": "If true, only return the latest version of each schema."
+        },
+        "subjectPrefix": {
+          "type": "string",
+          "description": "The prefix of the subject to list schemas for."
+        },
+        "deleted": {
+          "type": "boolean",
+          "default": false,
+          "description": "List deleted schemas. (Only used if latestOnly is false)"
+        }
+      }
+    }
+  },
+  {
+    "name": "delete-schema",
+    "description": "Delete a schema subject or a specific version from the Schema Registry. If version is omitted, all versions of the subject are deleted.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base URL of the Schema Registry REST API."
+        },
+        "subject": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Name of the subject to delete."
+        },
+        "version": {
+          "type": "string",
+          "description": "Version of the schema to delete. Valid values are between [1,2^31-1] or the string \"latest\". If omitted, all versions of the subject are deleted."
+        },
+        "permanent": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to perform a permanent (hard) delete. Default is false (soft delete)."
+        }
+      },
+      "required": [
+        "subject"
+      ]
+    }
+  },
+  {
+    "name": "list-clusters",
+    "description": "Get all clusters in the Confluent Cloud environment",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base URL of the Confluent Cloud REST API."
+        },
+        "environmentId": {
+          "type": "string",
+          "description": "The environment ID to filter clusters by"
+        }
+      }
+    }
+  },
+  {
+    "name": "list-environments",
+    "description": "Get all environments in Confluent Cloud with pagination support",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base URL of the Confluent Cloud REST API."
+        },
+        "pageToken": {
+          "type": "string",
+          "description": "Token for the next page of environments"
+        }
+      }
+    }
+  },
+  {
+    "name": "read-environment",
+    "description": "Get details of a specific environment by ID",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base URL of the Confluent Cloud REST API."
+        },
+        "environmentId": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The ID of the environment to retrieve"
+        }
+      },
+      "required": [
+        "environmentId"
+      ]
+    }
+  },
+  {
+    "name": "list-tags",
+    "description": "Retrieve all tags with definitions from Confluent Cloud Schema Registry.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base URL of the Schema Registry REST API."
+        }
+      }
+    }
+  },
+  {
+    "name": "create-topic-tags",
+    "description": "Create new tag definitions in Confluent Cloud.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base URL of the Schema Registry REST API."
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "tagName": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Name of the tag to create"
+              },
+              "description": {
+                "type": "string",
+                "default": "Tag created via API",
+                "description": "Description for the tag"
+              }
+            },
+            "required": [
+              "tagName"
+            ]
+          },
+          "minItems": 1,
+          "description": "Array of tag definitions to create"
+        }
+      },
+      "required": [
+        "tags"
+      ]
+    }
+  },
+  {
+    "name": "add-tags-to-topic",
+    "description": "Assign existing tags to Kafka topics in Confluent Cloud.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base URL of the Schema Registry REST API."
+        },
+        "tagAssignments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "entityType": {
+                "type": "string",
+                "default": "kafka_topic"
+              },
+              "entityName": {
+                "type": "string",
+                "description": "Qualified name of the entity. If not provided, you can obtain it from using the search-topics-by-name tool. example: \"lsrc-g2p81:lkc-xq8k7g:my-flights\""
+              },
+              "typeName": {
+                "type": "string",
+                "description": "Name of the tag to assign"
+              }
+            },
+            "required": [
+              "entityName",
+              "typeName"
+            ]
+          },
+          "minItems": 1,
+          "description": "Array of tag assignments to create"
+        }
+      },
+      "required": [
+        "tagAssignments"
+      ]
+    }
+  },
+  {
+    "name": "delete-tag",
+    "description": "Delete a tag definition from Confluent Cloud.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base URL of the Schema Registry REST API."
+        },
+        "tagName": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Name of the tag to delete"
+        }
+      },
+      "required": [
+        "tagName"
+      ]
+    }
+  },
+  {
+    "name": "remove-tag-from-entity",
+    "description": "Remove tag from an entity in Confluent Cloud.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base URL of the Schema Registry REST API."
+        },
+        "tagName": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Name of the tag to remove from the entity."
+        },
+        "typeName": {
+          "type": "string",
+          "minLength": 1,
+          "default": "kafka_topic",
+          "description": "Type of the entity"
+        },
+        "qualifiedName": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Qualified name of the entity. If not provided, you can obtain it from using the search-topics-by-tag tool. example: \"lsrc-g2p81:lkc-xq8k7g:my-flights\""
+        }
+      },
+      "required": [
+        "tagName",
+        "qualifiedName"
+      ]
+    }
+  },
+  {
+    "name": "create-tableflow-topic",
+    "description": "Make a request to create a tableflow topic.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base url of the Tableflow REST API."
+        },
+        "tableflowTopicConfig": {
+          "type": "object",
+          "properties": {
+            "display_name": {
+              "type": "string",
+              "description": "The name of the Kafka topic for which Tableflow is enabled."
+            },
+            "storage": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "enum": [
+                    "ByobAws",
+                    "Managed"
+                  ],
+                  "default": "ByobAws",
+                  "description": "The storage type either 'Managed' or 'ByobAws'."
+                },
+                "bucket_name": {
+                  "type": "string",
+                  "description": "The bucket name."
+                },
+                "provider_integration_id": {
+                  "type": "string",
+                  "description": "The provider integration id."
+                }
+              },
+              "required": [
+                "kind",
+                "bucket_name",
+                "provider_integration_id"
+              ]
+            },
+            "suspended": {
+              "type": "boolean",
+              "default": false,
+              "description": "Indicates whether Tableflow should be suspended. The API allows setting it only to false i.e resume the Tableflow."
+            },
+            "config": {
+              "type": "object",
+              "properties": {
+                "retention_ms": {
+                  "type": "string",
+                  "default": "6048000000",
+                  "description": "The maximum age, in milliseconds, of snapshots (for Iceberg) or versions(for Delta) to retain in the table for the Tableflow-enabled topic."
+                },
+                "record_failure_strategy": {
+                  "type": "string",
+                  "default": "SUSPEND",
+                  "description": "The strategy to handle record failures in the Tableflow enabled topic during materialization."
+                }
+              }
+            },
+            "table_formats": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "default": [
+                "ICEBERG"
+              ],
+              "description": "The supported table formats for the Tableflow-enabled topic e.g ICEBERG, DELTA"
+            }
+          },
+          "required": [
+            "display_name",
+            "storage"
+          ]
+        }
+      },
+      "required": [
+        "tableflowTopicConfig"
+      ]
+    }
+  },
+  {
+    "name": "list-tableflow-regions",
+    "description": "Retrieve a sorted, filtered, paginated list of all tableflow regions.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base url of the Tableflow REST API."
+        },
+        "cloud": {
+          "type": "string",
+          "description": "Filter the results by exact match for cloud."
+        },
+        "pageSize": {
+          "type": "string",
+          "default": "10",
+          "description": "The pagination size of collection requests."
+        },
+        "pageToken": {
+          "type": "string",
+          "default": "0",
+          "description": "An opaque pagination token for collection requests."
+        }
+      }
+    }
+  },
+  {
+    "name": "list-tableflow-topics",
+    "description": "Retrieve a sorted, filtered, paginated list of all tableflow topics.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base url of the Tableflow REST API."
+        },
+        "environmentId": {
+          "type": "string",
+          "description": "The unique identifier for the enviornment this resource belongs to."
+        },
+        "clusterId": {
+          "type": "string",
+          "description": "The unique identifier for the Kafka Cluster."
+        },
+        "pageSize": {
+          "type": "string",
+          "default": "10",
+          "description": "The pagination size of collection requests."
+        },
+        "pageToken": {
+          "type": "string",
+          "default": "0",
+          "description": "An opaque pagination token for collection requests."
+        }
+      }
+    }
+  },
+  {
+    "name": "read-tableflow-topic",
+    "description": "Make a request to read a tableflow topic.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base url of the Tableflow REST API."
+        },
+        "display_name": {
+          "type": "string",
+          "description": "The name of the Kafka topic for which Tableflow is enabled."
+        },
+        "environmentId": {
+          "type": "string",
+          "description": "Scope the operation to the given environment."
+        },
+        "clusterId": {
+          "type": "string",
+          "description": "Scope the operation to the give Kafka cluster."
+        }
+      },
+      "required": [
+        "display_name"
+      ]
+    }
+  },
+  {
+    "name": "update-tableflow-topic",
+    "description": "Make a request to update a tableflow topic.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base url of the Tableflow REST API."
+        },
+        "display_name": {
+          "type": "string",
+          "description": "The name of the Kafka topic for which Tableflow is enabled."
+        },
+        "tableflowTopicConfig": {
+          "type": "object",
+          "properties": {
+            "storage": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "enum": [
+                    "ByobAws",
+                    "Managed"
+                  ],
+                  "default": "ByobAws",
+                  "description": "The storage type either 'Managed' or 'ByobAws'."
+                },
+                "bucket_name": {
+                  "type": "string",
+                  "description": "The bucket name."
+                },
+                "provider_integration_id": {
+                  "type": "string",
+                  "description": "The provider integration id."
+                }
+              },
+              "required": [
+                "kind",
+                "bucket_name",
+                "provider_integration_id"
+              ]
+            },
+            "environment": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "The unique identifier for the environment this resource belongs to."
+                }
+              },
+              "required": [
+                "id"
+              ]
+            },
+            "kafka_cluster": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "ID of the referred resource"
+                },
+                "environment": {
+                  "type": "string",
+                  "description": "Environment of the referred resource, if env-scoped"
+                }
+              },
+              "required": [
+                "id",
+                "environment"
+              ]
+            },
+            "suspended": {
+              "type": "boolean",
+              "default": false,
+              "description": "Indicates whether Tableflow should be suspended. The API allows setting it only to false i.e resume the Tableflow."
+            },
+            "config": {
+              "type": "object",
+              "properties": {
+                "retention_ms": {
+                  "type": "string",
+                  "default": "6048000000",
+                  "description": "The maximum age, in milliseconds, of snapshots (for Iceberg) or versions(for Delta) to retain in the table for the Tableflow-enabled topic."
+                },
+                "record_failure_strategy": {
+                  "type": "string",
+                  "default": "SUSPENDED",
+                  "description": "The strategy to handle record failures in the Tableflow enabled topic during materialization."
+                }
+              }
+            },
+            "table_formats": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "default": [
+                "ICEBERG"
+              ],
+              "description": "The supported table formats for the Tableflow-enabled topic e.g ICEBERG, DELTA"
+            }
+          },
+          "required": [
+            "storage",
+            "environment",
+            "kafka_cluster"
+          ]
+        }
+      },
+      "required": [
+        "display_name",
+        "tableflowTopicConfig"
+      ]
+    }
+  },
+  {
+    "name": "delete-tableflow-topic",
+    "description": "Make a request to delete a tableflow topic.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base url of the Tableflow REST API."
+        },
+        "display_name": {
+          "type": "string",
+          "description": "The name of the Kafka topic for which Tableflow is enabled."
+        },
+        "environmentId": {
+          "type": "string",
+          "description": "Scope the operation to the given environment."
+        },
+        "clusterId": {
+          "type": "string",
+          "description": "Scope the operation to the give Kafka cluster."
+        }
+      },
+      "required": [
+        "display_name"
+      ]
+    }
+  },
+  {
+    "name": "create-tableflow-catalog-integration",
+    "description": "Make a request to create a catalog integration.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base url of the Tableflow REST API."
+        },
+        "tableflowCatalogIntegrationConfig": {
+          "type": "object",
+          "properties": {
+            "display_name": {
+              "type": "string",
+              "description": "The name of the Kafka topic for which Tableflow is enabled."
+            },
+            "config": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "default": "AwsGlue",
+                  "description": "The type of the catalog integration."
+                },
+                "provider_integration_id": {
+                  "type": "string",
+                  "description": "The provider integration id."
+                }
+              },
+              "required": [
+                "kind",
+                "provider_integration_id"
+              ]
+            },
+            "suspended": {
+              "type": "boolean",
+              "default": false,
+              "description": "Indicates whether Tableflow Catalog Integration should be suspended. The API allows setting it only to false i.e resume the Catalog Integration."
+            }
+          },
+          "required": [
+            "display_name",
+            "config"
+          ]
+        }
+      },
+      "required": [
+        "tableflowCatalogIntegrationConfig"
+      ]
+    }
+  },
+  {
+    "name": "list-tableflow-catalog-integrations",
+    "description": "Retrieve a sorted, filtered, paginated list of all catalog integrations.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base url of the Tableflow REST API."
+        },
+        "environmentId": {
+          "type": "string",
+          "description": "The unique identifier for the enviornment this resource belongs to."
+        },
+        "clusterId": {
+          "type": "string",
+          "description": "The unique identifier for the Kafka Cluster."
+        },
+        "pageSize": {
+          "type": "string",
+          "default": "10",
+          "description": "The pagination size of collection requests."
+        },
+        "pageToken": {
+          "type": "string",
+          "default": "0",
+          "description": "An opaque pagination token for collection requests."
+        }
+      }
+    }
+  },
+  {
+    "name": "read-tableflow-catalog-integration",
+    "description": "Make a request to read a catalog integration.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base url of the Tableflow REST API."
+        },
+        "id": {
+          "type": "string",
+          "description": "The unique identifier for the catalog integration."
+        },
+        "environmentId": {
+          "type": "string",
+          "description": "Scope the operation to the given environment."
+        },
+        "clusterId": {
+          "type": "string",
+          "description": "Scope the operation to the give Kafka cluster."
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  },
+  {
+    "name": "update-tableflow-catalog-integration",
+    "description": "Make a request to update a catalog integration.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base url of the Tableflow REST API."
+        },
+        "tableflowCatalogIntegrationConfig": {
+          "type": "object",
+          "properties": {
+            "display_name": {
+              "type": "string",
+              "description": "The name of the Kafka topic for which Tableflow is enabled."
+            },
+            "environment": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "The unique identifier for the environment this resource belongs to."
+                }
+              },
+              "required": [
+                "id"
+              ]
+            },
+            "kafka_cluster": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "ID of the referred resource"
+                },
+                "environment": {
+                  "type": "string",
+                  "description": "Environment of the referred resource, if env-scoped"
+                }
+              },
+              "required": [
+                "id",
+                "environment"
+              ]
+            },
+            "config": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "default": "AwsGlue",
+                  "description": "The type of the catalog integration. AwsGlue, Snowflake"
+                }
+              },
+              "required": [
+                "kind"
+              ]
+            },
+            "suspended": {
+              "type": "boolean",
+              "default": false,
+              "description": "Indicates whether Tableflow Catalog Integration should be suspended. The API allows setting it only to false i.e resume the Catalog Integration."
+            }
+          },
+          "required": [
+            "display_name",
+            "environment",
+            "kafka_cluster",
+            "config"
+          ]
+        }
+      },
+      "required": [
+        "tableflowCatalogIntegrationConfig"
+      ]
+    }
+  },
+  {
+    "name": "delete-tableflow-catalog-integration",
+    "description": "Make a request to delete a tableflow catalog integration.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base url of the Tableflow REST API."
+        },
+        "id": {
+          "type": "string",
+          "description": "The unique identifier for the catalog integration."
+        },
+        "environmentId": {
+          "type": "string",
+          "description": "Scope the operation to the given environment."
+        },
+        "clusterId": {
+          "type": "string",
+          "description": "Scope the operation to the give Kafka cluster."
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  },
+  {
+    "name": "list-billing-costs",
+    "description": "Retrieve billing cost data for a Confluent Cloud organization within a specified date range with pagination support",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The base URL of the Confluent Cloud REST API."
+        },
+        "startDate": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "description": "Start date for billing costs in YYYY-MM-DD format"
+        },
+        "endDate": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "description": "End date for billing costs in YYYY-MM-DD format"
+        },
+        "pageSize": {
+          "type": "number",
+          "maximum": 1000,
+          "minimum": 1,
+          "description": "Number of results per page (max 1000)"
+        },
+        "pageToken": {
+          "type": "string",
+          "description": "Token for the next page of results"
+        }
+      },
+      "required": [
+        "startDate",
+        "endDate"
+      ]
+    }
+  }
+]
