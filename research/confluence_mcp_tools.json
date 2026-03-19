@@ -1,0 +1,174 @@
+[
+  {
+    "name": "conf_get",
+    "description": "Read any Confluence data. Returns TOON format by default (30-60% fewer tokens than JSON).\n\n**Common paths:**\n- `/wiki/api/v2/spaces` - list spaces\n- `/wiki/api/v2/pages` - list pages\n- `/wiki/rest/api/search` - search content\n\nAPI reference: https://developer.atlassian.com/cloud/confluence/rest/v2/",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "The Confluence API endpoint path. Must start with \"/\"."
+        },
+        "queryParams": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "jq": {
+          "type": "string",
+          "description": "JMESPath expression to filter response."
+        },
+        "outputFormat": {
+          "type": "string",
+          "enum": [
+            "toon",
+            "json"
+          ]
+        }
+      },
+      "required": [
+        "path"
+      ]
+    }
+  },
+  {
+    "name": "conf_post",
+    "description": "Create Confluence resources. Returns TOON format by default.\n\n**Common operations:**\n1. **Create page:** `/wiki/api/v2/pages`\n2. **Add comment:** `/wiki/api/v2/pages/{id}/footer-comments`\n\nAPI reference: https://developer.atlassian.com/cloud/confluence/rest/v2/",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "queryParams": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "jq": {
+          "type": "string"
+        },
+        "outputFormat": {
+          "type": "string",
+          "enum": [
+            "toon",
+            "json"
+          ]
+        },
+        "body": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "path",
+        "body"
+      ]
+    }
+  },
+  {
+    "name": "conf_put",
+    "description": "Replace Confluence resources (full update).\n\n**Common operations:**\n1. **Update page:** `/wiki/api/v2/pages/{id}`\n\nAPI reference: https://developer.atlassian.com/cloud/confluence/rest/v2/",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "queryParams": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "jq": {
+          "type": "string"
+        },
+        "outputFormat": {
+          "type": "string",
+          "enum": [
+            "toon",
+            "json"
+          ]
+        },
+        "body": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "path",
+        "body"
+      ]
+    }
+  },
+  {
+    "name": "conf_patch",
+    "description": "Partially update Confluence resources.\n\n**Common operations:**\n1. **Update space:** `/wiki/api/v2/spaces/{id}`\n\nAPI reference: https://developer.atlassian.com/cloud/confluence/rest/v2/",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "queryParams": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "jq": {
+          "type": "string"
+        },
+        "outputFormat": {
+          "type": "string",
+          "enum": [
+            "toon",
+            "json"
+          ]
+        },
+        "body": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "path",
+        "body"
+      ]
+    }
+  },
+  {
+    "name": "conf_delete",
+    "description": "Delete Confluence resources.\n\n**Common operations:**\n- `/wiki/api/v2/pages/{id}` - Delete page\n\nAPI reference: https://developer.atlassian.com/cloud/confluence/rest/v2/",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "queryParams": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "jq": {
+          "type": "string"
+        },
+        "outputFormat": {
+          "type": "string",
+          "enum": [
+            "toon",
+            "json"
+          ]
+        }
+      },
+      "required": [
+        "path"
+      ]
+    }
+  }
+]

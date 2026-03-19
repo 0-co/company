@@ -1,0 +1,177 @@
+[
+  {
+    "name": "jira_get",
+    "description": "Read any Jira data. Returns TOON format by default (30-60% fewer tokens than JSON).\n\n**IMPORTANT - Cost Optimization:**\n- ALWAYS use `jq` param to filter response fields. Unfiltered responses are very expensive!\n- Use `maxResults` query param to restrict result count (e.g., `maxResults: \"5\"`)\n\n**Common paths:**\n- `/rest/api/3/project` - list all projects\n- `/rest/api/3/search/jql` - search issues with JQL\n- `/rest/api/3/issue/{issueIdOrKey}` - get issue details\n\nAPI reference: https://developer.atlassian.com/cloud/jira/platform/rest/v3/",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "The Jira API endpoint path. Must start with \"/\"."
+        },
+        "queryParams": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional query parameters."
+        },
+        "jq": {
+          "type": "string",
+          "description": "JMESPath expression to filter response."
+        },
+        "outputFormat": {
+          "type": "string",
+          "enum": [
+            "toon",
+            "json"
+          ]
+        }
+      },
+      "required": [
+        "path"
+      ]
+    }
+  },
+  {
+    "name": "jira_post",
+    "description": "Create Jira resources. Returns TOON format by default.\n\n**Common operations:**\n1. **Create issue:** `/rest/api/3/issue`\n2. **Add comment:** `/rest/api/3/issue/{issueIdOrKey}/comment`\n\nAPI reference: https://developer.atlassian.com/cloud/jira/platform/rest/v3/",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "The Jira API endpoint path."
+        },
+        "queryParams": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "jq": {
+          "type": "string"
+        },
+        "outputFormat": {
+          "type": "string",
+          "enum": [
+            "toon",
+            "json"
+          ]
+        },
+        "body": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "Request body as a JSON object."
+        }
+      },
+      "required": [
+        "path",
+        "body"
+      ]
+    }
+  },
+  {
+    "name": "jira_put",
+    "description": "Replace Jira resources (full update). Returns TOON format by default.\n\n**Common operations:**\n1. **Update issue (full):** `/rest/api/3/issue/{issueIdOrKey}`\n\nAPI reference: https://developer.atlassian.com/cloud/jira/platform/rest/v3/",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "queryParams": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "jq": {
+          "type": "string"
+        },
+        "outputFormat": {
+          "type": "string",
+          "enum": [
+            "toon",
+            "json"
+          ]
+        },
+        "body": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "path",
+        "body"
+      ]
+    }
+  },
+  {
+    "name": "jira_patch",
+    "description": "Partially update Jira resources. Returns TOON format by default.\n\n**Common operations:**\n1. **Update issue fields:** `/rest/api/3/issue/{issueIdOrKey}`\n\nAPI reference: https://developer.atlassian.com/cloud/jira/platform/rest/v3/",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "queryParams": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "jq": {
+          "type": "string"
+        },
+        "outputFormat": {
+          "type": "string",
+          "enum": [
+            "toon",
+            "json"
+          ]
+        },
+        "body": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "path",
+        "body"
+      ]
+    }
+  },
+  {
+    "name": "jira_delete",
+    "description": "Delete Jira resources. Returns TOON format by default.\n\n**Common operations:**\n1. **Delete issue:** `/rest/api/3/issue/{issueIdOrKey}`\n\nAPI reference: https://developer.atlassian.com/cloud/jira/platform/rest/v3/",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "queryParams": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "jq": {
+          "type": "string"
+        },
+        "outputFormat": {
+          "type": "string",
+          "enum": [
+            "toon",
+            "json"
+          ]
+        }
+      },
+      "required": [
+        "path"
+      ]
+    }
+  }
+]
