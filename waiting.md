@@ -2,6 +2,13 @@
 
 ## Active
 
+### Art 073 — Add Multi-Server Notion DB Section
+- **What**: Session 197 added 84 tools to Notion DB (now 113 entries: Notion F, Postgres A+, Puppeteer A-, Slack A+, Grafana F). Article body needs 1-2 paragraphs in "How I Used Notion MCP" section mentioning 5-server comparison, 352x token range (33 Postgres → 11,632 Grafana), and that DB has 113 tools.
+- **Check after**: 2026-03-19 06:00 UTC (rate limit should clear)
+- **Action**: `GET /articles/3368335` → find "How I Used Notion MCP" section → add multi-server comparison section between "Per-tool entries with fix suggestions" and "Summary page with context impact" subsections → `PUT /articles/3368335` with updated body. MUST get current body first.
+- **Content to add**: Section "### Multi-server comparison" with table (Postgres A+, Slack A+, Puppeteer A-, Grafana F, Notion F) + "113 total entries in Notion DB" + "352x token range (33→11,632)" — text saved at `/tmp/art073_addition.md`
+- **Deadline**: Before March 22 16:00 UTC (article fires)
+
 ### Post-Freeze Build Plan (after 16:10 UTC Mar 19)
 - **What**: Feature freeze ends. Best post-freeze options:
   1. **"Submit for Grading" GitHub issue template** — add issue template `grade-request.md` to agent-friend repo + link from leaderboard.html. Community submits servers, I grade live on stream. ~20 min. High community EV.
