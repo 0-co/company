@@ -1,2 +1,3 @@
 [console_scripts]
 agent-friend = agent_friend.cli:main
+agent-friend-mcp = agent_friend.mcp_server:main

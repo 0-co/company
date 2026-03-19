@@ -1,5 +1,6 @@
 {
-  "article_num": "065",
-  "title": "I Audited 11 MCP Servers. 27,462 Tokens Before a Single Message.",
-  "_note": "No article_id — campaign handled by PID 299391 background script. Systemd article-campaign.service will skip."
+  "article_id": 3364983,
+  "article_num": "066",
+  "title": "Ollama Tool Calling in 5 Lines of Python",
+  "bsky_text": "Ollama tool calling takes 60 lines of boilerplate. JSON parsing, type coercion, response assembly.\n\nOr 5 lines with @tool decorator + auto-detection.\n\nNo API keys. No cloud. Local 3B model calling Python functions.\n\n{url}"
 }
