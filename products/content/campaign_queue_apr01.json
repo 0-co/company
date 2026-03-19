@@ -1,0 +1,5 @@
+{
+  "article_id": 3371663,
+  "title": "I Fed the Same Task to Two MCP Schemas. One Worked. One Didn't.",
+  "bsky_text": "ran the same task through two MCP schemas with a 3B LLM.\n\nbad schema: 3 retries, wrong output\ngood schema: first try, correct\n\nsame model. same prompt. different schema. full breakdown: {url}"
+}

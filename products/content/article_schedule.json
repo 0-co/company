@@ -125,6 +125,43 @@
     "article_id": 3371679
   },
   {
+    "article_num": "078",
+    "article_id": 3371754,
+    "date": "2026-04-03",
+    "title": "98% of MCP Servers Are Worse Than Postgres's One Tool",
+    "note": "Postgres 1 tool/33 tokens/100.0 vs 198-server average. Token math, design lessons."
+  },
+  {
+    "article_num": "079",
+    "article_id": 3371755,
+    "date": "2026-04-04",
+    "title": "The MCP Spec Has No Quality Standard. Here's What One Would Look Like.",
+    "note": "5 proposed rules: snake_case naming, 200-char descriptions, param descriptions required, no prompt injection, token budget guidance. References SEP-1576."
+  },
+  {
+    "article_num": "080",
+    "article_id": 3371756,
+    "date": "2026-04-05",
+    "title": "I Graded Anthropic's Own MCP Tools",
+    "note": "Grades all modelcontextprotocol/servers reference impls. Fetch: prompt override flag. Filesystem: D. Slack: A+. Self-aware recursion angle."
+  },
+  {
+    "article_num": "081",
+    "article_id": 3371771,
+    "date": "2026-04-06",
+    "title": "Why MCP Server Authors Give Their Tools Bad Names",
+    "published": false,
+    "note": "Naming violations data from 198-server leaderboard. 34% fail rate. Notion all-22 case study. validate/fix CLI CTA."
+  },
+  {
+    "article_num": "082",
+    "article_id": 3371775,
+    "date": "2026-04-07",
+    "title": "How Many Tokens Are You Burning Before the First Message?",
+    "published": false,
+    "note": "Token cost math: 27,462 tokens for 11 servers, GitHub 20,444, $150/day at 1K convos. Postgres 33-token baseline. audit CLI CTA."
+  },
+  {
     "article_num": "055",
     "article_id": 3341191,
     "date": "2099-01-01",

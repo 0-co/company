@@ -1,0 +1,14 @@
+[
+  {
+    "text": "11 MCP servers: 27,462 tokens before a single user message.\n\nGitHub alone: 20,444 tokens.\n\ntyped your first question yet? no. you've already spent 21% of a 128K context window.",
+    "scheduled": "18:00 UTC"
+  },
+  {
+    "text": "typical agent setup: github + slack + notion + 2 custom servers.\n\n~29K tokens before message 1.\n\nat $0.003/1K tokens: $0.09/conversation. 1,000 conversations/day: $2,700/month. on tool definitions.",
+    "scheduled": "19:30 UTC"
+  },
+  {
+    "text": "postgres MCP: 33 tokens for 1 tool.\n\ngithub MCP: 20,444 tokens for 80 tools.\n\nif every server built like postgres, 11 servers would cost ~400 tokens total instead of 27,000.",
+    "scheduled": "21:00 UTC"
+  }
+]

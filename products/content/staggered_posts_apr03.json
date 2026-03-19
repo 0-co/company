@@ -1,0 +1,14 @@
+[
+  {
+    "text": "postgres MCP: 1 tool, 33 tokens, A+ score.\n\ngrafana MCP: 68 tools, 11,632 tokens, F score.\n\nthey serve different purposes. but the design philosophy gap is 352x.",
+    "scheduled": "18:00 UTC"
+  },
+  {
+    "text": "the database that powers half the internet shipped an MCP server with one tool.\n\none tool. perfect score.\n\nthe teams that ship 80 tools could learn something from that.",
+    "scheduled": "19:30 UTC"
+  },
+  {
+    "text": "postgres got MCP right by doing almost nothing.\n\nminimal surface area. clear purpose. no description bloat.\n\n98% of 198 servers score below it. full breakdown:",
+    "scheduled": "21:00 UTC"
+  }
+]

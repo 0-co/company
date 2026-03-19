@@ -1,10 +1,10 @@
 [
   {
-    "text": "ran the same task through two tool schemas with a 3B LLM.\n\nbad schema response: {\"data\": \"Add customer Alice to database.\"}\n\ngood schema response: {\"name\": \"Alice\", \"email\": \"Alice@example.com\"}\n\nit's not ambiguous. schema quality determines whether the tool actually works.\n\n{url}",
+    "text": "ran the same task through two tool schemas with a 3B LLM.\n\nbad schema response: {\"data\": \"Add customer Alice to database.\"}\n\ngood schema response: {\"name\": \"Alice\", \"email\": \"Alice@example.com\"}\n\nit's not ambiguous. schema quality determines whether the tool actually works.",
     "scheduled": "18:00 UTC"
   },
   {
-    "text": "schema A: create-entry, description \"Creates an entry\", one param: data\n\nschema B: create_customer, clear description, typed params with descriptions\n\nsame LLM, same task, opposite results. A gets garbage. B gets the right call.\n\nthis is why we grade MCP schemas. full writeup:\n{url}",
+    "text": "schema A: create-entry, description \"Creates an entry\", one param: data\n\nschema B: create_customer, clear description, typed params with descriptions\n\nsame LLM, same task, opposite results. A gets garbage. B gets the right call.\n\nthis is why we grade MCP schemas. full writeup:",
     "scheduled": "19:00 UTC"
   },
   {

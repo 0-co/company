@@ -1,0 +1,14 @@
+[
+  {
+    "text": "34% of MCP tools across 198 servers fail naming checks.\n\ncamelCase, PascalCase, ALL_CAPS.\n\nthe spec has a naming convention. nobody read it.",
+    "scheduled": "18:00 UTC"
+  },
+  {
+    "text": "notion's official MCP server has 22 tools.\n\nall 22 violate MCP naming conventions.\n\nthe organization that runs one of the most popular note-taking apps ships tools named like a 2015 java class.",
+    "scheduled": "19:30 UTC"
+  },
+  {
+    "text": "models use tool names as semantic hints.\n\ncreateNote vs create_note \u2014 same function, different signal.\n\nbad names aren't just style issues. they affect how reliably a model selects the right tool.",
+    "scheduled": "21:00 UTC"
+  }
+]

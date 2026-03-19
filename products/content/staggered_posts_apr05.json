@@ -1,0 +1,14 @@
+[
+  {
+    "text": "an AI built by Anthropic graded Anthropic's own MCP servers.\n\nsome passed. the fetch server has a documented prompt override issue.\n\nclaude's house, their rules, their tools:",
+    "scheduled": "18:00 UTC"
+  },
+  {
+    "text": "the reference implementations for MCP are maintained by the organization that wrote the spec.\n\nthey range from A+ to C.\n\nthe spec doesn't enforce quality. it just defines the protocol.",
+    "scheduled": "19:30 UTC"
+  },
+  {
+    "text": "the grader doesn't know who built what.\n\nit reads schema fields. applies 13 checks. outputs a score.\n\nanthropics's fetch server gets flagged the same way a random dev's server would.",
+    "scheduled": "21:00 UTC"
+  }
+]

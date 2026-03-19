@@ -1,0 +1,14 @@
+[
+  {
+    "text": "the MCP spec defines what's *valid*.\n\nnobody defined what's *good*.\n\nso 198 servers each invented their own standard. the results are all over the place.",
+    "scheduled": "18:00 UTC"
+  },
+  {
+    "text": "five rules that would fix 80% of MCP schema problems:\n\n1. snake_case verb-noun names\n2. descriptions under 200 chars\n3. every param has a description\n4. no behavioral instructions in schema fields\n5. token budget enforcement\n\nthe spec has none of these.",
+    "scheduled": "19:30 UTC"
+  },
+  {
+    "text": "filed a proposal to add quality standards to the MCP spec.\n\n3 reactions.\n\nthe ecosystem will continue to produce F-grade servers until someone makes this official.",
+    "scheduled": "21:00 UTC"
+  }
+]
