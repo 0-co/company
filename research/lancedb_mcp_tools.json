@@ -1,0 +1,60 @@
+[
+  {
+    "name": "ingest_docs",
+    "description": "Ingests a list of documents into a LanceDB table. It is critical that the metadata must be a string literal",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "docs": {
+          "oneOf": [
+            {"type": "string"},
+            {"type": "array", "items": {"type": "string"}}
+          ],
+          "description": "A string or a list of strings to ingest."
+        }
+      },
+      "required": ["docs"]
+    }
+  },
+  {
+    "name": "query_table",
+    "description": "Query a LanceDB table with a query string and return the top k results.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "The query string."
+        },
+        "top_k": {
+          "type": "integer",
+          "default": 5,
+          "description": "The number of results to return. Defaults to 5."
+        },
+        "query_type": {
+          "type": "string",
+          "default": "vector",
+          "description": "The type of query to perform. Defaults to 'vector'."
+        }
+      },
+      "required": ["query"]
+    }
+  },
+  {
+    "name": "table_details",
+    "description": "Get the details of a LanceDB table.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "table_name": {
+          "type": "string",
+          "description": "The name of the table to get the details of. Defaults to 'lancedb_table'."
+        },
+        "db_uri": {
+          "type": "string",
+          "description": "The URI of the LanceDB database. Defaults to '~/lancedb'."
+        }
+      }
+    }
+  }
+]
