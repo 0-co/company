@@ -1,0 +1,171 @@
+[
+  {
+    "name": "chroma_list_collections",
+    "description": "List all collection names in the Chroma database with pagination support.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "limit": {"type": "integer", "description": "Optional maximum number of collections to return"},
+        "offset": {"type": "integer", "description": "Optional number of collections to skip before returning results"}
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "chroma_create_collection",
+    "description": "Create a new Chroma collection with configurable HNSW parameters.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "collection_name": {"type": "string", "description": "Name of the collection to create"},
+        "embedding_function_name": {"type": "string", "description": "Name of the embedding function to use. Options: 'default', 'cohere', 'openai', 'jina', 'voyageai', 'ollama', 'roboflow'"},
+        "metadata": {"type": "object", "description": "Optional metadata dict to add to the collection"}
+      },
+      "required": ["collection_name"]
+    }
+  },
+  {
+    "name": "chroma_peek_collection",
+    "description": "Peek at documents in a Chroma collection.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "collection_name": {"type": "string", "description": "Name of the collection to peek into"},
+        "limit": {"type": "integer", "description": "Number of documents to peek at"}
+      },
+      "required": ["collection_name"]
+    }
+  },
+  {
+    "name": "chroma_get_collection_info",
+    "description": "Get information about a Chroma collection.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "collection_name": {"type": "string", "description": "Name of the collection to get info about"}
+      },
+      "required": ["collection_name"]
+    }
+  },
+  {
+    "name": "chroma_get_collection_count",
+    "description": "Get the number of documents in a Chroma collection.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "collection_name": {"type": "string", "description": "Name of the collection to count"}
+      },
+      "required": ["collection_name"]
+    }
+  },
+  {
+    "name": "chroma_modify_collection",
+    "description": "Modify a Chroma collection's name or metadata.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "collection_name": {"type": "string", "description": "Name of the collection to modify"},
+        "new_name": {"type": "string", "description": "Optional new name for the collection"},
+        "new_metadata": {"type": "object", "description": "Optional new metadata for the collection"}
+      },
+      "required": ["collection_name"]
+    }
+  },
+  {
+    "name": "chroma_fork_collection",
+    "description": "Fork a Chroma collection.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "collection_name": {"type": "string", "description": "Name of the collection to fork"},
+        "new_collection_name": {"type": "string", "description": "Name of the new collection to create"}
+      },
+      "required": ["collection_name", "new_collection_name"]
+    }
+  },
+  {
+    "name": "chroma_delete_collection",
+    "description": "Delete a Chroma collection.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "collection_name": {"type": "string", "description": "Name of the collection to delete"}
+      },
+      "required": ["collection_name"]
+    }
+  },
+  {
+    "name": "chroma_add_documents",
+    "description": "Add documents to a Chroma collection.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "collection_name": {"type": "string", "description": "Name of the collection to add documents to"},
+        "documents": {"type": "array", "items": {"type": "string"}, "description": "List of text documents to add"},
+        "ids": {"type": "array", "items": {"type": "string"}, "description": "List of IDs for the documents (required)"},
+        "metadatas": {"type": "array", "items": {"type": "object"}, "description": "Optional list of metadata dictionaries for each document"}
+      },
+      "required": ["collection_name", "documents", "ids"]
+    }
+  },
+  {
+    "name": "chroma_query_documents",
+    "description": "Query documents from a Chroma collection with advanced filtering.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "collection_name": {"type": "string", "description": "Name of the collection to query"},
+        "query_texts": {"type": "array", "items": {"type": "string"}, "description": "List of query texts to search for"},
+        "n_results": {"type": "integer", "description": "Number of results to return per query"},
+        "where": {"type": "object", "description": "Optional metadata filters using Chroma's query operators"},
+        "where_document": {"type": "object", "description": "Optional document content filters"},
+        "include": {"type": "array", "items": {"type": "string"}, "description": "List of what to include in response. By default, this will include documents, metadatas, and distances."}
+      },
+      "required": ["collection_name", "query_texts"]
+    }
+  },
+  {
+    "name": "chroma_get_documents",
+    "description": "Get documents from a Chroma collection with optional filtering.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "collection_name": {"type": "string", "description": "Name of the collection to get documents from"},
+        "ids": {"type": "array", "items": {"type": "string"}, "description": "Optional list of document IDs to retrieve"},
+        "where": {"type": "object", "description": "Optional metadata filters using Chroma's query operators"},
+        "where_document": {"type": "object", "description": "Optional document content filters"},
+        "include": {"type": "array", "items": {"type": "string"}, "description": "List of what to include in response. By default, this will include documents, and metadatas."},
+        "limit": {"type": "integer", "description": "Optional maximum number of documents to return"},
+        "offset": {"type": "integer", "description": "Optional number of documents to skip before returning results"}
+      },
+      "required": ["collection_name"]
+    }
+  },
+  {
+    "name": "chroma_update_documents",
+    "description": "Update documents in a Chroma collection.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "collection_name": {"type": "string", "description": "Name of the collection to update documents in"},
+        "ids": {"type": "array", "items": {"type": "string"}, "description": "List of document IDs to update (required)"},
+        "embeddings": {"type": "array", "items": {"type": "array", "items": {"type": "number"}}, "description": "Optional list of new embeddings for the documents. Must match length of ids if provided."},
+        "metadatas": {"type": "array", "items": {"type": "object"}, "description": "Optional list of new metadata dictionaries for the documents. Must match length of ids if provided."},
+        "documents": {"type": "array", "items": {"type": "string"}, "description": "Optional list of new text documents. Must match length of ids if provided."}
+      },
+      "required": ["collection_name", "ids"]
+    }
+  },
+  {
+    "name": "chroma_delete_documents",
+    "description": "Delete documents from a Chroma collection.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "collection_name": {"type": "string", "description": "Name of the collection to delete documents from"},
+        "ids": {"type": "array", "items": {"type": "string"}, "description": "List of document IDs to delete"}
+      },
+      "required": ["collection_name", "ids"]
+    }
+  }
+]
