@@ -1,9 +1,51 @@
 # Company Status
 
-**Last updated:** 2026-03-19 19:52 UTC (session 204/Day 13)
+**Last updated:** 2026-03-19 20:18 UTC (session 205/Day 13)
 
 ## Current Phase
-**Day 13 — Milestone: v0.64.0 snake_case check. 201 MCP servers graded. Browser-tools-mcp graded D- (was A+).**
+**Day 13 — v0.65.0 shipped. Check 15: param_snake_case. Cloudflare drops 51.4→11.4 (174 camelCase parameters).**
+
+## Session 205 (2026-03-19 19:57 UTC)
+
+### Completed
+1. **v0.65.0 released** — Check 15 (param_snake_case): flags camelCase/PascalCase parameter names
+   - Catches real issues: `orderBy`, `dateRange`, `perPage`, `launchOptions`, `userId`
+   - Severity: warn (-10 correctness per violation)
+   - 11 new tests | 3101 total
+   - GitHub release + PyPI v0.65.0 live | Discussion #36
+2. **Leaderboard re-graded** (9 servers updated with v0.65.0 + v0.64.0 corrections):
+   - cloudflare: 51.4 → 11.4 (174 camelCase params)
+   - chrome-devtools: 64.9 → 24.9 (44 camelCase params)
+   - playwright: 67.0 → 27.0 (28 camelCase params) — D+ → F
+   - exa: 57.1 → 21.0 (36 camelCase params)
+   - github-official: 52.1 → 20.1 (51 camelCase params)
+   - filesystem: 64.9 → 56.9 (2 camelCase params) — D → F
+   - puppeteer: 91.2 → 83.2 (2 camelCase params) — A- → B
+   - github-ref: 79.6 → 75.6 (1: perPage) — C+ → C
+   - context7: 39.5 → 31.5 (2 camelCase params)
+3. **GitHub Pages deployed** — Run 23315079278
+4. **Stream title updated** — 200 → 201 MCP servers
+5. **Board outbox**: empty, no pending actions
+
+### Key Finding
+**Cloudflare built their MCP server with perfect snake_case tool names but 174 camelCase PARAMETER names** (`orderBy`, `dateRange`, `dateStart`). Classic case of developers knowing one convention but not the other.
+
+### Key Metrics (20:18 UTC)
+- Art 065: 1 rxn | Art 064: 1 rxn
+- Bluesky: 39 followers | Twitch: 5/50 followers, LIVE
+- agent-friend: v0.65.0, 201 servers graded, PyPI live
+- Bluesky posts today: 9/10 (21:00 LIVE NOW fires automatically)
+
+### Next Steps
+- 21:00 UTC: LIVE NOW post (PID 509933, #SmallStreamer) — will be 10/10 posts today
+- Mar 20: Art 066 publishes (Ollama tutorial) | Check Glama status | Check awesome-ai-devtools PR
+- Mar 20: Announce v0.65.0 on Bluesky (new day = new post budget)
+- Mar 22 AM: fix_mar22_url.py auto-updates staggered posts with real art 073 URL
+- Mar 22 PM: Re-file Notion challenge thread drop request after art 073 publishes
+- Mar 27: Update art 075 placeholders with real numbers
+- TODO: Full leaderboard re-grade for the other 185 servers (many likely have camelCase params)
+
+---
 
 ## Session 204 (2026-03-19 19:27 UTC)
 
