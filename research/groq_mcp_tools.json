@@ -1,0 +1,201 @@
+[
+  {
+    "name": "text_to_speech",
+    "description": "Convert text to speech using Groq's TTS model and save the output audio file to a given directory.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "text": {"type": "string", "description": "The text to convert to speech (maximum 10,000 characters)"},
+        "voice": {"type": "string", "description": "The voice to use for the audio generation", "default": "Arista-PlayAI"},
+        "model": {"type": "string", "enum": ["playai-tts", "playai-tts-arabic"], "description": "The TTS model to use", "default": "playai-tts"},
+        "output_directory": {"type": "string", "description": "Directory where files should be saved (defaults to $HOME/Desktop if not provided)"}
+      },
+      "required": ["text"]
+    }
+  },
+  {
+    "name": "list_voices",
+    "description": "List all available voices for Groq's TTS models.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "model": {"type": "string", "enum": ["playai-tts", "playai-tts-arabic", "all"], "description": "Specify which model's voices to list", "default": "all"}
+      }
+    }
+  },
+  {
+    "name": "transcribe_audio",
+    "description": "Transcribe speech from an audio file using Groq's speech-to-text API and save the output text file to a given directory.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "input_file_path": {"type": "string", "description": "Path to the audio file to transcribe"},
+        "model": {"type": "string", "description": "The model to use for transcription", "default": "whisper-large-v3-turbo"},
+        "language": {"type": "string", "description": "ISO-639-1 language code (e.g., 'en' for English)"},
+        "response_format": {"type": "string", "enum": ["json", "verbose_json", "text"], "description": "Format of the response", "default": "verbose_json"},
+        "prompt": {"type": "string", "description": "Optional prompt to guide the model's style or specify how to spell unfamiliar words"},
+        "temperature": {"type": "number", "description": "Controls randomness in the model's output (0.0 recommended for STT)", "default": 0.0},
+        "output_directory": {"type": "string", "description": "Directory where files should be saved"},
+        "save_to_file": {"type": "boolean", "description": "Whether to save the transcript to a file", "default": true}
+      },
+      "required": ["input_file_path"]
+    }
+  },
+  {
+    "name": "translate_audio",
+    "description": "Translate speech from an audio file to English text using Groq's speech-to-text API.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "input_file_path": {"type": "string", "description": "Path to the audio file to translate"},
+        "model": {"type": "string", "description": "The model to use for translation", "default": "whisper-large-v3"},
+        "response_format": {"type": "string", "enum": ["json", "text"], "description": "Format of the response", "default": "json"},
+        "prompt": {"type": "string", "description": "Optional prompt to guide the model's style"},
+        "temperature": {"type": "number", "description": "Controls randomness in the model's output", "default": 0.0},
+        "output_directory": {"type": "string", "description": "Directory where files should be saved"},
+        "save_to_file": {"type": "boolean", "description": "Whether to save the translation to a file", "default": true}
+      },
+      "required": ["input_file_path"]
+    }
+  },
+  {
+    "name": "list_stt_models",
+    "description": "List all available models for Groq's STT service.",
+    "inputSchema": {"type": "object", "properties": {}}
+  },
+  {
+    "name": "analyze_image",
+    "description": "Analyze an image using Groq's vision API with either Scout (default) or Maverick model and generate descriptive text.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "image": {"type": "string", "description": "Path to the image file to analyze, a resource reference, base64-encoded image data, or raw image buffer"},
+        "prompt": {"type": "string", "description": "Text prompt describing what you want to know about the image", "default": "What's in this image?"},
+        "model": {"type": "string", "enum": ["scout", "maverick"], "description": "Which model to use", "default": "scout"},
+        "temperature": {"type": "number", "description": "Controls randomness in the model's output (0.0-1.0)", "default": 0.7},
+        "max_tokens": {"type": "number", "description": "Maximum number of tokens to generate in the response", "default": 1024},
+        "output_directory": {"type": "string", "description": "Optional directory to save output file"},
+        "save_to_file": {"type": "boolean", "description": "Whether to save the description to a file", "default": false}
+      },
+      "required": ["image"]
+    }
+  },
+  {
+    "name": "analyze_image_json",
+    "description": "Analyze an image using Groq's vision API and generate a structured JSON response.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "image": {"type": "string", "description": "Path to the image file, base64-encoded image data, or raw image buffer"},
+        "prompt": {"type": "string", "description": "Text prompt describing what you want to know about the image", "default": "Extract key information from this image as JSON"},
+        "model": {"type": "string", "enum": ["scout", "maverick"], "description": "Which model to use", "default": "scout"},
+        "temperature": {"type": "number", "description": "Controls randomness in the model's output (0.0-1.0)", "default": 0.2},
+        "max_tokens": {"type": "number", "description": "Maximum number of tokens to generate in the response", "default": 1024},
+        "output_directory": {"type": "string", "description": "Optional directory to save output file"},
+        "save_to_file": {"type": "boolean", "description": "Whether to save the JSON response to a file", "default": false}
+      },
+      "required": ["image"]
+    }
+  },
+  {
+    "name": "chat_completion",
+    "description": "Generate a chat completion using Groq's API.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "messages": {"type": "array", "description": "List of message dictionaries with 'role' and 'content' keys"},
+        "model": {"type": "string", "description": "The model to use for completion", "default": "llama-3.3-70b-versatile"},
+        "temperature": {"type": "number", "description": "Controls randomness (0.0-2.0)", "default": 0.7},
+        "max_completion_tokens": {"type": "number", "description": "Maximum tokens to generate"},
+        "top_p": {"type": "number", "description": "Alternative to temperature for nucleus sampling", "default": 1.0},
+        "frequency_penalty": {"type": "number", "description": "Penalize frequent tokens (-2.0 to 2.0)", "default": 0.0},
+        "presence_penalty": {"type": "number", "description": "Penalize tokens based on presence (-2.0 to 2.0)", "default": 0.0},
+        "seed": {"type": "number", "description": "Optional seed for deterministic results"},
+        "output_directory": {"type": "string", "description": "Optional directory to save output file"},
+        "save_to_file": {"type": "boolean", "description": "Whether to save the response to a file", "default": false}
+      },
+      "required": ["messages"]
+    }
+  },
+  {
+    "name": "list_chat_models",
+    "description": "List all available models for Groq's chat completion service.",
+    "inputSchema": {"type": "object", "properties": {}}
+  },
+  {
+    "name": "play_audio",
+    "description": "Play an audio file using the system's audio output. Supports WAV and other common audio formats.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "input_file_path": {"type": "string", "description": "Path to the audio file to play"}
+      },
+      "required": ["input_file_path"]
+    }
+  },
+  {
+    "name": "get_groq_documentation_full",
+    "description": "Fetch and return the complete Groq LLM documentation.",
+    "inputSchema": {"type": "object", "properties": {}}
+  },
+  {
+    "name": "get_groq_documentation_summary",
+    "description": "Fetch and return the concise summary of Groq LLM documentation.",
+    "inputSchema": {"type": "object", "properties": {}}
+  },
+  {
+    "name": "batch_process",
+    "description": "Process a batch of requests using Groq's Batch API. Supports both JSONL files and arrays of requests.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "requests": {"type": ["string", "array"], "description": "Either a path to a JSONL file or a list of request dictionaries"},
+        "completion_window": {"type": "string", "description": "Time window for batch completion (e.g., '24h' or '7d')", "default": "24h"},
+        "output_path": {"type": "string", "description": "Optional path to save results"}
+      },
+      "required": ["requests"]
+    }
+  },
+  {
+    "name": "batch_status",
+    "description": "Check the status of a Groq batch processing job.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "batch_id": {"type": "string", "description": "The ID of the batch job to check"}
+      },
+      "required": ["batch_id"]
+    }
+  },
+  {
+    "name": "batch_results",
+    "description": "Retrieve results from a completed Groq batch job.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "file_id": {"type": "string", "description": "The output file ID from the completed batch"},
+        "output_path": {"type": "string", "description": "Optional custom path to save results"}
+      },
+      "required": ["file_id"]
+    }
+  },
+  {
+    "name": "list_batches",
+    "description": "List all active Groq batch processing jobs.",
+    "inputSchema": {"type": "object", "properties": {}}
+  },
+  {
+    "name": "compound_tool",
+    "description": "Use Groq's Compound-Beta API for advanced AI tasks involving web search and code execution.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "messages": {"type": "array", "description": "List of message dictionaries with 'role' and 'content' keys"},
+        "model": {"type": "string", "description": "The compound model to use (compound-beta-mini, compound-beta, or compound-beta-deep)", "default": "compound-beta-mini"},
+        "output_directory": {"type": "string", "description": "Directory to save output"},
+        "save_to_file": {"type": "boolean", "description": "Whether to save the response to a file", "default": false}
+      },
+      "required": ["messages"]
+    }
+  }
+]
