@@ -1,0 +1,44 @@
+[
+  {
+    "name": "search",
+    "description": "Search code by exact pattern (regex) or meaning (semantic).\n\nTYPE SELECTION:\n- regex: Exact pattern matching. Use for function names, variable names,\n  import statements, or known string patterns.\n  Example queries: \"def authenticate\", \"import.*pandas\", \"TODO:.*fix\"\n\n- semantic: Meaning-based search. Use when describing functionality\n  conceptually or unsure of exact keywords.\n  Example queries: \"authentication logic\", \"error handling for database\"\n\nWHEN TO USE: Quick lookup, finding references, exploring unfamiliar code.\nDO NOT USE: Multi-file architecture questions (use code_research instead).\n\nOUTPUT: {results: [{file_path, content, start_line, end_line}], pagination}\nCOST: Fast, cheap - use liberally.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "semantic for meaning-based, regex for exact pattern"
+        },
+        "query": {
+          "type": "string",
+          "description": "Search query (natural language for semantic, regex pattern for regex)"
+        },
+        "path": {
+          "type": "string",
+          "description": "Optional path to limit search scope (e.g., src/auth/)"
+        },
+        "page_size": {
+          "type": "integer",
+          "description": "Number of results per page (1-100)"
+        },
+        "offset": {
+          "type": "integer",
+          "description": "Starting offset for pagination"
+        }
+      }
+    }
+  },
+  {
+    "name": "code_research",
+    "description": "Deep analysis for architecture and cross-file code.\n\nUSE FOR:\n- Understanding how systems/features are implemented across files\n- Discovering component relationships and dependencies\n- Getting architectural explanations with code citations\n\nDO NOT USE:\n- Looking for specific code locations (use search instead)\n- Simple pattern matching (use search with type=\"regex\")\n- You already know where the code is (read files directly)\n\nOUTPUT: Comprehensive markdown with architecture overview, key locations, relationships.\nCOST: Expensive (LLM synthesis). 10-60s latency. One call often replaces 5-10 searches.\n\nERROR RECOVERY: If incomplete, try narrower query or use path parameter to scope.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Research question or topic to investigate"
+        }
+      }
+    }
+  }
+]

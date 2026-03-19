@@ -1,0 +1,58 @@
+[
+  {
+    "name": "open_windbg_dump",
+    "description": "Analyze a Windows crash dump file using WinDbg/CDB.\n                This tool executes common WinDbg commands to analyze the crash dump and returns the results.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "open_windbg_remote",
+    "description": "Connect to a remote debugging session using WinDbg/CDB.\n                This tool establishes a remote debugging connection and allows you to analyze the target process.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "run_windbg_cmd",
+    "description": "Execute a specific WinDbg command on a loaded crash dump or remote session.\n                This tool allows you to run any WinDbg command and get the output.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "send_ctrl_break",
+    "description": "Send a CTRL+BREAK event to the active CDB/WinDbg session, causing it to break in.\n                Useful for interrupting a running target or breaking into a remote session.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "close_windbg_dump",
+    "description": "Unload a crash dump and release resources.\n                Use this tool when you're done analyzing a crash dump to free up resources.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "close_windbg_remote",
+    "description": "Close a remote debugging connection and release resources.\n                Use this tool when you're done with a remote debugging session to free up resources.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "list_windbg_dumps",
+    "description": "List Windows crash dump files in the specified directory.\n                This tool helps you discover available crash dumps that can be analyzed.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  }
+]

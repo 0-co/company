@@ -1,0 +1,44 @@
+[
+  {
+    "name": "add_todo",
+    "description": "Add a new todo item",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "properties": {
+          "type": "string",
+          "description": "The todo task description"
+        }
+      }
+    }
+  },
+  {
+    "name": "show_all_todos",
+    "description": "Show all todo items from Notion",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "show_today_todos",
+    "description": "Show today",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "complete_todo",
+    "description": "Mark a todo item as complete",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "properties": {
+          "type": "string",
+          "description": "The ID of the todo task to mark as complete"
+        }
+      }
+    }
+  }
+]

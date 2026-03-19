@@ -1,0 +1,502 @@
+[
+  {
+    "name": "get_topics",
+    "description": "Get list of all available ROS topics. Example: get_topics()",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "Returns": {
+          "type": "string",
+          "description": ""
+        },
+        "topic": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    }
+  },
+  {
+    "name": "get_topic_type",
+    "description": "Tool: get_topic_type",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "topic": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    }
+  },
+  {
+    "name": "get_topic_details",
+    "description": "Tool: get_topic_details",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "topic": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    }
+  },
+  {
+    "name": "get_message_details",
+    "description": "Tool: get_message_details",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "message_type": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    }
+  },
+  {
+    "name": "subscribe_once",
+    "description": "Tool: subscribe_once",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "topic": {
+          "type": "string",
+          "description": ""
+        },
+        "msg_type": {
+          "type": "string",
+          "description": ""
+        },
+        "expects_image": {
+          "type": "string",
+          "description": ""
+        },
+        "timeout": {
+          "type": "string",
+          "description": ""
+        },
+        "queue_length": {
+          "type": "string",
+          "description": ""
+        },
+        "throttle_rate_ms": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    }
+  },
+  {
+    "name": "subscribe_for_duration",
+    "description": "Tool: subscribe_for_duration",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "topic": {
+          "type": "string",
+          "description": ""
+        },
+        "msg_type": {
+          "type": "string",
+          "description": ""
+        },
+        "duration": {
+          "type": "string",
+          "description": ""
+        },
+        "max_messages": {
+          "type": "string",
+          "description": ""
+        },
+        "queue_length": {
+          "type": "string",
+          "description": ""
+        },
+        "throttle_rate_ms": {
+          "type": "string",
+          "description": ""
+        },
+        "expects_image": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    }
+  },
+  {
+    "name": "publish_for_durations",
+    "description": "Tool: publish_for_durations",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "topic": {
+          "type": "string",
+          "description": ""
+        },
+        "msg_type": {
+          "type": "string",
+          "description": ""
+        },
+        "messages": {
+          "type": "string",
+          "description": ""
+        },
+        "durations": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    }
+  },
+  {
+    "name": "publish_once",
+    "description": "Tool: publish_once",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "topic": {
+          "type": "string",
+          "description": ""
+        },
+        "msg_type": {
+          "type": "string",
+          "description": ""
+        },
+        "msg": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    }
+  },
+  {
+    "name": "get_nodes",
+    "description": "Get list of all currently running ROS nodes. Example: get_nodes()",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "Returns": {
+          "type": "string",
+          "description": ""
+        },
+        "node": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    }
+  },
+  {
+    "name": "get_node_details",
+    "description": "Tool: get_node_details",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    }
+  },
+  {
+    "name": "get_services",
+    "description": "Get list of all available ROS services. Example: get_services()",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "Returns": {
+          "type": "string",
+          "description": ""
+        },
+        "service": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    }
+  },
+  {
+    "name": "get_service_type",
+    "description": "Tool: get_service_type",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "service": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    }
+  },
+  {
+    "name": "get_service_details",
+    "description": "Tool: get_service_details",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "service": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    }
+  },
+  {
+    "name": "call_service",
+    "description": "Tool: call_service",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "service_name": {
+          "type": "string",
+          "description": ""
+        },
+        "service_type": {
+          "type": "string",
+          "description": ""
+        },
+        "request": {
+          "type": "string",
+          "description": ""
+        },
+        "timeout": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    }
+  },
+  {
+    "name": "get_parameter",
+    "description": "Tool: get_parameter",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    }
+  },
+  {
+    "name": "set_parameter",
+    "description": "Tool: set_parameter",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": ""
+        },
+        "value": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    }
+  },
+  {
+    "name": "has_parameter",
+    "description": "Tool: has_parameter",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    }
+  },
+  {
+    "name": "delete_parameter",
+    "description": "Tool: delete_parameter",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    }
+  },
+  {
+    "name": "get_parameters",
+    "description": "Tool: get_parameters",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_name": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    }
+  },
+  {
+    "name": "inspect_all_parameters",
+    "description": "Tool: inspect_all_parameters",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "get_parameter_details",
+    "description": "Tool: get_parameter_details",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    }
+  },
+  {
+    "name": "get_actions",
+    "description": "Tool: get_actions",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "Returns": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    }
+  },
+  {
+    "name": "get_action_details",
+    "description": "Tool: get_action_details",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    }
+  },
+  {
+    "name": "get_action_status",
+    "description": "Tool: get_action_status",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "action_name": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    }
+  },
+  {
+    "name": "send_action_goal",
+    "description": "Tool: send_action_goal",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "action_name": {
+          "type": "string",
+          "description": ""
+        },
+        "action_type": {
+          "type": "string",
+          "description": ""
+        },
+        "goal": {
+          "type": "string",
+          "description": ""
+        },
+        "timeout": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    }
+  },
+  {
+    "name": "cancel_action_goal",
+    "description": "Tool: cancel_action_goal",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "action_name": {
+          "type": "string",
+          "description": ""
+        },
+        "goal_id": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    }
+  },
+  {
+    "name": "connect_to_robot",
+    "description": "Tool: connect_to_robot",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "ip": {
+          "type": "string",
+          "description": ""
+        },
+        "ping_timeout": {
+          "type": "string",
+          "description": ""
+        },
+        "port_timeout": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    }
+  },
+  {
+    "name": "ping_robot",
+    "description": "Tool: ping_robot",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "ip": {
+          "type": "string",
+          "description": ""
+        },
+        "port": {
+          "type": "string",
+          "description": ""
+        },
+        "ping_timeout": {
+          "type": "string",
+          "description": ""
+        },
+        "port_timeout": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    }
+  },
+  {
+    "name": "analyze_previously_received_image",
+    "description": "Tool: analyze_previously_received_image",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "image_path": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    }
+  }
+]
