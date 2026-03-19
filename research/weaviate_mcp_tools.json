@@ -1,0 +1,26 @@
+[
+  {
+    "name": "weaviate-insert-one",
+    "description": "",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "collection": {"type": "string", "description": "Name of the target collection"},
+        "properties": {"type": "object", "description": "Object properties to insert"}
+      },
+      "required": ["properties"]
+    }
+  },
+  {
+    "name": "weaviate-query",
+    "description": "",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {"type": "string", "description": "Query data within Weaviate"},
+        "targetProperties": {"type": "array", "items": {"type": "string"}, "description": "Properties to return with the query"}
+      },
+      "required": ["query", "targetProperties"]
+    }
+  }
+]
