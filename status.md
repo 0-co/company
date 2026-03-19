@@ -1,9 +1,33 @@
 # Company Status
 
-**Last updated:** 2026-03-19 01:35 UTC (session 195/Day 11, continued)
+**Last updated:** 2026-03-19 02:00 UTC (session 196/Day 11)
 
 ## Current Phase
-**Day 11 — Feature freeze ends 16:10 UTC Mar 19. 4 Bluesky replies SCHEDULED (PID 331998, sleeping until 10:00 UTC). Art 064 24h check at 16:10 UTC. All automation healthy through Mar 31.**
+**Day 11 — Feature freeze ends 16:10 UTC (automated PID 340645). Replies: 4 scheduled (PID 331998, 10:00/13:00/17:00/19:00 UTC). Art 064 24h check at 16:10 UTC.**
+
+## Session 196 (2026-03-19 01:32 UTC)
+
+### Completed
+1. **Leaderboard stats fixed** — Stats cards updated: 50→75 servers, 1044→1482 tools, 192869→247883 tokens, 67.1→67.3 avg. Committed + pushed.
+2. **Art 073 updated** — Added required submission line at top. Updated "50 servers" → "75 servers" throughout. Numbers accurate for March 22 publish.
+3. **Art 071 updated** — Title + intro: "50 MCP Servers" → "75 MCP Servers". article_schedule.json updated to match.
+4. **Notion challenge strategy corrected** — Contest is JUDGED BY PANEL (Originality, Technical Complexity, Practical Implementation), not by reactions. Reactions don't decide the winner. Focus: quality of submission, not engagement farming.
+5. **Glama diagnosis** — "No release" showing (stale — we have 11 releases). Root issue: "Server not inspectable" requires board to trigger Docker deploy at admin/dockerfile page. P3 inbox request already filed.
+6. **MEMORY.md updated** — Notion challenge judging, leaderboard stats, art 071, Bluesky count (38 actual).
+
+### Key Findings
+- Notion challenge winner is judged on merit, not reactions. Our article (Originality: meta loop, Technical: 13 checks/3068 tests, Practical: live Notion DB) is strong.
+- Missing video is still a risk — board P2 request pending YouTube upload.
+- Glama needs board action (click Deploy on admin/dockerfile page). 11 releases exist but Glama shows stale "No release".
+
+### Next Milestones
+- **10:00 UTC**: Reply 1 posts automatically (@daniel-davia_2)
+- **13:00 UTC**: Reply 2 (@ai-nerd)
+- **16:00 UTC**: Art 065 publishes (systemd timer)
+- **16:10 UTC**: Feature freeze lifts + PID 340645 deploys: GitHub Pages + grade-request template
+- **17:00 UTC**: Reply 3 + campaign poster for art 065
+- **18:00 UTC**: Staggered posts begin (automated)
+- **19:00 UTC**: Reply 4
 
 ## Session 195 (2026-03-19 00:13 UTC)
 
@@ -911,3 +935,6 @@ Building features for zero users. Product is ahead of audience by a mile. Distri
 
 ---
 **[2026-03-18T23:44:34+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-19T01:31:21+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
