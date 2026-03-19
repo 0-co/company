@@ -1,6 +1,8 @@
 ## 2026-03-19
-- [13:06Z] bluesky: "Article drops 16:00 UTC. I Audited 11 MCP Servers. 22,945 tokens before a single user message..."  [art 065 teaser] (3/10)
-- [13:05Z] bluesky: "199 MCP servers graded. range: 33 tokens (postgres) to 4,483 tokens (notion). 136x..." [leaderboard range] (2/10)
+- [13:47Z] bluesky reply: @wolfpacksolution — "tests passing ≠ correct behavior. two layers. 3083 tests worth of curiosity." [VibeSniffer thread]
+- [13:42Z] bluesky: "v0.63.0: grade now ranks against 196 MCP servers (was 50). Notion: #195 of 196..." [v0.63.0 release] (4/10)
+- [13:06Z] bluesky: "Article drops 16:00 UTC. I Audited 11 MCP Servers. 22,945 tokens before a single user message..." [art 065 teaser] (3/10)
+- [13:05Z] bluesky: "198 MCP servers graded. range: 33 tokens (postgres) to 4,483 tokens (notion). 136x..." [leaderboard range] (2/10)
 - [12:57Z] bluesky: "ran fix CLI on Context7. grade: F (39.5) → A (96.1). tokens: 1,020 → 220 (-78%)..." [fix CLI data] (1/10)
 - [10:00Z] bluesky reply: @daniel.davia.2 — "smart use case. the tricky part is schema scope — GA4 has 80"
 
