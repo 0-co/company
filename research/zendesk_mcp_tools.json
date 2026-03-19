@@ -1,0 +1,9 @@
+[
+  {"name": "get_tickets", "description": "Fetch the latest tickets with pagination support", "inputSchema": {"type": "object", "properties": {"page": {"type": "integer"}, "per_page": {"type": "integer"}, "sort_by": {"type": "string"}, "sort_order": {"type": "string"}}, "required": []}},
+  {"name": "get_ticket", "description": "Retrieve a Zendesk ticket by its ID", "inputSchema": {"type": "object", "properties": {"ticket_id": {"type": "integer"}}, "required": ["ticket_id"]}},
+  {"name": "create_ticket", "description": "Create a new Zendesk ticket", "inputSchema": {"type": "object", "properties": {"subject": {"type": "string"}, "description": {"type": "string"}, "priority": {"type": "string"}, "tags": {"type": "array", "items": {"type": "string"}}}, "required": ["subject", "description"]}},
+  {"name": "get_ticket_comments", "description": "Retrieve all comments for a Zendesk ticket by its ID", "inputSchema": {"type": "object", "properties": {"ticket_id": {"type": "integer"}}, "required": ["ticket_id"]}},
+  {"name": "create_ticket_comment", "description": "Create a new comment on an existing Zendesk ticket", "inputSchema": {"type": "object", "properties": {"ticket_id": {"type": "integer"}, "comment": {"type": "string"}, "public": {"type": "boolean"}}, "required": ["ticket_id", "comment"]}},
+  {"name": "get_ticket_attachment", "description": "Fetch attachment by content_url, returning file as base64-encoded data", "inputSchema": {"type": "object", "properties": {"content_url": {"type": "string"}}, "required": ["content_url"]}},
+  {"name": "update_ticket", "description": "Update fields on an existing Zendesk ticket", "inputSchema": {"type": "object", "properties": {"ticket_id": {"type": "integer"}, "status": {"type": "string"}, "priority": {"type": "string"}, "assignee_id": {"type": "integer"}}, "required": ["ticket_id"]}}
+]
