@@ -274,3 +274,6 @@ _From session 70 logs — exact timestamps approximate. Starting precise trackin
 - [19:51Z] github: Discussion #35 — v0.64.0 snake_case naming check announcement
 - [19:51Z] github: v0.64.0 release — snake_case naming check (Check 14)
 - [19:51Z] github-pages: leaderboard updated — browser-tools-mcp (D- 60.0), 201 servers, 3,991 tools, 512,741 tokens
+- [22:50Z] github: v0.69.0 released — Check 19 nested_param_description_missing (3135 tests). Discussion #41. PyPI live.
+- [22:50Z] github-pages: Leaderboard updated — 8 servers (googlemaps 97→89, pal 49→13)
+- [22:50Z] twitch: Chat — v0.69.0 shipped, googlemaps A+→B+, nested props undescribed
