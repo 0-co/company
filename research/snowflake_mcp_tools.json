@@ -1,0 +1,479 @@
+[
+  {
+    "name": "create_object",
+    "description": "Generic tool to create a Snowflake object including database, schema, table, view, warehouse, compute_pool, role, stage, user, image_repository.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "object_type": {
+          "type": "string",
+          "description": "Type of Snowflake object. One of database, schema, table, view, warehouse, compute_pool, role, stage, user, image_repository"
+        },
+        "target_object": {
+          "description": "Always pass properties of target_object as an object, not a string"
+        },
+        "mode": {
+          "type": "string",
+          "enum": ["error_if_exists", "replace", "if_not_exists"],
+          "default": "error_if_exists",
+          "description": "Creation mode for the object"
+        }
+      },
+      "required": ["object_type", "target_object"]
+    }
+  },
+  {
+    "name": "drop_object",
+    "description": "Generic tool to drop a Snowflake object including database, schema, table, view, warehouse, compute_pool, role, stage, user, image_repository.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "object_type": {
+          "type": "string",
+          "description": "Type of Snowflake object. One of database, schema, table, view, warehouse, compute_pool, role, stage, user, image_repository"
+        },
+        "target_object": {
+          "description": "Always pass properties of target_object as an object, not a string"
+        },
+        "if_exists": {
+          "type": "boolean",
+          "default": false,
+          "description": "If true, drop the object only if it exists"
+        }
+      },
+      "required": ["object_type", "target_object"]
+    }
+  },
+  {
+    "name": "create_or_alter_object",
+    "description": "Generic tool to create or alter a Snowflake object including database, schema, table, view, warehouse, compute_pool, role, stage, user, image_repository.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "object_type": {
+          "type": "string",
+          "description": "Type of Snowflake object. One of database, schema, table, view, warehouse, compute_pool, role, stage, user, image_repository"
+        },
+        "target_object": {
+          "description": "Always pass properties of target_object as an object, not a string"
+        }
+      },
+      "required": ["object_type", "target_object"]
+    }
+  },
+  {
+    "name": "describe_object",
+    "description": "Generic tool to describe a Snowflake object including database, schema, table, view, warehouse, compute_pool, role, stage, user, image_repository.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "object_type": {
+          "type": "string",
+          "description": "Type of Snowflake object. One of database, schema, table, view, warehouse, compute_pool, role, stage, user, image_repository"
+        },
+        "target_object": {
+          "description": "Always pass properties of target_object as an object, not a string"
+        }
+      },
+      "required": ["object_type", "target_object"]
+    }
+  },
+  {
+    "name": "list_objects",
+    "description": "Generic tool to list Snowflake objects including database, schema, table, view, warehouse, compute_pool, role, stage, user, image_repository.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "object_type": {
+          "type": "string",
+          "description": "Type of Snowflake object. One of database, schema, table, view, warehouse, compute_pool, role, stage, user, image_repository"
+        },
+        "database_name": {
+          "type": ["string", "null"],
+          "description": "Name of the database to list objects in"
+        },
+        "schema_name": {
+          "type": ["string", "null"],
+          "description": "Name of the schema to list objects in"
+        },
+        "like": {
+          "type": ["string", "null"],
+          "description": "Filter objects by keyword in name. Uses case-insensitive pattern matching, with support for SQL wildcard characters (% and _)."
+        },
+        "starts_with": {
+          "type": ["string", "null"],
+          "description": "Filter objects by start of name. Case sensitive. Ignored for warehouses."
+        }
+      },
+      "required": ["object_type"]
+    }
+  },
+  {
+    "name": "run_snowflake_query",
+    "description": "Run a SQL query in Snowflake. DML and DDL queries are supported. Tool should only be used if other tools do not suffice.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "statement": {
+          "type": "string",
+          "description": "SQL query to execute"
+        }
+      },
+      "required": ["statement"]
+    }
+  },
+  {
+    "name": "list_semantic_views",
+    "description": "List semantic views in Snowflake with filtering support.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "database_name": {
+          "type": ["string", "null"],
+          "description": "Name of the database to list semantic views in"
+        },
+        "schema_name": {
+          "type": ["string", "null"],
+          "description": "Name of the schema to list semantic views in"
+        },
+        "like": {
+          "type": ["string", "null"],
+          "description": "Filter semantic views by keyword in name. Case insensitive."
+        },
+        "starts_with": {
+          "type": ["string", "null"],
+          "description": "Filter semantic views by start of name. Case sensitive."
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "describe_semantic_view",
+    "description": "Get detailed information about a specific semantic view.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "database_name": {
+          "type": "string",
+          "description": "The name of the database containing the semantic view"
+        },
+        "schema_name": {
+          "type": "string",
+          "description": "The name of the schema containing the semantic view"
+        },
+        "view_name": {
+          "type": "string",
+          "description": "The name of the semantic view"
+        }
+      },
+      "required": ["database_name", "schema_name", "view_name"]
+    }
+  },
+  {
+    "name": "show_semantic_dimensions",
+    "description": "Show semantic dimensions available in a semantic view.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "database_name": {
+          "type": "string",
+          "description": "The name of the database to show semantic dimensions in"
+        },
+        "schema_name": {
+          "type": "string",
+          "description": "The name of the schema to show semantic dimensions in"
+        },
+        "view_name": {
+          "type": "string",
+          "description": "The name of the semantic view to show dimensions in"
+        },
+        "like": {
+          "type": ["string", "null"],
+          "description": "Filter semantic views by keyword in name. Case insensitive."
+        },
+        "starts_with": {
+          "type": ["string", "null"],
+          "description": "Filter semantic views by start of name. Case sensitive."
+        }
+      },
+      "required": ["database_name", "schema_name", "view_name"]
+    }
+  },
+  {
+    "name": "show_semantic_metrics",
+    "description": "Show semantic metrics available in a semantic view.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "database_name": {
+          "type": "string",
+          "description": "The name of the database to show semantic metrics in"
+        },
+        "schema_name": {
+          "type": "string",
+          "description": "The name of the schema to show semantic metrics in"
+        },
+        "view_name": {
+          "type": "string",
+          "description": "The name of the semantic view to show metrics in"
+        },
+        "like": {
+          "type": ["string", "null"],
+          "description": "Filter semantic views by keyword in name. Case insensitive."
+        },
+        "starts_with": {
+          "type": ["string", "null"],
+          "description": "Filter semantic views by start of name. Case sensitive."
+        }
+      },
+      "required": ["database_name", "schema_name", "view_name"]
+    }
+  },
+  {
+    "name": "get_semantic_view_ddl",
+    "description": "Get the DDL for a semantic view.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "database_name": {
+          "type": "string",
+          "description": "The name of the database to get the DDL for the semantic view in"
+        },
+        "schema_name": {
+          "type": "string",
+          "description": "The name of the schema to get the DDL for the semantic view in"
+        },
+        "view_name": {
+          "type": "string",
+          "description": "The name of the semantic view to get the DDL for"
+        }
+      },
+      "required": ["database_name", "schema_name", "view_name"]
+    }
+  },
+  {
+    "name": "write_semantic_view_query_tool",
+    "description": "Writes a query statement to query a semantic view using DIMENSIONS, METRICS, and/or FACTS. Supports optional WHERE, ORDER BY, and LIMIT clauses. Query statement cannot combine FACTS and METRICS in same query. Use tool if asked to create a query to query a semantic view.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "database_name": {
+          "type": "string",
+          "description": "The name of the database containing the semantic view"
+        },
+        "schema_name": {
+          "type": "string",
+          "description": "The name of the schema containing the semantic view"
+        },
+        "view_name": {
+          "type": "string",
+          "description": "The name of the semantic view to query"
+        },
+        "dimensions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "table": {"type": "string"},
+              "name": {"type": "string"}
+            }
+          },
+          "description": "List of dimensions to include in the query. Each dimension should specify table and name/expression."
+        },
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "table": {"type": "string"},
+              "name": {"type": "string"}
+            }
+          },
+          "description": "List of metrics to include in the query. Each metric should specify table and name. Cannot be used with facts."
+        },
+        "facts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "table": {"type": "string"},
+              "name": {"type": "string"}
+            }
+          },
+          "description": "List of facts to include in the query. Each fact should specify table and name. Cannot be used with metrics."
+        },
+        "where_clause": {
+          "type": ["string", "null"],
+          "description": "Optional WHERE clause conditions (without the WHERE keyword)"
+        },
+        "order_by": {
+          "type": ["string", "null"],
+          "description": "Optional ORDER BY clause (without the ORDER BY keywords)"
+        },
+        "limit": {
+          "type": ["integer", "string", "null"],
+          "description": "Optional LIMIT for number of rows to return"
+        }
+      },
+      "required": ["database_name", "schema_name", "view_name"]
+    }
+  },
+  {
+    "name": "query_semantic_view",
+    "description": "Writes and runs a statement to query a semantic view using DIMENSIONS, METRICS, and/or FACTS. Supports optional WHERE, ORDER BY, and LIMIT clauses. Query statement cannot combine FACTS and METRICS in same query. Use tool if asked to query a semantic view directly.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "database_name": {
+          "type": "string",
+          "description": "The name of the database containing the semantic view"
+        },
+        "schema_name": {
+          "type": "string",
+          "description": "The name of the schema containing the semantic view"
+        },
+        "view_name": {
+          "type": "string",
+          "description": "The name of the semantic view to query"
+        },
+        "dimensions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "table": {"type": "string"},
+              "name": {"type": "string"}
+            }
+          },
+          "description": "List of dimensions to include in the query. Each dimension should specify table and name/expression."
+        },
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "table": {"type": "string"},
+              "name": {"type": "string"}
+            }
+          },
+          "description": "List of metrics to include in the query. Each metric should specify table and name. Cannot be used with facts."
+        },
+        "facts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "table": {"type": "string"},
+              "name": {"type": "string"}
+            }
+          },
+          "description": "List of facts to include in the query. Each fact should specify table and name. Cannot be used with metrics."
+        },
+        "where_clause": {
+          "type": ["string", "null"],
+          "description": "Optional WHERE clause conditions (without the WHERE keyword)"
+        },
+        "order_by": {
+          "type": ["string", "null"],
+          "description": "Optional ORDER BY clause (without the ORDER BY keywords)"
+        },
+        "limit": {
+          "type": ["integer", "string", "null"],
+          "description": "Optional LIMIT for number of rows to return"
+        }
+      },
+      "required": ["database_name", "schema_name", "view_name"]
+    }
+  },
+  {
+    "name": "cortex_agent",
+    "description": "Cortex Agent tool that combines structured and unstructured data querying and may include additional custom tools in a configured Cortex Agent object in Snowflake. Each service can be identified by its database_name, schema_name, and service_name. The user's query string is passed to the agent service as the query parameter.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "service_name": {
+          "type": "string",
+          "description": "Name of the Cortex Agent Service"
+        },
+        "database_name": {
+          "type": "string",
+          "description": "Target database containing the agent service"
+        },
+        "schema_name": {
+          "type": "string",
+          "description": "Target schema containing the agent service"
+        },
+        "query": {
+          "type": "string",
+          "description": "User query to submit to Cortex Agent"
+        }
+      },
+      "required": ["service_name", "database_name", "schema_name", "query"]
+    }
+  },
+  {
+    "name": "cortex_search",
+    "description": "Search tool that performs semantic search against a configured Cortex Search service using Snowflake's REST API. Supports filtering, column selection, and limit for refined search results. Each service can be identified by its database_name, schema_name, and service_name. Columns and filters are optional.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "service_name": {
+          "type": "string",
+          "description": "Name of the Cortex Search Service"
+        },
+        "database_name": {
+          "type": "string",
+          "description": "Target database containing the search service"
+        },
+        "schema_name": {
+          "type": "string",
+          "description": "Target schema containing the search service"
+        },
+        "query": {
+          "type": "string",
+          "description": "User query to search in search service"
+        },
+        "columns": {
+          "type": "array",
+          "items": {"type": "string"},
+          "default": [],
+          "description": "Optional list of columns to return for each relevant result in the response"
+        },
+        "filter_query": {
+          "type": "object",
+          "default": {},
+          "description": "Optional filter query dictionary supporting operators like @eq, @contains, @gte, @lte, @and, @or, @not"
+        },
+        "limit": {
+          "type": "integer",
+          "default": 10,
+          "description": "Optional limit on the number of results to return (must be between 0 and 1000)"
+        }
+      },
+      "required": ["service_name", "database_name", "schema_name", "query"]
+    }
+  },
+  {
+    "name": "cortex_analyst",
+    "description": "Analyst tool that performs natural language to SQL conversion against a configured Cortex Analyst service using Snowflake's REST API. Supports semantic model or semantic view. Each service can be identified by its service_name and semantic_model. The value of the semantic_model should be a fully-qualified path to a YAML semantic file or Snowflake Semantic View (e.g., '@my_db.my_schema.my_stage/my_semantic_file.yaml' or 'MY_DB.MY_SCH.MY_SEMANTIC_VIEW').",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "service_name": {
+          "type": "string",
+          "description": "Name of the Cortex Analyst Service"
+        },
+        "semantic_model": {
+          "type": "string",
+          "description": "Fully qualified path to YAML semantic file or Snowflake Semantic View"
+        },
+        "query": {
+          "type": "string",
+          "description": "Natural language query to submit to Cortex Analyst"
+        }
+      },
+      "required": ["service_name", "semantic_model", "query"]
+    }
+  }
+]
