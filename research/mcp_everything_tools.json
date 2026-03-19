@@ -1,0 +1,101 @@
+[
+  {
+    "name": "echo",
+    "description": "Echoes back the input string",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "message": {"type": "string", "description": "Message to echo"}
+      },
+      "required": ["message"]
+    }
+  },
+  {
+    "name": "get-sum",
+    "description": "Returns the sum of two numbers",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "a": {"type": "number", "description": "First number"},
+        "b": {"type": "number", "description": "Second number"}
+      },
+      "required": ["a", "b"]
+    }
+  },
+  {
+    "name": "get-env",
+    "description": "Returns all environment variables, helpful for debugging MCP server configuration",
+    "inputSchema": {"type": "object", "properties": {}}
+  },
+  {
+    "name": "get-tiny-image",
+    "description": "Returns the MCP_TINY_IMAGE as image/png",
+    "inputSchema": {"type": "object", "properties": {}}
+  },
+  {
+    "name": "toggle-simulated-logging",
+    "description": "Toggles simulated, random-leveled logging on or off.",
+    "inputSchema": {"type": "object", "properties": {}}
+  },
+  {
+    "name": "toggle-subscriber-updates",
+    "description": "Toggles simulated resource subscription updates on or off.",
+    "inputSchema": {"type": "object", "properties": {}}
+  },
+  {
+    "name": "trigger-long-running-operation",
+    "description": "Demonstrates a long running operation with progress updates.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "duration": {"type": "number", "description": "Duration of the operation in seconds"},
+        "steps": {"type": "number", "description": "Number of steps in the operation"}
+      }
+    }
+  },
+  {
+    "name": "get-annotated-message",
+    "description": "Demonstrates how annotations can be used to provide metadata about content.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "messageType": {"type": "string", "enum": ["error", "success", "debug"], "description": "Type of message to demonstrate different annotation patterns"},
+        "includeImage": {"type": "boolean", "description": "Whether to include an example image"}
+      },
+      "required": ["messageType"]
+    }
+  },
+  {
+    "name": "get-structured-content",
+    "description": "Returns structured content along with an output schema for client data validation",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "location": {"type": "string", "enum": ["New York", "Chicago", "Los Angeles"], "description": "Choose city"}
+      },
+      "required": ["location"]
+    }
+  },
+  {
+    "name": "gzip-file-as-resource",
+    "description": "Compresses a single file using gzip compression. Depending upon the selected output type, returns either the compressed data as a gzipped resource or a resource link.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {"type": "string", "description": "Name of the output file"},
+        "data": {"type": "string", "description": "URL or data URI of the file content to compress"},
+        "outputType": {"type": "string", "enum": ["resourceLink", "resource"], "description": "How the resulting gzipped file should be returned. 'resourceLink' returns a link to a resource that can be read later, 'resource' returns a full resource object."}
+      }
+    }
+  },
+  {
+    "name": "get-resource-links",
+    "description": "Returns up to ten resource links that reference different types of resources",
+    "inputSchema": {"type": "object", "properties": {}}
+  },
+  {
+    "name": "get-resource-reference",
+    "description": "Returns a resource reference that can be used by MCP clients",
+    "inputSchema": {"type": "object", "properties": {}}
+  }
+]
