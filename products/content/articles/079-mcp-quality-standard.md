@@ -17,7 +17,7 @@ It says nothing about what a good tool definition looks like.
 
 No naming conventions. No size limits. No required fields beyond the bare minimum. No guidance on where instructions belong versus where they don't. The spec tells you how to ship a tool description. It doesn't tell you whether the one you wrote is any good.
 
-The result: 199 servers graded, average score 68.4, with the official Notion server at 19.8 (F) and Grafana at 21.9 (F).
+The result: 200 servers graded, average score 68.4, with the official Notion server at 19.8 (F) and Grafana at 21.9 (F).
 
 The gap isn't malice. It's the absence of a standard.
 
@@ -35,7 +35,7 @@ This is what we think that standard should include.
 
 The MCP spec uses snake_case in all its examples. Most tools don't follow it.
 
-Of the 199 servers graded, a significant fraction use hyphens (`resolve-library-id`), camelCase (`getDocumentContent`), or names that are nouns without verbs (`page_search`, `document`). None of these are wrong in the sense of failing JSON schema validation. All of them are wrong in the sense of making the LLM work harder.
+Of the 200 servers graded, a significant fraction use hyphens (`resolve-library-id`), camelCase (`getDocumentContent`), or names that are nouns without verbs (`page_search`, `document`). None of these are wrong in the sense of failing JSON schema validation. All of them are wrong in the sense of making the LLM work harder.
 
 A consistent convention matters because tool names are used by language models to select and invoke functions. `list_pages` is unambiguous: it's a verb, it's a noun, you know what it does. `pageListing` requires the model to parse camelCase, infer that it's a listing operation, and deduplicate it mentally against `getPages` and `retrieve_all_pages` from other tools in the same server.
 
@@ -51,7 +51,7 @@ This is not controversial. It's just unwritten.
 
 ## Rule 2: Descriptions under 200 characters
 
-The most common failure mode in the 199-server dataset: descriptions used as instruction manuals.
+The most common failure mode in the 200-server dataset: descriptions used as instruction manuals.
 
 The worst offender in the dataset: a tool description at 2,006 characters for a library lookup function. It contains a numbered Selection Process, a Response Format section, and handling instructions for when results aren't found. All of this belongs in a system prompt or documentation — not in a schema field that gets injected into every model context, every session, whether those instructions are relevant or not.
 
@@ -71,7 +71,7 @@ This would eliminate the single largest source of token bloat in the current MCP
 
 Tool parameters without descriptions are schema dead weight. The model sees `query: string` with no context and has to guess what a valid query looks like, what format is expected, and what constraints apply.
 
-Of the 199 servers graded, several have parameters with no description at all. Some have parameters with just a type annotation. A few expose complex objects with nested fields and no documentation at any level.
+Of the 200 servers graded, several have parameters with no description at all. Some have parameters with just a type annotation. A few expose complex objects with nested fields and no documentation at any level.
 
 The proposed rule:
 - Every parameter needs a description
@@ -125,7 +125,7 @@ The cost compounds. Every developer who reads the filesystem reference server (D
 
 A quality standard in the spec doesn't eliminate bad servers. But it gives developers a reference point, gives tooling something to lint against, and gives the community a shared vocabulary for what "good" looks like.
 
-Right now, that vocabulary doesn't exist in the spec. We've been building it from the outside: 199 servers, 3,974 tools, 511,938 tokens of data.
+Right now, that vocabulary doesn't exist in the spec. We've been building it from the outside: 200 servers, 3,978 tools, 512,305 tokens of data.
 
 The grader is free if you want to run your own server against these rules:
 
