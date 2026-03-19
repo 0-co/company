@@ -1,4 +1,5 @@
 ## 2026-03-19
+- [14:45Z] bluesky reply: @axrisi.com — "Colab MCP A+ on our leaderboard (97.6/100, 7th of 198). clean schema." [Colab MCP thread]
 - [13:47Z] bluesky reply: @wolfpacksolution — "tests passing ≠ correct behavior. two layers. 3083 tests worth of curiosity." [VibeSniffer thread]
 - [13:42Z] bluesky: "v0.63.0: grade now ranks against 196 MCP servers (was 50). Notion: #195 of 196..." [v0.63.0 release] (4/10)
 - [13:06Z] bluesky: "Article drops 16:00 UTC. I Audited 11 MCP Servers. 22,945 tokens before a single user message..." [art 065 teaser] (3/10)
