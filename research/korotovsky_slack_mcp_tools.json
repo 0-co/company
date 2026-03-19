@@ -1,0 +1,400 @@
+[
+  {
+    "name": "conversations_history",
+    "description": "Get messages from the channel (or DM) by channel_id, the last row/column in the response is used as 'cursor' parameter for pagination if not empty",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "channel_id": {
+          "type": "string",
+          "description": "ID of the channel in format Cxxxxxxxxxx or its name starting with #... or @..."
+        },
+        "include_activity_messages": {
+          "type": "boolean",
+          "description": "If true, includes activity messages such as channel_join or channel_leave"
+        },
+        "cursor": {
+          "type": "string",
+          "description": "Cursor for pagination"
+        },
+        "limit": {
+          "type": "string",
+          "description": "Limit of messages to fetch in format of maximum ranges of time (e.g. 1d, 1w, 30d) or number of messages (e.g. 50)"
+        }
+      },
+      "required": [
+        "channel_id"
+      ]
+    }
+  },
+  {
+    "name": "conversations_replies",
+    "description": "Get a thread of messages posted to a conversation by channelID and thread_ts, the last row/column in the response is used as 'cursor' parameter for pagination if not empty",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "channel_id": {
+          "type": "string",
+          "description": "ID of the channel"
+        },
+        "thread_ts": {
+          "type": "string",
+          "description": "Timestamp of the parent message in format 1234567890.123456"
+        },
+        "include_activity_messages": {
+          "type": "boolean",
+          "description": "If true, includes activity messages"
+        },
+        "cursor": {
+          "type": "string",
+          "description": "Cursor for pagination"
+        },
+        "limit": {
+          "type": "string",
+          "description": "Limit of messages to fetch"
+        }
+      },
+      "required": [
+        "channel_id",
+        "thread_ts"
+      ]
+    }
+  },
+  {
+    "name": "conversations_add_message",
+    "description": "Add a message to a public channel, private channel, or direct message (DM, or IM) conversation by channel_id and thread_ts.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "channel_id": {
+          "type": "string",
+          "description": "ID of the channel"
+        },
+        "thread_ts": {
+          "type": "string",
+          "description": "Optional thread timestamp for reply"
+        },
+        "payload": {
+          "type": "string",
+          "description": "Message payload in specified content_type format"
+        },
+        "content_type": {
+          "type": "string",
+          "description": "Content type: text/markdown or text/plain"
+        }
+      },
+      "required": [
+        "channel_id",
+        "payload"
+      ]
+    }
+  },
+  {
+    "name": "reactions_add",
+    "description": "Add an emoji reaction to a message in a public channel, private channel, or direct message (DM, or IM) conversation.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "channel_id": {
+          "type": "string",
+          "description": "ID of the channel"
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "Timestamp of the message"
+        },
+        "emoji": {
+          "type": "string",
+          "description": "Emoji name without colons (e.g. thumbsup, heart)"
+        }
+      },
+      "required": [
+        "channel_id",
+        "timestamp",
+        "emoji"
+      ]
+    }
+  },
+  {
+    "name": "reactions_remove",
+    "description": "Remove an emoji reaction from a message in a public channel, private channel, or direct message (DM, or IM) conversation.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "channel_id": {
+          "type": "string",
+          "description": "ID of the channel"
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "Timestamp of the message"
+        },
+        "emoji": {
+          "type": "string",
+          "description": "Emoji name without colons"
+        }
+      },
+      "required": [
+        "channel_id",
+        "timestamp",
+        "emoji"
+      ]
+    }
+  },
+  {
+    "name": "attachment_get_data",
+    "description": "Download an attachment's content by file ID. Returns file metadata and content (text files as-is, binary files as base64). Maximum file size is 5MB.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "file_id": {
+          "type": "string",
+          "description": "File ID of the attachment"
+        }
+      },
+      "required": [
+        "file_id"
+      ]
+    }
+  },
+  {
+    "name": "conversations_search_messages",
+    "description": "Search messages in a public channel, private channel, or direct message (DM, or IM) conversation using filters. All filters are optional, if not provided then search_query is required.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "search_query": {
+          "type": "string",
+          "description": "Search query to filter messages"
+        },
+        "filter_in_channel": {
+          "type": "string",
+          "description": "Filter messages in a specific channel by ID or name"
+        },
+        "filter_users_from": {
+          "type": "string",
+          "description": "Filter messages from a specific user"
+        },
+        "filter_date_before": {
+          "type": "string",
+          "description": "Filter messages before a specific date (YYYY-MM-DD)"
+        },
+        "filter_date_after": {
+          "type": "string",
+          "description": "Filter messages after a specific date (YYYY-MM-DD)"
+        },
+        "limit": {
+          "type": "number",
+          "description": "Maximum number of items to return (1-100)"
+        },
+        "cursor": {
+          "type": "string",
+          "description": "Cursor for pagination"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "users_search",
+    "description": "Search for users by name, email, or display name. Returns user details and DM channel ID if available.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Search query - matches against real name, display name, username, or email"
+        },
+        "limit": {
+          "type": "number",
+          "description": "Maximum number of results (1-100)"
+        }
+      },
+      "required": [
+        "query"
+      ]
+    }
+  },
+  {
+    "name": "conversations_unreads",
+    "description": "Get unread messages across all channels. With browser session tokens (xoxc/xoxd), uses a single API call for complete results. With OAuth user tokens (xoxp), scans a subset of channels per type.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "channel_types": {
+          "type": "string",
+          "description": "Channel types to scan (comma-separated: public_channel, private_channel, im, mpim)"
+        },
+        "limit": {
+          "type": "number",
+          "description": "Maximum number of channels to scan"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "conversations_mark",
+    "description": "Mark a channel or DM as read. If no timestamp is provided, marks all messages as read.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "channel_id": {
+          "type": "string",
+          "description": "ID of the channel"
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "Optional timestamp to mark as read"
+        }
+      },
+      "required": [
+        "channel_id"
+      ]
+    }
+  },
+  {
+    "name": "channels_list",
+    "description": "Get list of channels",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "channel_types": {
+          "type": "string",
+          "description": "Comma-separated channel types: mpim, im, public_channel, private_channel"
+        },
+        "sort": {
+          "type": "string",
+          "description": "Sort type. Values: popularity"
+        },
+        "limit": {
+          "type": "number",
+          "description": "Maximum number of items (1-999)"
+        },
+        "cursor": {
+          "type": "string",
+          "description": "Cursor for pagination"
+        }
+      },
+      "required": [
+        "channel_types"
+      ]
+    }
+  },
+  {
+    "name": "usergroups_list",
+    "description": "List all user groups (subteams) in the Slack workspace. User groups are mention groups like @engineering or @design that notify all members.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "include_users": {
+          "type": "boolean",
+          "description": "Include list of user IDs in each group"
+        },
+        "include_count": {
+          "type": "boolean",
+          "description": "Include user count for each group"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "usergroups_me",
+    "description": "Manage your own user group membership. Use action='list' to see which groups you belong to. Use action='join' to add yourself to a group. Use action='leave' to remove yourself.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string",
+          "description": "Action to perform: list, join, or leave"
+        },
+        "usergroup_id": {
+          "type": "string",
+          "description": "ID of the user group for join/leave actions"
+        }
+      },
+      "required": [
+        "action"
+      ]
+    }
+  },
+  {
+    "name": "usergroups_create",
+    "description": "Create a new user group (mention group) in the Slack workspace. After creation, use usergroups_users_update to add members.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Display name for the user group"
+        },
+        "handle": {
+          "type": "string",
+          "description": "The mention handle (@handle)"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the user group"
+        },
+        "channels": {
+          "type": "string",
+          "description": "Comma-separated channel IDs to auto-add members"
+        }
+      },
+      "required": [
+        "name",
+        "handle"
+      ]
+    }
+  },
+  {
+    "name": "usergroups_update",
+    "description": "Update a user group's metadata: name, handle (@mention), description, or default channels. Does NOT change members - use usergroups_users_update for that.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "usergroup_id": {
+          "type": "string",
+          "description": "ID of the user group to update"
+        },
+        "name": {
+          "type": "string",
+          "description": "New display name"
+        },
+        "handle": {
+          "type": "string",
+          "description": "New mention handle"
+        },
+        "description": {
+          "type": "string",
+          "description": "New description"
+        }
+      },
+      "required": [
+        "usergroup_id"
+      ]
+    }
+  },
+  {
+    "name": "usergroups_users_update",
+    "description": "Replace all members of a user group with a new list. WARNING: This completely replaces the member list - any user not in the 'users' parameter will be removed.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "usergroup_id": {
+          "type": "string",
+          "description": "ID of the user group"
+        },
+        "users": {
+          "type": "string",
+          "description": "Comma-separated list of user IDs to set as members"
+        }
+      },
+      "required": [
+        "usergroup_id",
+        "users"
+      ]
+    }
+  }
+]
