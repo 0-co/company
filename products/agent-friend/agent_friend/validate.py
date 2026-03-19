@@ -156,6 +156,134 @@ def _check_description_not_empty(name: str, obj: Dict[str, Any], fmt: str) -> Op
     return None
 
 
+_MIN_DESCRIPTION_LENGTH = 20
+_MIN_PARAM_DESCRIPTION_LENGTH = 10
+
+
+def _check_description_too_short(name: str, obj: Dict[str, Any], fmt: str) -> Optional[Issue]:
+    """Check 20: tool_description_too_short — tool description under 20 characters.
+
+    A one-phrase description like 'Run tests' or 'List pools' gives models almost no
+    information about what the tool does, its parameters, or when to use it. Descriptions
+    should be long enough to distinguish the tool from others with similar names.
+
+    Only fires when a description IS present (check 5/6 passed) but is too brief.
+    """
+    desc = _get_tool_description(obj, fmt)
+    if desc is None or not isinstance(desc, str):
+        return None
+    stripped = desc.strip()
+    if not stripped:  # Empty is caught by check 6
+        return None
+    if len(stripped) < _MIN_DESCRIPTION_LENGTH:
+        return Issue(
+            tool=name,
+            severity="warn",
+            check="tool_description_too_short",
+            message=(
+                "description '{desc}' is only {n} characters — too brief for models to "
+                "understand the tool's purpose, parameters, or behavior."
+            ).format(desc=stripped, n=len(stripped)),
+        )
+    return None
+
+
+def _check_param_description_too_short(tool_name: str, schema: Dict[str, Any]) -> List[Issue]:
+    """Check 21: param_description_too_short — parameter descriptions under 10 characters.
+
+    A parameter description like 'ID', 'The value', or 'API key' gives models almost no
+    information about what the parameter represents or how to populate it. Descriptions
+    should be long enough to convey the parameter's purpose in context.
+
+    Only fires when a description IS present (check 18 passed) but is too brief.
+    Fires once per tool that has any such parameters.
+    """
+    properties = schema.get("properties", {})
+    if not isinstance(properties, dict):
+        return []
+
+    short = []
+    for param_name, param_def in properties.items():
+        if not isinstance(param_def, dict):
+            continue
+        desc = param_def.get("description", "")
+        if not isinstance(desc, str):
+            continue
+        stripped = desc.strip()
+        if not stripped:  # Empty/missing caught by check 18
+            continue
+        if len(stripped) < _MIN_PARAM_DESCRIPTION_LENGTH:
+            short.append((param_name, stripped))
+
+    if not short:
+        return []
+
+    count = len(short)
+    sample = ", ".join(
+        "'{param}' ('{desc}')".format(param=p, desc=d) for p, d in short[:3]
+    )
+    suffix = " +{n} more".format(n=count - 3) if count > 3 else ""
+    return [Issue(
+        tool=tool_name,
+        severity="warn",
+        check="param_description_too_short",
+        message=(
+            "{count} parameter description{s} too short: {sample}{suffix}. "
+            "Descriptions under {min} characters give models almost no context."
+        ).format(
+            count=count,
+            s="s" if count != 1 else "",
+            sample=sample,
+            suffix=suffix,
+            min=_MIN_PARAM_DESCRIPTION_LENGTH,
+        ),
+    )]
+
+
+def _check_param_type_missing(tool_name: str, schema: Dict[str, Any]) -> List[Issue]:
+    """Check 22: param_type_missing — top-level parameters without a type declaration.
+
+    When a parameter has no ``type`` field (and no ``anyOf``/``oneOf``/``allOf``/
+    ``$ref`` alternative), the model must guess the expected type. A string,
+    integer, boolean, or object are all equally plausible — leading to silent
+    hallucination when the model picks wrong.
+
+    Fires once per tool that has any untyped top-level parameters.
+    """
+    properties = schema.get("properties", {})
+    if not isinstance(properties, dict):
+        return []
+
+    untyped = []
+    for param_name, param_def in properties.items():
+        if not isinstance(param_def, dict):
+            continue
+        # Skip if type is explicitly declared
+        if "type" in param_def:
+            continue
+        # Skip if schema combinator is used (anyOf / oneOf / allOf / $ref)
+        if any(k in param_def for k in ("anyOf", "oneOf", "allOf", "$ref")):
+            continue
+        untyped.append(param_name)
+
+    if not untyped:
+        return []
+
+    count = len(untyped)
+    sample = ", ".join("'{}'".format(p) for p in untyped[:5])
+    suffix = " +{n} more".format(n=count - 5) if count > 5 else ""
+    return [Issue(
+        tool=tool_name,
+        severity="warn",
+        check="param_type_missing",
+        message=(
+            "{count} parameter{s} missing type declarations: {sample}{suffix}. "
+            "Without a type, models must guess whether the value is a string, "
+            "integer, boolean, or object."
+        ).format(count=count, s="s" if count != 1 else "", sample=sample, suffix=suffix),
+    )]
+
+
 def _check_name_snake_case(name: str) -> Optional[Issue]:
     """Check 14: name_snake_case — tool name uses snake_case, not camelCase or PascalCase."""
     # Valid snake_case: lowercase letters, digits, underscores only
@@ -343,6 +471,72 @@ def _check_param_description_missing(tool_name: str, schema: Dict[str, Any]) -> 
             "{count} parameter{s} missing descriptions: {sample}{suffix}. "
             "Models must infer purpose from parameter name alone."
         ).format(count=count, s="s" if count != 1 else "", sample=sample, suffix=suffix),
+    )]
+
+
+def _check_nested_param_description_missing(tool_name: str, schema: Dict[str, Any]) -> List[Issue]:
+    """Check 19: nested_param_description_missing — nested object properties without descriptions.
+
+    Extends check 18 to cover nested schemas. When properties inside nested
+    objects have no description, models must infer their purpose from field names
+    alone — especially problematic for deeply nested request bodies.
+
+    Fires once per tool that has any nested properties with no or empty description.
+    """
+    missing = []  # type: List[str]
+
+    def _scan(properties: Dict[str, Any], path: str, depth: int = 0) -> None:
+        if depth > 5 or not isinstance(properties, dict):
+            return
+        for prop_name, prop_schema in properties.items():
+            if not isinstance(prop_schema, dict):
+                continue
+            full_path = "{}.{}".format(path, prop_name) if path else prop_name
+            desc = prop_schema.get("description", "")
+            if not str(desc).strip():
+                missing.append(full_path)
+            # Recurse into nested object properties
+            nested = prop_schema.get("properties", {})
+            if nested and isinstance(nested, dict):
+                _scan(nested, full_path, depth + 1)
+            # Recurse into array item properties
+            items = prop_schema.get("items", {})
+            if isinstance(items, dict):
+                item_props = items.get("properties", {})
+                if item_props and isinstance(item_props, dict):
+                    _scan(item_props, "{}[]".format(full_path), depth + 1)
+
+    properties = schema.get("properties", {})
+    if not isinstance(properties, dict):
+        return []
+
+    for param_name, param_def in properties.items():
+        if not isinstance(param_def, dict):
+            continue
+        # Only recurse into nested objects and array items — top-level handled by check 18
+        nested = param_def.get("properties", {})
+        if nested and isinstance(nested, dict):
+            _scan(nested, param_name, 0)
+        items = param_def.get("items", {})
+        if isinstance(items, dict):
+            item_props = items.get("properties", {})
+            if item_props and isinstance(item_props, dict):
+                _scan(item_props, "{}[]".format(param_name), 0)
+
+    if not missing:
+        return []
+
+    count = len(missing)
+    sample = ", ".join("'{}'".format(p) for p in missing[:5])
+    suffix = " +{n} more".format(n=count - 5) if count > 5 else ""
+    return [Issue(
+        tool=tool_name,
+        severity="warn",
+        check="nested_param_description_missing",
+        message=(
+            "{count} nested propert{y} missing descriptions: {sample}{suffix}. "
+            "Models cannot infer nested field purpose from name alone."
+        ).format(count=count, y="ies" if count != 1 else "y", sample=sample, suffix=suffix),
     )]
 
 
@@ -649,6 +843,11 @@ def validate_tools(data: Any) -> Tuple[List[Issue], Dict[str, Any]]:
         if issue is not None:
             issues.append(issue)
 
+        # Check 20: tool_description_too_short
+        issue = _check_description_too_short(name, raw_obj, fmt)
+        if issue is not None:
+            issues.append(issue)
+
         # Check 8: parameters_valid_type
         issues.extend(_check_parameters_valid_type(name, schema))
 
@@ -674,6 +873,15 @@ def validate_tools(data: Any) -> Tuple[List[Issue], Dict[str, Any]]:
 
         # Check 18: param_description_missing
         issues.extend(_check_param_description_missing(name, schema))
+
+        # Check 19: nested_param_description_missing
+        issues.extend(_check_nested_param_description_missing(name, schema))
+
+        # Check 21: param_description_too_short
+        issues.extend(_check_param_description_too_short(name, schema))
+
+        # Check 22: param_type_missing
+        issues.extend(_check_param_type_missing(name, schema))
 
         # Check 13: description_override_pattern
         issue = _check_description_override_pattern(name, raw_obj, fmt)

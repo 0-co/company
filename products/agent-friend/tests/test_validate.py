@@ -30,6 +30,10 @@ from agent_friend.validate import (
     _check_nested_param_snake_case,
     _check_array_items_missing,
     _check_param_description_missing,
+    _check_nested_param_description_missing,
+    _check_description_too_short,
+    _check_param_description_too_short,
+    _check_param_type_missing,
 )
 
 
@@ -43,8 +47,8 @@ VALID_ANTHROPIC_TOOL = {
     "input_schema": {
         "type": "object",
         "properties": {
-            "city": {"type": "string", "description": "City name"},
-            "units": {"type": "string", "enum": ["celsius", "fahrenheit"], "description": "Temperature unit"},
+            "city": {"type": "string", "description": "Name of the target city"},
+            "units": {"type": "string", "enum": ["celsius", "fahrenheit"], "description": "Temperature unit (celsius or fahrenheit)"},
         },
         "required": ["city"],
     },
@@ -58,7 +62,7 @@ VALID_OPENAI_TOOL = {
         "parameters": {
             "type": "object",
             "properties": {
-                "city": {"type": "string", "description": "City name"},
+                "city": {"type": "string", "description": "Name of the target city"},
             },
             "required": ["city"],
         },
@@ -71,7 +75,7 @@ VALID_MCP_TOOL = {
     "inputSchema": {
         "type": "object",
         "properties": {
-            "city": {"type": "string", "description": "City name"},
+            "city": {"type": "string", "description": "Name of the target city"},
         },
         "required": ["city"],
     },
@@ -83,7 +87,7 @@ VALID_SIMPLE_TOOL = {
     "parameters": {
         "type": "object",
         "properties": {
-            "city": {"type": "string", "description": "City name"},
+            "city": {"type": "string", "description": "Name of the target city"},
         },
         "required": ["city"],
     },
@@ -94,7 +98,7 @@ VALID_JSON_SCHEMA_TOOL = {
     "title": "get_weather",
     "description": "Get current weather for a city.",
     "properties": {
-        "city": {"type": "string", "description": "City name"},
+        "city": {"type": "string", "description": "Name of the target city"},
     },
     "required": ["city"],
 }
@@ -2147,3 +2151,476 @@ class TestCheckParamDescriptionMissing:
         issues = _check_param_description_missing("big_tool", schema)
         assert len(issues) == 1
         assert "+3 more" in issues[0].message
+
+
+# ---------------------------------------------------------------------------
+# Check 19: nested_param_description_missing
+# ---------------------------------------------------------------------------
+
+
+class TestCheckNestedParamDescriptionMissing:
+    def test_nested_property_without_description_flagged(self):
+        schema = {
+            "type": "object",
+            "properties": {
+                "options": {
+                    "type": "object",
+                    "description": "Configuration options",
+                    "properties": {
+                        "format": {"type": "string"},  # no description
+                    },
+                },
+            },
+        }
+        issues = _check_nested_param_description_missing("create_report", schema)
+        assert len(issues) == 1
+        assert issues[0].check == "nested_param_description_missing"
+        assert issues[0].severity == "warn"
+        assert "options.format" in issues[0].message
+
+    def test_nested_property_with_description_ok(self):
+        schema = {
+            "type": "object",
+            "properties": {
+                "options": {
+                    "type": "object",
+                    "description": "Configuration options",
+                    "properties": {
+                        "format": {"type": "string", "description": "Output format"},
+                    },
+                },
+            },
+        }
+        issues = _check_nested_param_description_missing("create_report", schema)
+        assert issues == []
+
+    def test_top_level_param_not_flagged(self):
+        """Top-level params without descriptions are Check 18, not 19."""
+        schema = {
+            "type": "object",
+            "properties": {
+                "run_id": {"type": "string"},  # top-level, no description
+            },
+        }
+        issues = _check_nested_param_description_missing("get_run", schema)
+        assert issues == []
+
+    def test_multiple_nested_missing_fires_once(self):
+        """One warning per tool regardless of how many nested props are missing."""
+        schema = {
+            "type": "object",
+            "properties": {
+                "config": {
+                    "type": "object",
+                    "description": "Config",
+                    "properties": {
+                        "a": {"type": "string"},
+                        "b": {"type": "integer"},
+                        "c": {"type": "boolean"},
+                    },
+                },
+            },
+        }
+        issues = _check_nested_param_description_missing("multi_tool", schema)
+        assert len(issues) == 1
+        assert "3 nested properties" in issues[0].message
+
+    def test_array_item_properties_flagged(self):
+        schema = {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "description": "List of items",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {"type": "string"},  # no description
+                            "name": {"type": "string", "description": "Item name"},
+                        },
+                    },
+                },
+            },
+        }
+        issues = _check_nested_param_description_missing("batch_create", schema)
+        assert len(issues) == 1
+        assert "items[].id" in issues[0].message
+
+    def test_empty_schema_ok(self):
+        issues = _check_nested_param_description_missing("no_params", {})
+        assert issues == []
+
+    def test_flat_schema_ok(self):
+        """Params with no nested objects should not trigger."""
+        schema = {
+            "type": "object",
+            "properties": {
+                "name": {"type": "string", "description": "Name"},
+                "limit": {"type": "integer", "description": "Limit"},
+            },
+        }
+        issues = _check_nested_param_description_missing("search", schema)
+        assert issues == []
+
+    def test_deep_nesting_flagged(self):
+        """Descriptions missing at multiple depths are counted."""
+        schema = {
+            "type": "object",
+            "properties": {
+                "request": {
+                    "type": "object",
+                    "description": "Request body",
+                    "properties": {
+                        "metadata": {
+                            "type": "object",
+                            "description": "Metadata",
+                            "properties": {
+                                "tag": {"type": "string"},  # no description, depth 2
+                            },
+                        },
+                    },
+                },
+            },
+        }
+        issues = _check_nested_param_description_missing("create_item", schema)
+        assert len(issues) == 1
+        assert "request.metadata.tag" in issues[0].message
+
+    def test_long_sample_truncated(self):
+        """More than 5 missing nested props shows '+N more' suffix."""
+        schema = {
+            "type": "object",
+            "properties": {
+                "body": {
+                    "type": "object",
+                    "description": "Request body",
+                    "properties": {
+                        f"field_{i}": {"type": "string"} for i in range(8)
+                    },
+                },
+            },
+        }
+        issues = _check_nested_param_description_missing("big_tool", schema)
+        assert len(issues) == 1
+        assert "+3 more" in issues[0].message
+
+    def test_empty_description_flagged(self):
+        schema = {
+            "type": "object",
+            "properties": {
+                "opts": {
+                    "type": "object",
+                    "description": "Options",
+                    "properties": {
+                        "mode": {"type": "string", "description": "   "},
+                    },
+                },
+            },
+        }
+        issues = _check_nested_param_description_missing("run_job", schema)
+        assert len(issues) == 1
+        assert "opts.mode" in issues[0].message
+
+
+# ---------------------------------------------------------------------------
+# Check 20: tool_description_too_short
+# ---------------------------------------------------------------------------
+
+
+class TestCheckDescriptionTooShort:
+    def test_short_description_flagged(self):
+        tool = {"name": "run_tests", "description": "Run tests"}
+        issue = _check_description_too_short("run_tests", tool, "mcp")
+        assert issue is not None
+        assert issue.check == "tool_description_too_short"
+        assert issue.severity == "warn"
+        assert "Run tests" in issue.message
+
+    def test_good_description_ok(self):
+        tool = {"name": "run_tests", "description": "Execute the test suite and return results"}
+        issue = _check_description_too_short("run_tests", tool, "mcp")
+        assert issue is None
+
+    def test_exactly_20_chars_ok(self):
+        tool = {"name": "t", "description": "12345678901234567890"}  # exactly 20
+        issue = _check_description_too_short("t", tool, "mcp")
+        assert issue is None
+
+    def test_19_chars_flagged(self):
+        tool = {"name": "t", "description": "1234567890123456789"}  # 19 chars
+        issue = _check_description_too_short("t", tool, "mcp")
+        assert issue is not None
+
+    def test_empty_description_not_flagged(self):
+        """Empty descriptions are caught by check 6, not check 20."""
+        tool = {"name": "t", "description": ""}
+        issue = _check_description_too_short("t", tool, "mcp")
+        assert issue is None
+
+    def test_no_description_not_flagged(self):
+        """Missing descriptions are caught by check 5, not check 20."""
+        tool = {"name": "t"}
+        issue = _check_description_too_short("t", tool, "mcp")
+        assert issue is None
+
+    def test_whitespace_only_not_flagged(self):
+        """Whitespace-only is caught by check 6."""
+        tool = {"name": "t", "description": "   "}
+        issue = _check_description_too_short("t", tool, "mcp")
+        assert issue is None
+
+    def test_openai_format(self):
+        tool = {
+            "type": "function",
+            "function": {
+                "name": "list_pools",
+                "description": "List pools",
+            }
+        }
+        issue = _check_description_too_short("list_pools", tool, "openai")
+        assert issue is not None
+        assert issue.check == "tool_description_too_short"
+
+    def test_description_length_in_message(self):
+        tool = {"name": "t", "description": "Get user"}
+        issue = _check_description_too_short("t", tool, "mcp")
+        assert issue is not None
+        assert "8 characters" in issue.message
+
+    def test_borderline_description_not_flagged(self):
+        tool = {"name": "t", "description": "Get the current user"}  # exactly 20
+        issue = _check_description_too_short("t", tool, "mcp")
+        assert issue is None
+
+
+# ---------------------------------------------------------------------------
+# Check 21: param_description_too_short
+# ---------------------------------------------------------------------------
+
+
+class TestCheckParamDescriptionTooShort:
+    def test_short_description_flagged(self):
+        schema = {
+            "type": "object",
+            "properties": {
+                "user_id": {"type": "string", "description": "ID"},
+            },
+        }
+        issues = _check_param_description_too_short("get_user", schema)
+        assert len(issues) == 1
+        assert issues[0].check == "param_description_too_short"
+        assert issues[0].severity == "warn"
+        assert "user_id" in issues[0].message
+
+    def test_adequate_description_ok(self):
+        schema = {
+            "type": "object",
+            "properties": {
+                "user_id": {"type": "string", "description": "Unique user identifier"},
+            },
+        }
+        issues = _check_param_description_too_short("get_user", schema)
+        assert issues == []
+
+    def test_borderline_at_exactly_10_chars_ok(self):
+        schema = {
+            "type": "object",
+            "properties": {
+                "limit": {"type": "integer", "description": "Max result"},  # 10 chars
+            },
+        }
+        issues = _check_param_description_too_short("search", schema)
+        assert issues == []
+
+    def test_9_chars_flagged(self):
+        schema = {
+            "type": "object",
+            "properties": {
+                "limit": {"type": "integer", "description": "The limit"},  # 9 chars
+            },
+        }
+        issues = _check_param_description_too_short("search", schema)
+        assert len(issues) == 1
+
+    def test_missing_description_not_flagged(self):
+        """Missing descriptions are caught by check 18, not 21."""
+        schema = {
+            "type": "object",
+            "properties": {
+                "value": {"type": "string"},
+            },
+        }
+        issues = _check_param_description_too_short("my_tool", schema)
+        assert issues == []
+
+    def test_empty_description_not_flagged(self):
+        """Empty descriptions are caught by check 18, not 21."""
+        schema = {
+            "type": "object",
+            "properties": {
+                "value": {"type": "string", "description": "  "},
+            },
+        }
+        issues = _check_param_description_too_short("my_tool", schema)
+        assert issues == []
+
+    def test_multiple_short_fires_once(self):
+        """One warning per tool regardless of how many params are short."""
+        schema = {
+            "type": "object",
+            "properties": {
+                "a": {"type": "string", "description": "ID"},
+                "b": {"type": "string", "description": "Key"},
+                "c": {"type": "string", "description": "Val"},
+            },
+        }
+        issues = _check_param_description_too_short("multi_tool", schema)
+        assert len(issues) == 1
+        assert "3 parameter" in issues[0].message
+
+    def test_empty_schema_ok(self):
+        issues = _check_param_description_too_short("no_params", {})
+        assert issues == []
+
+    def test_sample_truncated_above_3(self):
+        """More than 3 short params shows '+N more' suffix."""
+        schema = {
+            "type": "object",
+            "properties": {
+                f"param_{i}": {"type": "string", "description": "ID"} for i in range(5)
+            },
+        }
+        issues = _check_param_description_too_short("big_tool", schema)
+        assert len(issues) == 1
+        assert "+2 more" in issues[0].message
+
+    def test_mixed_ok_and_short(self):
+        """Only short params are counted; adequate ones are ignored."""
+        schema = {
+            "type": "object",
+            "properties": {
+                "name": {"type": "string", "description": "Full name of the entity"},
+                "code": {"type": "string", "description": "ID"},
+            },
+        }
+        issues = _check_param_description_too_short("mixed_tool", schema)
+        assert len(issues) == 1
+        assert "code" in issues[0].message
+        assert "name" not in issues[0].message
+
+
+# ---------------------------------------------------------------------------
+# Check 22: param_type_missing
+# ---------------------------------------------------------------------------
+
+
+class TestCheckParamTypeMissing:
+    def test_untyped_param_flagged(self):
+        schema = {
+            "type": "object",
+            "properties": {
+                "query": {"description": "Search query string"},
+            },
+        }
+        issues = _check_param_type_missing("search", schema)
+        assert len(issues) == 1
+        assert issues[0].check == "param_type_missing"
+        assert issues[0].severity == "warn"
+        assert "query" in issues[0].message
+
+    def test_typed_param_ok(self):
+        schema = {
+            "type": "object",
+            "properties": {
+                "query": {"type": "string", "description": "Search query string"},
+            },
+        }
+        issues = _check_param_type_missing("search", schema)
+        assert issues == []
+
+    def test_anyof_param_ok(self):
+        """anyOf is an acceptable type declaration."""
+        schema = {
+            "type": "object",
+            "properties": {
+                "value": {"anyOf": [{"type": "string"}, {"type": "integer"}], "description": "A value"},
+            },
+        }
+        issues = _check_param_type_missing("my_tool", schema)
+        assert issues == []
+
+    def test_oneof_param_ok(self):
+        schema = {
+            "type": "object",
+            "properties": {
+                "value": {"oneOf": [{"type": "string"}, {"type": "null"}], "description": "Optional value"},
+            },
+        }
+        issues = _check_param_type_missing("my_tool", schema)
+        assert issues == []
+
+    def test_ref_param_ok(self):
+        schema = {
+            "type": "object",
+            "properties": {
+                "config": {"$ref": "#/definitions/Config", "description": "Config object"},
+            },
+        }
+        issues = _check_param_type_missing("my_tool", schema)
+        assert issues == []
+
+    def test_multiple_untyped_fires_once(self):
+        """One warning per tool regardless of how many params lack types."""
+        schema = {
+            "type": "object",
+            "properties": {
+                "a": {"description": "First param"},
+                "b": {"description": "Second param"},
+                "c": {"description": "Third param"},
+            },
+        }
+        issues = _check_param_type_missing("multi_tool", schema)
+        assert len(issues) == 1
+        assert "3 parameter" in issues[0].message
+
+    def test_empty_schema_ok(self):
+        issues = _check_param_type_missing("no_params", {})
+        assert issues == []
+
+    def test_mixed_typed_and_untyped(self):
+        """Only untyped params are counted; typed ones are ignored."""
+        schema = {
+            "type": "object",
+            "properties": {
+                "name": {"type": "string", "description": "Full name"},
+                "tags": {"description": "List of tags"},
+            },
+        }
+        issues = _check_param_type_missing("mixed_tool", schema)
+        assert len(issues) == 1
+        assert "tags" in issues[0].message
+        assert "name" not in issues[0].message
+
+    def test_sample_truncated_above_5(self):
+        """More than 5 untyped params shows '+N more' suffix."""
+        schema = {
+            "type": "object",
+            "properties": {
+                f"param_{i}": {"description": "Some param"} for i in range(7)
+            },
+        }
+        issues = _check_param_type_missing("big_tool", schema)
+        assert len(issues) == 1
+        assert "+2 more" in issues[0].message
+
+    def test_all_typed_ok(self):
+        schema = {
+            "type": "object",
+            "properties": {
+                "id": {"type": "integer", "description": "Record ID"},
+                "name": {"type": "string", "description": "Record name"},
+                "active": {"type": "boolean", "description": "Whether the record is active"},
+            },
+        }
+        issues = _check_param_type_missing("get_record", schema)
+        assert issues == []
