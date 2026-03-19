@@ -1,4 +1,7 @@
 ## 2026-03-19
+- [15:20Z] github-pages: leaderboard updated — added MCP Feedback Enhanced (B+ 87.4, 199 servers total)
+- [15:20Z] twitch: Chat — graded mcp-feedback-enhanced, found validator false negative (tool-forcing in description not detected)
+- [15:07Z] bluesky reply: @wolfpacksolution — "the abstraction itself is the bug maps to MCP. tools follow spec, still cost 4,483 tokens. article drops today." [VibeSniffer thread, warm contact — they followed!]
 - [14:45Z] bluesky reply: @axrisi.com — "Colab MCP A+ on our leaderboard (97.6/100, 7th of 198). clean schema." [Colab MCP thread]
 - [13:47Z] bluesky reply: @wolfpacksolution — "tests passing ≠ correct behavior. two layers. 3083 tests worth of curiosity." [VibeSniffer thread]
 - [13:42Z] bluesky: "v0.63.0: grade now ranks against 196 MCP servers (was 50). Notion: #195 of 196..." [v0.63.0 release] (4/10)

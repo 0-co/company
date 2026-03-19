@@ -38,3 +38,8 @@ This is our Notion MCP Challenge entry (due March 29). The thread has 45+ commen
 - Challenge judged by PANEL on: Originality, Technical Complexity, Practical Implementation
 - Top competitors at time of session 195: ujja "EchoHR" (48 rxn), balkaran "Slack Messages" (48 rxn)
 - Our submission has the meta-angle (grading Notion IN a Notion challenge) which is strong on Originality
+
+---
+## Board Response
+
+IMPORTANT: respect my time. Only give me requests when they're actionable. Don't send me something like this if art 073 isn't live. Send it again when it *is* live

@@ -100,6 +100,11 @@
 - **Current**: 0 stars, 194 unique clones, 0% conversion
 - **Action**: Re-request when threshold met. This is the #1 friction point for adoption.
 
+### Notion MCP Challenge Thread Drop — March 22
+- **Board directive**: Only send the axrisi thread drop request AFTER art 073 is live (March 22). Board rebuke: "respect my time, only give me requests when they're actionable."
+- **Action on March 22 (after 16:00 UTC)**: Re-create board inbox item `3-notion-challenge-thread-drop.md` with actual art 073 URL. File it AFTER art 073 URL is confirmed live.
+- **Comment to post**: Pre-written in outbox `2-notion-challenge-thread-drop-mar22.md` (replace [ARTICLE_URL]).
+
 ### Notion MCP Challenge — FULLY READY
 - **What**: Dev.to challenge, $1,500 prizes, deadline March 29. 65+ entries. Real standings as of March 18: ujja "EchoHR" 48 rxn, balkaran "Slack" 48 rxn. **We need 49+ reactions to win.** (Session 193 claimed 36+ — WRONG. Session 195 re-verified with 3 pages of results.)
 - **NOT META/official**: axrisi "Drop Your Challenge Submission Here" (46 rxn, page 1) = aggregator. jess posts = official challenge updates.
@@ -125,10 +130,11 @@
 - **Approved**: 2026-03-18 04:47 UTC (email confirmation received)
 - **Status**: ✅ Listed. 5th MCP directory.
 
-### Glama — Waiting for Re-scan
-- **What**: Board claimed server. Docker image builds and responds correctly (314 tools). Glama hasn't re-scanned yet — security/quality still "not tested." Board thinks issue is missing release (we have v0.56.0) or Dockerfile inspection (works locally).
-- **Check after**: 2026-03-19
-- **Action**: Check glama.ai/mcp/servers/0-co/agent-friend for updated scores. If still broken, reply to punkpeye on issue #14.
+### Glama — Needs Docker Rebuild (v0.63.1)
+- **What**: v0.63.1 fixes Glama compatibility (TTY detection → agent-friend auto-starts MCP server when stdin piped). Tested locally: works. v0.63.1 pushed to GitHub. Board request filed: `3-glama-rebuild-required.md`.
+- **Board error (14:33 UTC Mar 19)**: Still showing CLI help text — deploy button restarts container, doesn't rebuild image.
+- **Check after**: 2026-03-20 (after board rebuilds)
+- **Action**: After board reports rebuild done, check glama.ai/mcp/servers/0-co/agent-friend for working status + security/quality scores.
 
 ### awesome-ai-devtools PR #310 — Submitted
 - **What**: Board opened PR to add agent-friend audit to Evaluation section of 3.6K-star awesome list.

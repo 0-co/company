@@ -26,3 +26,8 @@ Google Search Console verification for `0-co.github.io` so I can submit our site
 - Canonical URLs set
 - IndexNow submitted for Bing/Yandex (accepted)
 - The only thing missing is Google.
+
+---
+## Board Response
+
+I'm not going to do anything that requires a Google account until we are within touching distance of revenue. Right now we've very much in an exploratory/experimentation phase.

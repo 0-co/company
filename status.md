@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-19 14:25 UTC (session 201/Day 13)
+**Last updated:** 2026-03-19 15:00 UTC (session 201/Day 13)
 
 ## Current Phase
-**Day 13 — Art 065 publishes 16:00 UTC. v0.63.1 released (MCP auto-detect fix for Glama). Art 065 + 073 data fixed. Campaign poster running.**
+**Day 13 — Art 065 publishes 16:00 UTC. All fixes committed + pushed. Glama rebuild request filed. Board directives processed.**
 
 ## Session 201 (2026-03-19 13:00 UTC)
 
@@ -20,21 +20,23 @@
 10. **Leaderboard metadata fix** — 199→198 servers (data-count + meta descriptions). Verified 198 data-rows in HTML.
 11. **v0.63.1 released** — agent-friend CLI auto-detects MCP server mode when stdin is piped. Fixes Glama compatibility. Board request filed to re-deploy. 3083 tests passing.
 12. **Campaign poster v2** — Replaced PID 299391 (broken GET) with PID 443230 (uses /articles/me/all to detect publication).
+13. **article_publisher.py fix pushed** — Added /articles/me/all fallback for rate-limited GET /articles/:id. Committed and pushed to master (commit 56d3857).
+14. **Board outbox processed (cont.)** — Voiceover activated on Twitch (board FYI). Article limit directive: 10 drafts max (pipeline already loaded through Apr 7, no new articles needed). Notion challenge request: board says wait until art 073 is live (March 22). Glama: v0.63.1 fix verified working locally (TTY detection works), issue is Docker rebuild needed — filed 3-glama-rebuild-required.md. Google Search Console: declined by board until near revenue.
+15. **Art 064 24h check** — 1 reaction (unchanged from 4h). Action already taken (art 072 added to schedule). No further action.
+16. **Bluesky: 39 followers** (+1 from 38). Twitch: 5/50 (unchanged).
 
 ### Background Processes Running
-- PID 299391: art 065 campaign poster (fires ~16:30 UTC)
+- PID 443230: art 065 campaign poster v2 (fires ~16:30 UTC — uses /articles/me/all)
 - PID 340645: GitHub Pages deploy + grade-request template (fires 16:10 UTC)
-- PID 342801: staggered_posts_mar22.json TEMPURL patch (fires 16:05 UTC)
+- PID 342801: staggered_posts_mar22.json TEMPURL patch (fires 16:05 UTC Mar 22)
 - PID 326612: daily queue swap (Mar 19-Apr 6)
-- PID 422346: fix-art065.py (retries every 10min, deadline 16:00 UTC)
-- PID 423976: fix-art073-video.py (retries every 10min, deadline Mar 22)
-- PIDs for staggered posts: 259700/260458/260461/260462/265482/267999/274310/309183/316736/314046/314047 + Apr 3-7 PIDs
+- PIDs for staggered posts: 259700/260458/260461/260462/265482/267999/274310/309183/316736/314046/314047 + Apr 1-7 PIDs
 
-### Key Metrics (13:52 UTC)
-- Art 064: 1 rxn, last checked ~18h. 24h check at 16:10 UTC.
-- Bluesky: 38 followers, 5/10 posts sent today | Twitch: 5/50 followers
+### Key Metrics (15:00 UTC)
+- Art 064: 1 rxn at 24h. Art 065: publishes 16:00 UTC.
+- Bluesky: 39 followers | Twitch: 5/50 followers
 - Leaderboard: 198 servers, 3,972 tools, 511,595 tokens
-- agent-friend: v0.63.0, 3083 tests passing
+- agent-friend: v0.63.1, 3083 tests passing
 
 ### Next Milestones
 - **16:00 UTC**: Art 065 publishes (title: "I Audited 11 MCP Servers. 22,945 Tokens Before a Single Message.")
