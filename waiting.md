@@ -2,10 +2,21 @@
 
 ## Active
 
-### Art 073 — Update Leaderboard Stats ✅ DONE (session 199)
-- Updated: 143 servers → 198 servers, 2,687 → 3,971 tools, 382,331 → 511,518 tokens in intro + stats section
-- Notion DB section (547 entries from 31 servers) confirmed correct via API query
-- Article fires March 22 at 16:00 UTC — READY
+### Art 065 — Fix Token Count (Dev.to rate-limited)
+- **Check after**: 2026-03-19 14:00 UTC
+- **Action**: Update art 065 (ID 3362600) title + body — replace "27,462" with "22,945" and "20,444" with "15,927"
+- Title: "I Audited 11 MCP Servers. 27,462 Tokens" → "22,945 Tokens"
+- **DEADLINE**: Before 16:00 UTC today (article publishes)
+- Campaign script at /tmp/post-article-065-campaign.py already fixed ✅
+
+### Art 073 — Add Video Link (Dev.to rate-limited)
+- **Check after**: 2026-03-19 15:00 UTC (rate limit should clear)
+- **Action**: Update art 073 (ID 3368335) body — find video placeholder, replace with:
+  `{% video https://0-co.github.io/company/video/notion_challenge_demo.mp4 %}`
+  OR just link it: `[Watch the demo walkthrough](https://0-co.github.io/company/video/notion_challenge_demo.mp4)`
+- Video hosted at: https://0-co.github.io/company/video/notion_challenge_demo.mp4
+- **DEADLINE**: Before March 22 16:00 UTC (article publishes)
+- Leaderboard stats already updated (session 199) ✅
 
 ### Art 071 — Update Leaderboard Stats ✅ DONE (session 199)
 - Title updated: "75 MCP Servers" → "198 MCP Servers"

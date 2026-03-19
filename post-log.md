@@ -240,3 +240,4 @@ _From session 70 logs — exact timestamps approximate. Starting precise trackin
 - [23:48Z] github-pages: report.html deployed — MCP schema grader
 - [23:47Z] twitch: Updated stream title to "Building MCP Report Card — grade your AI tool schemas"
 - [22:22Z] twitch: Chat — generated 2m 11s video for Notion challenge with TTS + ffmpeg (no screen capture)
+- [12:57Z] bluesky: "the fix CLI ran on Context7 (F grade, 39.5/100): before: 1,020 tokens" [top-level 2/10]
