@@ -1,0 +1,364 @@
+[
+  {
+    "name": "execute_menu_item",
+    "description": "Executes Unity menu items (functions tagged with the MenuItem attribute)",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "menu_path": {"type": "string", "description": "Full menu path to execute (e.g., 'Assets/Refresh')"}
+      },
+      "required": ["menu_path"]
+    }
+  },
+  {
+    "name": "select_gameobject",
+    "description": "Selects game objects in the Unity hierarchy by path or instance ID",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {"type": "string", "description": "Hierarchy path to the GameObject (e.g., 'Canvas/Button')"},
+        "instance_id": {"type": "number", "description": "Instance ID of the GameObject to select"}
+      }
+    }
+  },
+  {
+    "name": "update_gameobject",
+    "description": "Updates a GameObject's core properties (name, tag, layer, active/static state), or creates it if it does not exist",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {"type": "string", "description": "Hierarchy path to the GameObject"},
+        "name": {"type": "string", "description": "New name for the GameObject"},
+        "tag": {"type": "string", "description": "Tag to assign to the GameObject"},
+        "layer": {"type": "number", "description": "Layer number to assign"},
+        "active": {"type": "boolean", "description": "Whether the GameObject should be active"},
+        "is_static": {"type": "boolean", "description": "Whether the GameObject should be static"}
+      },
+      "required": ["path"]
+    }
+  },
+  {
+    "name": "update_component",
+    "description": "Updates component fields on a GameObject or adds it if not present",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {"type": "string", "description": "Hierarchy path to the GameObject"},
+        "component_type": {"type": "string", "description": "Type name of the component to update or add"},
+        "fields": {"type": "object", "description": "Field name/value pairs to set on the component"}
+      },
+      "required": ["path", "component_type"]
+    }
+  },
+  {
+    "name": "add_package",
+    "description": "Installs new packages in the Unity Package Manager",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "package_id": {"type": "string", "description": "Package identifier (e.g., 'com.unity.cinemachine@2.9.0')"}
+      },
+      "required": ["package_id"]
+    }
+  },
+  {
+    "name": "run_tests",
+    "description": "Runs tests using the Unity Test Runner",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "test_mode": {"type": "string", "enum": ["EditMode", "PlayMode"], "description": "Test mode to run"},
+        "filter": {"type": "string", "description": "Filter tests by name or category"}
+      }
+    }
+  },
+  {
+    "name": "send_console_log",
+    "description": "Sends a console log message to Unity",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "message": {"type": "string", "description": "Message to log to the Unity console"},
+        "log_type": {"type": "string", "enum": ["Log", "Warning", "Error"], "description": "Type of log message"}
+      },
+      "required": ["message"]
+    }
+  },
+  {
+    "name": "add_asset_to_scene",
+    "description": "Adds an asset from the AssetDatabase to the Unity scene",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "asset_path": {"type": "string", "description": "Project-relative path to the asset (e.g., 'Assets/Prefabs/Enemy.prefab')"},
+        "parent_path": {"type": "string", "description": "Hierarchy path of the parent GameObject"},
+        "position": {"type": "object", "description": "World position to place the asset {x, y, z}"}
+      },
+      "required": ["asset_path"]
+    }
+  },
+  {
+    "name": "create_prefab",
+    "description": "Creates a prefab with optional MonoBehaviour script and serialized field values",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {"type": "string", "description": "Name for the prefab"},
+        "save_path": {"type": "string", "description": "Project-relative path to save the prefab (e.g., 'Assets/Prefabs/MyPrefab.prefab')"},
+        "script_name": {"type": "string", "description": "MonoBehaviour script to attach"},
+        "field_values": {"type": "object", "description": "Serialized field values to set on the script"}
+      },
+      "required": ["name", "save_path"]
+    }
+  },
+  {
+    "name": "create_scene",
+    "description": "Creates a new scene and saves it to the specified path",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {"type": "string", "description": "Name for the new scene"},
+        "save_path": {"type": "string", "description": "Project-relative path to save the scene (e.g., 'Assets/Scenes/GameScene.unity')"}
+      },
+      "required": ["name", "save_path"]
+    }
+  },
+  {
+    "name": "load_scene",
+    "description": "Loads a scene by path or name, with optional additive loading",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "scene_path": {"type": "string", "description": "Project-relative path or name of the scene to load"},
+        "additive": {"type": "boolean", "description": "Load the scene additively without unloading current scene"}
+      },
+      "required": ["scene_path"]
+    }
+  },
+  {
+    "name": "delete_scene",
+    "description": "Deletes a scene by path or name and removes it from Build Settings",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "scene_path": {"type": "string", "description": "Project-relative path or name of the scene to delete"}
+      },
+      "required": ["scene_path"]
+    }
+  },
+  {
+    "name": "get_gameobject",
+    "description": "Gets detailed information about a specific GameObject including all components",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {"type": "string", "description": "Hierarchy path to the GameObject"},
+        "instance_id": {"type": "number", "description": "Instance ID of the GameObject"}
+      }
+    }
+  },
+  {
+    "name": "get_console_logs",
+    "description": "Retrieves logs from the Unity console with pagination support",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "log_type": {"type": "string", "enum": ["Log", "Warning", "Error", "All"], "description": "Type of logs to retrieve"},
+        "page": {"type": "number", "description": "Page number for pagination"},
+        "page_size": {"type": "number", "description": "Number of log entries per page"}
+      }
+    }
+  },
+  {
+    "name": "recompile_scripts",
+    "description": "Recompiles all scripts in the Unity project",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "save_scene",
+    "description": "Saves the current active scene, with optional Save As functionality",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "save_as_path": {"type": "string", "description": "Optional new path to save the scene to (Save As)"}
+      }
+    }
+  },
+  {
+    "name": "get_scene_info",
+    "description": "Gets information about the active scene including name, path, and dirty state",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "unload_scene",
+    "description": "Unloads a scene from the hierarchy (does not delete the scene asset)",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "scene_path": {"type": "string", "description": "Project-relative path or name of the scene to unload"}
+      },
+      "required": ["scene_path"]
+    }
+  },
+  {
+    "name": "duplicate_gameobject",
+    "description": "Duplicates a GameObject in the scene with optional renaming and reparenting",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {"type": "string", "description": "Hierarchy path to the GameObject to duplicate"},
+        "new_name": {"type": "string", "description": "Name for the duplicated GameObject"},
+        "parent_path": {"type": "string", "description": "Hierarchy path of the new parent GameObject"}
+      },
+      "required": ["path"]
+    }
+  },
+  {
+    "name": "delete_gameobject",
+    "description": "Deletes a GameObject from the scene",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {"type": "string", "description": "Hierarchy path to the GameObject to delete"}
+      },
+      "required": ["path"]
+    }
+  },
+  {
+    "name": "reparent_gameobject",
+    "description": "Changes the parent of a GameObject in the hierarchy",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {"type": "string", "description": "Hierarchy path to the GameObject to reparent"},
+        "new_parent_path": {"type": "string", "description": "Hierarchy path of the new parent (empty string for root)"}
+      },
+      "required": ["path"]
+    }
+  },
+  {
+    "name": "move_gameobject",
+    "description": "Moves a GameObject to a new position in local or world space",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {"type": "string", "description": "Hierarchy path to the GameObject"},
+        "x": {"type": "number", "description": "X position"},
+        "y": {"type": "number", "description": "Y position"},
+        "z": {"type": "number", "description": "Z position"},
+        "world_space": {"type": "boolean", "description": "Use world space coordinates (default true)"}
+      },
+      "required": ["path", "x", "y", "z"]
+    }
+  },
+  {
+    "name": "rotate_gameobject",
+    "description": "Rotates a GameObject to a new rotation in local or world space using Euler angles or quaternion",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {"type": "string", "description": "Hierarchy path to the GameObject"},
+        "x": {"type": "number", "description": "X rotation (Euler angle in degrees)"},
+        "y": {"type": "number", "description": "Y rotation (Euler angle in degrees)"},
+        "z": {"type": "number", "description": "Z rotation (Euler angle in degrees)"},
+        "world_space": {"type": "boolean", "description": "Use world space rotation (default true)"}
+      },
+      "required": ["path", "x", "y", "z"]
+    }
+  },
+  {
+    "name": "scale_gameobject",
+    "description": "Scales a GameObject to a new local scale",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {"type": "string", "description": "Hierarchy path to the GameObject"},
+        "x": {"type": "number", "description": "X scale factor"},
+        "y": {"type": "number", "description": "Y scale factor"},
+        "z": {"type": "number", "description": "Z scale factor"}
+      },
+      "required": ["path", "x", "y", "z"]
+    }
+  },
+  {
+    "name": "set_transform",
+    "description": "Sets position, rotation, and scale of a GameObject in a single operation",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {"type": "string", "description": "Hierarchy path to the GameObject"},
+        "position": {"type": "object", "description": "Position vector {x, y, z}"},
+        "rotation": {"type": "object", "description": "Rotation Euler angles {x, y, z}"},
+        "scale": {"type": "object", "description": "Scale vector {x, y, z}"}
+      },
+      "required": ["path"]
+    }
+  },
+  {
+    "name": "create_material",
+    "description": "Creates a new material with a specified shader and saves it to the project",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {"type": "string", "description": "Name for the material"},
+        "save_path": {"type": "string", "description": "Project-relative path to save the material (e.g., 'Assets/Materials/MyMaterial.mat')"},
+        "shader": {"type": "string", "description": "Shader to use (e.g., 'Standard', 'Universal Render Pipeline/Lit')"}
+      },
+      "required": ["name", "save_path"]
+    }
+  },
+  {
+    "name": "assign_material",
+    "description": "Assigns a material to a GameObject's Renderer component",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "gameobject_path": {"type": "string", "description": "Hierarchy path to the GameObject"},
+        "material_path": {"type": "string", "description": "Project-relative path to the material asset"},
+        "material_index": {"type": "number", "description": "Index of the material slot to assign to (default 0)"}
+      },
+      "required": ["gameobject_path", "material_path"]
+    }
+  },
+  {
+    "name": "modify_material",
+    "description": "Modifies properties of an existing material (colors, floats, textures)",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "material_path": {"type": "string", "description": "Project-relative path to the material asset"},
+        "properties": {"type": "object", "description": "Material property name/value pairs to set"}
+      },
+      "required": ["material_path", "properties"]
+    }
+  },
+  {
+    "name": "get_material_info",
+    "description": "Gets detailed information about a material including shader and all properties",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "material_path": {"type": "string", "description": "Project-relative path to the material asset"}
+      },
+      "required": ["material_path"]
+    }
+  },
+  {
+    "name": "batch_execute",
+    "description": "Executes multiple tool operations in a single batch request with optional rollback on failure",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "operations": {"type": "array", "items": {"type": "object", "properties": {"tool": {"type": "string"}, "params": {"type": "object"}}}, "description": "Array of tool operations to execute in sequence"},
+        "rollback_on_failure": {"type": "boolean", "description": "Whether to roll back all operations if one fails (default false)"}
+      },
+      "required": ["operations"]
+    }
+  }
+]

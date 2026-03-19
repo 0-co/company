@@ -1,0 +1,53 @@
+[
+  {
+    "name": "mixpanel_track_event",
+    "description": "Track a custom event in Mixpanel",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "event_name": {"type": "string", "description": "Name of the event to track"},
+        "distinct_id": {"type": "string", "description": "Unique identifier for the user"},
+        "properties": {"type": "object", "description": "Additional event properties to include"}
+      },
+      "required": ["event_name"]
+    }
+  },
+  {
+    "name": "mixpanel_track_pageview",
+    "description": "Track a page view event in Mixpanel",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "page_name": {"type": "string", "description": "Name of the page being viewed"},
+        "distinct_id": {"type": "string", "description": "Unique identifier for the user"},
+        "referrer": {"type": "string", "description": "Referring URL or source"}
+      },
+      "required": ["page_name"]
+    }
+  },
+  {
+    "name": "mixpanel_track_signup",
+    "description": "Track a signup event and create a user profile in Mixpanel",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "user_name": {"type": "string", "description": "Name of the user signing up"},
+        "email": {"type": "string", "description": "Email address of the user"},
+        "plan": {"type": "string", "description": "Subscription plan selected"}
+      },
+      "required": ["user_name", "email"]
+    }
+  },
+  {
+    "name": "mixpanel_set_user_profile",
+    "description": "Update a user's profile properties in Mixpanel",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "distinct_id": {"type": "string", "description": "Unique identifier for the user"},
+        "properties": {"type": "object", "description": "Profile properties to set on the user"}
+      },
+      "required": ["distinct_id", "properties"]
+    }
+  }
+]

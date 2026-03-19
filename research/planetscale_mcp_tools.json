@@ -1,0 +1,79 @@
+[
+  {
+    "name": "execute_read_query",
+    "description": "Execute a read-only SQL query (SELECT, SHOW, DESCRIBE, EXPLAIN) against a PlanetScale database. This tool creates short-lived credentials and executes the query securely.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "organization": {"type": "string", "description": "PlanetScale organization name"},
+        "database": {"type": "string", "description": "Database name"},
+        "branch": {"type": "string", "description": "Branch name (e.g., 'main')"},
+        "query": {"type": "string", "description": "SQL SELECT query to execute"},
+        "postgres_database_name": {"type": "string", "description": "Postgres only: target database name"}
+      },
+      "required": ["organization", "database", "branch", "query"]
+    }
+  },
+  {
+    "name": "execute_write_query",
+    "description": "Execute a write SQL query (INSERT, UPDATE, DELETE, or DDL) against a PlanetScale database. IMPORTANT: DELETE queries and DDL statements require human confirmation — you MUST ask the user for explicit approval before setting confirm_destructive: true.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "organization": {"type": "string", "description": "PlanetScale organization name"},
+        "database": {"type": "string", "description": "Database name"},
+        "branch": {"type": "string", "description": "Branch name"},
+        "query": {"type": "string", "description": "SQL INSERT/UPDATE/DELETE/DDL query to execute"},
+        "postgres_database_name": {"type": "string", "description": "Postgres only: target database name"},
+        "confirm_destructive": {"type": "boolean", "description": "HUMAN CONFIRMATION REQUIRED before setting true for DELETE or DDL statements"}
+      },
+      "required": ["organization", "database", "branch", "query"]
+    }
+  },
+  {
+    "name": "get_insights",
+    "description": "Get query performance insights for a PlanetScale database branch. By default, aggregates the top queries across 5 different metrics (slowest, most time-consuming, most rows read, most inefficient, most rows affected).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "organization": {"type": "string", "description": "PlanetScale organization name"},
+        "database": {"type": "string", "description": "Database name"},
+        "branch": {"type": "string", "description": "Branch name"},
+        "sort_by": {"type": "string", "enum": ["all", "totalTime", "rowsRead", "p99Latency", "rowsReadPerReturned", "rowsAffected", "egressBytes"], "description": "Metric to sort by"},
+        "limit": {"type": "number", "description": "Number of results to return (default 5, max 20)"},
+        "tablet_type": {"type": "string", "enum": ["primary", "replica"], "description": "Tablet type to query"},
+        "fields": {"type": "array", "items": {"type": "string"}, "description": "Fields to include in response"},
+        "query": {"type": "string", "description": "Filter insights by query text"}
+      },
+      "required": ["organization", "database", "branch"]
+    }
+  },
+  {
+    "name": "list_cluster_sizes",
+    "description": "List available PlanetScale cluster sizes (SKUs) for an organization. PS-* sizes use autoscaling network-backed storage; M-* sizes use super fast NVMe storage drives.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "organization": {"type": "string", "description": "PlanetScale organization name"},
+        "engine": {"type": "string", "enum": ["mysql", "postgresql"], "description": "Filter by database engine"},
+        "type": {"type": "string", "enum": ["autoscaling", "metal"], "description": "Filter by storage type"}
+      },
+      "required": ["organization"]
+    }
+  },
+  {
+    "name": "search_documentation",
+    "description": "Search across the PlanetScale knowledge base to find relevant information, code examples, API references, and guides.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {"type": "string", "description": "Search query for PlanetScale documentation"},
+        "version": {"type": "string", "description": "API version to search (e.g., 'v0.7')"},
+        "language": {"type": "string", "description": "Language code (e.g., 'en')"},
+        "api_reference_only": {"type": "boolean", "description": "Search only API reference documentation"},
+        "code_only": {"type": "boolean", "description": "Return only code examples"}
+      },
+      "required": ["query"]
+    }
+  }
+]

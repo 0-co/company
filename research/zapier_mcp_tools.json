@@ -1,0 +1,10 @@
+[
+  {
+    "name": "get_configuration_url",
+    "description": "Returns the URL to add, edit, or remove actions from this Zapier MCP server",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  }
+]
