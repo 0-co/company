@@ -1,0 +1,506 @@
+[
+  {
+    "name": "create-api-key",
+    "description": "Create a new API key in Resend. The token is only shown once upon creation, so you MUST display it to the user.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "list-api-keys",
+    "description": "List Api Keys",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "remove-api-key",
+    "description": "Remove an API key by ID from Resend. Before using this tool, you MUST double-check with the user that they want to remove this API key. Reference the NAME of the API key when double-checking, and warn the user that removing an API key is irreversible and any services using it will lose access. You may only use this tool if the user explicitly confirms they want to remove the API key after you double-check.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create-broadcast",
+    "description": "**Purpose:** Create a broadcast campaign (one email sent to an entire audience). Defines subject, body, and audience; does NOT send yet. Use send-broadcast to send it.\n\n**NOT for:** Sending a one-off email to specific people (use send-email). Not for adding contacts (use create-contact).\n\n**Returns:** Broadcast ID. Use this ID with send-broadcast to send, or get-broadcast/update-broadcast to manage.\n\n**When to use:**\n- User wants to \"email my list\", \"send a newsletter\", \"broadcast to my audience\", \"email all contacts in X\"\n- Newsletter, announcement, or bulk message to one audience\n- Supports personalization: {{{FIRST_NAME}}}, {{{LAST_NAME}}}, {{{EMAIL}}}, {{{RESEND_UNSUBSCRIBE_URL}}}\n\n**Workflow:** list-audiences (if needed) \u2192 create-broadcast \u2192 send-broadcast( id ). Optionally update-broadcast before sending.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "send-broadcast",
+    "description": "**Purpose:** Send (or schedule) an existing broadcast by ID. The broadcast must have been created with create-broadcast first.\n\n**NOT for:** Sending a new one-off email (use send-email). Not for creating the broadcast content (use create-broadcast).\n\n**Returns:** Send confirmation and broadcast ID.\n\n**When to use:**\n- User has created a broadcast and says \"send it\", \"go ahead and send\", \"schedule this for tomorrow\"\n- After create-broadcast; call send-broadcast with the returned ID to deliver to the audience\n- Optional scheduledAt: natural language or ISO 8601 for scheduled send\n\n**Workflow:** create-broadcast \u2192 send-broadcast( id ). Use list-broadcasts to find existing draft/sent broadcasts.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "list-broadcasts",
+    "description": "**Purpose:** List all broadcast campaigns (newsletters/bulk emails to audiences) with ID, name, audience, status, timestamps.\n\n**NOT for:** Listing transactional emails (use list-emails). Not for listing audiences or contacts (use list-audiences, list-contacts).\n\n**Returns:** For each broadcast: id, name, audience_id, status, created_at, scheduled_at, sent_at.\n\n**When to use:** User asks \"show my broadcasts\", \"what newsletters did I send?\", \"list campaigns\". Use get-broadcast for full details of one.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "get-broadcast",
+    "description": "Retrieve full details of a specific broadcast by ID, including HTML and plain text content.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "remove-broadcast",
+    "description": "Remove a broadcast by ID. Before using this tool, you MUST double-check with the user that they want to remove this broadcast. Reference the NAME of the broadcast when double-checking, and warn the user that removing a broadcast is irreversible. You may only use this tool if the user explicitly confirms they want to remove the broadcast after you double-check.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "update-broadcast",
+    "description": "Update a broadcast by ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create-contact-property",
+    "description": "Create a new contact property in Resend. A contact property is a custom attribute (e.g. \"company_name\", \"plan_tier\") that can be attached to contacts.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "list-contact-properties",
+    "description": "List Contact Properties",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "get-contact-property",
+    "description": "Get a contact property by ID from Resend.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "update-contact-property",
+    "description": "Update an existing contact property in Resend. Only the fallback value can be changed \u2014 the key and type cannot be modified after creation.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "remove-contact-property",
+    "description": "Remove a contact property by ID from Resend. Before using this tool, you MUST double-check with the user that they want to remove this contact property. Reference the KEY of the property when double-checking, and warn the user that removing a contact property is irreversible and will remove the property from all contacts. You may only use this tool if the user explicitly confirms they want to remove the contact property after you double-check.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create-contact",
+    "description": "Create a new contact in Resend. Optionally assign to segments and configure topic subscriptions.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "list-contacts",
+    "description": "**Purpose:** List contacts from Resend. Optionally filter by segment. Use to discover contact IDs or emails.\n\n**NOT for:** Listing segments (use list-segments). Not for listing sent emails (use list-emails) or broadcasts (use list-broadcasts).\n\n**Returns:** For each contact: id, email, first_name, last_name, unsubscribed, created_at.\n\n**When to use:** User asks \"who's in this list?\", \"show contacts\", \"who did I add?\" Don't bother telling the user the IDs, unsubscribe statuses, or creation dates unless they ask for them.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "get-contact",
+    "description": "Get a contact by ID or email from Resend.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "update-contact",
+    "description": "Update a contact in Resend (by ID or email).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "remove-contact",
+    "description": "Remove Contact",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "add-contact-to-segment",
+    "description": "Add a contact to a segment in Resend (by contact ID or email).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "remove-contact-from-segment",
+    "description": "Remove a contact from a segment in Resend (by contact ID or email). Before using this tool, you MUST double-check with the user that they want to remove the contact from the segment.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "list-contact-segments",
+    "description": "List Contact Segments",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "list-contact-topics",
+    "description": "List Contact Topics",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "update-contact-topics",
+    "description": "Update topic subscriptions for a contact in Resend (by contact ID or email).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create-domain",
+    "description": "Create a new domain in Resend. Returns DNS records that must be configured with your DNS provider for verification. You MUST display the DNS records to the user so they can set them up.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "list-domains",
+    "description": "List Domains",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "get-domain",
+    "description": "Get a domain by ID from Resend. Returns full domain details including DNS records needed for verification.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "update-domain",
+    "description": "Update an existing domain in Resend. Allows changing tracking settings, TLS mode, and capabilities.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "remove-domain",
+    "description": "Remove a domain by ID from Resend. Before using this tool, you MUST double-check with the user that they want to remove this domain. Reference the NAME of the domain when double-checking, and warn the user that removing a domain is irreversible and will stop all email sending/receiving for that domain. You may only use this tool if the user explicitly confirms they want to remove the domain after you double-check.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "verify-domain",
+    "description": "Trigger domain verification in Resend. This starts an asynchronous verification process that checks if the DNS records are correctly configured. The domain status will temporarily show as \"pending\" during verification.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "send-email",
+    "description": "**Purpose:** Send a single transactional email to one or more recipients immediately (or schedule it). Use for one-off messages, notifications, and direct replies.\n\n**NOT for:** Sending the same email to a whole list/audience (use create-broadcast + send-broadcast). Not for managing contacts or audiences.\n\n**Returns:** Send confirmation and email ID.\n\n**When to use:**\n- User wants to \"send an email\" to specific people (names or addresses)\n- One-off messages: password reset, order confirmation, receipt, alert\n- User says \"email this to X\", \"notify them\", \"send a message to...\"\n- Scheduling a single email for later\n\n**Workflow:** Get recipient(s) and content from user \u2192 send-email. Use list-emails or get-email to check delivery status afterward.\n\n**Key trigger phrases:** \"Send an email\", \"Email this to\", \"Notify\", \"Send a message\", \"Reply to them\", \"Schedule an email\"",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "list-emails",
+    "description": "**Purpose:** List recently sent emails (transactional emails sent via send-email) with metadata: recipient, subject, status, timestamps.\n\n**NOT for:** Listing broadcast campaigns (use list-broadcasts). Not for composing or sending.\n\n**Returns:** Paginated list with to, subject, status, created_at, and ID per email.\n\n**When to use:**\n- User asks \"what emails were sent?\", \"show recent emails\", \"did my email go out?\"\n- Checking delivery status of sent messages\n- Finding an email ID to fetch full content (then use get-email)\n\n**Workflow:** list-emails \u2192 get-email( id ) when user needs full body or details.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "get-email",
+    "description": "Retrieve full details of a specific sent transactional email by ID, including HTML and plain text content.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "list-received-emails",
+    "description": "**Purpose:** List emails received (inbox) by your Resend receiving address. Use for \"show my inbox\", \"what emails did I get?\", \"list incoming mail\".\n\n**NOT for:** Listing emails you sent (use list-emails). Not for listing broadcasts (use list-broadcasts).\n\n**Returns:** Paginated metadata: from, to, subject, received time. Use get-received-email with an ID for full content.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "get-received-email",
+    "description": "Retrieve full details of a specific received email by ID, including HTML and plain text content, headers, and raw email download URL.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "list-received-email-attachments",
+    "description": "List all attachments from a specific received (inbox) email. Returns attachment metadata including filename, size, content type, and a time-limited download URL. Use for emails listed by list-received-emails.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "get-received-email-attachment",
+    "description": "Retrieve details of a specific attachment from a received email, including a time-limited download URL.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "cancel-email",
+    "description": "Cancel a scheduled email that has not yet been sent. Only works for emails that were scheduled using the scheduledAt parameter.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "update-email",
+    "description": "Reschedule a scheduled email by updating its scheduled send time. Only works for emails that were scheduled and have not yet been sent.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "list-sent-email-attachments",
+    "description": "List all attachments from a specific sent email (from send-email or list-emails). Returns attachment metadata including filename, size, content type, and a time-limited download URL.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "get-sent-email-attachment",
+    "description": "Retrieve details of a specific attachment from a sent email, including a time-limited download URL.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "send-batch-emails",
+    "description": "**Purpose:** Send up to 100 transactional emails in one API call. Each item has the same fields as send-email (to, subject, text, from, etc.).\n\n**NOT for:** Sending one email (use send-email) or the same content to a segment (use create-broadcast + send-broadcast).\n\n**When to use:** User wants to send many individual emails in bulk (e.g. 50 password resets, 100 receipts). Not for one-to-many broadcasts.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create-segment",
+    "description": "Create a new segment in Resend. A segment is a group of contacts that can be used to target specific broadcasts.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "list-segments",
+    "description": "**Purpose:** List all segments in the account. Use to get segment IDs required by create-contact, create-broadcast, list-contacts.\n\n**NOT for:** Listing contacts inside a segment (use list-contacts with segmentId). Not for listing broadcasts (use list-broadcasts).\n\n**Returns:** For each segment: name, id, created_at. Use pagination (limit, after/before) for large lists.\n\n**When to use:** User says \"show my segments\", \"what lists do I have?\", or before create-contact/create-broadcast when segmentId is unknown.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "get-segment",
+    "description": "Get a segment by ID from Resend.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "remove-segment",
+    "description": "Remove a segment by ID from Resend. Before using this tool, you MUST double-check with the user that they want to remove this segment. Reference the NAME of the segment when double-checking, and warn the user that removing a segment is irreversible. You may only use this tool if the user explicitly confirms they want to remove the segment after you double-check.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create-topic",
+    "description": "Create a new topic in Resend. Topics allow contacts to manage their subscription preferences for different types of emails.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "list-topics",
+    "description": "List all topics from Resend. This tool is useful for getting topic IDs to use with other tools like send-email.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "get-topic",
+    "description": "Get a topic by ID from Resend.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "update-topic",
+    "description": "Update an existing topic in Resend. Note: defaultSubscription cannot be modified after creation.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "remove-topic",
+    "description": "Remove a topic by ID from Resend. Before using this tool, you MUST double-check with the user that they want to remove this topic. Reference the NAME of the topic when double-checking, and warn the user that removing a topic is irreversible. You may only use this tool if the user explicitly confirms they want to remove the topic after you double-check.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "create-webhook",
+    "description": "Create a new webhook in Resend. A webhook allows you to receive notifications at a specified URL when certain events occur (e.g. email.sent, email.delivered, email.bounced).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "list-webhooks",
+    "description": "List all webhooks from Resend. Use to get webhook IDs and see which endpoints and events are configured. Not for listing emails, segments, or broadcasts.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "get-webhook",
+    "description": "Get a webhook by ID from Resend.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "update-webhook",
+    "description": "Update an existing webhook in Resend. You can change the endpoint URL, subscribed events, or enable/disable the webhook.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "remove-webhook",
+    "description": "Remove a webhook by ID from Resend. Before using this tool, you MUST double-check with the user that they want to remove this webhook. Reference the ENDPOINT of the webhook when double-checking, and warn the user that removing a webhook is irreversible. You may only use this tool if the user explicitly confirms they want to remove the webhook after you double-check.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  }
+]
