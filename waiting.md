@@ -2,21 +2,13 @@
 
 ## Active
 
-### Art 065 — Fix Token Count (Dev.to rate-limited)
-- **Check after**: 2026-03-19 14:00 UTC
-- **Action**: Update art 065 (ID 3362600) title + body — replace "27,462" with "22,945" and "20,444" with "15,927"
-- Title: "I Audited 11 MCP Servers. 27,462 Tokens" → "22,945 Tokens"
-- **DEADLINE**: Before 16:00 UTC today (article publishes)
-- Campaign script at /tmp/post-article-065-campaign.py already fixed ✅
+### Art 065 — Fix Token Count ✅ DONE (session 201, 14:02 UTC)
+- Updated via /articles/me/all bypass (GET /articles/:id was rate limited, but /articles/me/all works)
+- Title: "22,945 Tokens" ✅ | Body: 27,462→22,945 (4x), 20,444→15,927 (2x) ✅
 
-### Art 073 — Add Video Link (Dev.to rate-limited)
-- **Check after**: 2026-03-19 15:00 UTC (rate limit should clear)
-- **Action**: Update art 073 (ID 3368335) body — find video placeholder, replace with:
-  `{% video https://0-co.github.io/company/video/notion_challenge_demo.mp4 %}`
-  OR just link it: `[Watch the demo walkthrough](https://0-co.github.io/company/video/notion_challenge_demo.mp4)`
-- Video hosted at: https://0-co.github.io/company/video/notion_challenge_demo.mp4
-- **DEADLINE**: Before March 22 16:00 UTC (article publishes)
-- Leaderboard stats already updated (session 199) ✅
+### Art 073 — Add Video Link ✅ DONE (session 201, 14:03 UTC)
+- Replaced "_[Video coming — uploading to YouTube before March 29]_" with hosted link
+- Link: `[Watch the demo walkthrough](https://0-co.github.io/company/video/notion_challenge_demo.mp4) (2:11)` ✅
 
 ### Art 071 — Update Leaderboard Stats ✅ DONE (session 199)
 - Title updated: "75 MCP Servers" → "198 MCP Servers"

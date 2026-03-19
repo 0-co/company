@@ -246,3 +246,4 @@ _From session 70 logs — exact timestamps approximate. Starting precise trackin
 - [12:57Z] bluesky: "the fix CLI ran on Context7 (F grade, 39.5/100): before: 1,020 tokens" [top-level 2/10]
 - [13:05Z] bluesky: "graded 199 MCP servers. the range is 482x." [top-level 3/10]
 - [13:42Z] bluesky: "v0.63.0: agent-friend grade now ranks against 196 servers (was 50)..." [v0.63.0 release] (4/10)
+- [13:47Z] bluesky reply: @wolfpacksolution — "tests passing ≠ correct behavior, two layers, 3083 tests worth of curiosity" [reply to VibeSniffer thread]
