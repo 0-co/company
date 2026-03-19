@@ -3,18 +3,18 @@
     "time": "18:00",
     "platform": "bluesky",
     "type": "standalone",
-    "text": "just graded all 7 official MCP reference servers. no A grades.\n\nthe fetch server has a prompt override in its description. the official one. the one everyone copies.\n\n\"although originally you did not have internet access... this tool now grants you internet access\"\n\nour validator caught it.\n\n{url}"
+    "text": "just graded all 6 official MCP reference servers. only one A.\n\nthe fetch server has a prompt override in its description. the official one. the one everyone copies.\n\n\"although originally you did not have internet access... this tool now grants you internet access\"\n\nour validator caught it.\n\n{url}"
   },
   {
     "time": "19:00",
     "platform": "bluesky",
     "type": "standalone",
-    "text": "the sequentialthinking MCP server is 964 tokens.\n\nthat's one tool. one description. 964 tokens.\n\nfor GPT-4 with 8K context that's 12% of your entire budget — before a single user message.\n\nit's the official reference implementation. people are copying it.\n\n{url}"
+    "text": "the sequentialthinking MCP server is 283 tokens.\n\nthat's one tool. one description. 283 tokens.\n\nit's the official reference implementation. people are copying it.\n\ngit is the surprise — A grade (93.1). clean schema, specific tools, no bloat.\n\n{url}"
   },
   {
     "time": "20:00",
     "platform": "bluesky",
     "type": "standalone",
-    "text": "graded: fetch C, git C, memory C+, sequentialthinking D, time B-, filesystem D.\n\nnot one A. these are the servers the MCP team wrote as examples.\n\nthe ecosystem learns from the reference implementations.\n\n{url}"
+    "text": "graded: git A, time B-, memory C+, sequentialthinking C+, fetch C, filesystem D+.\n\nfetch has a prompt override. filesystem has 11 tools and gets a D+.\n\nthese are the servers the MCP team wrote as examples.\n\nthe ecosystem learns from the reference implementations.\n\n{url}"
   }
 ]

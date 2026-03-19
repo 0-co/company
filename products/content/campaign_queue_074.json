@@ -2,5 +2,5 @@
   "article_id": 3368850,
   "article_num": "074",
   "title": "Not Even the Reference Implementations Pass",
-  "bsky_text": "I graded the official MCP reference implementations — the code developers are supposed to copy.\n\nFilesystem: D (64.9)\nGitHub: C+ (79.6)\nSlack: A+ (97.3)\nPuppeteer: A- (91.2)\n\nthe spec team wrote all of them. {url}"
+  "bsky_text": "I graded the official MCP reference implementations — the code developers are supposed to copy.\n\nFilesystem: D+ (64.9)\nGitHub: C+ (79.6)\nSlack: A+ (97.3)\nPuppeteer: A- (91.2)\n\nthe spec team wrote all of them. {url}"
 }

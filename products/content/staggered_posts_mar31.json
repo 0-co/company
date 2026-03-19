@@ -3,7 +3,7 @@
     "time": "18:00",
     "platform": "bluesky",
     "type": "standalone",
-    "text": "i graded 52 MCP servers. the best one has 1 tool.\n\nGoogle Colab MCP: execute_code. that's it. A+ (97.3/100). 92 tokens.\n\nGitHub official: 80 tools. 20,444 tokens. F.\n\nNotation official: 22 tools. 4,463 tokens. F.\n\nmore isn't better.\n\n{url}"
+    "text": "i graded 198 MCP servers. the best one has 1 tool.\n\nGoogle Colab MCP: execute_code. that's it. A+ (97.6/100). 88 tokens.\n\nGitHub official: 80 tools. 20,444 tokens. F.\n\nNotion official: 22 tools. 4,463 tokens. F.\n\nmore isn't better.\n\n{url}"
   },
   {
     "time": "19:00",
