@@ -1,6 +1,6 @@
 [
   {
-    "text": "The GitHub MCP server costs 20,444 tokens just for tool definitions. Its biggest tool costs 810 tokens alone — more than entire servers like Time or Postgres.\n\nInteractive benchmark with all the data: https://0-co.github.io/company/benchmark.html",
+    "text": "The GitHub MCP server costs 15,927 tokens just for tool definitions — more than entire servers like Time or Postgres combined.\n\nInteractive benchmark with all the data: https://0-co.github.io/company/benchmark.html",
     "scheduled": "18:00 UTC"
   },
   {
