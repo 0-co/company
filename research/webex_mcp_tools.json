@@ -1,0 +1,1319 @@
+[
+  {
+    "name": "create_message",
+    "description": "Create a message in a Webex room.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "roomId": {
+          "type": "string",
+          "description": "The ID of the room where the message will be sent."
+        },
+        "parentId": {
+          "type": "string",
+          "description": "The ID of the parent message (if this is a reply)."
+        },
+        "toPersonId": {
+          "type": "string",
+          "description": "The ID of the person to whom the message is directed."
+        },
+        "toPersonEmail": {
+          "type": "string",
+          "description": "The email of the person to whom the message is directed."
+        },
+        "text": {
+          "type": "string",
+          "description": "The plain text message to send."
+        },
+        "markdown": {
+          "type": "string",
+          "description": "The message in markdown format."
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "An array of file URLs to attach to the message."
+        },
+        "attachments": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "An array of attachment objects."
+        }
+      },
+      "required": [
+        "roomId",
+        "text"
+      ]
+    }
+  },
+  {
+    "name": "list_messages",
+    "description": "List messages in a Webex room.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "roomId": {
+          "type": "string",
+          "description": "The ID of the room to list messages from."
+        },
+        "parentId": {
+          "type": "string",
+          "description": "The ID of the parent message to filter by."
+        },
+        "mentionedPeople": {
+          "type": "string",
+          "description": "List messages with these people mentioned, by ID."
+        },
+        "before": {
+          "type": "string",
+          "description": "List messages sent before a specific date and time."
+        },
+        "beforeMessage": {
+          "type": "string",
+          "description": "List messages sent before a specific message, by ID."
+        },
+        "max": {
+          "type": "integer",
+          "description": "Limit the maximum number of messages in the response."
+        }
+      },
+      "required": [
+        "roomId"
+      ]
+    }
+  },
+  {
+    "name": "get_message_details",
+    "description": "Get details of a message by its ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "messageId": {
+          "type": "string",
+          "description": "The unique identifier for the message."
+        }
+      },
+      "required": [
+        "messageId"
+      ]
+    }
+  },
+  {
+    "name": "edit_message",
+    "description": "Edit a message in Webex.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "messageId": {
+          "type": "string",
+          "description": "The unique identifier for the message to edit."
+        },
+        "roomId": {
+          "type": "string",
+          "description": "The ID of the room where the message is located."
+        },
+        "text": {
+          "type": "string",
+          "description": "The new text for the message."
+        },
+        "markdown": {
+          "type": "string",
+          "description": "The new markdown for the message (optional)."
+        }
+      },
+      "required": [
+        "messageId",
+        "text"
+      ]
+    }
+  },
+  {
+    "name": "delete_message",
+    "description": "Delete a message in Webex by message ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "messageId": {
+          "type": "string",
+          "description": "The unique identifier for the message to be deleted."
+        }
+      },
+      "required": [
+        "messageId"
+      ]
+    }
+  },
+  {
+    "name": "list_direct_messages",
+    "description": "List all messages in a 1:1 room.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "parentId": {
+          "type": "string",
+          "description": "The parent ID to filter messages."
+        },
+        "personId": {
+          "type": "string",
+          "description": "The person ID to filter messages in a 1:1 room."
+        },
+        "personEmail": {
+          "type": "string",
+          "description": "The person email to filter messages in a 1:1 room."
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "create_room",
+    "description": "Create a room in Webex.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "The title of the room."
+        },
+        "teamId": {
+          "type": "string",
+          "description": "The ID of the team to which the room belongs."
+        },
+        "classificationId": {
+          "type": "string",
+          "description": "The classification ID for the room."
+        },
+        "isLocked": {
+          "type": "boolean",
+          "description": "Whether the room is locked."
+        },
+        "isPublic": {
+          "type": "boolean",
+          "description": "Whether the room is public."
+        },
+        "description": {
+          "type": "string",
+          "description": "The description of the room."
+        },
+        "isAnnouncementOnly": {
+          "type": "boolean",
+          "description": "Whether the room is announcement only."
+        }
+      },
+      "required": [
+        "title"
+      ]
+    }
+  },
+  {
+    "name": "list_rooms",
+    "description": "List rooms for the authenticated user in Webex.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "teamId": {
+          "type": "string",
+          "description": "The ID of the team to list rooms for."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "group",
+            "direct"
+          ],
+          "description": "The type of rooms to list."
+        },
+        "orgPublicSpaces": {
+          "type": "boolean",
+          "description": "Whether to show the org's public spaces."
+        },
+        "from": {
+          "type": "string",
+          "description": "Filters rooms made public after this time."
+        },
+        "to": {
+          "type": "string",
+          "description": "Filters rooms made public before this time."
+        },
+        "sortBy": {
+          "type": "string",
+          "description": "The field to sort the results by."
+        },
+        "max": {
+          "type": "integer",
+          "description": "The maximum number of rooms to return."
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "get_room_details",
+    "description": "Get details of a room by ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "roomId": {
+          "type": "string",
+          "description": "The unique identifier for the room."
+        }
+      },
+      "required": [
+        "roomId"
+      ]
+    }
+  },
+  {
+    "name": "update_room",
+    "description": "Update a room in Webex.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "roomId": {
+          "type": "string",
+          "description": "The unique identifier for the room."
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the room."
+        },
+        "classificationId": {
+          "type": "string",
+          "description": "The classification ID of the room."
+        },
+        "teamId": {
+          "type": "string",
+          "description": "The team ID associated with the room."
+        },
+        "isLocked": {
+          "type": "boolean",
+          "description": "Indicates if the room is locked."
+        },
+        "isPublic": {
+          "type": "boolean",
+          "description": "Indicates if the room is public."
+        },
+        "description": {
+          "type": "string",
+          "description": "The description of the room."
+        },
+        "isAnnouncementOnly": {
+          "type": "boolean",
+          "description": "Indicates if the room is announcement only."
+        },
+        "isReadOnly": {
+          "type": "boolean",
+          "description": "Indicates if the room is read-only."
+        }
+      },
+      "required": [
+        "roomId",
+        "title"
+      ]
+    }
+  },
+  {
+    "name": "delete_room",
+    "description": "Delete a room in Webex by its ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "roomId": {
+          "type": "string",
+          "description": "The unique identifier for the room to be deleted."
+        }
+      },
+      "required": [
+        "roomId"
+      ]
+    }
+  },
+  {
+    "name": "get_room_meeting_details",
+    "description": "Get details of a Webex meeting for a specific room.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "roomId": {
+          "type": "string",
+          "description": "The unique identifier for the room."
+        }
+      },
+      "required": [
+        "roomId"
+      ]
+    }
+  },
+  {
+    "name": "create_team",
+    "description": "Create a team in Webex.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the team."
+        },
+        "description": {
+          "type": "string",
+          "description": "A description of the team."
+        }
+      },
+      "required": [
+        "name"
+      ]
+    }
+  },
+  {
+    "name": "list_teams",
+    "description": "List teams for the authenticated user in Webex.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "max": {
+          "type": "integer",
+          "description": "The maximum number of teams to return."
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "get_team_details",
+    "description": "Get details for a team by ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "teamId": {
+          "type": "string",
+          "description": "The unique identifier for the team."
+        }
+      },
+      "required": [
+        "teamId"
+      ]
+    }
+  },
+  {
+    "name": "update_team",
+    "description": "Update a team in Webex.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "teamId": {
+          "type": "string",
+          "description": "The unique identifier for the team."
+        },
+        "name": {
+          "type": "string",
+          "description": "The new name for the team."
+        },
+        "description": {
+          "type": "string",
+          "description": "The new description for the team."
+        }
+      },
+      "required": [
+        "teamId",
+        "name"
+      ]
+    }
+  },
+  {
+    "name": "delete_team",
+    "description": "Delete a team by ID in Webex.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "teamId": {
+          "type": "string",
+          "description": "The unique identifier for the team to be deleted."
+        }
+      },
+      "required": [
+        "teamId"
+      ]
+    }
+  },
+  {
+    "name": "create_membership",
+    "description": "Create a membership in a Webex room.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "roomId": {
+          "type": "string",
+          "description": "The ID of the room to which the member is being added."
+        },
+        "personId": {
+          "type": "string",
+          "description": "The ID of the person to be added to the room."
+        },
+        "personEmail": {
+          "type": "string",
+          "description": "The email of the person to be added to the room."
+        },
+        "isModerator": {
+          "type": "boolean",
+          "description": "Whether the person should be a moderator in the room."
+        }
+      },
+      "required": [
+        "roomId",
+        "personEmail"
+      ]
+    }
+  },
+  {
+    "name": "list_memberships",
+    "description": "List memberships in a Webex room.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "roomId": {
+          "type": "string",
+          "description": "The ID of the room to list memberships for."
+        },
+        "personId": {
+          "type": "string",
+          "description": "The ID of the person to filter memberships by."
+        },
+        "personEmail": {
+          "type": "string",
+          "description": "The email address of the person to filter memberships by."
+        },
+        "max": {
+          "type": "integer",
+          "description": "The maximum number of memberships to return."
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "get_membership_details",
+    "description": "Get details for a membership by ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "membershipId": {
+          "type": "string",
+          "description": "The unique identifier for the membership."
+        }
+      },
+      "required": [
+        "membershipId"
+      ]
+    }
+  },
+  {
+    "name": "update_membership",
+    "description": "Update a membership in Webex.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "membershipId": {
+          "type": "string",
+          "description": "The unique identifier for the membership."
+        },
+        "isModerator": {
+          "type": "boolean",
+          "description": "Indicates if the user is a moderator."
+        },
+        "isRoomHidden": {
+          "type": "boolean",
+          "description": "Indicates if the room is hidden."
+        }
+      },
+      "required": [
+        "membershipId",
+        "isModerator"
+      ]
+    }
+  },
+  {
+    "name": "delete_membership",
+    "description": "Delete a membership by ID in Webex.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "membershipId": {
+          "type": "string",
+          "description": "The unique identifier for the membership to be deleted."
+        }
+      },
+      "required": [
+        "membershipId"
+      ]
+    }
+  },
+  {
+    "name": "create_team_membership",
+    "description": "Create a team membership in Webex.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "teamId": {
+          "type": "string",
+          "description": "The ID of the team to which the person will be added."
+        },
+        "personId": {
+          "type": "string",
+          "description": "The ID of the person to be added to the team."
+        },
+        "personEmail": {
+          "type": "string",
+          "description": "The email address of the person to be added to the team."
+        },
+        "isModerator": {
+          "type": "boolean",
+          "description": "Indicates if the person should be a moderator."
+        }
+      },
+      "required": [
+        "teamId",
+        "personEmail"
+      ]
+    }
+  },
+  {
+    "name": "list_team_memberships",
+    "description": "List team memberships for a given team in Webex.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "teamId": {
+          "type": "string",
+          "description": "The ID of the team to list memberships for."
+        },
+        "max": {
+          "type": "integer",
+          "description": "The maximum number of team memberships to return."
+        }
+      },
+      "required": [
+        "teamId"
+      ]
+    }
+  },
+  {
+    "name": "get_team_membership_details",
+    "description": "Get details for a team membership by ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "membershipId": {
+          "type": "string",
+          "description": "The unique identifier for the team membership."
+        }
+      },
+      "required": [
+        "membershipId"
+      ]
+    }
+  },
+  {
+    "name": "update_team_membership",
+    "description": "Update a team membership in Webex.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "membershipId": {
+          "type": "string",
+          "description": "The unique identifier for the team membership."
+        },
+        "isModerator": {
+          "type": "boolean",
+          "description": "Indicates if the user is a moderator."
+        }
+      },
+      "required": [
+        "membershipId",
+        "isModerator"
+      ]
+    }
+  },
+  {
+    "name": "delete_team_membership",
+    "description": "Delete a team membership by ID in Webex.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "membershipId": {
+          "type": "string",
+          "description": "The unique identifier for the team membership to be deleted."
+        }
+      },
+      "required": [
+        "membershipId"
+      ]
+    }
+  },
+  {
+    "name": "get_my_own_details",
+    "description": "Get profile details for the authenticated user.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "callingData": {
+          "type": "boolean",
+          "description": "Include Webex Calling user details in the response."
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "list_people",
+    "description": "List people in an organization using the Webex Messaging API.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "List people with this email address. For non-admin requests, either this or displayName are required."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "List people whose name starts with this string. For non-admin requests, either this or email are required."
+        },
+        "id": {
+          "type": "string",
+          "description": "List people by ID. Accepts up to 85 person IDs separated by commas."
+        },
+        "orgId": {
+          "type": "string",
+          "description": "List people in this organization."
+        },
+        "roles": {
+          "type": "string",
+          "description": "List of roleIds separated by commas."
+        },
+        "callingData": {
+          "type": "boolean",
+          "description": "Include Webex Calling user details in the response."
+        },
+        "locationId": {
+          "type": "string",
+          "description": "List people present in this location."
+        },
+        "max": {
+          "type": "integer",
+          "description": "Limit the maximum number of people in the response."
+        }
+      },
+      "required": [
+        "email"
+      ]
+    }
+  },
+  {
+    "name": "get_person_details",
+    "description": "Get details of a person by their ID from Webex Messaging API.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "personId": {
+          "type": "string",
+          "description": "The unique identifier for the person."
+        },
+        "callingData": {
+          "type": "boolean",
+          "description": "Include Webex Calling user details in the response."
+        }
+      },
+      "required": [
+        "personId"
+      ]
+    }
+  },
+  {
+    "name": "create_person",
+    "description": "Create a new person in Webex.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "emails": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The email addresses associated with the person."
+        },
+        "phoneNumbers": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "The phone numbers associated with the person."
+        },
+        "extension": {
+          "type": "string",
+          "description": "The extension number for the person."
+        },
+        "locationId": {
+          "type": "string",
+          "description": "The location ID for the person."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "The display name of the person."
+        },
+        "firstName": {
+          "type": "string",
+          "description": "The first name of the person."
+        },
+        "lastName": {
+          "type": "string",
+          "description": "The last name of the person."
+        },
+        "avatar": {
+          "type": "string",
+          "description": "The avatar URL for the person."
+        },
+        "orgId": {
+          "type": "string",
+          "description": "The organization ID for the person."
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The roles assigned to the person."
+        },
+        "licenses": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The licenses associated with the person."
+        },
+        "department": {
+          "type": "string",
+          "description": "The department of the person."
+        },
+        "manager": {
+          "type": "string",
+          "description": "The name of the manager for the person."
+        },
+        "managerId": {
+          "type": "string",
+          "description": "The manager ID for the person."
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the person."
+        }
+      },
+      "required": [
+        "emails",
+        "firstName",
+        "lastName"
+      ]
+    }
+  },
+  {
+    "name": "update_person",
+    "description": "Update a person's details in Webex.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "personId": {
+          "type": "string",
+          "description": "The unique identifier for the person to update."
+        },
+        "personDetails": {
+          "type": "object",
+          "description": "The details of the person to update."
+        }
+      },
+      "required": [
+        "personId",
+        "personDetails"
+      ]
+    }
+  },
+  {
+    "name": "delete_person",
+    "description": "Delete a person from the system.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "personId": {
+          "type": "string",
+          "description": "The unique identifier for the person to be deleted."
+        }
+      },
+      "required": [
+        "personId"
+      ]
+    }
+  },
+  {
+    "name": "create_webhook",
+    "description": "Create a webhook in Webex.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the webhook."
+        },
+        "targetUrl": {
+          "type": "string",
+          "description": "The target URL for the webhook."
+        },
+        "resource": {
+          "type": "string",
+          "description": "The resource to monitor (e.g., messages)."
+        },
+        "event": {
+          "type": "string",
+          "description": "The event to trigger the webhook (e.g., created)."
+        },
+        "filter": {
+          "type": "string",
+          "description": "The filter for the webhook."
+        },
+        "secret": {
+          "type": "string",
+          "description": "The secret for the webhook."
+        },
+        "ownedBy": {
+          "type": "string",
+          "description": "The owner of the webhook."
+        }
+      },
+      "required": [
+        "name",
+        "resource",
+        "event",
+        "targetUrl"
+      ]
+    }
+  },
+  {
+    "name": "list_webhooks",
+    "description": "List all webhooks for the organization.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "max": {
+          "type": "integer",
+          "description": "Limit the maximum number of webhooks in the response."
+        },
+        "ownedBy": {
+          "type": "string",
+          "enum": [
+            "org"
+          ],
+          "description": "Limit the result list to organization-wide webhooks."
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "get_webhook_details",
+    "description": "Get details of a webhook by its ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "webhookId": {
+          "type": "string",
+          "description": "The unique identifier for the webhook."
+        }
+      },
+      "required": [
+        "webhookId"
+      ]
+    }
+  },
+  {
+    "name": "update_webhook",
+    "description": "Update a webhook in Webex.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "webhookId": {
+          "type": "string",
+          "description": "The unique identifier for the webhook."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the webhook."
+        },
+        "targetUrl": {
+          "type": "string",
+          "description": "The target URL for the webhook."
+        },
+        "secret": {
+          "type": "string",
+          "description": "The secret for the webhook."
+        },
+        "status": {
+          "type": "string",
+          "description": "The status of the webhook (e.g., active)."
+        }
+      },
+      "required": [
+        "webhookId",
+        "name"
+      ]
+    }
+  },
+  {
+    "name": "delete_webhook",
+    "description": "Delete a webhook by its ID from the Webex Messaging API.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "webhookId": {
+          "type": "string",
+          "description": "The unique identifier for the webhook to be deleted."
+        }
+      },
+      "required": [
+        "webhookId"
+      ]
+    }
+  },
+  {
+    "name": "list_events",
+    "description": "List events in your organization using the Webex Messaging API.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "resource": {
+          "type": "string",
+          "description": "The resource type to filter events."
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of events to list."
+        },
+        "actorId": {
+          "type": "string",
+          "description": "The ID of the actor to filter events."
+        },
+        "from": {
+          "type": "string",
+          "description": "The start date to filter events."
+        },
+        "to": {
+          "type": "string",
+          "description": "The end date to filter events."
+        },
+        "max": {
+          "type": "integer",
+          "description": "The maximum number of events to return."
+        }
+      },
+      "required": [
+        "actorId",
+        "from",
+        "to"
+      ]
+    }
+  },
+  {
+    "name": "get_event_details",
+    "description": "Get details for a specific event by event ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "eventId": {
+          "type": "string",
+          "description": "The unique identifier for the event."
+        }
+      },
+      "required": [
+        "eventId"
+      ]
+    }
+  },
+  {
+    "name": "create_room_tab",
+    "description": "Create a tab in a specified room.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "roomId": {
+          "type": "string",
+          "description": "The ID of the room where the tab will be added."
+        },
+        "contentUrl": {
+          "type": "string",
+          "description": "The URL to be displayed in the tab."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "The name to be displayed for the tab."
+        }
+      },
+      "required": [
+        "roomId",
+        "contentUrl",
+        "displayName"
+      ]
+    }
+  },
+  {
+    "name": "list_room_tabs",
+    "description": "List room tabs for a specified room in Webex.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "roomId": {
+          "type": "string",
+          "description": "The ID of the room for which to list room tabs."
+        }
+      },
+      "required": [
+        "roomId"
+      ]
+    }
+  },
+  {
+    "name": "get_room_tab_details",
+    "description": "Get details for a Room Tab in Webex.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier for the Room Tab."
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  },
+  {
+    "name": "update_room_tab",
+    "description": "Update a Room Tab in Webex.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier for the Room Tab."
+        },
+        "roomId": {
+          "type": "string",
+          "description": "The ID of the room to which the tab belongs."
+        },
+        "contentUrl": {
+          "type": "string",
+          "description": "The new content URL for the tab."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "The display name for the tab."
+        }
+      },
+      "required": [
+        "id",
+        "roomId",
+        "contentUrl",
+        "displayName"
+      ]
+    }
+  },
+  {
+    "name": "delete_room_tab",
+    "description": "Delete a Room Tab in Webex.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier for the Room Tab to delete."
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  },
+  {
+    "name": "create_attachment_action",
+    "description": "Create a new attachment action in Webex.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The type of the action (e.g., submit)."
+        },
+        "messageId": {
+          "type": "string",
+          "description": "The ID of the message to which the attachment is related."
+        },
+        "inputs": {
+          "type": "object",
+          "description": "The inputs for the attachment action."
+        }
+      },
+      "required": [
+        "messageId",
+        "inputs"
+      ]
+    }
+  },
+  {
+    "name": "get_attachment_action_details",
+    "description": "Get details for an attachment action by ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier for the attachment action."
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  },
+  {
+    "name": "list_ecm_folder",
+    "description": "List the ECM folder of a specified room in Webex.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "roomId": {
+          "type": "string",
+          "description": "The ID of the room for which to list the ECM folder."
+        }
+      },
+      "required": [
+        "roomId"
+      ]
+    }
+  },
+  {
+    "name": "get_ecm_folder_details",
+    "description": "Get details for a room ECM folder with the specified folder ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier for the folder."
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  },
+  {
+    "name": "create_ecm_folder",
+    "description": "Create an ECM folder configuration in Webex.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "roomId": {
+          "type": "string",
+          "description": "The ID of the room where the folder will be linked."
+        },
+        "contentUrl": {
+          "type": "string",
+          "description": "The URL of the content associated with the folder."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "The display name for the folder."
+        },
+        "driveId": {
+          "type": "string",
+          "description": "The ID of the drive where the folder is located."
+        },
+        "itemId": {
+          "type": "string",
+          "description": "The ID of the item (folder) to be linked."
+        },
+        "defaultFolder": {
+          "type": "boolean",
+          "description": "Whether this folder is the default folder."
+        }
+      },
+      "required": [
+        "roomId",
+        "contentUrl",
+        "displayName",
+        "driveId",
+        "itemId"
+      ]
+    }
+  },
+  {
+    "name": "update_ecm_linked_folder",
+    "description": "Update an ECM linked folder in Webex.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier for the room folder."
+        },
+        "roomId": {
+          "type": "string",
+          "description": "The room ID associated with the folder."
+        },
+        "contentUrl": {
+          "type": "string",
+          "description": "The URL for the content."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "The display name for the folder."
+        },
+        "driveId": {
+          "type": "string",
+          "description": "The ID of the drive."
+        },
+        "itemId": {
+          "type": "string",
+          "description": "The ID of the item."
+        },
+        "defaultFolder": {
+          "type": "boolean",
+          "description": "Whether this is the default folder."
+        }
+      },
+      "required": [
+        "id",
+        "roomId",
+        "contentUrl",
+        "displayName",
+        "driveId",
+        "itemId"
+      ]
+    }
+  },
+  {
+    "name": "unlink_ecm_linked_folder",
+    "description": "Unlink an ECM linked folder from a space in Webex.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier for the folder to disassociate from the space."
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  }
+]

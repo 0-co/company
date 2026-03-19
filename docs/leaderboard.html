@@ -1085,11 +1085,11 @@
   <div class="container">
     <div class="stats-grid">
       <div class="stat-card animate-in">
-        <div class="stat-number" data-count="141">0</div>
+        <div class="stat-number" data-count="143">0</div>
         <div class="stat-label">Servers Graded</div>
       </div>
       <div class="stat-card animate-in">
-        <div class="stat-number" data-value="68.5">0</div>
+        <div class="stat-number" data-value="68.4">0</div>
         <div class="stat-label">Avg Score / 100</div>
       </div>
       <div class="stat-card animate-in">
@@ -3813,6 +3813,46 @@
 
           <!-- #31 Browserbase MCP -->
           <!-- Pinecone MCP (sirmews) -->
+          <tr class="data-row" data-server="webex-mcp">
+            <td class="rank-cell">0</td>
+            <td>
+              <a href="https://github.com/webex/webex-messaging-mcp-server" class="server-name" onclick="event.stopPropagation()" target="_blank">Webex (Cisco)</a>
+            </td>
+            <td class="r">70.1</td>
+            <td><span class="grade-badge grade-cminus">C-</span></td>
+            <td class="r">52</td>
+            <td class="r">5,618</td>
+            <td class="r">108</td>
+            <td><span class="issues-badge issues-medium">6</span></td>
+            <td>
+              <div class="score-bar-container" style="width:120px">
+                <div class="score-bar" style="width:70%;background:var(--green)"></div>
+              </div>
+            </td>
+          </tr>
+          <tr class="detail-row" id="detail-webex-mcp">
+            <td colspan="9">
+              <div class="detail-content">
+                <div class="score-breakdown">
+                  <div class="score-item">
+                    <span class="score-label">Correctness</span>
+                    <div class="score-bar-container"><div class="score-bar" style="width:80%;background:var(--green)"></div></div>
+                    <span class="score-value" style="color:var(--green)">80</span>
+                  </div>
+                  <div class="score-item">
+                    <span class="score-label">Efficiency</span>
+                    <div class="score-bar-container"><div class="score-bar" style="width:87%;background:var(--green)"></div></div>
+                    <span class="score-value" style="color:var(--green)">87</span>
+                  </div>
+                  <div class="score-item">
+                    <span class="score-label">Quality</span>
+                    <div class="score-bar-container"><div class="score-bar" style="width:40%;background:var(--orange)"></div></div>
+                    <span class="score-value" style="color:var(--orange)">40</span>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
           <tr class="data-row" data-server="pinecone-sirmews">
             <td class="rank-cell">N</td>
             <td>
@@ -5906,6 +5946,46 @@
                 <div class="detail-actions">
                   <a href="report.html" class="detail-btn detail-btn-primary">Grade your own server</a>
                   <a href="https://github.com/postmanlabs/postman-mcp-server" class="detail-btn detail-btn-secondary">View on GitHub</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr class="data-row" data-server="bitwarden-mcp">
+            <td class="rank-cell">0</td>
+            <td>
+              <a href="https://github.com/bitwarden/mcp-server" class="server-name" onclick="event.stopPropagation()" target="_blank">Bitwarden</a>
+            </td>
+            <td class="r">50.5</td>
+            <td><span class="grade-badge grade-f">F</span></td>
+            <td class="r">58</td>
+            <td class="r">5,625</td>
+            <td class="r">96</td>
+            <td><span class="issues-badge issues-high">11</span></td>
+            <td>
+              <div class="score-bar-container" style="width:120px">
+                <div class="score-bar" style="width:50%;background:var(--orange)"></div>
+              </div>
+            </td>
+          </tr>
+          <tr class="detail-row" id="detail-bitwarden-mcp">
+            <td colspan="9">
+              <div class="detail-content">
+                <div class="score-breakdown">
+                  <div class="score-item">
+                    <span class="score-label">Correctness</span>
+                    <div class="score-bar-container"><div class="score-bar" style="width:40%;background:var(--orange)"></div></div>
+                    <span class="score-value" style="color:var(--orange)">40</span>
+                  </div>
+                  <div class="score-item">
+                    <span class="score-label">Efficiency</span>
+                    <div class="score-bar-container"><div class="score-bar" style="width:90%;background:var(--green)"></div></div>
+                    <span class="score-value" style="color:var(--green)">90</span>
+                  </div>
+                  <div class="score-item">
+                    <span class="score-label">Quality</span>
+                    <div class="score-bar-container"><div class="score-bar" style="width:25%;background:var(--red)"></div></div>
+                    <span class="score-value" style="color:var(--red)">25</span>
+                  </div>
                 </div>
               </div>
             </td>
