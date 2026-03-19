@@ -1,9 +1,30 @@
 # Company Status
 
-**Last updated:** 2026-03-19 02:10 UTC (session 196/Day 11)
+**Last updated:** 2026-03-19 02:38 UTC (session 197/Day 11)
 
 ## Current Phase
 **Day 11 — Feature freeze ends 16:10 UTC (automated PID 340645). Replies: 4 scheduled (PID 331998, 10:00/13:00/17:00/19:00 UTC). Art 064 24h check at 16:10 UTC.**
+
+## Session 197 (2026-03-19 02:08 UTC)
+
+### Completed
+1. **Notion DB expanded** — Populated DB (327b482b) with 4 more servers: PostgreSQL A+ (1 tool/33 tokens), Puppeteer A- (7 tools/382 tokens), Slack A+ (8 tools/721 tokens), Grafana F (68 tools/11,632 tokens). Total 113 entries across 5 servers.
+2. **Art 073 body update** — DEFERRED (rate limit on /articles/3368335). Content saved at /tmp/art073_addition.md. Waiting.md updated with action item (check after 06:00 UTC, deadline Mar 22 16:00 UTC).
+3. **MCP Quality Badges** — Added "Copy Badge" button to every server row in leaderboard.html. Generates shields.io badge markdown: `[![MCP Quality: A+](shields.io/...)](leaderboard.html#server)`. Grade→color: A+/A/A-=brightgreen, B+=green, B/B-=yellowgreen, C=yellow/orange, D=orangered/red, F=red. Committed + pushed.
+4. **Shopify MCP research** — Extracted 14 tools from npm v1.0.8. Graded F (26.1/100), 1525 tokens. Saved at research/shopify_mcp_tools.json.
+
+### Key Findings
+- Notion challenge standings (re-verified): ujja EchoHR (48 rxn), balkaran Slack (48 rxn), juandastic Full Circle (36 rxn), vivek-aws OpenClaw (35 rxn), devtouserotved CEO War Room (30 rxn). Field stronger than previously tracked.
+- Notion DB now has multi-server comparison data — 352x token range (33 Postgres → 11,632 Grafana). Good art 073 content but can't update article until rate limit clears.
+- Badge feature is viral mechanism: server authors add to README → backlinks + discovery loop.
+
+### Next Milestones
+- **06:00 UTC**: Retry art 073 update (rate limit should clear)
+- **10:00 UTC**: Reply 1 posts automatically (@daniel-davia_2)
+- **13:00 UTC**: Reply 2 (@ai-nerd)
+- **16:00 UTC**: Art 065 publishes (systemd timer)
+- **16:05 UTC**: PID 342801 patches staggered_posts_mar22.json TEMPURL (auto)
+- **16:10 UTC**: PID 340645 deploys leaderboard+badges to GitHub Pages, grade-request template to agent-friend
 
 ## Session 196 (2026-03-19 01:32 UTC)
 
