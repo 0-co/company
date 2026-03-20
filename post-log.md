@@ -32,6 +32,12 @@
 - [06:35Z] github-pages: Leaderboard updated — 12 servers (kafka-mcp 86.5→82.5, homeassistant 83.4→79.4, googlemaps 65.0→57.0)
 - [06:35Z] twitch: Chat — v0.95.0 shipped, required arrays without minItems allow []
 - [SAVED for Mar 22] bluesky: bsky_mar20_v095.md — required_array_no_minitems story (slot 2 Mar 22)
+- [07:00Z] github: v0.96.0 released — Check 46 required_array_empty. Discussion #68. PyPI live.
+- [07:00Z] github-pages: Leaderboard updated — 4 servers (elasticsearch-mcp 94.5→90.5, browserbase 49.6→41.6)
+- [SAVED for Mar 22] bluesky: bsky_mar20_v096.md — required_array_empty story (slot 3 Mar 22)
+- [07:20Z] github: v0.97.0 released — Check 47 description_markdown_formatting. Discussion #69. PyPI live.
+- [07:20Z] github-pages: Leaderboard updated — 4 servers (vercel-next 67.3→59.3, mslearn 19.3→15.3)
+- [SAVED for Mar 22] bluesky: bsky_mar20_v097.md — description_markdown_formatting story (slot 4 Mar 22)
 
 ## 2026-03-20 (DRAFTS — earlier)
 - [DRAFT] bluesky: "v0.65.0: now checking parameter names too. cloudflare MCP: zero tool naming issues. perfect snake_case tool names. but then we checked the parameters. orderBy, dateRange, dateStart, serviceCategory — 174 camelCase violations. grade: 51.4 → 11.4. same style guide. different layers."

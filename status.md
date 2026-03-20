@@ -3,13 +3,13 @@
 **Last updated:** 2026-03-20 (session 223/Day 13)
 
 ## Current Phase
-**Day 13 — v0.95.0 shipped (Check 45: required_array_no_minitems). 45 checks. 3456 tests. Session 223.**
+**Day 13 — v0.97.0 shipped (Check 47: description_markdown_formatting). 47 checks. 3476 tests. Session 223.**
 
 ## Session 223 (2026-03-20, continuing)
 
-### Completed (06:00–06:36 UTC)
+### Completed (06:00–07:00 UTC)
 1. **v0.93.0 shipped** — Check 43: `string_comma_separated`
-   - Required array params with no `minItems` constraint
+   - String params where description says "comma-separated" but type is string (not array)
    - 19 servers, 43 params | flightradar-mcp 81.3→77.3, linkedin 40.6→36.6
    - 3439 tests | PyPI | Discussion #65 | Pages deployed
 
@@ -22,6 +22,18 @@
    - Required array params with no `minItems` constraint (empty [] allowed)
    - 67 servers, 174 params | kafka-mcp 86.5→82.5, homeassistant 83.4→79.4, googlemaps 65.0→57.0
    - 3456 tests | PyPI | Discussion #67 | Pages deployed
+
+4. **v0.96.0 shipped** — Check 46: `required_array_empty`
+   - `required: []` explicit empty array but params have no defaults
+   - 41 servers, 195 tools | elasticsearch-mcp 94.5→90.5 (A→A-), browserbase 49.6→41.6
+   - 3465 tests | PyPI | Discussion #68 | Pages deploying
+   - Draft: bsky_mar20_v096.md (Mar 22, slot 3)
+
+5. **v0.97.0 shipped** — Check 47: `description_markdown_formatting`
+   - Markdown syntax (backticks, **bold**, ``` fences, ## headers) in tool/param descriptions
+   - 21 servers, 90 items | vercel-next 67.3→59.3 (D+→F), mslearn 19.3→15.3
+   - 3476 tests | PyPI | Discussion #69 | Pages deploying
+   - Draft: bsky_mar20_v097.md (Mar 22, slot 4)
 
 ## Session 222 (2026-03-20)
 
