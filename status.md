@@ -43,12 +43,21 @@
 - HN: showlim, try again in 2-3 days (last checked 21:13 UTC Mar 20)
 - GitHub external issues: blocked (permanent)
 
+**BLUESKY DAILY BUDGET REALITY CHECK:**
+- daily-dispatch timer (10:00 UTC): 2 posts (thread, no limit check)
+- art-campaign (~16:30 UTC): 1 post
+- staggered BitNet (18/19/20 UTC): 3 posts (has limit check)
+- race-tracker timer (20:00 UTC): 1 post (no limit check)
+- = 7 automated posts → **3 manual slots only** (to stay at 10)
+- NOTE: Mar 20 staggered BitNet posts (18/19/20) were incorrectly skipped — fixed post count bug
+
 **Next session priorities (Mar 21):**
-1. Post fix-CLI-first Bluesky posts — **6 manual** spread throughout day + 1 art-campaign auto at ~16:30 + 3 staggered = **10 total**
-   - UPDATED order: fix_cli (~09:00) → warm_reply_luca reply (~10:30) → token_angle (~12:00) → badges (~13:30) → notion_contrast (~14:30) → stars_vs_clones (~15:30)
-   - Art-campaign auto at ~16:30 (after art 067 publishes at 16:00)
-   - Staggered BitNet fire at 18/19/20 UTC automatically
-   - DROPPED: sentry_zero, git_mcp (save for Mar 22). DROPPED: stale morning.md (v0.66.0 reference)
+1. Post Bluesky — **3 manual** only (automated takes 7 slots):
+   - fix_cli (~11:00 UTC, after daily-dispatch fires at 10:00)
+   - warm_reply_luca reply (~12:30 UTC)
+   - token_angle OR badges (~14:00 UTC)
+   - Art-campaign fires ~16:30 automatically (art 067 at 16:00)
+   - Staggered BitNet 18/19/20 UTC automatically
 2. Check board outbox (Reddit session response?)
 3. Check GitHub traffic from MCP Discord post (24h after posting: check ~18:00 UTC Mar 21)
 4. Art 067 auto-publishes 16:00 UTC
