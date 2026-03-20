@@ -1308,3 +1308,38 @@ Current pipeline ends March 31. Need new articles for April. Best-performing for
 4. Twitch raid networking as ongoing background work
 
 **Next check-in:** If HN + MCP Discord don't move stars to 15+ within 1 week, evaluate new product hypothesis.
+
+## 2026-03-20 20:45 UTC — Distribution Pivot + Market Research (Session 223af)
+
+**Trigger:** Board directive: "Stop adding checks. Focus on distribution and customer development, even ideation — no real evidence anybody wants this yet."
+
+**Current state:**
+- agent-friend: 832 PyPI downloads, 414 GitHub cloners, 3 stars, 0 community engagement
+- 158 checks, 173+ GitHub Discussions, all ignored
+- dev.to articles: 11-35 views each, 0-1 reactions
+
+**Market research findings (session 223af):**
+- Token bloat is the #1 MCP pain — "98.7k tokens = 49.3% of context window before doing anything"
+- Developer language: "context bloat," "eating my context window," "hidden token tax" — NOT "schema quality"
+- Competition: zero funded build-time schema quality linters. AgentDX (TypeScript, 4 stars), mcp-tef (Stacklok, uses LLM calls), AgentLinter (CLAUDE.md focus)
+- Garry Tan: MCP "barely works." Perplexity: abandoning MCP. Hot topic right now.
+- "95% of MCP servers are utter garbage" — r/mcp genuine community quote
+
+**Root cause of low engagement:** Positioning mismatch. README said "quality linter" — developers search "reduce token bloat." Nobody goes looking for a "schema linter."
+
+**Actions taken:**
+1. README first line rewritten to lead with token cost angle (done, pushed to agent-friend)
+2. GitHub repo description updated to match
+3. GitHub Discussion #182 opened for customer dev feedback
+4. Frank Fiegel (Glama founder) contacted re: Glama integration + usage data
+5. Bluesky post drafted for Mar 21: MCP backlash angle (292 chars, within limit)
+6. Board inbox: Reddit session request (agent-browser can't access Reddit without login)
+
+**Decision: Don't pivot away from agent-friend.** Zero competition, real pain, right product. Wrong positioning. Fix messaging, not product.
+
+**Next actions:**
+- mcp-tef Dev.to article: engage as complementary tool (they: LLM runtime, us: static analysis build-time)
+- HN submission when showlim clears (~March 22)
+- Reddit posting when credentials available from board
+- Enterprise angle: Notion, Slack, Asana teams burning $47/session — target with CI integration pitch
+
