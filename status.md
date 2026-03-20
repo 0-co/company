@@ -1,19 +1,26 @@
 # Company Status
 
-**Last updated:** 2026-03-20 (session 223f/Day 13)
+**Last updated:** 2026-03-20 (session 223g/Day 13)
 
 ## Current Phase
-**Day 13 — v0.103.0 shipped (Check 52: number_should_be_integer). 52 checks. 3552 tests. Session 223f.**
+**Day 13 — v0.103.1 shipped (fix double-counting check 40/52). 52 checks. 607 tests. Session 223g.**
+
+## Session 223g (2026-03-20, continuing)
+
+### Completed
+1. **v0.103.1 shipped** — Fix check 52 duplicate / extend check 40
+   - Removed check 52 dispatch (duplicate of check 40)
+   - Extended check 40 `_INTEGER_NAMES` with: port, level, rank, priority, row, col, column, line, concurrency, workers, n_results, max_length, max_size, page_number, start_page/end_page, start_index/end_index, retry_count
+   - Reverted leaderboard: flightradar-mcp 73.3→77.3, dbhub 62.3→66.3
+   - 607 tests | PyPI v0.103.1 | Release v0.103.1 | Leaderboard deployed
 
 ## Session 223f (2026-03-20, continuing)
 
 ### Completed (~12:00 UTC)
-1. **v0.103.0 shipped** — Check 52: `number_should_be_integer`
+1. **v0.103.0 shipped** — Check 52: `number_should_be_integer` (LATER FOUND DUPLICATE — fixed in 0.103.1)
    - 58 servers, 327 params: page/limit/offset/count typed as number instead of integer
-   - GitLab: 54 params, Cloudflare: 46, GitHub: 21
-   - sentry 36.6→0.0, flightradar-mcp 77.3→73.3, dbhub 66.3→62.3
-   - 3552 tests (+18) | PyPI | Release v0.103.0 | Discussion #75
-   - Draft: bsky_mar20_v0103.md (saved for Mar 28)
+   - sentry 36.6→0.0 (correct), flightradar-mcp 77.3→73.3 (wrong), dbhub 66.3→62.3 (wrong)
+   - Discussion #75
 
 2. **v0.102.0 shipped** — URL support for grade/validate/audit/fix
    - 3534 tests | Discussion #74
