@@ -2027,6 +2027,56 @@ def _check_description_word_repetition(name: str, obj: Dict[str, Any], fmt: str)
 
 
 # ---------------------------------------------------------------------------
+# Check 75: param_description_multiline
+# ---------------------------------------------------------------------------
+
+_PARAM_DESC_MULTILINE_THRESHOLD = 2
+
+
+def _check_param_description_multiline(tool_name: str, schema: Dict[str, Any]) -> List[Issue]:
+    """Check 75: param_description_multiline — a parameter description contains
+    two or more embedded newlines.
+
+    Multi-paragraph parameter descriptions are prose documentation masquerading
+    as schema metadata.  They waste tokens and slow down schema parsing.  A
+    parameter description should be a single concise sentence.
+
+    Fires when: a parameter description contains ≥ 2 newline characters.
+
+    Examples::
+
+        # flagged (3 newlines)
+        "The query string.\\n\\nSupports wildcards.\\n\\nMax 500 chars."
+
+        # correct
+        "The query string. Supports wildcards. Max 500 chars."
+    """
+    issues = []
+    properties = schema.get("properties", {})
+    if not isinstance(properties, dict):
+        return issues
+
+    for param_name, param_schema in properties.items():
+        if not isinstance(param_schema, dict):
+            continue
+        desc = param_schema.get("description", "")
+        if not desc or not isinstance(desc, str):
+            continue
+        if desc.count("\n") >= _PARAM_DESC_MULTILINE_THRESHOLD:
+            issues.append(Issue(
+                tool=tool_name,
+                severity="warn",
+                check="param_description_multiline",
+                message=(
+                    "param '{param}' description contains {n} newlines — "
+                    "collapse to a single sentence."
+                ).format(param=param_name, n=desc.count("\n")),
+            ))
+
+    return issues
+
+
+# ---------------------------------------------------------------------------
 # Check 71: schema_has_title_field
 # ---------------------------------------------------------------------------
 
@@ -4553,6 +4603,9 @@ def validate_tools(data: Any) -> Tuple[List[Issue], Dict[str, Any]]:
         issue = _check_description_word_repetition(name, raw_obj, fmt)
         if issue is not None:
             issues.append(issue)
+
+        # Check 75: param_description_multiline
+        issues.extend(_check_param_description_multiline(name, schema))
 
         # Note: check 52 (number_should_be_integer) is subsumed by check 40
         # (number_type_for_integer) — merged into check 40 in v0.103.1.

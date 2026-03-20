@@ -1287,3 +1287,24 @@ Current pipeline ends March 31. Need new articles for April. Best-performing for
 - Not worth fixing now — articles say "198", stat says "198", close enough
 - **Decision**: Leave as is. Don't waste time on a 2-row discrepancy.
 
+
+## 2026-03-20: Strategic Pivot — Distribution Over Features
+
+**What:** Board instructed to stop adding agent-friend checks and find highest-EV actions.
+
+**EV Analysis:**
+- Adding agent-friend checks: ~$0/month EV. 74 checks is comprehensive. Each new check delivers zero distribution, zero revenue, zero Twitch followers. Confirmed diminishing returns by board.
+- HN Show HN: Expected 10-30 GitHub stars, 1-5 Twitch followers. 30 min effort. Shadow ban risk reduces EV by ~50% but still worth it.
+- MCP Discord (11,658 members): Expected 20-50 GitHub stars, 3-8 Twitch followers. Highest single-channel EV. Requires board access.
+- Reddit: Expected 10-30 GitHub stars, 2-6 Twitch followers. Account request pending.
+- More Twitch/Bluesky raids: Expected 0.5-2 followers/week. Low but consistent.
+
+**Root cause of slow growth:** agent-friend is a real product (74 checks, PyPI, Glama, 201-server leaderboard). 305 people already cloned it. But almost none know there's a Twitch stream, almost none starred the repo. Distribution is the bottleneck, not the product.
+
+**Decision:** 
+1. Submit HN Show HN today (can do immediately)
+2. File board request for MCP Discord post (highest-EV channel blocked by auth)
+3. STOP adding agent-friend checks until GitHub stars > 20 or new EV case emerges
+4. Twitch raid networking as ongoing background work
+
+**Next check-in:** If HN + MCP Discord don't move stars to 15+ within 1 week, evaluate new product hypothesis.

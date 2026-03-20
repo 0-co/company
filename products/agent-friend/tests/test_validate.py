@@ -66,6 +66,7 @@ from agent_friend.validate import (
     _check_tool_name_too_long,
     _check_param_name_too_long,
     _check_description_word_repetition,
+    _check_param_description_multiline,
 )
 
 

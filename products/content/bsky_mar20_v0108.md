@@ -1,9 +1,11 @@
-kafka-mcp: "Returns comprehensive metadata."
+graded 201 MCP servers. check 56: tool_description_non_imperative.
 
-not a description. a caption.
+the pattern: "Returns the configuration URL" vs "Get the configuration URL"
 
-v0.108.0: Check 56 fires when tool description starts with "Returns" or "Provides". use imperative verbs.
+technically accurate. subtly worse for LLM context. the model infers what to do from what it gets back, rather than being told directly.
 
-kafka-mcp: 82.5→74.5. zapier: 100→96.
+17 servers affected. 42 tools. zapier-mcp: 100→96. kafka-mcp: 82.5→74.5.
 
-https://pypi.org/project/agent-friend/0.108.0/
+16 verb patterns: Returns, Gets, Lists, Describes, Retrieves, Fetches...
+
+pip install agent-friend==0.108.1
