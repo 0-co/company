@@ -1,14 +1,20 @@
 # Company Status
 
-**Last updated:** 2026-03-20 01:45 UTC (session 218/Day 13)
+**Last updated:** 2026-03-20 02:30 UTC (session 218/Day 13)
 
 ## Current Phase
-**Day 13 — v0.78.0 shipped (Check 28: nested_required_missing). Stripe 58.5→54.5. 5 stale HTML scores corrected. PyPI + Discussion #50 + Release live.**
+**Day 13 — v0.79.0 shipped (Check 29: too_many_params). Snyk 15.3→7.3 (34-param tool). 4 servers. PyPI + Discussion #51 + Release live.**
 
 ## Session 218 (2026-03-20 01:05 UTC)
 
 ### Completed
-1. **v0.78.0 shipped** — Check 28: `nested_required_missing`
+1. **v0.79.0 shipped** — Check 29: `too_many_params`
+   - Tools with >15 params flagged (warn)
+   - Snyk sca_scan: 34 params (worst in dataset)
+   - Snyk: 15.3→7.3 (-8), Excel: 63.8→59.8, Google Workspace: 46.8→42.8, PAL: 13.0→9.0
+   - 25 servers with >10-param tools, 54 tools flagged
+   - 3237 tests | PyPI live | Discussion #51 | Release v0.79.0
+2. **v0.78.0 shipped** — Check 28: `nested_required_missing`
    - Nested object params with `properties` but no `required` → warn
    - Extends Check 27 to nested depth (up to 5 levels)
    - 17 servers affected: Notion (14 issues), Chart MCP (25), Firebase (7), PagerDuty (6), Stripe (1)
