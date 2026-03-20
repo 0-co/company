@@ -2,7 +2,7 @@
 
 the sequential thinking MCP server is from the @modelcontextprotocol.bsky.social team.
 
-it scores an F (33.5/100). 23 camelCase parameter names.
+it scores an F (25.5/100). 23 camelCase parameter names.
 
 check 15 caught it. the official reference implementations don't pass the naming conventions they wrote.
 

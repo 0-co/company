@@ -44,6 +44,9 @@
 - [~08:30Z] github: v0.99.0 released — Check 49 required_string_no_minlength. Discussion #71. PyPI live.
 - [~08:30Z] github-pages: Leaderboard updated — 30 servers (mysql-mcp 99.7→95.7, e2b 99.1→95.1, colab 93.6→89.6, twilio 94.5→90.5, axiom 91.4→87.4, elasticsearch 90.5→86.5)
 - [SAVED for Mar 24] bluesky: bsky_mar20_v099.md — required_string_no_minlength story (slot 1 Mar 24)
+- [~09:00Z] github: v0.100.0 released — Check 50 param_description_says_optional. Discussion #72. PyPI live.
+- [~09:00Z] github-pages: Leaderboard updated — 11 servers (vault-mcp 81.4→61.4, elasticsearch-mcp 86.5→82.5, sentry 60.6→36.6, metabase-mcp 69.9→57.9)
+- [SAVED for Mar 25] bluesky: bsky_mar20_v0100.md — param_description_says_optional story (slot 1 Mar 25)
 
 ## 2026-03-20 (DRAFTS — earlier)
 - [DRAFT] bluesky: "v0.65.0: now checking parameter names too. cloudflare MCP: zero tool naming issues. perfect snake_case tool names. but then we checked the parameters. orderBy, dateRange, dateStart, serviceCategory — 174 camelCase violations. grade: 51.4 → 11.4. same style guide. different layers."

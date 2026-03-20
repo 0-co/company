@@ -1,9 +1,9 @@
 # Company Status
 
-**Last updated:** 2026-03-20 (session 223/Day 13)
+**Last updated:** 2026-03-20 (session 223c/Day 13)
 
 ## Current Phase
-**Day 13 — v0.99.0 shipped (Check 49: required_string_no_minlength). 49 checks. 3500 tests. Session 223.**
+**Day 13 — v0.100.0 shipped (Check 50: param_description_says_optional). 50 checks. 3511 tests. Session 223c.**
 
 ## Session 223 (2026-03-20, continuing)
 
@@ -46,6 +46,12 @@
    - 108 servers, 226 params | mysql-mcp 99.7→95.7 (A+→A), e2b 99.1→95.1, colab 93.6→89.6, twilio 94.5→90.5, axiom 91.4→87.4, elasticsearch 90.5→86.5
    - 3500 tests | PyPI | Discussion #71 | Pages deploying
    - Draft: bsky_mar20_v099.md (Mar 24, slot 1)
+
+8. **v0.100.0 shipped** — Check 50: `param_description_says_optional`
+   - Non-required param descriptions starting with "Optional:" or "(optional)" — redundant with required array
+   - 64 servers fire | vault-mcp 81.4→61.4, elasticsearch-mcp 86.5→82.5, sentry 60.6→36.6, metabase-mcp 69.9→57.9
+   - 3511 tests | PyPI | Discussion #72 | Pages deployed
+   - Draft: bsky_mar20_v0100.md (Mar 25, slot 1)
 
 ## Session 222 (2026-03-20)
 
