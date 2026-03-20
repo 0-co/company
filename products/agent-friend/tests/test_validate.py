@@ -47,6 +47,7 @@ from agent_friend.validate import (
     _check_enum_default_missing,
     _check_param_description_says_optional,
     _check_required_param_has_default,
+    _check_tool_description_non_imperative,
 )
 
 
@@ -6994,3 +6995,153 @@ class TestCheck55RequiredParamHasDefault:
         assert len(issues) == 1
         assert issues[0].check == "required_param_has_default"
         assert "model" in issues[0].message
+
+
+# ---------------------------------------------------------------------------
+# Check 56: tool_description_non_imperative
+# ---------------------------------------------------------------------------
+
+class TestToolDescriptionNonImperative:
+    """Tests for check 56: tool_description_non_imperative."""
+
+    def _make_mcp_tool(self, description: str) -> dict:
+        return {
+            "name": "do_thing",
+            "description": description,
+            "inputSchema": {"type": "object", "properties": {}, "required": []},
+        }
+
+    def test_fires_for_returns(self):
+        """Description starting with 'Returns' fires."""
+        tools = [self._make_mcp_tool("Returns the current user session.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "tool_description_non_imperative"]
+        assert len(hits) == 1
+
+    def test_fires_for_provides(self):
+        """Description starting with 'Provides' fires."""
+        tools = [self._make_mcp_tool("Provides access to the database.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "tool_description_non_imperative"]
+        assert len(hits) == 1
+
+    def test_fires_for_retrieves(self):
+        """Description starting with 'Retrieves' fires."""
+        tools = [self._make_mcp_tool("Retrieves all matching records.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "tool_description_non_imperative"]
+        assert len(hits) == 1
+
+    def test_fires_for_fetches(self):
+        """Description starting with 'Fetches' fires."""
+        tools = [self._make_mcp_tool("Fetches the latest metrics.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "tool_description_non_imperative"]
+        assert len(hits) == 1
+
+    def test_fires_for_gets(self):
+        """Description starting with 'Gets' fires."""
+        tools = [self._make_mcp_tool("Gets the current configuration URL.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "tool_description_non_imperative"]
+        assert len(hits) == 1
+
+    def test_fires_for_lists(self):
+        """Description starting with 'Lists' fires."""
+        tools = [self._make_mcp_tool("Lists all available workspaces.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "tool_description_non_imperative"]
+        assert len(hits) == 1
+
+    def test_fires_for_describes(self):
+        """Description starting with 'Describes' fires."""
+        tools = [self._make_mcp_tool("Describes the Kafka topic configuration.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "tool_description_non_imperative"]
+        assert len(hits) == 1
+
+    def test_fires_for_shows(self):
+        """Description starting with 'Shows' fires."""
+        tools = [self._make_mcp_tool("Shows the current connection status.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "tool_description_non_imperative"]
+        assert len(hits) == 1
+
+    def test_no_fire_for_imperative_get(self):
+        """Imperative 'Get' does not fire."""
+        tools = [self._make_mcp_tool("Get the current configuration URL.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "tool_description_non_imperative"]
+        assert len(hits) == 0
+
+    def test_no_fire_for_imperative_list(self):
+        """Imperative 'List' does not fire."""
+        tools = [self._make_mcp_tool("List all available workspaces.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "tool_description_non_imperative"]
+        assert len(hits) == 0
+
+    def test_no_fire_for_imperative_retrieve(self):
+        """Imperative 'Retrieve' does not fire."""
+        tools = [self._make_mcp_tool("Retrieve all matching records.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "tool_description_non_imperative"]
+        assert len(hits) == 0
+
+    def test_no_fire_for_search(self):
+        """'Search' is imperative — does not fire."""
+        tools = [self._make_mcp_tool("Search the knowledge base for relevant documents.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "tool_description_non_imperative"]
+        assert len(hits) == 0
+
+    def test_no_fire_for_create(self):
+        """'Create' is imperative — does not fire."""
+        tools = [self._make_mcp_tool("Create a new user account.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "tool_description_non_imperative"]
+        assert len(hits) == 0
+
+    def test_no_fire_for_empty_description(self):
+        """Empty description does not fire (caught by other checks)."""
+        tools = [self._make_mcp_tool("")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "tool_description_non_imperative"]
+        assert len(hits) == 0
+
+    def test_severity_is_warn(self):
+        """Severity is warn, not error."""
+        tools = [self._make_mcp_tool("Returns the session token.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "tool_description_non_imperative"]
+        assert len(hits) == 1
+        assert hits[0].severity == "warn"
+
+    def test_message_includes_verb(self):
+        """Message includes the offending verb."""
+        tools = [self._make_mcp_tool("Retrieves all users from the database.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "tool_description_non_imperative"]
+        assert len(hits) == 1
+        assert "Retrieves" in hits[0].message
+
+    def test_direct_function_call(self):
+        """Direct function call fires for non-imperative description."""
+        obj = {
+            "name": "get_config_url",
+            "description": "Gets the configuration URL for the Zap.",
+            "inputSchema": {"type": "object", "properties": {}},
+        }
+        issue = _check_tool_description_non_imperative("get_config_url", obj, "mcp")
+        assert issue is not None
+        assert issue.check == "tool_description_non_imperative"
+
+    def test_direct_function_no_fire_imperative(self):
+        """Direct function does not fire for imperative description."""
+        obj = {
+            "name": "get_config_url",
+            "description": "Get the configuration URL for the Zap.",
+            "inputSchema": {"type": "object", "properties": {}},
+        }
+        issue = _check_tool_description_non_imperative("get_config_url", obj, "mcp")
+        assert issue is None

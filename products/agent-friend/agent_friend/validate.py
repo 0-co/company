@@ -1607,6 +1607,92 @@ def _check_required_param_has_default(tool_name: str, schema: Dict[str, Any]) ->
     return issues
 
 
+# ---------------------------------------------------------------------------
+# Check 56: tool_description_non_imperative
+# ---------------------------------------------------------------------------
+
+_NON_IMPERATIVE_PREFIXES = re.compile(
+    r'^(?:'
+    r'Returns'
+    r'|Provides'
+    r'|Retrieves'
+    r'|Fetches'
+    r'|Gets'
+    r'|Gives'
+    r'|Lists'
+    r'|Shows'
+    r'|Displays'
+    r'|Describes'
+    r'|Allows'
+    r'|Enables'
+    r'|Outputs'
+    r'|Checks'
+    r'|Reads'
+    r'|Counts'
+    r')\s',
+    re.IGNORECASE,
+)
+"""Patterns indicating a tool description starts with a non-imperative verb."""
+
+
+def _check_tool_description_non_imperative(name: str, obj: Dict[str, Any], fmt: str) -> Optional[Issue]:
+    """Check 56: tool_description_non_imperative — tool description starts with an
+    output-focused (non-imperative) verb rather than an action-imperative verb.
+
+    MCP tool descriptions are injected into an LLM's context to explain what
+    each tool does.  Best practice is to write them in imperative mood:
+    "Search for files", "Create a record", "Delete the session" — these read
+    as instructions and clearly convey the action.
+
+    Descriptions that start with 3rd-person singular output verbs like
+    "Returns a list of…", "Provides the current…", "Retrieves all…" describe
+    *what comes back* rather than *what the tool does*.  They are technically
+    accurate but subtly less effective: the model must infer the action from
+    the output description rather than having it stated directly.
+
+    Fires when:
+
+    * The tool description's first word is a 3rd-person-singular present-tense
+      verb from a known non-imperative set (Returns, Provides, Retrieves,
+      Fetches, Gets, Gives, Lists, Shows, Displays, Describes, Allows,
+      Enables, Outputs, Checks, Reads, Counts), AND
+    * The word is followed by whitespace (avoiding false positives on words
+      like "Reset", "Resolve", etc.)
+
+    Does **not** fire on:
+    * Imperative equivalents: "Return", "Provide", "Retrieve", "Fetch", etc.
+    * Descriptions that begin with a noun phrase ("A utility that…")
+    * Short descriptions that happen to start with these words as nouns
+
+    Examples::
+
+        # flagged — output-focused, 3rd-person
+        "Returns the current user session token."
+        "Provides a list of available models."
+        "Retrieves all matching records from the index."
+
+        # correct — imperative, action-focused
+        "Get the current user session token."
+        "List available models."
+        "Retrieve all matching records from the index."
+    """
+    desc = _get_tool_description(obj, fmt)
+    if not desc or not isinstance(desc, str):
+        return None
+    m = _NON_IMPERATIVE_PREFIXES.match(desc)
+    if not m:
+        return None
+    first_word = m.group(0).strip()
+    return Issue(
+        tool=name,
+        severity="warn",
+        check="tool_description_non_imperative",
+        message=(
+            "tool description starts with non-imperative verb '{verb}' — "
+            "use imperative mood (e.g. 'Get X' not 'Gets X', 'List X' not 'Lists X'). "
+            "Imperative descriptions tell the model what action to take."
+        ).format(verb=first_word),
+    )
 
 
 _RANGE_IN_DESC_RE = re.compile(
@@ -3216,6 +3302,11 @@ def validate_tools(data: Any) -> Tuple[List[Issue], Dict[str, Any]]:
 
         # Check 55: required_param_has_default
         issues.extend(_check_required_param_has_default(name, schema))
+
+        # Check 56: tool_description_non_imperative
+        issue = _check_tool_description_non_imperative(name, raw_obj, fmt)
+        if issue is not None:
+            issues.append(issue)
 
         # Note: check 52 (number_should_be_integer) is subsumed by check 40
         # (number_type_for_integer) — merged into check 40 in v0.103.1.
