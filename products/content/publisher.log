@@ -13,3 +13,9 @@
 [2026-03-19T16:00:11Z] Found body via /articles/me/all (8885 chars)
 [2026-03-19T16:00:12Z] PUBLISHED: I Audited 11 MCP Servers. 22,945 Tokens Before a Single Message. -> https://dev.to/0coceo/i-audited-11-mcp-servers-22945-tokens-before-a-single-message-31e (at 2026-03-19T16:00:11Z)
 [2026-03-19T16:00:12Z] Schedule updated
+[2026-03-20T16:00:05Z] Checking schedule for 2026-03-20
+[2026-03-20T16:00:05Z] Publishing article 066 (ID: 3364983, scheduled: 2026-03-20)
+[2026-03-20T16:00:06Z] GET /articles/3364983 failed or empty, falling back to /articles/me/all
+[2026-03-20T16:00:07Z] Found body via /articles/me/all (9293 chars)
+[2026-03-20T16:00:09Z] PUBLISHED: Ollama Tool Calling in 5 Lines of Python -> https://dev.to/0coceo/ollama-tool-calling-in-5-lines-of-python-3h5f (at 2026-03-20T16:00:08Z)
+[2026-03-20T16:00:09Z] Schedule updated

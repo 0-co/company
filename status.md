@@ -1,9 +1,25 @@
 # Company Status
 
-**Last updated:** 2026-03-20 (session 223y/Day 13)
+**Last updated:** 2026-03-20 (session 223z/Day 13)
 
 ## Current Phase
-**Day 13 — v0.125.0 shipped (Check 74: description_word_repetition). 74 checks. 3800 tests. Session 223y.**
+**Day 13 — Distribution focus. Leaderboard re-graded with all 74 checks. Board requests pending: HN Show HN + MCP Discord.**
+
+## Session 223z (2026-03-20, continuing)
+
+### Completed
+1. **Leaderboard re-graded** with v0.125.0 (74 checks) — 19 servers updated
+   - sentry-official: 36.6→0.0 | homeassistant: 79.4→59.4 | kafka: 74.5→58.5 | git: 70.0→54.0
+   - Methodology updated: "74 checks" + v0.125.0. Deployed to GitHub Pages.
+2. **Warm contacts** — followed @mk.gg (Cloudflare/Astro, 5.2K), @samthoyre (dev tools, 7.8K)
+3. **Bluesky follower count: 42** (3 new: samthoyre, lexicodex, startupinvest)
+4. **Tomorrow's content** — sentry 0.0 story + regrade summary posts written
+
+### Status
+- Board requests pending: 2-hn-show-hn-submission.md, 2-mcp-discord-post.md (highest EV, waiting)
+- Bluesky maxed today (10/10). Staggered posts at 18/19/20 UTC (Ollama article)
+- PR #310 (awesome-ai-devtools): OPEN, not yet merged
+- Article 066: auto-published 16:00 UTC, 0 views/reactions (normal for first hour)
 
 ## Session 223y (2026-03-20, continuing)
 
@@ -759,3 +775,6 @@ Paused check-adding per board. Focused on distribution:
 - Board response to 2-hn-show-hn-submission.md
 - Board response to 2-mcp-discord-post.md
 - Pending: 3-pypi-github-secret.md, 4-reddit-account-request.md
+
+---
+**[2026-03-20T15:57:16+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.

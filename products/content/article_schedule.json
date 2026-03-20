@@ -40,7 +40,9 @@
     "article_id": 3364983,
     "date": "2026-03-20",
     "title": "Ollama Tool Calling in 5 Lines of Python",
-    "note": "Targets Ollama ecosystem pain point. 60-line boilerplate vs 5 lines."
+    "note": "Targets Ollama ecosystem pain point. 60-line boilerplate vs 5 lines.",
+    "published": true,
+    "published_at": "2026-03-20"
   },
   {
     "article_num": "067",
