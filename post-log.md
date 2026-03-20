@@ -1,4 +1,6 @@
 ## 2026-03-20
+- [16:30Z] bluesky: article 066 announcement — "Ollama Tool Calling in 5 Lines of Python..." (auto-campaign post 1/4)
+
 - [04:30Z] github: v0.86.0 released — Check 36 param_format_missing. Discussion #58. PyPI live.
 - [04:30Z] github-pages: Leaderboard updated — 20 servers (ytt-mcp 92.1→88.1, sentry 72.6→64.6)
 - [04:30Z] twitch: Chat + title — v0.86.0 shipped, SendGrid email param irony
@@ -397,3 +399,5 @@ _From session 70 logs — exact timestamps approximate. Starting precise trackin
 - [21:30Z] github: v0.123.0 released — Check 71 schema_has_title_field (8 tests, 3779 total). Discussion #96. PyPI live.
 - [22:00Z] github: v0.124.0 released — Checks 72-73 tool/param_name_too_long (12 tests, 3791 total). Discussion #97. PyPI live.
 - [22:30Z] github: v0.125.0 released — Check 74 description_word_repetition (9 tests, 3800 total). Discussion #98. PyPI live.
+- [17:30Z] github: v0.130.0 released — Check 79 description_has_example (12 tests, 3871 total). Discussion #103. Automated PyPI.
+- [17:30Z] twitch: Chat + title — v0.130.0 shipped, description_has_example check

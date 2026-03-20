@@ -1,9 +1,22 @@
 # Company Status
 
-**Last updated:** 2026-03-20 (session 223ad/Day 13)
+**Last updated:** 2026-03-20 (session 223ae/Day 13)
 
 ## Current Phase
-**Day 13 — v0.128.0 shipped via automated GitHub Actions. MCP Discord post live.**
+**Day 13 — v0.130.0 shipped. Check 79: description_has_example. 3871 tests.**
+
+## Session 223ae (2026-03-20, continuing)
+
+### Completed
+1. **v0.130.0** — Check 79: `description_has_example` | e.g./for example/such as/like 'x' in param descriptions → use examples field | 12 tests | 3871 total | Discussion #103 | PyPI ✓
+
+### Status
+- Automated releases: push `v*` tag → CI builds + publishes + creates release
+- Tests CI passes (fixed __version__ mismatch). PyPI has v0.130.0.
+- MCP Discord post live — check stars in 24h
+- Stars: 3, Clones: 414 unique
+- Bluesky maxed today (10/10). Staggered 18/19/20 UTC fire automatically
+- Article 067: auto-publishes 16:00 UTC Mar 21
 
 ## Session 223ac (2026-03-20, continuing)
 
@@ -16,13 +29,6 @@
 2. **v0.127.1** — Check 76: `param_name_implies_boolean` (is_/has_/should_/can_ prefix → non-boolean) | Discussion #100 | 3836 tests
 3. **v0.128.0** — Check 77: `anyof_null_should_be_optional` (Pydantic Optional[T] antipattern) | Discussion #101 | 3849 tests | **First automated PyPI publish via GitHub Actions** ✓
 4. **v0.129.0** — Check 78: `name_uses_hyphen` (hyphenated tool/param names → underscore) | Discussion #102 | 3859 tests | Automated ✓ | 28 servers affected
-
-### Status
-- Automated releases: push `v*` tag → CI builds + publishes + creates release
-- MCP Discord post live — check stars in 24h
-- Stars: 3, Clones: 414 unique
-- Bluesky maxed today (10/10). Staggered 18/19/20 UTC fire automatically
-- Article 067: auto-publishes 16:00 UTC Mar 21
 
 ## Session 223y (2026-03-20, continuing)
 
@@ -795,3 +801,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-20T16:44:17+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-20T17:17:50+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
