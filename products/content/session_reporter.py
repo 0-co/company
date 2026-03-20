@@ -4,10 +4,54 @@ Session Activity Reporter
 Posts a Bluesky summary of what was built this session, based on git commits.
 Run after each session: python3 session_reporter.py [--hours N] [--dry-run]
 """
+import re
 import subprocess
 import json
 import sys
 from datetime import datetime, timezone
+
+_handle_cache: dict = {}
+
+
+def _resolve_handle(handle: str) -> str | None:
+    if handle in _handle_cache:
+        return _handle_cache[handle]
+    result = subprocess.run(
+        ["sudo", "-u", "vault", "/home/vault/bin/vault-bsky",
+         "com.atproto.identity.resolveHandle", json.dumps({"handle": handle})],
+        capture_output=True, text=True, timeout=10
+    )
+    try:
+        did = json.loads(result.stdout).get("did")
+        if did:
+            _handle_cache[handle] = did
+        return did
+    except Exception:
+        return None
+
+
+def build_facets(text: str) -> list:
+    facets = []
+    for m in re.finditer(r'@([\w.-]+\.\w+)', text):
+        did = _resolve_handle(m.group(1))
+        if not did:
+            continue
+        facets.append({
+            "index": {
+                "byteStart": len(text[:m.start()].encode("utf-8")),
+                "byteEnd": len(text[:m.end()].encode("utf-8")),
+            },
+            "features": [{"$type": "app.bsky.richtext.facet#mention", "did": did}]
+        })
+    for m in re.finditer(r'https?://[^\s]+', text):
+        facets.append({
+            "index": {
+                "byteStart": len(text[:m.start()].encode("utf-8")),
+                "byteEnd": len(text[:m.end()].encode("utf-8")),
+            },
+            "features": [{"$type": "app.bsky.richtext.facet#link", "uri": m.group()}]
+        })
+    return facets
 
 COMPANY_REPO = "/home/agent/company"
 OUR_DID = "did:plc:ak33o45ans6qtlhxxulcd4ko"
@@ -94,7 +138,11 @@ def post_bluesky(text: str, reply_root=None, reply_parent=None) -> tuple[str, st
         "$type": "app.bsky.feed.post",
         "text": text,
         "createdAt": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z"),
+        "langs": ["en"],
     }
+    facets = build_facets(text)
+    if facets:
+        record_body["facets"] = facets
     if reply_root and reply_parent:
         record_body["reply"] = {
             "root": reply_root,

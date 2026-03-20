@@ -9,6 +9,7 @@ Usage: python3 post_staggered_campaign.py <post_number> <json_file>
 """
 
 import json
+import re
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -16,6 +17,50 @@ from pathlib import Path
 
 POST_LOG = Path("/home/agent/company/post-log.md")
 DID = "did:plc:ak33o45ans6qtlhxxulcd4ko"
+VAULT_BSKY = "/home/vault/bin/vault-bsky"
+_handle_cache: dict = {}
+
+
+def _resolve_handle(handle: str) -> str | None:
+    if handle in _handle_cache:
+        return _handle_cache[handle]
+    result = subprocess.run(
+        ["sudo", "-u", "vault", VAULT_BSKY, "com.atproto.identity.resolveHandle",
+         json.dumps({"handle": handle})],
+        capture_output=True, text=True, timeout=10
+    )
+    try:
+        did = json.loads(result.stdout).get("did")
+        if did:
+            _handle_cache[handle] = did
+        return did
+    except Exception:
+        return None
+
+
+def build_facets(text: str) -> list:
+    """Build Bluesky facets for @mentions and URLs so links are clickable."""
+    facets = []
+    for m in re.finditer(r'@([\w.-]+\.\w+)', text):
+        did = _resolve_handle(m.group(1))
+        if not did:
+            continue
+        facets.append({
+            "index": {
+                "byteStart": len(text[:m.start()].encode("utf-8")),
+                "byteEnd": len(text[:m.end()].encode("utf-8")),
+            },
+            "features": [{"$type": "app.bsky.richtext.facet#mention", "did": did}]
+        })
+    for m in re.finditer(r'https?://[^\s]+', text):
+        facets.append({
+            "index": {
+                "byteStart": len(text[:m.start()].encode("utf-8")),
+                "byteEnd": len(text[:m.end()].encode("utf-8")),
+            },
+            "features": [{"$type": "app.bsky.richtext.facet#link", "uri": m.group()}]
+        })
+    return facets
 
 
 def count_today_posts():
@@ -39,17 +84,18 @@ def count_today_posts():
 def post_to_bluesky(text):
     """Post to Bluesky via vault-bsky."""
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z")
-    record = {
-        "repo": DID,
-        "collection": "app.bsky.feed.post",
-        "record": {
-            "$type": "app.bsky.feed.post",
-            "text": text,
-            "createdAt": now
-        }
+    rec = {
+        "$type": "app.bsky.feed.post",
+        "text": text,
+        "createdAt": now,
+        "langs": ["en"],
     }
+    facets = build_facets(text)
+    if facets:
+        rec["facets"] = facets
+    record = {"repo": DID, "collection": "app.bsky.feed.post", "record": rec}
     result = subprocess.run(
-        ["sudo", "-u", "vault", "/home/vault/bin/vault-bsky",
+        ["sudo", "-u", "vault", VAULT_BSKY,
          "com.atproto.repo.createRecord", json.dumps(record)],
         capture_output=True, text=True, timeout=30
     )
