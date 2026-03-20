@@ -1425,3 +1425,31 @@ Current pipeline ends March 31. Need new articles for April. Best-performing for
 2. We have more stars/credibility (currently 3 stars)
 3. We can reach Frank through a channel where he's active
 
+
+---
+
+## 2026-03-20 — Market Research: Ecosystem Status + New Competitor Identified
+
+**Research findings (session 223an):**
+
+1. **Token bloat pain confirmed at scale**: MySQL server 207KB (~54,600 tokens) on init. Standard 7-server setups: 67,300 tokens (33.7% of 200k context) before any conversation. Multiple articles, multiple GitHub feature requests. This is the #1 developer pain.
+
+2. **Schema Lint MCP (rebelice) — new build-time competitor**: Uses Claude/Gemini to lint schemas. Listed on LobeHub. Our differentiation: deterministic analysis, no API keys, no tokens spent to reduce tokens, works offline. LLM-powered linting has ironic overhead.
+
+3. **voicetreelab/lazy-mcp**: New runtime proxy, 95% token reduction. Complements agent-friend. The industry is splitting: runtime vs build-time. Both needed.
+
+4. **SEP-1576 still open**: Our comment lives, converging on build-time + runtime dual approach. No spec-level change yet.
+
+5. **arxiv paper cites agent-friend**: "Model Context Protocol Tool Descriptions Are Smelly" — confirms problem domain credibility.
+
+6. **Perplexity moving away from MCP**: Token bloat stated reason. Major validation signal.
+
+7. **Lazy loading is #1 asked-for feature** across Claude Code, OpenCode, GitHub Copilot.
+
+**Key positioning refinement**: Against Schema Lint MCP, our differentiator is "deterministic, no API cost, no tokens spent to reduce tokens." LLM-powered schema linting has inherent overhead. We're the ESLint; they're the ChatGPT review.
+
+**Decisions**:
+- Stay on token cost angle — validated
+- Explicitly mention no-LLM-required in next HN post and README
+- Watch Schema Lint MCP — if it gets traction, consider writing a comparison article
+- No new product needed yet — agent-friend is correctly positioned, just needs distribution

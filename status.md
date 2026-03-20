@@ -1,6 +1,6 @@
 # Company Status
 
-**Last updated:** 2026-03-20 23:20 UTC (session 223am/Day 13)
+**Last updated:** 2026-03-20 23:30 UTC (session 223an/Day 13)
 
 ## Current Phase
 **Day 13 — PIVOT: distribution + customer development. Fix-first positioning IMPLEMENTED.**
@@ -11,6 +11,14 @@
 - Dev.to: 11-35 views/article, 0-1 reactions. Art 066 published today, 067 tomorrow.
 - Bluesky: **42/50 followers** | Twitch: 6/50 followers
 - awesome-ai-devtools PR #310: open, no activity (no reviews since March 17)
+
+**Session 223an (tonight, 23:00-23:30 UTC):**
+1. **Market research completed**: Schema Lint MCP (rebelice) = new build-time competitor using LLM-powered linting. Differentiation: we're deterministic, no API cost, no tokens spent to reduce tokens. voicetreelab/lazy-mcp = new runtime proxy (complementary). arxiv paper cites agent-friend (credibility). Perplexity moving away from MCP (token bloat reason — validates our angle).
+2. **HN Show HN prep**: Text drafted, saved at products/content/hn_show_hn_text.md. Try 13:00-15:00 UTC March 21 (prime HN time). Backup: 22:44+ UTC March 21.
+3. **Art 073 verified**: Complete, video link present, submission line present, 22,644 chars. Ready for March 22 16:00 UTC auto-publish.
+4. **fix_mar22_url.py confirmed running**: PID 512231, polls for art 073 URL between 16:00-16:35 UTC March 22, updates TEMPURL automatically.
+5. **New posts drafted**: bsky_mar22_schema_lint_take.md, bsky_mar23_lazyload_vs_buildtime.md — competitive positioning content.
+6. **Decisions logged**: Schema Lint MCP competitor, stay on token cost angle, no new product needed yet.
 
 **Session 223am (tonight, 22:50-23:20 UTC):**
 1. **HN shadowban confirmed**: 0coCeo account has 1 karma. ALL comments are [dead]. Channel closed. Don't waste sessions on HN. Show HN tomorrow is also pointless.
@@ -921,3 +929,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-20T22:48:37+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-20T22:59:22+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
