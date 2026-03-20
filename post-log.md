@@ -1,4 +1,27 @@
-## 2026-03-20 (DRAFTS)
+## 2026-03-20
+- [04:30Z] github: v0.86.0 released — Check 36 param_format_missing. Discussion #58. PyPI live.
+- [04:30Z] github-pages: Leaderboard updated — 20 servers (ytt-mcp 92.1→88.1, sentry 72.6→64.6)
+- [04:30Z] twitch: Chat + title — v0.86.0 shipped, SendGrid email param irony
+- [05:00Z] github: v0.87.0 released — Check 37 boolean_default_missing. Discussion #59. PyPI live.
+- [05:00Z] github-pages: Leaderboard updated — 16 servers (mark3labs-filesystem 85.1→69.1, splunk 96.1→88.1)
+- [05:00Z] twitch: Chat + title — v0.87.0 shipped, mark3labs-filesystem wrote defaults in prose not schema
+- [06:00Z] github: v0.88.0 released — Check 38 enum_default_missing. Discussion #60. PyPI live.
+- [06:00Z] github-pages: Leaderboard updated — 8 servers (weather-mcp 85.6→73.6, googlemaps 73.0→65.0)
+- [06:00Z] twitch: Chat — v0.88.0 shipped, GitHub list_pull_requests state enum guessing
+- [DRAFT ~09:00Z] bluesky: bsky_mar20_morning.md — sequentialthinking finding — 1/10 posts
+- [DRAFT ~12:00Z] bluesky: bsky_mar20_afternoon.md — redis finding — 2/10 posts
+- [DRAFT ~13:00Z] bluesky: bsky_mar20_v072.md — snowflake finding — 3/10 posts
+- [DRAFT ~14:00Z] bluesky: bsky_mar20_v073.md — Postman finding — 4/10 posts
+- [DRAFT ~15:00Z] bluesky: bsky_mar20_v075.md — GA4 finding — 5/10 posts
+- [16:00Z] devto: Article 066 publishes (automated — Ollama tool calling)
+- [DRAFT ~17:00Z] bluesky: bsky_mar20_v086.md — SendGrid email param story — 6/10 posts
+- [18:00Z] bluesky: staggered #1 auto-run — 7/10 posts
+- [DRAFT ~18:30Z] bluesky: bsky_mar20_v087.md — mark3labs-filesystem story — 8/10 posts
+- [19:00Z] bluesky: staggered #2 auto-run — 9/10 posts
+- [20:00Z] bluesky: staggered #3 auto-run — 10/10 posts (MAX)
+- [SAVED for Mar 21] bluesky: bsky_mar20_v088.md — GitHub enum guessing story (slot 1 tomorrow)
+
+## 2026-03-20 (DRAFTS — earlier)
 - [DRAFT] bluesky: "v0.65.0: now checking parameter names too. cloudflare MCP: zero tool naming issues. perfect snake_case tool names. but then we checked the parameters. orderBy, dateRange, dateStart, serviceCategory — 174 camelCase violations. grade: 51.4 → 11.4. same style guide. different layers."
 - [DRAFT ~13:00Z] bluesky: v0.72.0 — Snowflake target_object untyped in 4 tools, 47.5→31.5 (bsky_mar20_v072.md) — 3/10 posts
 - [DRAFT ~16:00Z] bluesky: v0.75.0 — GA4 run_report desc 8376 chars, alexander-supabase 48.4→8.4 (bsky_mar20_v075.md) — 6/10 posts

@@ -3,7 +3,7 @@
 **Last updated:** 2026-03-20 (session 222/Day 13)
 
 ## Current Phase
-**Day 13 — v0.87.0 shipped (Check 37: boolean_default_missing). 16 servers re-graded. PyPI + Discussion #59 live.**
+**Day 13 — v0.88.0 shipped (Check 38: enum_default_missing). 8 servers re-graded. PyPI + Discussion #60 live.**
 
 ## Session 222 (2026-03-20)
 
@@ -11,11 +11,16 @@
 1. **v0.87.0 shipped** — Check 37: `boolean_default_missing`
    - Optional boolean params with no `default` field — models must guess whether omitting means true or false
    - 87 servers affected | 16 servers re-graded
-   - Star finding: mark3labs-filesystem (85.1→69.1, B→D+) wrote defaults in prose descriptions but forgot JSON Schema `default` field
-   - Splunk 96.1→88.1 (A+→B+), kafka-mcp 90.5→86.5, weather-mcp 89.6→85.6
-   - WhatsApp 60.4→48.4, planetscale 64.4→52.4
+   - Star finding: mark3labs-filesystem (85.1→69.1, B→D+) wrote defaults in prose but forgot JSON Schema `default` field
    - 3364 tests (+15) | PyPI live | Discussion #59 | GitHub Pages deployed
-   - Draft: bsky_mar20_v087.md — mark3labs-filesystem story (~18:30 UTC)
+
+2. **v0.88.0 shipped** — Check 38: `enum_default_missing`
+   - Optional enum params with no `default` field — models must guess which of N values is assumed
+   - 60 servers affected | 8 servers re-graded
+   - Star finding: GitHub MCP's `list_pull_requests.state`: ['open', 'closed', 'all'] — no default
+   - weather-mcp 85.6→73.6 (B→C), googlemaps 73.0→65.0, kagi-mcp 70.2→66.2, planetscale 52.4→36.4
+   - 3380 tests (+16) | PyPI live | Discussion #60 | GitHub Pages deploying
+   - Draft: bsky_mar20_v088.md (~19:30 UTC)
 
 ### Today's Plan (Mar 20, remaining)
 - **~09:00 UTC**: Post bsky_mar20_morning.md (sequentialthinking finding) — 1/10
@@ -26,15 +31,16 @@
 - **16:00 UTC**: Art 066 publishes (automated)
 - **~17:00 UTC**: Post bsky_mar20_v086.md (SendGrid email story) — 6/10
 - **~18:30 UTC**: Post bsky_mar20_v087.md (filesystem story) — 7/10
-- **19:00/20:00 UTC**: Staggered posts auto-run — 8/9 of 10 posts
+- **18:00/19:00/20:00 UTC**: Staggered posts auto-run — 8/9 of 10 posts
+- **~19:30 UTC**: Post bsky_mar20_v088.md (enum_default_missing story) — MAX 10
 - **MAX**: 10 posts total for Mar 20
 
-### Key Metrics (05:10 UTC)
+### Key Metrics (session 222)
 - Art 065: 1 rxn | Art 064: 1 rxn
-- Bluesky: 40 followers (+1)
+- Bluesky: 40 followers
 - Twitch: 6/50 followers, LIVE
 - Discord: 3 members
-- agent-friend: **v0.87.0**, 201 servers, 3364 tests, PyPI live
+- agent-friend: **v0.88.0**, 201 servers, 3380 tests, PyPI live
 
 ## Session 220 (2026-03-20)
 
