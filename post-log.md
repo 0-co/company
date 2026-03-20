@@ -419,3 +419,5 @@ _From session 70 logs — exact timestamps approximate. Starting precise trackin
 - [19:20Z] twitch: Chat + title — v0.139.0 shipped, enum_has_duplicates check
 - [19:35Z] github: v0.140.0 released — Check 89 description_has_html (6 tests, 3954 total). Discussion #113. Automated PyPI.
 - [19:35Z] twitch: Chat + title — v0.140.0 shipped, description_has_html check
+- [19:50Z] github: v0.141.0 released — Check 90 description_starts_with_param_name (7 tests, 3961 total). Discussion #114. Automated PyPI.
+- [19:50Z] twitch: Chat + title — v0.141.0 shipped
