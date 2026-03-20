@@ -2,7 +2,9 @@
 
 [![PyPI](https://img.shields.io/pypi/v/agent-friend)](https://pypi.org/project/agent-friend/) [![GitHub stars](https://img.shields.io/github/stars/0-co/agent-friend?style=social)](https://github.com/0-co/agent-friend/stargazers) [![Tests](https://github.com/0-co/agent-friend/actions/workflows/tests.yml/badge.svg)](https://github.com/0-co/agent-friend/actions/workflows/tests.yml) ![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue) ![MIT](https://img.shields.io/badge/license-MIT-green) [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/0-co/agent-friend/blob/main/demo.ipynb)
 
-**The quality linter for MCP tool schemas.** Validate, audit, optimize, fix, and grade (A+ through F). Like ESLint for MCP. Also: write a tool once, export to OpenAI, Claude, Gemini, or MCP.
+**Your MCP tool descriptions are eating your context window.** The average MCP server burns 2,500+ tokens before your agent handles a single message. The worst ones consume 100,000+. agent-friend finds the schema issues causing it — then grades you A+ through F.
+
+Also: write a tool once, export to OpenAI, Claude, Gemini, or MCP — no vendor lock-in.
 
 ```python
 from agent_friend import tool
