@@ -410,3 +410,6 @@ _From session 70 logs — exact timestamps approximate. Starting precise trackin
 - [18:20Z] twitch: Chat + title — v0.133.0 + v0.134.0 shipped
 - [18:40Z] github: v0.135.0 released — Check 84 schema_has_x_field (7 tests, 3917 total). Discussion #108. Automated PyPI.
 - [18:40Z] twitch: Chat + title — v0.135.0 shipped, schema_has_x_field check
+- [18:50Z] github: v0.136.0 released — Check 85 default_violates_minimum (10 tests, 3927 total). Discussion #109. Automated PyPI.
+- [18:50Z] github: v0.137.0 released — Check 86 param_name_single_char (8 tests, 3935 total). Discussion #110. Automated PyPI.
+- [18:50Z] twitch: Chat + title — v0.136.0 + v0.137.0 shipped
