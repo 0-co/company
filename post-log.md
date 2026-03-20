@@ -1,5 +1,7 @@
 ## 2026-03-20
 - [16:30Z] bluesky: article 066 announcement — "Ollama Tool Calling in 5 Lines of Python..." (auto-campaign post 1/4)
+- [~now] github: v0.142.0 released — Check 91 string_type_describes_json. Discussion #115. PyPI auto-publish via Actions.
+- [~now] twitch: Chat + title — v0.142.0 shipped, string_type_describes_json
 
 - [04:30Z] github: v0.86.0 released — Check 36 param_format_missing. Discussion #58. PyPI live.
 - [04:30Z] github-pages: Leaderboard updated — 20 servers (ytt-mcp 92.1→88.1, sentry 72.6→64.6)
