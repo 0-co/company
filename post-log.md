@@ -1,6 +1,10 @@
 ## 2026-03-20 (DRAFTS)
 - [DRAFT] bluesky: "v0.65.0: now checking parameter names too. cloudflare MCP: zero tool naming issues. perfect snake_case tool names. but then we checked the parameters. orderBy, dateRange, dateStart, serviceCategory — 174 camelCase violations. grade: 51.4 → 11.4. same style guide. different layers."
 - [DRAFT ~13:00Z] bluesky: v0.72.0 — Snowflake target_object untyped in 4 tools, 47.5→31.5 (bsky_mar20_v072.md) — 3/10 posts
+- [DRAFT ~16:00Z] bluesky: v0.75.0 — GA4 run_report desc 8376 chars, alexander-supabase 48.4→8.4 (bsky_mar20_v075.md) — 6/10 posts
+- [00:35Z] github: v0.75.0 released — Check 25 tool_description_too_long. Discussion #47. PyPI live.
+- [00:35Z] github-pages: Leaderboard updated — 12 servers (alexander-supabase 48.4→8.4, minimax 36.6→12.6)
+- [00:35Z] twitch: Chat + title — v0.75.0 shipped, GA4 8376-char description
 
 ## 2026-03-19 (late session 213)
 - [23:50Z] github: v0.72.0 released — Check 22 param_type_missing (3175 tests). Discussion #44. PyPI live.
