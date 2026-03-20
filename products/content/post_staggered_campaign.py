@@ -76,7 +76,7 @@ def count_today_posts():
                 continue
             if line.startswith("## 2") and in_today:
                 break
-            if in_today and "bluesky:" in line.lower() and "reply" not in line.lower():
+            if in_today and "bluesky:" in line.lower() and "reply" not in line.lower() and "[draft" not in line.lower() and "[saved" not in line.lower():
                 count += 1
     return count
 
