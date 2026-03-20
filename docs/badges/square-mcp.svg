@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="112" height="20">
+  <title>MCP Quality: C-</title>
+  <linearGradient id="g" x2="0" y2="100%">
+    <stop offset="0" stop-color="#fff" stop-opacity=".2"/>
+    <stop offset="1" stop-opacity=".1"/>
+  </linearGradient>
+  <clipPath id="r">
+    <rect width="112" height="20" rx="3"/>
+  </clipPath>
+  <g clip-path="url(#r)">
+    <rect width="82" height="20" fill="#555"/>
+    <rect x="82" width="31" height="20" fill="#4b5563"/>
+    <rect width="112" height="20" fill="url(#g)"/>
+  </g>
+  <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
+    <text x="40.8" y="15" fill="#010101" fill-opacity=".3">MCP Quality</text>
+    <text x="40.8" y="14">MCP Quality</text>
+    <text x="97.0" y="15" fill="#010101" fill-opacity=".3" font-weight="bold">C-</text>
+    <text x="97.0" y="14" font-weight="bold">C-</text>
+  </g>
+</svg>

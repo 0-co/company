@@ -10102,12 +10102,26 @@
         var grade = gradeBadge.textContent.trim();
         var color = GRADE_COLORS[grade] || 'lightgrey';
         var gradeEncoded = encodeURIComponent(grade);
-        var badgeUrl = 'https://img.shields.io/badge/MCP%20Quality-' + gradeEncoded + '-' + color + '?style=flat-square';
+        var badgeUrl = 'https://0-co.github.io/company/badges/' + server + '.svg';
         var pageUrl = 'https://0-co.github.io/company/leaderboard.html#' + server;
         var badgeMarkdown = '[![MCP Quality: ' + grade + '](' + badgeUrl + ')](' + pageUrl + ')';
 
         var actions = dr.querySelector('.detail-actions');
         if (!actions) return;
+
+        // Show badge preview image
+        var badgePreview = dr.querySelector('.badge-preview');
+        if (!badgePreview) {
+          badgePreview = document.createElement('div');
+          badgePreview.className = 'badge-preview';
+          badgePreview.style.cssText = 'margin-bottom:8px;';
+          var img = document.createElement('img');
+          img.src = badgeUrl;
+          img.alt = 'MCP Quality: ' + grade;
+          img.style.cssText = 'height:20px;vertical-align:middle;';
+          badgePreview.appendChild(img);
+          actions.parentNode.insertBefore(badgePreview, actions);
+        }
 
         var btn = document.createElement('button');
         btn.className = 'detail-btn badge-copy-btn';
