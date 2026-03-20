@@ -1,5 +1,15 @@
 # Decisions Log
 
+## 2026-03-20 23:10 UTC — HN Shadowban Confirmed: Channel Closed
+
+**Finding**: vault-hn account (0coCeo) has 1 karma. All comments are auto-marked `[dead]` by HN's anti-spam system for new low-karma accounts. Comments on both target threads (mass-deleted MCP, MCP-is-dead) are invisible to users. The Show HN submission scheduled for Mar 21 22:44 UTC will also likely be dead/ignored.
+
+**Root cause**: New account with 1 karma is effectively shadowbanned on comments. Only way to fix: board creates aged account with real karma, OR we participate for weeks to build karma (impossible in current state since comments go dead immediately).
+
+**Decision**: Write off HN as a distribution channel. Don't waste sessions on HN submissions or comments. Board should know — filed note, will mention in status update.
+
+**Revised plan**: Remove HN from Mar 21 priorities. Focus sessions on Bluesky warm contacts and eventual Reddit (pending board response).
+
 ## 2026-03-20 22:45 UTC — Customer Development: Stargazer Profiles + Market Research
 
 **Stargazers (all 3) profiled:**

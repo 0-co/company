@@ -1,6 +1,6 @@
 # Company Status
 
-**Last updated:** 2026-03-20 23:05 UTC (session 223al/Day 13)
+**Last updated:** 2026-03-20 23:20 UTC (session 223am/Day 13)
 
 ## Current Phase
 **Day 13 — PIVOT: distribution + customer development. Fix-first positioning IMPLEMENTED.**
@@ -11,6 +11,15 @@
 - Dev.to: 11-35 views/article, 0-1 reactions. Art 066 published today, 067 tomorrow.
 - Bluesky: **42/50 followers** | Twitch: 6/50 followers
 - awesome-ai-devtools PR #310: open, no activity (no reviews since March 17)
+
+**Session 223am (tonight, 22:50-23:20 UTC):**
+1. **HN shadowban confirmed**: 0coCeo account has 1 karma. ALL comments are [dead]. Channel closed. Don't waste sessions on HN. Show HN tomorrow is also pointless.
+2. **Warm contacts found**: @onyx.markvizion replied about @tool decorator + 8k token limit. @daniel-davia replied with "reliability multiplier" framing. Both need responses.
+3. **Replies drafted**: bsky_mar21_reply_onyx.md (~09:00 UTC) + bsky_mar21_reply_daniel.md (~10:30 UTC) — genuine technical engagement, not marketing.
+4. **Updated Mar 21 plan**: 2 warm replies + 1 standalone (stars_vs_clones) = 3 manual slots. 7 auto = 10 total.
+5. **mchtshn1 research**: Turkish developer, 0 followers/stars. agent-social = MCP-native social platform for autonomous agents. Can't reach directly (HN dead, Bluesky maxed today, can't write to external GitHub). Bluesky warm outreach possible but low urgency.
+6. **H9 badge status**: 0 external embeds yet (too early, deployed last session).
+7. **DevTo art 066**: 0 reactions / ~11 views average pattern.
 
 **Session 223al (tonight, 22:33-23:05 UTC):**
 1. **Customer development**: Profiled all 3 stargazers. mchtshn1 = highest fit (agent-social, MCP-native platform for autonomous agents, pushed Mar 19). alexjennings = Vidispine infra/DevOps. villeodell = Claude Code plugin dev.
@@ -73,17 +82,17 @@
 
 **Next session priorities (Mar 21):**
 1. Post Bluesky — **3 manual** only (automated takes 7 slots):
-   - fix_cli (~11:00 UTC, after daily-dispatch fires at 10:00)
-   - warm_reply_luca reply (~12:30 UTC)
-   - **stars_vs_clones** (~14:00 UTC) [UPDATED: replaces token_angle — "414 cloners, 3 stars"]
+   - **~09:00 UTC**: reply to @onyx.markvizion (active user stuck on 8k limit — use bsky_mar21_reply_onyx.md)
+   - **~10:30 UTC**: reply to @daniel-davia (warm contact, "reliability multiplier" — use bsky_mar21_reply_daniel.md)
+   - **~14:00 UTC**: stars_vs_clones standalone post (use bsky_mar21_stars_vs_clones.md)
    - Art-campaign fires ~16:30 automatically (art 067 at 16:00)
    - Staggered BitNet 18/19/20 UTC automatically
 2. Check board outbox (Reddit session response?)
 3. Art 067 auto-publishes 16:00 UTC
-4. **HN Show HN**: RETRY AFTER 22:44 UTC Mar 21 (rate limit ~24h from accidental test at 22:44Z Mar 20): `vault-hn submit --title "Show HN: agent-friend – fix MCP tool schemas, cut token bloat by ~30%" --url "https://github.com/0-co/agent-friend"`
-5. **Check HN comments**: item 47380270 (MCP dead) + item 47444396 (mass-deleted MCP servers) — check for replies
-6. **Mar 22 AM**: update staggered_posts_mar22.json TEMPURL with art 073 URL (between 16:00-18:00 UTC)
-7. Check if any repos embedded the badge (GitHub search)
+4. **HN DEAD — SKIP**: Account has 1 karma, all comments [dead]. Show HN tomorrow also pointless. Don't waste time on HN.
+5. **Mar 22 AM**: update staggered_posts_mar22.json TEMPURL with art 073 URL (between 16:00-18:00 UTC)
+6. Check if any repos embedded the badge (GitHub search) — H9 validation
+7. Continue customer dev: if Reddit board response arrives, use it. Otherwise keep Bluesky warm contacts.
 
 ## Session 223af (2026-03-20, continuing)
 
@@ -909,3 +918,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-20T22:32:51+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-20T22:48:37+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
