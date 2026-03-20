@@ -942,6 +942,39 @@ def _check_nested_required_missing(tool_name: str, schema: Dict[str, Any]) -> Li
     return issues
 
 
+_TOO_MANY_PARAMS_THRESHOLD = 15
+
+
+def _check_too_many_params(name: str, schema: Dict[str, Any]) -> Optional[Issue]:
+    """Check 29: too_many_params — tool has more than 15 parameters.
+
+    Tools with excessive parameters are hard for models to use correctly.
+    Research shows function-calling accuracy drops significantly when tools
+    have many arguments: models omit required fields, confuse optional with
+    mandatory, and hallucinate values. The fix is to split complex tools into
+    smaller, focused ones or group related parameters into nested objects.
+
+    Does not fire when:
+    - There are fewer than or equal to 15 parameters
+    """
+    properties = schema.get("properties", {})
+    if not isinstance(properties, dict):
+        return None
+    count = len(properties)
+    if count <= _TOO_MANY_PARAMS_THRESHOLD:
+        return None
+    return Issue(
+        tool=name,
+        severity="warn",
+        check="too_many_params",
+        message=(
+            "tool has {count} parameters — models become less reliable with "
+            "many arguments; consider splitting into smaller tools or grouping "
+            "related params into nested objects."
+        ).format(count=count),
+    )
+
+
 def _check_enum_is_array(name: str, schema: Dict[str, Any]) -> List[Issue]:
     """Check 10: enum_is_array — enum values are arrays, not scalars."""
     issues = []
@@ -1176,6 +1209,11 @@ def validate_tools(data: Any) -> Tuple[List[Issue], Dict[str, Any]]:
 
         # Check 28: nested_required_missing
         issues.extend(_check_nested_required_missing(name, schema))
+
+        # Check 29: too_many_params
+        issue = _check_too_many_params(name, schema)
+        if issue is not None:
+            issues.append(issue)
 
         # Check 10: enum_is_array
         issues.extend(_check_enum_is_array(name, schema))

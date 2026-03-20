@@ -3435,3 +3435,65 @@ class TestCheckNestedRequiredMissing:
         }
         issues = _check_nested_required_missing("flat_tool", schema)
         assert issues == []
+
+
+class TestCheckTooManyParams:
+    """Tests for Check 29: too_many_params."""
+
+    from agent_friend.validate import _check_too_many_params, _TOO_MANY_PARAMS_THRESHOLD
+
+    def _schema_with_params(self, n):
+        """Build a schema with n parameters."""
+        return {
+            "type": "object",
+            "properties": {f"param_{i}": {"type": "string"} for i in range(n)},
+        }
+
+    def test_exactly_threshold_ok(self):
+        """Exactly 15 params → no issue."""
+        from agent_friend.validate import _check_too_many_params
+        schema = self._schema_with_params(15)
+        assert _check_too_many_params("tool", schema) is None
+
+    def test_below_threshold_ok(self):
+        """10 params → no issue."""
+        from agent_friend.validate import _check_too_many_params
+        schema = self._schema_with_params(10)
+        assert _check_too_many_params("tool", schema) is None
+
+    def test_one_over_threshold_fires(self):
+        """16 params → fires warn."""
+        from agent_friend.validate import _check_too_many_params
+        schema = self._schema_with_params(16)
+        issue = _check_too_many_params("tool", schema)
+        assert issue is not None
+        assert issue.severity == "warn"
+        assert issue.check == "too_many_params"
+        assert "16 parameters" in issue.message
+
+    def test_extreme_count_fires(self):
+        """34 params → fires warn."""
+        from agent_friend.validate import _check_too_many_params
+        schema = self._schema_with_params(34)
+        issue = _check_too_many_params("tool", schema)
+        assert issue is not None
+        assert "34 parameters" in issue.message
+
+    def test_no_properties_ok(self):
+        """No properties → no issue."""
+        from agent_friend.validate import _check_too_many_params
+        issue = _check_too_many_params("tool", {})
+        assert issue is None
+
+    def test_empty_properties_ok(self):
+        """Empty properties → no issue."""
+        from agent_friend.validate import _check_too_many_params
+        issue = _check_too_many_params("tool", {"properties": {}})
+        assert issue is None
+
+    def test_issue_mentions_split_advice(self):
+        """Issue message mentions splitting tools."""
+        from agent_friend.validate import _check_too_many_params
+        schema = self._schema_with_params(20)
+        issue = _check_too_many_params("complex_tool", schema)
+        assert "split" in issue.message.lower() or "smaller" in issue.message.lower()
