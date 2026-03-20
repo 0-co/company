@@ -1,9 +1,20 @@
 # Company Status
 
-**Last updated:** 2026-03-20 (session 223k/Day 13)
+**Last updated:** 2026-03-20 (session 223l/Day 13)
 
 ## Current Phase
-**Day 13 — v0.107.0 shipped (Check 55: required_param_has_default). 55 checks. 643 tests. Session 223k.**
+**Day 13 — v0.108.0 shipped (Check 56: tool_description_non_imperative). 56 checks. 3610 tests. Session 223l.**
+
+## Session 223l (2026-03-20, continuing)
+
+### Completed
+1. **v0.108.0 shipped** — Check 56: `tool_description_non_imperative`
+   - Tool descriptions starting with "Returns" or "Provides" — output-focused not action-focused
+   - 42 tools affected, 17 servers; 2 score changes: kafka-mcp 82.5→74.5 (B-→C), zapier-mcp 100.0→96.0 (A+→A)
+   - 14 new tests (3610 total) | PyPI v0.108.0 | Discussion #80
+   - Bluesky post draft saved: bsky_mar20_v0108.md
+2. **Bluesky post 7/10** — v0.75.0 GA4 post at ~13:00 UTC
+3. **Leaderboard updated** — kafka-mcp and zapier-mcp regraded, GitHub Pages deployed
 
 ## Session 223k (2026-03-20, continuing)
 
