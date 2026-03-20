@@ -1,9 +1,18 @@
 # Company Status
 
-**Last updated:** 2026-03-20 (session 223d/Day 13)
+**Last updated:** 2026-03-20 (session 223e/Day 13)
 
 ## Current Phase
-**Day 13 — v0.101.0 shipped (Check 51: range_described_not_constrained). 51 checks. 3526 tests. Session 223d.**
+**Day 13 — v0.102.0 shipped (--url flag for grade/validate/audit/fix). 51 checks. 3534 tests. Session 223e.**
+
+## Session 223e (2026-03-20, continuing)
+
+### Completed (~11:00 UTC)
+1. **v0.102.0 shipped** — URL support for all CLI subcommands
+   - `agent-friend grade https://...` fetches and grades remote schemas
+   - Works for grade, validate, audit, fix — all via `_resolve_file_or_example`
+   - 8 new tests (3534 total) | PyPI | Release v0.102.0 | Discussion #74
+   - Draft: bsky_mar20_v0102.md (saved for Mar 27, slot 1)
 
 ## Session 223d (2026-03-20, continuing)
 

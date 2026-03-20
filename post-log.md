@@ -47,6 +47,11 @@
 - [~09:00Z] github: v0.100.0 released — Check 50 param_description_says_optional. Discussion #72. PyPI live.
 - [~09:00Z] github-pages: Leaderboard updated — 11 servers (vault-mcp 81.4→61.4, elasticsearch-mcp 86.5→82.5, sentry 60.6→36.6, metabase-mcp 69.9→57.9)
 - [SAVED for Mar 25] bluesky: bsky_mar20_v0100.md — param_description_says_optional story (slot 1 Mar 25)
+- [~09:00Z] github: v0.101.0 released — Check 51 range_described_not_constrained. Discussion #73. PyPI live.
+- [~09:00Z] github-pages: Leaderboard updated — 2 servers (chunkhound 44.3→40.3, arxiv-mcp 29.4→25.4)
+- [SAVED for Mar 26] bluesky: bsky_mar20_v0101.md — range_described_not_constrained story (slot 1 Mar 26)
+- [~11:00Z] github: v0.102.0 released — URL support for grade/validate/audit/fix. Discussion #74. PyPI live.
+- [SAVED for Mar 27] bluesky: bsky_mar20_v0102.md — URL grade feature (slot 1 Mar 27)
 
 ## 2026-03-20 (DRAFTS — earlier)
 - [DRAFT] bluesky: "v0.65.0: now checking parameter names too. cloudflare MCP: zero tool naming issues. perfect snake_case tool names. but then we checked the parameters. orderBy, dateRange, dateStart, serviceCategory — 174 camelCase violations. grade: 51.4 → 11.4. same style guide. different layers."
