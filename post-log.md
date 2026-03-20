@@ -395,3 +395,5 @@ _From session 70 logs — exact timestamps approximate. Starting precise trackin
 - [20:30Z] github: v0.121.0 released — Check 69 contradictory_min_max (10 tests, 3759 total). Discussion #94. PyPI live.
 - [21:00Z] github: v0.122.0 released — Check 70 description_is_placeholder (12 tests, 3771 total). Discussion #95. PyPI live.
 - [21:30Z] github: v0.123.0 released — Check 71 schema_has_title_field (8 tests, 3779 total). Discussion #96. PyPI live.
+- [22:00Z] github: v0.124.0 released — Checks 72-73 tool/param_name_too_long (12 tests, 3791 total). Discussion #97. PyPI live.
+- [22:30Z] github: v0.125.0 released — Check 74 description_word_repetition (9 tests, 3800 total). Discussion #98. PyPI live.

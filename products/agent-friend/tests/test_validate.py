@@ -63,6 +63,9 @@ from agent_friend.validate import (
     _check_contradictory_min_max,
     _check_description_is_placeholder,
     _check_schema_has_title_field,
+    _check_tool_name_too_long,
+    _check_param_name_too_long,
+    _check_description_word_repetition,
 )
 
 
@@ -8629,3 +8632,156 @@ class TestSchemaHasTitleField:
         }
         issues = _check_schema_has_title_field("search", schema)
         assert len(issues) == 0
+
+
+class TestToolNameTooLong:
+    """Tests for Check 72: tool_name_too_long."""
+
+    def _mcp_obj(self, name_used_for_check=None):
+        return {"description": "Do something.", "inputSchema": {"type": "object", "properties": {}}}
+
+    def test_fires_for_very_long_name(self):
+        name = "get_all_user_profile_information_with_preferences_and_settings_data"  # 67 chars
+        assert len(name) > 60
+        obj = self._mcp_obj()
+        issue = _check_tool_name_too_long(name, obj, "mcp")
+        assert issue is not None
+
+    def test_fires_at_exactly_61_chars(self):
+        name = "a" * 61
+        issue = _check_tool_name_too_long(name, {"description": "d"}, "mcp")
+        assert issue is not None
+
+    def test_no_fire_at_exactly_60_chars(self):
+        name = "a" * 60
+        issue = _check_tool_name_too_long(name, {"description": "d"}, "mcp")
+        assert issue is None
+
+    def test_no_fire_for_normal_name(self):
+        issue = _check_tool_name_too_long("get_user_profile", {"description": "d"}, "mcp")
+        assert issue is None
+
+    def test_check_name_and_severity(self):
+        name = "b" * 61
+        issue = _check_tool_name_too_long(name, {"description": "d"}, "mcp")
+        assert issue.check == "tool_name_too_long"
+        assert issue.severity == "warn"
+
+
+class TestParamNameTooLong:
+    """Tests for Check 73: param_name_too_long."""
+
+    def _schema(self, params):
+        return {"type": "object", "properties": params}
+
+    def test_fires_for_long_param_name(self):
+        schema = self._schema({
+            "maximum_number_of_results_to_return_per_page": {"type": "integer"},
+        })
+        issues = _check_param_name_too_long("list_items", schema)
+        assert len(issues) == 1
+
+    def test_fires_at_exactly_41_chars(self):
+        param_name = "a" * 41
+        schema = self._schema({param_name: {"type": "string"}})
+        issues = _check_param_name_too_long("do_thing", schema)
+        assert len(issues) == 1
+
+    def test_no_fire_at_exactly_40_chars(self):
+        param_name = "a" * 40
+        schema = self._schema({param_name: {"type": "string"}})
+        issues = _check_param_name_too_long("do_thing", schema)
+        assert len(issues) == 0
+
+    def test_no_fire_for_normal_param_name(self):
+        schema = self._schema({"query": {"type": "string"}})
+        issues = _check_param_name_too_long("search", schema)
+        assert len(issues) == 0
+
+    def test_no_fire_for_empty_properties(self):
+        schema = {"type": "object", "properties": {}}
+        issues = _check_param_name_too_long("no_params", schema)
+        assert len(issues) == 0
+
+    def test_multiple_long_params(self):
+        schema = self._schema({
+            "very_long_parameter_name_exceeding_the_limit": {"type": "string"},  # 44 chars
+            "another_very_long_parameter_name_over_limit": {"type": "integer"},  # 43 chars
+            "short": {"type": "string"},
+        })
+        issues = _check_param_name_too_long("do_thing", schema)
+        assert len(issues) == 2
+
+    def test_check_name_and_severity(self):
+        schema = self._schema({"c" * 41: {"type": "string"}})
+        issues = _check_param_name_too_long("do_thing", schema)
+        assert issues[0].check == "param_name_too_long"
+        assert issues[0].severity == "warn"
+
+
+# ---------------------------------------------------------------------------
+# Check 74: description_word_repetition
+# ---------------------------------------------------------------------------
+
+
+class TestDescriptionWordRepetition:
+
+    def _tool(self, desc: str) -> dict:
+        return {"description": desc, "inputSchema": {"type": "object", "properties": {}}}
+
+    def test_fires_for_repeated_word(self):
+        obj = self._tool("Searches the the repository for files")
+        issue = _check_description_word_repetition("search_files", obj, "mcp")
+        assert issue is not None
+        assert issue.check == "description_word_repetition"
+        assert issue.severity == "warn"
+
+    def test_fires_for_repeated_verb(self):
+        obj = self._tool("Execute execute the given shell command")
+        issue = _check_description_word_repetition("run_cmd", obj, "mcp")
+        assert issue is not None
+
+    def test_fires_case_insensitive(self):
+        obj = self._tool("Fetch FETCH the latest data")
+        issue = _check_description_word_repetition("fetch_data", obj, "mcp")
+        assert issue is not None
+
+    def test_no_fire_for_clean_description(self):
+        obj = self._tool("Searches the repository for files matching the query")
+        issue = _check_description_word_repetition("search_files", obj, "mcp")
+        assert issue is None
+
+    def test_no_fire_for_short_repeated_words(self):
+        # Words shorter than 3 chars are excluded to avoid false positives
+        # on "a a", "to to" etc. which are usually not present anyway
+        obj = self._tool("Do do the thing")
+        issue = _check_description_word_repetition("do_thing", obj, "mcp")
+        assert issue is None  # "do" is only 2 chars
+
+    def test_no_fire_for_missing_description(self):
+        obj = {"inputSchema": {"type": "object", "properties": {}}}
+        issue = _check_description_word_repetition("no_desc", obj, "mcp")
+        assert issue is None
+
+    def test_fires_for_openai_format(self):
+        obj = {
+            "type": "function",
+            "function": {
+                "name": "search_files",
+                "description": "Search search for files in the repository",
+                "parameters": {"type": "object", "properties": {}},
+            },
+        }
+        issue = _check_description_word_repetition("search_files", obj, "openai")
+        assert issue is not None
+
+    def test_no_fire_for_openai_no_description(self):
+        obj = {"type": "function", "function": {"name": "foo", "parameters": {}}}
+        issue = _check_description_word_repetition("foo", obj, "openai")
+        assert issue is None
+
+    def test_message_contains_word(self):
+        obj = self._tool("Returns returns the user data")
+        issue = _check_description_word_repetition("get_user", obj, "mcp")
+        assert issue is not None
+        assert "returns" in issue.message

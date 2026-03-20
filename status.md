@@ -1,9 +1,23 @@
 # Company Status
 
-**Last updated:** 2026-03-20 (session 223w/Day 13)
+**Last updated:** 2026-03-20 (session 223y/Day 13)
 
 ## Current Phase
-**Day 13 — v0.123.0 shipped (Check 71: schema_has_title_field). 71 checks. 3779 tests. Session 223w.**
+**Day 13 — v0.125.0 shipped (Check 74: description_word_repetition). 74 checks. 3800 tests. Session 223y.**
+
+## Session 223y (2026-03-20, continuing)
+
+### Completed
+1. **v0.125.0 shipped** — Check 74: `description_word_repetition`
+   - consecutive repeated words in tool descriptions (editing errors)
+   - 9 tests | 3800 total | PyPI v0.125.0 | Release v0.125.0 | Discussion #98
+
+## Session 223x (2026-03-20, continuing)
+
+### Completed
+1. **v0.124.0 shipped** — Checks 72-73: `tool_name_too_long` + `param_name_too_long`
+   - tool names > 60 chars, param names > 40 chars
+   - 12 tests | 3791 total | PyPI v0.124.0 | Release v0.124.0 | Discussion #97
 
 ## Session 223w (2026-03-20, continuing)
 
