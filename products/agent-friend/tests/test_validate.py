@@ -36,6 +36,7 @@ from agent_friend.validate import (
     _check_param_description_too_short,
     _check_param_description_too_long,
     _check_required_missing,
+    _check_nested_required_missing,
     _check_param_type_missing,
     _check_nested_param_type_missing,
     _check_array_items_type_missing,
@@ -3277,3 +3278,160 @@ class TestCheckRequiredMissing:
         issue = _check_required_missing("explain", schema)
         assert issue is not None
         assert "required" in issue.message
+
+
+class TestCheckNestedRequiredMissing:
+    """Tests for Check 28: nested_required_missing."""
+
+    def _nested_schema(self, nested_props, nested_required=None):
+        """Build a top-level schema with one nested object parameter."""
+        nested_obj = {"type": "object", "properties": nested_props}
+        if nested_required is not None:
+            nested_obj["required"] = nested_required
+        return {
+            "type": "object",
+            "properties": {
+                "config": nested_obj,
+            },
+            "required": ["config"],
+        }
+
+    def test_nested_object_missing_required_fires(self):
+        """Nested object with properties but no required → warn."""
+        schema = self._nested_schema({"host": {"type": "string"}, "port": {"type": "integer"}})
+        issues = _check_nested_required_missing("my_tool", schema)
+        assert len(issues) == 1
+        assert issues[0].check == "nested_required_missing"
+        assert issues[0].severity == "warn"
+        assert issues[0].tool == "my_tool"
+        assert "config" in issues[0].message
+
+    def test_nested_object_with_required_ok(self):
+        """Nested object with required present → no issue."""
+        schema = self._nested_schema(
+            {"host": {"type": "string"}, "port": {"type": "integer"}},
+            nested_required=["host"],
+        )
+        issues = _check_nested_required_missing("my_tool", schema)
+        assert issues == []
+
+    def test_nested_object_empty_required_list_ok(self):
+        """Nested object with required: [] (empty list) → no issue."""
+        schema = self._nested_schema(
+            {"host": {"type": "string"}},
+            nested_required=[],
+        )
+        issues = _check_nested_required_missing("my_tool", schema)
+        assert issues == []
+
+    def test_nested_object_no_properties_ok(self):
+        """Nested object with no properties → no issue."""
+        schema = {
+            "type": "object",
+            "properties": {
+                "opts": {"type": "object"},
+            },
+        }
+        issues = _check_nested_required_missing("my_tool", schema)
+        assert issues == []
+
+    def test_deeply_nested_fires(self):
+        """3-level nesting — innermost object without required still fires."""
+        schema = {
+            "type": "object",
+            "properties": {
+                "level1": {
+                    "type": "object",
+                    "properties": {
+                        "level2": {
+                            "type": "object",
+                            "properties": {
+                                "a": {"type": "string"},
+                                "b": {"type": "integer"},
+                            },
+                        },
+                    },
+                    "required": ["level2"],
+                },
+            },
+        }
+        issues = _check_nested_required_missing("deep_tool", schema)
+        # level1 has required, level2 does not → fires for level2
+        checks = [i.check for i in issues]
+        assert "nested_required_missing" in checks
+        paths = [i.message for i in issues]
+        assert any("level1.level2" in m for m in paths)
+
+    def test_multiple_nested_objects_fires_for_each(self):
+        """Multiple top-level nested objects missing required → fires for each."""
+        schema = {
+            "type": "object",
+            "properties": {
+                "source": {
+                    "type": "object",
+                    "properties": {"url": {"type": "string"}},
+                },
+                "dest": {
+                    "type": "object",
+                    "properties": {"path": {"type": "string"}},
+                },
+            },
+        }
+        issues = _check_nested_required_missing("multi_tool", schema)
+        assert len(issues) == 2
+        paths = {i.message for i in issues}
+        assert any("source" in m for m in paths)
+        assert any("dest" in m for m in paths)
+
+    def test_top_level_required_present_nested_missing_fires(self):
+        """Top-level required present but nested object lacks required → fires for nested only."""
+        schema = {
+            "type": "object",
+            "properties": {
+                "name": {"type": "string"},
+                "options": {
+                    "type": "object",
+                    "properties": {
+                        "verbose": {"type": "boolean"},
+                        "timeout": {"type": "integer"},
+                    },
+                },
+            },
+            "required": ["name"],
+        }
+        issues = _check_nested_required_missing("mixed_tool", schema)
+        assert len(issues) == 1
+        assert issues[0].check == "nested_required_missing"
+        assert "options" in issues[0].message
+
+    def test_singular_property_grammar(self):
+        """Single nested property uses 'property' (singular)."""
+        schema = self._nested_schema({"only_field": {"type": "string"}})
+        issues = _check_nested_required_missing("singular_tool", schema)
+        assert len(issues) == 1
+        assert "1 property" in issues[0].message
+
+    def test_plural_properties_grammar(self):
+        """Multiple nested properties use 'properties' (plural)."""
+        schema = self._nested_schema({"a": {"type": "string"}, "b": {"type": "integer"}})
+        issues = _check_nested_required_missing("plural_tool", schema)
+        assert len(issues) == 1
+        assert "2 properties" in issues[0].message
+
+    def test_empty_schema_ok(self):
+        """Empty schema → no issue."""
+        issues = _check_nested_required_missing("empty_tool", {})
+        assert issues == []
+
+    def test_non_object_param_skipped(self):
+        """Non-object params (string, array, etc.) are not checked."""
+        schema = {
+            "type": "object",
+            "properties": {
+                "name": {"type": "string"},
+                "tags": {"type": "array", "items": {"type": "string"}},
+                "count": {"type": "integer"},
+            },
+        }
+        issues = _check_nested_required_missing("flat_tool", schema)
+        assert issues == []

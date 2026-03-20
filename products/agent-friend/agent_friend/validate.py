@@ -890,6 +890,58 @@ def _check_required_missing(name: str, schema: Dict[str, Any]) -> Optional[Issue
     )
 
 
+def _check_nested_required_missing(tool_name: str, schema: Dict[str, Any]) -> List[Issue]:
+    """Check 28: nested_required_missing — nested object params with properties but no 'required' field.
+
+    Extends Check 27 to nested schemas. When a parameter is typed as an object
+    with sub-properties, those sub-properties also need a ``required`` declaration
+    so the model knows which nested fields are mandatory.
+
+    Does not fire when:
+    - The nested object has no ``properties`` (nothing to mark required)
+    - ``required`` is present on the nested object (even as an empty list)
+    """
+    issues = []
+    properties = schema.get("properties", {})
+    if not isinstance(properties, dict):
+        return issues
+
+    def _check_object(obj: Dict[str, Any], path: str, depth: int = 0) -> None:
+        if depth > 5:  # Safety limit for deeply nested schemas
+            return
+        nested_props = obj.get("properties", {})
+        if not isinstance(nested_props, dict) or not nested_props:
+            return
+        if "required" not in obj:
+            count = len(nested_props)
+            issues.append(Issue(
+                tool=tool_name,
+                severity="warn",
+                check="nested_required_missing",
+                message=(
+                    "param '{path}' is an object with {count} propert{ies} but no "
+                    "'required' field — models cannot distinguish mandatory from optional "
+                    "nested fields."
+                ).format(
+                    path=path,
+                    count=count,
+                    ies="ies" if count != 1 else "y",
+                ),
+            ))
+        # Recurse into sub-properties
+        for sub_name, sub_schema in nested_props.items():
+            if isinstance(sub_schema, dict) and sub_schema.get("type") == "object":
+                _check_object(sub_schema, "{path}.{sub}".format(path=path, sub=sub_name), depth + 1)
+
+    for param_name, param_schema in properties.items():
+        if not isinstance(param_schema, dict):
+            continue
+        if param_schema.get("type") == "object":
+            _check_object(param_schema, param_name)
+
+    return issues
+
+
 def _check_enum_is_array(name: str, schema: Dict[str, Any]) -> List[Issue]:
     """Check 10: enum_is_array — enum values are arrays, not scalars."""
     issues = []
@@ -1121,6 +1173,9 @@ def validate_tools(data: Any) -> Tuple[List[Issue], Dict[str, Any]]:
         issue = _check_required_missing(name, schema)
         if issue is not None:
             issues.append(issue)
+
+        # Check 28: nested_required_missing
+        issues.extend(_check_nested_required_missing(name, schema))
 
         # Check 10: enum_is_array
         issues.extend(_check_enum_is_array(name, schema))
