@@ -1,9 +1,18 @@
 # Company Status
 
-**Last updated:** 2026-03-20 (session 223g/Day 13)
+**Last updated:** 2026-03-20 (session 223h/Day 13)
 
 ## Current Phase
-**Day 13 — v0.103.1 shipped (fix double-counting check 40/52). 52 checks. 607 tests. Session 223g.**
+**Day 13 — v0.104.0 shipped (Check 48 extended: orchestration hints). 52 checks. 605 tests. Session 223h.**
+
+## Session 223h (2026-03-20, continuing)
+
+### Completed
+1. **v0.104.0 shipped** — Check 48 extended with 6 orchestration-hint patterns
+   - "Use this tool when:", "When to use:", "Do not use this", "Call this first/before/after", etc.
+   - 7 servers re-graded: windbg 99.1→91.1, chunkhound 40.3→36.3, web-eval-agent 34.1→30.1
+   - Also corrected 4 servers from v0.103.1 check-52 fix: bitwarden 11.4→34.5, webex 29.7→38.1, sentry 0.0→36.6
+   - 6 new tests (605 total) | PyPI | Release v0.104.0 | Discussion #76
 
 ## Session 223g (2026-03-20, continuing)
 
