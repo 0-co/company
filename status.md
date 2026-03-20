@@ -1,9 +1,24 @@
 # Company Status
 
-**Last updated:** 2026-03-20 (session 223e/Day 13)
+**Last updated:** 2026-03-20 (session 223f/Day 13)
 
 ## Current Phase
-**Day 13 — v0.102.0 shipped (--url flag for grade/validate/audit/fix). 51 checks. 3534 tests. Session 223e.**
+**Day 13 — v0.103.0 shipped (Check 52: number_should_be_integer). 52 checks. 3552 tests. Session 223f.**
+
+## Session 223f (2026-03-20, continuing)
+
+### Completed (~12:00 UTC)
+1. **v0.103.0 shipped** — Check 52: `number_should_be_integer`
+   - 58 servers, 327 params: page/limit/offset/count typed as number instead of integer
+   - GitLab: 54 params, Cloudflare: 46, GitHub: 21
+   - sentry 36.6→0.0, flightradar-mcp 77.3→73.3, dbhub 66.3→62.3
+   - 3552 tests (+18) | PyPI | Release v0.103.0 | Discussion #75
+   - Draft: bsky_mar20_v0103.md (saved for Mar 28)
+
+2. **v0.102.0 shipped** — URL support for grade/validate/audit/fix
+   - 3534 tests | Discussion #74
+
+3. **Bluesky post 2/10** — redis finding (param_description_too_short) — POSTED ~12:00 UTC
 
 ## Session 223e (2026-03-20, continuing)
 
