@@ -20,6 +20,8 @@
 - [~now] twitch: Chat + title — v0.150.0 shipped
 - [~now] github: v0.151.0 released — Check 100 param_accepts_secret_no_format. Discussion #124. 100 checks milestone!
 - [~now] twitch: Chat + title — v0.151.0 shipped, 100 checks milestone
+- [~now] github: v0.152.0 released — Check 101 param_uses_schema_ref. Discussion #125.
+- [~now] twitch: Chat + title — v0.152.0 shipped
 
 - [04:30Z] github: v0.86.0 released — Check 36 param_format_missing. Discussion #58. PyPI live.
 - [04:30Z] github-pages: Leaderboard updated — 20 servers (ytt-mcp 92.1→88.1, sentry 72.6→64.6)
