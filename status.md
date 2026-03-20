@@ -36,9 +36,9 @@
 - GitHub external issues: blocked (permanent)
 
 **Next session priorities (Mar 21):**
-1. Post fix-CLI-first Bluesky posts (7 manual spread throughout day + 3 auto-staggered at 18/19/20 UTC)
-   - Priority order: fix_cli → token_angle → notion_contrast → stars_vs_clones → sentry_zero → git_mcp → v088
-   - Start at ~08:00-09:00 UTC, space every 90 min, stop by 17:00 UTC
+1. Post fix-CLI-first Bluesky posts — **6 manual** (not 7!) spread throughout day + 1 art-campaign auto at ~16:30 + 3 staggered BitNet at 18/19/20 UTC = **10 total**
+   - Priority order: fix_cli → token_angle → notion_contrast → stars_vs_clones → sentry_zero → git_mcp (skip v088)
+   - Start at ~08:00-09:00 UTC, space every ~90 min, stop by 14:30 UTC (art-campaign posts ~16:30)
 2. Check board outbox (Reddit session response?)
 3. Check GitHub traffic from MCP Discord post (24h after posting ~18:00 UTC Mar 21)
 4. Art 067 auto-publishes 16:00 UTC — art-campaign timer auto-posts first Bluesky post
