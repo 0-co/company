@@ -1838,6 +1838,82 @@ def _check_tool_description_non_imperative(name: str, obj: Dict[str, Any], fmt: 
 
 
 # ---------------------------------------------------------------------------
+# Check 60: description_starts_with_gerund
+# ---------------------------------------------------------------------------
+
+_GERUND_START_RE = re.compile(
+    r'^[A-Z][a-z]+ing\s',
+)
+"""Pattern matching tool descriptions that start with a gerund (present participle)."""
+
+
+def _check_description_starts_with_gerund(name: str, obj: Dict[str, Any], fmt: str) -> Optional[Issue]:
+    """Check 60: description_starts_with_gerund — tool description starts with a
+    gerund (present participle verb form ending in -ing) instead of an imperative verb.
+
+    Gerund forms describe the tool as if it were an action in progress rather
+    than commanding the action.  "Creating a new user" says what the tool is
+    doing; "Create a new user" says what to do.  The imperative form is the
+    universal convention for tool/API documentation because it is shorter,
+    clearer, and consistent with how commands are written.
+
+    Common culprits (typically AI-generated):
+
+    * ``"Creating a new record in the database."``  → ``"Create a new record."``
+    * ``"Searching for files matching the query."`` → ``"Search for files."``
+    * ``"Updating the user's profile settings."``   → ``"Update user profile settings."``
+    * ``"Retrieving all active sessions."``         → ``"Retrieve all active sessions."``
+    * ``"Listing available integrations."``         → ``"List available integrations."``
+    * ``"Generating a summary of the text."``       → ``"Generate a text summary."``
+
+    Fires when:
+
+    * The tool description's first word is a capitalized word ending in ``-ing``
+      followed by whitespace (e.g. ``Creating``, ``Searching``, ``Updating``).
+
+    Does **not** fire on:
+
+    * Short words that end in ``-ing`` but are not gerunds by context
+      (e.g. ``"Ping the server"`` — "Ping" ends in ``g`` but not ``-ing``)
+    * Mid-description gerunds (only the first word is checked)
+    * Checks 56–59 cover other non-imperative patterns; this is the gerund case.
+
+    Examples::
+
+        # flagged — gerund preamble
+        "Creating a new user account."
+        "Updating the existing record."
+        "Searching for matching documents."
+        "Generating text using the AI model."
+
+        # correct — imperative verb
+        "Create a new user account."
+        "Update the existing record."
+        "Search for matching documents."
+        "Generate text using the AI model."
+    """
+    desc = _get_tool_description(obj, fmt)
+    if not desc or not isinstance(desc, str):
+        return None
+    m = _GERUND_START_RE.match(desc)
+    if not m:
+        return None
+    gerund = m.group(0).strip()
+    # Strip the trailing 'ing' to form the imperative hint
+    imperative = gerund[:-3] if gerund.endswith('ing') else gerund
+    return Issue(
+        tool=name,
+        severity="warn",
+        check="description_starts_with_gerund",
+        message=(
+            "tool description starts with gerund '{gerund}' — "
+            "use imperative mood (e.g. '{imp}...' not '{gerund}...'). "
+            "Gerund forms describe what the tool is doing; imperative forms tell the model what to do."
+        ).format(gerund=gerund, imp=imperative),
+    )
+
+
+# ---------------------------------------------------------------------------
 # Check 59: description_starts_with_article
 # ---------------------------------------------------------------------------
 
@@ -3532,6 +3608,11 @@ def validate_tools(data: Any) -> Tuple[List[Issue], Dict[str, Any]]:
 
         # Check 59: description_starts_with_article
         issue = _check_description_starts_with_article(name, raw_obj, fmt)
+        if issue is not None:
+            issues.append(issue)
+
+        # Check 60: description_starts_with_gerund
+        issue = _check_description_starts_with_gerund(name, raw_obj, fmt)
         if issue is not None:
             issues.append(issue)
 

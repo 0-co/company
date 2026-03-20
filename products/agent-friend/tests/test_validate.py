@@ -51,6 +51,7 @@ from agent_friend.validate import (
     _check_description_this_tool,
     _check_description_allows_you_to,
     _check_description_starts_with_article,
+    _check_description_starts_with_gerund,
 )
 
 
@@ -7532,3 +7533,126 @@ class TestDescriptionStartsWithArticle:
         assert issue.check == "description_starts_with_article"
         assert issue.severity == "warn"
         assert "An" in issue.message
+
+
+class TestDescriptionStartsWithGerund:
+    """Tests for check 60: description_starts_with_gerund."""
+
+    def _make_mcp_tool(self, description: str) -> dict:
+        return {
+            "name": "do_thing",
+            "description": description,
+            "inputSchema": {"type": "object", "properties": {}, "required": []},
+        }
+
+    def test_fires_for_creating(self):
+        """Description starting with 'Creating' fires."""
+        tools = [self._make_mcp_tool("Creating a new user account in the database.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_starts_with_gerund"]
+        assert len(hits) == 1
+
+    def test_fires_for_searching(self):
+        """Description starting with 'Searching' fires."""
+        tools = [self._make_mcp_tool("Searching for files matching the query.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_starts_with_gerund"]
+        assert len(hits) == 1
+
+    def test_fires_for_updating(self):
+        """Description starting with 'Updating' fires."""
+        tools = [self._make_mcp_tool("Updating the user's profile settings.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_starts_with_gerund"]
+        assert len(hits) == 1
+
+    def test_fires_for_retrieving(self):
+        """Description starting with 'Retrieving' fires."""
+        tools = [self._make_mcp_tool("Retrieving all active sessions from the database.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_starts_with_gerund"]
+        assert len(hits) == 1
+
+    def test_fires_for_listing(self):
+        """Description starting with 'Listing' fires."""
+        tools = [self._make_mcp_tool("Listing available integrations for the workspace.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_starts_with_gerund"]
+        assert len(hits) == 1
+
+    def test_fires_for_generating(self):
+        """Description starting with 'Generating' fires."""
+        tools = [self._make_mcp_tool("Generating a summary of the provided text.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_starts_with_gerund"]
+        assert len(hits) == 1
+
+    def test_fires_for_deleting(self):
+        """Description starting with 'Deleting' fires."""
+        tools = [self._make_mcp_tool("Deleting a record by its ID.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_starts_with_gerund"]
+        assert len(hits) == 1
+
+    def test_no_fire_for_imperative_create(self):
+        """Imperative 'Create' does not fire."""
+        obj = {
+            "name": "create_user",
+            "description": "Create a new user account.",
+            "inputSchema": {"type": "object", "properties": {}},
+        }
+        issue = _check_description_starts_with_gerund("create_user", obj, "mcp")
+        assert issue is None
+
+    def test_no_fire_for_imperative_search(self):
+        """Imperative 'Search' does not fire."""
+        obj = {
+            "name": "search_files",
+            "description": "Search for files matching the query.",
+            "inputSchema": {"type": "object", "properties": {}},
+        }
+        issue = _check_description_starts_with_gerund("search_files", obj, "mcp")
+        assert issue is None
+
+    def test_no_fire_for_ping(self):
+        """'Ping' ends in g but not -ing (only 4 chars) — does not fire."""
+        obj = {
+            "name": "ping",
+            "description": "Ping the server to check connectivity.",
+            "inputSchema": {"type": "object", "properties": {}},
+        }
+        issue = _check_description_starts_with_gerund("ping", obj, "mcp")
+        assert issue is None
+
+    def test_no_fire_for_mid_sentence_gerund(self):
+        """Gerund mid-sentence does not fire."""
+        obj = {
+            "name": "save_file",
+            "description": "Save a file to disk, creating parent directories as needed.",
+            "inputSchema": {"type": "object", "properties": {}},
+        }
+        issue = _check_description_starts_with_gerund("save_file", obj, "mcp")
+        assert issue is None
+
+    def test_no_fire_for_empty_description(self):
+        """Empty description does not fire."""
+        obj = {
+            "name": "do_thing",
+            "description": "",
+            "inputSchema": {"type": "object", "properties": {}},
+        }
+        issue = _check_description_starts_with_gerund("do_thing", obj, "mcp")
+        assert issue is None
+
+    def test_check_name_and_severity(self):
+        """Issue has correct check name and severity."""
+        obj = {
+            "name": "make_record",
+            "description": "Creating a record in the system.",
+            "inputSchema": {"type": "object", "properties": {}},
+        }
+        issue = _check_description_starts_with_gerund("make_record", obj, "mcp")
+        assert issue is not None
+        assert issue.check == "description_starts_with_gerund"
+        assert issue.severity == "warn"
+        assert "Creating" in issue.message
