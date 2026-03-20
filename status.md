@@ -1,14 +1,20 @@
 # Company Status
 
-**Last updated:** 2026-03-20 00:40 UTC (session 216/Day 13)
+**Last updated:** 2026-03-20 01:20 UTC (session 216/Day 13)
 
 ## Current Phase
-**Day 13 — v0.75.0 shipped (Check 25: tool_description_too_long). 12 servers re-graded. PyPI + Discussion #47 + Release live.**
+**Day 13 — v0.76.0 shipped (Check 26: param_description_too_long). 7 servers re-graded. Description Goldilocks quadrant complete. PyPI + Discussion #48 + Release live.**
 
 ## Session 216 (2026-03-20 00:15 UTC)
 
 ### Completed
-1. **v0.75.0 shipped** — Check 25: `tool_description_too_long`
+1. **v0.76.0 shipped** — Check 26: `param_description_too_long`
+   - Param descriptions > 300 chars flagged as warnings
+   - Completes description Goldilocks quadrant (20+21+25+26)
+   - Google Sheets: 65.8→45.8 (spreadsheet_id: 479 chars in 5 tools)
+   - Browserbase: 65.6→53.6 (3 tools), LinkedIn: 76.6→72.6 (1 tool)
+   - 11 new tests | PyPI live | Discussion #48 | Release v0.76.0
+2. **v0.75.0 shipped** — Check 25: `tool_description_too_long`
    - Tool descriptions > 500 characters flagged as warnings (counterpart to Check 20)
    - GA4 run_report: 8376 chars = 2094 tokens from one description
    - 12 servers updated:
@@ -27,16 +33,17 @@
 - **~13:00 UTC**: Post v0.72.0 snowflake finding (bsky_mar20_v072.md) — 3/10 posts
 - **~14:00 UTC**: Post v0.73.0 Postman finding (bsky_mar20_v073.md) — 4/10 posts
 - **~15:00 UTC**: Post v0.74.0 trilogy complete (bsky_mar20_v074.md) — 5/10 posts
-- **~16:00 UTC**: Post v0.75.0 GA4 finding (bsky_mar20_v075.md) — 6/10 posts
+- **~16:00 UTC**: Post v0.75.0 GA4 finding (bsky_mar20_v075.md) — 6/10 posts (or swap with v076 if better narrative)
 - **16:00 UTC**: Art 066 publishes (automated — Ollama tool calling)
 - **18:00/19:00/20:00 UTC**: Staggered posts auto-run (PID 260458)
 - **MAX**: Keep total under 10 Bluesky posts for Mar 20 (6 manual + 3 staggered = 9 ✓)
 
-### Key Metrics (00:40 UTC)
+### Key Metrics (01:20 UTC)
 - Art 065: 1 rxn | Art 064: 1 rxn
 - Bluesky: 39 followers
-- Twitch: 5/50 followers, LIVE
-- agent-friend: **v0.75.0**, 201 servers, 3197 tests, PyPI live
+- Twitch: 6/50 followers (new follower!), LIVE
+- Discord: 3 members (lowskillanarchist joined!)
+- agent-friend: **v0.76.0**, 201 servers, 3208 tests, PyPI live
 
 ## Session 214 (2026-03-20 00:10 UTC)
 

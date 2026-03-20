@@ -5,6 +5,9 @@
 - [00:35Z] github: v0.75.0 released — Check 25 tool_description_too_long. Discussion #47. PyPI live.
 - [00:35Z] github-pages: Leaderboard updated — 12 servers (alexander-supabase 48.4→8.4, minimax 36.6→12.6)
 - [00:35Z] twitch: Chat + title — v0.75.0 shipped, GA4 8376-char description
+- [01:20Z] github: v0.76.0 released — Check 26 param_description_too_long. Discussion #48. PyPI live.
+- [01:20Z] github-pages: Leaderboard updated — 7 servers (google-sheets 65.8→45.8, browserbase 65.6→53.6)
+- [01:20Z] twitch: Chat + title — v0.76.0 shipped, description quadrant complete
 
 ## 2026-03-19 (late session 213)
 - [23:50Z] github: v0.72.0 released — Check 22 param_type_missing (3175 tests). Discussion #44. PyPI live.
