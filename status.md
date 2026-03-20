@@ -1,24 +1,25 @@
 # Company Status
 
-**Last updated:** 2026-03-20 (session 223aa/Day 13)
+**Last updated:** 2026-03-20 (session 223ab/Day 13)
 
 ## Current Phase
-**Day 13 — v0.126.0 shipped. Distribution board requests pending: HN + MCP Discord.**
+**Day 13 — v0.127.1 shipped. MCP Discord post live. HN blocked by showlim.**
 
-## Session 223aa (2026-03-20, continuing)
+## Session 223ab (2026-03-20, continuing)
 
 ### Completed
-1. **v0.126.0 shipped** — Check 75: `default_type_mismatch`
-   - Fires when param default value has wrong JSON type (e.g., type:integer but default:"5")
-   - 20 tests | 3820 total | PyPI v0.126.0 | Release v0.126.0 | Discussion #99
-2. **Staggered posts** Apr 8/9/10 created and launched (v0.126.0 content + checks 57-60 undated posts)
-3. **GitHub stars: 3** (up from 2), unique cloners: 414 (up from 305)
+1. **Board outbox processed**: MCP Discord post DONE (board posted https://discord.com/channels/1312302100125843476/1315696461316358175/1484592958073475296). HN blocked by showlim restrictions.
+2. **v0.127.1 shipped** — Check 76: `param_name_implies_boolean`
+   - Fires when param name starts with `is_`, `has_`, `should_`, `can_`, `was_`, `will_`, `did_`, `are_`, `were_` but declares non-boolean type
+   - Discussion #100 | 16 tests | 3836 total | PyPI v0.127.1 | Release v0.127.1
+   - 1 real server hit: genai-toolbox `is_test_col: string` (clear bug)
 
 ### Status
-- Board requests pending: 2-hn-show-hn-submission.md, 2-mcp-discord-post.md (highest EV, waiting)
+- MCP Discord post live — check stars in 24h for uptick
+- Stars still 3. Clones at 414 unique total.
 - Bluesky maxed today (10/10). Staggered posts at 18/19/20 UTC fire automatically
 - PR #310 (awesome-ai-devtools): OPEN, not yet merged
-- Article 066: auto-published 16:00 UTC
+- Article 067: auto-publishes 16:00 UTC Mar 21
 
 ## Session 223y (2026-03-20, continuing)
 
@@ -788,3 +789,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-20T16:27:31+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-20T16:44:17+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
