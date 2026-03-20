@@ -52,6 +52,7 @@ from agent_friend.validate import (
     _check_description_allows_you_to,
     _check_description_starts_with_article,
     _check_description_starts_with_gerund,
+    _check_description_duplicate,
 )
 
 
@@ -811,8 +812,10 @@ class TestValidateTools:
     def test_multiple_clean_tools(self):
         tools = [VALID_ANTHROPIC_TOOL, VALID_MCP_TOOL]
         issues, stats = validate_tools(tools)
-        # May have duplicate name issue since both are named "get_weather"
-        error_issues = [i for i in issues if i.check != "no_duplicate_names"]
+        # May have duplicate name/description issues since both are named "get_weather"
+        # with the same test description; filter those cross-tool consistency checks
+        cross_tool_checks = {"no_duplicate_names", "description_duplicate"}
+        error_issues = [i for i in issues if i.check not in cross_tool_checks]
         assert len(error_issues) == 0
 
     def test_empty_list(self):
@@ -7656,3 +7659,111 @@ class TestDescriptionStartsWithGerund:
         assert issue.check == "description_starts_with_gerund"
         assert issue.severity == "warn"
         assert "Creating" in issue.message
+
+
+class TestDescriptionDuplicate:
+    """Tests for check 61: description_duplicate."""
+
+    def _make_mcp_tool(self, name: str, description: str) -> dict:
+        return {
+            "name": name,
+            "description": description,
+            "inputSchema": {"type": "object", "properties": {}, "required": []},
+        }
+
+    def test_fires_for_two_identical_descriptions(self):
+        """Two tools with the same description both fire."""
+        tools = [
+            self._make_mcp_tool("search_users", "Search the database for matching records."),
+            self._make_mcp_tool("search_products", "Search the database for matching records."),
+        ]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_duplicate"]
+        assert len(hits) == 2
+        hit_tools = {h.tool for h in hits}
+        assert "search_users" in hit_tools
+        assert "search_products" in hit_tools
+
+    def test_fires_for_three_identical_descriptions(self):
+        """Three tools with the same description all fire."""
+        tools = [
+            self._make_mcp_tool("tool_a", "Performs the requested operation on the system."),
+            self._make_mcp_tool("tool_b", "Performs the requested operation on the system."),
+            self._make_mcp_tool("tool_c", "Performs the requested operation on the system."),
+        ]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_duplicate"]
+        assert len(hits) == 3
+
+    def test_no_fire_for_distinct_descriptions(self):
+        """Tools with distinct descriptions do not fire."""
+        tools = [
+            self._make_mcp_tool("search_users", "Search users by name or email address."),
+            self._make_mcp_tool("search_products", "Search products by keyword or SKU."),
+        ]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_duplicate"]
+        assert len(hits) == 0
+
+    def test_no_fire_for_single_tool(self):
+        """A single tool with a description does not fire."""
+        tools = [self._make_mcp_tool("search_users", "Search users by name.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_duplicate"]
+        assert len(hits) == 0
+
+    def test_no_fire_for_short_description(self):
+        """Descriptions under 10 characters do not trigger the check."""
+        tools = [
+            self._make_mcp_tool("tool_a", "Search."),
+            self._make_mcp_tool("tool_b", "Search."),
+        ]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_duplicate"]
+        assert len(hits) == 0
+
+    def test_no_fire_for_empty_descriptions(self):
+        """Empty descriptions do not trigger the check."""
+        tools = [
+            self._make_mcp_tool("tool_a", ""),
+            self._make_mcp_tool("tool_b", ""),
+        ]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_duplicate"]
+        assert len(hits) == 0
+
+    def test_check_name_and_severity(self):
+        """Issue has correct check name and severity."""
+        tools = [
+            self._make_mcp_tool("alpha", "Retrieve records from the target collection."),
+            self._make_mcp_tool("beta", "Retrieve records from the target collection."),
+        ]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_duplicate"]
+        assert len(hits) == 2
+        for h in hits:
+            assert h.check == "description_duplicate"
+            assert h.severity == "warn"
+
+    def test_direct_function_fires(self):
+        """Direct call to _check_description_duplicate with duplicates fires."""
+        tool_descs = [
+            ("search_users", "Search the database for matching records."),
+            ("search_products", "Search the database for matching records."),
+            ("list_items", "Get all items from the collection."),
+        ]
+        issues = _check_description_duplicate(tool_descs)
+        hits = [i for i in issues if i.check == "description_duplicate"]
+        assert len(hits) == 2
+        assert hits[0].tool in ("search_users", "search_products")
+        assert hits[1].tool in ("search_users", "search_products")
+
+    def test_direct_function_no_fire_no_duplicates(self):
+        """Direct call with no duplicates returns no issues."""
+        tool_descs = [
+            ("tool_a", "Search users by email."),
+            ("tool_b", "Create a new user account."),
+            ("tool_c", "Delete a user by ID."),
+        ]
+        issues = _check_description_duplicate(tool_descs)
+        assert len(issues) == 0

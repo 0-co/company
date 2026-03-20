@@ -766,6 +766,72 @@ def _check_nested_param_description_missing(tool_name: str, schema: Dict[str, An
     )]
 
 
+def _check_description_duplicate(tool_descs: List[Tuple[str, str]]) -> List[Issue]:
+    """Check 61: description_duplicate — two or more tools share the same description.
+
+    Identical descriptions across different tools indicate copy-paste
+    documentation that was never updated.  Each tool does something distinct;
+    its description should be equally distinct.  When two tools share the same
+    sentence, the model cannot tell which tool to use — the schema signal is
+    diluted.
+
+    This check fires for every tool that shares its description with at least
+    one other tool in the same server.  The issue is reported on each
+    duplicated tool (not just the second occurrence).
+
+    Fires when:
+
+    * Two or more tools have exactly the same non-empty description string
+      (after stripping leading/trailing whitespace), AND
+    * The description is at least 10 characters (to avoid penalising trivially
+      short placeholder descriptions already caught by Check 20).
+
+    Does **not** fire on:
+
+    * Tools with empty or missing descriptions (Check 5/6 handles those).
+    * Descriptions under 10 characters (too short to be meaningful duplicates).
+
+    Examples::
+
+        # flagged — two tools have the same description
+        {"name": "search_users",    "description": "Search the database."}
+        {"name": "search_products", "description": "Search the database."}
+
+        # ok — descriptions are distinct
+        {"name": "search_users",    "description": "Search users by name or email."}
+        {"name": "search_products", "description": "Search products by keyword or SKU."}
+    """
+    # Build a map from description → list of tool names
+    desc_map = {}  # type: Dict[str, List[str]]
+    for tool_name, desc in tool_descs:
+        if desc and len(desc) >= 10:
+            desc_map.setdefault(desc, []).append(tool_name)
+
+    issues = []
+    for desc, tool_names in desc_map.items():
+        if len(tool_names) < 2:
+            continue
+        others_str = ", ".join(f"'{t}'" for t in tool_names[:3])
+        if len(tool_names) > 3:
+            others_str += f" and {len(tool_names) - 3} more"
+        for tool_name in tool_names:
+            issues.append(Issue(
+                tool=tool_name,
+                severity="warn",
+                check="description_duplicate",
+                message=(
+                    "tool description is identical to {count} other tool{s} ({others}) — "
+                    "each tool should have a unique description; "
+                    "copy-pasted descriptions dilute the signal for the model."
+                ).format(
+                    count=len(tool_names) - 1,
+                    s="s" if len(tool_names) - 1 != 1 else "",
+                    others=others_str,
+                ),
+            ))
+    return issues
+
+
 def _check_no_duplicate_names(names: List[str]) -> List[Issue]:
     """Check 7: no_duplicate_names — no two tools share the same name."""
     seen = {}  # type: Dict[str, int]
@@ -3667,6 +3733,13 @@ def validate_tools(data: Any) -> Tuple[List[Issue], Dict[str, Any]]:
 
     # Check 53: tool_name_redundant_prefix (cross-tool)
     issues.extend(_check_tool_name_redundant_prefix(names))
+
+    # Check 61: description_duplicate (cross-tool)
+    _tool_descs_61 = [
+        (n, (_get_tool_description(raw, fmt) or "").strip())
+        for n, fmt, raw, _schema in tool_data
+    ]
+    issues.extend(_check_description_duplicate(_tool_descs_61))
 
     # Calculate stats
     errors = sum(1 for i in issues if i.severity == "error")
