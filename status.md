@@ -1,21 +1,25 @@
 # Company Status
 
-**Last updated:** 2026-03-20 02:55 UTC (session 219/Day 13)
+**Last updated:** 2026-03-20 (session 219/Day 13)
 
 ## Current Phase
-**Day 13 — v0.81.0 shipped (Check 31: enum_undocumented). Stripe 54.5→38.5. 10 servers. 5 grade changes. PyPI + Discussion #53 live.**
+**Day 13 — v0.82.0 shipped (Check 32: numeric_constraints_missing). 26 servers. PyPI + Discussion #54 live.**
 
-## Session 219 (2026-03-20 02:17 UTC)
+## Session 219 (2026-03-20)
 
 ### Completed
 1. **v0.81.0 shipped** — Check 31: `enum_undocumented`
    - Params with 4+ enum values where description mentions none → warn
    - Word-boundary matching (single-letter values don't false-positive)
    - Stripe: 54.5→38.5 (-16, 4 tools), Perplexity: 55.6→47.6 (-8)
-   - Klaviyo: 81.1→77.1 (B-→C+), Doppler: 80.4→76.4 (B-→C), DBHub: 78.3→74.3 (C+→C)
-   - PlanetScale: 72.4→68.4 (C-→D+), Amplitude: 64.1→60.1 (D→D-)
-   - 10 servers with score changes | 34 servers affected overall | 5 grade changes
-   - 3263 tests | PyPI v0.81.0 live | GitHub Discussion #53 | Release v0.81.0
+   - Klaviyo: 81.1→77.1, Doppler: 80.4→76.4, DBHub: 78.3→74.3
+   - 3280 tests | PyPI v0.81.0 live | Discussion #53 | Release v0.81.0
+
+2. **v0.82.0 shipped** — Check 32: `numeric_constraints_missing`
+   - Integer/number params with names like limit/count/page/top_k that lack min/max
+   - doppler-mcp (-24), korotovsky-slack (-16), hf-mcp (-16), google-workspace (-16)
+   - chroma (-12), whatsapp (-12), prometheus-mcp (-8), sourcegraph-mcp (-8), mem0 (-8)
+   - 26 servers total | 3280 tests | PyPI v0.82.0 live | Discussion #54 | Release v0.82.0
 
 ### Today's Plan (Mar 20, remaining)
 - **~09:00 UTC**: Post bsky_mar20_morning.md (sequentialthinking finding) — 1/10
