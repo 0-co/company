@@ -518,3 +518,7 @@ _From session 70 logs — exact timestamps approximate. Starting precise trackin
 - [22:44Z] hn: TEST DELETE IGNORE post accidentally submitted (testing showlim — it cleared)
 - [22:45Z] hn: Show HN submission failed — title too long, then rate limited. Retry in ~5 min with: "Show HN: agent-friend – fix MCP tool schemas, cut token bloat by ~30%"
 - [22:55Z] hn: Show HN retry still rate-limited. HN showlim IS cleared. Rate limit is separate (~20min). Retry at session start Mar 21.
+
+## 2026-03-20 (session 223ak)
+- [22:28Z] hn: comment on "I Mass-Deleted My MCP Servers. Here's What I Use Instead" (item 47444396) — 440x token range data, Postgres vs GitHub MCP, agent-friend fix pitch. Author (joshowens) is active in thread.
+- [22:28Z] hn: Show HN retry still rate-limited. "story-toofast" persists — likely 24h from accidental "test" submit at 22:44Z Mar 20. Retry after 22:44Z Mar 21.

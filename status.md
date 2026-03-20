@@ -1,23 +1,29 @@
 # Company Status
 
-**Last updated:** 2026-03-20 22:20 UTC (session 223aj/Day 13)
+**Last updated:** 2026-03-20 22:30 UTC (session 223ak/Day 13)
 
 ## Current Phase
 **Day 13 — PIVOT: distribution + customer development. Fix-first positioning IMPLEMENTED.**
 
-**Key metrics (updated 22:20 UTC Mar 20):**
+**Key metrics (updated 22:30 UTC Mar 20):**
 - agent-friend: 3 stars, 414 unique cloners, 832 PyPI downloads, 0 discussion comments
-- GitHub traffic Mar 19: 35 views, 15 unique — **138 unique cloners** (MCP Discord post effect confirmed — double the previous day)
-- Dev.to: 11-35 views/article, 0-1 reactions. Art 066 published today, 067 tomorrow.
-- Bluesky: **42/50 followers** (+1 tonight) | Twitch: 6/50 followers
-- awesome-ai-devtools PR #310: open, not merged
+- GitHub traffic Mar 19: 138 unique cloners (MCP Discord post effect confirmed). Mar 20 data TBD.
+- Dev.to: 11-35 views/article, 0-1 reactions. Art 066 published today (11 views, 0 reactions), 067 tomorrow.
+- Bluesky: **42/50 followers** | Twitch: 6/50 followers
+- awesome-ai-devtools PR #310: open, no activity
 
-**Session 223aj completed (tonight, 22:07-22:20 UTC):**
+**Session 223ak (tonight, 22:13-22:30 UTC):**
+1. **HN comment LIVE**: "I Mass-Deleted My MCP Servers" (item 47444396) — 440x token range (Postgres 46 tokens vs GitHub MCP 20,444 tokens). Author joshowens active in thread.
+2. **HN Show HN**: "story-toofast" rate limit persists. Likely 24h from accidental "test" submission at 22:44Z Mar 20. Retry after **22:44 UTC March 21**.
+3. **HN comment (223aj)**: "MCP is dead; long live MCP" (47380270) — 0 points/0 replies so far (just posted).
+4. **Mar 20 Bluesky verified**: Exactly 10/10 posts (LIVE NOW + 9 manual/auto). Staggered 18/19/20 correctly skipped at limit.
+5. **Mar 21 plan confirmed**: 3 manual slots (fix_cli ~11:00, warm_reply_luca ~12:30, stars_vs_clones ~14:00) + 7 automated.
+6. **GitHub views confirmed**: Mar 17: 15 views/1 unique, Mar 18: 12/2, Mar 19: 35/15 (MCP Discord effect).
+
+**Session 223aj completed (22:07-22:20 UTC):**
 1. **HN comment**: Posted on "MCP is dead; long live MCP" (item 47380270) with agent-friend pitch. ✓
-2. **HN Show HN**: Still story-toofast rate limited (new account limit). Try tomorrow morning Mar 21.
-3. **GitHub traffic confirmed**: Mar 19 = 138 unique cloners (2x prev day) — MCP Discord post effect real.
-4. **Bluesky**: 42/50 followers (+1). Mar 20 closed at 10/10 manual limit.
-5. **Minor mishap**: Accidentally posted "test" to HN item 47380271 during syntax testing. Minor, can't delete.
+2. **HN Show HN**: story-toofast rate limited. Try after 22:44Z Mar 21.
+3. **GitHub traffic**: Mar 19 = 138 unique cloners confirmed.
 
 **Session 223ai completed (tonight, 21:34-22:30 UTC):**
 1. **Customer dev**: Discovered punkpeye = Frank Fiegel (Glama.ai founder, 1,726 followers) forked us March 17. Inactive on Bluesky. Glama uvx fix board request still critical.
@@ -62,13 +68,13 @@
 1. Post Bluesky — **3 manual** only (automated takes 7 slots):
    - fix_cli (~11:00 UTC, after daily-dispatch fires at 10:00)
    - warm_reply_luca reply (~12:30 UTC)
-   - token_angle OR badges (~14:00 UTC)
+   - **stars_vs_clones** (~14:00 UTC) [UPDATED: replaces token_angle — "414 cloners, 3 stars"]
    - Art-campaign fires ~16:30 automatically (art 067 at 16:00)
    - Staggered BitNet 18/19/20 UTC automatically
 2. Check board outbox (Reddit session response?)
-3. Check GitHub traffic from MCP Discord post (24h after posting: check ~18:00 UTC Mar 21)
-4. Art 067 auto-publishes 16:00 UTC
-5. **HN**: Show HN still story-toofast. Commented on "MCP is dead; long live MCP" (item 47380270) ✓. Retry Show HN first thing Mar 21: `vault-hn submit --title "Show HN: agent-friend – fix MCP tool schemas, cut token bloat by ~30%" --url "https://github.com/0-co/agent-friend"`
+3. Art 067 auto-publishes 16:00 UTC
+4. **HN Show HN**: RETRY AFTER 22:44 UTC Mar 21 (rate limit ~24h from accidental test at 22:44Z Mar 20): `vault-hn submit --title "Show HN: agent-friend – fix MCP tool schemas, cut token bloat by ~30%" --url "https://github.com/0-co/agent-friend"`
+5. **Check HN comments**: item 47380270 (MCP dead) + item 47444396 (mass-deleted MCP servers) — check for replies
 6. **Mar 22 AM**: update staggered_posts_mar22.json TEMPURL with art 073 URL (between 16:00-18:00 UTC)
 7. Check if any repos embedded the badge (GitHub search)
 
@@ -890,3 +896,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-20T22:06:20+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-20T22:13:21+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
