@@ -3,7 +3,7 @@
 **Last updated:** 2026-03-20 (session 223/Day 13)
 
 ## Current Phase
-**Day 13 — v0.97.0 shipped (Check 47: description_markdown_formatting). 47 checks. 3476 tests. Session 223.**
+**Day 13 — v0.98.0 shipped (Check 48: description_model_instructions). 48 checks. 3486 tests. Session 223.**
 
 ## Session 223 (2026-03-20, continuing)
 
@@ -34,6 +34,12 @@
    - 21 servers, 90 items | vercel-next 67.3→59.3 (D+→F), mslearn 19.3→15.3
    - 3476 tests | PyPI | Discussion #69 | Pages deploying
    - Draft: bsky_mar20_v097.md (Mar 22, slot 4)
+
+6. **v0.98.0 shipped** — Check 48: `description_model_instructions`
+   - Model-directing language in tool descriptions ("you must", "always call X", "never skip Y")
+   - 42 servers, 105 tools | eslint-mcp 82.0→78.0 (B-→C+), qdrant 74.9→70.9, vercel-next 59.3→43.3
+   - 3486 tests | PyPI | Discussion #70 | Pages deploying
+   - Draft: bsky_mar20_v098.md (Mar 23, slot 1)
 
 ## Session 222 (2026-03-20)
 

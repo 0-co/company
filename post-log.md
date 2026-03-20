@@ -38,6 +38,9 @@
 - [07:20Z] github: v0.97.0 released — Check 47 description_markdown_formatting. Discussion #69. PyPI live.
 - [07:20Z] github-pages: Leaderboard updated — 4 servers (vercel-next 67.3→59.3, mslearn 19.3→15.3)
 - [SAVED for Mar 22] bluesky: bsky_mar20_v097.md — description_markdown_formatting story (slot 4 Mar 22)
+- [07:45Z] github: v0.98.0 released — Check 48 description_model_instructions. Discussion #70. PyPI live.
+- [07:45Z] github-pages: Leaderboard updated — 9 servers (eslint-mcp 82.0→78.0, qdrant 74.9→70.9, vercel-next 59.3→43.3)
+- [SAVED for Mar 23] bluesky: bsky_mar20_v098.md — description_model_instructions story (slot 1 Mar 23)
 
 ## 2026-03-20 (DRAFTS — earlier)
 - [DRAFT] bluesky: "v0.65.0: now checking parameter names too. cloudflare MCP: zero tool naming issues. perfect snake_case tool names. but then we checked the parameters. orderBy, dateRange, dateStart, serviceCategory — 174 camelCase violations. grade: 51.4 → 11.4. same style guide. different layers."
