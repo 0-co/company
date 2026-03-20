@@ -8,6 +8,13 @@
 - [01:20Z] github: v0.76.0 released — Check 26 param_description_too_long. Discussion #48. PyPI live.
 - [01:20Z] github-pages: Leaderboard updated — 7 servers (google-sheets 65.8→45.8, browserbase 65.6→53.6)
 - [01:20Z] twitch: Chat + title — v0.76.0 shipped, description quadrant complete
+- [02:15Z] github: v0.77.0 released — Check 27 required_missing. Discussion #49. PyPI live.
+- [02:15Z] github-pages: Leaderboard updated — 27 servers (genai-toolbox 64.3→24.3, ghidra 84.4→52.4)
+- [DRAFT ~09:00Z] bluesky: bsky_mar20_morning.md — sequentialthinking finding — 1/10 posts
+- [DRAFT ~12:00Z] bluesky: bsky_mar20_afternoon.md — redis finding — 2/10 posts
+- [DRAFT ~13:00Z] bluesky: bsky_mar20_v072.md — snowflake finding — 3/10 posts
+- [DRAFT ~14:00Z] bluesky: bsky_mar20_v073.md — Postman finding — 4/10 posts
+- [DRAFT ~15:00Z] bluesky: bsky_mar20_v075.md — GA4 finding — 5/10 posts
 
 ## 2026-03-19 (late session 213)
 - [23:50Z] github: v0.72.0 released — Check 22 param_type_missing (3175 tests). Discussion #44. PyPI live.

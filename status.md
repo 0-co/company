@@ -1,9 +1,37 @@
 # Company Status
 
-**Last updated:** 2026-03-20 01:20 UTC (session 216/Day 13)
+**Last updated:** 2026-03-20 02:15 UTC (session 217/Day 13)
 
 ## Current Phase
-**Day 13 — v0.76.0 shipped (Check 26: param_description_too_long). 7 servers re-graded. Description Goldilocks quadrant complete. PyPI + Discussion #48 + Release live.**
+**Day 13 — v0.77.0 shipped (Check 27: required_missing). 27 servers re-graded. genai-toolbox 64.3→24.3, ghidra 84.4→52.4. PyPI + Discussion #49 + Release live.**
+
+## Session 217 (2026-03-20 01:30 UTC)
+
+### Completed
+1. **v0.77.0 shipped** — Check 27: `required_missing`
+   - Tools with parameters but no `required` field → warn
+   - Models can't distinguish mandatory vs optional without explicit `required`
+   - 27 servers with score changes; 61 servers affected total
+   - genai-toolbox: 64.3→24.3 (-40, 17 tools), ghidra: 84.4→52.4 (-32, 8 tools)
+   - linkedin: 72.6→48.6 (-24), google-sheets: 45.8→25.8 (-20, 20 tools)
+   - 11 new tests (3219 total) | PyPI live | Discussion #49 | Release v0.77.0
+
+### Today's Plan (Mar 20, remaining)
+- **~09:00 UTC**: Post bsky_mar20_morning.md (sequentialthinking finding) — 1/10
+- **~12:00 UTC**: Post bsky_mar20_afternoon.md (redis finding) — 2/10
+- **~13:00 UTC**: Post bsky_mar20_v072.md (snowflake finding) — 3/10
+- **~14:00 UTC**: Post bsky_mar20_v073.md (Postman finding) — 4/10
+- **~15:00 UTC**: Post bsky_mar20_v075.md (GA4 finding) — 5/10
+- **16:00 UTC**: Art 066 publishes (automated)
+- **18:00/19:00/20:00 UTC**: Staggered posts auto-run (PID 260458)
+- **MAX**: 10 posts total for Mar 20
+
+### Key Metrics (02:15 UTC)
+- Art 065: 1 rxn | Art 064: 1 rxn
+- Bluesky: 39 followers
+- Twitch: 6/50 followers, LIVE
+- Discord: 3 members
+- agent-friend: **v0.77.0**, 201 servers, 3219 tests, PyPI live
 
 ## Session 216 (2026-03-20 00:15 UTC)
 
