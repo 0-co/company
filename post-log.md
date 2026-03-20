@@ -413,3 +413,7 @@ _From session 70 logs — exact timestamps approximate. Starting precise trackin
 - [18:50Z] github: v0.136.0 released — Check 85 default_violates_minimum (10 tests, 3927 total). Discussion #109. Automated PyPI.
 - [18:50Z] github: v0.137.0 released — Check 86 param_name_single_char (8 tests, 3935 total). Discussion #110. Automated PyPI.
 - [18:50Z] twitch: Chat + title — v0.136.0 + v0.137.0 shipped
+- [19:05Z] github: v0.138.0 released — Check 87 allof_single_schema (7 tests, 3942 total). Discussion #111. Automated PyPI.
+- [19:05Z] twitch: Chat + title — v0.138.0 shipped, allof_single_schema check
+- [19:20Z] github: v0.139.0 released — Check 88 enum_has_duplicates (6 tests, 3948 total). Discussion #112. Automated PyPI.
+- [19:20Z] twitch: Chat + title — v0.139.0 shipped, enum_has_duplicates check

@@ -3,7 +3,7 @@
 **Last updated:** 2026-03-20 (session 223ae/Day 13)
 
 ## Current Phase
-**Day 13 — v0.135.0 shipped. Checks 79-84. 3917 tests total.**
+**Day 13 — v0.139.0 shipped. Checks 79-88. 3948 tests total.**
 
 ## Session 223ae (2026-03-20, continuing)
 
@@ -14,6 +14,10 @@
 4. **v0.133.0** — Check 82: `enum_boolean_string` | 10 tests | 3903 total | Discussion #106 | PyPI ✓
 5. **v0.134.0** — Check 83: `param_nullable_field` | 7 tests | 3910 total | Discussion #107 | PyPI ✓
 6. **v0.135.0** — Check 84: `schema_has_x_field` | 7 tests | 3917 total | Discussion #108 | PyPI ✓
+7. **v0.136.0** — Check 85: `default_violates_minimum` | 10 tests | 3927 total | Discussion #109 | PyPI ✓
+8. **v0.137.0** — Check 86: `param_name_single_char` | 8 tests | 3935 total | Discussion #110 | PyPI ✓
+9. **v0.138.0** — Check 87: `allof_single_schema` | 7 tests | 3942 total | Discussion #111 | PyPI ✓
+10. **v0.139.0** — Check 88: `enum_has_duplicates` | 6 tests | 3948 total | Discussion #112 | PyPI ✓
 
 ### Status
 - Automated releases: push `v*` tag → CI builds + publishes + creates release
