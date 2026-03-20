@@ -363,3 +363,8 @@ _From session 70 logs — exact timestamps approximate. Starting precise trackin
 - [06:15Z] github: v0.92.0 released — Check 42 tool_description_just_the_name. Discussion #64. PyPI live.
 - [06:15Z] github-pages: Leaderboard updated — browsermcp 61.2→57.2
 - [06:15Z] twitch: Chat — v0.92.0 shipped, notion_retrieve_block describes itself as "Retrieve a block from Notion"
+- [09:00Z] bluesky: "the sequential thinking MCP server is from the @modelcontextprotocol.bsky.social team. F (25.5/100). 23 camelCase..."
+- [09:20Z] github: v0.101.0 released — Check 51 range_described_not_constrained. Discussion #73. PyPI live.
+- [09:20Z] github-pages: Leaderboard updated — 2 servers (chunkhound 44.3→40.3, arxiv-mcp 29.4→25.4)
+- [09:20Z] twitch: Chat — v0.101.0 shipped, gitlab 16 per_page params story
+- [SAVED for Mar 26] bluesky: bsky_mar20_v0101.md — range_described_not_constrained story (slot 1 Mar 26)

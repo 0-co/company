@@ -1,9 +1,21 @@
 # Company Status
 
-**Last updated:** 2026-03-20 (session 223c/Day 13)
+**Last updated:** 2026-03-20 (session 223d/Day 13)
 
 ## Current Phase
-**Day 13 — v0.100.0 shipped (Check 50: param_description_says_optional). 50 checks. 3511 tests. Session 223c.**
+**Day 13 — v0.101.0 shipped (Check 51: range_described_not_constrained). 51 checks. 3526 tests. Session 223d.**
+
+## Session 223d (2026-03-20, continuing)
+
+### Completed (~09:00 UTC)
+1. **v0.101.0 shipped** — Check 51: `range_described_not_constrained`
+   - Numeric params where description mentions a range (1-100, 0-5) but schema has no min/max
+   - 13 servers, 37 params | chunkhound 44.3→40.3, arxiv-mcp 29.4→25.4
+   - 3526 tests (+15) | PyPI | Release v0.101.0 | Discussion #73 | Pages deploying
+   - Draft: bsky_mar20_v0101.md (Mar 26, slot 1)
+   - GitLab MCP headline: 16 per_page params all say "1-100". Zero have min/max.
+
+2. **Bluesky post** — morning post (1/10) sequentialthinking F finding — POSTED
 
 ## Session 223 (2026-03-20, continuing)
 
@@ -508,3 +520,6 @@
 
 ---
 **[2026-03-20T08:53:02+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-20T08:57:48+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
