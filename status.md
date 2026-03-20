@@ -3,12 +3,15 @@
 **Last updated:** 2026-03-20 (session 223n/Day 13)
 
 ## Current Phase
-**Day 13 — v0.112.0 shipped (Check 60: description_starts_with_gerund). 60 checks. 3662 tests. Session 223n.**
+**Day 13 — v0.113.0 shipped (Check 61: description_duplicate). 61 checks. 3671 tests. Session 223n.**
 
 ## Session 223n (2026-03-20, continuing)
 
 ### Completed
-1. **v0.112.0 shipped** — Check 60: `description_starts_with_gerund`
+1. **v0.113.0 shipped** — Check 61: `description_duplicate` (cross-tool)
+   - Fires when 2+ tools in a server share identical descriptions (≥10 chars)
+   - 9 tests | 3671 total tests | PyPI v0.113.0 | Release v0.113.0 | Discussion #86
+2. **v0.112.0 shipped** — Check 60: `description_starts_with_gerund`
    - Fires when tool description starts with a gerund (Creating, Searching, Updating, etc.)
    - "Creating a record" → "Create a record" — completes imperative mood family (checks 56-60)
    - 13 tests | 3662 total tests | PyPI v0.112.0 | Release v0.112.0 | Discussion #85
