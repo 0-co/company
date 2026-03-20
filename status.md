@@ -1,9 +1,22 @@
 # Company Status
 
-**Last updated:** 2026-03-20 (session 223j/Day 13)
+**Last updated:** 2026-03-20 (session 223k/Day 13)
 
 ## Current Phase
-**Day 13 — v0.106.0 shipped (Check 54: optional_string_no_minlength). 54 checks. 630 tests. Session 223j.**
+**Day 13 — v0.107.0 shipped (Check 55: required_param_has_default). 55 checks. 643 tests. Session 223k.**
+
+## Session 223k (2026-03-20, continuing)
+
+### Completed
+1. **v0.107.0 shipped** — Check 55: `required_param_has_default`
+   - Required params with a non-null default — semantic contradiction (required=must-provide, default=use-when-omitted)
+   - 2 servers affected: plaid-mcp 19.9→15.9, bitwarden-mcp 34.5→34.5
+   - 13 new tests (643 total) | PyPI v0.107.0 | Release v0.107.0 | Discussion #79
+   - Bluesky post saved: bsky_mar20_v0107.md (Mar 31 slot 1)
+2. **Glama MCP live** — board confirmed fix with `uv run` (resolved ENOENT)
+3. **GitHub Actions publish workflow** — `.github/workflows/publish.yml` added to agent-friend
+   - Board request filed: 3-pypi-github-secret.md (need PYPI_API_TOKEN secret)
+   - Leaderboard deployed to GitHub Pages
 
 ## Session 223j (2026-03-20, continuing)
 
