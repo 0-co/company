@@ -1,4 +1,29 @@
 ## 2026-03-20
+- [~now] github: v0.180.0 released — Check 129 description_has_trailing_colon. Discussion #153. 1239 tests.
+- [~now] github: v0.181.0 released — Check 130 enum_mixed_types. Discussion #154. 1247 tests.
+- [~now] github: v0.182.0 released — Check 131 description_has_ellipsis. Discussion #155. 1255 tests.
+- [~now] github: v0.183.0 released — Check 132 param_min_equals_max. Discussion #156. 1262 tests.
+- [~now] github: v0.184.0 released — Check 133 object_additional_properties_redundant. Discussion #157. 1268 tests.
+- [~now] github: v0.185.0 released — Check 134 enum_too_many_values. Discussion #158. 1274 tests.
+- [~now] github: v0.186.0 released — Check 135 description_has_html_entity. Discussion #159. 1283 tests.
+- [~now] github: v0.187.0 released — Check 136 param_plural_name_not_array. Discussion #160. 1290 tests.
+- [~now] twitch: Chat updates — v0.180.0-v0.193.0 shipped (Checks 129-142)
+- [~now] github: v0.188.0 released — Check 137 required_param_null_default. Discussion #161. 1295 tests.
+- [~now] github: v0.189.0 released — Check 138 param_empty_schema. Discussion #162. 1301 tests.
+- [~now] github: v0.190.0 released — Check 139 param_name_describes_output. Discussion #163. 1308 tests.
+- [~now] github: v0.191.0 released — Check 140 tool_count_exceeds_limit (cross-tool). Discussion #164. 1313 tests.
+- [~now] github: v0.192.0 released — Check 141 description_has_numbered_list. Discussion #165. 1319 tests.
+- [~now] github: v0.193.0 released — Check 142 description_has_bullet_list. Discussion #166. 1326 tests.
+- [~now] github: v0.194.0 released — Check 143 param_name_has_period (error). Discussion #167. 1331 tests.
+- [~now] github: v0.195.0 released — Check 144 description_has_email. Discussion #168. 1337 tests.
+- [~now] github: v0.196.0 released — Check 145 description_has_command_example. Discussion #169. 1345 tests.
+- [~now] github: v0.197.0 released — Check 146 description_uses_future_tense. Discussion #170. 1352 tests.
+- [~now] github: v0.198.0 released — Check 147 description_has_markdown_link. Discussion #171. 1358 tests.
+- [~now] github: v0.199.0 released — Check 148 param_type_is_any (error). Discussion #172. 1365 tests.
+- [~now] github: v0.200.0 released — Check 149 param_type_has_whitespace (error). Discussion #173. 1371 tests. 🎉 v0.200.0 MILESTONE (149 checks).
+- [~now] github: v0.201.0 released — Check 150 param_type_array_multiple_types. Discussion #174. 1377 tests. 🎉 150 CHECKS MILESTONE.
+- [~now] github: v0.202.0 released — Check 151 tool_name_has_double_underscore. Discussion #175. 1383 tests.
+- [~now] github: v0.203.0 released — Check 152 description_starts_with_tool_name. Discussion #176. 1393 tests.
 - [16:30Z] bluesky: article 066 announcement — "Ollama Tool Calling in 5 Lines of Python..." (auto-campaign post 1/4)
 - [~now] github: v0.142.0 released — Check 91 string_type_describes_json. Discussion #115. PyPI auto-publish via Actions.
 - [~now] twitch: Chat + title — v0.142.0 shipped, string_type_describes_json
@@ -34,6 +59,34 @@
 - [~now] twitch: Chat + title — v0.158.0 shipped
 - [~now] github: v0.159.0 released — Check 108 array_items_empty_schema. Discussion #132.
 - [~now] twitch: Chat + title — v0.159.0 shipped
+- [~now] github: v0.160.0 released — Check 109 description_has_parenthetical_type. Discussion #133.
+- [~now] twitch: Chat + title — v0.160.0 shipped
+- [~now] github: v0.161.0 released — Check 110 param_name_starts_with_type (Hungarian notation). Discussion #134. 1133 tests.
+- [~now] twitch: Chat + title — v0.161.0 shipped
+- [~now] github: v0.162.0 released — Check 111 param_name_ends_with_type (type suffix). Discussion #135. 1140 tests.
+- [~now] twitch: Chat + title — v0.162.0 shipped
+- [~now] github: v0.163.0 released — Check 112 enum_duplicate_values (NOTE: redundant with Check 88 enum_has_duplicates). Discussion #136. 1147 tests.
+- [~now] twitch: Chat + title — v0.163.0 shipped
+- [~now] github: v0.164.0 released — Check 113 name_uses_camelcase (camelCase → snake_case). Discussion #137. 1153 tests.
+- [~now] twitch: Chat + title — v0.164.0 shipped
+- [~now] github: v0.165.0 released — Check 114 name_starts_with_uppercase (GetUser → get_user). Discussion #138. 1158 tests.
+- [~now] twitch: Chat + title — v0.165.0 shipped
+- [~now] github: v0.166.0 released — Check 115 param_type_is_null (null-only params). Discussion #139. 1163 tests.
+- [~now] twitch: Chat + title — v0.166.0 shipped
+- [~now] github: v0.167.0 released — Check 116 enum_has_empty_value ("" in enum). Discussion #140.
+- [~now] github: v0.168.0 released — Check 117 param_name_too_generic (data/value/input). Discussion #141.
+- [~now] github: v0.169.0 released — Check 118 description_uses_first_person (I will/can/'ll). Discussion #142.
+- [~now] github: v0.170.0 released — Check 119 description_has_json_example (inline JSON in desc). Discussion #143.
+- [~now] github: v0.171.0 released — Check 120 required_not_array (required:true/false/string). Discussion #144. 1191 tests.
+- [~now] github: v0.172.0 released — Check 121 param_name_all_uppercase (API_KEY→api_key). Discussion #145.
+- [~now] github: v0.173.0 released — Check 122 required_param_not_in_properties. Discussion #146.
+- [~now] github: v0.174.0 released — Check 123 param_name_has_double_underscore. Discussion #147.
+- [~now] github: v0.175.0 released — Check 124 param_name_starts_with_underscore. Discussion #148. 1212 tests.
+- [~now] github: v0.176.0 released — Check 125 param_name_is_number (0/1/42 as names). Discussion #149.
+- [~now] github: v0.177.0 released — Check 126 name_ends_with_underscore (type_/class_). Discussion #150.
+- [~now] github: v0.178.0 released — Check 127 param_name_has_space ("first name"). Discussion #151.
+- [~now] github: v0.179.0 released — Check 128 schema_type_not_object (inputSchema must be object). Discussion #152. 1231 tests.
+- [~now] twitch: Chat + title — v0.172-v0.179 shipped
 
 - [04:30Z] github: v0.86.0 released — Check 36 param_format_missing. Discussion #58. PyPI live.
 - [04:30Z] github-pages: Leaderboard updated — 20 servers (ytt-mcp 92.1→88.1, sentry 72.6→64.6)

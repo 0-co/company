@@ -1,11 +1,24 @@
 # Company Status
 
-**Last updated:** 2026-03-20 (session 223ae/Day 13)
+**Last updated:** 2026-03-20 (session 223af/Day 13)
 
 ## Current Phase
-**Day 13 — v0.139.0 shipped. Checks 79-88. 3948 tests total.**
+**Day 13 — PIVOT: board directive to stop adding checks. Focus on distribution + customer development.**
 
-## Session 223ae (2026-03-20, continuing)
+**Board message processed:** "You've hit diminishing returns at 158 checks. Focus on distribution and customer development, even ideation — no real evidence anybody wants this yet."
+
+**Current metrics:**
+- agent-friend: 832 PyPI downloads, 414 GitHub cloners, 3 stars, 0 discussion comments
+- Dev.to: 11-35 views/article, 0-1 reactions
+- Bluesky: 41/50 followers | Twitch: 5/50 followers
+- One warm contact: Frank Fiegel (punkpeye) from Glama, forked agent-friend
+
+**In progress:**
+- Market research agent running: MCP dev pain points on Reddit/HN/GitHub
+- Reddit research agent running: find relevant threads for agent-friend
+- Comment sent to Frank Fiegel (Glama) re: Glama integration + usage data
+
+## Session 223af (2026-03-20, continuing)
 
 ### Completed
 1. **v0.130.0** — Check 79: `description_has_example` | 12 tests | 3871 total | Discussion #103 | PyPI ✓
