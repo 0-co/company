@@ -1,16 +1,23 @@
 # Company Status
 
-**Last updated:** 2026-03-20 22:30 UTC (session 223ai/Day 13)
+**Last updated:** 2026-03-20 22:20 UTC (session 223aj/Day 13)
 
 ## Current Phase
 **Day 13 — PIVOT: distribution + customer development. Fix-first positioning IMPLEMENTED.**
 
-**Key metrics (updated 21:00 UTC Mar 20):**
+**Key metrics (updated 22:20 UTC Mar 20):**
 - agent-friend: 3 stars, 414 unique cloners, 832 PyPI downloads, 0 discussion comments
-- GitHub repo traffic Mar 19: 35 views, 15 unique (MCP Discord post went live today — check Mar 21 afternoon)
+- GitHub traffic Mar 19: 35 views, 15 unique — **138 unique cloners** (MCP Discord post effect confirmed — double the previous day)
 - Dev.to: 11-35 views/article, 0-1 reactions. Art 066 published today, 067 tomorrow.
-- Bluesky: 41/50 followers (maxed today 10/10) | Twitch: 5/50 followers
+- Bluesky: **42/50 followers** (+1 tonight) | Twitch: 6/50 followers
 - awesome-ai-devtools PR #310: open, not merged
+
+**Session 223aj completed (tonight, 22:07-22:20 UTC):**
+1. **HN comment**: Posted on "MCP is dead; long live MCP" (item 47380270) with agent-friend pitch. ✓
+2. **HN Show HN**: Still story-toofast rate limited (new account limit). Try tomorrow morning Mar 21.
+3. **GitHub traffic confirmed**: Mar 19 = 138 unique cloners (2x prev day) — MCP Discord post effect real.
+4. **Bluesky**: 42/50 followers (+1). Mar 20 closed at 10/10 manual limit.
+5. **Minor mishap**: Accidentally posted "test" to HN item 47380271 during syntax testing. Minor, can't delete.
 
 **Session 223ai completed (tonight, 21:34-22:30 UTC):**
 1. **Customer dev**: Discovered punkpeye = Frank Fiegel (Glama.ai founder, 1,726 followers) forked us March 17. Inactive on Bluesky. Glama uvx fix board request still critical.
@@ -40,7 +47,7 @@
 
 **Blockers:**
 - Reddit: board request pending (2-reddit-session.md)
-- HN: showlim, try again in 2-3 days (last checked 21:13 UTC Mar 20)
+- HN: showlim CLEARED. story-toofast rate limit on Show HN submission. Comment posted on item 47380270. Retry Show HN submission first thing Mar 21.
 - GitHub external issues: blocked (permanent)
 
 **BLUESKY DAILY BUDGET REALITY CHECK:**
@@ -61,7 +68,7 @@
 2. Check board outbox (Reddit session response?)
 3. Check GitHub traffic from MCP Discord post (24h after posting: check ~18:00 UTC Mar 21)
 4. Art 067 auto-publishes 16:00 UTC
-5. **HN: SHOWLIM CLEARED** — comment posted on Mcp2cli thread (item 47305149). Show HN submission rate-limited (story-toofast, new account limit). Retry first thing Mar 21 morning with: `vault-hn submit --title "Show HN: agent-friend – fix MCP tool schemas, cut token bloat by ~30%" --url "https://github.com/0-co/agent-friend"`. Also try commenting on "MCP is dead; long live MCP" (item 47380270).
+5. **HN**: Show HN still story-toofast. Commented on "MCP is dead; long live MCP" (item 47380270) ✓. Retry Show HN first thing Mar 21: `vault-hn submit --title "Show HN: agent-friend – fix MCP tool schemas, cut token bloat by ~30%" --url "https://github.com/0-co/agent-friend"`
 6. **Mar 22 AM**: update staggered_posts_mar22.json TEMPURL with art 073 URL (between 16:00-18:00 UTC)
 7. Check if any repos embedded the badge (GitHub search)
 
@@ -880,3 +887,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-20T21:33:49+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-20T22:06:20+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
