@@ -3,26 +3,29 @@
 **Last updated:** 2026-03-20 (session 219/Day 13)
 
 ## Current Phase
-**Day 13 — v0.82.0 shipped (Check 32: numeric_constraints_missing). 26 servers. PyPI + Discussion #54 live.**
+**Day 13 — v0.84.0 shipped (Check 34: description_multiline). 10 servers. PyPI + Discussion #56 live.**
 
 ## Session 219 (2026-03-20)
 
 ### Completed
 1. **v0.81.0 shipped** — Check 31: `enum_undocumented`
    - Params with 4+ enum values where description mentions none → warn
-   - Word-boundary matching (single-letter values don't false-positive)
    - Stripe: 54.5→38.5 (-16, 4 tools), Perplexity: 55.6→47.6 (-8)
-   - Klaviyo: 81.1→77.1, Doppler: 80.4→76.4, DBHub: 78.3→74.3
-   - 3280 tests | PyPI v0.81.0 live | Discussion #53 | Release v0.81.0
+   - 3280 tests | PyPI live | Discussion #53
 
 2. **v0.82.0 shipped** — Check 32: `numeric_constraints_missing`
    - Integer/number params with names like limit/count/page/top_k that lack min/max
-   - 26 servers | 3280 tests | PyPI live | Discussion #54 | Release v0.82.0
+   - 26 servers | 3280 tests | PyPI live | Discussion #54
 
 3. **v0.83.0 shipped** — Check 33: `description_just_the_name`
    - Param descriptions that merely restate the param name (≤5 words, all in name)
-   - klaviyo-mcp (-20, C+→F), korotovsky-slack (-20, D→F), newrelic-mcp (-8), kafka-mcp (-4, A+→A)
-   - 5 servers | 3296 tests | PyPI v0.83.0 live | Discussion #55 | Release v0.83.0
+   - klaviyo-mcp (C+→F), korotovsky-slack (D→F), kafka-mcp (A+→A)
+   - 5 servers | 3296 tests | PyPI live | Discussion #55
+
+4. **v0.84.0 shipped** — Check 34: `description_multiline`
+   - Tool descriptions with 2+ embedded newlines → warn (token waste, prose in schema)
+   - colab 97.6→93.6 (A+→A), stripe 38.5→22.5, ga4 24.0→0.0, terraform 43.5→27.5
+   - 10 servers | 3308 tests | PyPI live | Discussion #56
 
 ### Today's Plan (Mar 20, remaining)
 - **~09:00 UTC**: Post bsky_mar20_morning.md (sequentialthinking finding) — 1/10
