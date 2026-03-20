@@ -22,6 +22,10 @@
 - [~now] twitch: Chat + title — v0.151.0 shipped, 100 checks milestone
 - [~now] github: v0.152.0 released — Check 101 param_uses_schema_ref. Discussion #125.
 - [~now] twitch: Chat + title — v0.152.0 shipped
+- [~now] github: v0.153.0 released — Check 102 tool_name_too_generic. Discussion #126.
+- [~now] github: v0.154.0 released — Check 103 string_minlength_zero. Discussion #127.
+- [~now] github: v0.155.0 released — Check 104 enum_values_inconsistent_case. Discussion #128.
+- [~now] twitch: Chat + title — v0.153-v0.155 shipped
 
 - [04:30Z] github: v0.86.0 released — Check 36 param_format_missing. Discussion #58. PyPI live.
 - [04:30Z] github-pages: Leaderboard updated — 20 servers (ytt-mcp 92.1→88.1, sentry 72.6→64.6)
