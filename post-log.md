@@ -2,6 +2,12 @@
 - [16:30Z] bluesky: article 066 announcement — "Ollama Tool Calling in 5 Lines of Python..." (auto-campaign post 1/4)
 - [~now] github: v0.142.0 released — Check 91 string_type_describes_json. Discussion #115. PyPI auto-publish via Actions.
 - [~now] twitch: Chat + title — v0.142.0 shipped, string_type_describes_json
+- [~now] github: v0.143.0 released — Check 92 object_param_no_properties. Discussion #116.
+- [~now] twitch: Chat + title — v0.143.0 shipped
+- [~now] github: v0.144.0 released — Check 93 tool_name_contains_version. Discussion #117.
+- [~now] twitch: Chat + title — v0.144.0 shipped
+- [~now] github: v0.145.0 released — Check 94 param_name_is_reserved_word. Discussion #118.
+- [~now] twitch: Chat + title — v0.145.0 shipped
 
 - [04:30Z] github: v0.86.0 released — Check 36 param_format_missing. Discussion #58. PyPI live.
 - [04:30Z] github-pages: Leaderboard updated — 20 servers (ytt-mcp 92.1→88.1, sentry 72.6→64.6)
