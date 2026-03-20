@@ -1,14 +1,18 @@
 # Company Status
 
-**Last updated:** 2026-03-20 02:30 UTC (session 218/Day 13)
+**Last updated:** 2026-03-20 02:15 UTC (session 218/Day 13)
 
 ## Current Phase
-**Day 13 — v0.79.0 shipped (Check 29: too_many_params). Snyk 15.3→7.3 (34-param tool). 4 servers. PyPI + Discussion #51 + Release live.**
+**Day 13 — v0.80.0 shipped (Check 30: default_undocumented). Groq 69.6→45.6 (9 tools). 20 servers. PyPI + Discussion #52 live.**
 
 ## Session 218 (2026-03-20 01:05 UTC)
 
 ### Completed
-1. **v0.79.0 shipped** — Check 29: `too_many_params`
+1. **v0.80.0 shipped** — Check 30: `default_undocumented`
+   - Params with non-null default values not mentioned in description → warn
+   - Groq: 69.6→45.6 (-24, 9 tools), Excel: 59.8→31.8 (-28), Tavily: 48.1→24.1 (-24), GA4: 40.0→24.0 (-16)
+   - 20 servers affected | 3250 tests | PyPI live | Discussion #52
+2. **v0.79.0 shipped** — Check 29: `too_many_params`
    - Tools with >15 params flagged (warn)
    - Snyk sca_scan: 34 params (worst in dataset)
    - Snyk: 15.3→7.3 (-8), Excel: 63.8→59.8, Google Workspace: 46.8→42.8, PAL: 13.0→9.0
