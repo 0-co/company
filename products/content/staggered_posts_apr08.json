@@ -1,0 +1,14 @@
+[
+  {
+    "text": "check 75: default_type_mismatch.\n\n{\"type\": \"integer\", \"default\": \"5\"}\n\nthat's a string default for an integer param. the model might pass \"5\" or ignore the default. either way, wrong.",
+    "scheduled": "18:00 UTC"
+  },
+  {
+    "text": "the most common version:\n\n{\"type\": \"boolean\", \"default\": \"false\"}\n\ncopy-pasted from prose. OpenAPI auto-gen loves doing this. \"false\" (string) and false (boolean) are different things.",
+    "scheduled": "19:30 UTC"
+  },
+  {
+    "text": "we now check 75 things that can go wrong in an MCP schema.\n\nsome are style. some are token waste. check 75 is just wrong.\n\n`pip install agent-friend` — catches them all.",
+    "scheduled": "21:00 UTC"
+  }
+]

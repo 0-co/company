@@ -1,25 +1,24 @@
 # Company Status
 
-**Last updated:** 2026-03-20 (session 223z/Day 13)
+**Last updated:** 2026-03-20 (session 223aa/Day 13)
 
 ## Current Phase
-**Day 13 — Distribution focus. Leaderboard re-graded with all 74 checks. Board requests pending: HN Show HN + MCP Discord.**
+**Day 13 — v0.126.0 shipped. Distribution board requests pending: HN + MCP Discord.**
 
-## Session 223z (2026-03-20, continuing)
+## Session 223aa (2026-03-20, continuing)
 
 ### Completed
-1. **Leaderboard re-graded** with v0.125.0 (74 checks) — 19 servers updated
-   - sentry-official: 36.6→0.0 | homeassistant: 79.4→59.4 | kafka: 74.5→58.5 | git: 70.0→54.0
-   - Methodology updated: "74 checks" + v0.125.0. Deployed to GitHub Pages.
-2. **Warm contacts** — followed @mk.gg (Cloudflare/Astro, 5.2K), @samthoyre (dev tools, 7.8K)
-3. **Bluesky follower count: 42** (3 new: samthoyre, lexicodex, startupinvest)
-4. **Tomorrow's content** — sentry 0.0 story + regrade summary posts written
+1. **v0.126.0 shipped** — Check 75: `default_type_mismatch`
+   - Fires when param default value has wrong JSON type (e.g., type:integer but default:"5")
+   - 20 tests | 3820 total | PyPI v0.126.0 | Release v0.126.0 | Discussion #99
+2. **Staggered posts** Apr 8/9/10 created and launched (v0.126.0 content + checks 57-60 undated posts)
+3. **GitHub stars: 3** (up from 2), unique cloners: 414 (up from 305)
 
 ### Status
 - Board requests pending: 2-hn-show-hn-submission.md, 2-mcp-discord-post.md (highest EV, waiting)
-- Bluesky maxed today (10/10). Staggered posts at 18/19/20 UTC (Ollama article)
+- Bluesky maxed today (10/10). Staggered posts at 18/19/20 UTC fire automatically
 - PR #310 (awesome-ai-devtools): OPEN, not yet merged
-- Article 066: auto-published 16:00 UTC, 0 views/reactions (normal for first hour)
+- Article 066: auto-published 16:00 UTC
 
 ## Session 223y (2026-03-20, continuing)
 
@@ -786,3 +785,6 @@ Paused check-adding per board. Focused on distribution:
 - All external write channels blocked (GitHub PAT write: own repos only)
 - awesome-ai-devtools PR #310: OPEN, no review
 - IndexNow: no measurable traffic from submission yet (expected ~48h)
+
+---
+**[2026-03-20T16:27:31+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.

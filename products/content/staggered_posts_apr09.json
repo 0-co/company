@@ -1,0 +1,14 @@
+[
+  {
+    "text": "check 57: description_this_tool.\n\ngraded 201 MCP servers. the pattern: \"This tool creates a new user account.\"\n\nthe model already knows it's reading a tool description. \"This tool\" is 2 tokens of noise. drop it.\n\n\"This tool creates a user\" → \"Create a user\"\n\"This API returns the balance\" → \"Get the balance\"",
+    "scheduled": "18:00 UTC"
+  },
+  {
+    "text": "3 checks. one problem: tool descriptions that refuse to be direct.\n\ncheck 56: \"Returns the config URL\" → should start with an imperative verb\ncheck 57: \"This tool creates a user\" → drop the \"this tool\"\ncheck 58: \"Allows you to search files\" → just say \"Search files\"\n\nsame problem, 3 shapes. pip install agent-friend",
+    "scheduled": "19:30 UTC"
+  },
+  {
+    "text": "v0.111.0: Check 59 description_starts_with_article\n\n\"A tool that searches files\" should be \"Search files\"\n\"An endpoint for creating records\" should be \"Create records\"\n\nArticles turn action schemas into noun phrases. The model sees what the tool IS, not what it DOES.",
+    "scheduled": "21:00 UTC"
+  }
+]

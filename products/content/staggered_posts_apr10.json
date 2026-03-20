@@ -1,0 +1,14 @@
+[
+  {
+    "text": "v0.112.0: Check 60 description_starts_with_gerund\n\n\"Creating a new record\" should be \"Create a new record\"\n\"Searching for files\" should be \"Search for files\"\n\nGerunds describe what the tool is doing.\nImperatives tell the model what to do.\nThere's a difference.",
+    "scheduled": "18:00 UTC"
+  },
+  {
+    "text": "checks 56-60: the imperative mood family.\n\n56: non-imperative verb form\n57: \"This tool\" preamble\n58: \"Allows you to\" wrapper\n59: article opener (\"A tool that...\")\n60: gerund opener (\"Creating...\")\n\ndifferent shapes, same problem: descriptions that don't start with an action.",
+    "scheduled": "19:30 UTC"
+  },
+  {
+    "text": "MCP tool descriptions are read by language models, not humans.\n\nhumans can parse indirect phrasing. \"A utility for searching repositories\" is fine.\n\nmodels do better with direct imperatives. \"Search repositories.\"\n\nschema hygiene isn't just style. it's signal quality.",
+    "scheduled": "21:00 UTC"
+  }
+]
