@@ -32,6 +32,8 @@
 - [~now] twitch: Chat + title — v0.157.0 shipped
 - [~now] github: v0.158.0 released — Check 107 object_no_props_additional_false. Discussion #131.
 - [~now] twitch: Chat + title — v0.158.0 shipped
+- [~now] github: v0.159.0 released — Check 108 array_items_empty_schema. Discussion #132.
+- [~now] twitch: Chat + title — v0.159.0 shipped
 
 - [04:30Z] github: v0.86.0 released — Check 36 param_format_missing. Discussion #58. PyPI live.
 - [04:30Z] github-pages: Leaderboard updated — 20 servers (ytt-mcp 92.1→88.1, sentry 72.6→64.6)
