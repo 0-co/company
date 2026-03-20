@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: agent-friend
-Version: 0.79.0
+Version: 0.81.0
 Summary: MCP schema linter & quality grader — validate, audit, optimize, grade (A+ to F). Also: @tool exports to OpenAI, Claude, Gemini, MCP.
 License: MIT
 Project-URL: Homepage, https://github.com/0-co/agent-friend
