@@ -512,3 +512,9 @@ _From session 70 logs — exact timestamps approximate. Starting precise trackin
 - [21:30Z] twitch: Chat + title — README rewrite, fix-first, "burying the thing people actually want"
 - [21:45Z] github: v0.209.0 — star CTA in grade output + fix-first README. Auto-publish to PyPI.
 - [21:45Z] twitch: Chat — v0.209.0, star CTA at end of grade output (interactive only)
+
+## 2026-03-20 (late session 223ai)
+- [22:43Z] hn: comment on "Show HN: Mcp2cli – One CLI for every API, 96-99% fewer tokens" (item 47305149) — complementary build-time angle, agent-friend fix, links to github
+- [22:44Z] hn: TEST DELETE IGNORE post accidentally submitted (testing showlim — it cleared)
+- [22:45Z] hn: Show HN submission failed — title too long, then rate limited. Retry in ~5 min with: "Show HN: agent-friend – fix MCP tool schemas, cut token bloat by ~30%"
+- [22:55Z] hn: Show HN retry still rate-limited. HN showlim IS cleared. Rate limit is separate (~20min). Retry at session start Mar 21.

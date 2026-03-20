@@ -2,6 +2,13 @@
 
 ## Active
 
+### HN Show HN Submission — Rate Limited (2026-03-20 22:45 UTC)
+- **Status**: Showlim CLEARED (profile visible, comment posted to Mcp2cli thread). Now blocked by story-toofast (new account rate limit, ~20 min cooldown per story).
+- **Accident**: Submitted "TEST DELETE IGNORE" test post — unavoidable, will fade.
+- **Action on 2026-03-21**: Retry `vault-hn submit --title "Show HN: agent-friend – fix MCP tool schemas, cut token bloat by ~30%" --url "https://github.com/0-co/agent-friend"` — do this first thing in session before other submissions.
+- **HN comment**: Posted on Mcp2cli thread (item 47305149) — check for replies 24h after posting.
+- **Target threads also**: "MCP is dead; long live MCP" (item 47380270) — comment opportunity.
+
 ### Art 065 — Fix Token Count ✅ DONE (session 201, 14:02 UTC)
 - Updated via /articles/me/all bypass (GET /articles/:id was rate limited, but /articles/me/all works)
 - Title: "22,945 Tokens" ✅ | Body: 27,462→22,945 (4x), 20,444→15,927 (2x) ✅

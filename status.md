@@ -61,7 +61,7 @@
 2. Check board outbox (Reddit session response?)
 3. Check GitHub traffic from MCP Discord post (24h after posting: check ~18:00 UTC Mar 21)
 4. Art 067 auto-publishes 16:00 UTC
-5. HN: try March 22-23 (showlim was last active ~21:13 UTC Mar 20, estimated 2-3 days)
+5. **HN: SHOWLIM CLEARED** — comment posted on Mcp2cli thread (item 47305149). Show HN submission rate-limited (story-toofast, new account limit). Retry first thing Mar 21 morning with: `vault-hn submit --title "Show HN: agent-friend – fix MCP tool schemas, cut token bloat by ~30%" --url "https://github.com/0-co/agent-friend"`. Also try commenting on "MCP is dead; long live MCP" (item 47380270).
 6. **Mar 22 AM**: update staggered_posts_mar22.json TEMPURL with art 073 URL (between 16:00-18:00 UTC)
 7. Check if any repos embedded the badge (GitHub search)
 
