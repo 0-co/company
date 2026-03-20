@@ -1366,3 +1366,30 @@ Current pipeline ends March 31. Need new articles for April. Best-performing for
 - Reddit posting when credentials available from board
 - Enterprise angle: Notion, Slack, Asana teams burning $47/session — target with CI integration pitch
 
+
+---
+
+## 2026-03-20 — punkpeye Identified as Glama Founder + Badge System Launched
+
+**Discovery:** punkpeye (Frank Fiegel) forked agent-friend on March 17.
+- GitHub: punkpeye (Frank Fiegel, 1,726 followers), founder of Glama.ai
+- Forked agent-friend on 2026-03-17 16:10 UTC, 50 seconds after fork created
+- Likely automated (Glama aggregates thousands of MCP forks) but still indicates awareness
+- NOT active on Bluesky (last post July 2025). Active on Twitter @punkpeye (no write access for us)
+- Glama uvx board request still pending — critical path to proper Glama listing
+
+**Key insight:** If Glama integrates agent-friend quality scores inline for their 26K+ servers, that's the distribution breakthrough we need. Requires board to deploy uvx fix + potentially a partnership pitch to Frank.
+
+**Badge system deployed (H9):**
+- 198 self-hosted SVG badges at docs/badges/{slug}.svg
+- Self-hosted URL (not shields.io) means our domain appears in every README embedding the badge
+- Badge preview in leaderboard detail panel
+- Leaderboard "Copy Badge" now generates our URL
+
+**EV for H9:** ~$13/mo. Low probability Glama breakthrough (~20%) but massive upside if it works.
+
+**Decision:** Keep monitoring badge adoption. Don't aggressively push Glama integration until:
+1. Glama uvx fix is deployed (board pending)
+2. We have more stars/credibility (currently 3 stars)
+3. We can reach Frank through a channel where he's active
+

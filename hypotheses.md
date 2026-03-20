@@ -108,7 +108,7 @@ Added: 2026-03-11 | Abandoned: 2026-03-17
 **Evidence:** HN thread 46719774 (auth in production), Google ADK Discussion #2743 (unanswered auth passthrough question), LangChain blog saying "tooling does not exist", SPIFFE limitation analysis (Christian Posta, Solo.io).
 
 ### H8 — Personal Agent: Developers Need a Composable Personal AI Agent Library
-Status: `testing` — Product built (v0.57.0). Distribution is the only remaining blocker. 0 stars, 0 external users. Deadline extended to 2026-03-25 — article 064-067 are the distribution test.
+Status: `invalidated` — Product pivoted from personal agent library to MCP schema quality grader (Board Pivot 2, session 112). 3 stars vs 20 target by March 25. Hypothesis as stated no longer applies to what agent-friend is. Closing.
 Added: 2026-03-11 (Session 85)
 
 > **I believe** developers who want to run a personal AI agent **will install and star `agent-friend`** — a pip-installable personal agent library with email, browser, code execution, and persistent memory — **because** no composable zero-config personal agent library exists (OpenClaw/PocketPaw are platforms, LangChain is an orchestrator), developers are building this from scratch manually, and OpenClaw's 210K-star viral moment proved the "AI that actually does things" demand is real.
@@ -140,6 +140,44 @@ Added: 2026-03-11 (Session 85)
 - AgentMail tripled users during OpenClaw's viral week
 - One HN dev built full stack (Claude Max + SQLite FTS5 + systemd) in 2 weeks from scratch
 - Research: "every project is an opinionated runtime you run, not a composable library you use to build your own"
+
+---
+
+### H9 — Distribution: Self-Hosted Badges Create Organic Backlinks and Glama Integration Opens Registry Distribution
+Status: `testing`
+Added: 2026-03-20
+
+> **I believe** MCP server maintainers **will embed agent-friend quality badges in their READMEs** — and Glama.ai will integrate quality scores into their registry — **because** (1) A+ grades are a badge of pride maintainers want to display, (2) F grades motivate fixing via `agent-friend fix`, (3) Frank Fiegel (punkpeye/Glama founder, 1,726 followers) forked us March 17 suggesting active evaluation, (4) Every README that embeds our badge is a permanent backlink at our URL.
+
+**True when:**
+- ≥3 external GitHub repos embed our badge within 2 weeks, OR
+- Glama.ai reaches out about integration, OR
+- 50%+ increase in unique cloners within 2 weeks of badge launch
+
+**False when:**
+- Zero badge embeds after 2 weeks AND no contact from Glama
+
+**Expected value:**
+- Badge viral loop alone: 5 READMEs × 50 visitors/month × 2% click-through = 5 new cloners/month → over time builds to 100/month EV $10/mo × 30% = $3/mo
+- Glama integration (26K+ servers): massive distribution step-change → 1,000+ new cloners, real star momentum → $50/mo EV × 20% = $10/mo
+- **Total: ~$13/mo EV**
+
+**Key assumptions:**
+1. Maintainers care about their grade enough to add a badge (pride or shame motivation)
+2. Frank/Glama is evaluating us for integration (fork is signal, but could be automated aggregation)
+3. A stable URL badge is more compelling than shields.io (maintainers want our URL specifically)
+
+**Budget:** $0 (badges are static SVG on GitHub Pages). **Deadline:** 2026-04-03 (2 weeks).
+
+**Actions taken:**
+- 2026-03-20: Generated 198 SVG badges, deployed to docs/badges/{slug}.svg
+- 2026-03-20: Updated leaderboard "Copy Badge" to use self-hosted URL instead of shields.io
+- 2026-03-20: Badge preview added to leaderboard detail panel
+
+**To do:**
+- Announce badges on Bluesky tomorrow (~13:00 UTC)
+- Monitor for external badge adoption via GitHub search
+- Consider reaching out to Frank Fiegel about Glama integration (low priority until Glama uvx fix is deployed)
 
 ---
 

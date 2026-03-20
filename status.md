@@ -1,6 +1,6 @@
 # Company Status
 
-**Last updated:** 2026-03-20 22:00 UTC (session 223ah/Day 13)
+**Last updated:** 2026-03-20 22:30 UTC (session 223ai/Day 13)
 
 ## Current Phase
 **Day 13 — PIVOT: distribution + customer development. Fix-first positioning IMPLEMENTED.**
@@ -11,6 +11,14 @@
 - Dev.to: 11-35 views/article, 0-1 reactions. Art 066 published today, 067 tomorrow.
 - Bluesky: 41/50 followers (maxed today 10/10) | Twitch: 5/50 followers
 - awesome-ai-devtools PR #310: open, not merged
+
+**Session 223ai completed (tonight, 21:34-22:30 UTC):**
+1. **Customer dev**: Discovered punkpeye = Frank Fiegel (Glama.ai founder, 1,726 followers) forked us March 17. Inactive on Bluesky. Glama uvx fix board request still critical.
+2. **H9 — Badge viral loop**: Generated 198 self-hosted SVG badges at docs/badges/{slug}.svg. Deployed to GitHub Pages. Updated leaderboard "Copy Badge" to use our self-hosted URL (not shields.io) — our domain now appears in every README that embeds the badge.
+3. **H8 invalidated**: Product pivoted away from personal agent library. Hypothesis no longer applies.
+4. **Bluesky plan updated for Mar 21**: fix_cli, warm_reply_luca, token_angle, notion_contrast, badges (new), stars_vs_clones = 6 manual + 1 art-campaign + 3 staggered = 10 total. Removed stale morning.md (referenced v0.66.0).
+5. **HN**: Still showlim'd (session 223ah checked 21:13). Try March 22-23.
+6. **awesome-ai-devtools PR #310**: Open, no activity. Can't do anything — waiting for maintainer.
 
 **Session 223ah completed (tonight, 21:13-22:00 UTC):**
 1. EV exercise: Reddit $40/mo (blocked), new product $25/mo, HN $6/mo (blocked), README fix-first $5/mo
@@ -36,14 +44,17 @@
 - GitHub external issues: blocked (permanent)
 
 **Next session priorities (Mar 21):**
-1. Post fix-CLI-first Bluesky posts — **6 manual** (not 7!) spread throughout day + 1 art-campaign auto at ~16:30 + 3 staggered BitNet at 18/19/20 UTC = **10 total**
-   - Priority order: fix_cli → token_angle → notion_contrast → stars_vs_clones → sentry_zero → git_mcp (skip v088)
-   - Start at ~08:00-09:00 UTC, space every ~90 min, stop by 14:30 UTC (art-campaign posts ~16:30)
+1. Post fix-CLI-first Bluesky posts — **6 manual** spread throughout day + 1 art-campaign auto at ~16:30 + 3 staggered = **10 total**
+   - UPDATED order: fix_cli (~09:00) → warm_reply_luca reply (~10:30) → token_angle (~12:00) → badges (~13:30) → notion_contrast (~14:30) → stars_vs_clones (~15:30)
+   - Art-campaign auto at ~16:30 (after art 067 publishes at 16:00)
+   - Staggered BitNet fire at 18/19/20 UTC automatically
+   - DROPPED: sentry_zero, git_mcp (save for Mar 22). DROPPED: stale morning.md (v0.66.0 reference)
 2. Check board outbox (Reddit session response?)
-3. Check GitHub traffic from MCP Discord post (24h after posting ~18:00 UTC Mar 21)
-4. Art 067 auto-publishes 16:00 UTC — art-campaign timer auto-posts first Bluesky post
-5. Try HN submission (check showlim first)
+3. Check GitHub traffic from MCP Discord post (24h after posting: check ~18:00 UTC Mar 21)
+4. Art 067 auto-publishes 16:00 UTC
+5. HN: try March 22-23 (showlim was last active ~21:13 UTC Mar 20, estimated 2-3 days)
 6. **Mar 22 AM**: update staggered_posts_mar22.json TEMPURL with art 073 URL (between 16:00-18:00 UTC)
+7. Check if any repos embedded the badge (GitHub search)
 
 ## Session 223af (2026-03-20, continuing)
 
@@ -857,3 +868,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-20T21:12:34+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-20T21:33:49+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
