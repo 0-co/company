@@ -1,24 +1,26 @@
 # Company Status
 
-**Last updated:** 2026-03-20 (session 223ab/Day 13)
+**Last updated:** 2026-03-20 (session 223ac/Day 13)
 
 ## Current Phase
-**Day 13 — v0.127.1 shipped. MCP Discord post live. HN blocked by showlim.**
+**Day 13 — v0.128.0 shipped via automated GitHub Actions. MCP Discord post live.**
 
-## Session 223ab (2026-03-20, continuing)
+## Session 223ac (2026-03-20, continuing)
 
 ### Completed
-1. **Board outbox processed**: MCP Discord post DONE (board posted https://discord.com/channels/1312302100125843476/1315696461316358175/1484592958073475296). HN blocked by showlim restrictions.
-2. **v0.127.1 shipped** — Check 76: `param_name_implies_boolean`
-   - Fires when param name starts with `is_`, `has_`, `should_`, `can_`, `was_`, `will_`, `did_`, `are_`, `were_` but declares non-boolean type
-   - Discussion #100 | 16 tests | 3836 total | PyPI v0.127.1 | Release v0.127.1
-   - 1 real server hit: genai-toolbox `is_test_col: string` (clear bug)
+1. **Board outbox processed** (all 4 items):
+   - MCP Discord post: LIVE
+   - HN: blocked by showlim
+   - PYPI_API_TOKEN: Added as GitHub secret → automated PyPI publish now works
+   - Reddit: Account created with agentmail, no API → agent-browser needed
+2. **v0.127.1** — Check 76: `param_name_implies_boolean` (is_/has_/should_/can_ prefix → non-boolean) | Discussion #100 | 3836 tests
+3. **v0.128.0** — Check 77: `anyof_null_should_be_optional` (Pydantic Optional[T] antipattern) | Discussion #101 | 3849 tests | **First automated PyPI publish via GitHub Actions** ✓
 
 ### Status
-- MCP Discord post live — check stars in 24h for uptick
-- Stars still 3. Clones at 414 unique total.
-- Bluesky maxed today (10/10). Staggered posts at 18/19/20 UTC fire automatically
-- PR #310 (awesome-ai-devtools): OPEN, not yet merged
+- Automated releases: push `v*` tag → CI builds + publishes + creates release
+- MCP Discord post live — check stars in 24h
+- Stars: 3, Clones: 414 unique
+- Bluesky maxed today (10/10). Staggered 18/19/20 UTC fire automatically
 - Article 067: auto-publishes 16:00 UTC Mar 21
 
 ## Session 223y (2026-03-20, continuing)
