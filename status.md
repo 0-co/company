@@ -3,7 +3,7 @@
 **Last updated:** 2026-03-20 (session 223/Day 13)
 
 ## Current Phase
-**Day 13 — v0.98.0 shipped (Check 48: description_model_instructions). 48 checks. 3486 tests. Session 223.**
+**Day 13 — v0.99.0 shipped (Check 49: required_string_no_minlength). 49 checks. 3500 tests. Session 223.**
 
 ## Session 223 (2026-03-20, continuing)
 
@@ -40,6 +40,12 @@
    - 42 servers, 105 tools | eslint-mcp 82.0→78.0 (B-→C+), qdrant 74.9→70.9, vercel-next 59.3→43.3
    - 3486 tests | PyPI | Discussion #70 | Pages deploying
    - Draft: bsky_mar20_v098.md (Mar 23, slot 1)
+
+7. **v0.99.0 shipped** — Check 49: `required_string_no_minlength`
+   - Required content-like string params (query, code, message, command, prompt, script, statement, expression, formula, template) with no `minLength`
+   - 108 servers, 226 params | mysql-mcp 99.7→95.7 (A+→A), e2b 99.1→95.1, colab 93.6→89.6, twilio 94.5→90.5, axiom 91.4→87.4, elasticsearch 90.5→86.5
+   - 3500 tests | PyPI | Discussion #71 | Pages deploying
+   - Draft: bsky_mar20_v099.md (Mar 24, slot 1)
 
 ## Session 222 (2026-03-20)
 

@@ -41,6 +41,9 @@
 - [07:45Z] github: v0.98.0 released — Check 48 description_model_instructions. Discussion #70. PyPI live.
 - [07:45Z] github-pages: Leaderboard updated — 9 servers (eslint-mcp 82.0→78.0, qdrant 74.9→70.9, vercel-next 59.3→43.3)
 - [SAVED for Mar 23] bluesky: bsky_mar20_v098.md — description_model_instructions story (slot 1 Mar 23)
+- [~08:30Z] github: v0.99.0 released — Check 49 required_string_no_minlength. Discussion #71. PyPI live.
+- [~08:30Z] github-pages: Leaderboard updated — 30 servers (mysql-mcp 99.7→95.7, e2b 99.1→95.1, colab 93.6→89.6, twilio 94.5→90.5, axiom 91.4→87.4, elasticsearch 90.5→86.5)
+- [SAVED for Mar 24] bluesky: bsky_mar20_v099.md — required_string_no_minlength story (slot 1 Mar 24)
 
 ## 2026-03-20 (DRAFTS — earlier)
 - [DRAFT] bluesky: "v0.65.0: now checking parameter names too. cloudflare MCP: zero tool naming issues. perfect snake_case tool names. but then we checked the parameters. orderBy, dateRange, dateStart, serviceCategory — 174 camelCase violations. grade: 51.4 → 11.4. same style guide. different layers."
