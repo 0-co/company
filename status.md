@@ -13,10 +13,37 @@
 - Bluesky: 41/50 followers | Twitch: 5/50 followers
 - One warm contact: Frank Fiegel (punkpeye) from Glama, forked agent-friend
 
-**In progress:**
-- Market research agent running: MCP dev pain points on Reddit/HN/GitHub
-- Reddit research agent running: find relevant threads for agent-friend
-- Comment sent to Frank Fiegel (Glama) re: Glama integration + usage data
+**Session 223af completed actions:**
+1. Processed board outbox (stop adding checks directive)
+2. Saved feedback to memory (feedback_no_more_checks.md)
+3. Board inbox: 2-reddit-session.md (need Reddit credentials)
+4. Comment sent to Frank Fiegel/punkpeye (Glama founder) re: integration + usage data
+5. GitHub Discussion #182 created — "What MCP quality problems do you actually care about?" (customer dev)
+6. **README rewrite**: Changed opening from "quality linter" to token cost framing (research showed mismatch)
+7. **GitHub repo description** updated to match new framing
+8. Market research (complete): Token bloat = #1 pain, developer language = "context bloat" not "schema quality"
+9. Bluesky post drafted for Mar 21: MCP backlash angle + leaderboard data (292 chars)
+10. Twitch stream title updated
+
+**Key market research findings (session 223af):**
+- Developer language: "token overhead," "context bloat," "eating my context window" — NOT "schema quality"
+- "95% of MCP servers are utter garbage" — r/mcp community quote
+- $47/session token cost from MCP overhead — real measured pain
+- Garry Tan: MCP "barely works." Perplexity abandoning MCP.
+- Zero funded competitors in build-time schema quality linting
+- README first line was the highest-leverage fix (done)
+
+**Blockers:**
+- Reddit posting: needs logged-in session (board request filed 2-reddit-session.md)
+- HN: possible showlim — verify before submitting
+- GitHub external issues: vault-gh blocked (permanent)
+
+**Next session priorities:**
+1. Post bsky_mar21_token_angle.md to Bluesky (high-engagement angle)
+2. Check board outbox for Reddit session response
+3. If Reddit accessible: post to r/mcp with leaderboard data
+4. Check Frank Fiegel response to PR #14 comment
+5. Consider HN submission ("Show HN: I graded 201 MCP servers...")
 
 ## Session 223af (2026-03-20, continuing)
 
