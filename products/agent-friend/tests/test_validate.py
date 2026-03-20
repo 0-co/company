@@ -54,6 +54,15 @@ from agent_friend.validate import (
     _check_description_starts_with_gerund,
     _check_description_duplicate,
     _check_description_3p_action_verb,
+    _check_description_has_note_label,
+    _check_description_contains_url,
+    _check_description_says_deprecated,
+    _check_param_description_says_required,
+    _check_enum_default_not_in_enum,
+    _check_const_param_should_be_removed,
+    _check_contradictory_min_max,
+    _check_description_is_placeholder,
+    _check_schema_has_title_field,
 )
 
 
@@ -7888,3 +7897,735 @@ class TestDescription3pActionVerb:
         issues, _ = validate_tools(tools)
         hits = [i for i in issues if i.check == "description_3p_action_verb"]
         assert len(hits) == 1
+
+
+class TestDescriptionHasNoteLabel:
+    """Tests for check 63: description_has_note_label."""
+
+    def _make_mcp_tool(self, description: str) -> dict:
+        return {
+            "name": "do_thing",
+            "description": description,
+            "inputSchema": {"type": "object", "properties": {}, "required": []},
+        }
+
+    def test_fires_for_note(self):
+        """Description with 'Note:' fires."""
+        tools = [self._make_mcp_tool("Delete all records. Note: This operation is irreversible.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_has_note_label"]
+        assert len(hits) == 1
+
+    def test_fires_for_important(self):
+        """Description with 'Important:' fires."""
+        tools = [self._make_mcp_tool("Fetch user data. Important: Requires authentication.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_has_note_label"]
+        assert len(hits) == 1
+
+    def test_fires_for_warning(self):
+        """Description with 'Warning:' fires."""
+        tools = [self._make_mcp_tool("Run the pipeline. Warning: High resource usage.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_has_note_label"]
+        assert len(hits) == 1
+
+    def test_fires_for_caution(self):
+        """Description with 'Caution:' fires."""
+        tools = [self._make_mcp_tool("Overwrite the file. Caution: Existing data will be lost.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_has_note_label"]
+        assert len(hits) == 1
+
+    def test_fires_for_tip(self):
+        """Description with 'Tip:' fires."""
+        tools = [self._make_mcp_tool("Search for records. Tip: Use wildcards for broader results.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_has_note_label"]
+        assert len(hits) == 1
+
+    def test_fires_uppercase(self):
+        """Fires for uppercase 'NOTE:' and 'IMPORTANT:'."""
+        tools = [self._make_mcp_tool("Create a record. NOTE: Duplicate names are not allowed.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_has_note_label"]
+        assert len(hits) == 1
+
+    def test_no_fire_for_note_without_colon(self):
+        """'Note' without colon does not fire."""
+        obj = {
+            "name": "get_note",
+            "description": "Get the note associated with this record.",
+            "inputSchema": {"type": "object", "properties": {}},
+        }
+        issue = _check_description_has_note_label("get_note", obj, "mcp")
+        assert issue is None
+
+    def test_no_fire_for_important_without_colon(self):
+        """'important' without colon does not fire."""
+        obj = {
+            "name": "do_thing",
+            "description": "Apply the important changes to the configuration.",
+            "inputSchema": {"type": "object", "properties": {}},
+        }
+        issue = _check_description_has_note_label("do_thing", obj, "mcp")
+        assert issue is None
+
+    def test_no_fire_for_clean_description(self):
+        """Clean description without labels does not fire."""
+        obj = {
+            "name": "delete_record",
+            "description": "Delete a record by ID. This action cannot be undone.",
+            "inputSchema": {"type": "object", "properties": {}},
+        }
+        issue = _check_description_has_note_label("delete_record", obj, "mcp")
+        assert issue is None
+
+    def test_no_fire_for_empty_description(self):
+        """Empty description does not fire."""
+        obj = {
+            "name": "do_thing",
+            "description": "",
+            "inputSchema": {"type": "object", "properties": {}},
+        }
+        issue = _check_description_has_note_label("do_thing", obj, "mcp")
+        assert issue is None
+
+    def test_check_name_and_severity(self):
+        """Issue has correct check name and severity."""
+        obj = {
+            "name": "run_task",
+            "description": "Run the scheduled task. Warning: May take several minutes.",
+            "inputSchema": {"type": "object", "properties": {}},
+        }
+        issue = _check_description_has_note_label("run_task", obj, "mcp")
+        assert issue is not None
+        assert issue.check == "description_has_note_label"
+        assert issue.severity == "warn"
+
+
+class TestDescriptionContainsUrl:
+    """Tests for Check 64: description_contains_url."""
+
+    def _mcp_obj(self, desc):
+        return {"description": desc, "inputSchema": {"type": "object", "properties": {}}}
+
+    def test_fires_for_https_url(self):
+        obj = self._mcp_obj("Fetch weather data. See https://api.weather.gov/docs for details.")
+        issue = _check_description_contains_url("get_weather", obj, "mcp")
+        assert issue is not None
+
+    def test_fires_for_http_url(self):
+        obj = self._mcp_obj("Post a message (see http://example.com/api).")
+        issue = _check_description_contains_url("post_message", obj, "mcp")
+        assert issue is not None
+
+    def test_fires_for_url_mid_description(self):
+        obj = self._mcp_obj("Call the payments API (https://stripe.com/docs/api) to create a charge.")
+        issue = _check_description_contains_url("create_charge", obj, "mcp")
+        assert issue is not None
+
+    def test_fires_for_url_at_end(self):
+        obj = self._mcp_obj("Retrieve user profile. Documentation: https://docs.example.com/users.")
+        issue = _check_description_contains_url("get_user", obj, "mcp")
+        assert issue is not None
+
+    def test_no_fire_for_clean_description(self):
+        obj = self._mcp_obj("Fetch current weather conditions for a location.")
+        issue = _check_description_contains_url("get_weather", obj, "mcp")
+        assert issue is None
+
+    def test_no_fire_for_empty_description(self):
+        obj = {"description": "", "inputSchema": {"type": "object", "properties": {}}}
+        issue = _check_description_contains_url("no_desc", obj, "mcp")
+        assert issue is None
+
+    def test_no_fire_for_missing_description(self):
+        obj = {"inputSchema": {"type": "object", "properties": {}}}
+        issue = _check_description_contains_url("no_desc", obj, "mcp")
+        assert issue is None
+
+    def test_no_fire_for_domain_without_scheme(self):
+        obj = self._mcp_obj("Fetch data from api.example.com endpoint.")
+        issue = _check_description_contains_url("get_data", obj, "mcp")
+        assert issue is None
+
+    def test_check_name_and_severity(self):
+        obj = self._mcp_obj("Get data. See https://docs.example.com for more.")
+        issue = _check_description_contains_url("get_data", obj, "mcp")
+        assert issue is not None
+        assert issue.check == "description_contains_url"
+        assert issue.severity == "warn"
+
+    def test_fires_for_openai_format(self):
+        obj = {
+            "type": "function",
+            "function": {
+                "name": "get_docs",
+                "description": "Fetch documentation from https://docs.example.com.",
+                "parameters": {"type": "object", "properties": {}},
+            },
+        }
+        issue = _check_description_contains_url("get_docs", obj, "openai")
+        assert issue is not None
+
+    def test_no_fire_for_prose_only_api_mention(self):
+        obj = self._mcp_obj("Create a payment intent using the Stripe payments API.")
+        issue = _check_description_contains_url("create_payment", obj, "mcp")
+        assert issue is None
+
+
+class TestDescriptionSaysDeprecated:
+    """Tests for Check 65: description_says_deprecated."""
+
+    def _mcp_obj(self, desc):
+        return {"description": desc, "inputSchema": {"type": "object", "properties": {}}}
+
+    def test_fires_for_deprecated_word(self):
+        obj = self._mcp_obj("DEPRECATED: use get_user_v2 instead.")
+        issue = _check_description_says_deprecated("get_user", obj, "mcp")
+        assert issue is not None
+
+    def test_fires_for_deprecated_inline(self):
+        obj = self._mcp_obj("Fetch legacy data. This tool is deprecated.")
+        issue = _check_description_says_deprecated("get_data", obj, "mcp")
+        assert issue is not None
+
+    def test_fires_for_do_not_use(self):
+        obj = self._mcp_obj("Do not use — replaced by create_order_v2.")
+        issue = _check_description_says_deprecated("create_order", obj, "mcp")
+        assert issue is not None
+
+    def test_fires_for_will_be_removed(self):
+        obj = self._mcp_obj("Will be removed in v2. Use create_order instead.")
+        issue = _check_description_says_deprecated("old_endpoint", obj, "mcp")
+        assert issue is not None
+
+    def test_fires_for_obsolete(self):
+        obj = self._mcp_obj("Obsolete method for fetching user data.")
+        issue = _check_description_says_deprecated("get_user_old", obj, "mcp")
+        assert issue is not None
+
+    def test_fires_for_no_longer_supported(self):
+        obj = self._mcp_obj("No longer supported. Use list_documents instead.")
+        issue = _check_description_says_deprecated("list_docs_old", obj, "mcp")
+        assert issue is not None
+
+    def test_fires_case_insensitive(self):
+        obj = self._mcp_obj("DEPRECATED — do not call this tool.")
+        issue = _check_description_says_deprecated("old_tool", obj, "mcp")
+        assert issue is not None
+
+    def test_no_fire_for_clean_description(self):
+        obj = self._mcp_obj("Create a new user account with the given credentials.")
+        issue = _check_description_says_deprecated("create_user", obj, "mcp")
+        assert issue is None
+
+    def test_no_fire_for_empty_description(self):
+        obj = {"description": "", "inputSchema": {"type": "object", "properties": {}}}
+        issue = _check_description_says_deprecated("no_desc", obj, "mcp")
+        assert issue is None
+
+    def test_no_fire_for_missing_description(self):
+        obj = {"inputSchema": {"type": "object", "properties": {}}}
+        issue = _check_description_says_deprecated("no_desc", obj, "mcp")
+        assert issue is None
+
+    def test_check_name_and_severity(self):
+        obj = self._mcp_obj("This tool is deprecated. Use v2 instead.")
+        issue = _check_description_says_deprecated("old_tool", obj, "mcp")
+        assert issue is not None
+        assert issue.check == "description_says_deprecated"
+        assert issue.severity == "warn"
+
+
+class TestParamDescriptionSaysRequired:
+    """Tests for Check 66: param_description_says_required."""
+
+    def _schema(self, params, required=None):
+        return {
+            "type": "object",
+            "properties": params,
+            "required": required or [],
+        }
+
+    def test_fires_for_required_prefix(self):
+        schema = self._schema(
+            {"user_id": {"type": "string", "description": "Required: the user's ID"}},
+            required=["user_id"],
+        )
+        issues = _check_param_description_says_required("get_user", schema)
+        assert any(i.check == "param_description_says_required" for i in issues)
+
+    def test_fires_for_parenthetical_required(self):
+        schema = self._schema(
+            {"query": {"type": "string", "description": "(Required) Search query string"}},
+            required=["query"],
+        )
+        issues = _check_param_description_says_required("search", schema)
+        assert len(issues) == 1
+
+    def test_fires_for_required_dash(self):
+        schema = self._schema(
+            {"name": {"type": "string", "description": "Required - the item name"}},
+        )
+        issues = _check_param_description_says_required("create_item", schema)
+        assert len(issues) == 1
+
+    def test_fires_for_required_field_prefix(self):
+        schema = self._schema(
+            {"id": {"type": "string", "description": "Required field: unique identifier"}},
+        )
+        issues = _check_param_description_says_required("get_thing", schema)
+        assert len(issues) == 1
+
+    def test_fires_case_insensitive(self):
+        schema = self._schema(
+            {"token": {"type": "string", "description": "REQUIRED: auth token"}},
+        )
+        issues = _check_param_description_says_required("auth", schema)
+        assert len(issues) == 1
+
+    def test_no_fire_for_required_mid_description(self):
+        schema = self._schema(
+            {"key": {"type": "string", "description": "The key required for authentication"}},
+        )
+        issues = _check_param_description_says_required("get_token", schema)
+        assert len(issues) == 0
+
+    def test_no_fire_for_clean_description(self):
+        schema = self._schema(
+            {"user_id": {"type": "string", "description": "The user's unique ID"}},
+            required=["user_id"],
+        )
+        issues = _check_param_description_says_required("get_user", schema)
+        assert len(issues) == 0
+
+    def test_no_fire_for_missing_description(self):
+        schema = self._schema(
+            {"user_id": {"type": "string"}},
+        )
+        issues = _check_param_description_says_required("get_user", schema)
+        assert len(issues) == 0
+
+    def test_multiple_params_flagged(self):
+        schema = self._schema(
+            {
+                "a": {"type": "string", "description": "Required: first param"},
+                "b": {"type": "string", "description": "Required: second param"},
+                "c": {"type": "string", "description": "Optional third param"},
+            },
+        )
+        issues = _check_param_description_says_required("multi", schema)
+        assert len(issues) == 2
+
+    def test_check_name_and_severity(self):
+        schema = self._schema(
+            {"id": {"type": "string", "description": "Required: item identifier"}},
+        )
+        issues = _check_param_description_says_required("get_item", schema)
+        assert issues[0].check == "param_description_says_required"
+        assert issues[0].severity == "warn"
+
+    def test_fires_for_optional_param_saying_required(self):
+        # The more harmful case: non-required param says "required" — contradictory
+        schema = self._schema(
+            {"filter": {"type": "string", "description": "Required: filter string"}},
+            required=[],  # NOT in required
+        )
+        issues = _check_param_description_says_required("list_items", schema)
+        assert len(issues) == 1
+
+
+class TestEnumDefaultNotInEnum:
+    """Tests for Check 67: enum_default_not_in_enum."""
+
+    def _schema(self, params):
+        return {"type": "object", "properties": params}
+
+    def test_fires_when_default_not_in_enum(self):
+        schema = self._schema({
+            "order": {"type": "string", "enum": ["ascending", "descending"], "default": "asc"},
+        })
+        issues = _check_enum_default_not_in_enum("sort_results", schema)
+        assert len(issues) == 1
+
+    def test_fires_when_null_default_not_in_enum(self):
+        schema = self._schema({
+            "status": {"type": "string", "enum": ["active", "inactive"], "default": None},
+        })
+        issues = _check_enum_default_not_in_enum("get_items", schema)
+        assert len(issues) == 1
+
+    def test_fires_for_case_mismatch(self):
+        schema = self._schema({
+            "format": {"type": "string", "enum": ["json", "xml", "csv"], "default": "JSON"},
+        })
+        issues = _check_enum_default_not_in_enum("export", schema)
+        assert len(issues) == 1
+
+    def test_no_fire_when_default_in_enum(self):
+        schema = self._schema({
+            "order": {"type": "string", "enum": ["asc", "desc"], "default": "asc"},
+        })
+        issues = _check_enum_default_not_in_enum("sort", schema)
+        assert len(issues) == 0
+
+    def test_no_fire_when_null_default_in_enum(self):
+        schema = self._schema({
+            "mode": {"type": ["string", "null"], "enum": ["fast", "slow", None], "default": None},
+        })
+        issues = _check_enum_default_not_in_enum("run", schema)
+        assert len(issues) == 0
+
+    def test_no_fire_when_no_default(self):
+        schema = self._schema({
+            "order": {"type": "string", "enum": ["asc", "desc"]},
+        })
+        issues = _check_enum_default_not_in_enum("sort", schema)
+        assert len(issues) == 0
+
+    def test_no_fire_when_no_enum(self):
+        schema = self._schema({
+            "name": {"type": "string", "default": "unnamed"},
+        })
+        issues = _check_enum_default_not_in_enum("create", schema)
+        assert len(issues) == 0
+
+    def test_no_fire_for_empty_properties(self):
+        schema = {"type": "object", "properties": {}}
+        issues = _check_enum_default_not_in_enum("no_params", schema)
+        assert len(issues) == 0
+
+    def test_multiple_params_both_flagged(self):
+        schema = self._schema({
+            "order": {"type": "string", "enum": ["asc", "desc"], "default": "ascending"},
+            "format": {"type": "string", "enum": ["json", "xml"], "default": "csv"},
+        })
+        issues = _check_enum_default_not_in_enum("export", schema)
+        assert len(issues) == 2
+
+    def test_check_name_and_severity(self):
+        schema = self._schema({
+            "sort": {"type": "string", "enum": ["name", "date"], "default": "title"},
+        })
+        issues = _check_enum_default_not_in_enum("list_items", schema)
+        assert issues[0].check == "enum_default_not_in_enum"
+        assert issues[0].severity == "warn"
+
+    def test_no_fire_for_empty_enum(self):
+        # Edge case: empty enum list — we skip
+        schema = self._schema({
+            "sort": {"type": "string", "enum": [], "default": "name"},
+        })
+        issues = _check_enum_default_not_in_enum("list_items", schema)
+        assert len(issues) == 0
+
+
+class TestConstParamShouldBeRemoved:
+    """Tests for Check 68: const_param_should_be_removed."""
+
+    def _schema(self, params):
+        return {"type": "object", "properties": params}
+
+    def test_fires_for_string_const(self):
+        schema = self._schema({
+            "api_version": {"type": "string", "const": "v2"},
+        })
+        issues = _check_const_param_should_be_removed("get_data", schema)
+        assert len(issues) == 1
+
+    def test_fires_for_integer_const(self):
+        schema = self._schema({
+            "retry_count": {"type": "integer", "const": 3},
+        })
+        issues = _check_const_param_should_be_removed("run_task", schema)
+        assert len(issues) == 1
+
+    def test_fires_for_boolean_const(self):
+        schema = self._schema({
+            "debug": {"type": "boolean", "const": False},
+        })
+        issues = _check_const_param_should_be_removed("execute", schema)
+        assert len(issues) == 1
+
+    def test_fires_for_null_const(self):
+        schema = self._schema({
+            "extra": {"const": None},
+        })
+        issues = _check_const_param_should_be_removed("do_thing", schema)
+        assert len(issues) == 1
+
+    def test_no_fire_for_normal_param(self):
+        schema = self._schema({
+            "query": {"type": "string", "description": "Search query"},
+        })
+        issues = _check_const_param_should_be_removed("search", schema)
+        assert len(issues) == 0
+
+    def test_no_fire_for_enum_param(self):
+        schema = self._schema({
+            "format": {"type": "string", "enum": ["json", "xml"]},
+        })
+        issues = _check_const_param_should_be_removed("export", schema)
+        assert len(issues) == 0
+
+    def test_no_fire_for_empty_properties(self):
+        schema = {"type": "object", "properties": {}}
+        issues = _check_const_param_should_be_removed("no_params", schema)
+        assert len(issues) == 0
+
+    def test_multiple_const_params_flagged(self):
+        schema = self._schema({
+            "version": {"type": "string", "const": "2.0"},
+            "protocol": {"type": "string", "const": "https"},
+        })
+        issues = _check_const_param_should_be_removed("connect", schema)
+        assert len(issues) == 2
+
+    def test_check_name_and_severity(self):
+        schema = self._schema({
+            "mode": {"type": "string", "const": "production"},
+        })
+        issues = _check_const_param_should_be_removed("deploy", schema)
+        assert issues[0].check == "const_param_should_be_removed"
+        assert issues[0].severity == "warn"
+
+    def test_const_mixed_with_other_params(self):
+        schema = self._schema({
+            "query": {"type": "string"},
+            "api_version": {"type": "string", "const": "v1"},
+        })
+        issues = _check_const_param_should_be_removed("search", schema)
+        assert len(issues) == 1
+        assert "api_version" in issues[0].message
+
+
+class TestContradictoryMinMax:
+    """Tests for Check 69: contradictory_min_max."""
+
+    def _schema(self, params):
+        return {"type": "object", "properties": params}
+
+    def test_fires_for_minimum_greater_than_maximum(self):
+        schema = self._schema({
+            "count": {"type": "integer", "minimum": 100, "maximum": 10},
+        })
+        issues = _check_contradictory_min_max("get_items", schema)
+        assert len(issues) == 1
+
+    def test_fires_for_minlength_greater_than_maxlength(self):
+        schema = self._schema({
+            "name": {"type": "string", "minLength": 50, "maxLength": 10},
+        })
+        issues = _check_contradictory_min_max("create_user", schema)
+        assert len(issues) == 1
+
+    def test_fires_for_minitems_greater_than_maxitems(self):
+        schema = self._schema({
+            "tags": {"type": "array", "minItems": 10, "maxItems": 3},
+        })
+        issues = _check_contradictory_min_max("create_post", schema)
+        assert len(issues) == 1
+
+    def test_fires_for_exclusive_min_max(self):
+        schema = self._schema({
+            "ratio": {"type": "number", "exclusiveMinimum": 1.0, "exclusiveMaximum": 0.5},
+        })
+        issues = _check_contradictory_min_max("set_ratio", schema)
+        assert len(issues) == 1
+
+    def test_no_fire_for_valid_min_max(self):
+        schema = self._schema({
+            "count": {"type": "integer", "minimum": 1, "maximum": 100},
+        })
+        issues = _check_contradictory_min_max("get_items", schema)
+        assert len(issues) == 0
+
+    def test_no_fire_for_equal_min_max(self):
+        # equal is valid (single allowed value)
+        schema = self._schema({
+            "port": {"type": "integer", "minimum": 8080, "maximum": 8080},
+        })
+        issues = _check_contradictory_min_max("connect", schema)
+        assert len(issues) == 0
+
+    def test_no_fire_for_only_minimum(self):
+        schema = self._schema({
+            "count": {"type": "integer", "minimum": 1},
+        })
+        issues = _check_contradictory_min_max("get_items", schema)
+        assert len(issues) == 0
+
+    def test_no_fire_for_empty_properties(self):
+        schema = {"type": "object", "properties": {}}
+        issues = _check_contradictory_min_max("no_params", schema)
+        assert len(issues) == 0
+
+    def test_check_name_and_severity(self):
+        schema = self._schema({
+            "score": {"type": "number", "minimum": 100, "maximum": 10},
+        })
+        issues = _check_contradictory_min_max("rate", schema)
+        assert issues[0].check == "contradictory_min_max"
+        assert issues[0].severity == "warn"
+
+    def test_multiple_violations_flagged(self):
+        schema = self._schema({
+            "count": {"type": "integer", "minimum": 100, "maximum": 1},
+            "name": {"type": "string", "minLength": 50, "maxLength": 5},
+        })
+        issues = _check_contradictory_min_max("create", schema)
+        assert len(issues) == 2
+
+
+class TestDescriptionIsPlaceholder:
+    """Tests for Check 70: description_is_placeholder."""
+
+    def _mcp_obj(self, desc, params=None):
+        props = params or {}
+        return {"description": desc, "inputSchema": {"type": "object", "properties": props}}
+
+    def test_fires_for_todo_tool_description(self):
+        obj = self._mcp_obj("TODO")
+        issues = _check_description_is_placeholder("do_thing", obj, "mcp")
+        assert any(i.check == "description_is_placeholder" for i in issues)
+
+    def test_fires_for_na_tool_description(self):
+        obj = self._mcp_obj("N/A")
+        issues = _check_description_is_placeholder("do_thing", obj, "mcp")
+        assert len(issues) >= 1
+
+    def test_fires_for_none_tool_description(self):
+        obj = self._mcp_obj("None")
+        issues = _check_description_is_placeholder("do_thing", obj, "mcp")
+        assert len(issues) >= 1
+
+    def test_fires_for_tbd(self):
+        obj = self._mcp_obj("TBD")
+        issues = _check_description_is_placeholder("do_thing", obj, "mcp")
+        assert len(issues) >= 1
+
+    def test_fires_for_placeholder_word(self):
+        obj = self._mcp_obj("placeholder")
+        issues = _check_description_is_placeholder("do_thing", obj, "mcp")
+        assert len(issues) >= 1
+
+    def test_fires_for_no_description(self):
+        obj = self._mcp_obj("No description")
+        issues = _check_description_is_placeholder("do_thing", obj, "mcp")
+        assert len(issues) >= 1
+
+    def test_fires_for_placeholder_param_description(self):
+        obj = self._mcp_obj("Search for records.", {
+            "query": {"type": "string", "description": "TODO"},
+        })
+        issues = _check_description_is_placeholder("search", obj, "mcp")
+        assert any("query" in i.message for i in issues)
+
+    def test_fires_case_insensitive(self):
+        obj = self._mcp_obj("todo")
+        issues = _check_description_is_placeholder("do_thing", obj, "mcp")
+        assert len(issues) >= 1
+
+    def test_no_fire_for_real_description(self):
+        obj = self._mcp_obj("Search documents by keyword and return matching results.")
+        issues = _check_description_is_placeholder("search", obj, "mcp")
+        assert len(issues) == 0
+
+    def test_no_fire_for_empty_description(self):
+        obj = {"description": "", "inputSchema": {"type": "object", "properties": {}}}
+        issues = _check_description_is_placeholder("no_desc", obj, "mcp")
+        assert len(issues) == 0
+
+    def test_no_fire_for_description_word_in_sentence(self):
+        # "description" as a standalone word is a placeholder; in a sentence it's fine
+        obj = self._mcp_obj("Returns a description of the item.")
+        issues = _check_description_is_placeholder("describe", obj, "mcp")
+        assert len(issues) == 0
+
+    def test_check_name_and_severity(self):
+        obj = self._mcp_obj("TBD")
+        issues = _check_description_is_placeholder("do_thing", obj, "mcp")
+        tool_issues = [i for i in issues if "tool description" in i.message]
+        assert tool_issues[0].check == "description_is_placeholder"
+        assert tool_issues[0].severity == "warn"
+
+
+class TestSchemaHasTitleField:
+    """Tests for Check 71: schema_has_title_field."""
+
+    def test_fires_for_schema_title(self):
+        schema = {
+            "type": "object",
+            "title": "Search parameters",
+            "properties": {"query": {"type": "string"}},
+        }
+        issues = _check_schema_has_title_field("search", schema)
+        assert any("inputSchema" in i.message for i in issues)
+
+    def test_fires_for_param_title(self):
+        schema = {
+            "type": "object",
+            "properties": {
+                "query": {"type": "string", "title": "Query string", "description": "Search query"},
+            },
+        }
+        issues = _check_schema_has_title_field("search", schema)
+        assert any("query" in i.message for i in issues)
+
+    def test_fires_for_both_schema_and_param_title(self):
+        schema = {
+            "type": "object",
+            "title": "Parameters",
+            "properties": {
+                "name": {"type": "string", "title": "Name", "description": "Item name"},
+            },
+        }
+        issues = _check_schema_has_title_field("create_item", schema)
+        assert len(issues) == 2
+
+    def test_no_fire_for_clean_schema(self):
+        schema = {
+            "type": "object",
+            "properties": {
+                "query": {"type": "string", "description": "Search query"},
+            },
+        }
+        issues = _check_schema_has_title_field("search", schema)
+        assert len(issues) == 0
+
+    def test_no_fire_for_empty_properties(self):
+        schema = {"type": "object", "properties": {}}
+        issues = _check_schema_has_title_field("no_params", schema)
+        assert len(issues) == 0
+
+    def test_fires_for_multiple_params_with_title(self):
+        schema = {
+            "type": "object",
+            "properties": {
+                "a": {"type": "string", "title": "A", "description": "First param"},
+                "b": {"type": "string", "title": "B", "description": "Second param"},
+            },
+        }
+        issues = _check_schema_has_title_field("create", schema)
+        assert len(issues) == 2
+
+    def test_check_name_and_severity(self):
+        schema = {
+            "type": "object",
+            "title": "My Parameters",
+            "properties": {},
+        }
+        issues = _check_schema_has_title_field("do_thing", schema)
+        assert issues[0].check == "schema_has_title_field"
+        assert issues[0].severity == "warn"
+
+    def test_no_fire_for_description_only(self):
+        schema = {
+            "type": "object",
+            "description": "Parameters for searching",
+            "properties": {"query": {"type": "string"}},
+        }
+        issues = _check_schema_has_title_field("search", schema)
+        assert len(issues) == 0

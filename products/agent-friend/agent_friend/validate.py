@@ -1904,6 +1904,618 @@ def _check_tool_description_non_imperative(name: str, obj: Dict[str, Any], fmt: 
 
 
 # ---------------------------------------------------------------------------
+# Check 71: schema_has_title_field
+# ---------------------------------------------------------------------------
+
+
+def _check_schema_has_title_field(tool_name: str, schema: Dict[str, Any], fmt: str = "mcp") -> List[Issue]:
+    """Check 71: schema_has_title_field — the inputSchema or a parameter
+    definition contains a ``title`` field.
+
+    In tool-calling schemas, the ``title`` JSON Schema keyword is redundant:
+
+    * At the **schema level**: the tool's ``name`` already identifies it.
+    * At the **parameter level**: the parameter name already serves as the
+      identifier; ``description`` provides the prose explanation.
+
+    The ``title`` field is valid JSON Schema and useful in UI form generators
+    (e.g., json-schema-form), but tool-calling LLMs do not use it.  Including
+    it wastes tokens on every request that carries the schema.
+
+    Common cause: auto-generated schemas from OpenAPI specs (where ``title``
+    is a standard field at every level).
+
+    Fires when:
+
+    * ``inputSchema.title`` is present, OR
+    * Any top-level parameter definition has a ``title`` key
+
+    Examples::
+
+        # flagged — schema-level title
+        {"inputSchema": {"type": "object", "title": "Search parameters", ...}}
+
+        # flagged — param-level title
+        {"query": {"type": "string", "title": "Query string", "description": "..."}}
+
+        # correct — no title fields
+        {"inputSchema": {"type": "object", "properties": {...}}}
+    """
+    issues = []
+
+    # Schema-level title — skip for json_schema format where title IS the tool name
+    if isinstance(schema, dict) and "title" in schema and fmt != "json_schema":
+        issues.append(Issue(
+            tool=tool_name,
+            severity="warn",
+            check="schema_has_title_field",
+            message=(
+                "inputSchema has a 'title' field ('{title}') — redundant with the tool "
+                "name; remove it to reduce token cost."
+            ).format(title=schema.get("title", "")),
+        ))
+
+    # Param-level titles
+    properties = schema.get("properties", {}) if isinstance(schema, dict) else {}
+    if not isinstance(properties, dict):
+        return issues
+    for param_name, param_schema in properties.items():
+        if not isinstance(param_schema, dict):
+            continue
+        if "title" in param_schema:
+            issues.append(Issue(
+                tool=tool_name,
+                severity="warn",
+                check="schema_has_title_field",
+                message=(
+                    "param '{param}' has a 'title' field ('{title}') — redundant with the "
+                    "param name; remove it to reduce token cost."
+                ).format(param=param_name, title=param_schema.get("title", "")),
+            ))
+
+    return issues
+
+
+# ---------------------------------------------------------------------------
+# Check 70: description_is_placeholder
+# ---------------------------------------------------------------------------
+
+_PLACEHOLDER_DESCRIPTION_RE = re.compile(
+    r'^(n/?a|none|todo|tbd|description|placeholder|undefined|no\s+description\.?|tba|coming\s+soon|fill\s+in|to\s+be\s+added|example\s+description)$',
+    re.IGNORECASE,
+)
+"""Pattern matching placeholder descriptions that were never filled in."""
+
+
+def _check_description_is_placeholder(name: str, obj: Dict[str, Any], fmt: str) -> List[Issue]:
+    """Check 70: description_is_placeholder — tool or param description is a
+    known placeholder value that was never filled in.
+
+    These appear in auto-generated or carelessly maintained schemas where the
+    description field was left as a template default.
+
+    Fires on tool descriptions that exactly match (case-insensitive):
+
+    * ``N/A``, ``NA``
+    * ``None``
+    * ``TODO``, ``TBD``, ``TBA``
+    * ``description`` (the word itself)
+    * ``placeholder``
+    * ``undefined``
+    * ``No description``
+    * ``Coming soon``
+    * ``Fill in``
+    * ``To be added``
+    * ``Example description``
+
+    Also fires on parameter descriptions that match the same set.
+
+    Examples::
+
+        # flagged — placeholder tool description
+        {"description": "TODO", "inputSchema": {...}}
+        {"description": "N/A", "inputSchema": {...}}
+
+        # flagged — placeholder param description
+        {"query": {"type": "string", "description": "placeholder"}}
+
+        # correct — actual description
+        {"description": "Search documents by keyword."}
+    """
+    issues = []
+
+    # Check tool-level description
+    desc = _get_tool_description(obj, fmt)
+    if desc and isinstance(desc, str) and _PLACEHOLDER_DESCRIPTION_RE.match(desc.strip()):
+        issues.append(Issue(
+            tool=name,
+            severity="warn",
+            check="description_is_placeholder",
+            message=(
+                "tool description '{desc}' is a placeholder — write an actual "
+                "description that explains what the tool does."
+            ).format(desc=desc.strip()),
+        ))
+
+    # Check param descriptions
+    schema = _get_tool_schema(obj, fmt)
+    if schema and isinstance(schema, dict):
+        properties = schema.get("properties", {})
+        if isinstance(properties, dict):
+            for param_name, param_schema in properties.items():
+                if not isinstance(param_schema, dict):
+                    continue
+                param_desc = param_schema.get("description", "")
+                if param_desc and isinstance(param_desc, str) and _PLACEHOLDER_DESCRIPTION_RE.match(param_desc.strip()):
+                    issues.append(Issue(
+                        tool=name,
+                        severity="warn",
+                        check="description_is_placeholder",
+                        message=(
+                            "param '{param}' description '{desc}' is a placeholder — "
+                            "write an actual description."
+                        ).format(param=param_name, desc=param_desc.strip()),
+                    ))
+
+    return issues
+
+
+# ---------------------------------------------------------------------------
+# Check 69: contradictory_min_max
+# ---------------------------------------------------------------------------
+
+_MIN_MAX_PAIRS = [
+    ("minimum", "maximum"),
+    ("minLength", "maxLength"),
+    ("minItems", "maxItems"),
+    ("exclusiveMinimum", "exclusiveMaximum"),
+]
+
+
+def _check_contradictory_min_max(tool_name: str, schema: Dict[str, Any]) -> List[Issue]:
+    """Check 69: contradictory_min_max — parameter has ``minimum > maximum``,
+    ``minLength > maxLength``, or ``minItems > maxItems``.
+
+    This is a schema correctness bug: the allowed range is empty — no valid
+    value can satisfy both constraints simultaneously.  The model may produce
+    a value that passes the intent check but fails schema validation, leading
+    to runtime errors.
+
+    Fires when any of the following are violated for a parameter:
+
+    * ``minimum > maximum``
+    * ``minLength > maxLength``
+    * ``minItems > maxItems``
+    * ``exclusiveMinimum > exclusiveMaximum``
+
+    Examples::
+
+        # flagged — minimum exceeds maximum (empty range)
+        {"type": "integer", "minimum": 100, "maximum": 10}
+
+        # flagged — minLength exceeds maxLength
+        {"type": "string", "minLength": 50, "maxLength": 10}
+
+        # correct
+        {"type": "integer", "minimum": 1, "maximum": 100}
+    """
+    issues = []
+    properties = schema.get("properties", {})
+    if not isinstance(properties, dict):
+        return issues
+
+    for param_name, param_schema in properties.items():
+        if not isinstance(param_schema, dict):
+            continue
+        for min_key, max_key in _MIN_MAX_PAIRS:
+            if min_key not in param_schema or max_key not in param_schema:
+                continue
+            try:
+                min_val = float(param_schema[min_key])
+                max_val = float(param_schema[max_key])
+            except (TypeError, ValueError):
+                continue
+            if min_val > max_val:
+                issues.append(Issue(
+                    tool=tool_name,
+                    severity="warn",
+                    check="contradictory_min_max",
+                    message=(
+                        "param '{param}' has {mn}={mn_val} > {mx}={mx_val} — "
+                        "the allowed range is empty; no valid value can satisfy both constraints."
+                    ).format(
+                        param=param_name,
+                        mn=min_key, mn_val=param_schema[min_key],
+                        mx=max_key, mx_val=param_schema[max_key],
+                    ),
+                ))
+
+    return issues
+
+
+# ---------------------------------------------------------------------------
+# Check 68: const_param_should_be_removed
+# ---------------------------------------------------------------------------
+
+
+def _check_const_param_should_be_removed(tool_name: str, schema: Dict[str, Any]) -> List[Issue]:
+    """Check 68: const_param_should_be_removed — parameter uses the JSON Schema
+    ``const`` keyword, meaning it always has a fixed value.
+
+    The model can never provide a different value for a ``const`` parameter.
+    The server should hardcode this value instead of exposing it as a parameter.
+    Exposing it:
+
+    * **Wastes tokens** — the model reads a param definition it cannot influence.
+    * **Wastes model attention** — the model may waste reasoning about a param
+      that has a single valid value.
+    * **Suggests auto-generated schema** — often comes from tools that auto-export
+      API specs without pruning fixed-value fields.
+
+    Note: Check 44 (``enum_single_const``) catches the ``enum: ["value"]``
+    anti-pattern (single-value enum should use ``const``).  This check catches
+    the complementary case: where ``const`` is correctly used syntactically but
+    should be removed from the public schema entirely.
+
+    Fires when any top-level parameter contains a ``const`` key.
+
+    Examples::
+
+        # flagged — const param is a fixed value the model can't change
+        "api_version": {"type": "string", "const": "v2"}
+        "format": {"type": "string", "const": "json"}
+
+        # correct — remove the parameter; hardcode the value server-side
+        (no parameter at all)
+    """
+    issues = []
+    properties = schema.get("properties", {})
+    if not isinstance(properties, dict):
+        return issues
+
+    for param_name, param_schema in properties.items():
+        if not isinstance(param_schema, dict):
+            continue
+        if "const" in param_schema:
+            const_val = param_schema["const"]
+            issues.append(Issue(
+                tool=tool_name,
+                severity="warn",
+                check="const_param_should_be_removed",
+                message=(
+                    "param '{param}' uses 'const: {val!r}' — the model cannot "
+                    "provide a different value; hardcode it server-side and remove "
+                    "the parameter from the schema."
+                ).format(param=param_name, val=const_val),
+            ))
+
+    return issues
+
+
+# ---------------------------------------------------------------------------
+# Check 67: enum_default_not_in_enum
+# ---------------------------------------------------------------------------
+
+
+def _check_enum_default_not_in_enum(tool_name: str, schema: Dict[str, Any]) -> List[Issue]:
+    """Check 67: enum_default_not_in_enum — parameter has both an ``enum`` and a
+    ``default``, but the default value is not listed in the enum.
+
+    This is a schema correctness bug: the declared default can never be a
+    valid value because it lies outside the allowed set.
+
+    Common causes:
+
+    * Copy-paste error: the default was not updated after the enum was narrowed.
+    * Typo: e.g., default is ``"asc"`` but enum requires ``"ascending"``.
+    * Case mismatch: default ``"None"`` (string) vs enum ``[null]``.
+    * Sentinel value: default ``"auto"`` used as a magic sentinel, not declared
+      in the enum.
+
+    Fires when:
+
+    * A parameter has ``"enum"`` (non-empty list), AND
+    * The parameter has a ``"default"`` field, AND
+    * The default value is **not** in the enum list
+
+    Examples::
+
+        # flagged — default 'asc' not in enum
+        {"type": "string", "enum": ["ascending", "descending"], "default": "asc"}
+
+        # flagged — default null not in enum (use null as enum value to allow it)
+        {"type": "string", "enum": ["active", "inactive"], "default": null}
+
+        # correct — default is in enum
+        {"type": "string", "enum": ["asc", "desc"], "default": "asc"}
+    """
+    issues = []
+    properties = schema.get("properties", {})
+    if not isinstance(properties, dict):
+        return issues
+
+    for param_name, param_schema in properties.items():
+        if not isinstance(param_schema, dict):
+            continue
+        enum = param_schema.get("enum")
+        if not isinstance(enum, list) or not enum:
+            continue
+        if "default" not in param_schema:
+            continue
+        default = param_schema["default"]
+        if default not in enum:
+            issues.append(Issue(
+                tool=tool_name,
+                severity="warn",
+                check="enum_default_not_in_enum",
+                message=(
+                    "param '{param}' default {default!r} is not in its enum {enum!r} — "
+                    "the default can never be a valid value."
+                ).format(param=param_name, default=default, enum=enum),
+            ))
+
+    return issues
+
+
+# ---------------------------------------------------------------------------
+# Check 66: param_description_says_required
+# ---------------------------------------------------------------------------
+
+_SAYS_REQUIRED_RE = re.compile(
+    r'^(\(required\)\s*|required\s*[:\-–]\s*|required\s+field\s*[:\-–]\s*)',
+    re.IGNORECASE,
+)
+"""Pattern matching 'Required:' / '(required)' labels at the start of param descriptions."""
+
+
+def _check_param_description_says_required(tool_name: str, schema: Dict[str, Any]) -> List[Issue]:
+    """Check 66: param_description_says_required — param description starts with a
+    'Required' label.
+
+    Two cases, both are smells:
+
+    * **Required param** says "required" in its description: redundant — the
+      ``required`` array already communicates this.
+    * **Optional param** says "required" in its description: contradictory — the
+      description contradicts the schema structure.
+
+    The label conveys no information to the model beyond what the schema already
+    encodes (or mis-encodes), and wastes tokens on every call that includes
+    the tool definition.
+
+    Fires when a param description starts with:
+
+    * ``"Required: ..."`` / ``"Required - ..."``
+    * ``"(Required) ..."``
+    * ``"Required field: ..."``
+
+    Does not fire when "required" appears mid-description (e.g., "The ID
+    required for authentication") — only the label pattern is flagged.
+
+    Examples::
+
+        # flagged — 'Required' prefix is redundant with the required array
+        "user_id": {"description": "Required: the user's ID", ...}
+        "query":   {"description": "(Required) Search query string", ...}
+
+        # correct — description goes straight to the point
+        "user_id": {"description": "The user's ID", ...}
+        "query":   {"description": "Search query string", ...}
+    """
+    issues = []
+    properties = schema.get("properties", {})
+    if not isinstance(properties, dict):
+        return issues
+
+    for param_name, param_schema in properties.items():
+        if not isinstance(param_schema, dict):
+            continue
+        description = param_schema.get("description", "")
+        if not description or not isinstance(description, str):
+            continue
+        if _SAYS_REQUIRED_RE.match(description.strip()):
+            issues.append(Issue(
+                tool=tool_name,
+                severity="warn",
+                check="param_description_says_required",
+                message=(
+                    "param '{param}' description starts with 'Required' — "
+                    "the schema's 'required' array already encodes this; "
+                    "remove the label and let the schema structure speak."
+                ).format(param=param_name),
+            ))
+
+    return issues
+
+
+# ---------------------------------------------------------------------------
+# Check 65: description_says_deprecated
+# ---------------------------------------------------------------------------
+
+_DEPRECATED_RE = re.compile(
+    r'\b(deprecated|do\s+not\s+use|will\s+be\s+removed|being\s+removed|obsolete|no\s+longer\s+supported)\b',
+    re.IGNORECASE,
+)
+"""Pattern matching deprecation language in tool descriptions."""
+
+
+def _check_description_says_deprecated(name: str, obj: Dict[str, Any], fmt: str) -> Optional[Issue]:
+    """Check 65: description_says_deprecated — tool description signals the tool
+    is deprecated, obsolete, or should not be used.
+
+    When a description says "deprecated", "do not use", "will be removed", etc.,
+    the schema is announcing that this tool should not exist.  The fix is to
+    remove the tool — not to document it as deprecated.
+
+    A deprecation label in the schema is actively harmful:
+
+    * The model may still call the tool if it appears to satisfy the task —
+      the word "deprecated" does not prevent calls.
+    * It pollutes the token budget for every request that includes the schema.
+    * It signals that the schema is not being maintained.
+
+    Fires on:
+
+    * ``deprecated`` / ``DEPRECATED``
+    * ``do not use`` / ``DO NOT USE``
+    * ``will be removed``
+    * ``being removed``
+    * ``obsolete``
+    * ``no longer supported``
+
+    Examples::
+
+        # flagged — deprecation label
+        "DEPRECATED: use get_user_v2 instead."
+        "Fetch legacy data. This tool is deprecated."
+        "Will be removed in v2. Use create_order instead."
+
+        # correct — tool removed or description updated
+        # (remove the tool from the schema entirely)
+    """
+    desc = _get_tool_description(obj, fmt)
+    if not desc or not isinstance(desc, str):
+        return None
+    m = _DEPRECATED_RE.search(desc)
+    if not m:
+        return None
+    term = m.group(0)
+    return Issue(
+        tool=name,
+        severity="warn",
+        check="description_says_deprecated",
+        message=(
+            "tool description contains '{term}' — deprecated tools should be "
+            "removed from the schema, not documented as deprecated."
+        ).format(term=term),
+    )
+
+
+# ---------------------------------------------------------------------------
+# Check 63: description_has_note_label
+# ---------------------------------------------------------------------------
+
+_NOTE_LABEL_RE = re.compile(
+    r'(?<![A-Za-z])(?:Note|Important|Warning|Caution|Tip|Caveat)\s*:',
+    re.IGNORECASE,
+)
+"""Pattern matching labeled meta-sections in tool descriptions."""
+
+
+def _check_description_has_note_label(name: str, obj: Dict[str, Any], fmt: str) -> Optional[Issue]:
+    """Check 63: description_has_note_label — tool description contains a labeled
+    meta-section like "Note:", "Important:", "Warning:", "Tip:", or "Caution:".
+
+    These labels interrupt the flow of the description with inline commentary
+    that should either be:
+
+    * Integrated into the description prose: ``"Delete the record (irreversible)."``
+    * Moved to the system prompt for operational guidance.
+
+    Labeled notes are a form of structured prose in what should be a concise,
+    single-sentence description.  They expand the description with meta-content
+    the model must parse past to understand the core action.  They also tokenise
+    poorly — "Note:" takes a token, the colon takes a token, the space takes
+    a token — before any useful information is conveyed.
+
+    Fires when the description contains any of:
+
+    * ``Note:`` / ``NOTE:``
+    * ``Important:`` / ``IMPORTANT:``
+    * ``Warning:`` / ``WARNING:``
+    * ``Caution:`` / ``CAUTION:``
+    * ``Tip:`` / ``TIP:``
+    * ``Caveat:`` / ``CAVEAT:``
+
+    Does **not** fire on:
+    * These words without a colon (e.g., "important parameter", "warning signs")
+    * Words that start with these but are different (e.g., "Notation:", "Importantly,")
+    * Check 48 (`description_model_instructions`) already catches "IMPORTANT: call..."
+      directives; this check catches the broader labeled-section pattern
+
+    Examples::
+
+        # flagged — labeled meta-section
+        "Delete all records. Note: This operation is irreversible."
+        "Fetch the current user. Important: Requires authentication."
+        "Run the command. Warning: High resource usage."
+
+        # correct — integrated prose
+        "Delete all records. This operation cannot be undone."
+        "Fetch the current authenticated user's profile."
+        "Run the command (may use significant CPU/memory)."
+    """
+    desc = _get_tool_description(obj, fmt)
+    if not desc or not isinstance(desc, str):
+        return None
+    m = _NOTE_LABEL_RE.search(desc)
+    if not m:
+        return None
+    label = m.group(0).rstrip(':').strip()
+    return Issue(
+        tool=name,
+        severity="warn",
+        check="description_has_note_label",
+        message=(
+            "tool description contains labeled meta-section '{label}:' — "
+            "integrate the note into the prose or move operational guidance "
+            "to the system prompt."
+        ).format(label=label),
+    )
+
+
+# ---------------------------------------------------------------------------
+# Check 64: description_contains_url
+# ---------------------------------------------------------------------------
+
+_URL_RE = re.compile(r'https?://')
+"""Pattern matching http:// or https:// URLs in tool descriptions."""
+
+
+def _check_description_contains_url(name: str, obj: Dict[str, Any], fmt: str) -> Optional[Issue]:
+    """Check 64: description_contains_url — tool description contains a URL.
+
+    URLs embedded in tool descriptions are a schema smell:
+
+    * **Maintenance burden** — links rot; when the URL changes, the schema
+      must be updated and re-deployed.
+    * **Token waste** — a URL can consume 10-30+ tokens for zero semantic
+      value to the model.
+    * **Wrong layer** — documentation links belong in the README or docs
+      site, not in the schema that the model reads at inference time.
+
+    The fix is to remove the URL entirely or replace it with a short prose
+    phrase that conveys the same intent without a link.
+
+    Fires when the tool description contains ``http://`` or ``https://``.
+
+    Examples::
+
+        # flagged — URL in description
+        "Fetch weather data. See https://api.weather.gov/docs for details."
+        "Call the payments API (https://stripe.com/docs/api)."
+
+        # correct — prose only
+        "Fetch current weather conditions for a location."
+        "Create a payment intent using the Stripe payments API."
+    """
+    desc = _get_tool_description(obj, fmt)
+    if not desc or not isinstance(desc, str):
+        return None
+    if not _URL_RE.search(desc):
+        return None
+    return Issue(
+        tool=name,
+        severity="warn",
+        check="description_contains_url",
+        message=(
+            "tool description contains a URL — documentation links belong in "
+            "the README or docs site, not the schema; remove the URL or replace "
+            "with a short prose phrase."
+        ),
+    )
+
+
 # Check 62: description_3p_action_verb
 # ---------------------------------------------------------------------------
 
@@ -3772,6 +4384,39 @@ def validate_tools(data: Any) -> Tuple[List[Issue], Dict[str, Any]]:
         issue = _check_description_3p_action_verb(name, raw_obj, fmt)
         if issue is not None:
             issues.append(issue)
+
+        # Check 63: description_has_note_label
+        issue = _check_description_has_note_label(name, raw_obj, fmt)
+        if issue is not None:
+            issues.append(issue)
+
+        # Check 64: description_contains_url
+        issue = _check_description_contains_url(name, raw_obj, fmt)
+        if issue is not None:
+            issues.append(issue)
+
+        # Check 65: description_says_deprecated
+        issue = _check_description_says_deprecated(name, raw_obj, fmt)
+        if issue is not None:
+            issues.append(issue)
+
+        # Check 66: param_description_says_required
+        issues.extend(_check_param_description_says_required(name, schema))
+
+        # Check 67: enum_default_not_in_enum
+        issues.extend(_check_enum_default_not_in_enum(name, schema))
+
+        # Check 68: const_param_should_be_removed
+        issues.extend(_check_const_param_should_be_removed(name, schema))
+
+        # Check 69: contradictory_min_max
+        issues.extend(_check_contradictory_min_max(name, schema))
+
+        # Check 70: description_is_placeholder
+        issues.extend(_check_description_is_placeholder(name, raw_obj, fmt))
+
+        # Check 71: schema_has_title_field
+        issues.extend(_check_schema_has_title_field(name, schema, fmt))
 
         # Note: check 52 (number_should_be_integer) is subsumed by check 40
         # (number_type_for_integer) — merged into check 40 in v0.103.1.

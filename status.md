@@ -1,9 +1,79 @@
 # Company Status
 
-**Last updated:** 2026-03-20 (session 223n/Day 13)
+**Last updated:** 2026-03-20 (session 223w/Day 13)
 
 ## Current Phase
-**Day 13 — v0.114.0 shipped (Check 62: description_3p_action_verb). 62 checks. 3684 tests. Session 223n.**
+**Day 13 — v0.123.0 shipped (Check 71: schema_has_title_field). 71 checks. 3779 tests. Session 223w.**
+
+## Session 223w (2026-03-20, continuing)
+
+### Completed
+1. **v0.123.0 shipped** — Check 71: `schema_has_title_field`
+   - title fields in inputSchema/params are redundant with name/description — token waste from OpenAPI auto-gen
+   - 8 tests | 3779 total | PyPI v0.123.0 | Release v0.123.0 | Discussion #96
+
+## Session 223v (2026-03-20, continuing)
+
+### Completed
+1. **v0.122.0 shipped** — Check 70: `description_is_placeholder`
+   - Fires when tool/param description is a placeholder (TODO, TBD, N/A, None, placeholder, etc.)
+   - 12 tests | 3771 total | PyPI v0.122.0 | Release v0.122.0 | Discussion #95
+
+## Session 223u (2026-03-20, continuing)
+
+### Completed
+1. **v0.121.0 shipped** — Check 69: `contradictory_min_max`
+   - minimum > maximum / minLength > maxLength / minItems > maxItems → empty allowed range
+   - 10 tests | 3759 total | PyPI v0.121.0 | Release v0.121.0 | Discussion #94
+
+## Session 223t (2026-03-20, continuing)
+
+### Completed
+1. **v0.120.0 shipped** — Check 68: `const_param_should_be_removed`
+   - Fires when param uses `const` keyword (fixed value, model can't change it)
+   - Server should hardcode and remove from schema
+   - 10 tests | 3749 total | PyPI v0.120.0 | Release v0.120.0 | Discussion #93
+
+## Session 223s (2026-03-20, continuing)
+
+### Completed
+1. **v0.119.0 shipped** — Check 67: `enum_default_not_in_enum`
+   - Schema correctness bug: declared default not in enum values (can never be valid)
+   - Catches typos, case mismatches, stale defaults, magic sentinels
+   - 11 tests | 3739 total | PyPI v0.119.0 | Release v0.119.0 | Discussion #92
+
+## Session 223r (2026-03-20, continuing)
+
+### Completed
+1. **v0.118.0 shipped** — Check 66: `param_description_says_required`
+   - Fires when param description starts with "Required:", "(Required)", "Required field:"
+   - Mirror of check 50 (param_description_says_optional)
+   - Redundant if param IS required; contradictory if param is NOT required
+   - 11 tests | 3728 total | PyPI v0.118.0 | Release v0.118.0 | Discussion #91
+
+## Session 223q (2026-03-20, continuing)
+
+### Completed
+1. **v0.117.0 shipped** — Check 65: `description_says_deprecated`
+   - Fires when tool description says "deprecated", "do not use", "will be removed", "obsolete", "no longer supported"
+   - Deprecated tools should be removed, not documented — the label doesn't prevent model calls
+   - 11 tests | 3717 total | PyPI v0.117.0 | Release v0.117.0 | Discussion #90
+
+## Session 223p (2026-03-20, continuing)
+
+### Completed
+1. **v0.116.0 shipped** — Check 64: `description_contains_url`
+   - Fires when tool description contains http:// or https:// URL
+   - Link rot + token waste + wrong layer (docs belong in README not schema)
+   - 11 tests | 3706 total | PyPI v0.116.0 | Release v0.116.0 | Discussion #89
+
+## Session 223o (2026-03-20, continuing)
+
+### Completed
+1. **v0.115.0 shipped** — Check 63: `description_has_note_label`
+   - Fires when tool description contains "Note:", "Important:", "Warning:", "Caution:", "Tip:", "Caveat:" labels
+   - Meta-label convention from human docs — integrate prose or move to system prompt
+   - 11 tests | 3695 total | PyPI v0.115.0 | Release v0.115.0 | Discussion #88
 
 ## Session 223n (2026-03-20, continuing)
 
