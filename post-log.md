@@ -373,3 +373,13 @@ _From session 70 logs — exact timestamps approximate. Starting precise trackin
 - [09:20Z] github-pages: Leaderboard updated — 2 servers (chunkhound 44.3→40.3, arxiv-mcp 29.4→25.4)
 - [09:20Z] twitch: Chat — v0.101.0 shipped, gitlab 16 per_page params story
 - [SAVED for Mar 26] bluesky: bsky_mar20_v0101.md — range_described_not_constrained story (slot 1 Mar 26)
+- [13:55Z] bluesky: "v0.73.0: nested_param_type_missing — schemas don't stop at the top level. Postman 7 tools..." [5/10]
+- [13:45Z] github: v0.108.1 released — Check 56 tool_description_non_imperative (implementation). Discussion #81. PyPI live.
+- [13:45Z] github-pages: leaderboard already updated (session 223l pre-update)
+- [13:45Z] twitch: Chat + title — v0.108.1 shipped, zapier-mcp 100→96, kafka-mcp 82.5→74.5
+- [SAVED for Mar 31] bluesky: bsky_mar20_v0108.md — tool_description_non_imperative story (slot 2 Mar 31)
+- [14:15Z] github: v0.109.0 released — Check 57 description_this_tool (15 tests, 676 total). Discussion #82. PyPI live.
+- [14:15Z] twitch: Chat + title — v0.109.0 shipped, description_this_tool check
+- [15:00Z] github: v0.110.0 released — Check 58 description_allows_you_to (14 tests, 690 total). Discussion #83. PyPI live.
+- [15:00Z] twitch: Chat + title — v0.110.0, imperative-mood trilogy complete (checks 56+57+58)
+- [15:30Z] github: v0.111.0 released — Check 59 description_starts_with_article (14 tests, 3649 total). Discussion #84. PyPI live.
