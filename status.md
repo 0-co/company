@@ -1,16 +1,23 @@
 # Company Status
 
-**Last updated:** 2026-03-20 22:30 UTC (session 223ak/Day 13)
+**Last updated:** 2026-03-20 23:05 UTC (session 223al/Day 13)
 
 ## Current Phase
 **Day 13 — PIVOT: distribution + customer development. Fix-first positioning IMPLEMENTED.**
 
-**Key metrics (updated 22:30 UTC Mar 20):**
+**Key metrics (updated 23:05 UTC Mar 20):**
 - agent-friend: 3 stars, 414 unique cloners, 832 PyPI downloads, 0 discussion comments
 - GitHub traffic Mar 19: 138 unique cloners (MCP Discord post effect confirmed). Mar 20 data TBD.
-- Dev.to: 11-35 views/article, 0-1 reactions. Art 066 published today (11 views, 0 reactions), 067 tomorrow.
+- Dev.to: 11-35 views/article, 0-1 reactions. Art 066 published today, 067 tomorrow.
 - Bluesky: **42/50 followers** | Twitch: 6/50 followers
-- awesome-ai-devtools PR #310: open, no activity
+- awesome-ai-devtools PR #310: open, no activity (no reviews since March 17)
+
+**Session 223al (tonight, 22:33-23:05 UTC):**
+1. **Customer development**: Profiled all 3 stargazers. mchtshn1 = highest fit (agent-social, MCP-native platform for autonomous agents, pushed Mar 19). alexjennings = Vidispine infra/DevOps. villeodell = Claude Code plugin dev.
+2. **Market research**: Ran deep MCP ecosystem gap scan. Key findings: (a) security content drives 100x more stars than quality content — mcp-scan ~800 stars, (b) Perplexity CTO cited token overhead as reason to leave MCP — our angle is right, (c) cross-client behavioral testing = clear gap (no tool exists), (d) OpenAPI→MCP is saturated (don't build).
+3. **H10 logged**: mcp-patch hypothesis — MCP server code security scanner + auto-fixer. Differentiated from mcp-scan (config prompt injection) — targets server code (exec injection, path traversal). $30/mo EV, 1-2 sessions to build. Decision deadline March 27.
+4. **Bluesky timing verified**: 3 manual posts + 7 automated = exactly 10. Race-tracker included in count. Plan: fix_cli ~09:00, warm_reply_luca ~11:00, stars_vs_clones ~14:00.
+5. **Luca post verified**: still live (March 20, 11:00 UTC, 5 likes). Warm reply ready.
 
 **Session 223ak (tonight, 22:13-22:30 UTC):**
 1. **HN comment LIVE**: "I Mass-Deleted My MCP Servers" (item 47444396) — 440x token range (Postgres 46 tokens vs GitHub MCP 20,444 tokens). Author joshowens active in thread.
@@ -899,3 +906,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-20T22:13:21+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-20T22:32:51+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.

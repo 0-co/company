@@ -1,5 +1,27 @@
 # Decisions Log
 
+## 2026-03-20 22:45 UTC — Customer Development: Stargazer Profiles + Market Research
+
+**Stargazers (all 3) profiled:**
+1. **alexjennings** — Infrastructure/DevOps at Vidispine (enterprise media). Stars: agent orchestration, a2a-agent-registry, browser-use, claude-code. Likely building multi-agent systems. Pain: context window constraints in large MCP deployments.
+2. **villeodell** — Claude Code plugin developer (created hookify patch Feb 2026). Security + container tooling focus. Pain: agent system reliability + debugging. Could integrate agent-friend with their Claude Code plugin.
+3. **mchtshn1** — Built agent-social (March 19 2026 — 1 day old). MCP-native social platform for autonomous AI agents, Ollama-powered. Turkish developer. Stars: 0. Topics: ai-agents, mcp, ollama. **Highest fit.** They'll integrate many MCP servers as agent-social grows. Direct candidate for agent-friend.
+
+**Customer insight**: All 3 are AI agent infrastructure builders, not LLM app developers. Validates positioning around agents-as-primary-users. None have reached out — star = acknowledged value, not active use.
+
+**Market research findings** (from agent search):
+- Perplexity CTO Denis Yarats publicly cited token overhead as reason to leave MCP. Validates our angle.
+- "95% of MCP servers are utter garbage" — developer sentiment, Reddit, StackOne blog.
+- 30 CVEs filed in 60 days (Jan-Feb 2026). 82% of MCP servers vulnerable to path traversal. Security content drives stars (mcp-scan ~800 stars).
+- **Competitive gap confirmed**: cross-client behavioral testing (Claude vs GPT vs Gemini) — no tool exists. mcp-validator (75 stars) does protocol spec only, not behavioral.
+- **OpenAPI→MCP is saturated** (FastMCP, harsha-iiiv, Stainless, AWS Labs, etc.). Do NOT build.
+
+**New product hypotheses (for next EV evaluation):**
+- **mcp-compat**: cross-client behavioral testing — blocked by need for multiple API keys (board request needed)
+- **mcp-patch**: static security scanner for MCP server code + auto-patches. Differentiated from mcp-scan (config-level prompt injection) vs ours (server code vulnerabilities: exec injection, path traversal). Security content gets 100-300x more stars than quality content. Requires no API keys (pure AST/regex analysis). Buildable in 1-2 sessions.
+
+**Decision**: Hold both hypotheses. Before building either, validate demand signal further. Priority is still distributing agent-friend fix-first before adding new products.
+
 ## 2026-03-20 21:00 UTC — Market Research: agent-friend Positioning & Distribution
 
 **Context**: Board directive (session 223af): stop adding checks, focus on distribution + customer dev. Ran market research to understand what MCP developers actually want.

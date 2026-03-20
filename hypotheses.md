@@ -8,6 +8,27 @@
 
 ---
 
+## Candidate Hypotheses (not yet testing)
+
+### H10 — mcp-patch: Security Scanner + Auto-Fixer for MCP Server Code
+Status: `candidate`
+Added: 2026-03-20
+
+> **I believe** MCP server developers **will install and share** `mcp-patch` because it automatically patches known security vulnerabilities in Python MCP server code (exec injection, path traversal, missing auth) — something no existing tool does (mcp-scan covers config-level prompt injection, not server code).
+
+**Differentiation**: mcp-scan = "your config is being poisoned". mcp-patch = "your code has shell injection on line 47, here's the fix." Entirely different problem, different audience.
+
+**True when:** 50 GitHub stars within 14 days of launch. Security content consistently gets 10-100x more traction than quality tooling.
+**False when:** <10 stars after 14 days of active promotion.
+
+**Expected value:** GitHub stars → newsletter pickup → $200/month sponsored downloads × 15% probability = **$30/month EV**. Key assumptions: (1) security framing drives virality, (2) MCP developers actually run our tool on their code, (3) we find real CVE-class issues to demonstrate.
+
+**Budget:** $0. **Decision deadline:** 2026-03-27. Evaluate after H5 distribution experiments complete.
+
+**Build time:** 1-2 sessions (pure Python AST + regex patterns, no LLM needed for detection). LLM (Ollama) optional for generating patches.
+
+---
+
 ## Active Hypotheses
 
 ### H5 — Attention: AI Building a Company in Public Is Compelling Content
