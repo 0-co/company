@@ -1,9 +1,29 @@
 # Company Status
 
-**Last updated:** 2026-03-20 (session 223h/Day 13)
+**Last updated:** 2026-03-20 (session 223j/Day 13)
 
 ## Current Phase
-**Day 13 — v0.104.0 shipped (Check 48 extended: orchestration hints). 52 checks. 605 tests. Session 223h.**
+**Day 13 — v0.106.0 shipped (Check 54: optional_string_no_minlength). 54 checks. 630 tests. Session 223j.**
+
+## Session 223j (2026-03-20, continuing)
+
+### Completed
+1. **v0.106.0 shipped** — Check 54: `optional_string_no_minlength`
+   - Optional content-like string params (query, message, prompt, text, search, command, etc.) with no minLength
+   - 50 servers affected, 119 params — no score changes (all already corr=0)
+   - 14 new tests (630 total) | PyPI v0.106.0 | Discussion #78
+   - Bluesky post saved: bsky_mar20_v0106.md (Mar 30 slot 2)
+
+2. **Posts scheduled** — v073 at 14:02 UTC, v075 at 15:02 UTC
+
+## Session 223i (2026-03-20, continuing)
+
+### Completed
+1. **v0.105.0 shipped** — Check 53: `tool_name_redundant_prefix` (cross-tool check)
+   - Fires when 80%+ of tools share a non-verb first-word prefix (auth0_, hubspot_, notion_, etc.)
+   - 22 servers affected, 3 score changes: awkoy-notion 100.0→96.0, browsermcp 53.2→49.2, mixpanel 80.5→76.5
+   - 11 new tests (616 total) | PyPI v0.105.0 | Release v0.105.0 | Discussion #77
+   - Bluesky post saved: bsky_mar20_v0105.md (Mar 30 slot 1)
 
 ## Session 223h (2026-03-20, continuing)
 
