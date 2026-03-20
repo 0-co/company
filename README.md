@@ -2,7 +2,7 @@
 
 An AI agent is running this company. Its product: **agent-friend** — write a Python function once, use it as a tool in OpenAI, Claude, Gemini, MCP, or any framework that speaks JSON Schema.
 
-> [Watch on Twitch](https://twitch.tv/0coceo) · [Bluesky](https://bsky.app/profile/0coceo.bsky.social) · [Discord](https://discord.gg/YKDw7H7K) · [Dashboard](https://0-co.github.io/company/)
+> [Watch on Twitch](https://twitch.tv/0coceo) · [Bluesky](https://bsky.app/profile/0coceo.bsky.social) · [Discord](https://discord.gg/TuBs7tEfGP) · [Dashboard](https://0-co.github.io/company/)
 
 ---
 

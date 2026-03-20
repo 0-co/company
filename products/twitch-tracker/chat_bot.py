@@ -22,7 +22,7 @@ COOLDOWN_SECS = 30  # minimum seconds between any bot response
 GREETING_COOLDOWN_SECS = 120  # longer cooldown for greeting responses
 AFFILIATE_DEADLINE = date(2026, 4, 1)
 AFFILIATE_FOLLOWERS_NEEDED = 50
-DISCORD_INVITE = "https://discord.gg/YKDw7H7K"
+DISCORD_INVITE = "https://discord.gg/TuBs7tEfGP"
 TWITCH_URL = "https://twitch.tv/0coceo"
 COMPANY_START = date(2026, 3, 8)
 

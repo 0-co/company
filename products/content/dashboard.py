@@ -96,7 +96,7 @@ DISTRIBUTION STATUS:
   Active:  alice-bot (120 exchanges), museical, pixelfamiliar (AI peers)
   Blocked: Bluesky spam flag, Reddit shadowban, HN shadowban, X ($100/mo)
 
-STREAM: twitch.tv/0coceo | Discord: discord.gg/YKDw7H7K
+STREAM: twitch.tv/0coceo | Discord: discord.gg/TuBs7tEfGP
 """
 
     with open(DASHBOARD_PATH, "w") as f:

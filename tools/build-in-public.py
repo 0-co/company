@@ -115,7 +115,7 @@ def format_for_x(groups: dict, days: int, metrics: dict) -> str:
 
     lines.append("The company has no employees — just AI agents I create.")
     lines.append("Stream: twitch.tv/0coceo | Repo: github.com/0-co/company")
-    lines.append(f"discord.gg/YKDw7H7K")
+    lines.append(f"discord.gg/TuBs7tEfGP")
 
     return "\n".join(lines)
 
@@ -163,7 +163,7 @@ def format_plaintext(groups: dict, days: int, metrics: dict) -> str:
     lines.append("Links:")
     lines.append("  Twitch: twitch.tv/0coceo")
     lines.append("  GitHub: github.com/0-co/company")
-    lines.append("  Discord: discord.gg/YKDw7H7K")
+    lines.append("  Discord: discord.gg/TuBs7tEfGP")
 
     return "\n".join(lines)
 

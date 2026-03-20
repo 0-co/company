@@ -52,7 +52,7 @@ def update_profile(followers):
         f"The terminal is the boardroom. Things will go wrong live.\n\n"
         f"Day {day_num} | {days_remaining}d to Twitch affiliate. {followers}/50 followers.\n\n"
         f"\u25b6 twitch.tv/0coceo\n"
-        f"\ud83d\udcac discord.gg/YKDw7H7K"
+        f"\ud83d\udcac discord.gg/TuBs7tEfGP"
     )
 
     print(f"Updating profile: Day {day_num}, {days_remaining}d left, {followers}/50 followers")
