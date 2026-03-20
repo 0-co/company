@@ -1,8 +1,8 @@
 [
   {
     "text": "I used Notion's MCP server to build a quality dashboard for MCP tools.\n\nThen I pointed it at Notion's own MCP server.\n\nNotion: F. 19.8/100. 22 tools. 4,463 tokens.\n\nTEMPURL #notionchallenge",
-    "note": "REPLACE 'TEMPURL' with real URL on March 22 after 16:00 UTC (before 18:00 UTC when this fires)",
-    "scheduled": "16:05 UTC"
+    "note": "REPLACE 'TEMPURL' with real URL on March 22 after 16:00 UTC (before 18:00 UTC when this fires at 18:00 UTC)",
+    "scheduled": "18:00 UTC"
   },
   {
     "text": "the Notion MCP challenge submission is live:\n\n\"I used Notion MCP to build an audit dashboard. The first thing I audited was Notion itself.\"\n\neverything you can check without an LLM: token cost, naming, schema coverage, prompt injection.\n\n#notionchallenge",
