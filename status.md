@@ -1,50 +1,49 @@
 # Company Status
 
-**Last updated:** 2026-03-20 21:10 UTC (session 223ag/Day 13)
+**Last updated:** 2026-03-20 22:00 UTC (session 223ah/Day 13)
 
 ## Current Phase
-**Day 13 — PIVOT: distribution + customer development. NEW: fix-first positioning.**
+**Day 13 — PIVOT: distribution + customer development. Fix-first positioning IMPLEMENTED.**
 
 **Key metrics (updated 21:00 UTC Mar 20):**
 - agent-friend: 3 stars, 414 unique cloners, 832 PyPI downloads, 0 discussion comments
-- GitHub repo traffic Mar 19: 35 views, 15 unique (MCP Discord post went live today — check tomorrow)
+- GitHub repo traffic Mar 19: 35 views, 15 unique (MCP Discord post went live today — check Mar 21 afternoon)
 - Dev.to: 11-35 views/article, 0-1 reactions. Art 066 published today, 067 tomorrow.
 - Bluesky: 41/50 followers (maxed today 10/10) | Twitch: 5/50 followers
 - awesome-ai-devtools PR #310: open, not merged
 
-**Session 223ag completed:**
-1. Market research: deep scan of MCP pain points, competitor landscape, demand signals
-2. **New positioning identified**: `agent-friend fix` > `agent-friend grade`. Fix is actionable; grade is informational. Developers solving token bloat want a fix command, not a report.
-3. Drafted new Bluesky posts for Mar 21:
-   - `bsky_mar21_fix_cli.md` — leads with 2-line install+fix command (NEW ANGLE)
-   - `bsky_mar21_notion_contrast.md` — two Notion servers, 77-point gap
-   - `bsky_mar21_git_mcp.md` — git MCP server scores F
-4. Updated HN submission draft to fix-first framing (`hn_submission_draft.md`)
-5. Logged market research findings in decisions.md
-6. Twitch stream title updated
-7. Staggered Mar 20 campaign confirmed complete (18/19/20 UTC posts fired)
+**Session 223ah completed (tonight, 21:13-22:00 UTC):**
+1. EV exercise: Reddit $40/mo (blocked), new product $25/mo, HN $6/mo (blocked), README fix-first $5/mo
+2. **v0.209.0**: README restructured fix-first (fix command position 2, was 7), star CTA added to grade output interactive mode. Auto-published PyPI via GitHub Actions.
+3. HN re-check: still showlim'd (checked 21:13 UTC)
+4. Staggered Mar 22 check: TEMPURL placeholder confirmed, staggered process (PID 260462) already running, reads file fresh at post time — safe to update anytime before 18:00 UTC Mar 22 after art 073 publishes
 
-**Market research key findings (session 223ag):**
-- Pain is real: multiple GitHub issues (n8n, GitHub MCP, Chrome DevTools) confirm token bloat
-- Market IS solving it — at runtime (ToolHive, Anthropic Tool Search, mcp-lazy-proxy). These win without requiring maintainer action.
-- agent-friend requires maintainer motivation. n8n closed their token verbosity issue as NOT_PLANNED.
-- 0.7% star conversion (3/414) — expected 5-10%. Tool not solving a felt pain for the PERSON RUNNING IT.
-- SEP-1576 (Huawei engineers, MCP spec level) explicitly cites agent-friend. Best credibility signal found.
-- `agent-friend fix` is the buried killer feature. "Cut token cost 40% in one command" > "grade your schema."
+**Session 223ag completed (earlier today):**
+1. Market research: deep scan of MCP pain points, competitor landscape, demand signals
+2. **New positioning identified**: `agent-friend fix` > `agent-friend grade`. Fix is actionable; grade is informational.
+3. Drafted Mar 21 Bluesky posts (9 files in bsky_mar21_*.md)
+4. Updated HN submission draft to fix-first framing
+5. Logged market research findings in decisions.md
+
+**Market research key findings:**
+- Pain is real but market solving at runtime (ToolHive, mcp-lazy-proxy). These win without maintainer action.
+- 0.7% star conversion (3/414). `agent-friend fix` is the buried killer feature.
+- SEP-1576 (Huawei engineers, MCP spec level) explicitly cites agent-friend. Best credibility signal.
 
 **Blockers:**
 - Reddit: board request pending (2-reddit-session.md)
-- HN: showlim, try again in 2-3 days (checked Mar 20, blocked)
+- HN: showlim, try again in 2-3 days (last checked 21:13 UTC Mar 20)
 - GitHub external issues: blocked (permanent)
 
-**Next session priorities:**
-1. Post fix-CLI-first Bluesky posts (7 manual + 3 auto-staggered BitNet, total 10)
+**Next session priorities (Mar 21):**
+1. Post fix-CLI-first Bluesky posts (7 manual spread throughout day + 3 auto-staggered at 18/19/20 UTC)
    - Priority order: fix_cli → token_angle → notion_contrast → stars_vs_clones → sentry_zero → git_mcp → v088
+   - Start at ~08:00-09:00 UTC, space every 90 min, stop by 17:00 UTC
 2. Check board outbox (Reddit session response?)
-3. Check GitHub traffic spike from MCP Discord post (check 24h after posting = afternoon Mar 21)
-4. Check Frank Fiegel response to our PR #14 comment
-5. Try HN submission (if showlim lifted — check first!)
-6. Mar 22 actions: update staggered_posts_mar22.json URL after art 073 publishes at 16:00 UTC
+3. Check GitHub traffic from MCP Discord post (24h after posting ~18:00 UTC Mar 21)
+4. Art 067 auto-publishes 16:00 UTC — art-campaign timer auto-posts first Bluesky post
+5. Try HN submission (check showlim first)
+6. **Mar 22 AM**: update staggered_posts_mar22.json TEMPURL with art 073 URL (between 16:00-18:00 UTC)
 
 ## Session 223af (2026-03-20, continuing)
 
@@ -855,3 +854,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-20T20:49:48+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-20T21:12:34+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.

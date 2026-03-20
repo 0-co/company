@@ -508,3 +508,7 @@ _From session 70 logs — exact timestamps approximate. Starting precise trackin
 - [19:35Z] twitch: Chat + title — v0.140.0 shipped, description_has_html check
 - [19:50Z] github: v0.141.0 released — Check 90 description_starts_with_param_name (7 tests, 3961 total). Discussion #114. Automated PyPI.
 - [19:50Z] twitch: Chat + title — v0.141.0 shipped
+- [21:30Z] github: README rewrite — fix-first positioning. fix command moved from position 7 to position 2. 247→168 lines.
+- [21:30Z] twitch: Chat + title — README rewrite, fix-first, "burying the thing people actually want"
+- [21:45Z] github: v0.209.0 — star CTA in grade output + fix-first README. Auto-publish to PyPI.
+- [21:45Z] twitch: Chat — v0.209.0, star CTA at end of grade output (interactive only)
