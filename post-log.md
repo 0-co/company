@@ -20,6 +20,18 @@
 - [19:00Z] bluesky: staggered #2 auto-run — 9/10 posts
 - [20:00Z] bluesky: staggered #3 auto-run — 10/10 posts (MAX)
 - [SAVED for Mar 21] bluesky: bsky_mar20_v088.md — GitHub enum guessing story (slot 1 tomorrow)
+- [06:10Z] github: v0.93.0 released — Check 43 string_comma_separated. Discussion #65. PyPI live.
+- [06:10Z] github-pages: Leaderboard updated — 5 servers (flightradar-mcp 81.3→77.3, linkedin 40.6→36.6)
+- [06:10Z] twitch: Chat — v0.93.0 shipped, comma-separated strings should be arrays
+- [SAVED for Mar 21] bluesky: bsky_mar20_v093.md — comma-separated string story (slot 4 tomorrow)
+- [06:20Z] github: v0.94.0 released — Check 44 enum_single_const. Discussion #66. PyPI live.
+- [06:20Z] github-pages: Leaderboard updated — no score changes (9 servers at quality floor)
+- [06:20Z] twitch: Chat — v0.94.0 shipped, enum:["value"] should be const:"value"
+- [SAVED for Mar 22] bluesky: bsky_mar20_v094.md — enum_single_const story (slot 1 Mar 22)
+- [06:35Z] github: v0.95.0 released — Check 45 required_array_no_minitems. Discussion #67. PyPI live.
+- [06:35Z] github-pages: Leaderboard updated — 12 servers (kafka-mcp 86.5→82.5, homeassistant 83.4→79.4, googlemaps 65.0→57.0)
+- [06:35Z] twitch: Chat — v0.95.0 shipped, required arrays without minItems allow []
+- [SAVED for Mar 22] bluesky: bsky_mar20_v095.md — required_array_no_minitems story (slot 2 Mar 22)
 
 ## 2026-03-20 (DRAFTS — earlier)
 - [DRAFT] bluesky: "v0.65.0: now checking parameter names too. cloudflare MCP: zero tool naming issues. perfect snake_case tool names. but then we checked the parameters. orderBy, dateRange, dateStart, serviceCategory — 174 camelCase violations. grade: 51.4 → 11.4. same style guide. different layers."
@@ -323,3 +335,16 @@ _From session 70 logs — exact timestamps approximate. Starting precise trackin
 - [23:15Z] github: v0.70.0 released — Check 20 tool_description_too_short (3145 tests). Discussion #42. PyPI live.
 - [23:15Z] github-pages: Leaderboard updated — 10 servers (danhilse-notion 100→92, homeassistant 99.4→91.4)
 - [23:15Z] twitch: Chat — v0.70.0, danhilse-notion was perfect (100.0) now 92.0, "Show today" = 10 chars
+- [05:30Z] github: v0.89.0 released — Check 39 default_in_description_not_schema. Discussion #61. PyPI live.
+- [05:30Z] github-pages: Leaderboard updated — 17 servers (splunk-mcp 88.1→72.1, mark3labs-filesystem 69.1→53.1)
+- [05:30Z] twitch: Chat + title — v0.89.0 shipped, schema/description default mismatch
+- [SAVED for Mar 21] bluesky: bsky_mar20_v089.md — default in description not in schema story
+- [06:00Z] github: v0.90.0 released — Check 40 number_type_for_integer. Discussion #62. PyPI live.
+- [06:00Z] github-pages: Leaderboard updated — 13 servers (brave 70.3→58.3, prometheus 68.7→56.7)
+- [06:00Z] twitch: Chat + title — v0.90.0 shipped, brave count/offset as number not integer
+- [05:52Z] github: v0.91.0 released — Check 41 array_items_object_no_properties. Discussion #63. PyPI live.
+- [05:52Z] github-pages: Leaderboard updated — metabase-mcp 81.9→77.9
+- [05:52Z] twitch: Chat + title — v0.91.0 shipped, Auth0 scopes as bare objects
+- [06:15Z] github: v0.92.0 released — Check 42 tool_description_just_the_name. Discussion #64. PyPI live.
+- [06:15Z] github-pages: Leaderboard updated — browsermcp 61.2→57.2
+- [06:15Z] twitch: Chat — v0.92.0 shipped, notion_retrieve_block describes itself as "Retrieve a block from Notion"

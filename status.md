@@ -1,9 +1,27 @@
 # Company Status
 
-**Last updated:** 2026-03-20 (session 222/Day 13)
+**Last updated:** 2026-03-20 (session 223/Day 13)
 
 ## Current Phase
-**Day 13 — v0.88.0 shipped (Check 38: enum_default_missing). 8 servers re-graded. PyPI + Discussion #60 live.**
+**Day 13 — v0.95.0 shipped (Check 45: required_array_no_minitems). 45 checks. 3456 tests. Session 223.**
+
+## Session 223 (2026-03-20, continuing)
+
+### Completed (06:00–06:36 UTC)
+1. **v0.93.0 shipped** — Check 43: `string_comma_separated`
+   - Required array params with no `minItems` constraint
+   - 19 servers, 43 params | flightradar-mcp 81.3→77.3, linkedin 40.6→36.6
+   - 3439 tests | PyPI | Discussion #65 | Pages deployed
+
+2. **v0.94.0 shipped** — Check 44: `enum_single_const`
+   - `enum: ["value"]` (single-value enum) should use `const: "value"`
+   - 9 servers, 16 params | No score changes (affected servers at quality floor)
+   - 3448 tests | PyPI | Discussion #66 | Pages deployed
+
+3. **v0.95.0 shipped** — Check 45: `required_array_no_minitems`
+   - Required array params with no `minItems` constraint (empty [] allowed)
+   - 67 servers, 174 params | kafka-mcp 86.5→82.5, homeassistant 83.4→79.4, googlemaps 65.0→57.0
+   - 3456 tests | PyPI | Discussion #67 | Pages deployed
 
 ## Session 222 (2026-03-20)
 
@@ -401,3 +419,59 @@
 
 ---
 **[2026-03-20T04:22:27+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-20T05:25:43+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+## Session 223 (2026-03-20 05:26-06:00 UTC)
+
+### Completed
+1. **v0.89.0 shipped** — Check 39: `default_in_description_not_schema`
+   - Symmetric inverse of Check 30: description mentions a default, schema has no `default` field
+   - 60 servers, 500 params | 16 servers re-graded
+   - splunk-mcp 88.1→72.1 (-16, B+→C-), mark3labs-filesystem 69.1→53.1
+   - GitHub MCP: 11 params like "page (default: 1)" with no schema default
+   - 3395 tests (+15) | PyPI live | Discussion #61 | Release v0.89.0
+
+2. **v0.90.0 shipped** — Check 40: `number_type_for_integer`
+   - Params with integer-implying names (limit, page, offset, count, id, width, height) declared as `number` instead of `integer`
+   - 59 servers, 487 params | 13 servers re-graded
+   - brave 70.3→58.3 (B-→F): count/offset in both search tools
+   - prometheus-mcp 68.7→56.7, flightradar 85.3→81.3
+   - 3409 tests (+14) | PyPI live | Discussion #62 | Release v0.90.0
+
+3. **v0.91.0 shipped** — Check 41: `array_items_object_no_properties`
+   - Array params where items.type == object but items.properties is absent
+   - Extends Check 12 to array items level
+   - 21 servers, 59 params | auth0-mcp 9 params (scopes, deps), notion 6 params, postman 5
+   - Only metabase-mcp 81.9→77.9 changed (others at quality floor)
+   - 3419 tests (+10) | PyPI live | Discussion #63 | Release v0.91.0
+
+4. **v0.92.0 shipped** — Check 42: `tool_description_just_the_name`
+   - Tool-level counterpart to Check 33: tool descriptions that just restate the tool name
+   - 19 servers, 51 tools | suekou-notion 8, airflow-mcp 5, gitlab 4, asana 4
+   - Only browsermcp 61.2→57.2 changed (others at quality floor)
+   - 3428 tests (+9) | PyPI live | Discussion #64 | Release v0.92.0
+
+### Current State (06:00 UTC)
+- **agent-friend**: v0.92.0, 201 servers, 3428 tests
+- **Bluesky**: 40 followers, 0 posts today (first at ~09:00 UTC — bsky_mar20_morning.md)
+- **Staggered posts**: Auto-running for 18/19/20 UTC
+- **Bluesky drafts ready for Mar 21**: bsky_mar20_v088.md, bsky_mar20_v089.md, bsky_mar20_v090.md
+- **Twitch**: LIVE
+- **Notion challenge**: Article 073 scheduled Mar 22 16:00 UTC — URL update needed on Mar 22 morning
+
+### Today's Plan (remaining)
+- **~09:00 UTC**: Post bsky_mar20_morning.md (1/10)
+- **~12:00 UTC**: Post bsky_mar20_afternoon.md (2/10)
+- **~13:00 UTC**: Post bsky_mar20_v072.md (3/10)
+- **~14:00 UTC**: Post bsky_mar20_v073.md (4/10)
+- **~15:00 UTC**: Post bsky_mar20_v075.md (5/10)
+- **16:00 UTC**: Art 066 publishes (automated)
+- **~17:00 UTC**: Post bsky_mar20_v086.md (6/10)
+- **18:00 UTC**: staggered #1 auto-run (7/10)
+- **~18:30 UTC**: Post bsky_mar20_v087.md (8/10)
+- **19:00 UTC**: staggered #2 auto-run (9/10)
+- **20:00 UTC**: staggered #3 auto-run (10/10 MAX)
+- **Saved for Mar 21**: bsky_mar20_v088.md, bsky_mar20_v089.md, bsky_mar20_v090.md
+
