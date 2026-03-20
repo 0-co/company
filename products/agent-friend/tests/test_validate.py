@@ -66,7 +66,8 @@ from agent_friend.validate import (
     _check_tool_name_too_long,
     _check_param_name_too_long,
     _check_description_word_repetition,
-    _check_param_description_multiline,
+    _check_default_type_mismatch,
+    _check_param_name_implies_boolean,
 )
 
 
@@ -8786,3 +8787,238 @@ class TestDescriptionWordRepetition:
         issue = _check_description_word_repetition("get_user", obj, "mcp")
         assert issue is not None
         assert "returns" in issue.message
+
+class TestDefaultTypeMismatch:
+    """Tests for Check 75: default_type_mismatch."""
+
+    def _schema(self, param_type: str, default) -> dict:
+        return {
+            "type": "object",
+            "properties": {
+                "value": {"type": param_type, "default": default, "description": "A param."},
+            },
+        }
+
+    # --- Cases that SHOULD fire ---
+
+    def test_string_default_for_integer_fires(self):
+        schema = self._schema("integer", "5")
+        issues = _check_default_type_mismatch("my_tool", schema)
+        assert len(issues) == 1
+        assert issues[0].check == "default_type_mismatch"
+        assert issues[0].severity == "error"
+        assert "value" in issues[0].message
+        assert "integer" in issues[0].message
+
+    def test_string_default_for_boolean_fires(self):
+        schema = self._schema("boolean", "false")
+        issues = _check_default_type_mismatch("my_tool", schema)
+        assert len(issues) == 1
+        assert issues[0].check == "default_type_mismatch"
+
+    def test_string_default_for_number_fires(self):
+        schema = self._schema("number", "3.14")
+        issues = _check_default_type_mismatch("my_tool", schema)
+        assert len(issues) == 1
+
+    def test_list_default_for_object_fires(self):
+        schema = self._schema("object", [])
+        issues = _check_default_type_mismatch("my_tool", schema)
+        assert len(issues) == 1
+
+    def test_dict_default_for_array_fires(self):
+        schema = self._schema("array", {})
+        issues = _check_default_type_mismatch("my_tool", schema)
+        assert len(issues) == 1
+
+    def test_number_default_for_string_fires(self):
+        schema = self._schema("string", 42)
+        issues = _check_default_type_mismatch("my_tool", schema)
+        assert len(issues) == 1
+
+    def test_bool_default_for_integer_fires(self):
+        # bool is a subclass of int in Python — should still be treated as boolean
+        schema = self._schema("integer", True)
+        issues = _check_default_type_mismatch("my_tool", schema)
+        assert len(issues) == 1
+
+    def test_bool_default_for_string_fires(self):
+        schema = self._schema("string", False)
+        issues = _check_default_type_mismatch("my_tool", schema)
+        assert len(issues) == 1
+
+    # --- Cases that should NOT fire ---
+
+    def test_string_default_for_string_ok(self):
+        schema = self._schema("string", "hello")
+        issues = _check_default_type_mismatch("my_tool", schema)
+        assert issues == []
+
+    def test_int_default_for_integer_ok(self):
+        schema = self._schema("integer", 5)
+        issues = _check_default_type_mismatch("my_tool", schema)
+        assert issues == []
+
+    def test_int_default_for_number_ok(self):
+        schema = self._schema("number", 5)
+        issues = _check_default_type_mismatch("my_tool", schema)
+        assert issues == []
+
+    def test_float_default_for_number_ok(self):
+        schema = self._schema("number", 3.14)
+        issues = _check_default_type_mismatch("my_tool", schema)
+        assert issues == []
+
+    def test_bool_default_for_boolean_ok(self):
+        schema = self._schema("boolean", True)
+        issues = _check_default_type_mismatch("my_tool", schema)
+        assert issues == []
+
+    def test_list_default_for_array_ok(self):
+        schema = self._schema("array", [])
+        issues = _check_default_type_mismatch("my_tool", schema)
+        assert issues == []
+
+    def test_dict_default_for_object_ok(self):
+        schema = self._schema("object", {})
+        issues = _check_default_type_mismatch("my_tool", schema)
+        assert issues == []
+
+    def test_null_default_always_ok(self):
+        # null default should not fire for any type
+        for t in ("string", "integer", "number", "boolean", "array", "object"):
+            schema = self._schema(t, None)
+            issues = _check_default_type_mismatch("my_tool", schema)
+            assert issues == [], f"null default for {t} should not fire"
+
+    def test_no_default_no_fire(self):
+        schema = {
+            "type": "object",
+            "properties": {
+                "value": {"type": "integer", "description": "No default here."},
+            },
+        }
+        issues = _check_default_type_mismatch("my_tool", schema)
+        assert issues == []
+
+    def test_no_type_no_fire(self):
+        schema = {
+            "type": "object",
+            "properties": {
+                "value": {"default": "something", "description": "No type declared."},
+            },
+        }
+        issues = _check_default_type_mismatch("my_tool", schema)
+        assert issues == []
+
+    def test_empty_schema_no_fire(self):
+        issues = _check_default_type_mismatch("my_tool", {})
+        assert issues == []
+
+    def test_none_schema_no_fire(self):
+        issues = _check_default_type_mismatch("my_tool", None)
+        assert issues == []
+
+
+class TestCheckParamNameImpliesBoolean:
+    """Tests for Check 76: param_name_implies_boolean."""
+
+    def _schema(self, param_name: str, param_type: str) -> dict:
+        return {
+            "type": "object",
+            "properties": {
+                param_name: {"type": param_type, "description": "A param."},
+            },
+        }
+
+    # --- Cases that SHOULD fire ---
+
+    def test_is_prefix_string_fires(self):
+        issues = _check_param_name_implies_boolean("my_tool", self._schema("is_enabled", "string"))
+        assert len(issues) == 1
+        assert issues[0].check == "param_name_implies_boolean"
+        assert issues[0].severity == "warn"
+        assert "is_enabled" in issues[0].message
+
+    def test_has_prefix_integer_fires(self):
+        issues = _check_param_name_implies_boolean("my_tool", self._schema("has_access", "integer"))
+        assert len(issues) == 1
+        assert issues[0].check == "param_name_implies_boolean"
+
+    def test_should_prefix_string_fires(self):
+        issues = _check_param_name_implies_boolean("my_tool", self._schema("should_retry", "string"))
+        assert len(issues) == 1
+
+    def test_can_prefix_string_fires(self):
+        issues = _check_param_name_implies_boolean("my_tool", self._schema("can_upload", "string"))
+        assert len(issues) == 1
+
+    def test_was_prefix_string_fires(self):
+        issues = _check_param_name_implies_boolean("my_tool", self._schema("was_deleted", "string"))
+        assert len(issues) == 1
+
+    def test_enable_prefix_no_fire(self):
+        # excluded — "enable_*" can legitimately be an array or string action
+        issues = _check_param_name_implies_boolean("my_tool", self._schema("enable_debug", "string"))
+        assert issues == []
+
+    def test_use_prefix_no_fire(self):
+        # excluded — "use_*" can legitimately be a non-boolean (e.g. use_strategy: string)
+        issues = _check_param_name_implies_boolean("my_tool", self._schema("use_cache", "string"))
+        assert issues == []
+
+    def test_include_prefix_no_fire(self):
+        # excluded — "include_*" is commonly array (include_domains: array)
+        issues = _check_param_name_implies_boolean("my_tool", self._schema("include_metadata", "array"))
+        assert issues == []
+
+    def test_show_prefix_no_fire(self):
+        # excluded — "show_*" can legitimately be a list or other type
+        issues = _check_param_name_implies_boolean("my_tool", self._schema("show_details", "integer"))
+        assert issues == []
+
+    # --- Cases that should NOT fire ---
+
+    def test_is_prefix_boolean_ok(self):
+        issues = _check_param_name_implies_boolean("my_tool", self._schema("is_enabled", "boolean"))
+        assert issues == []
+
+    def test_has_prefix_boolean_ok(self):
+        issues = _check_param_name_implies_boolean("my_tool", self._schema("has_access", "boolean"))
+        assert issues == []
+
+    def test_no_prefix_string_ok(self):
+        issues = _check_param_name_implies_boolean("my_tool", self._schema("username", "string"))
+        assert issues == []
+
+    def test_no_type_no_fire(self):
+        schema = {
+            "type": "object",
+            "properties": {"is_enabled": {"description": "No type."}},
+        }
+        issues = _check_param_name_implies_boolean("my_tool", schema)
+        assert issues == []
+
+    def test_null_type_no_fire(self):
+        issues = _check_param_name_implies_boolean("my_tool", self._schema("is_enabled", "null"))
+        assert issues == []
+
+    def test_empty_schema_no_fire(self):
+        issues = _check_param_name_implies_boolean("my_tool", {})
+        assert issues == []
+
+    def test_nested_fires(self):
+        schema = {
+            "type": "object",
+            "properties": {
+                "options": {
+                    "type": "object",
+                    "properties": {
+                        "is_recursive": {"type": "string", "description": "Nested bool param."},
+                    },
+                }
+            },
+        }
+        issues = _check_param_name_implies_boolean("my_tool", schema)
+        assert len(issues) == 1
+        assert "is_recursive" in issues[0].message

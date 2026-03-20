@@ -2027,52 +2027,201 @@ def _check_description_word_repetition(name: str, obj: Dict[str, Any], fmt: str)
 
 
 # ---------------------------------------------------------------------------
-# Check 75: param_description_multiline
+# Check 75: default_type_mismatch
 # ---------------------------------------------------------------------------
 
-_PARAM_DESC_MULTILINE_THRESHOLD = 2
+# Maps JSON Schema type names to the Python types that are valid for that type.
+# "null" default is always allowed (means "not set") so it's excluded from checks.
+_JS_TYPE_TO_PYTHON: Dict[str, tuple] = {
+    "string":  (str,),
+    "boolean": (bool,),
+    "array":   (list,),
+    "object":  (dict,),
+    # integer and number: both int and float are fine for "number"; only int for "integer"
+    # We handle these separately because bool is a subclass of int in Python.
+    "integer": (int,),
+    "number":  (int, float),
+}
 
 
-def _check_param_description_multiline(tool_name: str, schema: Dict[str, Any]) -> List[Issue]:
-    """Check 75: param_description_multiline — a parameter description contains
-    two or more embedded newlines.
+def _default_type_mismatch(declared_type: str, default_value: Any) -> bool:
+    """Return True if default_value's Python type is incompatible with declared_type."""
+    if default_value is None:
+        return False  # null default is always acceptable
+    allowed = _JS_TYPE_TO_PYTHON.get(declared_type)
+    if allowed is None:
+        return False  # unknown type, skip
+    # bool is a subclass of int — treat it as boolean, not integer/number
+    if isinstance(default_value, bool):
+        return declared_type not in ("boolean",)
+    return not isinstance(default_value, allowed)
 
-    Multi-paragraph parameter descriptions are prose documentation masquerading
-    as schema metadata.  They waste tokens and slow down schema parsing.  A
-    parameter description should be a single concise sentence.
 
-    Fires when: a parameter description contains ≥ 2 newline characters.
+def _check_default_type_mismatch(tool_name: str, schema: Dict[str, Any]) -> List[Issue]:
+    """Check 75: default_type_mismatch — a parameter's ``default`` value has a
+    different JSON type than the parameter's declared ``type``.
+
+    This is a schema correctness bug.  Examples:
+
+    * ``{"type": "integer", "default": "5"}``   — string default for integer
+    * ``{"type": "boolean", "default": "false"}`` — string default for boolean
+    * ``{"type": "array",   "default": {}}``    — object default for array
+    * ``{"type": "object",  "default": []}``    — array default for object
+    * ``{"type": "string",  "default": 0}``     — number default for string
+
+    A ``null`` default is always acceptable (means "use no default if omitted").
+
+    Common cause: copy-paste from prose documentation, or auto-generated schemas
+    that serialise defaults as strings regardless of the declared type.
+
+    Severity: error — the schema is incorrect; the model may pass wrong-typed
+    values or ignore the default entirely.
+    """
+    if schema is None:
+        return []
+
+    issues: List[Issue] = []
+    properties = schema.get("properties") or {}
+
+    def _check_props(props: Any, path: str) -> None:
+        if not isinstance(props, dict):
+            return
+        for param_name, param_schema in props.items():
+            if not isinstance(param_schema, dict):
+                continue
+            declared_type = param_schema.get("type")
+            if not isinstance(declared_type, str):
+                continue  # array type or no type — skip
+            if "default" not in param_schema:
+                continue
+            default_val = param_schema["default"]
+            if _default_type_mismatch(declared_type, default_val):
+                param_path = f"{path}.{param_name}" if path else param_name
+                issues.append(Issue(
+                    tool=tool_name,
+                    severity="error",
+                    check="default_type_mismatch",
+                    message=(
+                        "param '{param}' declares type '{type}' but default value "
+                        "{default!r} is {actual_type} — default must match declared type."
+                    ).format(
+                        param=param_path,
+                        type=declared_type,
+                        default=default_val,
+                        actual_type=type(default_val).__name__,
+                    ),
+                ))
+            # Recurse into nested objects
+            nested_props = param_schema.get("properties") or {}
+            if nested_props:
+                _check_props(nested_props, f"{path}.{param_name}" if path else param_name)
+            # Recurse into array items
+            items = param_schema.get("items") or {}
+            if isinstance(items, dict):
+                nested_item_props = items.get("properties") or {}
+                if nested_item_props:
+                    item_path = f"{path}.{param_name}[]" if path else f"{param_name}[]"
+                    _check_props(nested_item_props, item_path)
+
+    _check_props(properties, "")
+    return issues
+
+
+# ---------------------------------------------------------------------------
+# Check 76: param_name_implies_boolean
+# ---------------------------------------------------------------------------
+
+# Name prefixes that, by near-universal convention, signal a boolean parameter.
+# Restricted to verb/auxiliary forms that are unambiguously boolean.
+# Excluded: enable_, disable_, use_, show_, hide_, allow_, include_ — these are
+# commonly used as verb-noun pairs that accept arrays or other types
+# (e.g. include_domains: array, allow_users: array, enable_features: array).
+_BOOL_PREFIX_RE = re.compile(
+    r'^(is|has|should|can|was|will|did|are|were)_',
+    re.IGNORECASE,
+)
+
+
+def _check_param_name_implies_boolean(
+    tool_name: str, schema: Dict[str, Any]
+) -> List[Issue]:
+    """Check 76: param_name_implies_boolean — a parameter name starts with a
+    conventional boolean prefix (``is_``, ``has_``, ``should_``, ``can_``,
+    ``was_``, ``will_``, etc.) but the declared ``type`` is not ``"boolean"``.
+
+    These prefixes signal boolean semantics across virtually all languages and
+    API conventions: ``is_active``, ``has_permissions``, ``should_retry``,
+    ``can_upload``.  When the declared type is ``"string"`` or ``"integer"``
+    instead, the model receives conflicting signals — the name says boolean but
+    the schema says otherwise — which degrades tool-selection accuracy.
+
+    Common causes:
+
+    * Auto-generated schema from a typed language where the bool was
+      accidentally mapped to ``"string"`` (e.g., JSON serialisation quirk).
+    * Developer intended a boolean flag but declared ``"string"`` accepting
+      ``"true"``/``"false"`` strings instead of a proper boolean.
+    * Copy-paste from a string param with the name left unchanged.
+
+    Fires when:
+
+    * A parameter name matches the boolean-prefix pattern, AND
+    * The declared ``type`` is not ``"boolean"`` (and not absent — check 22
+      handles missing type), AND
+    * The type is not ``"null"``
 
     Examples::
 
-        # flagged (3 newlines)
-        "The query string.\\n\\nSupports wildcards.\\n\\nMax 500 chars."
+        # flagged — 'is_' prefix but type is "string"
+        {"name": "is_enabled", "type": "string", "description": "Whether enabled."}
+
+        # flagged — 'has_' prefix but type is "integer"
+        {"name": "has_access", "type": "integer", "description": "Access flag."}
 
         # correct
-        "The query string. Supports wildcards. Max 500 chars."
+        {"name": "is_enabled", "type": "boolean", "description": "Whether enabled."}
     """
-    issues = []
+    issues: List[Issue] = []
     properties = schema.get("properties", {})
     if not isinstance(properties, dict):
         return issues
 
-    for param_name, param_schema in properties.items():
-        if not isinstance(param_schema, dict):
-            continue
-        desc = param_schema.get("description", "")
-        if not desc or not isinstance(desc, str):
-            continue
-        if desc.count("\n") >= _PARAM_DESC_MULTILINE_THRESHOLD:
-            issues.append(Issue(
-                tool=tool_name,
-                severity="warn",
-                check="param_description_multiline",
-                message=(
-                    "param '{param}' description contains {n} newlines — "
-                    "collapse to a single sentence."
-                ).format(param=param_name, n=desc.count("\n")),
-            ))
+    def _check_props(props: Dict[str, Any], path: str) -> None:
+        for param_name, param_schema in props.items():
+            if not isinstance(param_schema, dict):
+                continue
+            full_path = f"{path}.{param_name}" if path else param_name
+            declared_type = param_schema.get("type")
+            if (
+                declared_type is not None
+                and declared_type not in ("boolean", "null")
+                and _BOOL_PREFIX_RE.match(param_name)
+            ):
+                issues.append(Issue(
+                    tool=tool_name,
+                    severity="warn",
+                    check="param_name_implies_boolean",
+                    message=(
+                        "param '{param}' name implies boolean ('{prefix}_' prefix) "
+                        "but declares type '{type}' — use type 'boolean' or rename the param."
+                    ).format(
+                        param=full_path,
+                        prefix=_BOOL_PREFIX_RE.match(param_name).group(1),
+                        type=declared_type,
+                    ),
+                ))
+            # Recurse into nested objects
+            nested_props = param_schema.get("properties") or {}
+            if isinstance(nested_props, dict) and nested_props:
+                _check_props(nested_props, full_path)
+            # Recurse into array items
+            items = param_schema.get("items") or {}
+            if isinstance(items, dict):
+                item_props = items.get("properties") or {}
+                if isinstance(item_props, dict) and item_props:
+                    _check_props(item_props, f"{full_path}[]")
 
+    _check_props(properties, "")
     return issues
 
 
@@ -4604,8 +4753,11 @@ def validate_tools(data: Any) -> Tuple[List[Issue], Dict[str, Any]]:
         if issue is not None:
             issues.append(issue)
 
-        # Check 75: param_description_multiline
-        issues.extend(_check_param_description_multiline(name, schema))
+        # Check 75: default_type_mismatch
+        issues.extend(_check_default_type_mismatch(name, schema))
+
+        # Check 76: param_name_implies_boolean
+        issues.extend(_check_param_name_implies_boolean(name, schema))
 
         # Note: check 52 (number_should_be_integer) is subsumed by check 40
         # (number_type_for_integer) — merged into check 40 in v0.103.1.
