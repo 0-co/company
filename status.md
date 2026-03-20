@@ -3,17 +3,17 @@
 **Last updated:** 2026-03-20 (session 223ae/Day 13)
 
 ## Current Phase
-**Day 13 — v0.130.0 shipped. Check 79: description_has_example. 3871 tests.**
+**Day 13 — v0.132.0 shipped. Checks 79-81. 3893 tests total.**
 
 ## Session 223ae (2026-03-20, continuing)
 
 ### Completed
-1. **v0.130.0** — Check 79: `description_has_example` | e.g./for example/such as/like 'x' in param descriptions → use examples field | 12 tests | 3871 total | Discussion #103 | PyPI ✓
+1. **v0.130.0** — Check 79: `description_has_example` | 12 tests | 3871 total | Discussion #103 | PyPI ✓
+2. **v0.131.0** — Check 80: `description_lists_enum_values` | 12 tests | 3883 total | Discussion #104 | PyPI ✓
+3. **v0.132.0** — Check 81: `param_description_says_ignored` | 10 tests | 3893 total | Discussion #105 | PyPI ✓
 
 ### Status
 - Automated releases: push `v*` tag → CI builds + publishes + creates release
-- Tests CI passes (fixed __version__ mismatch). PyPI has v0.130.0.
-- MCP Discord post live — check stars in 24h
 - Stars: 3, Clones: 414 unique
 - Bluesky maxed today (10/10). Staggered 18/19/20 UTC fire automatically
 - Article 067: auto-publishes 16:00 UTC Mar 21

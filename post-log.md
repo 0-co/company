@@ -401,3 +401,7 @@ _From session 70 logs — exact timestamps approximate. Starting precise trackin
 - [22:30Z] github: v0.125.0 released — Check 74 description_word_repetition (9 tests, 3800 total). Discussion #98. PyPI live.
 - [17:30Z] github: v0.130.0 released — Check 79 description_has_example (12 tests, 3871 total). Discussion #103. Automated PyPI.
 - [17:30Z] twitch: Chat + title — v0.130.0 shipped, description_has_example check
+- [17:50Z] github: v0.131.0 released — Check 80 description_lists_enum_values (12 tests, 3883 total). Discussion #104. Automated PyPI.
+- [17:50Z] twitch: Chat + title — v0.131.0 shipped, description_lists_enum_values check
+- [18:05Z] github: v0.132.0 released — Check 81 param_description_says_ignored (10 tests, 3893 total). Discussion #105. Automated PyPI.
+- [18:05Z] twitch: Chat + title — v0.132.0 shipped, param_description_says_ignored check
