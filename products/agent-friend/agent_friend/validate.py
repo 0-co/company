@@ -789,6 +789,242 @@ def _check_no_duplicate_names(names: List[str]) -> List[Issue]:
     return issues
 
 
+# ---------------------------------------------------------------------------
+# Check 53: tool_name_redundant_prefix
+# ---------------------------------------------------------------------------
+
+_VERB_PREFIXES = frozenset({
+    "get", "set", "list", "create", "update", "delete", "search", "find",
+    "run", "execute", "manage", "generate", "fetch", "read", "write",
+    "send", "add", "remove", "check", "handle", "process", "load", "save",
+    "query", "call", "post", "put", "patch", "edit", "batch", "export",
+    "import", "upload", "download", "analyze", "parse", "validate", "test",
+    "start", "stop", "reset", "init", "configure", "show", "view", "make",
+    "build", "deploy", "describe", "enable", "disable", "toggle", "copy",
+    "move", "rename", "clone", "merge", "split", "convert", "transform",
+    "do", "use", "apply", "open", "close", "lock", "unlock", "sync",
+    "push", "pull", "submit", "cancel", "archive", "restore", "refresh",
+    "resolve", "assign", "unassign", "invite", "revoke", "grant", "deny",
+})
+
+
+def _check_tool_name_redundant_prefix(names: List[str]) -> List[Issue]:
+    """Check 53: tool_name_redundant_prefix — most tools share a redundant service-name prefix.
+
+    When a developer names all their tools with the same prefix — e.g.,
+    ``auth0_list_applications``, ``auth0_create_application``,
+    ``auth0_get_application`` — the ``auth0_`` prefix is pure overhead.
+    The MCP client already namespaces tools by server; models see the server
+    name from the protocol layer, not from individual tool names.  A prefix
+    like ``hubspot_``, ``asana_``, ``chroma_`` repeats the server identity on
+    every tool, wasting tokens on every call and making tool names harder to
+    read at a glance.
+
+    Fires when **all** of the following hold:
+
+    * At least 3 tools are present, AND
+    * 80 % or more of tools share the same first word (split on ``_``), AND
+    * That first word is **not** a common action verb (``get``, ``list``,
+      ``create``, ``delete``, etc.) — verbs are meaningful groupings, not
+      redundant namespace prefixes, AND
+    * The shared prefix is 3–15 characters long.
+
+    Fires **once** per tool list (not per tool), with the first matching tool
+    used as the issue anchor.
+
+    Examples::
+
+        # flagged — 'auth0_' prefix repeats the server name
+        ["auth0_list_applications", "auth0_create_application", "auth0_delete_application"]
+
+        # flagged — 'hubspot_' prefix repeats the server name
+        ["hubspot_create_company", "hubspot_get_company", "hubspot_search_contacts"]
+
+        # ok — 'get_' is an action verb, not a redundant service name
+        ["get_weather", "get_forecast", "get_alerts"]
+
+        # ok — tools have different prefixes, no single dominant one
+        ["search_users", "create_issue", "list_labels", "get_repo"]
+
+    The fix is to remove the shared prefix.  The server name provides context;
+    ``list_applications`` in an Auth0 MCP server is unambiguous.
+    """
+    from collections import Counter
+
+    first_words = Counter()  # type: Counter
+    for name in names:
+        if "_" in name:
+            first_word = name.split("_")[0].lower()
+            first_words[first_word] += 1
+
+    if not first_words:
+        return []
+
+    top_word, count = first_words.most_common(1)[0]
+    total = len(names)
+
+    if (
+        count >= 3
+        and count >= int(total * 0.8)
+        and top_word not in _VERB_PREFIXES
+        and 3 <= len(top_word) <= 15
+    ):
+        # Find first example tool with this prefix for the issue anchor
+        sample = next(
+            (n for n in names if "_" in n and n.split("_")[0].lower() == top_word),
+            names[0],
+        )
+        stripped = sample[len(top_word) + 1:]  # remove prefix + underscore
+
+        return [Issue(
+            tool=sample,
+            severity="warn",
+            check="tool_name_redundant_prefix",
+            message=(
+                "{count}/{total} tools share the '{prefix}_' prefix — this repeats the "
+                "server name and wastes tokens on every call; the MCP client already "
+                "namespaces tools by server. Example: rename '{old}' → '{new}'"
+            ).format(
+                count=count,
+                total=total,
+                prefix=top_word,
+                old=sample,
+                new=stripped,
+            ),
+        )]
+
+    return []
+
+
+# ---------------------------------------------------------------------------
+# Check 54: optional_string_no_minlength
+# ---------------------------------------------------------------------------
+
+_OPTIONAL_STRING_CONTENT_PARTS = frozenset({
+    "query", "sql", "statement", "script", "command",
+    "message", "prompt", "instruction", "expression", "formula", "template",
+    "text", "search", "keyword", "term", "phrase",
+})
+"""Name-part keywords for optional string params that cannot meaningfully be empty."""
+
+_OPTIONAL_ID_SUFFIX_RE = re.compile(r'(?:_|-)?ids?$', re.IGNORECASE)
+_OPTIONAL_TYPE_SUFFIX_RE = re.compile(r'(?:_|-)type$', re.IGNORECASE)
+
+
+def _check_optional_string_no_minlength(tool_name: str, schema: Dict[str, Any]) -> List[Issue]:
+    """Check 54: optional_string_no_minlength — optional content-like string param has no minLength.
+
+    Complements check 49 (``required_string_no_minlength``), which only covers
+    required params.  An *optional* string param named ``query``, ``text``,
+    ``message``, ``prompt``, ``command``, etc. may be omitted entirely — but
+    if the model *does* supply it, an empty string ``""`` is almost always
+    semantically wrong and will cause a downstream API error.
+
+    JSON Schema allows ``""`` by default for any unconstrained string, so the
+    model cannot distinguish "omit this param" from "pass empty string".
+    Adding ``"minLength": 1`` closes the gap: validators reject ``""`` and the
+    model can only omit the param or supply a non-empty value.
+
+    Fires when **all** of the following hold:
+
+    * Param is **not** in the ``required`` array (optional), AND
+    * Param type is ``string`` (or unset, no nested properties), AND
+    * Param name contains a content-like keyword part (see list below), AND
+    * Param has no ``minLength``, ``enum``, ``pattern``, or ``const``, AND
+    * Param name does not end with ``_id`` / ``_ids`` (identifier), AND
+    * Param name does not end with ``_type`` (type discriminator)
+
+    Keywords that trigger: query, sql, statement, script, command, message,
+    prompt, instruction, expression, formula, template, text, search, keyword,
+    term, phrase.
+
+    Special case: bare ``code`` or ``code_*`` (but not ``*_code`` suffixes like
+    ``country_code``) is also included.
+
+    Examples::
+
+        # flagged — optional query string allows empty
+        "query":   {"type": "string"}
+        "search_query": {"type": "string", "description": "Search term"}
+        "message": {"type": "string"}
+
+        # correct — minLength prevents empty string
+        "query":   {"type": "string", "minLength": 1}
+        "message": {"type": "string", "minLength": 1}
+
+        # not flagged — already constrained
+        "status":  {"type": "string", "enum": ["active", "inactive"]}
+        "country_code": {"type": "string"}  # _code suffix, not content
+
+        # not flagged — required params handled by check 49
+        required: ["query"]
+    """
+    issues = []
+    required = schema.get("required", [])
+    if not isinstance(required, list):
+        required = []
+    required_set = set(required)
+
+    properties = schema.get("properties", {})
+    if not isinstance(properties, dict):
+        return issues
+
+    for param_name, param_schema in properties.items():
+        if param_name in required_set:
+            continue  # required params handled by check 49
+        if not isinstance(param_schema, dict):
+            continue
+        # Skip ID params
+        if _OPTIONAL_ID_SUFFIX_RE.search(param_name):
+            continue
+        # Skip type-discriminator params (query_type, filter_type, etc.)
+        if _OPTIONAL_TYPE_SUFFIX_RE.search(param_name):
+            continue
+
+        ptype = param_schema.get("type")
+        if ptype not in (None, "string"):
+            continue
+        if ptype is None and "properties" in param_schema:
+            continue  # object without explicit type — skip
+
+        # Already constrained
+        if param_schema.get("minLength") is not None:
+            continue
+        if param_schema.get("enum") is not None:
+            continue
+        if param_schema.get("pattern") is not None:
+            continue
+        if param_schema.get("const") is not None:
+            continue
+
+        # Check name parts against content keywords
+        parts = set(re.split(r'[_\-\s]+', param_name.lower()))
+        matched_kw = parts & _OPTIONAL_STRING_CONTENT_PARTS
+
+        # Special case for 'code': only match standalone or as first part
+        # (not as a suffix like country_code, zip_code, currency_code)
+        if not matched_kw:
+            name_parts = re.split(r'[_\-\s]+', param_name.lower())
+            if "code" in name_parts and name_parts.index("code") == 0:
+                matched_kw = {"code"}
+
+        if not matched_kw:
+            continue
+
+        matched = next(iter(matched_kw))
+        issues.append(Issue(
+            tool=tool_name,
+            severity="warn",
+            check="optional_string_no_minlength",
+            message=(
+                "optional param '{param}' is a content string ('{kw}') with no "
+                "'minLength' — the schema allows '\"\"' (empty string); add "
+                "'minLength: 1' so the model cannot accidentally pass an empty value"
+            ).format(param=param_name, kw=matched),
+        ))
+    return issues
+
+
 def _check_parameters_valid_type(name: str, schema: Dict[str, Any]) -> List[Issue]:
     """Check 8: parameters_valid_type — parameter type is a valid JSON Schema type."""
     issues = []
@@ -888,6 +1124,645 @@ def _check_required_missing(name: str, schema: Dict[str, Any]) -> Optional[Issue
             "models cannot distinguish mandatory from optional parameters."
         ).format(count=count, s="s" if count != 1 else ""),
     )
+
+
+def _check_required_array_empty(name: str, schema: Dict[str, Any]) -> Optional[Issue]:
+    """Check 46: required_array_empty — tool has ``required: []`` but parameters exist with no defaults.
+
+    ``required: []`` is an *explicit* declaration: "I thought about this and
+    decided nothing is required."  But when parameters have no ``default``
+    value, the model cannot know whether they are truly optional or just
+    forgotten.  Calling the tool without those parameters may fail silently.
+
+    This is the complement of Check 27 (``required_missing``), which fires when
+    ``required`` is absent.  Here ``required`` is present but intentionally
+    empty — which Check 27 exempts — yet the schema still offers no guidance
+    on which parameters are safe to omit.
+
+    Does not fire when:
+    - ``required`` is absent (Check 27 handles that)
+    - ``required`` is non-empty (parameters are explicitly marked)
+    - All parameters have ``default`` values (optionality is documented)
+    - There are no parameters (nothing to mark required)
+
+    Fix: add ``default`` values to confirm parameters are intentionally
+    optional, or move genuinely required parameters into ``required``.
+
+    Examples::
+
+        # flags — required: [] but no defaults (check fires)
+        "required": [],
+        "properties": {
+            "paths":  {"type": "array", "description": "Files to upload"},
+            "format": {"type": "string", "description": "Output format"},
+        }
+
+        # ok — required: [] and all params have defaults
+        "required": [],
+        "properties": {
+            "format": {"type": "string", "default": "json", "description": "Output format"},
+            "limit":  {"type": "integer", "default": 10, "description": "Max results"},
+        }
+    """
+    required = schema.get("required")
+    if not isinstance(required, list) or len(required) != 0:
+        return None
+    properties = schema.get("properties", {})
+    if not isinstance(properties, dict) or not properties:
+        return None
+    no_default = [p for p, ps in properties.items()
+                  if isinstance(ps, dict) and "default" not in ps]
+    if not no_default:
+        return None
+    count = len(no_default)
+    return Issue(
+        tool=name,
+        severity="warn",
+        check="required_array_empty",
+        message=(
+            "tool has 'required: []' but {count} parameter{s} ({params}) "
+            "have no 'default' value — models cannot tell which are safe to omit; "
+            "add defaults to confirm optionality or move required params into 'required'."
+        ).format(
+            count=count,
+            s="s" if count != 1 else "",
+            params=", ".join(f"'{p}'" for p in no_default[:3])
+            + (" ..." if count > 3 else ""),
+        ),
+    )
+
+
+_TOOL_DESC_MARKDOWN_RE = re.compile(
+    r'`[^`\n]{1,60}`'                         # `code` spans in tool descriptions
+    r'|\*\*[A-Za-z][A-Za-z0-9 _,!:.#-]+\*\*'  # **bold text**
+    r'|```'                                     # ``` code fences
+    r'|\n\s*#{1,4}\s+\w',                       # markdown headers
+    re.MULTILINE,
+)
+_PARAM_DESC_MARKDOWN_RE = re.compile(
+    r'\*\*[A-Za-z][A-Za-z0-9 _,!:.#-]+\*\*'  # **bold text** in param descriptions
+    r'|```'                                     # ``` code fences
+    r'|\n\s*#{1,4}\s+\w',                       # markdown headers
+    re.MULTILINE,
+)
+"""Patterns that indicate markdown formatting in descriptions."""
+
+
+def _check_description_markdown_formatting(tool_name: str, tool_description: str, schema: Dict[str, Any]) -> List[Issue]:
+    """Check 47: description_markdown_formatting — markdown syntax in tool or param descriptions.
+
+    Markdown formatting (backtick code spans, **bold**, headers, fenced code
+    blocks) does not render in most LLM runtimes when reading tool schemas.
+    The asterisks, backticks, and pound signs appear as literal characters,
+    adding noise tokens without conveying extra meaning.
+
+    Tool descriptions with markdown bold like ``**IMPORTANT:**`` or headers
+    like ``### When to use this tool`` add token overhead.  Inline backtick
+    spans such as `` `find_organizations()` `` are common in AI-generated
+    schemas but the formatting is invisible to the model.
+
+    Fires on:
+    - **Tool descriptions** with backtick code spans, ``**bold**``, ````` ``` `````
+      fences, or ``##`` headers.
+    - **Param descriptions** with ``**bold**``, fences, or headers (single
+      backtick spans are allowed in param descriptions as they often show
+      expected values like `` `true` `` or `` `json` ``).
+
+    Does not fire when there is no markdown formatting detected.
+
+    Fix: use plain prose.  State what the tool does without markdown
+    formatting.  The model reads descriptions as plain text.
+
+    Examples::
+
+        # flags — markdown in tool description
+        {
+          "name": "init",
+          "description": "**IMPORTANT:** Call this first. ### Setup\\nRequired step.",
+        }
+
+        # flags — code fence in param description
+        {
+          "name": "format",
+          "description": "Output format: ```json\\n{ ... }\\n```"
+        }
+
+        # ok — plain text
+        {
+          "name": "init",
+          "description": "Initialize the session. Must be called before other tools.",
+        }
+    """
+    issues = []
+
+    # Check tool description
+    if isinstance(tool_description, str) and _TOOL_DESC_MARKDOWN_RE.search(tool_description):
+        matches = _TOOL_DESC_MARKDOWN_RE.findall(tool_description)
+        issues.append(Issue(
+            tool=tool_name,
+            severity="warn",
+            check="description_markdown_formatting",
+            message=(
+                "tool description contains markdown formatting ({sample}) — "
+                "markdown does not render in LLM tool schemas; use plain text."
+            ).format(sample=repr(matches[0][:40])),
+        ))
+
+    # Check param descriptions (only bold/headers/fences, not single backtick spans)
+    properties = schema.get("properties", {})
+    if isinstance(properties, dict):
+        for param_name, param_schema in properties.items():
+            if not isinstance(param_schema, dict):
+                continue
+            desc = param_schema.get("description")
+            if not isinstance(desc, str):
+                continue
+            if _PARAM_DESC_MARKDOWN_RE.search(desc):
+                matches = _PARAM_DESC_MARKDOWN_RE.findall(desc)
+                issues.append(Issue(
+                    tool=tool_name,
+                    severity="warn",
+                    check="description_markdown_formatting",
+                    message=(
+                        "param '{param}' description contains markdown formatting ({sample}) — "
+                        "markdown does not render in LLM tool schemas; use plain text."
+                    ).format(param=param_name, sample=repr(matches[0][:40])),
+                ))
+
+    return issues
+
+
+_TOOL_MODEL_INSTRUCTIONS_RE = re.compile(
+    r'\byou (?:must|should|need to|have to|always|never)\b'
+    r'|\balways (?:call|use|pass|include|check|verify|ensure|start|begin|run)\b'
+    r'|\bnever (?:call|use|pass|include|skip|omit)\b'
+    r'|\bIMPORTANT:\s*(?:call|use|this tool must|always)\b'
+    r'|\bmust be called (?:before|first|after|instead)\b'
+    r'|\bprioritize (?:this|using)\b'
+    # Orchestration-hint patterns (added v0.104.0)
+    r'|\buse\s+this\s+tool\s+when\b'
+    r'|\bwhen\s+to\s+use\b'
+    r'|\bdo\s+not\s+use\s+this\b'
+    r'|\bcall\s+this\s+(?:tool\s+)?(?:first|before|after)\b'
+    r'|\bthis\s+tool\s+should\s+(?:only|never|not)\s+be\b'
+    r'|\bonly\s+(?:call|use)\s+this\s+(?:tool\s+)?when\b',
+    re.IGNORECASE,
+)
+"""Patterns that indicate model-directing language in tool descriptions."""
+
+
+def _check_description_model_instructions(tool_name: str, tool_description: str) -> Optional[Issue]:
+    """Check 48: description_model_instructions — tool description contains language
+    directing model behavior rather than describing what the tool does.
+
+    Tool descriptions should describe what a tool does.  Phrases like
+    "you must call X first", "always pass Y", "never skip Z", or
+    "Use this tool when:" sections are operational instructions for the
+    model — they belong in the system prompt, not in the schema.
+    Putting them here:
+
+    * wastes tokens on every tool call (the model re-reads the full
+      schema each time)
+    * mixes "what" (schema) with "how" (system prompt)
+    * may conflict with system-level instructions from the host application
+
+    Fires on (examples):
+    - "you must/should/need to/have to/always/never ..."
+    - "always call/use/pass/include ..."
+    - "never call/use/pass/include/skip ..."
+    - "IMPORTANT: call/use ..."
+    - "must be called before/first/after ..."
+    - "Use this tool when: ..."
+    - "When to use: ..."
+    - "Do not use this ..."
+    - "Call this first/before/after ..."
+    - "This tool should only/never/not be ..."
+    - "Only call/use this tool when ..."
+
+    Does not fire on:
+    - "always" used as a modifier unrelated to model behavior
+      ("always-on service", "always returns a list")
+    - descriptive use of "should" meaning a normal outcome
+      ("the response should contain...")
+    - Check 13 already covers malicious override patterns.
+    """
+    if not isinstance(tool_description, str) or not tool_description:
+        return None
+    m = _TOOL_MODEL_INSTRUCTIONS_RE.search(tool_description)
+    if not m:
+        return None
+    return Issue(
+        tool=tool_name,
+        severity="warn",
+        check="description_model_instructions",
+        message=(
+            "tool description contains model-directing language ({sample}) — "
+            "instructions on how to use the tool belong in the system prompt, "
+            "not in the schema."
+        ).format(sample=repr(m.group(0)[:50])),
+    )
+
+
+_REQUIRED_STRING_CONTENT_PARTS = frozenset({
+    "query", "sql", "statement", "code", "script", "program", "command",
+    "message", "prompt", "instruction", "expression", "formula", "template",
+})
+"""Name-part keywords that strongly imply a string value cannot be empty."""
+
+
+def _check_required_string_no_minlength(tool_name: str, schema: Dict[str, Any]) -> List[Issue]:
+    """Check 49: required_string_no_minlength — required content-like string param has no minLength.
+
+    A required string parameter with a content-like name (query, code, message,
+    command, prompt, script, etc.) that omits ``minLength`` technically allows
+    an empty string ``""`` to pass JSON Schema validation.  At runtime the
+    downstream API will almost always reject the empty value, making this a
+    latent correctness bug.
+
+    Adding ``"minLength": 1`` makes the contract explicit: the model cannot
+    accidentally pass an empty string and get a confusing runtime error.
+
+    Does not fire when:
+    - The parameter is not in the ``required`` array
+    - The parameter type is not ``string`` (or unset string)
+    - The parameter already has ``minLength`` set
+    - The parameter has an ``enum`` (values already constrained)
+    - The parameter has a ``pattern`` (format already constrained)
+    - The parameter name ends with ``_id`` or ``_ids`` (it's an identifier, not content)
+    - The parameter name contains none of the content-like keywords
+    """
+    issues = []
+    required = schema.get("required", [])
+    if not isinstance(required, list) or not required:
+        return issues
+    properties = schema.get("properties", {})
+    if not isinstance(properties, dict):
+        return issues
+    _id_suffix_re = re.compile(r'(?:_|-)?ids?$', re.IGNORECASE)
+    for param_name, param_schema in properties.items():
+        if param_name not in required:
+            continue
+        if not isinstance(param_schema, dict):
+            continue
+        # Skip ID params — they should use format/pattern constraints, not minLength
+        if _id_suffix_re.search(param_name):
+            continue
+        ptype = param_schema.get("type")
+        if ptype not in (None, "string"):
+            continue
+        if ptype is None and "properties" in param_schema:
+            # likely an object without explicit type — skip
+            continue
+        if param_schema.get("minLength") is not None:
+            continue
+        if param_schema.get("enum") is not None:
+            continue
+        if param_schema.get("pattern") is not None:
+            continue
+        # Check if any name part is a content keyword
+        parts = set(re.split(r'[_\-\s]+', param_name.lower()))
+        if not parts & _REQUIRED_STRING_CONTENT_PARTS:
+            continue
+        matched = next(iter(parts & _REQUIRED_STRING_CONTENT_PARTS))
+        issues.append(Issue(
+            tool=tool_name,
+            severity="warn",
+            check="required_string_no_minlength",
+            message=(
+                "required param '{param}' is a content string ('{kw}') with no 'minLength' — "
+                "the schema allows '\"\"' (empty string); add 'minLength: 1' to reject "
+                "empty values at validation time."
+            ).format(param=param_name, kw=matched),
+        ))
+    return issues
+
+
+# ---------------------------------------------------------------------------
+# Check 50: param_description_says_optional
+# ---------------------------------------------------------------------------
+
+_SAYS_OPTIONAL_RE = re.compile(
+    r'^(\(optional\)\s*|optional\s*[:\-–]\s*|optional\s+)',
+    re.IGNORECASE,
+)
+
+
+def _check_param_description_says_optional(tool_name: str, schema: Dict[str, Any]) -> List[Issue]:
+    """Check 50: param_description_says_optional — param description starts with 'Optional:' or '(optional)'.
+
+    JSON Schema already expresses optionality through the ``required`` array: if
+    a parameter is not listed there, it is optional.  Repeating that fact in the
+    description prefix (``"Optional: ..."`` or ``"(optional) ..."`` etc.) is pure
+    redundancy — the model can read the schema; it does not need the prose to
+    re-state what the schema already encodes.  This also wastes tokens on every
+    call that includes the tool definition.
+
+    Common forms that fire:
+
+    * ``"Optional: Language code for the output"``
+    * ``"(Optional) Filter by status"``
+    * ``"Optional - maximum number of results"``
+    * ``"Optional. Overrides the default timeout."``
+
+    Fires when:
+
+    * Param is **not** listed in the tool's ``required`` array, AND
+    * Param description starts with the above patterns (case-insensitive)
+
+    Does **not** fire for required params (even if they mistakenly say
+    "optional" — that is a different, more severe issue) because the focus is
+    on the common redundancy pattern in optional params.
+
+    The fix is simply to remove the prefix and let the ``required`` array
+    communicate optionality.
+
+    Examples::
+
+        # flagged — 'optional' prefix is redundant with the schema required array
+        "lang":   {"type": "string", "description": "Optional: Language code (e.g. 'en', 'fr')"}
+        "limit":  {"type": "integer", "description": "Optional: Maximum results to return"}
+        "filter": {"type": "string", "description": "(optional) Filter expression"}
+
+        # correct — description goes straight to the point
+        "lang":   {"type": "string", "description": "Language code (e.g. 'en', 'fr')", "default": "en"}
+        "limit":  {"type": "integer", "description": "Maximum results to return (default: 10)", "default": 10}
+        "filter": {"type": "string", "description": "Filter expression"}
+    """
+    issues = []
+    properties = schema.get("properties", {})
+    if not isinstance(properties, dict):
+        return issues
+    required = schema.get("required", [])
+    if not isinstance(required, list):
+        required = []
+
+    for param_name, param_schema in properties.items():
+        if not isinstance(param_schema, dict):
+            continue
+        if param_name in required:
+            continue  # only flag optional params (non-required ones)
+        description = param_schema.get("description", "")
+        if not description or not isinstance(description, str):
+            continue
+        if _SAYS_OPTIONAL_RE.match(description.strip()):
+            issues.append(Issue(
+                tool=tool_name,
+                severity="warn",
+                check="param_description_says_optional",
+                message=(
+                    "optional param '{param}' description starts with 'Optional' — "
+                    "redundant with the schema's 'required' array; remove the prefix "
+                    "and let the schema structure communicate optionality"
+                ).format(param=param_name),
+            ))
+
+    return issues
+
+
+# ---------------------------------------------------------------------------
+# Check 55: required_param_has_default
+# ---------------------------------------------------------------------------
+
+
+def _check_required_param_has_default(tool_name: str, schema: Dict[str, Any]) -> List[Issue]:
+    """Check 55: required_param_has_default — required param also declares a ``default``.
+
+    In JSON Schema the ``required`` array means the caller **must** supply the
+    parameter — the server will reject the call if it is absent.  The
+    ``default`` keyword means "use this value when the caller omits the
+    parameter."  These two signals contradict each other: if the caller must
+    always provide the parameter, the default can never be applied; if the
+    default is meaningful, the parameter should be optional.
+
+    This contradiction confuses LLMs: the model sees ``required`` and infers it
+    must supply a value, but also sees ``default: "gpt-4o"`` and may assume it
+    can omit the param.  The resulting behaviour is unpredictable.
+
+    Common causes:
+
+    * Copy-paste from optional params where the ``default`` made sense.
+    * Required + default used as documentation (showing the typical value).
+    * Lazy schema migration where optionality changed but ``required`` was not
+      updated.
+
+    Fires when:
+
+    * Param is listed in the tool's ``required`` array, AND
+    * Param schema contains a ``"default"`` key (any non-null value)
+
+    Does **not** fire when the ``default`` value is ``null`` — a ``null``
+    default on a required param is unusual but may indicate nullability rather
+    than optionality.
+
+    Examples::
+
+        # flagged — required param with a contradictory default
+        properties:
+          model:    {type: string, default: "gpt-4o"}
+          format:   {type: string, default: "json"}
+        required: [model, format]
+
+        # correct — required param with no default (caller always provides it)
+        properties:
+          model:    {type: string, description: "Model ID to use"}
+        required: [model]
+
+        # correct — optional param with a default
+        properties:
+          format:   {type: string, default: "json", description: "Output format"}
+        required: []   # format is optional, default applies when omitted
+    """
+    issues = []
+    properties = schema.get("properties", {})
+    if not isinstance(properties, dict):
+        return issues
+    required = schema.get("required", [])
+    if not isinstance(required, list):
+        required = []
+    if not required:
+        return issues
+
+    for param_name in required:
+        param_schema = properties.get(param_name)
+        if not isinstance(param_schema, dict):
+            continue
+        if "default" not in param_schema:
+            continue
+        default_value = param_schema["default"]
+        if default_value is None:
+            continue  # null default is an edge case, skip
+        issues.append(Issue(
+            tool=tool_name,
+            severity="warn",
+            check="required_param_has_default",
+            message=(
+                "required param '{param}' has 'default: {default}' — "
+                "required params must always be supplied by the caller so the "
+                "default can never apply; either remove the param from 'required' "
+                "(if the default is meaningful) or remove the 'default' field "
+                "(if the param is truly mandatory)"
+            ).format(param=param_name, default=repr(default_value)),
+        ))
+
+    return issues
+
+
+
+
+_RANGE_IN_DESC_RE = re.compile(
+    r'(?<!\d)(\d+)\s*(?:[-–—]|to)\s*(\d+)(?!\d)',
+    re.IGNORECASE,
+)
+
+
+def _check_range_described_not_constrained(tool_name: str, schema: Dict[str, Any]) -> List[Issue]:
+    """Check 51: range_described_not_constrained — numeric param description mentions a range but schema lacks min/max.
+
+    When a developer writes ``"limit": {"type": "integer", "description": "Number of results (1-100)"}``
+    they are documenting a constraint in prose.  But prose constraints are only
+    enforced at the API level — models see the description and *may* respect the
+    range, but JSON Schema validation does not prevent them from passing 0 or
+    9999.  Adding ``"minimum": 1, "maximum": 100`` to the schema makes the
+    constraint machine-readable, lets validators enforce it, and removes
+    ambiguity for the model.
+
+    Fires when:
+
+    * Param type is ``integer`` or ``number``, AND
+    * Description contains a range pattern like ``1-100``, ``0-5``, ``1 to 20``, AND
+    * The range bounds are plausible (low < high, difference ≤ 10000, high ≤ 1000000), AND
+    * Schema has no ``minimum`` or ``maximum`` (or exclusive variants)
+
+    Does **not** fire for params that already have min/max constraints, even
+    partial ones (e.g. only ``minimum`` is set).
+
+    Examples::
+
+        # flagged — range in English but not in schema
+        "per_page": {"type": "integer", "description": "Results per page (1-100)"}
+        "limit":    {"type": "integer", "description": "Max results, 1 to 100"}
+        "fps":      {"type": "integer", "description": "Frames per second, 1-30"}
+
+        # correct — schema enforces what description says
+        "per_page": {"type": "integer", "description": "Results per page (1-100)",
+                     "minimum": 1, "maximum": 100}
+        "temperature": {"type": "number", "description": "Sampling temp 0.0-1.0",
+                        "minimum": 0.0, "maximum": 1.0}
+    """
+    issues = []
+    properties = schema.get("properties", {})
+    if not isinstance(properties, dict):
+        return issues
+
+    for param_name, param_schema in properties.items():
+        if not isinstance(param_schema, dict):
+            continue
+        ptype = param_schema.get("type", "")
+        if ptype not in ("integer", "number"):
+            continue
+        # Skip if already has any min/max constraint
+        if any(k in param_schema for k in ("minimum", "maximum", "exclusiveMinimum", "exclusiveMaximum")):
+            continue
+        desc = param_schema.get("description", "")
+        if not desc or not isinstance(desc, str):
+            continue
+        m = _RANGE_IN_DESC_RE.search(desc)
+        if not m:
+            continue
+        lo, hi = int(m.group(1)), int(m.group(2))
+        # Plausibility filter: lo < hi, range ≤ 10000, hi ≤ 1_000_000
+        if lo >= hi or hi - lo > 10_000 or hi > 1_000_000:
+            continue
+        issues.append(Issue(
+            tool=tool_name,
+            severity="warn",
+            check="range_described_not_constrained",
+            message=(
+                "param '{param}' description says '{lo}–{hi}' but schema has no "
+                "minimum/maximum — models can pass out-of-range values; add "
+                "\"minimum\": {lo}, \"maximum\": {hi} to enforce the constraint"
+            ).format(param=param_name, lo=lo, hi=hi),
+        ))
+
+    return issues
+
+
+# ---------------------------------------------------------------------------
+# Check 52: number_should_be_integer
+# ---------------------------------------------------------------------------
+
+# Param names whose semantics are unambiguously integer (no fractional meaning).
+_INTEGER_PARAM_RE = re.compile(
+    r'^(page|limit|count|per_page|page_size|offset|'
+    r'num_|number_of_|n_results|max_results|top_k|top_n|'
+    r'batch_size|concurrency|workers|retries|retry_count|retry|'
+    r'port|depth|level|rank|priority|row|col|column|line|index|chunk|'
+    r'max_tokens|max_length|max_size|start_index|end_index|'
+    r'page_number|start_page|end_page|skip|take)'
+    r'|(_count|_limit|_size|_num|_page|_index|_max_tokens)$',
+    re.IGNORECASE,
+)
+
+
+def _check_number_should_be_integer(tool_name: str, schema: Dict[str, Any]) -> List[Issue]:
+    """Check 52: number_should_be_integer — param declared as ``number`` but name implies integer semantics.
+
+    ``number`` admits floats (1.5, 2.7) which makes no sense for pagination
+    params like ``page``, ``limit``, ``offset``, ``count``, ``per_page``, or
+    structural params like ``port``, ``depth``, ``index``.  Passing 1.5 as a
+    page number causes API errors downstream yet the schema would not reject it.
+
+    Using ``integer`` instead:
+
+    * Prevents models from generating invalid values (e.g. page 2.5)
+    * Communicates the intent unambiguously
+    * Enables downstream validators to enforce whole-number semantics
+
+    Fires when:
+
+    * Param type is ``number`` (not ``integer``), AND
+    * Param name matches an unambiguously-integer pattern (page, limit, offset,
+      count, per_page, port, depth, index, etc.)
+
+    Does **not** fire for ``timeout``, ``duration``, ``delay``, ``threshold``,
+    ``temperature``, ``ratio``, or similar params where fractional values are
+    legitimate.
+
+    Examples::
+
+        # flagged — should be integer
+        "page":     {"type": "number", "description": "Page number"}
+        "limit":    {"type": "number", "description": "Max results"}
+        "per_page": {"type": "number", "description": "Results per page"}
+
+        # correct
+        "page":       {"type": "integer", "description": "Page number"}
+        "temperature": {"type": "number",  "description": "Sampling temperature"}
+        "ratio":       {"type": "number",  "description": "Aspect ratio"}
+    """
+    issues = []
+    properties = schema.get("properties", {})
+    if not isinstance(properties, dict):
+        return issues
+
+    for param_name, param_schema in properties.items():
+        if not isinstance(param_schema, dict):
+            continue
+        if param_schema.get("type") != "number":
+            continue
+        if _INTEGER_PARAM_RE.search(param_name.lower()):
+            issues.append(Issue(
+                tool=tool_name,
+                severity="warn",
+                check="number_should_be_integer",
+                message=(
+                    "param '{param}' has type 'number' but the name implies integer semantics "
+                    "— use type 'integer' to prevent models from passing fractional values "
+                    "(e.g. page 1.5) that most APIs reject"
+                ).format(param=param_name),
+            ))
+
+    return issues
 
 
 def _check_nested_required_missing(tool_name: str, schema: Dict[str, Any]) -> List[Issue]:
@@ -1194,6 +2069,824 @@ def _check_description_multiline(name: str, obj: Dict[str, Any], fmt: str) -> Op
     return None
 
 
+def _check_description_redundant_type(tool_name: str, schema: Dict[str, Any]) -> List[Issue]:
+    """Check 35: description_redundant_type — param description begins with its own type name.
+
+    When a parameter already declares its JSON Schema type, starting the description
+    with that type name adds token overhead without providing new information.
+
+    Examples of the antipattern::
+
+        # type: "array" — redundant
+        "files":   {"type": "array",   "description": "array of file objects to push"}
+        "paths":   {"type": "array",   "description": "list of file paths to read"}
+        "tags":    {"type": "array",   "description": "an array of tag strings"}
+
+        # type: "string" — redundant
+        "token":   {"type": "string",  "description": "a string containing the API token"}
+        "mode":    {"type": "string",  "description": "string value: 'fast' or 'slow'"}
+
+        # type: "boolean" — redundant
+        "verbose": {"type": "boolean", "description": "boolean flag for verbose output"}
+
+    Better descriptions skip the type echo and describe *what the value means*::
+
+        "files":   "File objects to push, each with 'path' and 'content' keys"
+        "token":   "API authentication token from your account settings"
+        "verbose": "Whether to print detailed debug output"
+
+    Fires once per affected parameter (not once per tool).
+    """
+    # Type → tuple of lowercase prefix strings that are redundant for that type.
+    # We deliberately exclude "number of" for type:number since it is common English.
+    _REDUNDANT = {
+        "array": (
+            "array of ", "an array of ", "the array of ",
+            "array containing ", "array with ",
+            "list of ", "a list of ", "the list of ",
+        ),
+        "string": (
+            "a string ", "the string ", "string value",
+            "string that ", "string representing ", "string containing ",
+            "string with ",
+        ),
+        "integer": (
+            "an integer", "the integer", "integer value",
+            "integer representing ", "integer that ",
+        ),
+        "boolean": (
+            "a boolean", "the boolean", "boolean value",
+            "boolean flag", "boolean that ", "boolean indicating",
+            "boolean whether",
+        ),
+        "object": (
+            "an object ", "the object ", "object containing ",
+            "object with ", "json object",
+        ),
+    }
+
+    issues = []
+    properties = schema.get("properties", {})
+    if not isinstance(properties, dict):
+        return issues
+
+    for param_name, param_schema in properties.items():
+        if not isinstance(param_schema, dict):
+            continue
+        ptype = param_schema.get("type")
+        if not isinstance(ptype, str) or ptype not in _REDUNDANT:
+            continue
+        desc = param_schema.get("description", "")
+        if not desc or not isinstance(desc, str):
+            continue
+        desc_lower = desc.lower().strip()
+        if not desc_lower:
+            continue
+        for prefix in _REDUNDANT[ptype]:
+            if desc_lower.startswith(prefix):
+                issues.append(Issue(
+                    tool=tool_name,
+                    severity="warn",
+                    check="description_redundant_type",
+                    message=(
+                        "param '{param}' description '{desc}' starts with its type "
+                        "name — the type is already declared in the schema; describe "
+                        "what the value means instead"
+                    ).format(param=param_name, desc=desc[:60]),
+                ))
+                break  # one issue per param
+
+    return issues
+
+
+def _check_param_format_missing(tool_name: str, schema: Dict[str, Any]) -> List[Issue]:
+    """Check 36: param_format_missing — string param has format-suggestive name but no 'format'.
+
+    JSON Schema's ``format`` keyword is advisory but useful — it tells models
+    (and validators) what *shape* a string value should take.  When a parameter
+    is clearly named after a well-known format (``email``, ``url``, ``date``,
+    ``phone``, ``uuid``) but the schema omits ``format``, the model is left to
+    guess.  Guessing email vs. name, ISO date vs. "March 20", UUID vs. integer
+    id — all of these lead to avoidable failures in production.
+
+    Matching rules (applied to parameter names, case-insensitive):
+
+    * ``email`` — exact or ends with ``_email`` → ``format: "email"``
+    * ``url`` or ``uri`` — exact or ends with ``_url`` / ``_uri`` → ``format: "uri"``
+    * ``date`` — exact or ends with ``_date`` → ``format: "date"``
+    * ``timestamp`` — exact or ends with ``_timestamp`` → ``format: "date-time"``
+    * ``phone`` / ``phone_number`` — exact or ends with ``_phone`` → ``format: "phone"``
+    * ``uuid`` — exact or ends with ``_uuid`` → ``format: "uuid"``
+
+    Only fires when the parameter type is ``string``, there is no existing
+    ``format`` field, and there is no ``enum`` (enumerated values already
+    constrain the shape).  Fires once per affected parameter.
+
+    Examples::
+
+        # missing — model guesses what format is acceptable
+        "email":       {"type": "string", "description": "User email address"}
+        "redirect_url":{"type": "string", "description": "Redirect URL after auth"}
+        "start_date":  {"type": "string", "description": "Start date for the report"}
+
+        # correct — model knows the required format
+        "email":       {"type": "string", "format": "email",    "description": "..."}
+        "redirect_url":{"type": "string", "format": "uri",      "description": "..."}
+        "start_date":  {"type": "string", "format": "date",     "description": "..."}
+    """
+    # (suffix_or_exact, suggested_format)
+    _RULES = [
+        # Email
+        ("email",          "email",     "exact_or_suffix"),
+        # URL / URI
+        ("url",            "uri",       "exact_or_suffix"),
+        ("uri",            "uri",       "exact_or_suffix"),
+        # Date
+        ("date",           "date",      "exact_or_suffix"),
+        # Datetime / timestamp
+        ("timestamp",      "date-time", "exact_or_suffix"),
+        # Phone
+        ("phone",          "phone",     "exact_or_suffix"),
+        ("phone_number",   "phone",     "exact"),
+        # UUID
+        ("uuid",           "uuid",      "exact_or_suffix"),
+    ]
+
+    issues = []
+    properties = schema.get("properties", {})
+    if not isinstance(properties, dict):
+        return issues
+
+    for param_name, param_schema in properties.items():
+        if not isinstance(param_schema, dict):
+            continue
+        if param_schema.get("type") != "string":
+            continue
+        if "format" in param_schema:
+            continue
+        if "enum" in param_schema:
+            continue
+
+        p_low = param_name.lower()
+        matched_format = None
+
+        for keyword, fmt, match_type in _RULES:
+            if match_type == "exact":
+                if p_low == keyword:
+                    matched_format = fmt
+                    break
+            else:  # exact_or_suffix
+                if p_low == keyword or p_low.endswith("_" + keyword):
+                    matched_format = fmt
+                    break
+
+        if matched_format is not None:
+            issues.append(Issue(
+                tool=tool_name,
+                severity="warn",
+                check="param_format_missing",
+                message=(
+                    "param '{param}' looks like a {fmt} value but has no "
+                    "'format: \"{fmt}\"' declaration — models may generate the wrong "
+                    "string shape"
+                ).format(param=param_name, fmt=matched_format),
+            ))
+
+    return issues
+
+
+def _check_boolean_default_missing(tool_name: str, schema: Dict[str, Any]) -> List[Issue]:
+    """Check 37: boolean_default_missing — optional boolean param has no 'default' field.
+
+    When a boolean parameter is optional (not in ``required``), omitting the
+    ``default`` field forces models to guess the assumed state.  Without a
+    machine-readable default, a model doesn't know whether to:
+
+    * omit the parameter entirely (relies on an undocumented server default), or
+    * pass ``false`` (potentially overriding a ``true`` default), or
+    * ask the user (adds unnecessary friction).
+
+    JSON Schema's ``default`` keyword is advisory but critical for tool-calling
+    LLMs — it lets them infer ``"if I leave this out, the server assumes X"``.
+
+    Only fires for optional parameters (not in ``required``) with
+    ``type: boolean`` and no existing ``default``.  Fires once per affected
+    parameter.
+
+    Examples::
+
+        # missing — model guesses what omitting this means
+        "verbose":    {"type": "boolean", "description": "Enable verbose output"}
+        "recursive":  {"type": "boolean", "description": "Search recursively"}
+
+        # correct — model knows the assumed state when param is omitted
+        "verbose":    {"type": "boolean", "default": false, "description": "..."}
+        "recursive":  {"type": "boolean", "default": false, "description": "..."}
+    """
+    issues = []
+    properties = schema.get("properties", {})
+    if not isinstance(properties, dict):
+        return issues
+
+    required = schema.get("required", [])
+    if not isinstance(required, list):
+        required = []
+
+    for param_name, param_schema in properties.items():
+        if not isinstance(param_schema, dict):
+            continue
+        if param_name in required:
+            continue  # required params must be supplied — no default needed
+        if param_schema.get("type") != "boolean":
+            continue
+        if "default" in param_schema:
+            continue
+
+        issues.append(Issue(
+            tool=tool_name,
+            severity="warn",
+            check="boolean_default_missing",
+            message=(
+                "optional boolean param '{param}' has no 'default' — models will "
+                "guess whether omitting it means true or false; add "
+                "\"default\": false (or true) to declare the assumed state"
+            ).format(param=param_name),
+        ))
+
+    return issues
+
+
+def _check_enum_default_missing(tool_name: str, schema: Dict[str, Any]) -> List[Issue]:
+    """Check 38: enum_default_missing — optional enum param has no 'default' field.
+
+    When an enum parameter is optional (not in ``required``), omitting the
+    ``default`` field forces models to guess which value the server assumes
+    when the parameter is not supplied.  Unlike booleans (two choices),
+    enum params can have many values — so the probability of guessing
+    correctly is 1-in-N, and guessing wrong means the wrong data is
+    returned or the wrong action is taken.
+
+    Without a machine-readable default, a model calling ``list_pull_requests``
+    with no ``state`` argument doesn't know whether it will receive open PRs,
+    closed PRs, or all PRs.  The model must either:
+
+    * guess (likely wrong for rarer defaults like ``"all"``), or
+    * always supply the param (adds noise to every call), or
+    * ask the user (unnecessary friction for a param with a clear default).
+
+    JSON Schema's ``default`` keyword is advisory but critical for tool-calling
+    LLMs — it lets them infer ``"if I leave this out, the server assumes X"``.
+
+    Only fires for optional parameters (not in ``required``) with an
+    ``enum`` field and no existing ``default``.  Fires once per affected
+    parameter.
+
+    Examples::
+
+        # missing — model guesses which enum value is assumed
+        "state":     {"type": "string", "enum": ["open", "closed", "all"]}
+        "direction": {"type": "string", "enum": ["asc", "desc"]}
+
+        # correct — model knows the assumed value when param is omitted
+        "state":     {"type": "string", "enum": ["open", "closed", "all"], "default": "open"}
+        "direction": {"type": "string", "enum": ["asc", "desc"], "default": "desc"}
+    """
+    issues = []
+    properties = schema.get("properties", {})
+    if not isinstance(properties, dict):
+        return issues
+
+    required = schema.get("required", [])
+    if not isinstance(required, list):
+        required = []
+
+    for param_name, param_schema in properties.items():
+        if not isinstance(param_schema, dict):
+            continue
+        if param_name in required:
+            continue  # required params must be supplied — no default needed
+        if "enum" not in param_schema:
+            continue
+        if "default" in param_schema:
+            continue
+        enum_vals = param_schema.get("enum", [])
+        if not isinstance(enum_vals, list) or len(enum_vals) == 0:
+            continue
+
+        issues.append(Issue(
+            tool=tool_name,
+            severity="warn",
+            check="enum_default_missing",
+            message=(
+                "optional enum param '{param}' has no 'default' — models must guess "
+                "which of {n} values the server assumes when the param is omitted; "
+                "add \"default\": \"{first}\" (or whichever value is the server default)"
+            ).format(param=param_name, n=len(enum_vals), first=enum_vals[0]),
+        ))
+
+    return issues
+
+
+_DEFAULT_IN_DESC_RE = re.compile(
+    r'(?:'
+    r'defaults?\s+to\b'         # "defaults to X", "default to X"
+    r'|default\s*:\s*\S'        # "default: X" — annotation-style
+    r'|default\s*=\s*\S'        # "default=X"
+    r'|\(defaults?\b'           # "(default..." or "(defaults..." — parenthetical
+    r'|by\s+default\s*[,:\s]'   # "by default, ...", "by default: ...", "by default X"
+    r')',
+    re.IGNORECASE,
+)
+_NO_DEFAULT_RE = re.compile(r'\bno\s+default\b', re.IGNORECASE)
+
+
+def _check_default_in_description_not_schema(tool_name: str, schema: Dict[str, Any]) -> List[Issue]:
+    """Check 39: default_in_description_not_schema — description mentions a default but schema has no 'default' field.
+
+    Check 30 (``default_undocumented``) catches the inverse: schema has a
+    ``default`` field that the description omits.  This check catches the
+    symmetric counterpart: the description *mentions* a default value in prose
+    but the schema has no ``default`` field.
+
+    The mismatch matters because:
+
+    * The schema is machine-readable; prose is not.  A model that parses the
+      description to find "defaults to 'en'" is doing fragile string matching
+      — a schema ``"default": "en"`` is authoritative.
+    * Tools like ``agent-friend fix``, OpenAPI generators, and IDE tooling
+      read schema fields, not prose.  A missing ``default`` field means these
+      tools can't auto-apply the documented default.
+    * Authors who bother to document a default in prose clearly intend one to
+      exist — not having it in the schema is almost certainly an oversight.
+
+    Only fires for optional parameters (not in ``required``) that have a
+    description matching a default-mention pattern and no ``default`` field in
+    the schema.  Skips params whose description says "no default".
+
+    Patterns detected (case-insensitive):
+
+    * "defaults to X" / "default to X"
+    * "default: X" / "default=X"
+    * "(default ...)" / "(defaults ...)"
+    * "by default, ..." / "by default: ..."
+
+    Examples::
+
+        # flagged — description claims a default that schema doesn't encode
+        "language": {"type": "string", "description": "Language code. Defaults to 'en'."}
+        "timeout":  {"type": "integer", "description": "Timeout in seconds (default: 30)."}
+        "format":   {"type": "string", "description": "Output format. By default, uses 'json'."}
+
+        # correct — schema default matches prose description
+        "language": {"type": "string", "description": "Language code. Defaults to 'en'.", "default": "en"}
+        "timeout":  {"type": "integer", "description": "Timeout in seconds (default: 30).", "default": 30}
+    """
+    issues = []
+    properties = schema.get("properties", {})
+    if not isinstance(properties, dict):
+        return issues
+
+    required = schema.get("required", [])
+    if not isinstance(required, list):
+        required = []
+
+    for param_name, param_schema in properties.items():
+        if not isinstance(param_schema, dict):
+            continue
+        if param_name in required:
+            continue  # required params must be supplied; prose default may be inaccurate
+        if "default" in param_schema:
+            continue  # schema already has a default — no mismatch
+        description = param_schema.get("description", "")
+        if not description or not isinstance(description, str):
+            continue
+        if _NO_DEFAULT_RE.search(description):
+            continue  # explicitly says there is no default
+        if _DEFAULT_IN_DESC_RE.search(description):
+            issues.append(Issue(
+                tool=tool_name,
+                severity="warn",
+                check="default_in_description_not_schema",
+                message=(
+                    "optional param '{param}' description mentions a default value but schema has no 'default' field; "
+                    "prose defaults are invisible to tools — add the value as \"default\": <value> in the schema"
+                ).format(param=param_name),
+            ))
+
+    return issues
+
+
+_INTEGER_NAMES = frozenset({
+    "limit", "count", "page", "offset", "size", "depth",
+    "width", "height", "index", "length", "version",
+    "num", "number", "total", "retries", "retry",
+    "page_size", "pagesize", "max_results", "max_tokens",
+    "top_k", "top_n", "skip", "take", "batch", "batch_size",
+    "chunk_size", "per_page", "cursor", "start", "end",
+    # Additional integer-implying names (merged from check 52 in v0.103.1)
+    "port", "level", "rank", "priority", "row", "col", "column", "line",
+    "concurrency", "workers", "n_results", "max_length", "max_size",
+    "page_number", "start_page", "end_page", "start_index", "end_index",
+    "retry_count",
+})
+_INTEGER_SUFFIX_RE = re.compile(
+    r'(?:^|_)(?:' + "|".join(re.escape(n) for n in sorted(_INTEGER_NAMES, key=len, reverse=True)) + r')s?$',
+    re.IGNORECASE,
+)
+_INTEGER_ID_RE = re.compile(r'(?:^|_)id$', re.IGNORECASE)
+
+
+def _check_number_type_for_integer(tool_name: str, schema: Dict[str, Any]) -> List[Issue]:
+    """Check 40: number_type_for_integer — param name implies integer but type is 'number'.
+
+    JSON Schema distinguishes ``integer`` (no fractional component) from
+    ``number`` (any numeric value, including floats).  When a parameter named
+    ``limit``, ``page``, ``offset``, ``count``, ``id``, ``width``, ``height``,
+    or similar is declared as ``type: "number"``, models may legally supply
+    values like ``1.5``, ``0.3``, or ``-7.2`` — values that most servers will
+    reject or silently truncate.
+
+    Using the correct ``type: "integer"`` tells the model it must supply a
+    whole number, prevents silent type coercion bugs, and improves schema
+    accuracy for downstream tooling.
+
+    Fires when:
+
+    * A top-level parameter has ``type: "number"``, AND
+    * Its name matches a set of known integer-implying patterns
+      (exact: ``limit``, ``page``, ``offset``, ``count``, ``size``,
+      ``depth``, ``width``, ``height``, ``index``, ``version``, etc.;
+      suffix: ``_limit``, ``_page``, ``_count``, ``_id``, ``_ids``, …).
+
+    Does **not** fire for parameters that already use ``type: "integer"``,
+    or for parameters where a fractional value is plausible
+    (e.g. ``latitude``, ``longitude``, ``temperature``, ``score``).
+
+    Examples::
+
+        # flagged — 'number' used where 'integer' is clearly intended
+        "limit":    {"type": "number", "description": "Max results to return"}
+        "page":     {"type": "number", "description": "Page number (default: 1)"}
+        "offset":   {"type": "number", "description": "Number of records to skip"}
+        "run_id":   {"type": "number", "description": "ID of the workflow run"}
+
+        # correct
+        "limit":    {"type": "integer", "description": "Max results to return"}
+        "latitude": {"type": "number",  "description": "Latitude coordinate"}
+    """
+    issues = []
+    properties = schema.get("properties", {})
+    if not isinstance(properties, dict):
+        return issues
+
+    for param_name, param_schema in properties.items():
+        if not isinstance(param_schema, dict):
+            continue
+        if param_schema.get("type") != "number":
+            continue
+        name_lower = param_name.lower()
+        is_integer_name = (
+            _INTEGER_SUFFIX_RE.search(name_lower) is not None
+            or _INTEGER_ID_RE.search(name_lower) is not None
+        )
+        if not is_integer_name:
+            continue
+        issues.append(Issue(
+            tool=tool_name,
+            severity="warn",
+            check="number_type_for_integer",
+            message=(
+                "param '{param}' is declared as 'number' but the name implies an integer; "
+                "use \"type\": \"integer\" to prevent models from supplying fractional values"
+            ).format(param=param_name),
+        ))
+
+    return issues
+
+
+def _check_array_items_object_no_properties(tool_name: str, schema: Dict[str, Any]) -> List[Issue]:
+    """Check 41: array_items_object_no_properties — array items typed as object but no 'properties' defined.
+
+    Check 12 (``nested_objects_have_properties``) catches top-level params that
+    are ``type: "object"`` with no ``properties``.  This check extends that
+    coverage to array items: when an array param's ``items`` schema declares
+    ``type: "object"`` but provides no ``properties``, the model knows each
+    element should be an object but has no idea what fields that object should
+    contain.
+
+    Without ``properties``, the model must hallucinate the object structure
+    based on the param name, description, and training data — none of which
+    are machine-readable contracts.  This leads to incorrectly shaped objects,
+    missing required fields, and failed API calls.
+
+    Fires when:
+
+    * A top-level param is ``type: "array"``, AND
+    * Its ``items`` schema exists, AND
+    * ``items.type`` is ``"object"``, AND
+    * ``items`` has no ``properties`` field.
+
+    Examples::
+
+        # flagged — array of objects with no defined structure
+        "scopes":      {"type": "array", "items": {"type": "object"}}
+        "headers":     {"type": "array", "items": {"type": "object", "description": "..."}}
+        "operations":  {"type": "array", "items": {"type": "object"}}
+
+        # correct — model knows what each object should contain
+        "scopes":  {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "value": {"type": "string", "description": "Scope identifier"},
+                    "description": {"type": "string"}
+                },
+                "required": ["value"]
+            }
+        }
+    """
+    issues = []
+    properties = schema.get("properties", {})
+    if not isinstance(properties, dict):
+        return issues
+
+    for param_name, param_schema in properties.items():
+        if not isinstance(param_schema, dict):
+            continue
+        if param_schema.get("type") != "array":
+            continue
+        items = param_schema.get("items")
+        if not isinstance(items, dict):
+            continue
+        if items.get("type") == "object" and "properties" not in items:
+            issues.append(Issue(
+                tool=tool_name,
+                severity="warn",
+                check="array_items_object_no_properties",
+                message=(
+                    "array param '{param}' items are typed as object but have no 'properties' defined; "
+                    "models cannot know what fields each object should contain — "
+                    "add a 'properties' schema to the items definition"
+                ).format(param=param_name),
+            ))
+
+    return issues
+
+
+_TOOL_DESC_STOP = frozenset({
+    "a", "an", "the", "this", "that", "of", "to", "for", "from",
+    "in", "on", "at", "by", "is", "it", "or", "and", "be", "are",
+    "was", "with", "if", "its", "as", "all", "up", "out",
+})
+_TOOL_DESC_STRIP_RE = re.compile(r"[^a-z0-9 ]")
+
+
+def _check_tool_description_just_the_name(name: str, obj: Dict[str, Any], fmt: str) -> Optional[Issue]:
+    """Check 42: tool_description_just_the_name — tool description merely restates the tool name.
+
+    Check 33 (``description_just_the_name``) catches *parameter* descriptions
+    that only restate the parameter name.  This check applies the same
+    principle to *tool* descriptions: if every significant word in the
+    description is already present in the tool name (after splitting on ``_``),
+    the description adds zero information.
+
+    Examples of descriptions that fail:
+
+    * ``list_repositories`` → ``"List repositories"``
+    * ``notion_retrieve_block`` → ``"Retrieve a block from Notion"``
+    * ``delete_content_type`` → ``"Delete a content type"``
+    * ``approve_merge_request`` → ``"Approve a merge request"``
+
+    These descriptions do nothing the model couldn't infer from the name
+    itself.  A useful description would explain what the tool returns, what
+    side effects it has, what parameters are critical, or what use case it
+    serves — things the name cannot express.
+
+    Fires when **all** of the following hold:
+
+    * The tool description is 20+ characters (shorter already caught by Check 20)
+    * The description is 8 words or fewer
+    * Every significant word in the description (3+ chars, not a stop word)
+      is present in the set of words that make up the tool name (split on ``_``
+      and ``-``, lowercased)
+
+    Examples::
+
+        # flagged — adds nothing beyond what the name conveys
+        name="list_repositories",       description="List repositories"
+        name="notion_retrieve_block",   description="Retrieve a block from Notion"
+        name="delete_content_type",     description="Delete a content type"
+
+        # correct — adds context beyond the name
+        name="list_repositories", description="List public and private repositories for the authenticated user or a specified organization."
+        name="get_file",          description="Retrieve the contents of a file at a given path in a repository."
+    """
+    # Get description from the raw tool object (format-agnostic)
+    if fmt == "openai":
+        desc = obj.get("function", {}).get("description", "") or ""
+    elif fmt in ("anthropic", "mcp"):
+        desc = obj.get("description", "") or ""
+    elif fmt == "google":
+        desc = obj.get("description", "") or ""
+    else:
+        desc = obj.get("description", "") or ""
+
+    if not desc or not isinstance(desc, str):
+        return None
+    if len(desc) < 20:
+        return None  # too short → already caught by Check 20
+    if len(desc.split()) > 8:
+        return None  # longer descriptions likely add real value
+
+    # Words from the tool name (split on _ and -)
+    raw_name_words = re.split(r"[_\-]", name.lower())
+    name_words = {w for w in raw_name_words if len(w) >= 2}
+    if not name_words:
+        return None
+
+    # Significant words from the description: 3+ chars, not stop words
+    desc_tokens = _TOOL_DESC_STRIP_RE.sub(" ", desc.lower()).split()
+    sig_words = {w for w in desc_tokens if len(w) >= 3 and w not in _TOOL_DESC_STOP}
+    if not sig_words:
+        return None  # no significant words to check
+
+    if sig_words.issubset(name_words):
+        return Issue(
+            tool=name,
+            severity="warn",
+            check="tool_description_just_the_name",
+            message=(
+                "tool description '{desc}' only restates the tool name '{name}'; "
+                "add context about what the tool returns, its side effects, or "
+                "when to use it versus similar tools"
+            ).format(name=name, desc=desc[:60]),
+        )
+    return None
+
+
+# ---------------------------------------------------------------------------
+# Check 43: string_comma_separated
+# ---------------------------------------------------------------------------
+
+_COMMA_SEP_RE = re.compile(
+    r'comma[- ]separated|comma[- ]delimited|pipe[- ]separated'
+    r'|newline[- ]separated|space[- ]separated',
+    re.IGNORECASE,
+)
+
+
+def _check_string_comma_separated(tool_name: str, schema: Dict[str, Any]) -> List[Issue]:
+    """Check 43: string_comma_separated — param description says "comma-separated" but type is string.
+
+    When a description says the param is "comma-separated", the value is
+    actually a list — and JSON Schema has native support for lists via
+    ``type: "array"``.  Using a string forces the model to manually construct
+    a delimited string, which is error-prone and forfeits schema-level
+    validation of individual items.
+
+    This check fires when:
+
+    * ``type`` is ``"string"``
+    * No ``enum`` field (enum strings are intentional)
+    * Description matches: comma-separated / comma-delimited / pipe-separated
+      / newline-separated / space-separated
+
+    The fix is to change the type to ``"array"`` and add an ``items`` schema.
+    """
+    issues = []
+    properties = schema.get("properties", {})
+    if not isinstance(properties, dict):
+        return issues
+
+    for param_name, param_schema in properties.items():
+        if not isinstance(param_schema, dict):
+            continue
+        ptype = param_schema.get("type")
+        if ptype != "string":
+            continue
+        if "enum" in param_schema:
+            continue
+        desc = param_schema.get("description") or ""
+        if not isinstance(desc, str):
+            continue
+        if not _COMMA_SEP_RE.search(desc):
+            continue
+
+        issues.append(Issue(
+            tool=tool_name,
+            severity="warn",
+            check="string_comma_separated",
+            message=(
+                "param '{param}' description says values are delimited "
+                "(e.g. 'comma-separated') but type is 'string'; "
+                "use type: 'array' with an items schema so each element "
+                "is validated individually"
+            ).format(param=param_name),
+        ))
+
+    return issues
+
+
+# ---------------------------------------------------------------------------
+# Check 44: enum_single_const
+# ---------------------------------------------------------------------------
+# Check 45: required_array_no_minitems
+# ---------------------------------------------------------------------------
+
+def _check_required_array_no_minitems(tool_name: str, schema: Dict[str, Any]) -> List[Issue]:
+    """Check 45: required_array_no_minitems — required array param has no minItems constraint.
+
+    A ``required`` array param with no ``minItems`` field allows the model to
+    pass an empty list ``[]``.  For most tools that take a list of resources
+    (files, IDs, topics, paths, queries) an empty array is either invalid or
+    a no-op.  Adding ``minItems: 1`` makes the constraint explicit and prevents
+    the model from accidentally sending empty arrays.
+
+    This check fires when:
+
+    * Param is listed in the schema's ``required`` array
+    * Param type is ``"array"``
+    * Param has no ``minItems`` field
+
+    The fix is adding ``"minItems": 1`` (or a larger value if appropriate).
+    """
+    issues = []
+    properties = schema.get("properties", {})
+    required = schema.get("required", [])
+    if not isinstance(properties, dict) or not isinstance(required, list):
+        return issues
+
+    for param_name, param_schema in properties.items():
+        if not isinstance(param_schema, dict):
+            continue
+        if param_schema.get("type") != "array":
+            continue
+        if param_name not in required:
+            continue
+        if "minItems" in param_schema:
+            continue
+
+        issues.append(Issue(
+            tool=tool_name,
+            severity="warn",
+            check="required_array_no_minitems",
+            message=(
+                "required array param '{param}' has no 'minItems' constraint; "
+                "the model can pass an empty list [] — add 'minItems: 1' "
+                "if an empty array is not a valid input"
+            ).format(param=param_name),
+        ))
+
+    return issues
+
+
+# ---------------------------------------------------------------------------
+
+def _check_enum_single_const(tool_name: str, schema: Dict[str, Any]) -> List[Issue]:
+    """Check 44: enum_single_const — enum array with a single value; use const instead.
+
+    When ``enum`` contains exactly one value, the intent is to express a
+    constant — a param that can only ever hold one specific value.  JSON Schema
+    provides ``const`` precisely for this case:
+
+    * ``{"enum": ["graphite"]}`` — technically valid, misleads readers
+    * ``{"const": "graphite"}`` — semantically clear, shorter, correct
+
+    This check fires whenever a param's ``enum`` array has exactly one element
+    at any schema nesting level (top-level params and nested object properties).
+    """
+    issues = []
+
+    def _check_props(properties: Dict[str, Any], path: str = "") -> None:
+        for param_name, param_schema in properties.items():
+            if not isinstance(param_schema, dict):
+                continue
+            param_path = f"{path}.{param_name}" if path else param_name
+            enum_val = param_schema.get("enum")
+            if isinstance(enum_val, list) and len(enum_val) == 1:
+                issues.append(Issue(
+                    tool=tool_name,
+                    severity="warn",
+                    check="enum_single_const",
+                    message=(
+                        "param '{param}' has enum with a single value {val!r}; "
+                        "use const: {val!r} instead — enum implies multiple options, "
+                        "const expresses a fixed value"
+                    ).format(param=param_path, val=enum_val[0]),
+                ))
+            # Recurse into nested object properties
+            nested = param_schema.get("properties")
+            if isinstance(nested, dict):
+                _check_props(nested, param_path)
+
+    properties = schema.get("properties", {})
+    if isinstance(properties, dict):
+        _check_props(properties)
+
+    return issues
+
+
 def _check_enum_is_array(name: str, schema: Dict[str, Any]) -> List[Issue]:
     """Check 10: enum_is_array — enum values are arrays, not scalars."""
     issues = []
@@ -1459,6 +3152,74 @@ def validate_tools(data: Any) -> Tuple[List[Issue], Dict[str, Any]]:
         if issue is not None:
             issues.append(issue)
 
+        # Check 42: tool_description_just_the_name
+        issue = _check_tool_description_just_the_name(name, raw_obj, fmt)
+        if issue is not None:
+            issues.append(issue)
+
+        # Check 35: description_redundant_type
+        issues.extend(_check_description_redundant_type(name, schema))
+
+        # Check 36: param_format_missing
+        issues.extend(_check_param_format_missing(name, schema))
+
+        # Check 37: boolean_default_missing
+        issues.extend(_check_boolean_default_missing(name, schema))
+
+        # Check 38: enum_default_missing
+        issues.extend(_check_enum_default_missing(name, schema))
+
+        # Check 39: default_in_description_not_schema
+        issues.extend(_check_default_in_description_not_schema(name, schema))
+
+        # Check 40: number_type_for_integer
+        issues.extend(_check_number_type_for_integer(name, schema))
+
+        # Check 41: array_items_object_no_properties
+        issues.extend(_check_array_items_object_no_properties(name, schema))
+
+        # Check 43: string_comma_separated
+        issues.extend(_check_string_comma_separated(name, schema))
+
+        # Check 44: enum_single_const
+        issues.extend(_check_enum_single_const(name, schema))
+
+        # Check 45: required_array_no_minitems
+        issues.extend(_check_required_array_no_minitems(name, schema))
+
+        # Check 46: required_array_empty
+        issue = _check_required_array_empty(name, schema)
+        if issue is not None:
+            issues.append(issue)
+
+        # Check 47: description_markdown_formatting
+        _tool_desc_47 = (raw_obj.get('description', '') or '') if isinstance(raw_obj, dict) else ''
+        issues.extend(_check_description_markdown_formatting(name, _tool_desc_47, schema))
+
+        # Check 48: description_model_instructions
+        _tool_desc_48 = (raw_obj.get('description', '') or '') if isinstance(raw_obj, dict) else ''
+        issue = _check_description_model_instructions(name, _tool_desc_48)
+        if issue is not None:
+            issues.append(issue)
+
+        # Check 49: required_string_no_minlength
+        issues.extend(_check_required_string_no_minlength(name, schema))
+
+        # Check 50: param_description_says_optional
+        issues.extend(_check_param_description_says_optional(name, schema))
+
+        # Check 51: range_described_not_constrained
+        issues.extend(_check_range_described_not_constrained(name, schema))
+
+        # Check 54: optional_string_no_minlength
+        issues.extend(_check_optional_string_no_minlength(name, schema))
+
+        # Check 55: required_param_has_default
+        issues.extend(_check_required_param_has_default(name, schema))
+
+        # Note: check 52 (number_should_be_integer) is subsumed by check 40
+        # (number_type_for_integer) — merged into check 40 in v0.103.1.
+
         # Check 10: enum_is_array
         issues.extend(_check_enum_is_array(name, schema))
 
@@ -1504,6 +3265,9 @@ def validate_tools(data: Any) -> Tuple[List[Issue], Dict[str, Any]]:
 
     # Check 7: no_duplicate_names (cross-tool)
     issues.extend(_check_no_duplicate_names(names))
+
+    # Check 53: tool_name_redundant_prefix (cross-tool)
+    issues.extend(_check_tool_name_redundant_prefix(names))
 
     # Calculate stats
     errors = sum(1 for i in issues if i.severity == "error")

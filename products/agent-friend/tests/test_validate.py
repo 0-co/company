@@ -41,6 +41,12 @@ from agent_friend.validate import (
     _check_nested_param_type_missing,
     _check_array_items_type_missing,
     _check_description_multiline,
+    _check_description_redundant_type,
+    _check_param_format_missing,
+    _check_boolean_default_missing,
+    _check_enum_default_missing,
+    _check_param_description_says_optional,
+    _check_required_param_has_default,
 )
 
 
@@ -55,7 +61,7 @@ VALID_ANTHROPIC_TOOL = {
         "type": "object",
         "properties": {
             "city": {"type": "string", "description": "Name of the target city"},
-            "units": {"type": "string", "enum": ["celsius", "fahrenheit"], "description": "Temperature unit (celsius or fahrenheit)"},
+            "units": {"type": "string", "enum": ["celsius", "fahrenheit"], "default": "celsius", "description": "Temperature unit: celsius (default) or fahrenheit"},
         },
         "required": ["city"],
     },
@@ -4137,3 +4143,2854 @@ class TestCheck34DescriptionMultiline:
         obj = self._mcp_obj("First.\nSecond.\nThird.")
         issue = _check_description_multiline("t", obj, "mcp")
         assert issue is not None
+
+
+class TestCheck35DescriptionRedundantType:
+    """Tests for Check 35: description_redundant_type."""
+
+    def _schema(self, param_name: str, param_type: str, description: str):
+        return {"type": "object", "properties": {
+            param_name: {"type": param_type, "description": description}
+        }}
+
+    def test_array_of_fires(self):
+        """'array of file objects' for an array param → warn."""
+        schema = self._schema("files", "array", "array of file objects to push")
+        issues = _check_description_redundant_type("t", schema)
+        assert len(issues) == 1
+        assert issues[0].check == "description_redundant_type"
+
+    def test_list_of_fires(self):
+        """'list of file paths' for an array param → warn."""
+        schema = self._schema("paths", "array", "list of file paths to read")
+        issues = _check_description_redundant_type("t", schema)
+        assert len(issues) == 1
+
+    def test_an_array_of_fires(self):
+        """'an array of tag strings' → warn."""
+        schema = self._schema("tags", "array", "an array of tag strings")
+        issues = _check_description_redundant_type("t", schema)
+        assert len(issues) == 1
+
+    def test_a_list_of_fires(self):
+        """'a list of items to process' → warn."""
+        schema = self._schema("items", "array", "a list of items to process")
+        issues = _check_description_redundant_type("t", schema)
+        assert len(issues) == 1
+
+    def test_array_good_description_ok(self):
+        """Descriptive array param without redundant prefix → no issue."""
+        schema = self._schema("files", "array", "File objects to push, each with path and content")
+        issues = _check_description_redundant_type("t", schema)
+        assert len(issues) == 0
+
+    def test_string_a_string_fires(self):
+        """'a string containing the token' for string param → warn."""
+        schema = self._schema("token", "string", "a string containing the API token")
+        issues = _check_description_redundant_type("t", schema)
+        assert len(issues) == 1
+
+    def test_string_value_fires(self):
+        """'string value representing the mode' → warn."""
+        schema = self._schema("mode", "string", "string value representing the mode")
+        issues = _check_description_redundant_type("t", schema)
+        assert len(issues) == 1
+
+    def test_string_good_description_ok(self):
+        """'API authentication token from account settings' → no issue."""
+        schema = self._schema("token", "string", "API authentication token from account settings")
+        issues = _check_description_redundant_type("t", schema)
+        assert len(issues) == 0
+
+    def test_boolean_flag_fires(self):
+        """'boolean flag for verbose output' → warn."""
+        schema = self._schema("verbose", "boolean", "boolean flag for verbose output")
+        issues = _check_description_redundant_type("t", schema)
+        assert len(issues) == 1
+
+    def test_a_boolean_fires(self):
+        """'a boolean indicating recursive search' → warn."""
+        schema = self._schema("recursive", "boolean", "a boolean indicating recursive search")
+        issues = _check_description_redundant_type("t", schema)
+        assert len(issues) == 1
+
+    def test_boolean_whether_ok(self):
+        """'Whether to include deleted items' → no issue (correct pattern)."""
+        schema = self._schema("include_deleted", "boolean", "Whether to include deleted items")
+        issues = _check_description_redundant_type("t", schema)
+        assert len(issues) == 0
+
+    def test_integer_fires(self):
+        """'an integer specifying page size' → warn."""
+        schema = self._schema("page_size", "integer", "an integer specifying page size")
+        issues = _check_description_redundant_type("t", schema)
+        assert len(issues) == 1
+
+    def test_number_of_no_fire(self):
+        """'number of results per page' for number param → no issue (semantic English)."""
+        schema = self._schema("per_page", "number", "number of results per page")
+        issues = _check_description_redundant_type("t", schema)
+        assert len(issues) == 0
+
+    def test_object_fires(self):
+        """'an object containing user details' → warn."""
+        schema = self._schema("user", "object", "an object containing user details")
+        issues = _check_description_redundant_type("t", schema)
+        assert len(issues) == 1
+
+    def test_no_type_no_fire(self):
+        """Param with no type declaration → no issue (other checks handle it)."""
+        schema = {"type": "object", "properties": {
+            "data": {"description": "array of items"}
+        }}
+        issues = _check_description_redundant_type("t", schema)
+        assert len(issues) == 0
+
+    def test_no_description_no_fire(self):
+        """Array param with no description → no issue (check 18 handles it)."""
+        schema = {"type": "object", "properties": {
+            "files": {"type": "array"}
+        }}
+        issues = _check_description_redundant_type("t", schema)
+        assert len(issues) == 0
+
+    def test_multiple_params_multiple_issues(self):
+        """Multiple params with redundant type prefixes each get an issue."""
+        schema = {"type": "object", "properties": {
+            "files": {"type": "array", "description": "array of file objects"},
+            "tags": {"type": "array", "description": "list of tag strings"},
+        }}
+        issues = _check_description_redundant_type("t", schema)
+        assert len(issues) == 2
+
+    def test_severity_is_warn(self):
+        """Issue is a warning, not an error."""
+        schema = self._schema("paths", "array", "list of paths to process")
+        issues = _check_description_redundant_type("t", schema)
+        assert issues[0].severity == "warn"
+
+    def test_param_name_in_message(self):
+        """Issue message mentions the affected parameter name."""
+        schema = self._schema("my_files", "array", "array of file objects")
+        issues = _check_description_redundant_type("t", schema)
+        assert "my_files" in issues[0].message
+
+    def test_case_insensitive(self):
+        """Description starting with 'Array of' (capitalized) also fires."""
+        schema = self._schema("items", "array", "Array of items to process")
+        issues = _check_description_redundant_type("t", schema)
+        assert len(issues) == 1
+
+    def test_validate_tools_integration(self):
+        """validate_tools picks up the check end-to-end."""
+        tools = [{
+            "name": "push_files",
+            "description": "Push files to a repository.",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "files": {"type": "array", "description": "array of file objects to push"},
+                    "branch": {"type": "string", "description": "Target branch name"},
+                },
+                "required": ["files", "branch"],
+            },
+        }]
+        issues, _ = validate_tools(tools)
+        rt_issues = [i for i in issues if i.check == "description_redundant_type"]
+        assert len(rt_issues) == 1
+        assert rt_issues[0].tool == "push_files"
+
+
+# ---------------------------------------------------------------------------
+# Check 36: param_format_missing
+# ---------------------------------------------------------------------------
+
+class TestParamFormatMissing:
+    """Tests for Check 36: param_format_missing."""
+
+    def _schema(self, param_name: str, ptype: str = "string", desc: str = "A value", **extra):
+        return {"type": "object", "properties": {
+            param_name: {"type": ptype, "description": desc, **extra}
+        }}
+
+    def test_email_exact_fires(self):
+        schema = self._schema("email")
+        issues = _check_param_format_missing("t", schema)
+        assert len(issues) == 1
+        assert issues[0].check == "param_format_missing"
+        assert "email" in issues[0].message
+
+    def test_email_suffix_fires(self):
+        schema = self._schema("billing_email")
+        issues = _check_param_format_missing("t", schema)
+        assert len(issues) == 1
+
+    def test_url_exact_fires(self):
+        schema = self._schema("url")
+        issues = _check_param_format_missing("t", schema)
+        assert len(issues) == 1
+        assert "uri" in issues[0].message
+
+    def test_url_suffix_fires(self):
+        schema = self._schema("redirect_url")
+        issues = _check_param_format_missing("t", schema)
+        assert len(issues) == 1
+
+    def test_uri_exact_fires(self):
+        schema = self._schema("uri")
+        issues = _check_param_format_missing("t", schema)
+        assert len(issues) == 1
+
+    def test_date_exact_fires(self):
+        schema = self._schema("date")
+        issues = _check_param_format_missing("t", schema)
+        assert len(issues) == 1
+        assert "date" in issues[0].message
+
+    def test_date_suffix_fires(self):
+        schema = self._schema("start_date")
+        issues = _check_param_format_missing("t", schema)
+        assert len(issues) == 1
+
+    def test_timestamp_fires(self):
+        schema = self._schema("timestamp")
+        issues = _check_param_format_missing("t", schema)
+        assert len(issues) == 1
+        assert "date-time" in issues[0].message
+
+    def test_phone_fires(self):
+        schema = self._schema("phone")
+        issues = _check_param_format_missing("t", schema)
+        assert len(issues) == 1
+        assert "phone" in issues[0].message
+
+    def test_phone_number_fires(self):
+        schema = self._schema("phone_number")
+        issues = _check_param_format_missing("t", schema)
+        assert len(issues) == 1
+
+    def test_uuid_fires(self):
+        schema = self._schema("uuid")
+        issues = _check_param_format_missing("t", schema)
+        assert len(issues) == 1
+        assert "uuid" in issues[0].message
+
+    def test_uuid_suffix_fires(self):
+        schema = self._schema("task_uuid")
+        issues = _check_param_format_missing("t", schema)
+        assert len(issues) == 1
+
+    def test_already_has_format_no_fire(self):
+        schema = self._schema("email", format="email")
+        issues = _check_param_format_missing("t", schema)
+        assert len(issues) == 0
+
+    def test_has_enum_no_fire(self):
+        """Enum already constrains the value; no format needed."""
+        schema = {"type": "object", "properties": {
+            "date": {"type": "string", "enum": ["today", "yesterday"], "description": "Date"}
+        }}
+        issues = _check_param_format_missing("t", schema)
+        assert len(issues) == 0
+
+    def test_non_string_no_fire(self):
+        """Integer param named 'date_offset' — not a string, no issue."""
+        schema = {"type": "object", "properties": {
+            "date_offset": {"type": "integer", "description": "Days offset from today"}
+        }}
+        issues = _check_param_format_missing("t", schema)
+        assert len(issues) == 0
+
+    def test_unrelated_name_no_fire(self):
+        """Param named 'message' — no format hint, no issue."""
+        schema = self._schema("message")
+        issues = _check_param_format_missing("t", schema)
+        assert len(issues) == 0
+
+    def test_severity_is_warn(self):
+        schema = self._schema("email")
+        issues = _check_param_format_missing("t", schema)
+        assert issues[0].severity == "warn"
+
+    def test_param_name_in_message(self):
+        schema = self._schema("billing_email")
+        issues = _check_param_format_missing("t", schema)
+        assert "billing_email" in issues[0].message
+
+    def test_multiple_params(self):
+        schema = {"type": "object", "properties": {
+            "email": {"type": "string", "description": "Contact email"},
+            "redirect_url": {"type": "string", "description": "URL after login"},
+            "name": {"type": "string", "description": "Full name"},
+        }}
+        issues = _check_param_format_missing("t", schema)
+        assert len(issues) == 2
+
+    def test_validate_tools_integration(self):
+        """validate_tools picks up the check end-to-end."""
+        tools = [{
+            "name": "create_contact",
+            "description": "Create a new contact.",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "email": {"type": "string", "description": "Contact email address"},
+                    "name": {"type": "string", "description": "Full name"},
+                },
+                "required": ["email", "name"],
+            },
+        }]
+        issues, _ = validate_tools(tools)
+        fmt_issues = [i for i in issues if i.check == "param_format_missing"]
+        assert len(fmt_issues) == 1
+        assert fmt_issues[0].tool == "create_contact"
+
+
+class TestBooleanDefaultMissing:
+    """Tests for Check 37: boolean_default_missing."""
+
+    def _make_schema(self, props, required=None):
+        schema = {"type": "object", "properties": props}
+        if required is not None:
+            schema["required"] = required
+        return schema
+
+    def test_optional_boolean_no_default_fires(self):
+        """Optional boolean param without default should fire."""
+        schema = self._make_schema(
+            {"verbose": {"type": "boolean", "description": "Enable verbose output"}}
+        )
+        issues = _check_boolean_default_missing("my_tool", schema)
+        assert len(issues) == 1
+        assert issues[0].check == "boolean_default_missing"
+
+    def test_required_boolean_no_default_no_fire(self):
+        """Required boolean without default should NOT fire (caller must supply it)."""
+        schema = self._make_schema(
+            {"confirm": {"type": "boolean", "description": "Confirm the action"}},
+            required=["confirm"],
+        )
+        issues = _check_boolean_default_missing("my_tool", schema)
+        assert len(issues) == 0
+
+    def test_optional_boolean_with_default_false_no_fire(self):
+        """Optional boolean with default: false should NOT fire."""
+        schema = self._make_schema(
+            {"recursive": {"type": "boolean", "default": False, "description": "..."}}
+        )
+        issues = _check_boolean_default_missing("my_tool", schema)
+        assert len(issues) == 0
+
+    def test_optional_boolean_with_default_true_no_fire(self):
+        """Optional boolean with default: true should NOT fire."""
+        schema = self._make_schema(
+            {"enabled": {"type": "boolean", "default": True, "description": "..."}}
+        )
+        issues = _check_boolean_default_missing("my_tool", schema)
+        assert len(issues) == 0
+
+    def test_non_boolean_no_fire(self):
+        """Non-boolean params should NOT fire even without default."""
+        schema = self._make_schema({
+            "count": {"type": "integer", "description": "Number of items"},
+            "name": {"type": "string", "description": "Name"},
+        })
+        issues = _check_boolean_default_missing("my_tool", schema)
+        assert len(issues) == 0
+
+    def test_multiple_boolean_params_multiple_issues(self):
+        """Multiple optional booleans without defaults should each fire."""
+        schema = self._make_schema({
+            "verbose": {"type": "boolean", "description": "Verbose"},
+            "recursive": {"type": "boolean", "description": "Recursive"},
+            "dry_run": {"type": "boolean", "description": "Dry run"},
+        })
+        issues = _check_boolean_default_missing("my_tool", schema)
+        assert len(issues) == 3
+
+    def test_mixed_required_and_optional(self):
+        """Only optional booleans without defaults should fire."""
+        schema = self._make_schema(
+            {
+                "confirm": {"type": "boolean", "description": "Required confirm"},
+                "verbose": {"type": "boolean", "description": "Optional verbose"},
+                "trace": {"type": "boolean", "default": False, "description": "Has default"},
+            },
+            required=["confirm"],
+        )
+        issues = _check_boolean_default_missing("my_tool", schema)
+        assert len(issues) == 1
+        assert issues[0].message.count("verbose") == 1
+
+    def test_severity_is_warn(self):
+        """Issue severity should be 'warn'."""
+        schema = self._make_schema(
+            {"debug": {"type": "boolean", "description": "Debug mode"}}
+        )
+        issues = _check_boolean_default_missing("my_tool", schema)
+        assert len(issues) == 1
+        assert issues[0].severity == "warn"
+
+    def test_param_name_in_message(self):
+        """The param name should appear in the issue message."""
+        schema = self._make_schema(
+            {"allow_dangerous": {"type": "boolean", "description": "Allow dangerous ops"}}
+        )
+        issues = _check_boolean_default_missing("my_tool", schema)
+        assert len(issues) == 1
+        assert "allow_dangerous" in issues[0].message
+
+    def test_tool_name_set_correctly(self):
+        """Issue tool field should match the tool name."""
+        schema = self._make_schema(
+            {"flag": {"type": "boolean", "description": "A flag"}}
+        )
+        issues = _check_boolean_default_missing("specific_tool", schema)
+        assert len(issues) == 1
+        assert issues[0].tool == "specific_tool"
+
+    def test_no_properties_no_fire(self):
+        """Schema without properties should not fire."""
+        issues = _check_boolean_default_missing("my_tool", {})
+        assert len(issues) == 0
+
+    def test_empty_required_list_treated_as_optional(self):
+        """Boolean with empty required list is optional and should fire."""
+        schema = self._make_schema(
+            {"silent": {"type": "boolean", "description": "Silent mode"}},
+            required=[],
+        )
+        issues = _check_boolean_default_missing("my_tool", schema)
+        assert len(issues) == 1
+
+    def test_no_required_key_treats_all_as_optional(self):
+        """When required key is absent, boolean without default should fire."""
+        schema = {
+            "type": "object",
+            "properties": {
+                "verbose": {"type": "boolean", "description": "Verbose mode"},
+            },
+        }
+        issues = _check_boolean_default_missing("my_tool", schema)
+        assert len(issues) == 1
+
+    def test_description_mentions_default_but_field_missing_still_fires(self):
+        """Mentioning default in description but no default field should still fire."""
+        schema = self._make_schema(
+            {"follow_symlinks": {"type": "boolean", "description": "Follow symlinks (default: false)"}}
+        )
+        issues = _check_boolean_default_missing("my_tool", schema)
+        assert len(issues) == 1
+
+    def test_validate_tools_integration(self):
+        """validate_tools picks up the check end-to-end."""
+        tools = [{
+            "name": "list_files",
+            "description": "List files in a directory.",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "path": {"type": "string", "description": "Directory path"},
+                    "recursive": {"type": "boolean", "description": "Search recursively"},
+                },
+                "required": ["path"],
+            },
+        }]
+        issues, _ = validate_tools(tools)
+        bool_issues = [i for i in issues if i.check == "boolean_default_missing"]
+        assert len(bool_issues) == 1
+        assert bool_issues[0].tool == "list_files"
+
+
+class TestEnumDefaultMissing:
+    """Tests for Check 38: enum_default_missing."""
+
+    def _make_schema(self, props, required=None):
+        s = {"type": "object", "properties": props}
+        if required is not None:
+            s["required"] = required
+        return s
+
+    def test_optional_enum_no_default_fires(self):
+        """Optional enum param without default should fire."""
+        schema = self._make_schema(
+            {"state": {"type": "string", "enum": ["open", "closed", "all"], "description": "Filter by state"}}
+        )
+        issues = _check_enum_default_missing("list_prs", schema)
+        assert len(issues) == 1
+        assert issues[0].check == "enum_default_missing"
+
+    def test_required_enum_no_default_no_fire(self):
+        """Required enum param should not fire — caller must supply it."""
+        schema = self._make_schema(
+            {"state": {"type": "string", "enum": ["open", "closed"], "description": "State"}},
+            required=["state"],
+        )
+        issues = _check_enum_default_missing("my_tool", schema)
+        assert len(issues) == 0
+
+    def test_optional_enum_with_default_no_fire(self):
+        """Enum param with default present should not fire."""
+        schema = self._make_schema(
+            {"state": {"type": "string", "enum": ["open", "closed", "all"], "default": "open"}}
+        )
+        issues = _check_enum_default_missing("my_tool", schema)
+        assert len(issues) == 0
+
+    def test_non_enum_param_no_fire(self):
+        """String param without enum field should not fire."""
+        schema = self._make_schema(
+            {"name": {"type": "string", "description": "A name"}}
+        )
+        issues = _check_enum_default_missing("my_tool", schema)
+        assert len(issues) == 0
+
+    def test_boolean_param_no_fire(self):
+        """Boolean param (no enum) is covered by Check 37, not Check 38."""
+        schema = self._make_schema(
+            {"verbose": {"type": "boolean", "description": "Enable verbose output"}}
+        )
+        issues = _check_enum_default_missing("my_tool", schema)
+        assert len(issues) == 0
+
+    def test_multiple_enum_params_multiple_issues(self):
+        """Multiple enum params without default each fire once."""
+        schema = self._make_schema({
+            "state": {"type": "string", "enum": ["open", "closed", "all"]},
+            "direction": {"type": "string", "enum": ["asc", "desc"]},
+            "sort": {"type": "string", "enum": ["created", "updated"], "default": "created"},
+        })
+        issues = _check_enum_default_missing("my_tool", schema)
+        assert len(issues) == 2
+        checks = {i.check for i in issues}
+        assert checks == {"enum_default_missing"}
+
+    def test_mixed_required_and_optional(self):
+        """Only optional enum params without default fire."""
+        schema = self._make_schema(
+            {
+                "action": {"enum": ["create", "update", "delete"]},  # required
+                "state": {"enum": ["open", "closed"]},  # optional, no default
+                "direction": {"enum": ["asc", "desc"], "default": "asc"},  # optional, has default
+            },
+            required=["action"],
+        )
+        issues = _check_enum_default_missing("my_tool", schema)
+        assert len(issues) == 1
+        assert issues[0].message.find("state") != -1
+
+    def test_severity_is_warn(self):
+        """Check 38 should emit warnings, not errors."""
+        schema = self._make_schema(
+            {"state": {"type": "string", "enum": ["open", "closed"]}}
+        )
+        issues = _check_enum_default_missing("my_tool", schema)
+        assert issues[0].severity == "warn"
+
+    def test_param_name_in_message(self):
+        """Issue message should include the param name."""
+        schema = self._make_schema(
+            {"sort_order": {"enum": ["asc", "desc"]}}
+        )
+        issues = _check_enum_default_missing("my_tool", schema)
+        assert "sort_order" in issues[0].message
+
+    def test_enum_count_in_message(self):
+        """Issue message should mention the number of enum values."""
+        schema = self._make_schema(
+            {"priority": {"enum": ["low", "medium", "high", "critical"]}}
+        )
+        issues = _check_enum_default_missing("my_tool", schema)
+        assert "4" in issues[0].message
+
+    def test_tool_name_set_correctly(self):
+        """Issue tool attribute should match the tool name passed."""
+        schema = self._make_schema({"state": {"enum": ["open", "closed"]}})
+        issues = _check_enum_default_missing("list_issues", schema)
+        assert issues[0].tool == "list_issues"
+
+    def test_no_properties_no_fire(self):
+        """Schema with no properties should not fire."""
+        issues = _check_enum_default_missing("my_tool", {})
+        assert len(issues) == 0
+
+    def test_empty_enum_list_no_fire(self):
+        """Enum param with empty enum list is malformed — do not fire."""
+        schema = self._make_schema({"state": {"enum": []}})
+        issues = _check_enum_default_missing("my_tool", schema)
+        assert len(issues) == 0
+
+    def test_no_required_key_treats_all_as_optional(self):
+        """When required key is absent, all enum params are treated as optional."""
+        schema = {
+            "type": "object",
+            "properties": {
+                "state": {"enum": ["open", "closed"]},
+            },
+        }
+        issues = _check_enum_default_missing("my_tool", schema)
+        assert len(issues) == 1
+
+    def test_description_mentions_default_but_field_missing_still_fires(self):
+        """Prose default in description doesn't substitute for the JSON field."""
+        schema = self._make_schema(
+            {"state": {"enum": ["open", "closed", "all"], "description": "Filter by state (default: open)"}}
+        )
+        issues = _check_enum_default_missing("my_tool", schema)
+        assert len(issues) == 1
+
+    def test_validate_tools_integration(self):
+        """validate_tools picks up the check end-to-end."""
+        tools = [{
+            "name": "list_pull_requests",
+            "description": "List pull requests in a repository.",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "repo": {"type": "string", "description": "Repository name"},
+                    "state": {"type": "string", "enum": ["open", "closed", "all"], "description": "Filter by state"},
+                    "direction": {"type": "string", "enum": ["asc", "desc"], "description": "Sort direction"},
+                },
+                "required": ["repo"],
+            },
+        }]
+        issues, _ = validate_tools(tools)
+        enum_issues = [i for i in issues if i.check == "enum_default_missing"]
+        assert len(enum_issues) == 2
+        assert all(i.tool == "list_pull_requests" for i in enum_issues)
+
+
+class TestCheckDefaultInDescriptionNotSchema:
+    """Tests for Check 39: default_in_description_not_schema."""
+
+    def _make_schema(self, props, required=None):
+        s = {"type": "object", "properties": props}
+        if required:
+            s["required"] = required
+        return s
+
+    def test_defaults_to_pattern_fires(self):
+        """'Defaults to X' pattern should be caught."""
+        schema = self._make_schema(
+            {"language": {"type": "string", "description": "Language code. Defaults to 'en'."}}
+        )
+        from agent_friend.validate import _check_default_in_description_not_schema
+        issues = _check_default_in_description_not_schema("my_tool", schema)
+        assert len(issues) == 1
+        assert issues[0].check == "default_in_description_not_schema"
+        assert "language" in issues[0].message
+
+    def test_default_colon_pattern_fires(self):
+        """'default: X' annotation pattern should be caught."""
+        schema = self._make_schema(
+            {"timeout": {"type": "integer", "description": "Timeout in seconds (default: 30)."}}
+        )
+        from agent_friend.validate import _check_default_in_description_not_schema
+        issues = _check_default_in_description_not_schema("my_tool", schema)
+        assert len(issues) == 1
+
+    def test_default_equals_pattern_fires(self):
+        """'default=X' annotation pattern should be caught."""
+        schema = self._make_schema(
+            {"limit": {"type": "integer", "description": "Max results (default=100)."}}
+        )
+        from agent_friend.validate import _check_default_in_description_not_schema
+        issues = _check_default_in_description_not_schema("my_tool", schema)
+        assert len(issues) == 1
+
+    def test_by_default_pattern_fires(self):
+        """'by default, ...' pattern should be caught."""
+        schema = self._make_schema(
+            {"format": {"type": "string", "description": "Output format. By default, uses 'json'."}}
+        )
+        from agent_friend.validate import _check_default_in_description_not_schema
+        issues = _check_default_in_description_not_schema("my_tool", schema)
+        assert len(issues) == 1
+
+    def test_parenthetical_defaults_pattern_fires(self):
+        """'(defaults ...' parenthetical pattern should be caught."""
+        schema = self._make_schema(
+            {"sort": {"type": "string", "description": "Sort field (defaults to best match)."}}
+        )
+        from agent_friend.validate import _check_default_in_description_not_schema
+        issues = _check_default_in_description_not_schema("my_tool", schema)
+        assert len(issues) == 1
+
+    def test_schema_has_default_no_fire(self):
+        """When schema already has a 'default' field, do not fire."""
+        schema = self._make_schema(
+            {"language": {"type": "string", "description": "Language code. Defaults to 'en'.", "default": "en"}}
+        )
+        from agent_friend.validate import _check_default_in_description_not_schema
+        issues = _check_default_in_description_not_schema("my_tool", schema)
+        assert len(issues) == 0
+
+    def test_required_param_no_fire(self):
+        """Required params are skipped (must be supplied; prose default may be documentation error)."""
+        schema = self._make_schema(
+            {"query": {"type": "string", "description": "Search query. Defaults to '*'."}},
+            required=["query"],
+        )
+        from agent_friend.validate import _check_default_in_description_not_schema
+        issues = _check_default_in_description_not_schema("my_tool", schema)
+        assert len(issues) == 0
+
+    def test_no_default_phrase_explicitly_stated(self):
+        """'no default' phrase in description should suppress the check."""
+        schema = self._make_schema(
+            {"filter": {"type": "string", "description": "Filter expression (no default — must be set if used)."}}
+        )
+        from agent_friend.validate import _check_default_in_description_not_schema
+        issues = _check_default_in_description_not_schema("my_tool", schema)
+        assert len(issues) == 0
+
+    def test_no_description_no_fire(self):
+        """Param with no description should not fire."""
+        schema = self._make_schema({"timeout": {"type": "integer"}})
+        from agent_friend.validate import _check_default_in_description_not_schema
+        issues = _check_default_in_description_not_schema("my_tool", schema)
+        assert len(issues) == 0
+
+    def test_description_without_default_mention_no_fire(self):
+        """Description that doesn't mention a default should not fire."""
+        schema = self._make_schema(
+            {"format": {"type": "string", "description": "Output format: json or csv."}}
+        )
+        from agent_friend.validate import _check_default_in_description_not_schema
+        issues = _check_default_in_description_not_schema("my_tool", schema)
+        assert len(issues) == 0
+
+    def test_multiple_params_fire_independently(self):
+        """Multiple params with prose defaults each fire an issue."""
+        schema = self._make_schema({
+            "page": {"type": "integer", "description": "Page number (default: 1)."},
+            "per_page": {"type": "integer", "description": "Results per page (default: 30, max: 100)."},
+            "sort": {"type": "string", "description": "Sort field. Defaults to 'created_at'."},
+        })
+        from agent_friend.validate import _check_default_in_description_not_schema
+        issues = _check_default_in_description_not_schema("my_tool", schema)
+        assert len(issues) == 3
+        assert all(i.check == "default_in_description_not_schema" for i in issues)
+
+    def test_tool_name_set_correctly(self):
+        """Issue tool attribute should match the tool name passed."""
+        schema = self._make_schema(
+            {"timeout": {"type": "integer", "description": "Timeout in seconds (default: 30)."}}
+        )
+        from agent_friend.validate import _check_default_in_description_not_schema
+        issues = _check_default_in_description_not_schema("query_database", schema)
+        assert issues[0].tool == "query_database"
+
+    def test_no_properties_no_fire(self):
+        """Schema with no properties should not fire."""
+        from agent_friend.validate import _check_default_in_description_not_schema
+        issues = _check_default_in_description_not_schema("my_tool", {})
+        assert len(issues) == 0
+
+    def test_case_insensitive_matching(self):
+        """Pattern matching is case-insensitive."""
+        schema = self._make_schema(
+            {"timeout": {"type": "integer", "description": "Timeout in seconds. DEFAULTS TO 30."}}
+        )
+        from agent_friend.validate import _check_default_in_description_not_schema
+        issues = _check_default_in_description_not_schema("my_tool", schema)
+        assert len(issues) == 1
+
+    def test_validate_tools_integration(self):
+        """validate_tools picks up the check end-to-end."""
+        tools = [{
+            "name": "list_repositories",
+            "description": "List repositories for a user.",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "username": {"type": "string", "description": "GitHub username"},
+                    "page": {"type": "integer", "description": "Page number for pagination (default: 1)"},
+                    "per_page": {"type": "integer", "description": "Results per page (default: 30, max: 100)"},
+                },
+                "required": ["username"],
+            },
+        }]
+        from agent_friend.validate import validate_tools
+        issues, _ = validate_tools(tools)
+        desc_issues = [i for i in issues if i.check == "default_in_description_not_schema"]
+        assert len(desc_issues) == 2
+        params = {i.message.split("'")[1] for i in desc_issues}
+        assert params == {"page", "per_page"}
+
+
+class TestCheckNumberTypeForInteger:
+    """Tests for Check 40: number_type_for_integer."""
+
+    def _make_schema(self, props, required=None):
+        s = {"type": "object", "properties": props}
+        if required:
+            s["required"] = required
+        return s
+
+    def test_limit_as_number_fires(self):
+        """'limit' with type 'number' should fire."""
+        from agent_friend.validate import _check_number_type_for_integer
+        schema = self._make_schema({"limit": {"type": "number", "description": "Max results."}})
+        issues = _check_number_type_for_integer("my_tool", schema)
+        assert len(issues) == 1
+        assert issues[0].check == "number_type_for_integer"
+        assert "limit" in issues[0].message
+
+    def test_page_as_number_fires(self):
+        """'page' with type 'number' should fire."""
+        from agent_friend.validate import _check_number_type_for_integer
+        schema = self._make_schema({"page": {"type": "number", "description": "Page number."}})
+        issues = _check_number_type_for_integer("my_tool", schema)
+        assert len(issues) == 1
+
+    def test_offset_as_number_fires(self):
+        """'offset' with type 'number' should fire."""
+        from agent_friend.validate import _check_number_type_for_integer
+        schema = self._make_schema({"offset": {"type": "number", "description": "Skip N records."}})
+        issues = _check_number_type_for_integer("my_tool", schema)
+        assert len(issues) == 1
+
+    def test_id_suffix_fires(self):
+        """Param ending in '_id' with type 'number' should fire."""
+        from agent_friend.validate import _check_number_type_for_integer
+        schema = self._make_schema({"run_id": {"type": "number", "description": "Run identifier."}})
+        issues = _check_number_type_for_integer("my_tool", schema)
+        assert len(issues) == 1
+
+    def test_width_height_fire(self):
+        """'width' and 'height' with type 'number' should fire."""
+        from agent_friend.validate import _check_number_type_for_integer
+        schema = self._make_schema({
+            "width": {"type": "number", "description": "Width in pixels."},
+            "height": {"type": "number", "description": "Height in pixels."},
+        })
+        issues = _check_number_type_for_integer("my_tool", schema)
+        assert len(issues) == 2
+
+    def test_limit_as_integer_no_fire(self):
+        """'limit' with type 'integer' should NOT fire."""
+        from agent_friend.validate import _check_number_type_for_integer
+        schema = self._make_schema({"limit": {"type": "integer", "description": "Max results."}})
+        issues = _check_number_type_for_integer("my_tool", schema)
+        assert len(issues) == 0
+
+    def test_latitude_as_number_no_fire(self):
+        """'latitude' with type 'number' should NOT fire — float is correct."""
+        from agent_friend.validate import _check_number_type_for_integer
+        schema = self._make_schema({"latitude": {"type": "number", "description": "Latitude coordinate."}})
+        issues = _check_number_type_for_integer("my_tool", schema)
+        assert len(issues) == 0
+
+    def test_temperature_as_number_no_fire(self):
+        """'temperature' with type 'number' should NOT fire."""
+        from agent_friend.validate import _check_number_type_for_integer
+        schema = self._make_schema({"temperature": {"type": "number", "description": "LLM temperature."}})
+        issues = _check_number_type_for_integer("my_tool", schema)
+        assert len(issues) == 0
+
+    def test_per_page_fires(self):
+        """'per_page' with type 'number' should fire."""
+        from agent_friend.validate import _check_number_type_for_integer
+        schema = self._make_schema({"per_page": {"type": "number", "description": "Results per page."}})
+        issues = _check_number_type_for_integer("my_tool", schema)
+        assert len(issues) == 1
+
+    def test_tool_name_set_correctly(self):
+        """Issue tool attribute should match the tool name passed."""
+        from agent_friend.validate import _check_number_type_for_integer
+        schema = self._make_schema({"limit": {"type": "number", "description": "Max results."}})
+        issues = _check_number_type_for_integer("search_repos", schema)
+        assert issues[0].tool == "search_repos"
+
+    def test_no_properties_no_fire(self):
+        """Schema with no properties should not fire."""
+        from agent_friend.validate import _check_number_type_for_integer
+        issues = _check_number_type_for_integer("my_tool", {})
+        assert len(issues) == 0
+
+    def test_string_type_no_fire(self):
+        """Param with type 'string' (not number) should not fire even if name implies integer."""
+        from agent_friend.validate import _check_number_type_for_integer
+        schema = self._make_schema({"page": {"type": "string", "description": "Page token."}})
+        issues = _check_number_type_for_integer("my_tool", schema)
+        assert len(issues) == 0
+
+    def test_multiple_params_fire_independently(self):
+        """Multiple integer-named number params each fire."""
+        from agent_friend.validate import _check_number_type_for_integer
+        schema = self._make_schema({
+            "page": {"type": "number"},
+            "per_page": {"type": "number"},
+            "offset": {"type": "number"},
+        })
+        issues = _check_number_type_for_integer("my_tool", schema)
+        assert len(issues) == 3
+
+    def test_validate_tools_integration(self):
+        """validate_tools picks up the check end-to-end."""
+        from agent_friend.validate import validate_tools
+        tools = [{
+            "name": "list_repos",
+            "description": "List repositories.",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "owner": {"type": "string", "description": "Owner name"},
+                    "limit": {"type": "number", "description": "Max results"},
+                    "page": {"type": "number", "description": "Page number"},
+                },
+                "required": ["owner"],
+            },
+        }]
+        issues, _ = validate_tools(tools)
+        int_issues = [i for i in issues if i.check == "number_type_for_integer"]
+        assert len(int_issues) == 2
+        params = {i.message.split("'")[1] for i in int_issues}
+        assert params == {"limit", "page"}
+
+
+class TestCheckArrayItemsObjectNoProperties:
+    """Tests for Check 41: array_items_object_no_properties."""
+
+    def _make_schema(self, props):
+        return {"type": "object", "properties": props}
+
+    def test_array_items_object_no_props_fires(self):
+        """Array param whose items are type:object with no properties should fire."""
+        from agent_friend.validate import _check_array_items_object_no_properties
+        schema = self._make_schema({
+            "scopes": {"type": "array", "items": {"type": "object"}}
+        })
+        issues = _check_array_items_object_no_properties("my_tool", schema)
+        assert len(issues) == 1
+        assert issues[0].check == "array_items_object_no_properties"
+        assert "scopes" in issues[0].message
+
+    def test_array_items_object_with_description_fires(self):
+        """Items with type:object and description but no properties should still fire."""
+        from agent_friend.validate import _check_array_items_object_no_properties
+        schema = self._make_schema({
+            "headers": {"type": "array", "items": {"type": "object", "description": "A header object."}}
+        })
+        issues = _check_array_items_object_no_properties("my_tool", schema)
+        assert len(issues) == 1
+
+    def test_array_items_object_with_properties_no_fire(self):
+        """Array items with both type:object and properties defined should not fire."""
+        from agent_friend.validate import _check_array_items_object_no_properties
+        schema = self._make_schema({
+            "scopes": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "value": {"type": "string"},
+                        "description": {"type": "string"}
+                    }
+                }
+            }
+        })
+        issues = _check_array_items_object_no_properties("my_tool", schema)
+        assert len(issues) == 0
+
+    def test_non_array_param_no_fire(self):
+        """Non-array params should not fire even if type:object."""
+        from agent_friend.validate import _check_array_items_object_no_properties
+        schema = self._make_schema({
+            "config": {"type": "object"}
+        })
+        issues = _check_array_items_object_no_properties("my_tool", schema)
+        assert len(issues) == 0
+
+    def test_array_items_string_no_fire(self):
+        """Array of strings (items.type != object) should not fire."""
+        from agent_friend.validate import _check_array_items_object_no_properties
+        schema = self._make_schema({
+            "tags": {"type": "array", "items": {"type": "string"}}
+        })
+        issues = _check_array_items_object_no_properties("my_tool", schema)
+        assert len(issues) == 0
+
+    def test_array_no_items_no_fire(self):
+        """Array with no items schema should not fire (caught by Check 17)."""
+        from agent_friend.validate import _check_array_items_object_no_properties
+        schema = self._make_schema({
+            "items": {"type": "array"}
+        })
+        issues = _check_array_items_object_no_properties("my_tool", schema)
+        assert len(issues) == 0
+
+    def test_multiple_params_fire_independently(self):
+        """Multiple array params with unstructured object items each fire."""
+        from agent_friend.validate import _check_array_items_object_no_properties
+        schema = self._make_schema({
+            "scopes": {"type": "array", "items": {"type": "object"}},
+            "headers": {"type": "array", "items": {"type": "object"}},
+        })
+        issues = _check_array_items_object_no_properties("my_tool", schema)
+        assert len(issues) == 2
+
+    def test_no_properties_in_schema_no_fire(self):
+        """Schema with no top-level properties should not fire."""
+        from agent_friend.validate import _check_array_items_object_no_properties
+        issues = _check_array_items_object_no_properties("my_tool", {})
+        assert len(issues) == 0
+
+    def test_tool_name_set_correctly(self):
+        """Issue tool attribute should match the tool name passed."""
+        from agent_friend.validate import _check_array_items_object_no_properties
+        schema = self._make_schema({
+            "dependencies": {"type": "array", "items": {"type": "object"}}
+        })
+        issues = _check_array_items_object_no_properties("create_action", schema)
+        assert issues[0].tool == "create_action"
+
+    def test_validate_tools_integration(self):
+        """validate_tools picks up the check end-to-end."""
+        from agent_friend.validate import validate_tools
+        tools = [{
+            "name": "create_resource_server",
+            "description": "Create a resource server with scopes.",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "identifier": {"type": "string", "description": "The unique identifier."},
+                    "scopes": {
+                        "type": "array",
+                        "items": {"type": "object"},
+                        "description": "List of scopes."
+                    },
+                },
+                "required": ["identifier"],
+            },
+        }]
+        issues, _ = validate_tools(tools)
+        obj_issues = [i for i in issues if i.check == "array_items_object_no_properties"]
+        assert len(obj_issues) == 1
+        assert "scopes" in obj_issues[0].message
+
+
+class TestCheckToolDescriptionJustTheName:
+    """Tests for Check 42: tool_description_just_the_name."""
+
+    def _make_tool(self, name, description):
+        return {
+            "name": name,
+            "description": description,
+            "inputSchema": {"type": "object", "properties": {}, "required": []},
+        }
+
+    def test_fires_for_restated_name(self):
+        """Tool description that just restates the tool name should fire (>= 20 chars)."""
+        from agent_friend.validate import _check_tool_description_just_the_name
+        # "Approve a merge request" = 23 chars, all words in tool name
+        issue = _check_tool_description_just_the_name(
+            "approve_merge_request",
+            {"name": "approve_merge_request", "description": "Approve a merge request"},
+            "mcp",
+        )
+        assert issue is not None
+        assert issue.check == "tool_description_just_the_name"
+
+    def test_fires_for_notion_retrieve_block(self):
+        """'Retrieve a block from Notion' should fire for 'notion_retrieve_block'."""
+        from agent_friend.validate import _check_tool_description_just_the_name
+        issue = _check_tool_description_just_the_name(
+            "notion_retrieve_block",
+            {"name": "notion_retrieve_block", "description": "Retrieve a block from Notion"},
+            "mcp",
+        )
+        assert issue is not None
+
+    def test_fires_for_delete_content_type(self):
+        """'Delete a content type' should fire for 'delete_content_type'."""
+        from agent_friend.validate import _check_tool_description_just_the_name
+        issue = _check_tool_description_just_the_name(
+            "delete_content_type",
+            {"name": "delete_content_type", "description": "Delete a content type"},
+            "mcp",
+        )
+        assert issue is not None
+
+    def test_no_fire_when_adds_context(self):
+        """Description adding context beyond the name should not fire."""
+        from agent_friend.validate import _check_tool_description_just_the_name
+        issue = _check_tool_description_just_the_name(
+            "get_file",
+            {"name": "get_file", "description": "Retrieve the contents of a file at a given path in a repository."},
+            "mcp",
+        )
+        assert issue is None
+
+    def test_no_fire_when_too_short(self):
+        """Descriptions under 20 chars are caught by Check 20, not here."""
+        from agent_friend.validate import _check_tool_description_just_the_name
+        issue = _check_tool_description_just_the_name(
+            "list_files",
+            {"name": "list_files", "description": "List files"},
+            "mcp",
+        )
+        assert issue is None  # 10 chars, caught by Check 20 instead
+
+    def test_no_fire_when_description_long(self):
+        """Long descriptions (>8 words) likely add real value and should not fire."""
+        from agent_friend.validate import _check_tool_description_just_the_name
+        issue = _check_tool_description_just_the_name(
+            "list_repositories",
+            {"name": "list_repositories", "description": "List repositories for the authenticated user or a given organization, sorted by update time"},
+            "mcp",
+        )
+        assert issue is None
+
+    def test_no_fire_for_empty_description(self):
+        """Empty description should not fire (caught elsewhere)."""
+        from agent_friend.validate import _check_tool_description_just_the_name
+        issue = _check_tool_description_just_the_name(
+            "list_files",
+            {"name": "list_files", "description": ""},
+            "mcp",
+        )
+        assert issue is None
+
+    def test_tool_name_in_issue(self):
+        """Issue should reference the tool name."""
+        from agent_friend.validate import _check_tool_description_just_the_name
+        issue = _check_tool_description_just_the_name(
+            "approve_merge_request",
+            {"name": "approve_merge_request", "description": "Approve a merge request"},
+            "mcp",
+        )
+        assert issue is not None
+        assert issue.tool == "approve_merge_request"
+
+    def test_validate_tools_integration(self):
+        """validate_tools picks up the check end-to-end."""
+        from agent_friend.validate import validate_tools
+        tools = [
+            {
+                "name": "approve_merge_request",
+                "description": "Approve a merge request",  # 23 chars, all words in name
+                "inputSchema": {"type": "object", "properties": {}, "required": []},
+            },
+            {
+                "name": "delete_content_type",
+                "description": "Delete a content type",  # 21 chars, all words in name
+                "inputSchema": {"type": "object", "properties": {}, "required": []},
+            },
+            {
+                "name": "get_file",
+                "description": "Retrieve file contents from a repository at a given path.",
+                "inputSchema": {"type": "object", "properties": {}, "required": []},
+            },
+        ]
+        issues, _ = validate_tools(tools)
+        name_issues = [i for i in issues if i.check == "tool_description_just_the_name"]
+        assert len(name_issues) == 2
+        flagged = {i.tool for i in name_issues}
+        assert "approve_merge_request" in flagged
+        assert "delete_content_type" in flagged
+        assert "get_file" not in flagged
+
+
+# ---------------------------------------------------------------------------
+# Check 43: string_comma_separated
+# ---------------------------------------------------------------------------
+
+class TestCheckStringCommaSeparated:
+    """Tests for Check 43: string_comma_separated."""
+
+    def _make_tool(self, pname, ptype, desc, **extra):
+        schema = {"type": "object", "properties": {pname: {"type": ptype, "description": desc, **extra}}}
+        return {"name": "my_tool", "description": "Does something.", "inputSchema": schema}
+
+    def test_comma_separated_string_flagged(self):
+        tools = [self._make_tool("airports", "string", "Comma-separated airport ICAO codes")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "string_comma_separated"]
+        assert len(hits) == 1
+        assert hits[0].severity == "warn"
+
+    def test_comma_delimited_flagged(self):
+        tools = [self._make_tool("ids", "string", "Comma-delimited list of IDs to fetch")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "string_comma_separated"]
+        assert len(hits) == 1
+
+    def test_pipe_separated_flagged(self):
+        tools = [self._make_tool("tags", "string", "Pipe-separated list of tag names")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "string_comma_separated"]
+        assert len(hits) == 1
+
+    def test_newline_separated_flagged(self):
+        tools = [self._make_tool("lines", "string", "Newline-separated list of values")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "string_comma_separated"]
+        assert len(hits) == 1
+
+    def test_space_separated_flagged(self):
+        tools = [self._make_tool("words", "string", "Space-separated list of search terms")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "string_comma_separated"]
+        assert len(hits) == 1
+
+    def test_array_type_not_flagged(self):
+        """Already an array — no issue."""
+        schema = {
+            "type": "object",
+            "properties": {
+                "airports": {"type": "array", "description": "Comma-separated airport codes", "items": {"type": "string"}},
+            },
+        }
+        tools = [{"name": "t", "description": "x" * 25, "inputSchema": schema}]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "string_comma_separated"]
+        assert len(hits) == 0
+
+    def test_enum_string_not_flagged(self):
+        """String with enum — intentional value list, not a delimited string."""
+        tools = [self._make_tool("mode", "string", "Comma-separated values: a, b, c", enum=["a", "b", "c"])]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "string_comma_separated"]
+        assert len(hits) == 0
+
+    def test_non_delimited_string_not_flagged(self):
+        """Normal string description — no match."""
+        tools = [self._make_tool("query", "string", "The search query to send to the API")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "string_comma_separated"]
+        assert len(hits) == 0
+
+    def test_integer_type_not_flagged(self):
+        """Description mentions comma-separated but type is integer — not applicable."""
+        tools = [self._make_tool("count", "integer", "Comma-separated count of items")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "string_comma_separated"]
+        assert len(hits) == 0
+
+    def test_multiple_params_multiple_issues(self):
+        schema = {
+            "type": "object",
+            "properties": {
+                "airports": {"type": "string", "description": "Comma-separated airport codes"},
+                "airlines": {"type": "string", "description": "Comma-separated airline names"},
+                "query": {"type": "string", "description": "The main search query"},
+            },
+        }
+        tools = [{"name": "search", "description": "Search for flights.", "inputSchema": schema}]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "string_comma_separated"]
+        assert len(hits) == 2
+
+    def test_case_insensitive(self):
+        """Regex should match regardless of case."""
+        tools = [self._make_tool("tags", "string", "COMMA-SEPARATED list of tags")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "string_comma_separated"]
+        assert len(hits) == 1
+
+
+# ---------------------------------------------------------------------------
+# Check 44: enum_single_const
+# ---------------------------------------------------------------------------
+
+class TestCheckEnumSingleConst:
+    """Tests for Check 44: enum_single_const."""
+
+    def _make_tool(self, pname, pschema):
+        schema = {"type": "object", "properties": {pname: pschema}}
+        return {"name": "my_tool", "description": "Does something.", "inputSchema": schema}
+
+    def test_single_enum_string_flagged(self):
+        tools = [self._make_tool("format", {"type": "string", "enum": ["graphite"], "description": "Output format"})]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "enum_single_const"]
+        assert len(hits) == 1
+        assert hits[0].severity == "warn"
+        assert "graphite" in hits[0].message
+
+    def test_single_enum_url_flagged(self):
+        tools = [self._make_tool("schema", {"type": "string", "enum": ["https://schema.example.com/v1.json"], "description": "Schema URL"})]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "enum_single_const"]
+        assert len(hits) == 1
+
+    def test_multi_enum_not_flagged(self):
+        tools = [self._make_tool("sort", {"type": "string", "enum": ["asc", "desc"], "description": "Sort order"})]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "enum_single_const"]
+        assert len(hits) == 0
+
+    def test_empty_enum_not_flagged(self):
+        """Empty enum is its own problem — not caught by this check."""
+        tools = [self._make_tool("mode", {"type": "string", "enum": [], "description": "Mode"})]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "enum_single_const"]
+        assert len(hits) == 0
+
+    def test_no_enum_not_flagged(self):
+        tools = [self._make_tool("name", {"type": "string", "description": "Resource name"})]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "enum_single_const"]
+        assert len(hits) == 0
+
+    def test_const_already_present_not_flagged(self):
+        """Using const instead of enum — correct practice, no issue."""
+        tools = [self._make_tool("format", {"const": "graphite", "description": "Output format"})]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "enum_single_const"]
+        assert len(hits) == 0
+
+    def test_nested_single_enum_flagged(self):
+        """Single-value enum inside nested object properties."""
+        schema = {
+            "type": "object",
+            "properties": {
+                "config": {
+                    "type": "object",
+                    "description": "Config object",
+                    "properties": {
+                        "format": {"type": "string", "enum": ["json"], "description": "Output format"},
+                    },
+                },
+            },
+        }
+        tools = [{"name": "my_tool", "description": "Does something.", "inputSchema": schema}]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "enum_single_const"]
+        assert len(hits) == 1
+
+    def test_multiple_single_enums_multiple_issues(self):
+        schema = {
+            "type": "object",
+            "properties": {
+                "type": {"type": "string", "enum": ["item"], "description": "Object type"},
+                "version": {"type": "string", "enum": ["v1"], "description": "API version"},
+                "sort": {"type": "string", "enum": ["asc", "desc"], "description": "Sort order"},
+            },
+        }
+        tools = [{"name": "my_tool", "description": "Does something.", "inputSchema": schema}]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "enum_single_const"]
+        assert len(hits) == 2
+
+    def test_integer_enum_single_value(self):
+        """Single-value enum is caught regardless of the value type."""
+        tools = [self._make_tool("version", {"type": "integer", "enum": [2], "description": "API version"})]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "enum_single_const"]
+        assert len(hits) == 1
+
+
+# ---------------------------------------------------------------------------
+# Check 45: required_array_no_minitems
+# ---------------------------------------------------------------------------
+
+class TestCheckRequiredArrayNoMinitems:
+    """Tests for Check 45: required_array_no_minitems."""
+
+    def _make_tool(self, param_schema, required=None):
+        schema = {
+            "type": "object",
+            "properties": {"paths": param_schema},
+        }
+        if required is not None:
+            schema["required"] = required
+        return {"name": "my_tool", "description": "Does something.", "inputSchema": schema}
+
+    def test_required_array_no_minitems_flagged(self):
+        tools = [self._make_tool({"type": "array", "items": {"type": "string"}, "description": "File paths"}, required=["paths"])]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_array_no_minitems"]
+        assert len(hits) == 1
+        assert hits[0].severity == "warn"
+
+    def test_required_array_with_minitems_not_flagged(self):
+        tools = [self._make_tool({"type": "array", "items": {"type": "string"}, "description": "Paths", "minItems": 1}, required=["paths"])]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_array_no_minitems"]
+        assert len(hits) == 0
+
+    def test_optional_array_not_flagged(self):
+        """Optional array param — not required, no minItems needed."""
+        tools = [self._make_tool({"type": "array", "items": {"type": "string"}, "description": "Optional paths"})]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_array_no_minitems"]
+        assert len(hits) == 0
+
+    def test_required_string_not_flagged(self):
+        """Required but not array type — not applicable."""
+        tools = [self._make_tool({"type": "string", "description": "Path"}, required=["paths"])]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_array_no_minitems"]
+        assert len(hits) == 0
+
+    def test_required_array_maxitems_zero_no_minitems_flagged(self):
+        """maxItems without minItems still fires."""
+        tools = [self._make_tool({"type": "array", "items": {"type": "string"}, "description": "Paths", "maxItems": 100}, required=["paths"])]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_array_no_minitems"]
+        assert len(hits) == 1
+
+    def test_minitems_zero_still_flagged(self):
+        """minItems: 0 is same as no minItems — empty array is allowed."""
+        tools = [self._make_tool({"type": "array", "items": {"type": "string"}, "description": "Paths", "minItems": 0}, required=["paths"])]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_array_no_minitems"]
+        # minItems: 0 is technically present, so no issue fires (it's explicitly set)
+        assert len(hits) == 0
+
+    def test_multiple_required_arrays_multiple_issues(self):
+        schema = {
+            "type": "object",
+            "properties": {
+                "paths": {"type": "array", "items": {"type": "string"}, "description": "File paths"},
+                "tags": {"type": "array", "items": {"type": "string"}, "description": "Tags"},
+                "ids": {"type": "array", "items": {"type": "string"}, "description": "IDs", "minItems": 1},
+            },
+            "required": ["paths", "tags", "ids"],
+        }
+        tools = [{"name": "my_tool", "description": "Does something.", "inputSchema": schema}]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_array_no_minitems"]
+        assert len(hits) == 2
+        flagged = {i.message.split("'")[1] for i in hits}
+        assert "paths" in flagged
+        assert "tags" in flagged
+        assert "ids" not in flagged
+
+    def test_no_required_field_not_flagged(self):
+        """Schema has no required field at all."""
+        schema = {
+            "type": "object",
+            "properties": {
+                "paths": {"type": "array", "items": {"type": "string"}, "description": "Paths"},
+            },
+        }
+        tools = [{"name": "my_tool", "description": "Does something.", "inputSchema": schema}]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_array_no_minitems"]
+        assert len(hits) == 0
+
+class TestCheckRequiredArrayEmpty:
+    """Tests for Check 46: required_array_empty."""
+
+    def _make_tool(self, properties, required):
+        return {
+            "name": "my_tool",
+            "description": "Does something useful.",
+            "inputSchema": {
+                "type": "object",
+                "properties": properties,
+                "required": required,
+            },
+        }
+
+    def test_fires_when_required_empty_and_no_defaults(self):
+        """required: [] and params have no defaults — should fire."""
+        tools = [self._make_tool(
+            properties={
+                "paths": {"type": "array", "description": "Files to upload"},
+                "format": {"type": "string", "description": "Output format"},
+            },
+            required=[],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_array_empty"]
+        assert len(hits) == 1
+
+    def test_no_fire_when_required_non_empty(self):
+        """required has entries — not a required_array_empty issue."""
+        tools = [self._make_tool(
+            properties={
+                "query": {"type": "string", "description": "Search query"},
+                "limit": {"type": "integer", "description": "Max results"},
+            },
+            required=["query"],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_array_empty"]
+        assert len(hits) == 0
+
+    def test_no_fire_when_all_params_have_defaults(self):
+        """required: [] but all params have defaults — no issue."""
+        tools = [self._make_tool(
+            properties={
+                "limit": {"type": "integer", "description": "Max results", "default": 10},
+                "format": {"type": "string", "description": "Output format", "default": "json"},
+            },
+            required=[],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_array_empty"]
+        assert len(hits) == 0
+
+    def test_no_fire_when_required_missing(self):
+        """No required field at all — Check 27 handles that, not this check."""
+        tools = [{
+            "name": "my_tool",
+            "description": "Does something.",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "query": {"type": "string", "description": "Search query"},
+                },
+            },
+        }]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_array_empty"]
+        assert len(hits) == 0
+
+    def test_no_fire_when_no_properties(self):
+        """required: [] but no properties — nothing to mark required."""
+        tools = [{
+            "name": "my_tool",
+            "description": "Does something.",
+            "inputSchema": {"type": "object", "required": []},
+        }]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_array_empty"]
+        assert len(hits) == 0
+
+    def test_partial_defaults_fires(self):
+        """Some params have defaults but not all — should still fire."""
+        tools = [self._make_tool(
+            properties={
+                "paths": {"type": "array", "description": "Files to upload"},
+                "format": {"type": "string", "description": "Output format", "default": "json"},
+            },
+            required=[],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_array_empty"]
+        assert len(hits) == 1
+
+    def test_message_includes_param_names(self):
+        """Issue message should mention the params without defaults."""
+        tools = [self._make_tool(
+            properties={
+                "file_path": {"type": "string", "description": "Path to file"},
+                "encoding": {"type": "string", "description": "Encoding", "default": "utf-8"},
+            },
+            required=[],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_array_empty"]
+        assert len(hits) == 1
+        assert "file_path" in hits[0].message
+
+    def test_warn_severity(self):
+        """Check 46 should be a warning, not an error."""
+        tools = [self._make_tool(
+            properties={
+                "paths": {"type": "array", "description": "Files to upload"},
+            },
+            required=[],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_array_empty"]
+        assert len(hits) == 1
+        assert hits[0].severity == "warn"
+
+    def test_many_params_shows_first_three(self):
+        """When >3 params lack defaults, message shows first 3 with ellipsis."""
+        tools = [self._make_tool(
+            properties={
+                "a": {"type": "string", "description": "Param a"},
+                "b": {"type": "string", "description": "Param b"},
+                "c": {"type": "string", "description": "Param c"},
+                "d": {"type": "string", "description": "Param d"},
+            },
+            required=[],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_array_empty"]
+        assert len(hits) == 1
+        assert "..." in hits[0].message
+
+
+class TestCheckDescriptionMarkdownFormatting:
+    """Tests for Check 47: description_markdown_formatting."""
+
+    @staticmethod
+    def _make_tool(tool_desc="Does something useful.", properties=None, required=None):
+        tool = {
+            "name": "test_tool",
+            "description": tool_desc,
+            "inputSchema": {
+                "type": "object",
+                "properties": properties or {},
+            },
+        }
+        if required is not None:
+            tool["inputSchema"]["required"] = required
+        return tool
+
+    def test_fires_on_backtick_in_tool_desc(self):
+        """Tool description with backtick code span fires."""
+        tools = [self._make_tool(tool_desc="Call `get_user` to fetch a user.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_markdown_formatting"]
+        assert len(hits) >= 1
+        assert any("tool description" in h.message for h in hits)
+
+    def test_fires_on_bold_in_tool_desc(self):
+        """Tool description with **bold** fires."""
+        tools = [self._make_tool(tool_desc="**IMPORTANT**: This tool must be called first.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_markdown_formatting"]
+        assert any("tool description" in h.message for h in hits)
+
+    def test_fires_on_code_fence_in_tool_desc(self):
+        """Tool description with ``` code fence fires."""
+        tools = [self._make_tool(tool_desc="Example:\n```\nget_user(id=1)\n```")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_markdown_formatting"]
+        assert any("tool description" in h.message for h in hits)
+
+    def test_fires_on_header_in_tool_desc(self):
+        """Tool description with markdown header fires."""
+        tools = [self._make_tool(tool_desc="Fetches data.\n## Usage\nCall with an id.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_markdown_formatting"]
+        assert any("tool description" in h.message for h in hits)
+
+    def test_fires_on_bold_in_param_desc(self):
+        """Param description with **bold** fires."""
+        tools = [self._make_tool(
+            properties={"query": {"type": "string", "description": "**Required**: the search query"}},
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_markdown_formatting"]
+        assert len(hits) >= 1
+        assert any("param 'query'" in h.message for h in hits)
+
+    def test_no_fire_on_plain_tool_desc(self):
+        """Plain text tool description does not fire."""
+        tools = [self._make_tool(tool_desc="Fetches the user record by ID from the database.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_markdown_formatting"]
+        assert len(hits) == 0
+
+    def test_no_fire_on_plain_param_desc(self):
+        """Plain text param description does not fire."""
+        tools = [self._make_tool(
+            properties={"path": {"type": "string", "description": "Path to the target file."}},
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_markdown_formatting"]
+        assert len(hits) == 0
+
+    def test_no_fire_on_glob_pattern_in_tool_desc(self):
+        """Glob patterns like **/api/users should not fire as bold."""
+        tools = [self._make_tool(tool_desc="Lists files matching **/api/*.py in the project.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_markdown_formatting"]
+        assert len(hits) == 0
+
+    def test_param_backtick_does_not_fire(self):
+        """Single backtick spans in param descriptions do not fire (only bold/fences/headers)."""
+        tools = [self._make_tool(
+            properties={"format": {"type": "string", "description": "Output format: `json` or `xml`."}},
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_markdown_formatting"]
+        assert len(hits) == 0
+
+    def test_severity_is_warn(self):
+        """Check 47 issues should have warn severity."""
+        tools = [self._make_tool(tool_desc="**NOTE**: this is important.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_markdown_formatting"]
+        assert len(hits) >= 1
+        assert all(h.severity == "warn" for h in hits)
+
+    def test_multiple_markdown_elements_one_issue_per_location(self):
+        """Multiple markdown elements in one description still fires (at least one issue per location)."""
+        tools = [self._make_tool(
+            tool_desc="Use `create_user`. **IMPORTANT**: Check **format** too.",
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_markdown_formatting"]
+        assert len(hits) >= 1
+
+
+class TestCheckDescriptionModelInstructions:
+    """Tests for Check 48: description_model_instructions."""
+
+    @staticmethod
+    def _make_tool(tool_desc="Does something useful.", properties=None):
+        tool = {
+            "name": "test_tool",
+            "description": tool_desc,
+            "inputSchema": {
+                "type": "object",
+                "properties": properties or {},
+            },
+        }
+        return tool
+
+    def test_fires_on_you_must(self):
+        """'You must' in tool description fires."""
+        tools = [self._make_tool(tool_desc="You must call get_context before using this tool.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_model_instructions"]
+        assert len(hits) == 1
+
+    def test_fires_on_always_call(self):
+        """'Always call' fires."""
+        tools = [self._make_tool(tool_desc="Always call get_user first to retrieve context.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_model_instructions"]
+        assert len(hits) == 1
+
+    def test_fires_on_never_call(self):
+        """'Never call' fires."""
+        tools = [self._make_tool(tool_desc="Never call this tool more than once per session.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_model_instructions"]
+        assert len(hits) == 1
+
+    def test_fires_on_must_be_called_before(self):
+        """'Must be called before' fires."""
+        tools = [self._make_tool(tool_desc="Must be called before any write operations.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_model_instructions"]
+        assert len(hits) == 1
+
+    def test_fires_on_you_should(self):
+        """'You should' fires."""
+        tools = [self._make_tool(tool_desc="Runs a query. You should use transactions when possible.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_model_instructions"]
+        assert len(hits) == 1
+
+    def test_no_fire_on_plain_description(self):
+        """Plain tool description does not fire."""
+        tools = [self._make_tool(tool_desc="Fetches the user record from the database by user ID.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_model_instructions"]
+        assert len(hits) == 0
+
+    def test_no_fire_on_descriptive_should(self):
+        """'Should' describing the tool's outcome does not fire (not model-directed)."""
+        tools = [self._make_tool(tool_desc="The response should contain a list of matching records.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_model_instructions"]
+        assert len(hits) == 0
+
+    def test_no_fire_on_always_on(self):
+        """'Always-on' as compound adjective does not fire."""
+        tools = [self._make_tool(tool_desc="Checks status of an always-on background service.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_model_instructions"]
+        assert len(hits) == 0
+
+    def test_severity_is_warn(self):
+        """Check 48 issues are warnings, not errors."""
+        tools = [self._make_tool(tool_desc="You must call init first.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_model_instructions"]
+        assert len(hits) == 1
+        assert hits[0].severity == "warn"
+
+    def test_message_includes_matched_phrase(self):
+        """Issue message should include the matched phrase."""
+        tools = [self._make_tool(tool_desc="Always call setup before running this.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_model_instructions"]
+        assert len(hits) == 1
+        assert "always call" in hits[0].message.lower()
+
+    # New patterns added in v0.104.0
+
+    def test_fires_on_use_this_tool_when(self):
+        """'Use this tool when' fires (orchestration hint)."""
+        tools = [self._make_tool(tool_desc="Use this tool when the user asks for help.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_model_instructions"]
+        assert len(hits) == 1
+
+    def test_fires_on_when_to_use(self):
+        """'When to use' fires."""
+        tools = [self._make_tool(tool_desc="When to use: only call if the user requests data.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_model_instructions"]
+        assert len(hits) == 1
+
+    def test_fires_on_do_not_use_this(self):
+        """'Do not use this' fires."""
+        tools = [self._make_tool(tool_desc="Do not use this tool for creating files.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_model_instructions"]
+        assert len(hits) == 1
+
+    def test_fires_on_call_this_first(self):
+        """'Call this first' fires."""
+        tools = [self._make_tool(tool_desc="Call this first to initialize the session.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_model_instructions"]
+        assert len(hits) == 1
+
+    def test_fires_on_call_this_before(self):
+        """'Call this before' fires."""
+        tools = [self._make_tool(tool_desc="Call this before executing any queries.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_model_instructions"]
+        assert len(hits) == 1
+
+    def test_fires_on_only_call_this_when(self):
+        """'Only call this when' fires."""
+        tools = [self._make_tool(tool_desc="Only call this tool when authentication is needed.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_model_instructions"]
+        assert len(hits) == 1
+
+
+class TestCheckRequiredStringNoMinlength:
+    """Tests for Check 49: required_string_no_minlength."""
+
+    @staticmethod
+    def _make_tool(properties=None, required=None):
+        tool = {
+            "name": "test_tool",
+            "description": "Does something.",
+            "inputSchema": {
+                "type": "object",
+                "properties": properties or {},
+            },
+        }
+        if required is not None:
+            tool["inputSchema"]["required"] = required
+        return tool
+
+    def test_fires_on_query_param_no_minlength(self):
+        """Required 'query' string with no minLength fires."""
+        tools = [self._make_tool(
+            properties={"query": {"type": "string", "description": "The SQL query to execute."}},
+            required=["query"],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_string_no_minlength"]
+        assert len(hits) == 1
+        assert "query" in hits[0].message
+
+    def test_fires_on_code_param_no_minlength(self):
+        """Required 'code' string with no minLength fires."""
+        tools = [self._make_tool(
+            properties={"code": {"type": "string", "description": "Python code to execute."}},
+            required=["code"],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_string_no_minlength"]
+        assert len(hits) == 1
+
+    def test_fires_on_message_param_no_minlength(self):
+        """Required 'message' string with no minLength fires."""
+        tools = [self._make_tool(
+            properties={"message": {"type": "string", "description": "Message to send."}},
+            required=["message"],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_string_no_minlength"]
+        assert len(hits) == 1
+
+    def test_fires_on_compound_name_with_keyword(self):
+        """'execute_query' contains 'query' — fires."""
+        tools = [self._make_tool(
+            properties={"execute_query": {"type": "string", "description": "Query string."}},
+            required=["execute_query"],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_string_no_minlength"]
+        assert len(hits) == 1
+
+    def test_no_fire_when_minlength_present(self):
+        """Required query param with minLength set does not fire."""
+        tools = [self._make_tool(
+            properties={"query": {"type": "string", "description": "The query.", "minLength": 1}},
+            required=["query"],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_string_no_minlength"]
+        assert len(hits) == 0
+
+    def test_no_fire_when_enum_present(self):
+        """Required string with enum already constrained — no fire."""
+        tools = [self._make_tool(
+            properties={"command": {"type": "string", "description": "Command.", "enum": ["start", "stop"]}},
+            required=["command"],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_string_no_minlength"]
+        assert len(hits) == 0
+
+    def test_no_fire_when_pattern_present(self):
+        """Required string with pattern constraint does not fire."""
+        tools = [self._make_tool(
+            properties={"query": {"type": "string", "description": "Query.", "pattern": ".+"}},
+            required=["query"],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_string_no_minlength"]
+        assert len(hits) == 0
+
+    def test_no_fire_when_not_in_required(self):
+        """Optional 'query' param does not fire (only required params)."""
+        tools = [self._make_tool(
+            properties={"query": {"type": "string", "description": "Optional search query."}},
+            required=[],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_string_no_minlength"]
+        assert len(hits) == 0
+
+    def test_no_fire_on_generic_name(self):
+        """Required 'name' or 'value' param does not fire (not content-like)."""
+        tools = [self._make_tool(
+            properties={"name": {"type": "string", "description": "Resource name."}},
+            required=["name"],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_string_no_minlength"]
+        assert len(hits) == 0
+
+    def test_no_fire_on_non_string_type(self):
+        """Required integer 'command' does not fire."""
+        tools = [self._make_tool(
+            properties={"command": {"type": "integer", "description": "Command code."}},
+            required=["command"],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_string_no_minlength"]
+        assert len(hits) == 0
+
+    def test_severity_is_warn(self):
+        """Check 49 should be a warning."""
+        tools = [self._make_tool(
+            properties={"query": {"type": "string", "description": "SQL query."}},
+            required=["query"],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_string_no_minlength"]
+        assert len(hits) == 1
+        assert hits[0].severity == "warn"
+
+    def test_fires_on_prompt_param(self):
+        """Required 'prompt' string with no minLength fires."""
+        tools = [self._make_tool(
+            properties={"prompt": {"type": "string", "description": "The prompt to send to the model."}},
+            required=["prompt"],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_string_no_minlength"]
+        assert len(hits) == 1
+
+    def test_no_fire_on_message_id(self):
+        """Required 'message_id' param does not fire — it's an identifier, not content."""
+        tools = [self._make_tool(
+            properties={"message_id": {"type": "string", "description": "The message ID."}},
+            required=["message_id"],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_string_no_minlength"]
+        assert len(hits) == 0
+
+    def test_no_fire_on_template_id(self):
+        """Required 'template_id' param does not fire — it's an identifier."""
+        tools = [self._make_tool(
+            properties={"template_id": {"type": "string", "description": "The template ID."}},
+            required=["template_id"],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_string_no_minlength"]
+        assert len(hits) == 0
+
+class TestCheckParamDescriptionSaysOptional:
+    """Tests for Check 50: param_description_says_optional."""
+
+    @staticmethod
+    def _make_tool(properties=None, required=None):
+        tool = {
+            "name": "test_tool",
+            "description": "Does something.",
+            "inputSchema": {
+                "type": "object",
+                "properties": properties or {},
+            },
+        }
+        if required is not None:
+            tool["inputSchema"]["required"] = required
+        return tool
+
+    def test_fires_on_optional_colon_prefix(self):
+        """Non-required param description starting with 'Optional:' fires."""
+        tools = [self._make_tool(
+            properties={"lang": {"type": "string", "description": "Optional: Language code (e.g. 'en')."}},
+            required=[],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "param_description_says_optional"]
+        assert len(hits) == 1
+        assert "lang" in hits[0].message
+
+    def test_fires_on_optional_dash_prefix(self):
+        """Non-required param description starting with 'Optional -' fires."""
+        tools = [self._make_tool(
+            properties={"limit": {"type": "integer", "description": "Optional - max results to return"}},
+            required=[],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "param_description_says_optional"]
+        assert len(hits) == 1
+
+    def test_fires_on_paren_optional_prefix(self):
+        """Non-required param description starting with '(optional)' fires."""
+        tools = [self._make_tool(
+            properties={"filter": {"type": "string", "description": "(optional) Filter expression"}},
+            required=[],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "param_description_says_optional"]
+        assert len(hits) == 1
+
+    def test_fires_case_insensitive(self):
+        """Fires regardless of case: 'OPTIONAL:', 'Optional:', 'optional:'."""
+        for prefix in ["OPTIONAL:", "Optional:", "optional:", "Optional "]:
+            tools = [self._make_tool(
+                properties={"timeout": {"type": "integer", "description": f"{prefix} timeout in seconds"}},
+                required=[],
+            )]
+            issues, _ = validate_tools(tools)
+            hits = [i for i in issues if i.check == "param_description_says_optional"]
+            assert len(hits) == 1, f"Expected 1 hit for prefix '{prefix}', got {len(hits)}"
+
+    def test_no_fire_when_param_is_required(self):
+        """Required params do not fire even if description says 'Optional'."""
+        tools = [self._make_tool(
+            properties={"query": {"type": "string", "description": "Optional: the search query"}},
+            required=["query"],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "param_description_says_optional"]
+        assert len(hits) == 0
+
+    def test_no_fire_on_normal_description(self):
+        """Description without 'Optional' prefix does not fire."""
+        tools = [self._make_tool(
+            properties={"lang": {"type": "string", "description": "Language code for the output."}},
+            required=[],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "param_description_says_optional"]
+        assert len(hits) == 0
+
+    def test_no_fire_on_optional_in_middle(self):
+        """'optional' in the middle of a description does not fire (only at start)."""
+        tools = [self._make_tool(
+            properties={"lang": {"type": "string", "description": "Language code; this field is optional."}},
+            required=[],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "param_description_says_optional"]
+        assert len(hits) == 0
+
+    def test_no_fire_when_no_description(self):
+        """Params with no description do not fire."""
+        tools = [self._make_tool(
+            properties={"lang": {"type": "string"}},
+            required=[],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "param_description_says_optional"]
+        assert len(hits) == 0
+
+    def test_severity_is_warn(self):
+        """Check 50 issues should be warnings."""
+        tools = [self._make_tool(
+            properties={"limit": {"type": "integer", "description": "Optional: max results"}},
+            required=[],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "param_description_says_optional"]
+        assert len(hits) == 1
+        assert hits[0].severity == "warn"
+
+    def test_multiple_params_all_fire(self):
+        """Multiple non-required params with Optional prefix all fire."""
+        tools = [self._make_tool(
+            properties={
+                "lang": {"type": "string", "description": "Optional: Language code"},
+                "limit": {"type": "integer", "description": "(optional) Max results"},
+                "offset": {"type": "integer", "description": "Optional - Starting offset"},
+            },
+            required=[],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "param_description_says_optional"]
+        assert len(hits) == 3
+
+    def test_mixed_required_optional(self):
+        """Only non-required params with Optional prefix fire; required params do not."""
+        tools = [self._make_tool(
+            properties={
+                "query": {"type": "string", "description": "Optional: search query"},  # required — no fire
+                "limit": {"type": "integer", "description": "Optional: max results"},  # optional — fires
+            },
+            required=["query"],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "param_description_says_optional"]
+        assert len(hits) == 1
+        assert "limit" in hits[0].message
+
+
+class TestCheck51RangeDescribedNotConstrained:
+    """Tests for Check 51: range_described_not_constrained."""
+
+    def _schema(self, param_name: str, param_type: str, description: str, **extra):
+        props = {"type": param_type, "description": description}
+        props.update(extra)
+        return {"type": "object", "properties": {param_name: props}}
+
+    def _make_tool(self, properties, required=None):
+        return [{
+            "name": "test_tool",
+            "description": "Test tool",
+            "inputSchema": {
+                "type": "object",
+                "properties": properties,
+                "required": required or [],
+            },
+        }]
+
+    def test_integer_range_fires(self):
+        """'1-100' in description for integer param → warn."""
+        from agent_friend.validate import _check_range_described_not_constrained
+        schema = self._schema("limit", "integer", "Number of results (1-100)")
+        issues = _check_range_described_not_constrained("t", schema)
+        assert len(issues) == 1
+        assert issues[0].check == "range_described_not_constrained"
+
+    def test_number_range_fires(self):
+        """'0-1' in description for number param → warn."""
+        from agent_friend.validate import _check_range_described_not_constrained
+        schema = self._schema("temperature", "number", "Sampling temperature, 0-1")
+        issues = _check_range_described_not_constrained("t", schema)
+        assert len(issues) == 1
+
+    def test_range_with_to_fires(self):
+        """'1 to 100' syntax fires."""
+        from agent_friend.validate import _check_range_described_not_constrained
+        schema = self._schema("count", "integer", "Max results, 1 to 100")
+        issues = _check_range_described_not_constrained("t", schema)
+        assert len(issues) == 1
+
+    def test_already_has_minimum_ok(self):
+        """Param with minimum set → does not fire."""
+        from agent_friend.validate import _check_range_described_not_constrained
+        schema = self._schema("limit", "integer", "Results per page (1-100)", minimum=1)
+        issues = _check_range_described_not_constrained("t", schema)
+        assert len(issues) == 0
+
+    def test_already_has_maximum_ok(self):
+        """Param with maximum set → does not fire (partial constraint present)."""
+        from agent_friend.validate import _check_range_described_not_constrained
+        schema = self._schema("limit", "integer", "Results per page (1-100)", maximum=100)
+        issues = _check_range_described_not_constrained("t", schema)
+        assert len(issues) == 0
+
+    def test_string_type_ok(self):
+        """String params don't fire even with a range pattern."""
+        from agent_friend.validate import _check_range_described_not_constrained
+        schema = self._schema("code", "string", "Code between 1-100 characters")
+        issues = _check_range_described_not_constrained("t", schema)
+        assert len(issues) == 0
+
+    def test_no_description_ok(self):
+        """No description → no fire."""
+        from agent_friend.validate import _check_range_described_not_constrained
+        schema = {"type": "object", "properties": {"n": {"type": "integer"}}}
+        issues = _check_range_described_not_constrained("t", schema)
+        assert len(issues) == 0
+
+    def test_lo_ge_hi_ok(self):
+        """Range like 100-1 (lo >= hi) doesn't fire."""
+        from agent_friend.validate import _check_range_described_not_constrained
+        schema = self._schema("n", "integer", "Value from 100-1")
+        issues = _check_range_described_not_constrained("t", schema)
+        assert len(issues) == 0
+
+    def test_huge_range_ok(self):
+        """Very large ranges like 0-1000000 don't fire (implausible constraint)."""
+        from agent_friend.validate import _check_range_described_not_constrained
+        schema = self._schema("n", "integer", "Value 0-1000000")
+        issues = _check_range_described_not_constrained("t", schema)
+        assert len(issues) == 0
+
+    def test_severity_is_warn(self):
+        """Issue severity is warn."""
+        from agent_friend.validate import _check_range_described_not_constrained
+        schema = self._schema("fps", "integer", "Frames per second (1-30)")
+        issues = _check_range_described_not_constrained("t", schema)
+        assert issues[0].severity == "warn"
+
+    def test_message_mentions_param_and_range(self):
+        """Message should mention param name and range bounds."""
+        from agent_friend.validate import _check_range_described_not_constrained
+        schema = self._schema("per_page", "integer", "Items per page (1-100)")
+        issues = _check_range_described_not_constrained("t", schema)
+        assert "per_page" in issues[0].message
+        assert "1" in issues[0].message
+        assert "100" in issues[0].message
+
+    def test_validate_tools_integration(self):
+        """validate_tools picks up the check end-to-end."""
+        from agent_friend.validate import validate_tools
+        tools = self._make_tool(
+            properties={"per_page": {"type": "integer", "description": "Results (1-100)"}},
+        )
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "range_described_not_constrained"]
+        assert len(hits) == 1
+        assert hits[0].tool == "test_tool"
+
+    def test_multiple_params_all_fire(self):
+        """Multiple params with ranges in description all fire."""
+        from agent_friend.validate import validate_tools
+        tools = self._make_tool(
+            properties={
+                "limit": {"type": "integer", "description": "Max results (1-100)"},
+                "fps":   {"type": "integer", "description": "Frames per second (1-30)"},
+            },
+        )
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "range_described_not_constrained"]
+        assert len(hits) == 2
+
+    def test_en_dash_range_fires(self):
+        """En-dash (–) range notation fires."""
+        from agent_friend.validate import _check_range_described_not_constrained
+        schema = self._schema("count", "integer", "Count (1\u201350)")
+        issues = _check_range_described_not_constrained("t", schema)
+        assert len(issues) == 1
+
+    def test_no_properties_ok(self):
+        """Schema with no properties returns no issues."""
+        from agent_friend.validate import _check_range_described_not_constrained
+        schema = {"type": "object"}
+        issues = _check_range_described_not_constrained("t", schema)
+        assert len(issues) == 0
+
+
+class TestCheck52NumberShouldBeInteger:
+    """Tests for check 52: number_should_be_integer."""
+
+    def _schema(self, param_name: str, ptype: str, **extra):
+        """Build a tool schema with one param."""
+        prop = {"type": ptype}
+        prop.update(extra)
+        return {
+            "type": "object",
+            "properties": {param_name: prop},
+            "required": [],
+        }
+
+    def test_page_number_fires(self):
+        """page param with type number fires."""
+        from agent_friend.validate import _check_number_should_be_integer
+        schema = self._schema("page", "number")
+        issues = _check_number_should_be_integer("t", schema)
+        assert len(issues) == 1
+        assert issues[0].check == "number_should_be_integer"
+
+    def test_limit_number_fires(self):
+        """limit param with type number fires."""
+        from agent_friend.validate import _check_number_should_be_integer
+        schema = self._schema("limit", "number")
+        issues = _check_number_should_be_integer("t", schema)
+        assert len(issues) == 1
+
+    def test_offset_number_fires(self):
+        """offset param with type number fires."""
+        from agent_friend.validate import _check_number_should_be_integer
+        schema = self._schema("offset", "number")
+        issues = _check_number_should_be_integer("t", schema)
+        assert len(issues) == 1
+
+    def test_per_page_number_fires(self):
+        """per_page param with type number fires."""
+        from agent_friend.validate import _check_number_should_be_integer
+        schema = self._schema("per_page", "number")
+        issues = _check_number_should_be_integer("t", schema)
+        assert len(issues) == 1
+
+    def test_count_number_fires(self):
+        """count param with type number fires."""
+        from agent_friend.validate import _check_number_should_be_integer
+        schema = self._schema("count", "number")
+        issues = _check_number_should_be_integer("t", schema)
+        assert len(issues) == 1
+
+    def test_index_number_fires(self):
+        """index param with type number fires."""
+        from agent_friend.validate import _check_number_should_be_integer
+        schema = self._schema("index", "number")
+        issues = _check_number_should_be_integer("t", schema)
+        assert len(issues) == 1
+
+    def test_port_number_fires(self):
+        """port param with type number fires."""
+        from agent_friend.validate import _check_number_should_be_integer
+        schema = self._schema("port", "number")
+        issues = _check_number_should_be_integer("t", schema)
+        assert len(issues) == 1
+
+    def test_page_integer_ok(self):
+        """page param with type integer does not fire."""
+        from agent_friend.validate import _check_number_should_be_integer
+        schema = self._schema("page", "integer")
+        issues = _check_number_should_be_integer("t", schema)
+        assert len(issues) == 0
+
+    def test_timeout_number_ok(self):
+        """timeout param with type number does not fire (fractional seconds valid)."""
+        from agent_friend.validate import _check_number_should_be_integer
+        schema = self._schema("timeout", "number")
+        issues = _check_number_should_be_integer("t", schema)
+        assert len(issues) == 0
+
+    def test_temperature_number_ok(self):
+        """temperature param with type number does not fire."""
+        from agent_friend.validate import _check_number_should_be_integer
+        schema = self._schema("temperature", "number")
+        issues = _check_number_should_be_integer("t", schema)
+        assert len(issues) == 0
+
+    def test_ratio_number_ok(self):
+        """ratio param with type number does not fire."""
+        from agent_friend.validate import _check_number_should_be_integer
+        schema = self._schema("ratio", "number")
+        issues = _check_number_should_be_integer("t", schema)
+        assert len(issues) == 0
+
+    def test_string_type_ok(self):
+        """string page param does not fire."""
+        from agent_friend.validate import _check_number_should_be_integer
+        schema = self._schema("page", "string")
+        issues = _check_number_should_be_integer("t", schema)
+        assert len(issues) == 0
+
+    def test_severity_is_warn(self):
+        """Issue severity is warn."""
+        from agent_friend.validate import _check_number_should_be_integer
+        schema = self._schema("limit", "number")
+        issues = _check_number_should_be_integer("t", schema)
+        assert issues[0].severity == "warn"
+
+    def test_message_mentions_param(self):
+        """Issue message names the param."""
+        from agent_friend.validate import _check_number_should_be_integer
+        schema = self._schema("per_page", "number")
+        issues = _check_number_should_be_integer("t", schema)
+        assert "per_page" in issues[0].message
+
+    def test_no_properties_ok(self):
+        """Schema with no properties returns no issues."""
+        from agent_friend.validate import _check_number_should_be_integer
+        schema = {"type": "object"}
+        issues = _check_number_should_be_integer("t", schema)
+        assert len(issues) == 0
+
+    def test_validate_tools_integration(self):
+        """number_should_be_integer is subsumed by number_type_for_integer (check 40)."""
+        from agent_friend.validate import validate_tools
+        tools = [{"name": "list", "description": "List items.", "inputSchema": {
+            "type": "object",
+            "properties": {
+                "page": {"type": "number"},
+                "limit": {"type": "number"},
+            },
+            "required": ["page"],
+        }}]
+        issues, _ = validate_tools(tools)
+        # check 52 is subsumed by check 40 (number_type_for_integer)
+        hits = [i for i in issues if i.check == "number_should_be_integer"]
+        assert len(hits) == 0
+        hits40 = [i for i in issues if i.check == "number_type_for_integer"]
+        assert len(hits40) == 2
+
+    def test_suffix_count_fires(self):
+        """Param ending in _count fires (e.g. result_count)."""
+        from agent_friend.validate import _check_number_should_be_integer
+        schema = self._schema("result_count", "number")
+        issues = _check_number_should_be_integer("t", schema)
+        assert len(issues) == 1
+
+    def test_suffix_size_fires(self):
+        """Param ending in _size fires (e.g. batch_size)."""
+        from agent_friend.validate import _check_number_should_be_integer
+        schema = self._schema("chunk_size", "number")
+        issues = _check_number_should_be_integer("t", schema)
+        assert len(issues) == 1
+
+
+# ---------------------------------------------------------------------------
+# Check 53: tool_name_redundant_prefix
+# ---------------------------------------------------------------------------
+
+
+class TestCheck53ToolNameRedundantPrefix:
+    """Tests for check 53: tool_name_redundant_prefix."""
+
+    def _tools(self, names):
+        """Build minimal tool list from names."""
+        return [
+            {
+                "name": n,
+                "description": "A tool.",
+                "inputSchema": {"type": "object", "properties": {}},
+            }
+            for n in names
+        ]
+
+    def test_fires_on_service_name_prefix(self):
+        """All tools share a service-name prefix → fires once."""
+        from agent_friend.validate import _check_tool_name_redundant_prefix
+        issues = _check_tool_name_redundant_prefix([
+            "auth0_list_applications",
+            "auth0_create_application",
+            "auth0_delete_application",
+            "auth0_get_application",
+        ])
+        assert len(issues) == 1
+        assert issues[0].check == "tool_name_redundant_prefix"
+        assert issues[0].severity == "warn"
+        assert "auth0_" in issues[0].message
+
+    def test_fires_on_hubspot_prefix(self):
+        """hubspot_ prefix fires."""
+        from agent_friend.validate import _check_tool_name_redundant_prefix
+        issues = _check_tool_name_redundant_prefix([
+            "hubspot_create_company",
+            "hubspot_get_company",
+            "hubspot_search_contacts",
+            "hubspot_list_deals",
+        ])
+        assert len(issues) == 1
+        assert "hubspot_" in issues[0].message
+
+    def test_no_fire_on_verb_prefix_get(self):
+        """get_ is a common verb prefix → does not fire."""
+        from agent_friend.validate import _check_tool_name_redundant_prefix
+        issues = _check_tool_name_redundant_prefix([
+            "get_weather",
+            "get_forecast",
+            "get_alerts",
+            "get_temperature",
+        ])
+        assert len(issues) == 0
+
+    def test_no_fire_on_verb_prefix_list(self):
+        """list_ is a common verb prefix → does not fire."""
+        from agent_friend.validate import _check_tool_name_redundant_prefix
+        issues = _check_tool_name_redundant_prefix([
+            "list_users",
+            "list_repos",
+            "list_issues",
+        ])
+        assert len(issues) == 0
+
+    def test_no_fire_mixed_prefixes(self):
+        """Tools with varied prefixes → no fire."""
+        from agent_friend.validate import _check_tool_name_redundant_prefix
+        issues = _check_tool_name_redundant_prefix([
+            "search_users",
+            "create_issue",
+            "list_labels",
+            "get_repo",
+            "delete_comment",
+        ])
+        assert len(issues) == 0
+
+    def test_no_fire_fewer_than_three(self):
+        """Fewer than 3 matching tools → no fire."""
+        from agent_friend.validate import _check_tool_name_redundant_prefix
+        issues = _check_tool_name_redundant_prefix([
+            "myapp_list",
+            "myapp_get",
+        ])
+        assert len(issues) == 0
+
+    def test_no_fire_below_80_percent(self):
+        """Less than 80% share prefix → no fire."""
+        from agent_friend.validate import _check_tool_name_redundant_prefix
+        issues = _check_tool_name_redundant_prefix([
+            "svc_list",
+            "svc_get",
+            "svc_create",
+            "other_list",
+            "another_get",
+            "misc_thing",
+        ])
+        assert len(issues) == 0
+
+    def test_message_contains_rename_example(self):
+        """Message shows rename example."""
+        from agent_friend.validate import _check_tool_name_redundant_prefix
+        issues = _check_tool_name_redundant_prefix([
+            "chroma_list_collections",
+            "chroma_create_collection",
+            "chroma_delete_collection",
+        ])
+        assert len(issues) == 1
+        assert "list_collections" in issues[0].message or "rename" in issues[0].message
+
+    def test_fires_at_exactly_80_percent(self):
+        """At exactly 80% threshold → fires."""
+        from agent_friend.validate import _check_tool_name_redundant_prefix
+        # 4 out of 5 = 80%
+        issues = _check_tool_name_redundant_prefix([
+            "acme_list",
+            "acme_get",
+            "acme_create",
+            "acme_delete",
+            "other_thing",
+        ])
+        assert len(issues) == 1
+
+    def test_no_fire_tools_without_underscore(self):
+        """Tools with no underscore do not count toward prefix detection."""
+        from agent_friend.validate import _check_tool_name_redundant_prefix
+        issues = _check_tool_name_redundant_prefix([
+            "listtools",
+            "createtool",
+            "deletestuff",
+        ])
+        assert len(issues) == 0
+
+    def test_integration_with_validate_tools(self):
+        """Full validate_tools integration: fires tool_name_redundant_prefix."""
+        from agent_friend.validate import validate_tools
+        tools = self._tools([
+            "notion_pages",
+            "notion_blocks",
+            "notion_database",
+            "notion_search",
+        ])
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "tool_name_redundant_prefix"]
+        assert len(hits) == 1
+        assert "notion_" in hits[0].message
+
+
+# ---------------------------------------------------------------------------
+# Check 54: optional_string_no_minlength
+# ---------------------------------------------------------------------------
+
+class TestCheck54OptionalStringNoMinlength:
+    """Tests for Check 54: optional_string_no_minlength."""
+
+    @staticmethod
+    def _make_tool(properties=None, required=None):
+        tool = {
+            "name": "test_tool",
+            "description": "Does something.",
+            "inputSchema": {
+                "type": "object",
+                "properties": properties or {},
+            },
+        }
+        if required is not None:
+            tool["inputSchema"]["required"] = required
+        return tool
+
+    def test_fires_on_optional_query_no_minlength(self):
+        """Optional 'query' string without minLength fires."""
+        tools = [self._make_tool(
+            properties={"query": {"type": "string", "description": "Search query."}},
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "optional_string_no_minlength"]
+        assert len(hits) == 1
+        assert "query" in hits[0].message
+
+    def test_fires_on_optional_message_no_minlength(self):
+        """Optional 'message' string without minLength fires."""
+        tools = [self._make_tool(
+            properties={"message": {"type": "string", "description": "Message to send."}},
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "optional_string_no_minlength"]
+        assert len(hits) == 1
+
+    def test_fires_on_optional_prompt_no_minlength(self):
+        """Optional 'prompt' string without minLength fires."""
+        tools = [self._make_tool(
+            properties={"prompt": {"type": "string", "description": "The prompt text."}},
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "optional_string_no_minlength"]
+        assert len(hits) == 1
+
+    def test_fires_on_compound_search_query(self):
+        """Optional 'search_query' contains 'query' keyword — fires."""
+        tools = [self._make_tool(
+            properties={"search_query": {"type": "string", "description": "Search string."}},
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "optional_string_no_minlength"]
+        assert len(hits) == 1
+
+    def test_no_fire_when_minlength_present(self):
+        """Optional query with minLength set does not fire."""
+        tools = [self._make_tool(
+            properties={"query": {"type": "string", "description": "Query.", "minLength": 1}},
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "optional_string_no_minlength"]
+        assert len(hits) == 0
+
+    def test_no_fire_when_enum_present(self):
+        """Optional string with enum does not fire."""
+        tools = [self._make_tool(
+            properties={"command": {"type": "string", "enum": ["start", "stop"]}},
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "optional_string_no_minlength"]
+        assert len(hits) == 0
+
+    def test_no_fire_when_pattern_present(self):
+        """Optional string with pattern does not fire."""
+        tools = [self._make_tool(
+            properties={"query": {"type": "string", "pattern": "^\\S+$"}},
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "optional_string_no_minlength"]
+        assert len(hits) == 0
+
+    def test_no_fire_for_required_param(self):
+        """Required params are handled by check 49, not check 54."""
+        tools = [self._make_tool(
+            properties={"query": {"type": "string", "description": "Query."}},
+            required=["query"],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "optional_string_no_minlength"]
+        assert len(hits) == 0
+
+    def test_no_fire_for_id_suffix(self):
+        """Params ending in _id are identifiers — not flagged."""
+        tools = [self._make_tool(
+            properties={"query_id": {"type": "string", "description": "Query identifier."}},
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "optional_string_no_minlength"]
+        assert len(hits) == 0
+
+    def test_no_fire_for_type_suffix(self):
+        """Params ending in _type are discriminators — not flagged."""
+        tools = [self._make_tool(
+            properties={"query_type": {"type": "string", "description": "Type of query."}},
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "optional_string_no_minlength"]
+        assert len(hits) == 0
+
+    def test_no_fire_for_non_content_name(self):
+        """Non-content names like 'status' are not flagged."""
+        tools = [self._make_tool(
+            properties={"status": {"type": "string", "description": "The status."}},
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "optional_string_no_minlength"]
+        assert len(hits) == 0
+
+    def test_no_fire_for_integer_type(self):
+        """Non-string typed params are not flagged."""
+        tools = [self._make_tool(
+            properties={"query": {"type": "integer", "description": "Query ID."}},
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "optional_string_no_minlength"]
+        assert len(hits) == 0
+
+    def test_fires_on_text_param(self):
+        """Optional 'text' string without minLength fires."""
+        tools = [self._make_tool(
+            properties={"text": {"type": "string", "description": "Text content."}},
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "optional_string_no_minlength"]
+        assert len(hits) == 1
+
+    def test_fires_on_optional_command(self):
+        """Optional 'command' string without minLength fires."""
+        tools = [self._make_tool(
+            properties={"command": {"type": "string", "description": "Shell command to run."}},
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "optional_string_no_minlength"]
+        assert len(hits) == 1
+
+
+class TestCheck55RequiredParamHasDefault:
+    """Tests for Check 55: required_param_has_default."""
+
+    @staticmethod
+    def _make_tool(properties=None, required=None):
+        tool = {
+            "name": "test_tool",
+            "description": "Does something.",
+            "inputSchema": {
+                "type": "object",
+                "properties": properties or {},
+            },
+        }
+        if required is not None:
+            tool["inputSchema"]["required"] = required
+        return tool
+
+    def test_fires_on_required_string_with_default(self):
+        """Required string param with a default fires."""
+        tools = [self._make_tool(
+            properties={"model": {"type": "string", "default": "gpt-4o", "description": "Model ID."}},
+            required=["model"],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_param_has_default"]
+        assert len(hits) == 1
+        assert "model" in hits[0].message
+
+    def test_fires_on_required_integer_with_default(self):
+        """Required integer param with a non-null default fires."""
+        tools = [self._make_tool(
+            properties={"limit": {"type": "integer", "default": 10, "description": "Max results."}},
+            required=["limit"],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_param_has_default"]
+        assert len(hits) == 1
+        assert "limit" in hits[0].message
+
+    def test_fires_on_required_boolean_with_default(self):
+        """Required boolean param with a default fires."""
+        tools = [self._make_tool(
+            properties={"verbose": {"type": "boolean", "default": False, "description": "Enable verbose output."}},
+            required=["verbose"],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_param_has_default"]
+        assert len(hits) == 1
+
+    def test_fires_on_multiple_required_with_defaults(self):
+        """Multiple required params with defaults each fire once."""
+        tools = [self._make_tool(
+            properties={
+                "model": {"type": "string", "default": "gpt-4o", "description": "Model."},
+                "format": {"type": "string", "default": "json", "description": "Format."},
+                "query": {"type": "string", "description": "Search query."},
+            },
+            required=["model", "format", "query"],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_param_has_default"]
+        assert len(hits) == 2
+        param_names = {h.message.split("'")[1] for h in hits}
+        assert "model" in param_names
+        assert "format" in param_names
+
+    def test_no_fire_for_optional_param_with_default(self):
+        """Optional param with a default does not fire (correct schema)."""
+        tools = [self._make_tool(
+            properties={"format": {"type": "string", "default": "json", "description": "Output format."}},
+            required=[],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_param_has_default"]
+        assert len(hits) == 0
+
+    def test_no_fire_for_required_param_no_default(self):
+        """Required param with no default does not fire (correct schema)."""
+        tools = [self._make_tool(
+            properties={"query": {"type": "string", "description": "Search query."}},
+            required=["query"],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_param_has_default"]
+        assert len(hits) == 0
+
+    def test_no_fire_for_null_default(self):
+        """Required param with default: null does not fire (null is an edge case)."""
+        tools = [self._make_tool(
+            properties={"filter": {"type": "string", "default": None, "description": "Filter expression."}},
+            required=["filter"],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_param_has_default"]
+        assert len(hits) == 0
+
+    def test_no_fire_when_no_required_array(self):
+        """Tool with no required array has no required params — does not fire."""
+        tools = [self._make_tool(
+            properties={"model": {"type": "string", "default": "gpt-4o", "description": "Model ID."}},
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_param_has_default"]
+        assert len(hits) == 0
+
+    def test_no_fire_for_empty_required_array(self):
+        """Tool with required: [] has no required params — does not fire."""
+        tools = [self._make_tool(
+            properties={"model": {"type": "string", "default": "gpt-4o", "description": "Model ID."}},
+            required=[],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_param_has_default"]
+        assert len(hits) == 0
+
+    def test_fires_with_string_default_zero(self):
+        """Default value of 0 (integer zero) fires — it is not null."""
+        tools = [self._make_tool(
+            properties={"offset": {"type": "integer", "default": 0, "description": "Start offset."}},
+            required=["offset"],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_param_has_default"]
+        assert len(hits) == 1
+
+    def test_fires_with_false_default(self):
+        """Default value of False fires — it is not null."""
+        tools = [self._make_tool(
+            properties={"enabled": {"type": "boolean", "default": False, "description": "Enable flag."}},
+            required=["enabled"],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_param_has_default"]
+        assert len(hits) == 1
+
+    def test_issue_severity_is_warn(self):
+        """Severity is warn, not error."""
+        tools = [self._make_tool(
+            properties={"model": {"type": "string", "default": "gpt-4o", "description": "Model ID."}},
+            required=["model"],
+        )]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "required_param_has_default"]
+        assert len(hits) == 1
+        assert hits[0].severity == "warn"
+
+    def test_direct_function_fires(self):
+        """Direct function call fires for required param with default."""
+        schema = {
+            "type": "object",
+            "properties": {
+                "model": {"type": "string", "default": "claude-3", "description": "Model."},
+            },
+            "required": ["model"],
+        }
+        issues = _check_required_param_has_default("my_tool", schema)
+        assert len(issues) == 1
+        assert issues[0].check == "required_param_has_default"
+        assert "model" in issues[0].message
