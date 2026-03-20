@@ -3,12 +3,16 @@
 **Last updated:** 2026-03-20 (session 223n/Day 13)
 
 ## Current Phase
-**Day 13 — v0.113.0 shipped (Check 61: description_duplicate). 61 checks. 3671 tests. Session 223n.**
+**Day 13 — v0.114.0 shipped (Check 62: description_3p_action_verb). 62 checks. 3684 tests. Session 223n.**
 
 ## Session 223n (2026-03-20, continuing)
 
 ### Completed
-1. **v0.113.0 shipped** — Check 61: `description_duplicate` (cross-tool)
+1. **v0.114.0 shipped** — Check 62: `description_3p_action_verb`
+   - Fires when tool description starts with a 3rd-person action verb (Creates, Updates, Deletes, Searches, etc.)
+   - Complements check 56 (output verbs) — fills the action verb gap in imperative mood family
+   - 13 tests | 3684 total | PyPI v0.114.0 | Release v0.114.0 | Discussion #87
+2. **v0.113.0 shipped** — Check 61: `description_duplicate` (cross-tool)
    - Fires when 2+ tools in a server share identical descriptions (≥10 chars)
    - 9 tests | 3671 total tests | PyPI v0.113.0 | Release v0.113.0 | Discussion #86
 2. **v0.112.0 shipped** — Check 60: `description_starts_with_gerund`
