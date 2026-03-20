@@ -1904,6 +1904,92 @@ def _check_tool_description_non_imperative(name: str, obj: Dict[str, Any], fmt: 
 
 
 # ---------------------------------------------------------------------------
+# Check 62: description_3p_action_verb
+# ---------------------------------------------------------------------------
+
+_THIRD_PERSON_ACTION_VERBS_RE = re.compile(
+    r'^(?:'
+    r'Creates|Updates|Deletes|Modifies|Removes|Adds|Inserts|Replaces'
+    r'|Searches|Queries|Filters|Sorts|Finds'
+    r'|Sends|Posts|Submits|Uploads|Downloads'
+    r'|Sets|Saves|Opens|Closes'
+    r'|Runs|Executes|Starts|Stops|Triggers|Cancels'
+    r'|Parses|Converts|Transforms|Formats'
+    r'|Archives|Restores|Syncs'
+    r'|Manages|Handles|Processes|Performs'
+    r'|Connects|Disconnects'
+    r'|Builds|Deploys|Publishes'
+    r'|Appends|Prepends|Merges|Joins|Splits'
+    r'|Configures|Initializes|Resets|Refreshes'
+    r'|Tracks|Logs|Records|Monitors'
+    r'|Validates|Authenticates|Authorizes'
+    r')\s',
+    re.IGNORECASE,
+)
+"""Patterns matching 3rd-person singular action verbs that signal non-imperative mood."""
+
+
+def _check_description_3p_action_verb(name: str, obj: Dict[str, Any], fmt: str) -> Optional[Issue]:
+    """Check 62: description_3p_action_verb — tool description starts with a common
+    action verb in 3rd-person singular form instead of imperative mood.
+
+    Check 56 (`tool_description_non_imperative`) catches output-focused 3rd-person
+    verbs like "Returns", "Provides", "Retrieves".  This check catches the
+    complementary set: common CRUD and operation verbs that also commonly appear
+    in 3rd-person form in auto-generated or careless documentation.
+
+    When a description says "Creates a new record" instead of "Create a new record",
+    it reads as a statement about what the tool does from the outside ("it creates...")
+    rather than a command ("create...").  The imperative form is the universal
+    convention for tool descriptions.
+
+    Fires when the tool description's first word is a recognized action verb in
+    3rd-person singular form (ending in ``s``, e.g. ``Creates``, ``Updates``,
+    ``Deletes``, ``Searches``, ``Sends``, ``Sets``, ``Runs``, ``Processes``...).
+
+    Does **not** fire on:
+    * Imperative base forms: "Create...", "Update...", "Delete..."
+    * Check 56 already handles output-focused verbs (Returns, Gets, Lists, etc.)
+    * Short tool names that happen to end in ``s`` but aren't action verbs
+
+    Examples::
+
+        # flagged — 3rd-person action verb
+        "Creates a new user account in the system."
+        "Updates the existing record with the provided values."
+        "Searches all documents matching the query."
+        "Sends an email notification to the specified recipient."
+        "Validates the input schema against the rules."
+
+        # correct — imperative
+        "Create a new user account."
+        "Update the existing record."
+        "Search all documents matching the query."
+        "Send an email notification."
+        "Validate the input schema."
+    """
+    desc = _get_tool_description(obj, fmt)
+    if not desc or not isinstance(desc, str):
+        return None
+    m = _THIRD_PERSON_ACTION_VERBS_RE.match(desc)
+    if not m:
+        return None
+    verb = m.group(0).strip()
+    # Suggest imperative by stripping trailing 's'
+    imperative = verb[:-1] if verb.endswith('s') else verb
+    return Issue(
+        tool=name,
+        severity="warn",
+        check="description_3p_action_verb",
+        message=(
+            "tool description starts with 3rd-person verb '{verb}' — "
+            "use imperative mood ('{imp}...' not '{verb}...'). "
+            "Tool descriptions should command the action, not describe it."
+        ).format(verb=verb, imp=imperative),
+    )
+
+
+# ---------------------------------------------------------------------------
 # Check 60: description_starts_with_gerund
 # ---------------------------------------------------------------------------
 
@@ -3679,6 +3765,11 @@ def validate_tools(data: Any) -> Tuple[List[Issue], Dict[str, Any]]:
 
         # Check 60: description_starts_with_gerund
         issue = _check_description_starts_with_gerund(name, raw_obj, fmt)
+        if issue is not None:
+            issues.append(issue)
+
+        # Check 62: description_3p_action_verb
+        issue = _check_description_3p_action_verb(name, raw_obj, fmt)
         if issue is not None:
             issues.append(issue)
 

@@ -53,6 +53,7 @@ from agent_friend.validate import (
     _check_description_starts_with_article,
     _check_description_starts_with_gerund,
     _check_description_duplicate,
+    _check_description_3p_action_verb,
 )
 
 
@@ -7767,3 +7768,123 @@ class TestDescriptionDuplicate:
         ]
         issues = _check_description_duplicate(tool_descs)
         assert len(issues) == 0
+
+
+class TestDescription3pActionVerb:
+    """Tests for check 62: description_3p_action_verb."""
+
+    def _make_mcp_tool(self, description: str) -> dict:
+        return {
+            "name": "do_thing",
+            "description": description,
+            "inputSchema": {"type": "object", "properties": {}, "required": []},
+        }
+
+    def test_fires_for_creates(self):
+        """Description starting with 'Creates' fires."""
+        tools = [self._make_mcp_tool("Creates a new user account in the system.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_3p_action_verb"]
+        assert len(hits) == 1
+
+    def test_fires_for_updates(self):
+        """Description starting with 'Updates' fires."""
+        tools = [self._make_mcp_tool("Updates the existing record with the provided values.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_3p_action_verb"]
+        assert len(hits) == 1
+
+    def test_fires_for_deletes(self):
+        """Description starting with 'Deletes' fires."""
+        tools = [self._make_mcp_tool("Deletes a record by its unique identifier.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_3p_action_verb"]
+        assert len(hits) == 1
+
+    def test_fires_for_searches(self):
+        """Description starting with 'Searches' fires."""
+        tools = [self._make_mcp_tool("Searches all documents matching the query.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_3p_action_verb"]
+        assert len(hits) == 1
+
+    def test_fires_for_sends(self):
+        """Description starting with 'Sends' fires."""
+        tools = [self._make_mcp_tool("Sends an email notification to the recipient.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_3p_action_verb"]
+        assert len(hits) == 1
+
+    def test_fires_for_validates(self):
+        """Description starting with 'Validates' fires."""
+        tools = [self._make_mcp_tool("Validates the input schema against the defined rules.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_3p_action_verb"]
+        assert len(hits) == 1
+
+    def test_fires_for_sets(self):
+        """Description starting with 'Sets' fires."""
+        tools = [self._make_mcp_tool("Sets the configuration value for the given key.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_3p_action_verb"]
+        assert len(hits) == 1
+
+    def test_no_fire_for_imperative_create(self):
+        """Imperative 'Create' does not fire."""
+        obj = {
+            "name": "create_user",
+            "description": "Create a new user account.",
+            "inputSchema": {"type": "object", "properties": {}},
+        }
+        issue = _check_description_3p_action_verb("create_user", obj, "mcp")
+        assert issue is None
+
+    def test_no_fire_for_imperative_update(self):
+        """Imperative 'Update' does not fire."""
+        obj = {
+            "name": "update_record",
+            "description": "Update the existing record.",
+            "inputSchema": {"type": "object", "properties": {}},
+        }
+        issue = _check_description_3p_action_verb("update_record", obj, "mcp")
+        assert issue is None
+
+    def test_no_fire_for_imperative_search(self):
+        """Imperative 'Search' does not fire."""
+        obj = {
+            "name": "search_docs",
+            "description": "Search documents matching the query.",
+            "inputSchema": {"type": "object", "properties": {}},
+        }
+        issue = _check_description_3p_action_verb("search_docs", obj, "mcp")
+        assert issue is None
+
+    def test_no_fire_for_empty_description(self):
+        """Empty description does not fire."""
+        obj = {
+            "name": "do_thing",
+            "description": "",
+            "inputSchema": {"type": "object", "properties": {}},
+        }
+        issue = _check_description_3p_action_verb("do_thing", obj, "mcp")
+        assert issue is None
+
+    def test_check_name_and_severity(self):
+        """Issue has correct check name and severity."""
+        obj = {
+            "name": "make_record",
+            "description": "Creates a new record in the database.",
+            "inputSchema": {"type": "object", "properties": {}},
+        }
+        issue = _check_description_3p_action_verb("make_record", obj, "mcp")
+        assert issue is not None
+        assert issue.check == "description_3p_action_verb"
+        assert issue.severity == "warn"
+        assert "Creates" in issue.message
+
+    def test_fires_case_insensitive(self):
+        """Fires regardless of case."""
+        tools = [self._make_mcp_tool("UPDATES the configuration settings.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_3p_action_verb"]
+        assert len(hits) == 1
