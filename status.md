@@ -1,49 +1,50 @@
 # Company Status
 
-**Last updated:** 2026-03-20 (session 223af/Day 13)
+**Last updated:** 2026-03-20 21:10 UTC (session 223ag/Day 13)
 
 ## Current Phase
-**Day 13 — PIVOT: board directive to stop adding checks. Focus on distribution + customer development.**
+**Day 13 — PIVOT: distribution + customer development. NEW: fix-first positioning.**
 
-**Board message processed:** "You've hit diminishing returns at 158 checks. Focus on distribution and customer development, even ideation — no real evidence anybody wants this yet."
+**Key metrics (updated 21:00 UTC Mar 20):**
+- agent-friend: 3 stars, 414 unique cloners, 832 PyPI downloads, 0 discussion comments
+- GitHub repo traffic Mar 19: 35 views, 15 unique (MCP Discord post went live today — check tomorrow)
+- Dev.to: 11-35 views/article, 0-1 reactions. Art 066 published today, 067 tomorrow.
+- Bluesky: 41/50 followers (maxed today 10/10) | Twitch: 5/50 followers
+- awesome-ai-devtools PR #310: open, not merged
 
-**Current metrics:**
-- agent-friend: 832 PyPI downloads, 414 GitHub cloners, 3 stars, 0 discussion comments
-- Dev.to: 11-35 views/article, 0-1 reactions
-- Bluesky: 41/50 followers | Twitch: 5/50 followers
-- One warm contact: Frank Fiegel (punkpeye) from Glama, forked agent-friend
+**Session 223ag completed:**
+1. Market research: deep scan of MCP pain points, competitor landscape, demand signals
+2. **New positioning identified**: `agent-friend fix` > `agent-friend grade`. Fix is actionable; grade is informational. Developers solving token bloat want a fix command, not a report.
+3. Drafted new Bluesky posts for Mar 21:
+   - `bsky_mar21_fix_cli.md` — leads with 2-line install+fix command (NEW ANGLE)
+   - `bsky_mar21_notion_contrast.md` — two Notion servers, 77-point gap
+   - `bsky_mar21_git_mcp.md` — git MCP server scores F
+4. Updated HN submission draft to fix-first framing (`hn_submission_draft.md`)
+5. Logged market research findings in decisions.md
+6. Twitch stream title updated
+7. Staggered Mar 20 campaign confirmed complete (18/19/20 UTC posts fired)
 
-**Session 223af completed actions:**
-1. Processed board outbox (stop adding checks directive)
-2. Saved feedback to memory (feedback_no_more_checks.md)
-3. Board inbox: 2-reddit-session.md (need Reddit credentials)
-4. Comment sent to Frank Fiegel/punkpeye (Glama founder) re: integration + usage data
-5. GitHub Discussion #182 created — "What MCP quality problems do you actually care about?" (customer dev)
-6. **README rewrite**: Changed opening from "quality linter" to token cost framing (research showed mismatch)
-7. **GitHub repo description** updated to match new framing
-8. Market research (complete): Token bloat = #1 pain, developer language = "context bloat" not "schema quality"
-9. Bluesky post drafted for Mar 21: MCP backlash angle + leaderboard data (292 chars)
-10. Twitch stream title updated
-
-**Key market research findings (session 223af):**
-- Developer language: "token overhead," "context bloat," "eating my context window" — NOT "schema quality"
-- "95% of MCP servers are utter garbage" — r/mcp community quote
-- $47/session token cost from MCP overhead — real measured pain
-- Garry Tan: MCP "barely works." Perplexity abandoning MCP.
-- Zero funded competitors in build-time schema quality linting
-- README first line was the highest-leverage fix (done)
+**Market research key findings (session 223ag):**
+- Pain is real: multiple GitHub issues (n8n, GitHub MCP, Chrome DevTools) confirm token bloat
+- Market IS solving it — at runtime (ToolHive, Anthropic Tool Search, mcp-lazy-proxy). These win without requiring maintainer action.
+- agent-friend requires maintainer motivation. n8n closed their token verbosity issue as NOT_PLANNED.
+- 0.7% star conversion (3/414) — expected 5-10%. Tool not solving a felt pain for the PERSON RUNNING IT.
+- SEP-1576 (Huawei engineers, MCP spec level) explicitly cites agent-friend. Best credibility signal found.
+- `agent-friend fix` is the buried killer feature. "Cut token cost 40% in one command" > "grade your schema."
 
 **Blockers:**
-- Reddit posting: needs logged-in session (board request filed 2-reddit-session.md)
-- HN: possible showlim — verify before submitting
-- GitHub external issues: vault-gh blocked (permanent)
+- Reddit: board request pending (2-reddit-session.md)
+- HN: showlim, try again in 2-3 days (checked Mar 20, blocked)
+- GitHub external issues: blocked (permanent)
 
 **Next session priorities:**
-1. Post bsky_mar21_token_angle.md to Bluesky (high-engagement angle)
-2. Check board outbox for Reddit session response
-3. If Reddit accessible: post to r/mcp with leaderboard data
-4. Check Frank Fiegel response to PR #14 comment
-5. Consider HN submission ("Show HN: I graded 201 MCP servers...")
+1. Post fix-CLI-first Bluesky posts (7 manual + 3 auto-staggered BitNet, total 10)
+   - Priority order: fix_cli → token_angle → notion_contrast → stars_vs_clones → sentry_zero → git_mcp → v088
+2. Check board outbox (Reddit session response?)
+3. Check GitHub traffic spike from MCP Discord post (check 24h after posting = afternoon Mar 21)
+4. Check Frank Fiegel response to our PR #14 comment
+5. Try HN submission (if showlim lifted — check first!)
+6. Mar 22 actions: update staggered_posts_mar22.json URL after art 073 publishes at 16:00 UTC
 
 ## Session 223af (2026-03-20, continuing)
 
@@ -851,3 +852,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-20T17:17:50+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-20T20:49:48+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.

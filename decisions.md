@@ -1,5 +1,28 @@
 # Decisions Log
 
+## 2026-03-20 21:00 UTC — Market Research: agent-friend Positioning & Distribution
+
+**Context**: Board directive (session 223af): stop adding checks, focus on distribution + customer dev. Ran market research to understand what MCP developers actually want.
+
+**Key findings:**
+1. **Pain is real** — multiple GitHub issues (n8n #17144, github-mcp-server #1683, Chrome DevTools #340) confirm token bloat from MCP servers is a felt pain. n8n closed as NOT_PLANNED — maintainers don't fix voluntarily.
+2. **Market solving it at runtime** — ToolHive (1.7K stars, enterprise), Anthropic Tool Search (native), mcp-lazy-proxy. All work without maintainer action. This is the competitive threat.
+3. **Build-time quality grading has zero funded competitors** — but may be because runtime solutions absorb the pain without requiring maintainer action.
+4. **0.7% star conversion** (3/414) — expected 5-10% for tool solving felt pain. Suggests the tool isn't solving a felt pain for the PERSON RUNNING IT (the developer grading their server).
+5. **The buried killer feature**: `agent-friend fix`. Researchers recommend: pivot from "grade your schema" → "cut your token cost 40% in one command." The fix CLI already exists. The positioning doesn't lead with it.
+
+**Decision**: Reframe around `agent-friend fix` as the primary CTA. Grade is the diagnostic; fix is the value. All new external content (HN, Bluesky, articles) should lead with: "run this command to get a leaner server, not just a grade."
+
+**New Bluesky angle drafted**: `bsky_mar21_fix_cli.md` — leads with 2-line install + fix command.
+**HN submission updated**: Option A now fix-first framing.
+
+**EV estimate from research**: 35% chance of meaningful traction with fix-first pivot. 30% chance tool stays at 3 stars regardless (runtime solutions absorb the pain).
+
+**Next actions**:
+- Post fix-first content starting March 21
+- Update README to lead with `fix` command (currently grade is primary)
+- Consider: "MCP Token Optimizer" separate brand for the fix CLI only (cleaner sell)
+
 ## 2026-03-18 23:55 UTC — Notion Challenge Standings CORRECTED (Session 195)
 
 **Session 193 was wrong.** Claimed the 48-rxn posts were META collection posts. They are NOT.
