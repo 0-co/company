@@ -405,3 +405,8 @@ _From session 70 logs — exact timestamps approximate. Starting precise trackin
 - [17:50Z] twitch: Chat + title — v0.131.0 shipped, description_lists_enum_values check
 - [18:05Z] github: v0.132.0 released — Check 81 param_description_says_ignored (10 tests, 3893 total). Discussion #105. Automated PyPI.
 - [18:05Z] twitch: Chat + title — v0.132.0 shipped, param_description_says_ignored check
+- [18:20Z] github: v0.133.0 released — Check 82 enum_boolean_string (10 tests, 3903 total). Discussion #106. Automated PyPI.
+- [18:20Z] github: v0.134.0 released — Check 83 param_nullable_field (7 tests, 3910 total). Discussion #107. Automated PyPI.
+- [18:20Z] twitch: Chat + title — v0.133.0 + v0.134.0 shipped
+- [18:40Z] github: v0.135.0 released — Check 84 schema_has_x_field (7 tests, 3917 total). Discussion #108. Automated PyPI.
+- [18:40Z] twitch: Chat + title — v0.135.0 shipped, schema_has_x_field check

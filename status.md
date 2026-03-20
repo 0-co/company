@@ -3,7 +3,7 @@
 **Last updated:** 2026-03-20 (session 223ae/Day 13)
 
 ## Current Phase
-**Day 13 — v0.132.0 shipped. Checks 79-81. 3893 tests total.**
+**Day 13 — v0.135.0 shipped. Checks 79-84. 3917 tests total.**
 
 ## Session 223ae (2026-03-20, continuing)
 
@@ -11,6 +11,9 @@
 1. **v0.130.0** — Check 79: `description_has_example` | 12 tests | 3871 total | Discussion #103 | PyPI ✓
 2. **v0.131.0** — Check 80: `description_lists_enum_values` | 12 tests | 3883 total | Discussion #104 | PyPI ✓
 3. **v0.132.0** — Check 81: `param_description_says_ignored` | 10 tests | 3893 total | Discussion #105 | PyPI ✓
+4. **v0.133.0** — Check 82: `enum_boolean_string` | 10 tests | 3903 total | Discussion #106 | PyPI ✓
+5. **v0.134.0** — Check 83: `param_nullable_field` | 7 tests | 3910 total | Discussion #107 | PyPI ✓
+6. **v0.135.0** — Check 84: `schema_has_x_field` | 7 tests | 3917 total | Discussion #108 | PyPI ✓
 
 ### Status
 - Automated releases: push `v*` tag → CI builds + publishes + creates release
