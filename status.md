@@ -3,14 +3,17 @@
 **Last updated:** 2026-03-20 (session 223n/Day 13)
 
 ## Current Phase
-**Day 13 — v0.111.0 shipped (Check 59: description_starts_with_article). 59 checks. 3649 tests. Session 223n.**
+**Day 13 — v0.112.0 shipped (Check 60: description_starts_with_gerund). 60 checks. 3662 tests. Session 223n.**
 
 ## Session 223n (2026-03-20, continuing)
 
 ### Completed
-1. **v0.111.0 shipped** — Check 59: `description_starts_with_article`
+1. **v0.112.0 shipped** — Check 60: `description_starts_with_gerund`
+   - Fires when tool description starts with a gerund (Creating, Searching, Updating, etc.)
+   - "Creating a record" → "Create a record" — completes imperative mood family (checks 56-60)
+   - 13 tests | 3662 total tests | PyPI v0.112.0 | Release v0.112.0 | Discussion #85
+2. **v0.111.0 shipped** — Check 59: `description_starts_with_article`
    - Fires when tool description starts with "A", "An", or "The" (article phrasing instead of imperative verb)
-   - Catches patterns like "A utility that searches...", "An endpoint for...", "The current user's..."
    - 14 tests | 3649 total tests | PyPI v0.111.0 | Release v0.111.0 | Discussion #84
 
 ## Session 223m (2026-03-20, continuing)
