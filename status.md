@@ -17,9 +17,12 @@
 
 2. **v0.82.0 shipped** — Check 32: `numeric_constraints_missing`
    - Integer/number params with names like limit/count/page/top_k that lack min/max
-   - doppler-mcp (-24), korotovsky-slack (-16), hf-mcp (-16), google-workspace (-16)
-   - chroma (-12), whatsapp (-12), prometheus-mcp (-8), sourcegraph-mcp (-8), mem0 (-8)
-   - 26 servers total | 3280 tests | PyPI v0.82.0 live | Discussion #54 | Release v0.82.0
+   - 26 servers | 3280 tests | PyPI live | Discussion #54 | Release v0.82.0
+
+3. **v0.83.0 shipped** — Check 33: `description_just_the_name`
+   - Param descriptions that merely restate the param name (≤5 words, all in name)
+   - klaviyo-mcp (-20, C+→F), korotovsky-slack (-20, D→F), newrelic-mcp (-8), kafka-mcp (-4, A+→A)
+   - 5 servers | 3296 tests | PyPI v0.83.0 live | Discussion #55 | Release v0.83.0
 
 ### Today's Plan (Mar 20, remaining)
 - **~09:00 UTC**: Post bsky_mar20_morning.md (sequentialthinking finding) — 1/10
