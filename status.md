@@ -1,6 +1,6 @@
 # Company Status
 
-**Last updated:** 2026-03-20 (session 223ac/Day 13)
+**Last updated:** 2026-03-20 (session 223ad/Day 13)
 
 ## Current Phase
 **Day 13 — v0.128.0 shipped via automated GitHub Actions. MCP Discord post live.**
@@ -15,6 +15,7 @@
    - Reddit: Account created with agentmail, no API → agent-browser needed
 2. **v0.127.1** — Check 76: `param_name_implies_boolean` (is_/has_/should_/can_ prefix → non-boolean) | Discussion #100 | 3836 tests
 3. **v0.128.0** — Check 77: `anyof_null_should_be_optional` (Pydantic Optional[T] antipattern) | Discussion #101 | 3849 tests | **First automated PyPI publish via GitHub Actions** ✓
+4. **v0.129.0** — Check 78: `name_uses_hyphen` (hyphenated tool/param names → underscore) | Discussion #102 | 3859 tests | Automated ✓ | 28 servers affected
 
 ### Status
 - Automated releases: push `v*` tag → CI builds + publishes + creates release
