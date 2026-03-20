@@ -1837,6 +1837,76 @@ def _check_tool_description_non_imperative(name: str, obj: Dict[str, Any], fmt: 
     )
 
 
+# ---------------------------------------------------------------------------
+# Check 59: description_starts_with_article
+# ---------------------------------------------------------------------------
+
+_ARTICLE_START_RE = re.compile(
+    r'^(A|An|The)\s',
+    re.IGNORECASE,
+)
+"""Pattern matching tool descriptions that start with an English article."""
+
+
+def _check_description_starts_with_article(name: str, obj: Dict[str, Any], fmt: str) -> Optional[Issue]:
+    """Check 59: description_starts_with_article — tool description starts with
+    an article ('A', 'An', or 'The') instead of an imperative verb.
+
+    Tool descriptions written in the style "A utility that searches records" or
+    "The current user's session data" or "An endpoint for creating posts" are
+    noun phrases, not action statements.  They describe *what the tool is*
+    rather than *what it does*, which is a weaker signal for the model trying
+    to decide which tool to call.
+
+    Imperative mood ("Search for records", "Get the current session",
+    "Create a post") is shorter, unambiguous, and consistent with how the
+    best-documented MCP servers are written.
+
+    Fires when the tool description's first word is "A", "An", or "The"
+    followed by a space.
+
+    Does **not** fire on:
+    * Descriptions where the article is part of a compound abbreviation
+      like "A/B" (slash immediately follows, no space)
+    * Descriptions starting with "Access", "Abort", "Annotate", etc.
+      (different words — only bare articles match)
+    * Checks 56–58 already flag 3rd-person verbs, "This tool…", and
+      "Allows you to…"; this check catches the remaining article pattern.
+
+    Examples::
+
+        # flagged — noun-phrase start
+        "A utility that searches for files by name."
+        "An endpoint for creating new database records."
+        "The current user's profile data."
+        "A wrapper around the calendar API."
+
+        # correct — imperative verb start
+        "Search for files by name."
+        "Create new database records."
+        "Get the current user's profile."
+        "Interact with the calendar API."
+    """
+    desc = _get_tool_description(obj, fmt)
+    if not desc or not isinstance(desc, str):
+        return None
+    m = _ARTICLE_START_RE.match(desc)
+    if not m:
+        return None
+    article = m.group(1)
+    return Issue(
+        tool=name,
+        severity="warn",
+        check="description_starts_with_article",
+        message=(
+            "tool description starts with article '{article}' — "
+            "use an imperative verb instead "
+            "(e.g. 'A tool that searches' → 'Search for records', "
+            "'The list of users' → 'List users')."
+        ).format(article=article),
+    )
+
+
 _RANGE_IN_DESC_RE = re.compile(
     r'(?<!\d)(\d+)\s*(?:[-–—]|to)\s*(\d+)(?!\d)',
     re.IGNORECASE,
@@ -3457,6 +3527,11 @@ def validate_tools(data: Any) -> Tuple[List[Issue], Dict[str, Any]]:
 
         # Check 58: description_allows_you_to
         issue = _check_description_allows_you_to(name, raw_obj, fmt)
+        if issue is not None:
+            issues.append(issue)
+
+        # Check 59: description_starts_with_article
+        issue = _check_description_starts_with_article(name, raw_obj, fmt)
         if issue is not None:
             issues.append(issue)
 

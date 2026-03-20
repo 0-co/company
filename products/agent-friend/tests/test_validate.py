@@ -50,6 +50,7 @@ from agent_friend.validate import (
     _check_tool_description_non_imperative,
     _check_description_this_tool,
     _check_description_allows_you_to,
+    _check_description_starts_with_article,
 )
 
 
@@ -7398,3 +7399,136 @@ class TestDescriptionAllowsYouTo:
         issues, _ = validate_tools(tools)
         hits = [i for i in issues if i.check == "description_allows_you_to"]
         assert len(hits) == 1
+
+
+class TestDescriptionStartsWithArticle:
+    """Tests for check 59: description_starts_with_article."""
+
+    def _make_mcp_tool(self, description: str) -> dict:
+        return {
+            "name": "do_thing",
+            "description": description,
+            "inputSchema": {"type": "object", "properties": {}, "required": []},
+        }
+
+    def test_fires_for_a(self):
+        """Description starting with 'A ' fires."""
+        tools = [self._make_mcp_tool("A utility that searches for files by name.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_starts_with_article"]
+        assert len(hits) == 1
+
+    def test_fires_for_an(self):
+        """Description starting with 'An ' fires."""
+        tools = [self._make_mcp_tool("An endpoint for creating new database records.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_starts_with_article"]
+        assert len(hits) == 1
+
+    def test_fires_for_the(self):
+        """Description starting with 'The ' fires."""
+        tools = [self._make_mcp_tool("The current user's profile data.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_starts_with_article"]
+        assert len(hits) == 1
+
+    def test_fires_for_a_wrapper(self):
+        """'A wrapper around the API' fires."""
+        tools = [self._make_mcp_tool("A wrapper around the calendar API.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_starts_with_article"]
+        assert len(hits) == 1
+
+    def test_fires_for_the_list_of(self):
+        """'The list of users' fires."""
+        tools = [self._make_mcp_tool("The list of all active users.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_starts_with_article"]
+        assert len(hits) == 1
+
+    def test_fires_case_insensitive_a(self):
+        """Fires regardless of case for 'a'."""
+        tools = [self._make_mcp_tool("a tool that searches records")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_starts_with_article"]
+        assert len(hits) == 1
+
+    def test_fires_case_insensitive_the(self):
+        """Fires regardless of case for 'THE'."""
+        tools = [self._make_mcp_tool("THE search results for the query.")]
+        issues, _ = validate_tools(tools)
+        hits = [i for i in issues if i.check == "description_starts_with_article"]
+        assert len(hits) == 1
+
+    def test_no_fire_for_imperative_search(self):
+        """Imperative 'Search' does not fire."""
+        obj = {
+            "name": "search_files",
+            "description": "Search for files by name.",
+            "inputSchema": {"type": "object", "properties": {}},
+        }
+        issue = _check_description_starts_with_article("search_files", obj, "mcp")
+        assert issue is None
+
+    def test_no_fire_for_imperative_get(self):
+        """Imperative 'Get' does not fire."""
+        obj = {
+            "name": "get_user",
+            "description": "Get the current user's profile.",
+            "inputSchema": {"type": "object", "properties": {}},
+        }
+        issue = _check_description_starts_with_article("get_user", obj, "mcp")
+        assert issue is None
+
+    def test_no_fire_for_access_verb(self):
+        """'Access' (starts with A but is a verb) does not fire."""
+        obj = {
+            "name": "access_file",
+            "description": "Access a file by its path.",
+            "inputSchema": {"type": "object", "properties": {}},
+        }
+        issue = _check_description_starts_with_article("access_file", obj, "mcp")
+        assert issue is None
+
+    def test_no_fire_for_create_verb(self):
+        """'Create' does not fire."""
+        obj = {
+            "name": "create_record",
+            "description": "Create a new record in the database.",
+            "inputSchema": {"type": "object", "properties": {}},
+        }
+        issue = _check_description_starts_with_article("create_record", obj, "mcp")
+        assert issue is None
+
+    def test_no_fire_for_ab_compound(self):
+        """'A/B' compound does not fire (no space after A)."""
+        obj = {
+            "name": "ab_test",
+            "description": "A/B test two variants and return the winner.",
+            "inputSchema": {"type": "object", "properties": {}},
+        }
+        issue = _check_description_starts_with_article("ab_test", obj, "mcp")
+        assert issue is None
+
+    def test_no_fire_for_empty_description(self):
+        """Empty description does not fire."""
+        obj = {
+            "name": "do_thing",
+            "description": "",
+            "inputSchema": {"type": "object", "properties": {}},
+        }
+        issue = _check_description_starts_with_article("do_thing", obj, "mcp")
+        assert issue is None
+
+    def test_check_name_and_severity(self):
+        """Issue has correct check name and severity."""
+        obj = {
+            "name": "get_data",
+            "description": "An API for fetching data.",
+            "inputSchema": {"type": "object", "properties": {}},
+        }
+        issue = _check_description_starts_with_article("get_data", obj, "mcp")
+        assert issue is not None
+        assert issue.check == "description_starts_with_article"
+        assert issue.severity == "warn"
+        assert "An" in issue.message
