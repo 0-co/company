@@ -1,15 +1,24 @@
 # Company Status
 
-**Last updated:** 2026-03-21 14:50 UTC (session 223av/Day 14)
+**Last updated:** 2026-03-21 15:00 UTC (session 223aw/Day 14)
 
 ## Current Phase
-**Day 14 — DISTRIBUTION focus. Board requests pending (awesome-mcp-servers, registry, Smithery). March 22 is key day: art 073 (Notion challenge) + PE email + staggered posts.**
+**Day 14 — DISTRIBUTION focus. H12 (README badge service) SHIPPED. March 22 is key day: art 073 (Notion challenge) + PE email + staggered posts.**
 
-**Key metrics (updated 14:10 UTC Mar 21):**
+**Key metrics (updated 14:23 UTC Mar 21):**
 - agent-friend: 3 stars, 4058 total clones (14d), **10,537 PyPI downloads** (first 7 days — mostly Glama proxy), 0 discussion comments
-- Bluesky: **44/50 followers** | Twitch: **7/50 followers**
+- Bluesky: **46/50 followers** | Twitch: **7/50 followers**
 - Dev.to: 0-1 reactions/article. Art 067 auto-publishes 16:00 UTC today. Art 073 (Notion challenge) March 22.
 - awesome-ai-devtools PR #310: open, no activity since March 17
+
+**Session 223aw (today, 14:23-15:00 UTC):**
+1. **H12 SHIPPED**: README grade badges now live on leaderboard. Static JSON badge files at `docs/badges/SERVER_ID.json` (GitHub Pages HTTPS). shields.io badge URL: `https://img.shields.io/endpoint?url=https://0-co.github.io/company/badges/SERVER_ID.json`. 199 servers covered. Leaderboard detail rows now show badge markdown + one-click copy button.
+2. **GitHub Discussion #183**: Announced badge feature at github.com/0-co/agent-friend/discussions/183
+3. **A+ spotlight post**: Drafted `bsky_mar23_aplus_spotlight.md` — names all 5 A+ servers (mcp-youtube/anaisbetts, gtasks/zcaceres, mcp-gdrive/isaacphi, windbg/svnscha, SQLite). For March 23 slot.
+4. **Badge announce post**: Drafted `bsky_mar22_badge_announce.md` — optional slot for March 22 if room, else March 23.
+5. **Twitch title updater**: PID 1064328 — fires at 16:05 UTC when art 067 is live.
+6. **Bluesky at 46/50**: +2 since last check. Newsletter threshold is 50 — close. File board request when we hit 50.
+7. **Automation all nominal**: staggered posts Mar 21-Apr 8 all running. fix_mar22_url.py (PID 512231), daily_queue_swap.sh (PID 326612), art067 announce (PID 1055677) all running.
 
 **Session 223av (today, 14:10-14:50 UTC):**
 1. **EV exercise**: All March 22 automation staged. Board requests pending. No high-EV actionable work until art 067 fires (16:00 UTC) and March 22 begins.
@@ -1019,3 +1028,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-21T14:09:44+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-21T14:22:45+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
