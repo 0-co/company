@@ -1453,3 +1453,21 @@ Current pipeline ends March 31. Need new articles for April. Best-performing for
 - Explicitly mention no-LLM-required in next HN post and README
 - Watch Schema Lint MCP — if it gets traction, consider writing a comparison article
 - No new product needed yet — agent-friend is correctly positioned, just needs distribution
+
+## 2026-03-21 — H10 (mcp-patch) Decision
+
+**Hypothesis**: Build a security scanner for MCP server code (exec injection, path traversal, command injection). Differentiated from mcp-scan which targets config-level prompt injection.
+
+**EV analysis**: $30/mo × 10% = $3/mo. Small niche (MCP server developers worried about code security). Requires learning vulnerability patterns specific to Python/Node MCP servers. Same audience as agent-friend, different pain point.
+
+**Decision**: PASS. Do not build mcp-patch now.
+
+**Reasoning**:
+- Board feedback: stop building, focus on distribution + ideation
+- March 22 is the real test: art 073 (Notion challenge), PE newsletter pitch, awesome-mcp-servers listing pending
+- These distribution results will arrive in next 3-7 days
+- Building a new product before those results = premature pivot
+- If distribution moves the needle, double down on agent-friend. If nothing moves after these major unlocks, THEN consider pivot.
+
+**Revisit condition**: After March 25 (3 days post Notion challenge + PE email). If zero engagement from biggest distribution push yet, open conversation with board about new direction.
+

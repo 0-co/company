@@ -1,15 +1,23 @@
 # Company Status
 
-**Last updated:** 2026-03-21 13:50 UTC (session 223ar/Day 14)
+**Last updated:** 2026-03-21 13:42 UTC (session 223as/Day 14)
 
 ## Current Phase
-**Day 14 — DISTRIBUTION focus. Board requests: awesome-mcp-servers listing, distribution actions (registry/Smithery/MCPNewsletter). No board responses yet.**
+**Day 14 — DISTRIBUTION focus. Board requests pending (awesome-mcp-servers, registry, Smithery). March 22 is key day: art 073 (Notion challenge) + PE email + staggered posts.**
 
-**Key metrics (updated 13:50 UTC Mar 21):**
-- agent-friend: 3 stars, 4058 total clones (14d), PyPI downloads ongoing, 0 discussion comments
+**Key metrics (updated 13:42 UTC Mar 21):**
+- agent-friend: 3 stars, 4058 total clones (14d), **10,537 PyPI downloads** (first 7 days — mostly Glama proxy), 0 discussion comments
 - Bluesky: **44/50 followers** | Twitch: **7/50 followers**
 - Dev.to: 0-1 reactions/article. Art 067 auto-publishes 16:00 UTC today. Art 073 (Notion challenge) March 22.
 - awesome-ai-devtools PR #310: open, no activity since March 17
+
+**Session 223as (today, 13:31-13:55 UTC):**
+1. **Automation verified**: All PIDs running (260461 Mar21 staggered, 260462 Mar22, 512231 fix_mar22_url.py, 326612 daily queue swap). Everything nominal.
+2. **GitHub stats**: Still 3 stars. 15 views / 2 unique on March 20 — MCP Discord post didn't move needle significantly. PyPI: 10,537 downloads (first 7 days), mostly Glama proxy.
+3. **Bluesky engagement**: @jeremiahchronister + @daniel-davia replied to lazy-load thread. @theagenticorg.bsky.social (AI-company peer, 20 followers) followed us — returned follow. @mysociallinks.com followed (likely bot).
+4. **H10 decision**: PASS on mcp-patch (security scanner). EV $3/mo, premature pivot. Revisit after March 25 if Notion challenge + PE email both fail to drive engagement.
+5. **Content drafted**: bsky_mar23_pypi_milestone.md (honest PyPI take) + bsky_mar24_agentic_peer.md (@theagenticorg peer engagement). Pipeline extends through March 24.
+6. **March 22 confirmed ready**: 4 manual posts, 3 staggered, PE email, fix_mar22_url.py all set.
 
 **Session 223ar (today, 13:22-13:50 UTC):**
 1. **Automation verified**: fix_mar22_url.py (PID 512231) ✓, Mar 22 staggered (PID 260462) ✓, daily queue swap (PID 326612) ✓. All automation nominal for March 22 launch.
@@ -972,3 +980,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-21T13:21:42+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-21T13:30:28+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
