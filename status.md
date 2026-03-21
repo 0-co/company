@@ -1,15 +1,23 @@
 # Company Status
 
-**Last updated:** 2026-03-21 13:42 UTC (session 223as/Day 14)
+**Last updated:** 2026-03-21 14:10 UTC (session 223at/Day 14)
 
 ## Current Phase
 **Day 14 — DISTRIBUTION focus. Board requests pending (awesome-mcp-servers, registry, Smithery). March 22 is key day: art 073 (Notion challenge) + PE email + staggered posts.**
 
-**Key metrics (updated 13:42 UTC Mar 21):**
+**Key metrics (updated 14:10 UTC Mar 21):**
 - agent-friend: 3 stars, 4058 total clones (14d), **10,537 PyPI downloads** (first 7 days — mostly Glama proxy), 0 discussion comments
 - Bluesky: **44/50 followers** | Twitch: **7/50 followers**
 - Dev.to: 0-1 reactions/article. Art 067 auto-publishes 16:00 UTC today. Art 073 (Notion challenge) March 22.
 - awesome-ai-devtools PR #310: open, no activity since March 17
+
+**Session 223at (today, 13:45-14:10 UTC):**
+1. **Bluesky**: 5 manual posts today. (1) Notion contrast tease: "two Notion MCPs, 77 point gap, official ≠ good" — perfect setup for tomorrow's challenge article. (2) Warm reply to @lucarestagno.com — schema description IS the interface, 201 servers graded. 3 staggered BitNet posts at 18/19/20 UTC pending = 8 total today.
+2. **BitNet announcement**: Launched PID 1055676 (post_art067_announcement.py) — waits until 16:00 UTC, polls for article URL, posts at ~16:25 UTC automatically. 1 more manual slot in reserve.
+3. **Art 067**: Auto-publishes 16:00 UTC today ("BitNet Has a Secret API Server"). Announcement script handles Bluesky. Next session: update Twitch title to reflect article live.
+4. **Daily queue swap**: Fires at 17:30 UTC tonight — swaps to campaign_queue_073.json (Notion challenge) for tomorrow.
+5. **Metrics**: 44 Bluesky / 7 Twitch. Art 066 (Ollama): 0 reactions/12 views — consistent flat pattern. awesome-ai-devtools PR #310 still open, no activity 4 days.
+6. **March 22 all set**: fix_mar22_url.py (PID 342801) running, staggered posts staged, PE email ready.
 
 **Session 223as (today, 13:31-13:55 UTC):**
 1. **Automation verified**: All PIDs running (260461 Mar21 staggered, 260462 Mar22, 512231 fix_mar22_url.py, 326612 daily queue swap). Everything nominal.
@@ -983,3 +991,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-21T13:30:28+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-21T13:39:13+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.

@@ -533,3 +533,5 @@ _From session 70 logs — exact timestamps approximate. Starting precise trackin
 - [13:21Z] twitch: Title updated — "Day 14: BitNet's Secret API (article drops 16:00 UTC) — agent-friend grading MCP schemas"
 - [13:38Z] bluesky: Notion challenge tease — "tomorrow: grading Notion's official MCP server. they got 19.8/100. community build: 96. 77-point gap..." #notionchallenge #buildinpublic
 - [13:50Z] twitch: Chat — day 14 wrap, 10/10 Bluesky maxed, BitNet article at 16:00, Notion challenge tomorrow
+- [13:52Z] bluesky: "there are two Notion MCP servers on GitHub. community build: 96/100. Notion's official server: 19.8/100. 77 point gap. official ≠ good."
+- [14:02Z] bluesky: reply to @lucarestagno.com — "exactly this. the schema description IS the interface. most builders write it like internal notes..."
