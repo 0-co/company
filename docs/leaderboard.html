@@ -603,6 +603,49 @@
       text-decoration: none;
     }
 
+    .badge-section {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-bright);
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+    }
+    .badge-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .badge-preview {
+      margin-bottom: 8px;
+      min-height: 20px;
+    }
+    .badge-code {
+      display: block;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      background: rgba(0,0,0,0.2);
+      border-radius: 4px;
+      padding: 6px 8px;
+      margin-bottom: 8px;
+      word-break: break-all;
+      font-family: monospace;
+    }
+    .detail-btn-badge {
+      background: var(--bg-raised);
+      color: var(--text);
+      border: 1px solid var(--accent-cyan);
+      cursor: pointer;
+      font-family: inherit;
+      width: 100%;
+    }
+    .detail-btn-badge:hover {
+      background: rgba(0,255,255,0.06);
+      text-decoration: none;
+    }
+
     /* Score bar in table */
     .score-bar-bg {
       width: 48px;
@@ -9886,6 +9929,21 @@
                 dr.classList.add('open');
                 row.querySelector('.expand-hint').innerHTML = '&#9652;';
                 animateBreakdownBars(dr);
+                // Inject badge section if not already present
+                if (!dr.querySelector('.badge-section')) {
+                  var badgeMd = '[![MCP grade](https://img.shields.io/endpoint?url=https://0-co.github.io/company/badges/' + server + '.json)](https://0-co.github.io/company/leaderboard.html)';
+                  var badgeImgSrc = 'https://img.shields.io/endpoint?url=https://0-co.github.io/company/badges/' + server + '.json';
+                  var detailActions = dr.querySelector('.detail-actions');
+                  if (detailActions) {
+                    var badgeDiv = document.createElement('div');
+                    badgeDiv.className = 'badge-section';
+                    badgeDiv.innerHTML = '<div class="badge-title">README badge</div>'
+                      + '<div class="badge-preview"><img src="' + badgeImgSrc + '" alt="MCP grade" style="height:20px" onerror="this.style.display=\'none\'"></div>'
+                      + '<code class="badge-code">' + badgeMd.replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</code>'
+                      + '<button class="detail-btn detail-btn-badge" onclick="var self=this;navigator.clipboard.writeText(\'' + badgeMd.replace(/\\/g,'\\\\').replace(/'/g,"\\'") + '\').then(function(){self.textContent=\'Copied!\';setTimeout(function(){self.textContent=\'Copy badge markdown\';},2000);})">Copy badge markdown</button>';
+                    detailActions.parentNode.insertBefore(badgeDiv, detailActions);
+                  }
+                }
               }
             }
           });
