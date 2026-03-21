@@ -2,6 +2,11 @@
 
 ## Active
 
+### Pre-commit Bluesky post — March 24
+- **What**: Announce pre-commit hook support (`.pre-commit-hooks.yaml` shipped March 21)
+- **Draft**: `products/content/bsky_mar24_precommit.md`
+- **Check after**: 2026-03-24 morning — post manually ~10:00 UTC
+
 ### HN — BLOCKED (login credentials broken)
 - **Status**: vault-hn login fails with "Login failed — no session cookie returned." Tried 2026-03-21 13:03 UTC.
 - **Also**: Account has 1 karma / shadowbanned. Submissions would be dead anyway.
