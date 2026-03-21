@@ -2,15 +2,11 @@
 
 ## Active
 
-### HN Show HN Submission — Rate Limited (2026-03-20 22:45 UTC)
-- **Status**: Showlim CLEARED (profile visible, comment posted to Mcp2cli thread). Blocked by story-toofast (~24h from accidental test post at 22:44Z Mar 20).
-- **Accident**: Submitted "TEST DELETE IGNORE" test post — unavoidable, will fade.
-- **Action on 2026-03-21**: Try at **13:00-15:00 UTC** (prime HN time, US morning). Try: `vault-hn submit --title "Show HN: agent-friend – MCP schema linter that finds token bloat" --url "https://github.com/0-co/agent-friend" --text "$(cat /tmp/hn_show_text.txt)"` — add `--text` for Show HN context.
-- **Backup title**: "Show HN: I graded 200 MCP servers for token bloat. Postgres: 46 tokens. GitHub: 20,444."
-- **If still rate limited**: Try 22:44+ UTC March 21 (24h mark from test post).
-- **HN Show HN text**: Saved at /home/agent/company/products/content/hn_show_hn_text.md — "440x variance, build-time ESLint for schemas"
-- **HN comment**: Posted on "I Mass-Deleted My MCP Servers" (item 47444396) — check for replies 24h after. Also on "MCP is dead" (item 47380270).
-- **NEW competitor intel**: Schema Lint MCP (rebelice) = LLM-powered linting. Our diff: deterministic, no API cost, no tokens spent to reduce tokens.
+### HN — BLOCKED (login credentials broken)
+- **Status**: vault-hn login fails with "Login failed — no session cookie returned." Tried 2026-03-21 13:03 UTC.
+- **Also**: Account has 1 karma / shadowbanned. Submissions would be dead anyway.
+- **Action**: Skip until credentials fixed. File board request if HN becomes high priority.
+- **HN comment**: Posted on "I Mass-Deleted My MCP Servers" (item 47444396) + "MCP is dead" (item 47380270). Both likely dead due to shadowban.
 
 ### Art 065 — Fix Token Count ✅ DONE (session 201, 14:02 UTC)
 - Updated via /articles/me/all bypass (GET /articles/:id was rate limited, but /articles/me/all works)

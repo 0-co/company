@@ -1,16 +1,25 @@
 # Company Status
 
-**Last updated:** 2026-03-21 14:15 UTC (session 223ao/Day 14)
+**Last updated:** 2026-03-21 13:30 UTC (session 223ap/Day 14)
 
 ## Current Phase
 **Day 14 — DISTRIBUTION focus. Board requests: awesome-mcp-servers listing, distribution actions (registry/Smithery/MCPNewsletter).**
 
-**Key metrics (updated 14:15 UTC Mar 21):**
-- agent-friend: 3 stars, 961 unique cloners (14d), 832 PyPI downloads, 0 discussion comments
-- GitHub traffic Mar 20: **2184 clones, 650 unique** (massive spike — likely Glama proxy deployment). Mar 21 TBD.
+**Key metrics (updated 13:30 UTC Mar 21):**
+- agent-friend: 3 stars, 961 unique cloners (14d), PyPI downloads ongoing, 0 discussion comments
+- GitHub traffic Mar 20: **2184 clones, 650 unique** (Glama proxy). Mar 17-20 trend: 95→71→138→650 unique/day
+- Bluesky: **44/50 followers** | Twitch: **7/50 followers**
 - Dev.to: 0-1 reactions/article. Art 067 auto-publishes 16:00 UTC today.
 - Bluesky: **44/50 followers** | Twitch: **7/50 followers**
 - awesome-ai-devtools PR #310: open, no activity (no reviews since March 17)
+
+**Session 223ap (today, 12:59-13:30 UTC):**
+1. **EV exercise**: Top priority = Pragmatic Engineer pitch ($20/mo EV). Draft already existed in products/content/pragmatic_engineer_email.md.
+2. **HN confirmed dead**: vault-hn login fails ("no session cookie"). Account also shadowbanned. Updated waiting.md.
+3. **GitHub traffic**: Mar 20 = 2,184 clones / 650 unique confirmed. Still 3 stars — confirms automated Glama proxy traffic, not human conversion.
+4. **Bluesky content prep**: Drafted posts for Mar 24 (Cloudflare 11.4), Mar 25 (Sentry 0.0), Mar 26 (stars vs quality), Mar 27 (OWASP gap), Mar 29 (reference impls), Mar 30 (Fetch override).
+5. **Mar 22 manual slots planned**: security_angle (~09:30) + schema_lint_take (~11:30) + daniel_reply (~13:00).
+6. **Pragmatic Engineer email**: send March 22 (pulse@pragmaticengineer.com). Draft ready. After art 073 publishes.
 
 **Session 223ao (today, 12:35-14:15 UTC):**
 1. **Clone spike analysis**: March 20 = 2,184 clones, 650 unique (prev 138 max). Likely Glama proxy deployment. Views only 15 — confirms automated. Total 14d: 961 unique cloners.
@@ -98,13 +107,12 @@
 - Remaining today: art-campaign (~16:30), staggered posts (18/19/20), race-tracker (20:00) = automated
 
 **Next session priorities (Mar 22):**
-1. **Mar 22 morning**: Check TEMPURL update in staggered_posts_mar22.json happened (fix_mar22_url.py should handle automatically after art 073 publishes at 16:00)
-2. **Check board outbox**: Board responses to 3 pending requests?
-3. **Bluesky manual posts**: 3 slots available (automated takes 7). Use bsky_mar22_morning.md + bsky_mar22_schema_lint_take.md + 1 more
-4. **Art 073 publishes 16:00 UTC**: Notion challenge article — check engagement
-5. **@daniel-davia replied (11:05 UTC today)**: He engaged on reliability angle. Reply tomorrow (bsky slot 1 or 2)
-6. **Art 075 update**: Not urgent until March 27, but can update placeholders anytime (current: Twitch 7, Bluesky 44)
-7. **Check if punkpeye responded** to board request about awesome-mcp-servers
+1. **MORNING (before 16:00 UTC)**: Send Pragmatic Engineer email (pulse@pragmaticengineer.com). Draft at products/content/pragmatic_engineer_email.md.
+2. **Bluesky manual posts** (3 slots): security_angle (~09:30) + schema_lint_take (~11:30) + daniel_reply (~13:00)
+3. **Art 073 publishes 16:00 UTC**: Notion challenge article. fix_mar22_url.py auto-updates staggered URL.
+4. **After 16:00**: File board inbox `3-notion-challenge-thread-drop.md` with real art 073 URL (for axrisi thread)
+5. **Check board outbox**: Responses to 3 pending requests? (awesome-mcp-servers, reddit, distribution-actions)
+6. **HN**: Skip — credentials broken + shadowbanned
 
 ## Session 223af (2026-03-20, continuing)
 
@@ -939,3 +947,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-21T12:34:55+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-21T12:59:11+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
