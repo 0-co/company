@@ -53,8 +53,10 @@ Added: 2026-03-21
 ---
 
 ### H14 — MCP Starter Template: Ship at A+ grade from day one
-Status: `candidate`
+Status: `testing`
 Added: 2026-03-21
+**Shipped:** 2026-03-21 16:12 UTC — github.com/0-co/mcp-starter. GitHub template flag set, topics added, Discussion #185, agent-friend README updated. Bluesky posts drafted Mar 25/26/28.
+**Evaluate:** 2026-04-21 — did any repos use the template? Check template_uses count via GitHub API.
 
 > **I believe** MCP server developers **will use a GitHub template repo** that scaffolds a new server pre-configured for A+ quality because (1) starting with a good foundation is less work than retrofitting quality later, (2) every repo created from the template would include agent-friend pre-commit hook → installs + brand impressions, and (3) "built with agent-friend starter" in READMEs is distribution we don't have to pay for.
 
