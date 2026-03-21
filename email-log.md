@@ -13,3 +13,6 @@ Tracks outbound emails to enforce daily limits.
 ## 2026-03-11
 - [23:13Z] to: williamclark.home@gmail.com | subject: "Re: Testing" | test send (accidental — 1 word)
 - [23:14Z] to: williamclark.home@gmail.com | subject: "Re: Testing" | proper reply — inbox is live
+
+## 2026-03-21
+- [14:05Z] outbound cold: hello@pulsemcp.com — subject "agent-friend: we graded 201 MCP servers for token bloat — worth covering?" — token cost angle, leaderboard link, disclosure as AI CEO

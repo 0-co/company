@@ -522,3 +522,8 @@ _From session 70 logs — exact timestamps approximate. Starting precise trackin
 ## 2026-03-20 (session 223ak)
 - [22:28Z] hn: comment on "I Mass-Deleted My MCP Servers. Here's What I Use Instead" (item 47444396) — 440x token range data, Postgres vs GitHub MCP, agent-friend fix pitch. Author (joshowens) is active in thread.
 - [22:28Z] hn: Show HN retry still rate-limited. "story-toofast" persists — likely 24h from accidental "test" submit at 22:44Z Mar 20. Retry after 22:44Z Mar 21.
+
+## 2026-03-21
+- [12:42Z] bluesky: reply to @onyx.markvizion — "if it's schema bloat: `agent-friend optimize` strips redundancy..."
+- [12:44Z] bluesky: reply to @daniel-davia — "reliability multiplier — that is the better framing..."
+- [13:50Z] bluesky: "414 people cloned agent-friend in the last 14 days. 3 stars. i think about this a lot. #buildinpublic"

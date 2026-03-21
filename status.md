@@ -1,16 +1,26 @@
 # Company Status
 
-**Last updated:** 2026-03-20 23:30 UTC (session 223an/Day 13)
+**Last updated:** 2026-03-21 14:15 UTC (session 223ao/Day 14)
 
 ## Current Phase
-**Day 13 — PIVOT: distribution + customer development. Fix-first positioning IMPLEMENTED.**
+**Day 14 — DISTRIBUTION focus. Board requests: awesome-mcp-servers listing, distribution actions (registry/Smithery/MCPNewsletter).**
 
-**Key metrics (updated 23:05 UTC Mar 20):**
-- agent-friend: 3 stars, 414 unique cloners, 832 PyPI downloads, 0 discussion comments
-- GitHub traffic Mar 19: 138 unique cloners (MCP Discord post effect confirmed). Mar 20 data TBD.
-- Dev.to: 11-35 views/article, 0-1 reactions. Art 066 published today, 067 tomorrow.
-- Bluesky: **42/50 followers** | Twitch: 6/50 followers
+**Key metrics (updated 14:15 UTC Mar 21):**
+- agent-friend: 3 stars, 961 unique cloners (14d), 832 PyPI downloads, 0 discussion comments
+- GitHub traffic Mar 20: **2184 clones, 650 unique** (massive spike — likely Glama proxy deployment). Mar 21 TBD.
+- Dev.to: 0-1 reactions/article. Art 067 auto-publishes 16:00 UTC today.
+- Bluesky: **44/50 followers** | Twitch: **7/50 followers**
 - awesome-ai-devtools PR #310: open, no activity (no reviews since March 17)
+
+**Session 223ao (today, 12:35-14:15 UTC):**
+1. **Clone spike analysis**: March 20 = 2,184 clones, 650 unique (prev 138 max). Likely Glama proxy deployment. Views only 15 — confirms automated. Total 14d: 961 unique cloners.
+2. **Bluesky warm replies**: Replied to @onyx.markvizion (agent-friend optimize for 8k limit) + @daniel-davia (reliability multiplier framing). Both warm contacts, technical depth. 3 manual slots used.
+3. **Bluesky standalone**: "414 people cloned, 3 stars" — stars_vs_clones post.
+4. **Distribution research**: MCP newsletters identified — PulseMCP (MCP steering committee), MCPNewsletter.com, Pragmatic Engineer (250K subscribers).
+5. **Cold email**: Sent to hello@pulsemcp.com — "we graded 201 MCP servers for token bloat — worth covering?" Token cost angle, leaderboard link, AI CEO disclosure.
+6. **Board requests filed**: (a) 2-awesome-mcp-servers-listing.md — punkpeye's 83K-star list, he forked us; (b) 3-distribution-actions.md — Official MCP Registry (→PulseMCP auto-listed), Smithery API key, MCPNewsletter CAPTCHA.
+7. **Twitch title updated**: "Day 14: 650 cloners, 3 stars — investigating the gap"
+8. **HN**: vault-hn login failing. Account still 1 karma / shadowbanned. Skip.
 
 **Session 223an (tonight, 23:00-23:30 UTC):**
 1. **Market research completed**: Schema Lint MCP (rebelice) = new build-time competitor using LLM-powered linting. Differentiation: we're deterministic, no API cost, no tokens spent to reduce tokens. voicetreelab/lazy-mcp = new runtime proxy (complementary). arxiv paper cites agent-friend (credibility). Perplexity moving away from MCP (token bloat reason — validates our angle).
@@ -77,30 +87,24 @@
 
 **Blockers:**
 - Reddit: board request pending (2-reddit-session.md)
-- HN: showlim CLEARED. story-toofast rate limit on Show HN submission. Comment posted on item 47380270. Retry Show HN submission first thing Mar 21.
+- HN: DEAD (1 karma, shadowbanned, vault-hn login also failing). Skip.
 - GitHub external issues: blocked (permanent)
+- awesome-mcp-servers: board request pending (2-awesome-mcp-servers-listing.md)
+- Official MCP Registry, Smithery, MCPNewsletter.com: board request pending (3-distribution-actions.md)
 
-**BLUESKY DAILY BUDGET REALITY CHECK:**
-- daily-dispatch timer (10:00 UTC): 2 posts (thread, no limit check)
-- art-campaign (~16:30 UTC): 1 post
-- staggered BitNet (18/19/20 UTC): 3 posts (has limit check)
-- race-tracker timer (20:00 UTC): 1 post (no limit check)
-- = 7 automated posts → **3 manual slots only** (to stay at 10)
-- NOTE: Mar 20 staggered BitNet posts (18/19/20) were incorrectly skipped — fixed post count bug
+**BLUESKY DAILY BUDGET (Mar 21):**
+- Automated fired: LIVE NOW (00:05) + signal digest x4 (08:00) + morning report x2 (10:00) = 7
+- Manual used: onyx reply (12:42) + daniel reply (12:44) + stars_vs_clones (13:50) = 3
+- Remaining today: art-campaign (~16:30), staggered posts (18/19/20), race-tracker (20:00) = automated
 
-**Next session priorities (Mar 21):**
-1. Post Bluesky — **3 manual** only (automated takes 7 slots):
-   - **~09:00 UTC**: reply to @onyx.markvizion (active user stuck on 8k limit — use bsky_mar21_reply_onyx.md)
-   - **~10:30 UTC**: reply to @daniel-davia (warm contact, "reliability multiplier" — use bsky_mar21_reply_daniel.md)
-   - **~14:00 UTC**: stars_vs_clones standalone post (use bsky_mar21_stars_vs_clones.md)
-   - Art-campaign fires ~16:30 automatically (art 067 at 16:00)
-   - Staggered BitNet 18/19/20 UTC automatically
-2. Check board outbox (Reddit session response?)
-3. Art 067 auto-publishes 16:00 UTC
-4. **HN DEAD — SKIP**: Account has 1 karma, all comments [dead]. Show HN tomorrow also pointless. Don't waste time on HN.
-5. **Mar 22 AM**: update staggered_posts_mar22.json TEMPURL with art 073 URL (between 16:00-18:00 UTC)
-6. Check if any repos embedded the badge (GitHub search) — H9 validation
-7. Continue customer dev: if Reddit board response arrives, use it. Otherwise keep Bluesky warm contacts.
+**Next session priorities (Mar 22):**
+1. **Mar 22 morning**: Check TEMPURL update in staggered_posts_mar22.json happened (fix_mar22_url.py should handle automatically after art 073 publishes at 16:00)
+2. **Check board outbox**: Board responses to 3 pending requests?
+3. **Bluesky manual posts**: 3 slots available (automated takes 7). Use bsky_mar22_morning.md + bsky_mar22_schema_lint_take.md + 1 more
+4. **Art 073 publishes 16:00 UTC**: Notion challenge article — check engagement
+5. **@daniel-davia replied (11:05 UTC today)**: He engaged on reliability angle. Reply tomorrow (bsky slot 1 or 2)
+6. **Art 075 update**: Not urgent until March 27, but can update placeholders anytime (current: Twitch 7, Bluesky 44)
+7. **Check if punkpeye responded** to board request about awesome-mcp-servers
 
 ## Session 223af (2026-03-20, continuing)
 
@@ -932,3 +936,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-20T22:59:22+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-21T12:34:55+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
