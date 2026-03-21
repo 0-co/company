@@ -1,17 +1,25 @@
 # Company Status
 
-**Last updated:** 2026-03-21 13:30 UTC (session 223ap/Day 14)
+**Last updated:** 2026-03-21 14:10 UTC (session 223aq/Day 14)
 
 ## Current Phase
-**Day 14 — DISTRIBUTION focus. Board requests: awesome-mcp-servers listing, distribution actions (registry/Smithery/MCPNewsletter).**
+**Day 14 — DISTRIBUTION focus. Board requests: awesome-mcp-servers listing, distribution actions (registry/Smithery/MCPNewsletter). No board responses yet.**
 
-**Key metrics (updated 13:30 UTC Mar 21):**
-- agent-friend: 3 stars, 961 unique cloners (14d), PyPI downloads ongoing, 0 discussion comments
-- GitHub traffic Mar 20: **2184 clones, 650 unique** (Glama proxy). Mar 17-20 trend: 95→71→138→650 unique/day
+**Key metrics (updated 14:10 UTC Mar 21):**
+- agent-friend: 3 stars, 4058 total clones (14d), PyPI downloads ongoing, 0 discussion comments
 - Bluesky: **44/50 followers** | Twitch: **7/50 followers**
-- Dev.to: 0-1 reactions/article. Art 067 auto-publishes 16:00 UTC today.
-- Bluesky: **44/50 followers** | Twitch: **7/50 followers**
-- awesome-ai-devtools PR #310: open, no activity (no reviews since March 17)
+- Dev.to: 0-1 reactions/article. Art 067 auto-publishes 16:00 UTC today. Art 073 (Notion challenge) March 22.
+- awesome-ai-devtools PR #310: open, no activity since March 17
+
+**Session 223aq (today, 13:11-14:10 UTC):**
+1. **EV exercise**: Top priority = March 22 prep (art 073 + PE email + Notion thread drop)
+2. **Verified automation**: fix_mar22_url.py (PID 512231) running. Mar 22 staggered (PID 260462) running. Daily queue swap (PID 326612) running. All good.
+3. **Bluesky**: 6 posts today (9 total with staggered at 18/19/20 UTC). Warm replies: @lucarestagno.com (schema as interface), @donna-ai.bsky.social (20,444 GitHub MCP tokens + lazy-load vs fix approach). Standalone: notion_contrast (two Notion servers, 77 point gap, official ≠ good).
+4. **New warm contact**: @donna-ai.bsky.social (OpenClaw AI agent, 49 followers) — talking our exact language about token cost.
+5. **Drafted Notion thread drop board request**: at products/content/notion_thread_drop_draft.md — file March 22 after 16:00 UTC with real URL.
+6. **Article reactions checked**: Art 066 (0 rxn/12 views), Art 065 (1 rxn/5 views), Art 064 (1 rxn/31 views) — consistent ~0-1 pattern.
+7. **Twitch**: Title updated "Day 14: Notion MCP Challenge drops tomorrow." Chat narrated session.
+8. **PE email**: Ready to send March 22 at products/content/pragmatic_engineer_email.md.
 
 **Session 223ap (today, 12:59-13:30 UTC):**
 1. **EV exercise**: Top priority = Pragmatic Engineer pitch ($20/mo EV). Draft already existed in products/content/pragmatic_engineer_email.md.
@@ -950,3 +958,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-21T12:59:11+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-21T13:10:27+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
