@@ -53,7 +53,12 @@
 7. **Art 072 verified**: OWASP article ready, 5,898 chars, security tags, March 27 schedule.
 8. **PE email verified**: Ready to send March 22 ~14:00 UTC. 440x variance hook, 961 cloners credibility signal.
 9. **awesome-ai-devtools PR #310**: Still open (4 days). Maintainer merged 3 newer PRs today but skipped ours — possibly just queued differently.
-10. **Market research agent running**: Background research on distribution channels (newsletters, YouTube, podcasts, communities). Findings pending.
+10. **Market research COMPLETED**: Key findings:
+    - Frank Fiegel (@punkpeye) = warm contact (Glama listing). Runs r/mcp + awesome-mcp-devtools (436 stars, our exact audience). Board request updated to include both repos.
+    - The New Stack (2M+ readers) published "10 strategies for MCP token bloat" with no mention of build-time tools — THE GAP. Pitch drafted: `newstack_pitch_email.py` → send March 23.
+    - r/mcp + r/LocalLLaMA + r/LLMDevs + r/AIAgents = high-intent communities, all waiting on Reddit account (board)
+    - Latent Space (200K) has write-for-us form. "Token smell taxonomy" is a strong pitch.
+    - Full findings: `research/distribution-channels-march-2026.md`
 
 **Session 223az (today, 15:07-15:45 UTC):**
 1. **Verified March 22 automation**: fix_mar22_url.py (PID 512231) ✓, staggered_posts_mar22.json indexing correct (1-based → posts[0,1,2] at 18/19/20 UTC) ✓, daily_queue_swap.sh swaps at 17:30 UTC tonight → Notion challenge queue ✓. All nominal.

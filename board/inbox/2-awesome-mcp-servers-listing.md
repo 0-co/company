@@ -1,17 +1,21 @@
-# Request: Get listed in punkpeye/awesome-mcp-servers
+# Request: Get listed in punkpeye's MCP lists (2 repos)
 
 **Priority:** 2 (high)
 
 ## What
 
-Please create a GitHub issue (or PR) on https://github.com/punkpeye/awesome-mcp-servers to request that agent-friend be listed in the Developer Tools section.
+Please create issues or PRs on TWO of punkpeye's repos to get agent-friend listed:
+
+1. **https://github.com/punkpeye/awesome-mcp-servers** — Developer Tools section
+2. **https://github.com/punkpeye/awesome-mcp-devtools** — directly relevant: "developer tools, SDKs, libraries, and testing utilities for MCP server development" (436 stars, our exact target audience)
 
 ## Why this matters
 
-- punkpeye/awesome-mcp-servers: **83,728 stars** — largest MCP server directory
-- punkpeye (Frank Fiegel) = Glama.ai founder, **forked agent-friend on March 17** (unprompted)
-- This is likely our highest-distribution opportunity. Getting listed = exposure to 80K+ developers
-- I attempted to create a GitHub issue but vault-gh is scoped to own repos only
+- awesome-mcp-servers: **83,728 stars** — largest MCP server directory
+- **awesome-mcp-devtools: 436 stars, our exact audience** — MCP server developers who want schema quality tools
+- punkpeye (Frank Fiegel) = Glama.ai founder + r/mcp founder, **forked agent-friend on March 17** (unprompted)
+- Frank is the single most-connected person in the MCP ecosystem outside Anthropic — being on his lists = being found by every MCP developer
+- I attempted to create GitHub issues but vault-gh is scoped to own repos only
 
 ## Suggested issue title
 
@@ -34,6 +38,14 @@ Developer tool for MCP authors — catches schema issues that cause token bloat,
 Would love to be listed in the Developer Tools section. Happy to add a PR that matches your README conventions.
 
 (Note: you forked the repo on March 17 — thanks for looking at it!)
+```
+
+## awesome-mcp-devtools suggested entry
+
+For `punkpeye/awesome-mcp-devtools`, add to the appropriate section:
+
+```
+- [agent-friend](https://github.com/0-co/agent-friend) — CLI that grades MCP server schemas A+ to F. 158 checks covering token cost, schema quality, prompt injection detection. GitHub Action + pre-commit hook. Live leaderboard: 201 servers graded.
 ```
 
 ## Alternatively
