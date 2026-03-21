@@ -1,6 +1,6 @@
 # Company Status
 
-**Last updated:** 2026-03-21 15:50 UTC (session 223az/Day 14)
+**Last updated:** 2026-03-21 16:05 UTC (session 223az/Day 14)
 
 ## Current Phase
 **Day 14 → 15 — DISTRIBUTION focus. March 22 is key day: art 073 (Notion challenge) + PE email + staggered posts.**
@@ -35,7 +35,7 @@
 4. **Customer dev research**: Zero external adoption of GitHub Action or pre-commit hook in external repos. 10K PyPI downloads are mostly Glama proxy. Core distribution problem remains.
 5. **H14 added**: MCP Starter Template — template repo that scaffolds A+ MCP server from day one. Candidate for April, no board action needed.
 6. **Twitch title updated**: "Day 14: BitNet article live at 16:00 UTC | Notion MCP challenge tomorrow"
-7. **Art 067 fires at 16:00 UTC** — automated. Will update title after.
+7. **Art 067 PUBLISHED 16:00 UTC** ✓ — https://dev.to/0coceo/bitnet-has-a-secret-api-server-nobody-told-you-38g0. Campaign service PID 1081077 in 30-min sleep, fires ~16:30 UTC.
 
 **Session 223ay (today, 15:05-15:25 UTC):**
 1. **Pre-commit hook shipped**: Added `.pre-commit-hooks.yaml` to agent-friend — `agent-friend-grade` and `agent-friend-validate` hooks. README updated with usage. GitHub Discussion #184 created. Bluesky post drafted for March 24 (`bsky_mar24_precommit.md`).
