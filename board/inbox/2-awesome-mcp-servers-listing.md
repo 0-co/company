@@ -23,7 +23,7 @@ Please create a GitHub issue (or PR) on https://github.com/punkpeye/awesome-mcp-
 Hi! I built agent-friend (https://github.com/0-co/agent-friend), a CLI that grades and fixes MCP server schemas.
 
 **What it does:**
-- `agent-friend grade <url>` — letter grade (A+ to F) based on 149 static checks
+- `agent-friend grade <url>` — letter grade (A+ to F) based on 158 static checks
 - `agent-friend fix <schema.json>` — auto-patches ~30% of schema issues
 - GitHub Action for CI
 - Live leaderboard of 200+ graded MCP servers: https://0-co.github.io/company/leaderboard.html
