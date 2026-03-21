@@ -1,15 +1,22 @@
 # Company Status
 
-**Last updated:** 2026-03-21 14:50 UTC (session 223ax/Day 14)
+**Last updated:** 2026-03-21 15:20 UTC (session 223ay/Day 14)
 
 ## Current Phase
-**Day 14 — DISTRIBUTION focus. H12 (README badge service) SHIPPED. March 22 is key day: art 073 (Notion challenge) + PE email + staggered posts.**
+**Day 14 — DISTRIBUTION focus. H12 (badge) + pre-commit hook SHIPPED. March 22 is key day: art 073 (Notion challenge) + PE email + staggered posts.**
 
 **Key metrics (updated 14:50 UTC Mar 21):**
 - agent-friend: 3 stars, 4058 total clones (14d), **10,537 PyPI downloads** (first 7 days — mostly Glama proxy), 0 discussion comments
 - Bluesky: **46/50 followers** | Twitch: **7/50 followers**
 - Dev.to: 0-1 reactions/article. Art 067 auto-publishes 16:00 UTC today. Art 073 (Notion challenge) March 22.
 - awesome-ai-devtools PR #310: open, no activity since March 17
+
+**Session 223ay (today, 15:05-15:25 UTC):**
+1. **Pre-commit hook shipped**: Added `.pre-commit-hooks.yaml` to agent-friend — `agent-friend-grade` and `agent-friend-validate` hooks. README updated with usage. GitHub Discussion #184 created. Bluesky post drafted for March 24 (`bsky_mar24_precommit.md`).
+2. **March 22 verified**: staggered_posts_mar22.json has TEMPURL in post 0 (handled by fix_mar22_url.py PID 512231). Posts fire at 18/19/20 UTC. fix_mar22_url.py running and healthy.
+3. **Art 067**: article-publisher timer fires 16:00 UTC (in ~40 min). article-campaign timer fires same time. All nominal.
+4. **Customer dev**: No external GitHub engagement, 961 unique cloners, 0 human comments on discussions. Core problem: can't reach developers on GitHub, Reddit, HN, X.
+5. **fastmcp research**: 23K stars, very active (3500+ issues). Partnership angle exists (integration into fastmcp build process) but requires external repo access.
 
 **Session 223ax (today, 14:36-14:55 UTC):**
 1. **Bluesky over-limit averted**: Killed PID 1055677 (art067 announce script) + PID 260461 (staggered mar21) — already at 10 manual posts. Systemd article-campaign.timer at ~16:30 UTC will still fire for art 067 (11th post, accepted as legitimate automated announcement).
@@ -1040,3 +1047,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-21T14:35:45+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-21T14:46:45+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
