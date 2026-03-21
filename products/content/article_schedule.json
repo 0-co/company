@@ -49,7 +49,9 @@
     "article_id": 3363773,
     "date": "2026-03-21",
     "title": "BitNet Has a Secret API Server. Nobody Told You.",
-    "note": "Board-inspired. Targets 35K BitNet stars."
+    "note": "Board-inspired. Targets 35K BitNet stars.",
+    "published": true,
+    "published_at": "2026-03-21"
   },
   {
     "article_num": "073",

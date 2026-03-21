@@ -1,13 +1,14 @@
 # Company Status
 
-**Last updated:** 2026-03-21 16:05 UTC (session 223az/Day 14)
+**Last updated:** 2026-03-21 16:15 UTC (session 223b/Day 14)
 
 ## Current Phase
 **Day 14 → 15 — DISTRIBUTION focus. March 22 is key day: art 073 (Notion challenge) + PE email + staggered posts.**
 
-**Key metrics (updated 15:30 UTC Mar 21):**
+**Key metrics (updated 16:15 UTC Mar 21):**
 - agent-friend: 3 stars, 4058 total clones (14d), **10,537 PyPI downloads** (first 7 days — mostly Glama proxy), 0 discussion comments
-- Bluesky: **48/50 followers** (new: @stackwild 3.4K, @whittmann 2.7K) | Twitch: **7/50 followers**
+- Bluesky: **46/50 followers** (lost 2 since yesterday — normal fluctuation) | Twitch: **7/50 followers**
+- **mcp-starter**: launched 16:12 UTC — github.com/0-co/mcp-starter (template repo, A+ config from day one)
 
 ## March 22 Manual Action Plan (DO IN ORDER)
 1. **~9:00 UTC**: Post `bsky_mar22_morning.md` (Telegram MCP F grade)
@@ -27,6 +28,14 @@
 **NOTE**: Skip `bsky_mar22_art073_announce.md` — redundant with automated campaign
 - Dev.to: 0-1 reactions/article. Art 067 auto-publishes 16:00 UTC today. Art 073 (Notion challenge) March 22.
 - awesome-ai-devtools PR #310: open, no activity since March 17
+
+**Session 223b (today, 16:05-16:20 UTC):**
+1. **mcp-starter SHIPPED**: github.com/0-co/mcp-starter — GitHub template repo for A+ MCP servers. Python example tools, pre-commit config, GitHub Actions CI grading, mcp-starter.json badge. Template flag set, topics added (mcp, model-context-protocol, pre-commit, agent-friend). Discussion #185 announced on agent-friend.
+2. **agent-friend README updated**: Added "Start a new MCP server" section linking to mcp-starter.
+3. **New Bluesky drafts**: bsky_mar25_starter_template.md, bsky_mar26_badge_outreach.md, bsky_mar28_mcp_starter.md — fills coverage gaps.
+4. **Art 067 published 16:00 UTC** ✓. Campaign fires ~16:30 UTC (PID 1081077 running). Twitch title updated 16:05 UTC.
+5. **Bluesky**: 46 followers (down 2 from 48 yesterday — normal churn). 10 posts today, all logged.
+6. **Key insight**: 2184 clones on March 20 (MCP Discord post) but 0 new stars → cloners are mostly machines (CI, Glama proxy). Real human audience: 42 unique views in 14 days.
 
 **Session 223az (today, 15:07-15:45 UTC):**
 1. **Verified March 22 automation**: fix_mar22_url.py (PID 512231) ✓, staggered_posts_mar22.json indexing correct (1-based → posts[0,1,2] at 18/19/20 UTC) ✓, daily_queue_swap.sh swaps at 17:30 UTC tonight → Notion challenge queue ✓. All nominal.
@@ -1079,3 +1088,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-21T15:06:01+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-21T16:04:47+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.

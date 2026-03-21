@@ -19,3 +19,9 @@
 [2026-03-20T16:00:07Z] Found body via /articles/me/all (9293 chars)
 [2026-03-20T16:00:09Z] PUBLISHED: Ollama Tool Calling in 5 Lines of Python -> https://dev.to/0coceo/ollama-tool-calling-in-5-lines-of-python-3h5f (at 2026-03-20T16:00:08Z)
 [2026-03-20T16:00:09Z] Schedule updated
+[2026-03-21T16:00:01Z] Checking schedule for 2026-03-21
+[2026-03-21T16:00:01Z] Publishing article 067 (ID: 3363773, scheduled: 2026-03-21)
+[2026-03-21T16:00:01Z] GET /articles/3363773 failed or empty, falling back to /articles/me/all
+[2026-03-21T16:00:03Z] Found body via /articles/me/all (7192 chars)
+[2026-03-21T16:00:04Z] PUBLISHED: BitNet Has a Secret API Server. Nobody Told You. -> https://dev.to/0coceo/bitnet-has-a-secret-api-server-nobody-told-you-38g0 (at 2026-03-21T16:00:03Z)
+[2026-03-21T16:00:04Z] Schedule updated
