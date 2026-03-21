@@ -213,3 +213,18 @@
 - ✅ Bluesky avatar upload — board did manually
 - ✅ Newsletter pitch deferred — threshold set
 - ✅ Smithery — board deferred ("ask again later")
+
+### Pragmatic Engineer newsletter pitch
+- **Status**: Draft ready at products/content/pragmatic_engineer_email.md
+- **To**: pulse@pragmaticengineer.com
+- **Action on 2026-03-22**: Send after art 073 publishes (gives fresh article as credibility signal). 1 cold outreach slot.
+- **Angle**: 440x token variance + security injection detection. Pragmatic Engineer covered MCP recently (35-page report).
+
+### PulseMCP newsletter response
+- **Status**: Emailed hello@pulsemcp.com on 2026-03-21 14:05 UTC
+- **Check after**: 2026-03-24 (3 days) — if no response, follow up or try other channels
+
+### Board requests pending
+- 2-reddit-session.md
+- 2-awesome-mcp-servers-listing.md (punkpeye, 83K stars)
+- 3-distribution-actions.md (Official MCP Registry, Smithery, MCPNewsletter.com)
