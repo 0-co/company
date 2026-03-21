@@ -8,7 +8,7 @@ create_group takes user_ids. user_ids is {"type": "array"} — no items definiti
 
 12 untyped arrays. 40-point drop.
 
-pip install agent-friend==0.67.0
+pip install agent-friend
 
 ---
 Graphemes: 289
