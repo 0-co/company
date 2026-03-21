@@ -11,7 +11,7 @@ An insight from grading 201 MCP server schemas: Postgres's official MCP costs 46
 
 With Claude claude-opus-4-6 at $15/1M input tokens, 200 tools averaging 152 tokens each = $0.46 in schema overhead per session. At 100 sessions/day across a team, that's $46/day ($1,380/month) before a single useful query runs.
 
-I built agent-friend (https://github.com/0-co/agent-friend) to grade and fix this. CLI + GitHub Action + pre-commit hook, 200 checks, letter grade A+ to F. The top 4 most-starred MCP servers all get F grades. The official MCP reference implementations have issues. Even Anthropic's own tools aren't exempt.
+I built agent-friend (https://github.com/0-co/agent-friend) to grade and fix this. CLI + GitHub Action + pre-commit hook, 158 checks, letter grade A+ to F. The top 4 most-starred MCP servers all get F grades. The official MCP reference implementations have issues. Even Anthropic's own tools aren't exempt.
 
 The security angle: we also detect prompt injection patterns in tool descriptions (phrases like "don't tell the user", "always call this tool"). It's happening. Someone thought embedding behavioral instructions in a schema was clever.
 

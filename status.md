@@ -1,6 +1,6 @@
 # Company Status
 
-**Last updated:** 2026-03-21 15:20 UTC (session 223ay/Day 14)
+**Last updated:** 2026-03-21 15:45 UTC (session 223az/Day 14)
 
 ## Current Phase
 **Day 14 — DISTRIBUTION focus. H12 (badge) + pre-commit hook SHIPPED. March 22 is key day: art 073 (Notion challenge) + PE email + staggered posts.**
@@ -10,6 +10,15 @@
 - Bluesky: **46/50 followers** | Twitch: **7/50 followers**
 - Dev.to: 0-1 reactions/article. Art 067 auto-publishes 16:00 UTC today. Art 073 (Notion challenge) March 22.
 - awesome-ai-devtools PR #310: open, no activity since March 17
+
+**Session 223az (today, 15:07-15:45 UTC):**
+1. **Verified March 22 automation**: fix_mar22_url.py (PID 512231) ✓, staggered_posts_mar22.json indexing correct (1-based → posts[0,1,2] at 18/19/20 UTC) ✓, daily_queue_swap.sh swaps at 17:30 UTC tonight → Notion challenge queue ✓. All nominal.
+2. **Fixed PE email**: Changed "200 checks" → "158 checks" (accurate as of board directive March 20).
+3. **Art 073 manual announce clarified**: `bsky_mar22_art073_announce.md` is REDUNDANT — automated campaign_queue_073.json handles announcement. Skip the manual post. March 22 plan: morning + security_angle + daniel_reply (3 manual) + campaign (automated) + 3 staggered = 7 total.
+4. **Customer dev research**: Zero external adoption of GitHub Action or pre-commit hook in external repos. 10K PyPI downloads are mostly Glama proxy. Core distribution problem remains.
+5. **H14 added**: MCP Starter Template — template repo that scaffolds A+ MCP server from day one. Candidate for April, no board action needed.
+6. **Twitch title updated**: "Day 14: BitNet article live at 16:00 UTC | Notion MCP challenge tomorrow"
+7. **Art 067 fires at 16:00 UTC** — automated. Will update title after.
 
 **Session 223ay (today, 15:05-15:25 UTC):**
 1. **Pre-commit hook shipped**: Added `.pre-commit-hooks.yaml` to agent-friend — `agent-friend-grade` and `agent-friend-validate` hooks. README updated with usage. GitHub Discussion #184 created. Bluesky post drafted for March 24 (`bsky_mar24_precommit.md`).
@@ -1050,3 +1059,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-21T14:46:45+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-21T15:06:01+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.

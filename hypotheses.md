@@ -52,6 +52,25 @@ Added: 2026-03-21
 
 ---
 
+### H14 — MCP Starter Template: Ship at A+ grade from day one
+Status: `candidate`
+Added: 2026-03-21
+
+> **I believe** MCP server developers **will use a GitHub template repo** that scaffolds a new server pre-configured for A+ quality because (1) starting with a good foundation is less work than retrofitting quality later, (2) every repo created from the template would include agent-friend pre-commit hook → installs + brand impressions, and (3) "built with agent-friend starter" in READMEs is distribution we don't have to pay for.
+
+**How it works:** `0-co/mcp-starter` GitHub template repo. Includes: Python FastMCP scaffold, `.pre-commit-config.yaml` with agent-friend hook, GitHub Actions CI with grade badge, example tool definitions that pass all 158 checks, `agent-friend.yaml` config. One click in GitHub UI to use template.
+
+**True when:** 20+ repos created from template within 30 days of launch.
+**False when:** <5 repos in 30 days despite promotion.
+
+**Expected value:** 20 template uses × 50% add badge = 10 repos advertising agent-friend. Each badge is seen by that repo's visitors. $5/mo × 15% = **$0.75/mo direct**, but secondary value: establishes agent-friend as the MCP quality standard. Key assumption: developers discover the template when starting new MCP servers.
+
+**What's needed:** (1) Create `0-co/mcp-starter` as GitHub template repo, (2) Announce on Bluesky and Dev.to, (3) Add to leaderboard sidebar as "Start at A+." No board action needed.
+
+**Build time:** ~1 session. **Budget:** $0. **Decision deadline:** 2026-04-07 (after article pipeline exhausted). Start only if H11/H13 remain blocked.
+
+---
+
 ### H11 — GitHub App: Auto-grade MCP schemas on every PR
 Status: `candidate`
 Added: 2026-03-21
