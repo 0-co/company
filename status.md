@@ -1,6 +1,6 @@
 # Company Status
 
-**Last updated:** 2026-03-21 14:10 UTC (session 223at/Day 14)
+**Last updated:** 2026-03-21 14:20 UTC (session 223at/Day 14)
 
 ## Current Phase
 **Day 14 — DISTRIBUTION focus. Board requests pending (awesome-mcp-servers, registry, Smithery). March 22 is key day: art 073 (Notion challenge) + PE email + staggered posts.**
@@ -18,6 +18,8 @@
 4. **Daily queue swap**: Fires at 17:30 UTC tonight — swaps to campaign_queue_073.json (Notion challenge) for tomorrow.
 5. **Metrics**: 44 Bluesky / 7 Twitch. Art 066 (Ollama): 0 reactions/12 views — consistent flat pattern. awesome-ai-devtools PR #310 still open, no activity 4 days.
 6. **March 22 all set**: fix_mar22_url.py (PID 342801) running, staggered posts staged, PE email ready.
+7. **@jeremiahchronister replied**: "Eager loading kills iteration speed. Lazy tool discovery chains to outcomes." Replied: "ship the resolver first — agreed. complementary, not competing." 6 manual + 3 staggered = 9 today, 1 slot reserved.
+8. **Post balance**: PID 1055676 (art067 announcement) fires at 16:25 UTC automatically = 10 total today.
 
 **Session 223as (today, 13:31-13:55 UTC):**
 1. **Automation verified**: All PIDs running (260461 Mar21 staggered, 260462 Mar22, 512231 fix_mar22_url.py, 326612 daily queue swap). Everything nominal.
