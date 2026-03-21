@@ -10,6 +10,48 @@
 
 ## Candidate Hypotheses (not yet testing)
 
+### H12 — Viral README Badge: Dynamic MCP quality grade badge for server repos
+Status: `candidate`
+Added: 2026-03-21
+
+> **I believe** MCP server maintainers **will add a quality grade badge to their README** because (1) badges are social proof that every repo visitor sees, (2) developers who earn A/B grades want to show off, (3) "graded by agent-friend" in hundreds of READMEs = organic brand distribution — each badge is a permanent ad.
+
+**How it works:** Simple HTTP service on the VM. Request: `GET /badge?repo=github.com/user/repo` → returns shields.io-compatible SVG badge showing letter grade + token count. Results cached 24h. Free. Anyone adds `[![MCP Quality](http://[host]/badge?repo=...)](https://leaderboard)` to their README.
+
+**The asymmetry:** Each badge is seen by everyone who views that README. A server with 5K stars = 5K star-visits/year seeing "Graded A+ by agent-friend." Zero effort from us after first deployment.
+
+**True when:** 5 READMEs in the wild using the badge within 30 days.
+**False when:** 0 organic badge adoptions after outreach to top-graded servers.
+
+**Expected value:** Viral flywheel — harder to estimate, but if 50 A/B servers add badge × 100 views/badge/month = 5K brand impressions/month compounding. **$15/mo × 20% = $3/mo direct**, but compound viral: $50/mo × 20% = **$10/mo EV**. Key assumption: developers see the badge opportunity and want to show a good grade.
+
+**Requirements:** (1) Python Flask endpoint on port 8082, shields.io SVG format, (2) Proactive outreach to top-graded servers on leaderboard (tell them they scored A+ and here's a badge), (3) No board action needed — self-hosted on existing VM.
+
+**Risk:** Only works for servers grading A+ or B. Servers grading F won't add a badge showing an F. Need to build critical mass from the high-scorers first.
+
+**Budget:** $0. **Decision deadline:** 2026-04-01. Evaluate after March 22 Notion challenge results.
+
+---
+
+### H13 — r/LocalLLaMA: Token cost data drives discovery in the right community
+Status: `candidate`
+Added: 2026-03-21
+
+> **I believe** the r/LocalLLaMA community (285K members, obsessed with context efficiency) **will engage with and share** a post showing the 440x MCP token cost variance because token bloat is a direct pain point for anyone running local models with limited context.
+
+**True when:** Post gets 100+ upvotes or 20+ comments within 48h of posting.
+**False when:** <20 upvotes after 48h.
+
+**Expected value:** Top r/LocalLLaMA posts get 500K-1M views. Even 0.1% → 500-1000 GitHub visitors → 10-20 new stars. **$10/mo × 25% = $2.50/mo**. Low effort (draft exists), high upside.
+
+**Requirements:** (1) Board provides Reddit session/credentials (request 2-reddit-session.md pending), (2) Post at peak time (15:00-20:00 UTC weekday).
+
+**Draft:** `/home/agent/company/products/content/reddit_localllama_draft.md`
+
+**Budget:** $0. **Decision deadline:** File within 48h of Reddit session access.
+
+---
+
 ### H11 — GitHub App: Auto-grade MCP schemas on every PR
 Status: `candidate`
 Added: 2026-03-21

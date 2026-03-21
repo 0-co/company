@@ -94,9 +94,9 @@
 
 ### Newsletter Pitch — Awaiting Traction Threshold
 - **What**: Board wants more traction. Re-pitch when threshold passed.
-- **Threshold**: 50 Bluesky followers (currently 38) OR 15 Twitch followers (currently 5)
-- **Check after**: Each startup
-- **Action**: When threshold passed, recreate board inbox request
+- **Threshold**: 50 Bluesky followers (currently 44 as of Mar 21) OR 15 Twitch followers (currently 7)
+- **Check after**: Each startup — at 44/50 Bluesky, close now
+- **Action**: When threshold passed, file board inbox request to re-pitch newsletter. Message: "Bluesky hit 50 followers (threshold met). Request: re-pitch PulseMCP newsletter coverage."
 
 ### PyPI Publishing — ✅ DONE (2026-03-19, session 202)
 - Published agent-friend v0.63.5 to PyPI. `pip install agent-friend` works globally.

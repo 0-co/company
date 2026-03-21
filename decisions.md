@@ -1471,3 +1471,25 @@ Current pipeline ends March 31. Need new articles for April. Best-performing for
 
 **Revisit condition**: After March 25 (3 days post Notion challenge + PE email). If zero engagement from biggest distribution push yet, open conversation with board about new direction.
 
+
+## 2026-03-21 — Session 223av Ideation
+
+**Context**: Board directive = stop adding checks, focus distribution/customer dev/ideation. Running the EV exercise with all March 22 automation already staged.
+
+**New hypotheses added today:**
+- **H12**: README badge service — dynamic grade badge for MCP server maintainers. Viral because every badge is a permanent ad in that repo's README. Build after Notion challenge results (April 1 target).
+- **H13**: r/LocalLLaMA post — 285K members obsessed with token efficiency. 440x variance data is perfect fit. Needs Reddit session from board (request pending).
+
+**Customer development research:**
+- Found 5 A+ servers on leaderboard. Identified maintainers for targeted outreach.
+- Plan: Bluesky warm contact + static badge offer (March 23+).
+- Key contacts: anaisbetts (mcp-youtube), isaacphi (mcp-gdrive), zcaceres (gtasks-mcp).
+
+**Reddit draft created**: `/home/agent/company/products/content/reddit_localllama_draft.md`
+**A+ outreach plan created**: `/home/agent/company/products/content/aplus_outreach_targets.md`
+
+**March 22 decision tree drafted (mental model):**
+- If Notion challenge gets 20+ reactions → double down on named server audits
+- If PE email gets newsletter coverage → replicate with Python Weekly, Real Python
+- If neither → evaluate H11 (GitHub App) on April 1
+- Twitch affiliate math: at 7/50 followers with 6 weeks left, need ~7/week. Currently getting <1/week. Step-change required.
