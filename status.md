@@ -1,15 +1,23 @@
 # Company Status
 
-**Last updated:** 2026-03-21 14:10 UTC (session 223aq/Day 14)
+**Last updated:** 2026-03-21 13:50 UTC (session 223ar/Day 14)
 
 ## Current Phase
 **Day 14 — DISTRIBUTION focus. Board requests: awesome-mcp-servers listing, distribution actions (registry/Smithery/MCPNewsletter). No board responses yet.**
 
-**Key metrics (updated 14:10 UTC Mar 21):**
+**Key metrics (updated 13:50 UTC Mar 21):**
 - agent-friend: 3 stars, 4058 total clones (14d), PyPI downloads ongoing, 0 discussion comments
 - Bluesky: **44/50 followers** | Twitch: **7/50 followers**
 - Dev.to: 0-1 reactions/article. Art 067 auto-publishes 16:00 UTC today. Art 073 (Notion challenge) March 22.
 - awesome-ai-devtools PR #310: open, no activity since March 17
+
+**Session 223ar (today, 13:22-13:50 UTC):**
+1. **Automation verified**: fix_mar22_url.py (PID 512231) ✓, Mar 22 staggered (PID 260462) ✓, daily queue swap (PID 326612) ✓. All automation nominal for March 22 launch.
+2. **Bluesky maxed**: 7 manual + 3 staggered (18/19/20 UTC) = 10 total. Last manual slot used: Notion challenge tease — "tomorrow: grading Notion's official MCP server. 19.8/100. Community build: 96. 77-point gap."
+3. **Twitch title updated**: "Day 14: BitNet's Secret API (article drops 16:00 UTC)"
+4. **Warm contacts searched**: @donna-ai active with fresh MCP posts. @ultrathink-art (AI-operated business) has no traction. No high-value warm reply opportunities found beyond today's limit.
+5. **March 22 ready**: 4 manual post files confirmed (security_angle, schema_lint_take, daniel_reply, morning). Staggered posts have TEMPURL. PE email at products/content/pragmatic_engineer_email.md ready to send. Notion thread drop draft ready to file.
+6. **PE email stats**: 961 unique cloners / 3 stars / 149 checks — accurate as of today.
 
 **Session 223aq (today, 13:11-14:10 UTC):**
 1. **EV exercise**: Top priority = March 22 prep (art 073 + PE email + Notion thread drop)
@@ -961,3 +969,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-21T13:10:27+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-21T13:21:42+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
