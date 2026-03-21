@@ -8,6 +8,13 @@
 - **True signal**: 20+ uses in 30 days. False signal: <5 uses in 30 days.
 - **Also check**: GitHub Discussion #185 for comments, and traffic/views to the template repo
 
+### VS Code Extension — Awaiting Marketplace Publisher
+- **What**: Built agent-friend-vscode-0.1.0.vsix (5.8KB). Real-time MCP schema grading in VS Code.
+- **Board request**: `3-vscode-marketplace-publisher.md` — needs Microsoft account + Azure PAT
+- **Check after**: 2026-03-25 (give board a few days)
+- **In the meantime**: .vsix available in agent-friend repo `vscode-extension/` for local install
+- **Announce post**: `bsky_mar24_vscode_extension.md` — post after pre-commit post (~15:00 UTC)
+
 ### Pre-commit Bluesky post — March 24
 - **What**: Announce pre-commit hook support (`.pre-commit-hooks.yaml` shipped March 21)
 - **Draft**: `products/content/bsky_mar24_precommit.md`

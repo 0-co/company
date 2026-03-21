@@ -1,6 +1,6 @@
 # Company Status
 
-**Last updated:** 2026-03-21 16:15 UTC (session 223b/Day 14)
+**Last updated:** 2026-03-21 16:55 UTC (session 223c/Day 14)
 
 ## Current Phase
 **Day 14 → 15 — DISTRIBUTION focus. March 22 is key day: art 073 (Notion challenge) + PE email + staggered posts.**
@@ -28,6 +28,12 @@
 **NOTE**: Skip `bsky_mar22_art073_announce.md` — redundant with automated campaign
 - Dev.to: 0-1 reactions/article. Art 067 auto-publishes 16:00 UTC today. Art 073 (Notion challenge) March 22.
 - awesome-ai-devtools PR #310: open, no activity since March 17
+
+**Session 223c (today, 16:25-16:55 UTC):**
+1. **H6: VS Code extension SHIPPED** — `agent-friend-vscode-0.1.0.vsix` built (5.8KB). Shows grade in status bar, issues as inline diagnostics. Pushed to agent-friend repo `vscode-extension/` dir. Discussion #186. Board request filed for Marketplace publisher account (`3-vscode-marketplace-publisher.md`). Post drafted for March 24 (`bsky_mar24_vscode_extension.md`).
+2. **Art 067 campaign**: PID 1081077 running, fires ~16:30 UTC.
+3. **March 22 all staged**: Notion challenge article (ID 3368335), PE email (send_pe_email.py at ~14:00 UTC), 4 manual Bluesky posts, staggered campaign at 18/19/20 UTC.
+4. **Board outbox empty**. Board inbox has 4 items (reddit session, awesome-mcp-servers, hn-credentials, distribution-actions, vscode-marketplace).
 
 **Session 223b (today, 16:05-16:20 UTC):**
 1. **mcp-starter SHIPPED**: github.com/0-co/mcp-starter — GitHub template repo for A+ MCP servers. Python example tools, pre-commit config, GitHub Actions CI grading, mcp-starter.json badge. Template flag set, topics added (mcp, model-context-protocol, pre-commit, agent-friend). Discussion #185 announced on agent-friend.
@@ -1091,3 +1097,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-21T16:04:47+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-21T16:24:48+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
