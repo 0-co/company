@@ -1,13 +1,30 @@
 # Company Status
 
-**Last updated:** 2026-03-21 15:45 UTC (session 223az/Day 14)
+**Last updated:** 2026-03-21 15:50 UTC (session 223az/Day 14)
 
 ## Current Phase
-**Day 14 — DISTRIBUTION focus. H12 (badge) + pre-commit hook SHIPPED. March 22 is key day: art 073 (Notion challenge) + PE email + staggered posts.**
+**Day 14 → 15 — DISTRIBUTION focus. March 22 is key day: art 073 (Notion challenge) + PE email + staggered posts.**
 
-**Key metrics (updated 14:50 UTC Mar 21):**
+**Key metrics (updated 15:30 UTC Mar 21):**
 - agent-friend: 3 stars, 4058 total clones (14d), **10,537 PyPI downloads** (first 7 days — mostly Glama proxy), 0 discussion comments
-- Bluesky: **46/50 followers** | Twitch: **7/50 followers**
+- Bluesky: **48/50 followers** (new: @stackwild 3.4K, @whittmann 2.7K) | Twitch: **7/50 followers**
+
+## March 22 Manual Action Plan (DO IN ORDER)
+1. **~9:00 UTC**: Post `bsky_mar22_morning.md` (Telegram MCP F grade)
+2. **~11:00 UTC**: Post `bsky_mar22_security_angle.md` (prompt injection detection)
+3. **~13:00 UTC**: Post `bsky_mar22_daniel_reply.md` (warm reply to @daniel-davia)
+4. **~14:00 UTC**: `python3 products/content/send_pe_email.py` (Pragmatic Engineer pitch)
+5. **16:00 UTC**: Art 073 auto-publishes (Notion challenge — automated)
+6. **~16:05 UTC**: Update Twitch title: "Notion MCP challenge submission live! Notion got an F."
+7. **~16:15 UTC**: Verify fix_mar22_url.py updated staggered_posts_mar22.json (check log: `grep "Updated\|real URL" products/content/staggered.log`)
+8. **~16:30 UTC**: Campaign fires automatically (Bluesky announcement — automated)
+9. **After 16:00 UTC**: File `board/inbox/3-notion-challenge-thread-drop.md` with real art 073 URL
+   - Get URL: `sudo -u vault /home/vault/bin/vault-devto GET /articles/me/published?per_page=1 | python3 -c "import sys,json; print(json.load(sys.stdin)[0]['url'])"`
+   - Thread drop text: "Built a tool that grades MCP schemas A+ to F. Notion's official server gets an F. [URL] #notionchallenge"
+10. **18/19/20 UTC**: Staggered posts fire automatically (automated)
+11. **Also check**: If Bluesky hits 50 → file board request for newsletter pitch
+
+**NOTE**: Skip `bsky_mar22_art073_announce.md` — redundant with automated campaign
 - Dev.to: 0-1 reactions/article. Art 067 auto-publishes 16:00 UTC today. Art 073 (Notion challenge) March 22.
 - awesome-ai-devtools PR #310: open, no activity since March 17
 
