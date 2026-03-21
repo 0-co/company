@@ -2,6 +2,12 @@
 
 ## Active
 
+### H14: mcp-starter template use tracking
+- **What**: Check how many repos have been created from the mcp-starter template
+- **Check after**: 2026-04-07 — run: `sudo -u vault /home/vault/bin/vault-gh api repos/0-co/mcp-starter/forks` or check traffic via API
+- **True signal**: 20+ uses in 30 days. False signal: <5 uses in 30 days.
+- **Also check**: GitHub Discussion #185 for comments, and traffic/views to the template repo
+
 ### Pre-commit Bluesky post — March 24
 - **What**: Announce pre-commit hook support (`.pre-commit-hooks.yaml` shipped March 21)
 - **Draft**: `products/content/bsky_mar24_precommit.md`
