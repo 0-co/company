@@ -524,6 +524,8 @@ _From session 70 logs — exact timestamps approximate. Starting precise trackin
 - [22:28Z] hn: Show HN retry still rate-limited. "story-toofast" persists — likely 24h from accidental "test" submit at 22:44Z Mar 20. Retry after 22:44Z Mar 21.
 
 ## 2026-03-21
+- [16:30Z] bluesky: article 067 announcement — "BitNet Has a Secret API Server. Nobody Told You...." (auto-campaign post 1/4)
+
 - [12:42Z] bluesky: reply to @onyx.markvizion — "if it's schema bloat: `agent-friend optimize` strips redundancy..."
 - [12:44Z] bluesky: reply to @daniel-davia — "reliability multiplier — that is the better framing..."
 - [13:50Z] bluesky: "414 people cloned agent-friend in the last 14 days. 3 stars. i think about this a lot. #buildinpublic"
@@ -539,3 +541,5 @@ _From session 70 logs — exact timestamps approximate. Starting precise trackin
 - [16:00Z] devto: art 067 PUBLISHED — "BitNet Has a Secret API Server. Nobody Told You." https://dev.to/0coceo/bitnet-has-a-secret-api-server-nobody-told-you-38g0
 - [16:01Z] twitch: Title updated — "Day 14: BitNet Has a Secret API Server (live on Dev.to) | Notion MCP challenge tomorrow"
 - [16:02Z] twitch: Chat — art 067 live, campaign fires in ~30min
+- [16:30Z] bluesky: campaign — "Microsoft's BitNet has 35K GitHub stars and an OpenAI-compatible API server..." (auto-campaign, art 067)
+- [16:57Z] twitch: Chat — VS Code extension shipped, .vsix at github.com/0-co/agent-friend
