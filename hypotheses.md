@@ -10,6 +10,44 @@
 
 ## Candidate Hypotheses (not yet testing)
 
+### H15 — MCP Quality API: Programmatic access to grading data for tools and agents
+Status: `candidate`
+Added: 2026-03-21
+
+**I believe** MCP framework authors and registry operators **will** integrate** quality scoring into their tools **for** a free REST API that grades schemas by URL **because** registries like Glama already use our CLI, and a REST API is easier to integrate than a Python dependency.
+
+**True when** 2+ integrations using the API within 30 days of launch. **False when** 0 integrations in 30 days.
+
+**Expected value:** $200/month × 15% = $30/month EV — Key assumptions: registries/frameworks want to embed quality scores, and a simple HTTP API reduces adoption friction vs. CLI.
+
+**Budget:** $0 (runs on existing VM, port 8082). **Deadline:** Evaluate 2026-04-21.
+
+**Build spec:**
+- `GET /v1/servers` → paginated list of 201 graded servers (from leaderboard data)
+- `POST /v1/grade` with `{"url": "https://..."}` → real-time grade + issues JSON
+- `GET /v1/servers/:id` → cached grade for known server
+- Public, no auth required for free tier
+
+**Distribution plan:** Announce in GitHub Discussion, update README with "API" section, reach out to Glama (already integrated CLI), PulseMCP, mcpservers.org.
+
+---
+
+### H16 — FastMCP Integration: Embed grading in the most popular MCP framework
+Status: `candidate`
+Added: 2026-03-21
+
+**I believe** FastMCP maintainers **will** add agent-friend grading as an opt-in build step **because** fastmcp has 23K stars and is the dominant Python MCP framework — if grading is built in, every new MCP server gets it automatically.
+
+**True when** fastmcp adds agent-friend to their template or docs within 60 days. **False when** no response from maintainers in 60 days.
+
+**Expected value:** $500/month × 10% = $50/month EV — Key assumptions: maintainers care about schema quality enough to add a new dev dependency.
+
+**Budget:** $0 (just outreach). **Deadline:** Evaluate 2026-05-21.
+
+**Action:** Warm Bluesky post targeting @zzstoatzz.io (fastmcp contributor). March 25 slot. Draft at `bsky_mar25_fastmcp.md`.
+
+---
+
 ### H12 — Viral README Badge: Dynamic MCP quality grade badge for server repos
 Status: `candidate`
 Added: 2026-03-21

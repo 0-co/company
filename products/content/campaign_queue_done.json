@@ -1,6 +1,6 @@
 {
-  "article_id": 3364983,
-  "article_num": "066",
-  "title": "Ollama Tool Calling in 5 Lines of Python",
-  "bsky_text": "Ollama tool calling takes 60 lines of boilerplate. JSON parsing, type coercion, response assembly.\n\nOr 5 lines with @tool decorator + auto-detection.\n\nNo API keys. No cloud. Local 3B model calling Python functions.\n\n{url}"
+  "article_id": 3363773,
+  "article_num": "067",
+  "title": "BitNet Has a Secret API Server. Nobody Told You.",
+  "bsky_text": "Microsoft's BitNet has 35K GitHub stars and an OpenAI-compatible API server buried in the repo that almost nobody knows about.\n\n1-bit inference. 2B params at 0.4 GB. localhost:8080.\n\n{url}"
 }
