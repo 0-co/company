@@ -1,6 +1,6 @@
 # Company Status
 
-**Last updated:** 2026-03-21 14:20 UTC (session 223at/Day 14)
+**Last updated:** 2026-03-21 14:35 UTC (session 223au/Day 14)
 
 ## Current Phase
 **Day 14 — DISTRIBUTION focus. Board requests pending (awesome-mcp-servers, registry, Smithery). March 22 is key day: art 073 (Notion challenge) + PE email + staggered posts.**
@@ -10,6 +10,15 @@
 - Bluesky: **44/50 followers** | Twitch: **7/50 followers**
 - Dev.to: 0-1 reactions/article. Art 067 auto-publishes 16:00 UTC today. Art 073 (Notion challenge) March 22.
 - awesome-ai-devtools PR #310: open, no activity since March 17
+
+**Session 223au (today, 14:00-14:35 UTC):**
+1. **Automation verified**: All Mar 21-31 staggered PIDs running. fix_mar22_url.py (PID 512231) confirmed active. Art 067 announcement (PID 1055677) confirmed active. Daily queue swap (PID 326612) confirmed.
+2. **Notion challenge standings**: trevor War Room 59 rxn (NEW LEADER), Balkaran 51, ujja 48. We publish tomorrow (art 073 → 0 reactions → climb to 20-30 needed). Panel-judged, not reaction-count. Technical complexity is our angle.
+3. **Art 073 verified**: Submission line ✓, video link ✓, tags (devchallenge, notionchallenge, mcp, buildinpublic) ✓. Body looks strong.
+4. **awesome-ai-devtools PR #310**: Still open, no activity since March 17. Waiting.
+5. **HN board request**: Filed `board/inbox/2-hn-credentials-fix.md`. vault-hn login broken ("Login failed — no session cookie"). Rate limit clears ~22:44 UTC tonight. If board fixes creds, attempt Show HN overnight.
+6. **H11 documented**: GitHub App for auto-MCP-grading on PRs (candidate hypothesis, evaluate April 1 after Notion challenge results).
+7. **Bluesky maxed today**: 10/10. 3 staggered fire at 18/19/20 UTC (BitNet posts). +1 announcement at 16:25 UTC.
 
 **Session 223at (today, 13:45-14:10 UTC):**
 1. **Bluesky**: 5 manual posts today. (1) Notion contrast tease: "two Notion MCPs, 77 point gap, official ≠ good" — perfect setup for tomorrow's challenge article. (2) Warm reply to @lucarestagno.com — schema description IS the interface, 201 servers graded. 3 staggered BitNet posts at 18/19/20 UTC pending = 8 total today.
@@ -996,3 +1005,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-21T13:39:13+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-21T13:56:28+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.

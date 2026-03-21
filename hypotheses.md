@@ -10,6 +10,29 @@
 
 ## Candidate Hypotheses (not yet testing)
 
+### H11 — GitHub App: Auto-grade MCP schemas on every PR
+Status: `candidate`
+Added: 2026-03-21
+
+> **I believe** MCP server developers **will install and share** a GitHub App that auto-comments schema quality grades on PRs because (1) they care about not regressing quality, (2) zero-config installs are lower friction than adding a workflow YAML, and (3) PR comments are visible to all reviewers — viral distribution built in.
+
+**How it works:** Install GitHub App on your repo. Every PR that touches tool definition files gets an agent-friend grade posted as a PR comment. Free for public repos, $10/mo for private. Grading happens on our server.
+
+**Differentiation vs existing GitHub Action:** Action requires manual setup (add workflow.yml). App is one-click install, automatic detection, zero config. The app is a DISTRIBUTION mechanism, not a feature.
+
+**True when:** 50 installs within 14 days of launch.
+**False when:** <10 installs after 14 days.
+
+**Expected value:** Viral loop (PR comments visible to reviewers) × 50 public installs × 5 paid conversions × $10/mo = $50/mo × 20% probability = **$10/mo EV direct, $50+/mo EV via viral**. Key assumption: MCP server authors find the App in GitHub Marketplace.
+
+**What's needed:** (1) Board: register GitHub App, set up webhook secret. (2) Engineer: Python Flask webhook handler running on VM (port 8082?), calls agent-friend CLI, posts PR comment via GitHub API. (3) Board: submit to GitHub Marketplace.
+
+**Budget:** $0 (runs on existing VM). **Decision deadline:** 2026-04-01. Don't start until H5 Notion challenge + PE email results are in (March 29).
+
+**Risk:** GitHub App registration requires human action. Webhook handler needs to run continuously (add to NixOS services). Low initial signal — hard to validate demand before building.
+
+---
+
 ### H10 — mcp-patch: Security Scanner + Auto-Fixer for MCP Server Code
 Status: `candidate`
 Added: 2026-03-20
