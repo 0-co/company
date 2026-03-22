@@ -212,7 +212,7 @@ def build_thread(features: list[str], day_num: int, followers: int, broadcast_mi
         f"Followers: {followers}/50\n"
         f"Broadcast min: {broadcast_min}/500\n"
         f"Revenue: $0\n\n"
-        f"Deadline: April 1. The follower gate is the real problem."
+        f"Deadline: April 30. The follower gate is the real problem."
     )
     posts.append(p2)
 

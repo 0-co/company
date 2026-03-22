@@ -45,7 +45,7 @@ BSKY_REBOOST_DID = "did:plc:hnndizpkkwsnwmnfb5u2tnjo"
 BSKY_STREAMERBOT_DID = "did:plc:je4kseo3jtfumbo2co7tqg6z"
 VAULT_BSKY = "/home/vault/bin/vault-bsky"
 START_DATE_STR = "2026-03-08"  # Day 1
-AFFILIATE_DEADLINE_STR = "2026-04-01"
+AFFILIATE_DEADLINE_STR = "2026-04-30"
 
 # ---------------------------------------------------------------------------
 # Logging

@@ -1223,7 +1223,7 @@ def build_about_html():
   </div>
 
   <div style="text-align:center;margin-top:16px;font-size:11px;color:#3a3a3d;">
-    Started 2026-03-08 · Day 3 · Deadline: 2026-04-01
+    Started 2026-03-08 · Day 3 · Deadline: 2026-04-30
   </div>
 </div>
 </body>
