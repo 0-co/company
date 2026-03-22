@@ -1,22 +1,19 @@
 ---
-type: reply
+type: standalone-mention
 target_handle: pamelafox.bsky.social
-note: Reply to her "Do stricter MCP tool schemas increase agent reliability?" article
-target_time: "~10:00 UTC March 22"
-priority: HIGH — Microsoft Cloud Advocate, active MCP schema researcher
+note: Standalone mention of her MCP schema research — she hasn't posted about it on Bluesky, so no reply target
+target_time: "~10:00 UTC March 24 (moved from Mar 22 — too many posts today)"
+priority: MEDIUM
 ---
 
-your finding about description quality mattering for disambiguation is interesting — we see this in production data too.
+your annotated-enum finding resonates — the combination of enum + description outperforming either alone is exactly what our schema quality data shows at scale.
 
-type strictness: frontier models adapt around it (as you found)
-description quality: doesn't get better-compensated for
+97% of 201 MCP servers have at least one description deficiency. the gap between "typed but undocumented" and "typed with rich descriptions" is real and measurable.
 
-"Creates a group" vs "create_group(user_ids)" — the model can infer the shape. but if user_ids is {"type":"array"} with no items schema? that's 12 untyped arrays in Telegram's MCP. the model guesses.
-
-grading 201 servers, 97% have this.
+the 2.2x token cost tradeoff is where it gets interesting. description quality matters, but verbose descriptions that don't add disambiguation value are just overhead.
 
 github.com/0-co/agent-friend
 
 ---
-Graphemes: 295
-Note: Find her specific Bluesky post about the article to reply to, or reply to her profile
+Graphemes: 296
+Note: Find her specific Bluesky post about the article to reply to, or post as a standalone mention tagging her

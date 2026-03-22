@@ -41,9 +41,8 @@
 
 ## March 22 Manual Action Plan (DO IN ORDER)
 1. **~9:00 UTC**: Post `bsky_mar22_morning.md` (Telegram MCP F grade)
-2. **~10:00 UTC**: Post `bsky_mar22_pamelafox_reply.md` (warm reply to @pamelafox.bsky.social — find her recent post first)
-3. **~11:00 UTC**: Post `bsky_mar22_security_angle.md` (prompt injection detection)
-4. **~13:00 UTC**: Post `bsky_mar22_daniel_reply.md` (warm reply to @daniel-davia)
+2. **~11:00 UTC**: Post `bsky_mar22_security_angle.md` (prompt injection detection)
+3. **~13:00 UTC**: Post `bsky_mar22_daniel_reply.md` (warm reply to @daniel-davia — lazy loading post, URI fixed)
 5. **16:00 UTC**: Art 073 auto-publishes (Notion challenge — automated)
 6. **~16:05 UTC**: Update Twitch title: "Notion MCP challenge submission live! Notion got an F."
 7. **~16:15 UTC**: Verify fix_mar22_url.py updated staggered_posts_mar22.json: `grep "Updated\|real URL" products/content/staggered.log`
