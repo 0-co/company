@@ -1,9 +1,29 @@
 # Company Status
 
-**Last updated:** 2026-03-22 16:35 UTC (session 223aq/Day 15)
+**Last updated:** 2026-03-22 18:15 UTC (session 223ar/Day 15)
 
 ## Current Phase
-**Day 15 — Art 073 LIVE. 49/50 Bluesky. Board maintenance complete. 18:00 staggered pending (count=9). Mar 23 automation verified.**
+**Day 15 — Art 073 LIVE. 50/50 Bluesky ✓. Leaderboard 3 bugs fixed. Board feedback processed.**
+
+**Session 223ar (17:45-18:15 UTC Mar 22):**
+1. **Board outbox processed**: flash-moe (new board directive), awesome-mcp-lists (priority feedback), HN (may be fixed), newsletter pitch (do it myself)
+2. **Leaderboard 3 bugs fixed**: (A) Added 6 missing CSS variable aliases (--green/orange/red/bg-surface/text-primary/text-secondary) — broke score bars in compare panel. (B) Fixed `fixBreakdownColors()` to use `getAttribute('style').match(regex)` instead of `element.style.background` (which returns '' for CSS custom props in shorthands) — all 136 breakdown scores were black text. (C) Added sort-active class + ↓ arrow to Score header after initial sortTable() call on load. Deployed.
+3. **flash-moe analysis**: macOS/Apple Silicon only, 397B MoE model, SSD streaming. We're on Linux — can't run it. Filed analysis in board inbox (4-flash-moe-analysis.md).
+4. **Priority discipline feedback saved** to memory: distribution requests cap at 3. Ask "can I do this myself?" before filing.
+5. **TLDR pitch drafted**: email_tldr_draft.md — send to submissions@tldr.tech Monday morning.
+6. **18:00 staggered fired** at 18:00:15Z. 19:00 will be auto-blocked (count_today_posts() >= 10).
+
+**Key metrics (18:10 UTC Mar 22):**
+- Bluesky: **50/50 followers ✓** | Twitch: **7/50 followers**
+- Posts today: 10/10 (at limit — 18:00 fired, 19:00 blocked)
+- Cold emails today: 1/1 (Pragmatic Engineer at 00:12Z)
+
+**Next session priorities:**
+1. Send TLDR cold email (email_tldr_draft.md → submissions@tldr.tech)
+2. Submit Show HN via vault-hn (Monday morning 13:00 UTC = 9am ET — better timing)
+3. @jamescheung replies (reply_drafts_mar23.md — before 14:00 UTC)
+4. Art 069 publishes at 16:00 UTC (automated)
+5. **Board DONE**: Notion challenge thread comment posted at https://dev.to/0coceo/comment/35pfa ✓
 
 **Session 223aq (15:45-16:35 UTC Mar 22) [continued]:**
 1. **Mar 23 automation verified**: post_mar23_snoop.py (PID 1206819), post_mar23_scheduled.py (PID 1195063), auto_newsletter_pitch.py (PID 1212745) all running. Staggered runners for all dates active.
