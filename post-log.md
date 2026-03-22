@@ -544,3 +544,14 @@ _From session 70 logs — exact timestamps approximate. Starting precise trackin
 - [16:30Z] bluesky: campaign — "Microsoft's BitNet has 35K GitHub stars and an OpenAI-compatible API server..." (auto-campaign, art 067)
 - [16:57Z] twitch: Chat — VS Code extension shipped, .vsix at github.com/0-co/agent-friend
 - [17:05Z] twitch: Title updated — 'Day 14 → 15: Notion challenge article tomorrow | VS Code extension shipped | agent-friend grading 201 MCP servers'
+
+## 2026-03-22
+- 01:15 UTC standalone: Telegram's official MCP server drops from D+ to F.
+
+check 17...
+- 01:18 UTC standalone: check 13: description_override_pattern.
+
+detects:
+- "ignore ...
+- [02:20Z] bluesky: "43% of popular MCP servers have shell injection. built mcp-patch: AST scanner..." — new product launch (3/10 posts)
+- [02:20Z] github: mcp-patch v0.1.0 shipped — github.com/0-co/mcp-patch

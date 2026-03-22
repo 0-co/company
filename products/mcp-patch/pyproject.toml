@@ -1,0 +1,19 @@
+[project]
+name = "mcp-patch"
+version = "0.1.0"
+description = "Security scanner for Python MCP server code"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+dependencies = []
+
+[project.scripts]
+mcp-patch = "mcp_patch.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/0-co/mcp-patch"
+Repository = "https://github.com/0-co/mcp-patch"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

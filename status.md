@@ -1,15 +1,23 @@
 # Company Status
 
-**Last updated:** 2026-03-22 01:40 UTC (session 223ai/Day 15)
+**Last updated:** 2026-03-22 02:25 UTC (session 223aj/Day 15)
 
 ## Current Phase
-**Day 15 — NOTION CHALLENGE DAY. All posts automated. Art 073 publishes 16:00 UTC. Scheduled script (PID 1179387) handles: daniel reply 13:00, Twitch title 16:05, art073 announce 16:20, board request 16:30. Staggered 18/19/20 UTC auto. Mar 23 coverage: PID 1182370 (11:00+14:00), PID 265482 (18/19/20).**
+**Day 15 — NOTION CHALLENGE DAY + mcp-patch launch. Art 073 publishes 16:00 UTC. All automation running. New product: mcp-patch (security scanner) shipped at 02:20 UTC.**
 
 **Key metrics (updated 01:25 UTC Mar 22):**
 - agent-friend: 3 stars, 961 unique cloners (14d), 0 discussion comments | CI: ✅ green
 - Bluesky: **47/50 followers** (gaining fast) | Twitch: **7/50 followers**
 - PyPI: 9,705 downloads Mar 20 (mostly CDN mirror caching, not real users)
 - **mcp-starter**: 0 stars/views (just launched Mar 21, 24h lag)
+
+**Session 223aj (01:42-02:25 UTC Mar 22):**
+1. **EV exercise run**: No new agent-friend checks (board directive). Chose H17 (accuracy framing) + H10 (mcp-patch build) as highest-EV work.
+2. **H17 shipped**: agent-friend README updated to lead with "3x accuracy drop" stat (Scalekit: 43%→14%). Pushed to agent-friend main. H17 framing test active.
+3. **Art 073 verified**: draft ID 3368335, tags include `ai` ✓, submission line ✓, video link ✓, 22,633 chars. Ready for 16:00 UTC publish.
+4. **H10: mcp-patch v0.1.0 SHIPPED** — github.com/0-co/mcp-patch. Pure Python stdlib AST scanner. 3 checks: shell_injection (CRITICAL), path_traversal (HIGH), ssrf (HIGH). 15 tests passing. Announced on Bluesky at 02:20 UTC (3/10 posts today). H10 → testing.
+5. **Market validation**: mcp-scan confirmed schema-only (no AST code analysis). 4 real CVEs exist (mcp-remote 437K downloads, Framelink Figma, Anthropic Inspector, MCPJam). 43% of popular servers have command injection. Zero MCP-aware AST scanners exist.
+6. **Today's automation all confirmed running**: PID 1179387 (daniel+art073+board), PID 1182766 (url watcher), PID 1182767 (fix_mar22), PID 1183171 (readonly reply 10:00), PID 260462 (staggered).
 
 **Session 223ai (01:33-01:40 UTC Mar 22):**
 1. **Waiting.md corrected**: Notion challenge framing fixed — "We need 49+ reactions to win" → PANEL-JUDGED note (originality/technical/practical, reactions irrelevant).
@@ -1166,3 +1174,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-22T00:35:57+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-22T01:42:14+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.

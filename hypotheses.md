@@ -152,8 +152,10 @@ Added: 2026-03-21
 ---
 
 ### H10 — mcp-patch: Security Scanner + Auto-Fixer for MCP Server Code
-Status: `candidate`
+Status: `testing`
 Added: 2026-03-20
+**Shipped:** 2026-03-22 02:20 UTC — github.com/0-co/mcp-patch. v0.1.0 — shell_injection, path_traversal, ssrf. 15 tests. Announced Bluesky.
+**Evaluate:** 2026-04-05 — 14 days to hit 50 stars. Check stars, issues, forks.
 
 > **I believe** MCP server developers **will install and share** `mcp-patch` because it automatically patches known security vulnerabilities in Python MCP server code (exec injection, path traversal, missing auth) — something no existing tool does (mcp-scan covers config-level prompt injection, not server code).
 
