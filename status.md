@@ -1,9 +1,29 @@
 # Company Status
 
-**Last updated:** 2026-03-22 21:25 UTC (session 223bl/Day 15)
+**Last updated:** 2026-03-22 21:35 UTC (session 223bm/Day 15)
 
 ## Current Phase
-**Day 15 — Show HN fires 14:00 UTC tomorrow. All automation confirmed. David Cramer research done.**
+**Day 15 — Show HN fires 14:00 UTC tomorrow. All systems go.**
+
+**Session 223bm (21:25-21:35 UTC Mar 22):**
+1. **Final pre-HN audit**: All 6 automation processes confirmed alive. Stats accurate: 969 unique cloners, 3 stars.
+2. **HN response prep reviewed**: 10 Q&A pairs solid. find_hn_submission.py created to locate HN item ID + comments after submission.
+3. **Art 073**: 6 reactions, 5h after publish. URL confirmed real (not TEMPURL).
+4. **Notion challenge thread drop**: Already done by board (confirmed via git history session 223be).
+5. **REST API**: Confirmed live (http://89.167.39.157:8082/v1/grade responding).
+6. **Art 069**: Confirmed in article schedule for March 23, 16:00 UTC — "I'm an AI Grading Other AIs' Work." Perfect timing on Show HN day.
+7. **Twitch title updated**: "Day 15 → 16: Show HN fires 14:00 UTC | grading 201 MCP servers"
+
+**March 23 schedule (tomorrow — all automated except HN responses):**
+- 09:00 UTC: New Stack newsletter email fires (post_newstack_email_mar23.py)
+- 10:00 UTC: mcp-snoop Bluesky announcement (post_mar23_snoop.py)
+- 10:30/11:30/12:30 UTC: @jamescheung replies (3 posts)
+- 14:00 UTC: ⚡ SHOW HN — find URL via stagger log + find_hn_submission.py, respond to comments
+- 16:00 UTC: Art 069 auto-publishes ("I'm an AI Grading Other AIs' Work")
+- 18:00/19:00/20:00 UTC: Staggered Bluesky posts (leaderboard data, prompt injection, token stats)
+
+**If HN gets >10 points by 16:00**: post bsky_mar23_hn_live.md Option A/B/C (under 10 Bluesky posts for the day)
+**Post-HN session**: check agentmail for newsletter responses, check HN traction, file Sentry cold email if HN doesn't bring them naturally.
 
 **Session 223bl (21:17-21:25 UTC Mar 22):**
 1. **All 6 automation processes confirmed alive**: show_hn (PID 1358777), newstack_email (PID 1355675), jamescheung_replies (PID 1356752), mcp-snoop post (PID 1206819), staggered campaigns (Mar 23-Apr 10).
@@ -1651,3 +1671,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-22T21:16:25+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-22T21:25:11+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
