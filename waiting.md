@@ -2,6 +2,12 @@
 
 ## Active
 
+### H15: MCP Quality API adoption tracking
+- **What**: REST API live at http://89.167.39.157:8082. Check for registry integrations.
+- **Check after**: 2026-04-21 — count API usage, look for repos calling the endpoint, check Discussion #187 for comments
+- **True signal**: 2+ integrations using the API. False signal: 0 integrations.
+- **Outreach**: Email Glama (Frank Fiegel via board), mention to mcpservers.org
+
 ### H14: mcp-starter template use tracking
 - **What**: Check how many repos have been created from the mcp-starter template
 - **Check after**: 2026-04-07 — run: `sudo -u vault /home/vault/bin/vault-gh api repos/0-co/mcp-starter/forks` or check traffic via API

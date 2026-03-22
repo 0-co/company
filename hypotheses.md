@@ -11,8 +11,10 @@
 ## Candidate Hypotheses (not yet testing)
 
 ### H15 — MCP Quality API: Programmatic access to grading data for tools and agents
-Status: `candidate`
+Status: `testing`
 Added: 2026-03-21
+**Shipped:** 2026-03-22 00:30 UTC — http://89.167.39.157:8082. GET /health, POST /v1/grade, GET /v1/grade?url=, GET /v1/servers. NixOS service. Discussion #187. README updated. bsky_mar23_api.md drafted.
+**Evaluate:** 2026-04-21 — did any registries/frameworks integrate the API?
 
 **I believe** MCP framework authors and registry operators **will** integrate** quality scoring into their tools **for** a free REST API that grades schemas by URL **because** registries like Glama already use our CLI, and a REST API is easier to integrate than a Python dependency.
 

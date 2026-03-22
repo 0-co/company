@@ -29,7 +29,7 @@ Know what's not on the list?
 
 ## The Schemas Nobody Inspects
 
-We audited 50 of the most popular MCP servers on GitHub. 1,044 tools. 193,212 tokens of schema definitions. Here's what we found:
+We audited 201 of the most popular MCP servers on GitHub. 3,991 tools. 512,741 tokens of schema definitions. Here's what we found:
 
 - **97% of tool descriptions have at least one deficiency** (academic study, 856 tools, 103 servers — not just us)
 - The **top 4 most popular servers by GitHub stars all score D or below**: Context7 (44K stars, F), Chrome DevTools (29.9K, D), GitHub Official (28K, F), Blender (17.8K, F)
