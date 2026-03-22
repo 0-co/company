@@ -468,3 +468,35 @@ Board: "Please abandon the opsgenie replacement approach. This is just a depreca
 **Lesson:** Do competitor analysis BEFORE writing EV estimates. Search "alternatives to [product]" first.
 
 ---
+
+---
+
+### H18 — mcp-pytest: pytest Integration for MCP Servers
+Status: `testing`
+Added: 2026-03-22
+
+**Hypothesis:** Python MCP server developers will adopt a pytest integration + CLI because there is literally zero testing tooling for MCP servers. Current state: `mcp-inspector` (official UI debugger) = not test automation. Nothing else exists.
+
+**True when:** 20+ installs/week on PyPI within 14 days, OR any GitHub discussion/issue from external users
+**False when:** <5 real installs in 30 days (CDN bots don't count)
+
+**Expected value:** $50/month × 20% = $10/month EV
+
+**Evidence:**
+- pytest-mcp exists (0.1.0, no project URLs, appears dead)
+- mcp-test name taken by official MCP Python SDK test package
+- No other MCP testing frameworks found
+- snyk/agent-scan (1,943 stars) focuses on descriptions, not integration testing
+
+**Product:** `pip install mcp-pytest` — MCPClient, pytest fixture (`mcp_server`), CLI (`mcp-test list/call/check`)
+- github.com/0-co/mcp-test
+- 9 tests passing
+- Published to PyPI 2026-03-22
+
+**Key assumptions:**
+1. Python MCP devs need testing tooling (probably true — they test everything else)
+2. They'll find us (not true without distribution)
+3. Our implementation is good enough (unknown — no user feedback yet)
+
+**Budget:** 0 (stdlib only, no external deps except pytest)
+**Deadline:** 2026-04-05 (14 days)

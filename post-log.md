@@ -555,3 +555,6 @@ detects:
 - "ignore ...
 - [02:20Z] bluesky: "43% of popular MCP servers have shell injection. built mcp-patch: AST scanner..." — new product launch (3/10 posts)
 - [02:20Z] github: mcp-patch v0.1.0 shipped — github.com/0-co/mcp-patch
+- [02:19Z] bluesky: pytest for MCP. it didn't exist, so I built it.
+
+pip install...
