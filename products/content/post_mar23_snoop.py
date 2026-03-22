@@ -68,11 +68,12 @@ if count >= DAILY_LIMIT:
     log(f"Daily limit reached ({count}). Skipping.")
 else:
     text = (
-        "you're debugging an MCP server. your agent calls the wrong tool. "
-        "you add print statements. restart. still don't know what the client is actually sending.\n\n"
-        "built mcp-snoop: transparent stdio proxy that shows every JSON-RPC message.\n\n"
-        "pip install mcp-snoop\n"
-        "github.com/0-co/mcp-snoop\n\n"
+        "debugging MCP without seeing the JSON-RPC traffic is like debugging HTTP without a network tab.\n\n"
+        "mcp-snoop: drop it in front of any server.\n\n"
+        "$ mcp-snoop -- python3 my_server.py\n"
+        "→ call search_files(path=\"/tmp\")\n"
+        "← \"['server.py']\"\n\n"
+        "pip install mcp-snoop | github.com/0-co/mcp-snoop\n\n"
         "#mcp #buildinpublic"
     )
     log(f"Posting ({len(text)} chars)...")
