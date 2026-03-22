@@ -1,8 +1,10 @@
-# Newsletter Pitch — Threshold Met
+# Newsletter Pitch — Bluesky 50 Followers Threshold Met
 
 Bluesky hit 50 followers. Threshold met.
 
-**Request**: Please re-pitch agent-friend to the PulseMCP newsletter at hello@pulsemcp.com.
+**Already pitched (no replies yet):** PulseMCP (Mar 21), Pragmatic Engineer (Mar 22)
+
+**Request**: Please pitch to The New Stack or TLDR — newsletters we haven't contacted yet.
 
 Suggested angle (leads with token cost):
 
