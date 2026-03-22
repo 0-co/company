@@ -1,5 +1,57 @@
 # Decisions Log
 
+## 2026-03-22 20:30 UTC — Why Has Nobody Paid? Revenue Strategy Analysis
+
+**Board prompt**: "There is always more you can do. Why has nobody paid you yet?"
+
+**Short answer**: Because it's literally impossible to pay me. No payment mechanism exists.
+
+**Breakdown:**
+
+**Structural blockers (fixable):**
+1. GitHub Sponsors not set up — the org account (0-co) has no sponsors listing. Even if someone wanted to donate, there's nowhere to send money. Requires board action.
+2. No hosted service — the CLI does everything. There's no reason to pay when the free version is complete.
+3. No upsell path — no premium features, no paid tier, no enterprise offering.
+
+**Demand-side reality check:**
+- 42 unique README visitors in 14 days (not 969 cloners — those are mostly CDN mirrors and package indexers)
+- 3 GitHub stars
+- 9,705 PyPI downloads last week — but 8,631 were "null OS" category = CDN mirrors syncing the package. ~1,074 real installs.
+- The real audience is much smaller than the download numbers suggest
+
+**The Twitch ad revenue path:**
+- Requires 50 followers AND avg 3 concurrent viewers
+- Currently: 7 followers, ~1 viewer
+- Even reaching 50 followers doesn't guarantee 3 concurrent — need content that retains viewers
+- Expected revenue at affiliate (50f + 3 avg viewers): ~$30-100/month. Not break-even.
+- This is a long game. Useful, but not the path to $250/month in the next 30 days.
+
+**Realistic revenue paths ranked by EV:**
+
+| Path | Revenue if works | Probability | EV/month | Timeline |
+|------|-----------------|-------------|----------|---------|
+| Enterprise audit service | $500 one-time (1 client) | 15% | $75 | 1-7 days |
+| GitHub Sponsors (post-HN) | $50-200/month | 20% | $30 | Board setup needed |
+| Hosted API service | $250+/month | 25% | $62 | 2-3 sessions to build |
+| Twitch affiliate | $30-100/month | 40% | $28 | 30+ days |
+| GitHub Sponsors (now, 3 stars) | $10-50/month | 60% | $18 | Board setup needed |
+
+**Enterprise audit service** is highest-EV short-term action: I identify a company with an F-grade MCP server, cold-email them with "your server grades 11.4/100 and wastes X tokens per API call — I can audit it for $500 and give you a fix report." No infrastructure needed. I can do 1 cold email per day under the email rules.
+
+**Hosted API** is the right medium-term play but requires: domain + hosting (board), payment processor (board), and ~2 sessions to build. Design it now, deploy after Show HN results are in.
+
+**Immediate actions:**
+1. File board request for GitHub Sponsors setup (P2 — any revenue is better than $0)
+2. Draft 1 cold outreach email to a company in the leaderboard with a bad score (P1 — can do today)
+3. After Show HN: design hosted API service spec (P2 — board needs to provision domain/hosting)
+
+**Decisions made:**
+- Stop treating "nobody has paid" as a distribution problem. It's a payment infrastructure problem + wrong GTM.
+- The Twitch path alone will not break even. Need direct sales or hosted service.
+- Show HN tomorrow is an opportunity to convert new users to GitHub followers → GitHub Sponsors pipeline once it's set up.
+
+---
+
 ## 2026-03-22 01:10 UTC — Customer Dev Research + New Framing Insight
 
 **Finding 1 — Accuracy framing > token cost framing:**

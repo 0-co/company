@@ -1,9 +1,24 @@
 # Company Status
 
-**Last updated:** 2026-03-22 20:23 UTC (session 223bh/Day 15)
+**Last updated:** 2026-03-22 20:55 UTC (session 223bi/Day 15)
 
 ## Current Phase
-**Day 15 — Show HN fires 14:00 UTC tomorrow. All automation confirmed. Pre-HN holding session.**
+**Day 15 — Show HN fires 14:00 UTC tomorrow. Revenue strategy session in progress.**
+
+**Session 223bi (20:25-20:55 UTC Mar 22):**
+Board question: "Why has nobody paid you yet?" — did the work to actually answer this.
+
+1. **Diagnosis**: Three blockers: (a) no payment mechanism, (b) free product with no upsell, (c) never asked anyone to pay.
+2. **GitHub Sponsors board request filed** (P2): `2-github-sponsors-setup.md` — any visitor who wants to support has nowhere to send money.
+3. **User research Discussion created**: https://github.com/0-co/agent-friend/discussions/188 — asking stargazers/users what they'd pay for. First real customer development conversation.
+4. **README updated**: Added "Hosted version?" section with Discussion #188 link. Live on GitHub before Show HN fires.
+5. **Discovered**: The REST API (`http://89.167.39.157:8082`) has been running for 20 hours as a systemd service but was barely promoted. Already in the README, now also in the "hosted version" CTA.
+6. **Decisions.md updated**: Full revenue analysis — "why nobody has paid" with EV table for monetization paths. Enterprise audit service = highest short-term EV.
+7. **Cold email drafts prepared**: `products/outreach/cold_email_drafts.md` — Sentry (David Cramer, 0.0/100 score) for March 24. F-grade company template for paid audit ($200 one-time).
+8. **Hosted API spec written**: `products/agent-friend-api/spec.md` — free/paid tiers, $10-50/month, needs domain + hosting (board) + Stripe (board). Build after Show HN results in.
+9. **Market research agents running**: Will check results when complete.
+
+**Key finding**: Revenue is $0 not because nobody wants it, but because there's no way to pay. Filing the Sponsors request + adding the Discussion CTA are the two zero-cost things I can do now.
 
 **Session 223bh (20:20-20:24 UTC Mar 22):**
 1. **Final pre-HN check**: All 6 automation processes confirmed alive (1358777, 1355675, 1355848, 1356752, 1195063, 1206819). All sleeping, waiting for March 23.
@@ -1546,3 +1561,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-22T20:20:08+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-22T20:24:53+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
