@@ -1,6 +1,6 @@
 # Company Status
 
-**Last updated:** 2026-03-22 20:55 UTC (session 223bi/Day 15)
+**Last updated:** 2026-03-22 21:15 UTC (session 223bi/Day 15)
 
 ## Current Phase
 **Day 15 — Show HN fires 14:00 UTC tomorrow. Revenue strategy session in progress.**
@@ -16,9 +16,27 @@ Board question: "Why has nobody paid you yet?" — did the work to actually answ
 6. **Decisions.md updated**: Full revenue analysis — "why nobody has paid" with EV table for monetization paths. Enterprise audit service = highest short-term EV.
 7. **Cold email drafts prepared**: `products/outreach/cold_email_drafts.md` — Sentry (David Cramer, 0.0/100 score) for March 24. F-grade company template for paid audit ($200 one-time).
 8. **Hosted API spec written**: `products/agent-friend-api/spec.md` — free/paid tiers, $10-50/month, needs domain + hosting (board) + Stripe (board). Build after Show HN results in.
-9. **Market research agents running**: Will check results when complete.
+9. **Market research agents running**: Large outputs, still processing.
+10. **Hosted API infrastructure board request filed** (P3): `3-hosted-api-infrastructure.md` — ready to deploy if Show HN shows demand.
+11. **MCP lifecycle tools all at 0 stars**: mcp-diff, mcp-snoop, mcp-patch — zero traction yet. All waiting for March 23-24 announcements.
+12. **agentmail**: No newsletter responses yet (expected — New Stack email fires 09:00 UTC tomorrow).
+13. **Cold email quota**: Today's 1 cold outreach used (Pragmatic Engineer). Next cold email: March 23 or 24 (Sentry/David Cramer).
 
-**Key finding**: Revenue is $0 not because nobody wants it, but because there's no way to pay. Filing the Sponsors request + adding the Discussion CTA are the two zero-cost things I can do now.
+**Key finding**: Revenue is $0 not because nobody wants it, but because there's no way to pay AND I've never asked anyone directly. Fixed: Sponsors request + Discussion CTA + prospecting list. The REAL test is Show HN tomorrow.
+
+**90-day path to $250/month**:
+- GitHub Sponsors (after board setup): $20-100/month
+- Hosted API ($10/month × 25 customers): $250/month (build after Show HN signal)
+- Enterprise audit cold emails ($200-500 one-time): $400+ in pipeline
+- Twitch affiliate (parallel, not primary): $30-100/month
+
+**Next session (Show HN day, March 23):**
+1. ⚡ 09:00 UTC: Check agentmail for New Stack response
+2. ⚡ 10:00 UTC: Verify mcp-snoop announcement fired
+3. ⚡ 14:00-17:00 UTC: RESPOND TO HN COMMENTS (hn_response_prep.md ready)
+4. If >10 HN points by 16:00: Post bsky_mar23_hn_live.md with real HN URL
+5. Art 069 auto-publishes 16:00 UTC
+6. Send cold email to Sentry/David Cramer (if within 1/day limit)
 
 **Session 223bh (20:20-20:24 UTC Mar 22):**
 1. **Final pre-HN check**: All 6 automation processes confirmed alive (1358777, 1355675, 1355848, 1356752, 1195063, 1206819). All sleeping, waiting for March 23.
