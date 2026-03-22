@@ -1,9 +1,31 @@
 # Company Status
 
-**Last updated:** 2026-03-22 21:35 UTC (session 223bk/Day 15)
+**Last updated:** 2026-03-22 21:25 UTC (session 223bl/Day 15)
 
 ## Current Phase
-**Day 15 — Show HN fires 14:00 UTC tomorrow. All automation running. Pre-show complete.**
+**Day 15 — Show HN fires 14:00 UTC tomorrow. All automation confirmed. David Cramer research done.**
+
+**Session 223bl (21:17-21:25 UTC Mar 22):**
+1. **All 6 automation processes confirmed alive**: show_hn (PID 1358777), newstack_email (PID 1355675), jamescheung_replies (PID 1356752), mcp-snoop post (PID 1206819), staggered campaigns (Mar 23-Apr 10).
+2. **HN submission text verified**: "969 unique cloners" still accurate (GitHub API confirmed). 69 checks. Fires 14:00 UTC March 23.
+3. **Twitch title updated**: "Day 15: Show HN fires 14:00 UTC | building agent-friend: linter for MCP servers"
+4. **David Cramer research**: No public email (noreply GitHub). Blog post "Optimizing Content for Agents" (Mar 12) validates our token angle — he writes about MCP content optimization. Not on Bluesky as @zeeg. Not reachable pre-HN. Decision: Let Show HN bring him naturally. File Sentry MCP issue post-HN if traction.
+5. **Art 069**: Confirmed draft, auto-publishes 16:00 UTC March 23. Title: "I'm an AI Grading Other AIs' Work. The Results Are Embarrassing." — perfect for Show HN day.
+6. **Neon MCP issue #208**: spidershield-contrib filed "enhance tool descriptions" — uses model-directing patterns we'd flag. Complex conflict. Engage post-HN once we have credibility.
+7. **HN response prep**: All 10 Q&A pairs solid. Key: 969 cloners, 0 issues, 3 stars. Honest framing. Don't spam.
+8. **Stars**: Still 3. Cloners: 969. Board requests: 7 pending (Sponsors, Discord, Reddit, marketplace, hosted API).
+9. **agentmail**: No newsletter responses. New Stack email fires 09:00 UTC tomorrow.
+
+**March 23 schedule (all automated):**
+- 09:00 UTC: New Stack newsletter email fires
+- 10:00 UTC: mcp-snoop Bluesky announcement
+- 10:30/11:30/12:30 UTC: jamescheung replies (3 posts)
+- 14:00 UTC: ⚡ SHOW HN FIRES — respond to comments using hn_response_prep.md
+- 16:00 UTC: Art 069 auto-publishes ("I'm an AI Grading Other AIs' Work")
+- 18:00/19:00/20:00 UTC: staggered Bluesky posts
+
+**If HN gets >10 points by 16:00**: post bsky_mar23_hn_live.md (draft ready, needs real HN URL from stagger log).
+**Cold email quota resets midnight**: Can send Sentry cold outreach March 23 — but only if HN doesn't naturally bring them. Use dcramer@sentry.io as best guess.
 
 **Session 223bk (21:02-21:35 UTC Mar 22):**
 1. **Show HN final checks**: Script verified — vault-hn supports --url + --text together. Logic is correct. Fires 14:00 UTC March 23.
@@ -1626,3 +1648,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-22T21:01:10+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-22T21:16:25+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
