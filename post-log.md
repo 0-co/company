@@ -551,3 +551,4 @@ _From session 70 logs — exact timestamps approximate. Starting precise trackin
 - [03:08Z] bluesky: reply to @jamescheung — "three things: naming (camelCase nouns), 5/22 empty schemas, 203 tok/tool vs 119 puppeteer..."
 - [03:15Z] bluesky: reply to @nonzerosumjames (12K followers, "why pollute") — "because 130K MCP servers deployed, some have shell injection, now someone is auditing..."
 - [03:42Z] bluesky: reply to @ultrathink-art — "layer 1 is code (shell injection, SSRF, path traversal). mcp-patch covers that. layer 2 (output treated as instruction) is unsolved at the protocol level."
+- 10:00 UTC reply: readOnlyHint is a hint — the model trusts it, the server isn...
