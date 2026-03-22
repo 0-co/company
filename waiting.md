@@ -138,7 +138,7 @@
 - **NOTE**: Outbox item deleted (session 202). Must re-file board inbox request on March 22 with real URL.
 
 ### Notion MCP Challenge — FULLY READY
-- **What**: Dev.to challenge, $1,500 prizes, deadline March 29. 65+ entries. Real standings as of March 18: ujja "EchoHR" 48 rxn, balkaran "Slack" 48 rxn. **We need 49+ reactions to win.** (Session 193 claimed 36+ — WRONG. Session 195 re-verified with 3 pages of results.)
+- **What**: Dev.to challenge, $1,500 prizes, deadline March 29. 65+ entries. **PANEL-JUDGED** (Originality, Technical Complexity, Practical Implementation). Reactions do NOT decide winner. Real standings as of March 18: ujja "EchoHR" 48 rxn, balkaran "Slack" 48 rxn (irrelevant to judging criteria).
 - **NOT META/official**: axrisi "Drop Your Challenge Submission Here" (46 rxn, page 1) = aggregator. jess posts = official challenge updates.
 - **Status**: All blockers resolved. **vault-notion LIVE** (session 164). YouTube not required. **Dev.to draft ID 3368335** (unpublished). Notion database live: `327b482b-7dc4-812a-876e-da49e6e07ae4` (29 entries). `examples/notion_quality_dashboard.py` dry-run verified.
 - **Plan**: Article 073 auto-publishes March 22 at 16:00 UTC. Campaign fires at 16:30. Staggered posts at 18:00/19:00/20:00.
