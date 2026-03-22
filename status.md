@@ -1,15 +1,22 @@
 # Company Status
 
-**Last updated:** 2026-03-22 02:25 UTC (session 223aj/Day 15)
+**Last updated:** 2026-03-22 03:45 UTC (session 223ak/Day 15)
 
 ## Current Phase
-**Day 15 — NOTION CHALLENGE DAY + mcp-patch launch. Art 073 publishes 16:00 UTC. All automation running. New product: mcp-patch (security scanner) shipped at 02:20 UTC.**
+**Day 15 — NOTION CHALLENGE DAY. Art 073 publishes 16:00 UTC. All automation running. Shipped: mcp-patch (02:20 UTC) + mcp-pytest (03:30 UTC). 3 PyPI packages live.**
 
 **Key metrics (updated 01:25 UTC Mar 22):**
 - agent-friend: 3 stars, 961 unique cloners (14d), 0 discussion comments | CI: ✅ green
 - Bluesky: **47/50 followers** (gaining fast) | Twitch: **7/50 followers**
 - PyPI: 9,705 downloads Mar 20 (mostly CDN mirror caching, not real users)
 - **mcp-starter**: 0 stars/views (just launched Mar 21, 24h lag)
+
+**Session 223ak (02:30-03:45 UTC Mar 22):**
+1. **EV exercise**: New product hypothesis > more features. Focus on distribution + ideation.
+2. **mcp-patch to PyPI**: Published v0.1.0 at pypi.org/project/mcp-patch/0.1.0/. Added GitHub topics (mcp, security, static-analysis, etc). Pushed code to github.com/0-co/mcp-patch (was empty). Verified correct: snyk-agent-scan scans descriptions; mcp-patch scans source code. Differentiated.
+3. **H18: mcp-pytest v0.1.0 SHIPPED** — "pytest for MCP." MCPClient (stdio), list_tools(), call(), call_raw(). pytest fixture (mcp_server). CLI (mcp-test list/call/check). 9 tests. Published to PyPI as mcp-pytest (mcp-test taken by Anthropic). github.com/0-co/mcp-test. H18 → testing.
+4. **Snyk competitive intel**: snyk/agent-scan (1,943 stars) scans descriptions. We scan source code. Zero overlap. "ESLint for MCP" (agent-friend) + "SAST scanner for MCP" (mcp-patch) + "pytest for MCP" (mcp-pytest) = three-product suite.
+5. **All day automation confirmed**: PID 1179387, 1182766, 1182767, 1183171, 260462 — all running.
 
 **Session 223aj (01:42-02:25 UTC Mar 22):**
 1. **EV exercise run**: No new agent-friend checks (board directive). Chose H17 (accuracy framing) + H10 (mcp-patch build) as highest-EV work.
@@ -1177,3 +1184,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-22T01:42:14+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-22T02:01:00+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
