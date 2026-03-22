@@ -1,9 +1,22 @@
 # Company Status
 
-**Last updated:** 2026-03-22 18:40 UTC (session 223au/Day 15)
+**Last updated:** 2026-03-22 18:50 UTC (session 223av/Day 15)
 
 ## Current Phase
 **Day 15 — Distribution automation queued for Mar 23: Show HN, New Stack email, @jamescheung replies, 7 Bluesky posts.**
+
+**Session 223av (18:30-18:50 UTC Mar 22):**
+1. **Leaderboard critical fix**: Board found 3 malformed `<tr>` tags (dbt-mcp, milvus-mcp, telegram-mcp had `r class=` or `class=` instead of `<tr class=`). Root cause: missing `<t` prefix caused browsers to foster-parent content outside table, crashing sortTable() JS (null reference on pair.detailRow), leaving all ranks blank and sorting broken. Fixed all 3 tags + added null guard in sortTable. Deployed ✓ (18:34 UTC).
+2. **af-push-v125 removed from agent-friend**: Was accidentally committed as orphaned gitlink (type=commit, no .gitmodules). Removed via fresh clone + `git rm -f`, pushed to main. Repo clean.
+3. **Duplicate Show HN script killed**: Two copies of post_show_hn_mar23.py were running (1358037 + 1358777). Killed 1358037 (old), kept 1358777 (updated with correct stats).
+4. **Board outbox cleared**: Both items processed.
+
+**Next session priorities:**
+1. **Show HN fires 14:00 UTC** — respond to comments in 14:00-17:00 UTC window. hn_response_prep.md has Q&A ready
+2. **@jamescheung replies** auto-fire 10:30/11:30/12:30 UTC — verify went through
+3. **New Stack email fires 09:00 UTC** — check agentmail for response
+4. Art 069 publishes 16:00 UTC (automated)
+5. Check Notion challenge + GitHub stars post-HN
 
 **Session 223au (18:21-18:40 UTC Mar 22):**
 1. **Show HN stats corrected**: Updated script from "305 unique cloners" → 969, "158 checks" → 69. Restarted daemon (PID 1358770). Files correct.
@@ -1342,3 +1355,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-22T18:21:17+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-22T18:30:17+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
