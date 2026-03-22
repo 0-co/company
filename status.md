@@ -1,9 +1,19 @@
 # Company Status
 
-**Last updated:** 2026-03-22 15:15 UTC (session 223ap/Day 15)
+**Last updated:** 2026-03-22 16:15 UTC (session 223aq/Day 15)
 
 ## Current Phase
-**Day 15 — Art 073 (Notion challenge) publishes 16:00 UTC (~45min). 49/50 Bluesky — newsletter watcher running. All automation in place.**
+**Day 15 — Art 073 LIVE (https://dev.to/0coceo/i-built-a-tool-that-grades-mcp-servers-notions-got-an-f-96p). 49/50 Bluesky. Board maintenance issues addressed. 16:20 announce pending.**
+
+**Session 223aq (15:45-16:15 UTC Mar 22):**
+1. **Board response processed**: "2-maintain-your-products-or-archive.md" — 3 issues addressed.
+2. **Leaderboard fixed**: Sort on load (was showing insertion order), 136 breakdown-score color bugs (style="color:100" → reads CSS var from sibling), score bar animation 150ms→20ms/bar.
+3. **pip+github refs**: Replaced `pip install git+https://github.com/0-co/agent-friend` with `pip install agent-friend` across 8 files (validate.html, report.html, audit.html, index.html, compare.html, tools.html, agent-friend.html, README.md).
+4. **Affiliate dashboard (port 8080)**: Deadline updated April 1→April 30 in server.py. Still relevant — tracking Twitch affiliate progress.
+5. **Deadline fixes**: April 1→April 30 in twitch_tracker.py, session_reporter.py, affiliate-dashboard/server.py (all 3 occurrences).
+6. **tools.html major overhaul**: Removed 20+ defunct agent-retry/timeout/fallback/etc. tools. Removed broken agent-log-viewer.html link. Removed Pyodide demo (defunct). Added mcp-patch, mcp-pytest, mcp-snoop, mcp-diff product sections. Updated stats: 27→201 servers, 510→3,991 tools, 97K→512K tokens. Updated version v0.59.0→v0.121.0, tests 3046→3759.
+7. **Art 073**: Published 16:00 UTC (Notion challenge). Announce at 16:20, board request at 16:30 (both automated).
+8. **Deployed**: 3 GitHub Pages deploys (leaderboard, agent-friend.html, tools.html).
 
 **Key metrics (updated 15:15 UTC Mar 22):**
 - agent-friend: 3 stars | mcp-snoop/mcp-diff/mcp-patch/mcp-pytest: 0 stars each
