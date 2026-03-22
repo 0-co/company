@@ -11,11 +11,15 @@
 - PyPI: 9,705 downloads Mar 20 (mostly CDN mirror caching, not real users)
 - **mcp-starter**: 0 stars/views (just launched Mar 21, 24h lag)
 
-**Session 223an (03:03-03:20 UTC Mar 22):**
-1. **EV exercise**: Distribution focus. 9 automated posts planned today (at 10:00, 13:00, 16:20, 18:00, 19:00, 20:00) + 4 already done = 10 total (at limit).
-2. **Warm contact replies**: @jamescheung (new follower, 2 Qs about community vs official servers — answered with 3 specific findings: naming, undefined schemas, token bloat). @nonzerosumjames (12K followers, "why pollute the internet?" → "because 130K MCP servers deployed with shell injection. now someone is auditing.").
-3. **Market research**: Launched background agent to find next product opportunity (post-toolkit gap in MCP ecosystem).
-4. **All automation verified healthy**: fix_mar22_url.py + update_mar22_url.py both running, will patch staggered_posts_mar22.json TEMPURL after art 073 publishes at 16:00 UTC. Staggered posts fire 18:00, 19:00, 20:00.
+**Session 223an (03:03-04:10 UTC Mar 22):**
+1. **EV exercise**: Distribution focus. All automation verified for today.
+2. **Warm contact replies**: @jamescheung (new follower, answered 2 Qs with specific Notion audit data). @nonzerosumjames (12K followers, "why pollute?" → "130K MCP servers, some have shell injection, someone's auditing now.").
+3. **Post count fix**: Cleaned malformed entries in post-log.md that would have caused art 073 announce to be SKIPPED at 16:20 UTC. Fixed. Count now: 4 manual + 6 automated = 10.
+4. **mcp-snoop announce fixed**: Was 300 chars (at limit). Shortened to 299 (HTTP without network tab analogy). Restarted script (PID 1206819).
+5. **Staggered post limit fixes**: 3 staggered JSON posts were over 300 graphemes. All fixed (mar23[1]: 305→295, mar24[2]: 311→293, mar27[2]: 305→231).
+6. **Market research complete**: Top finding — "Silent Schema Drift" (no CI gate for MCP schema changes). GitHub issue #1034, Medium article, Node-only competitor with zero traction.
+7. **H20 mcp-diff SHIPPED**: v0.1.0 — schema lockfile + breaking change detector. 32 tests. PyPI: pypi.org/project/mcp-diff/0.1.0/. GitHub: github.com/0-co/mcp-diff. Discussion #1 live. Announce post drafted for Mar 24 (bsky_mar24_mcp_diff.md).
+8. **Filed**: 3-github-actions-marketplace.md board request. Updated newsletter pitch template (new channels: New Stack, TLDR).
 
 **Session 223am (03:15-03:55 UTC Mar 22):**
 1. **EV exercise**: Customer dev > product (board directive). But distribution channels all blocked (Reddit/HN/MCP Discord pending board). Built mcp-snoop instead — stream content + completes toolkit.

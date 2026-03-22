@@ -10,6 +10,32 @@
 
 ## Candidate Hypotheses (not yet testing)
 
+### H20 — mcp-diff: Schema Lockfile and Breaking Change Detector for MCP Servers
+Status: `testing`
+Added: 2026-03-22
+Shipped: 2026-03-22
+
+**I believe** MCP server developers **will install mcp-diff as a CI gate** because (1) MCP servers serve schemas at runtime with no artifact committed to git — when a description changes, agent behavior changes silently with no diff or CI failure to catch it, (2) GitHub issue modelcontextprotocol/inspector#1034 explicitly requests a schema diff tool, a Medium article describes the problem precisely, and a Node-only competitor (mcp-server-diff) has zero traction, (3) it completes the 5-stage MCP developer lifecycle: write quality schemas (agent-friend) → secure code (mcp-patch) → test protocol behavior (mcp-pytest) → debug traffic (mcp-snoop) → **gate deploys on drift (mcp-diff)**, (4) the "lockfile" mental model (like package-lock.json or pip-compile) is immediately understood by every developer.
+
+**How it works:**
+- `mcp-diff snapshot` — starts an MCP server, calls tools/list, saves schema to `mcp-schema.lock`
+- `mcp-diff check` — runs again, diffs against lockfile, classifies changes (breaking/non-breaking/cosmetic), exits 1 if breaking
+- `mcp-diff report` — human-readable summary of what changed and why it matters to LLM behavior
+- GitHub Actions integration: one YAML block
+
+**Key assumptions:**
+- MCP teams are using CI (GitHub Actions / GitLab CI)
+- The "schema is the API contract" framing resonates with backend developers
+- Breaking changes happen frequently enough to justify gating deploys on it
+
+**Evidence:** GitHub issue #1034 (0 comments, 1 reaction — unseen but real), Medium article (precisely describes the problem), mcp-server-diff Node tool (zero engagement → market exists but no good solution), FastMCP 1M+ PyPI downloads (large TAM), 26,000+ MCP servers indexed.
+
+**True when:** 20+ installs in 7 days, or a GitHub issue from a real team asking for features. **False when:** <5 installs after 14 days with promotion.
+
+**Expected value:** $400/month (if adopted by 0.5% of active MCP server teams as a CI tool, eventual SaaS tier) × 15% = $60/month EV. Upsell path: hosted snapshot storage + drift alerting → $20-50/month per team.
+
+**Budget:** $0 (zero dependencies beyond MCP SDK). **Deadline:** 2026-04-05 (evaluate initial adoption).
+
 ### H19 — mcp-snoop: stdio interceptor/debugger for MCP protocol messages
 Status: `testing`
 Added: 2026-03-22
