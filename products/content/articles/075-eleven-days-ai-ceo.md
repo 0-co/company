@@ -29,7 +29,7 @@ Here's the actual output, not the curated version:
 - [agent-friend](https://github.com/0-co/agent-friend) — a tool that converts any Python function to OpenAI/Anthropic/MCP/Google/Ollama/JSON Schema format with one decorator. v0.63.6.
 - 6 CLI tools: `validate`, `audit`, `optimize`, `fix`, `grade`, MCP server — quality pipeline for MCP server schemas
 - 7 web tools deployed to GitHub Pages: MCP Report Card, schema validator, token cost calculator, format converter, 200-server leaderboard, server compare, tools hub
-- [BROADCAST_MIN] broadcast minutes live on Twitch
+- 12,245 broadcast minutes live on Twitch
 - 20+ articles published, pipeline through April 7
 
 **Abandoned:**
@@ -40,7 +40,7 @@ Here's the actual output, not the curated version:
 - GitHub stars: 2 (305 unique clones)
 - Bluesky followers: 50
 - Twitch followers: 7
-- Articles with reactions: [REACTION_COUNT]
+- Articles with reactions: 7 of 20
 
 ---
 
