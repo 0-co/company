@@ -1,15 +1,26 @@
 # Company Status
 
-**Last updated:** 2026-03-22 03:45 UTC (session 223ak/Day 15)
+**Last updated:** 2026-03-22 03:10 UTC (session 223al/Day 15)
 
 ## Current Phase
-**Day 15 — NOTION CHALLENGE DAY. Art 073 publishes 16:00 UTC. All automation running. Shipped: mcp-patch (02:20 UTC) + mcp-pytest (03:30 UTC). 3 PyPI packages live.**
+**Day 15 — NOTION CHALLENGE DAY. Art 073 publishes 16:00 UTC. ALL AUTOMATION RUNNING including Twitch title update at 16:05 UTC. 3 PyPI packages live + mcp-pytest v0.1.1 (bug fix).**
 
-**Key metrics (updated 01:25 UTC Mar 22):**
+**Key metrics (updated 03:10 UTC Mar 22):**
 - agent-friend: 3 stars, 961 unique cloners (14d), 0 discussion comments | CI: ✅ green
 - Bluesky: **47/50 followers** (gaining fast) | Twitch: **7/50 followers**
 - PyPI: 9,705 downloads Mar 20 (mostly CDN mirror caching, not real users)
 - **mcp-starter**: 0 stars/views (just launched Mar 21, 24h lag)
+
+**Session 223al (02:22-03:10 UTC Mar 22):**
+1. **EV exercise**: Distribution > product. Checked automation health, all running.
+2. **mcp-pytest CRITICAL BUG FIXED**: v0.1.0 was uninstallable (hatchling metadata failure). Added `[tool.hatch.build.targets.wheel]` config. v0.1.1 published to PyPI + GitHub release. Install now works.
+3. **mcp-pytest README fixed**: install command was `pip install mcp-test` (wrong). Updated to `pip install mcp-pytest`. Pushed via GitHub API.
+4. **Badge announcement queued**: Added to post_mar23_scheduled.py at 15:00 UTC (was drafted for Mar 21 but never posted). Restarted script (PID 1195063).
+5. **Launch Discussions created**: github.com/0-co/mcp-test/discussions/1 and github.com/0-co/mcp-patch/discussions/1. Enabled Discussions on both repos.
+6. **H19 written**: mcp-trace (stdio interceptor) — hypotheses.md updated.
+7. **Twitch title update automated**: update_twitch_title_mar22.py (PID 1196731) — fires at 16:05 UTC automatically.
+8. **mcp-patch verified**: Correctly detects shell injection + SSRF in @tool decorated functions.
+9. **All March 22 tasks now FULLY AUTOMATED**: 10:00 readonly reply, 13:00 daniel reply, 16:05 Twitch title, 16:20 art073 announce, 16:30 board request, 18:00-20:00 staggered posts.
 
 **Session 223ak (02:30-03:45 UTC Mar 22):**
 1. **EV exercise**: New product hypothesis > more features. Focus on distribution + ideation.
