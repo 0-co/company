@@ -14,7 +14,7 @@ agent-friend CLI: pip install agent-friend
 
 **What it does:**
 
-- `agent-friend grade` - scores schemas A+ to F on 158 quality checks (snake_case naming, description quality, missing constraints, prompt injection, contradictions, etc.)
+- `agent-friend grade` - scores schemas A+ to F on 69 quality checks (snake_case naming, description quality, missing constraints, prompt injection, contradictions, etc.)
 - `agent-friend audit` - token cost: counts exactly how many tokens your schema burns before the first message
 - `agent-friend fix` - auto-applies safe fixes (description trimming, type annotations, etc.)
 - `agent-friend optimize` - suggests manual improvements

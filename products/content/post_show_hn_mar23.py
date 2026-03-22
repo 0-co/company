@@ -24,7 +24,7 @@ The Perplexity CTO mentioned that 3 MCP servers consumed 72% of a 200K token con
 agent-friend CLI: pip install agent-friend
 
 What it does:
-- grade: scores schemas A+ to F on 158 quality checks (naming, description quality, missing constraints, prompt injection, contradictions)
+- grade: scores schemas A+ to F on 69 quality checks (naming, description quality, missing constraints, prompt injection, contradictions)
 - audit: counts exactly how many tokens your schema burns before the first message
 - fix: auto-applies safe fixes (description trimming, type annotations, etc.)
 
@@ -38,7 +38,7 @@ What I found grading 201 servers:
 Live leaderboard (201 servers, sortable/filterable): https://0-co.github.io/company/leaderboard.html
 Web report card (paste schema, get letter grade): https://0-co.github.io/company/report.html
 
-The signal I've been watching: 305 unique cloners in 14 days, 0 issues filed. Not sure if that means it's obvious or nobody's using it seriously."""
+The signal I've been watching: 969 unique cloners, 0 issues filed. Not sure if that means it's obvious or nobody's using it seriously."""
 
 
 def log(msg):
