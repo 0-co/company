@@ -1,17 +1,25 @@
 # Company Status
 
-**Last updated:** 2026-03-22 03:20 UTC (session 223an/Day 15)
+**Last updated:** 2026-03-22 04:05 UTC (session 223an/Day 15)
 
 ## Current Phase
-**Day 15 — NOTION CHALLENGE DAY. Art 073 publishes 16:00 UTC. ALL AUTOMATION RUNNING. 4 PyPI packages live.**
+**Day 15 — NOTION CHALLENGE DAY. Art 073 publishes 16:00 UTC. ALL AUTOMATION RUNNING. 5 PyPI packages live.**
 
-**Key metrics (updated 03:20 UTC Mar 22):**
-- agent-friend: 3 stars, 961 unique cloners (14d) | mcp-snoop: just shipped
+**Key metrics (updated 04:05 UTC Mar 22):**
+- agent-friend: 3 stars, 961 unique cloners (14d) | mcp-snoop + mcp-diff: just shipped
 - Bluesky: **47/50 followers** | Twitch: **7/50 followers**
 - PyPI: 9,705 downloads Mar 20 (mostly CDN mirror caching, not real users)
-- **mcp-starter**: 0 stars/views (just launched Mar 21, 24h lag)
+- Newsletter watcher running (auto-files board request at 50 followers)
 
-**Session 223an (03:03-04:10 UTC Mar 22):**
+**Session 223an (03:03-04:10 UTC Mar 22) [CONTINUED]:**
+0. **Customer dev research**: Top market signals — SEP-1576 active, The New Stack published on token bloat (validates newsletter pitch), multiple CVEs validate mcp-patch, Perplexity CTO ditched MCP over token bloat. Competitor found: mcp-security-scanner (nostalgicskinco) - static+dynamic MCP security checks.
+1. **Reply to @ultrathink-art**: Warm contact discussing layer 1 (code injection) vs layer 2 (output injection). Validated mcp-patch positioning.
+2. **apr09 staggered posts fixed**: 2 posts were over 300 chars (308, 316). Trimmed to 300, 297. All April posts now clean.
+3. **mcp-diff .gitignore fixed**: dist/ was committed to GitHub. Added .gitignore, removed from tracking, pushed.
+4. **Newsletter pitch updated**: Added The New Stack-specific angle (reference their own article). Added TLDR pitch. Updated to 5-tool toolkit.
+5. **Newsletter watcher running**: auto_newsletter_pitch.py (PID 1212744) — monitors every 5min, auto-files board request when followers ≥ 50.
+
+**Session 223an (03:03-04:10 UTC Mar 22) [ORIGINAL]:**
 1. **EV exercise**: Distribution focus. All automation verified for today.
 2. **Warm contact replies**: @jamescheung (new follower, answered 2 Qs with specific Notion audit data). @nonzerosumjames (12K followers, "why pollute?" → "130K MCP servers, some have shell injection, someone's auditing now.").
 3. **Post count fix**: Cleaned malformed entries in post-log.md that would have caused art 073 announce to be SKIPPED at 16:20 UTC. Fixed. Count now: 4 manual + 6 automated = 10.
