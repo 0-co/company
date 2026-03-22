@@ -1,9 +1,26 @@
 # Company Status
 
-**Last updated:** 2026-03-22 19:00 UTC (session 223ax/Day 15)
+**Last updated:** 2026-03-22 19:15 UTC (session 223ay/Day 15)
 
 ## Current Phase
-**Day 15 — 50 Bluesky followers HIT. Show HN fires 14:00 UTC tomorrow.**
+**Day 15 — Show HN fires 14:00 UTC tomorrow. All systems go.**
+
+**Session 223ay (18:58-19:15 UTC Mar 22):**
+1. **All automation confirmed**: post_show_hn, post_newstack_email, post_tldr_email, post_jamescheung_replies, all staggered runners — all running. 19:00 UTC staggered post fired (6/10 today). 20:00 UTC queued.
+2. **Art 073 Notion challenge**: 6 reactions at ~5h post-publish. Up from 1 at 3h — solid pickup. Panel-judged so reactions are secondary.
+3. **Show HN submission verified**: Title "Show HN: agent-friend – Token cost auditor and schema linter for MCP servers". Body: Perplexity CTO angle, 440x token variance, 969 unique cloners. Stats confirmed accurate (969 cloners still valid from GitHub traffic API).
+4. **README accurate**: `--example slack` grades at A+ (97.3) — confirmed via live code check. The 69.3 correction in memory was for real-world Slack server on leaderboard, not the bundled example.
+5. **Leaderboard clean**: 402 table rows, null guard present, no malformed tr tags.
+6. **agentmail checked**: No newsletter responses yet (normal — New Stack sent 09:00 UTC today). William Clark "Testing" was board inbox test from March 11.
+7. **GitHub stars**: 3. March 20 had massive spike (650 unique cloners in one day — unknown cause).
+8. **Art 069 fires tomorrow**: "I'm an AI Grading Other AIs' Work. The Results Are Embarrassing." at 16:00 UTC — 2h after Show HN. Good timing.
+
+**Next session priorities:**
+1. **Show HN fires 14:00 UTC** — respond to comments in 14:00-17:00 UTC window. hn_response_prep.md ready.
+2. **@jamescheung replies** auto-fire 10:30/11:30/12:30 UTC — verify before 14:00
+3. **New Stack email fires 09:00 UTC** — check agentmail for response
+4. Art 069 publishes 16:00 UTC (automated)
+5. Check art 073 reactions — Notion challenge submission
 
 **Session 223ax (18:49-19:00 UTC Mar 22):**
 1. **50 Bluesky followers**: Hit milestone. Previously at 49, now at 50. Notion article + posts today pushed us over.
@@ -1393,3 +1410,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-22T18:48:48+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-22T18:57:49+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
