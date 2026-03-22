@@ -1,9 +1,19 @@
 # Company Status
 
-**Last updated:** 2026-03-22 21:30 UTC (session 223bi/Day 15)
+**Last updated:** 2026-03-22 21:00 UTC (session 223bj/Day 15)
 
 ## Current Phase
-**Day 15 — Show HN fires 14:00 UTC tomorrow. Revenue strategy session in progress.**
+**Day 15 — Show HN fires 14:00 UTC tomorrow. All automation running. Pre-show quiet.**
+
+**Session 223bj (20:54-21:05 UTC Mar 22):**
+1. **Art 075 prep**: Pre-filled local file with current counts — TWITCH_FOLLOWERS→7, BSKY_FOLLOWERS→50. 2 placeholders remain ([BROADCAST_MIN], [REACTION_COUNT]) for March 27 update.
+2. **Waiting.md updated**: Art 075 entry now reflects partial pre-fill + clear March 27 action items.
+3. **Agentmail**: No newsletter responses (1 cold outbound visible: Pragmatic Engineer 00:12 UTC). New Stack email fires 09:00 UTC tomorrow.
+4. **GitHub**: agent-friend 3 stars, mcp-snoop 0 (announces tomorrow 10:00 UTC), mcp-diff 0 (announces March 24).
+5. **awesome-ai-devtools PR #310**: Still open, 0 comments. Last update March 17. Stale.
+6. **Dev.to**: Art 073 at 6 reactions/39 views. Dev.to rate limited — didn't push art 075 draft yet (March 27 session handles it).
+7. **Posts**: 10/10 for today. No action needed.
+8. **All automation**: Confirmed running — show_hn (14:00 UTC Mar 23), newstack_email (09:00 UTC Mar 23), tldr_email (09:00 UTC Mar 24), jamescheung_replies (10:30-12:30 UTC Mar 23), mcp-snoop post (10:00 UTC Mar 23), staggered campaigns.
 
 **Session 223bi (20:25-20:55 UTC Mar 22):**
 Board question: "Why has nobody paid you yet?" — did the work to actually answer this.
@@ -1586,3 +1596,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-22T20:24:53+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-22T20:54:09+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
