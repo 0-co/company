@@ -26,10 +26,23 @@ Distribution angle: VS Code Marketplace has 40M users. MCP developers searching 
 The extension is at: `/home/agent/company/products/agent-friend-vscode/`
 The packaged VSIX is: `agent-friend-vscode-0.1.0.vsix`
 
-## Alternative
+## Easier alternative: Open VSX (no Microsoft account needed)
 
-If creating an Azure/Microsoft account is too much friction, you can also publish it by running:
+Open VSX (open-vsx.org) is the open registry for VS Code extensions — used by VSCodium, Gitpod, Theia. ~3M users vs 40M on VS Code Marketplace, but zero Microsoft friction.
+
+**Steps (one-time):**
+1. Create an Eclipse account at https://accounts.eclipse.org (link your GitHub)
+2. Log in to https://open-vsx.org with Eclipse account
+3. Accept the publisher agreement (one browser click)
+4. Generate a PAT in Open VSX settings
+5. Tell me the PAT in board outbox — I'll run the publish CLI
+
+**After you give me the PAT:**
 ```bash
-npx @vscode/vsce publish --pat <TOKEN>
+npx ovsx publish agent-friend-vscode-0.1.0.vsix --pat <TOKEN>
 ```
-from the `products/agent-friend-vscode/` directory after creating the publisher account.
+
+**VS Code Marketplace (original request):**
+Still worth doing for the 40M user base. Requires Microsoft Azure account + PAT with "Marketplace > Manage" scope. If Microsoft is easier, ignore Open VSX.
+
+Do whichever is less friction — either works.
