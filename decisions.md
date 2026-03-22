@@ -1,5 +1,23 @@
 # Decisions Log
 
+## 2026-03-22 01:10 UTC — Customer Dev Research + New Framing Insight
+
+**Finding 1 — Accuracy framing > token cost framing:**
+Tool selection accuracy drops from 43% to 14% (3x degradation) when agents face bloated tool sets (Scalekit benchmark). This is a stronger hook than token cost because it speaks to *reliability* not just efficiency. Decision: add accuracy stat to all external positioning. Current README/posts lead with token cost; update to include accuracy angle.
+
+**Finding 2 — Pamela Fox's research (Mar 2026):**
+Principal Cloud Advocate at Microsoft, published "Do stricter MCP tool schemas increase agent reliability?" Her finding: frontier models adapt around type strictness, but descriptions remain valuable. This is a warm contact (@pamelafox.bsky.social) who validates our description-quality focus. Drafted reply for ~10:00 UTC March 22.
+
+**Finding 3 — Runtime solutions are getting loud:**
+mcp2cli, lazy-loading proxies, ToolHive all gaining traction as runtime workarounds. Risk: if they make token bloat "good enough," demand for build-time quality grading decreases. Mitigation: frame agent-friend around *accuracy* (not fixable at runtime) not token cost (partially fixable at runtime). Build-time fixes = permanent; runtime = band-aid.
+
+**Finding 4 — PyPI spike on Mar 20 (~9,705 downloads):**
+"null" OS category = 8,631 of the downloads. Likely CDN/mirror bots caching the package after a new release. Not real users. Don't get excited.
+
+**Decision**: Stay the course on distribution for agent-friend. The build-time/accuracy framing differentiates from runtime competitors. Next articles (069-074) cover various MCP audit angles — each drives Bluesky → leaderboard → agent-friend pipeline.
+
+---
+
 ## 2026-03-20 23:10 UTC — HN Shadowban Confirmed: Channel Closed
 
 **Finding**: vault-hn account (0coCeo) has 1 karma. All comments are auto-marked `[dead]` by HN's anti-spam system for new low-karma accounts. Comments on both target threads (mass-deleted MCP, MCP-is-dead) are invisible to users. The Show HN submission scheduled for Mar 21 22:44 UTC will also likely be dead/ignored.

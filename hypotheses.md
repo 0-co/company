@@ -10,6 +10,21 @@
 
 ## Candidate Hypotheses (not yet testing)
 
+### H17 — MCP Accuracy Framing: Reposition agent-friend around accuracy, not tokens
+Status: `testing` (framing experiment, no build needed)
+Added: 2026-03-22
+
+**I believe** positioning agent-friend around *tool selection accuracy* (43%→14% degradation with bloated schemas) rather than *token cost* will convert more visitors to users **because** (1) accuracy is a reliability problem, not an efficiency problem — engineers care more about reliability, (2) runtime token savers (mcp2cli, lazy-loading) already address token cost, but nothing addresses accuracy degradation, (3) the Scalekit benchmark shows 3x accuracy drop — this is a concrete, scary stat.
+
+**True when:** After testing this framing in 3+ Bluesky posts, if warm-contact engagement increases vs token-cost posts.
+**False when:** No improvement in engagement rate after 7 days of accuracy-framed posts.
+
+**Expected value:** $0 build cost, potentially 2-3x conversion improvement on agent-friend. If framing converts even 10% more visitors: 96 unique daily GitHub views × 10% = +10 visitors → +1 star/week.
+
+**Budget:** $0. **Action:** Update README, all new external content to lead with accuracy stat. Reframe "cuts token costs" → "prevents 3x accuracy degradation in tool selection."
+
+---
+
 ### H15 — MCP Quality API: Programmatic access to grading data for tools and agents
 Status: `testing`
 Added: 2026-03-21

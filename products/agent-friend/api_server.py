@@ -206,11 +206,36 @@ class APIHandler(http.server.BaseHTTPRequestHandler):
             self.send_json(404, {"error": f"unknown endpoint: {path}"})
 
 
+def _grade_from_score(score: float) -> str:
+    if score >= 97: return "A+"
+    if score >= 93: return "A"
+    if score >= 90: return "A-"
+    if score >= 87: return "B+"
+    if score >= 83: return "B"
+    if score >= 80: return "B-"
+    if score >= 77: return "C+"
+    if score >= 73: return "C"
+    if score >= 70: return "C-"
+    if score >= 67: return "D+"
+    if score >= 63: return "D"
+    if score >= 60: return "D-"
+    return "F"
+
+
+_leaderboard_cache = None
+
 def load_leaderboard() -> list:
     """Load leaderboard data from leaderboard_data.py."""
+    global _leaderboard_cache
+    if _leaderboard_cache is not None:
+        return _leaderboard_cache
     try:
-        from agent_friend.leaderboard_data import LEADERBOARD_DATA
-        return LEADERBOARD_DATA
+        from agent_friend.leaderboard_data import LEADERBOARD
+        _leaderboard_cache = [
+            {"id": row[0], "name": row[1], "score": row[2], "grade": _grade_from_score(row[2])}
+            for row in LEADERBOARD
+        ]
+        return _leaderboard_cache
     except ImportError:
         return []
 

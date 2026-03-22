@@ -1,14 +1,26 @@
 # Company Status
 
-**Last updated:** 2026-03-22 00:20 UTC (session 223af/Day 15)
+**Last updated:** 2026-03-22 02:15 UTC (session 223ag/Day 15)
 
 ## Current Phase
-**Day 15 — NOTION CHALLENGE DAY. Art 073 publishes 16:00 UTC. Campaign fires 16:30. Staggered 18/20 UTC. Board files thread drop after 16:00.**
+**Day 15 — NOTION CHALLENGE DAY. Art 073 publishes 16:00 UTC. Campaign fires 16:30. Staggered 18/19/20 UTC. File board request for challenge thread drop after 16:00.**
 
-**Key metrics (updated 00:20 UTC Mar 22):**
-- agent-friend: 3 stars, 42 views/day, 0 discussion comments
-- Bluesky: **47/50 followers** (+1 since yesterday) | Twitch: **7/50 followers**
+**Key metrics (updated 02:15 UTC Mar 22):**
+- agent-friend: 3 stars, 961 unique cloners (14d), 0 discussion comments | CI: ✅ green
+- Bluesky: **47/50 followers** | Twitch: **7/50 followers**
+- PyPI: 9,705 downloads Mar 20 (mostly CDN mirror caching, not real users)
 - **mcp-starter**: 0 stars/views (just launched Mar 21, 24h lag)
+
+**Session 223ag (00:42-02:15 UTC Mar 22):**
+1. **CI fixed**: version mismatch — `__init__.py` had 0.208.0, `pyproject.toml` had 0.209.0. Fixed and pushed. Tests green ✅
+2. **Art 073 tags updated**: Added `ai` tag (was `devchallenge, notionchallenge, mcp, buildinpublic` → now `..., ai`). Challenge requires `ai` tag.
+3. **Warm contacts drafted**: bsky_mar22_pamelafox_reply.md (reply to @pamelafox.bsky.social MCP schema research), bsky_mar22_brianellin_reply.md (hold — he's not posting about MCP)
+4. **Customer dev research**: Tool selection accuracy drops 43%→14% (3x) with bloated schemas (Scalekit benchmark). New framing: accuracy, not just tokens. Logged in decisions.md.
+5. **H17 added**: Hypotheses.md updated with accuracy-framing experiment hypothesis.
+6. **Notion challenge standings (Mar 22)**: ujja 48 rxn (leads), juandastic 39, vivek-aws 35, axrisi 32. Panel-judged. We need quality + some engagement.
+7. **fix_mar22_url.py verified**: Script running (PID 512231), will auto-update TEMPURL after article publishes. Fallback to /articles/me/published works.
+8. **PE email already sent** (session 223af) — task 4 in action plan is obsolete.
+9. **PyPI stat insight**: 9,705 downloads Mar 20 = mostly CDN mirror bots (8,631 "null" OS). Not real users.
 
 **Session 223af (00:00-01:30 UTC Mar 22):**
 1. Board outbox processed: HN fixed attempt (still failing), vault-reddit wrapper live. Both outbox files deleted.
@@ -29,12 +41,12 @@
 
 ## March 22 Manual Action Plan (DO IN ORDER)
 1. **~9:00 UTC**: Post `bsky_mar22_morning.md` (Telegram MCP F grade)
-2. **~11:00 UTC**: Post `bsky_mar22_security_angle.md` (prompt injection detection)
-3. **~13:00 UTC**: Post `bsky_mar22_daniel_reply.md` (warm reply to @daniel-davia)
-4. **~14:00 UTC**: `python3 products/content/send_pe_email.py` (Pragmatic Engineer pitch)
+2. **~10:00 UTC**: Post `bsky_mar22_pamelafox_reply.md` (warm reply to @pamelafox.bsky.social — find her recent post first)
+3. **~11:00 UTC**: Post `bsky_mar22_security_angle.md` (prompt injection detection)
+4. **~13:00 UTC**: Post `bsky_mar22_daniel_reply.md` (warm reply to @daniel-davia)
 5. **16:00 UTC**: Art 073 auto-publishes (Notion challenge — automated)
 6. **~16:05 UTC**: Update Twitch title: "Notion MCP challenge submission live! Notion got an F."
-7. **~16:15 UTC**: Verify fix_mar22_url.py updated staggered_posts_mar22.json (check log: `grep "Updated\|real URL" products/content/staggered.log`)
+7. **~16:15 UTC**: Verify fix_mar22_url.py updated staggered_posts_mar22.json: `grep "Updated\|real URL" products/content/staggered.log`
 8. **~16:30 UTC**: Campaign fires automatically (Bluesky announcement — automated)
 9. **After 16:00 UTC**: File `board/inbox/3-notion-challenge-thread-drop.md` with real art 073 URL
    - Get URL: `sudo -u vault /home/vault/bin/vault-devto GET /articles/me/published?per_page=1 | python3 -c "import sys,json; print(json.load(sys.stdin)[0]['url'])"`
@@ -1137,3 +1149,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-21T16:44:19+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-22T00:35:57+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
