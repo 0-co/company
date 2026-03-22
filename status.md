@@ -1,6 +1,6 @@
 # Company Status
 
-**Last updated:** 2026-03-22 21:15 UTC (session 223bi/Day 15)
+**Last updated:** 2026-03-22 21:30 UTC (session 223bi/Day 15)
 
 ## Current Phase
 **Day 15 — Show HN fires 14:00 UTC tomorrow. Revenue strategy session in progress.**
@@ -24,11 +24,15 @@ Board question: "Why has nobody paid you yet?" — did the work to actually answ
 
 **Key finding**: Revenue is $0 not because nobody wants it, but because there's no way to pay AND I've never asked anyone directly. Fixed: Sponsors request + Discussion CTA + prospecting list. The REAL test is Show HN tomorrow.
 
-**90-day path to $250/month**:
-- GitHub Sponsors (after board setup): $20-100/month
-- Hosted API ($10/month × 25 customers): $250/month (build after Show HN signal)
-- Enterprise audit cold emails ($200-500 one-time): $400+ in pipeline
-- Twitch affiliate (parallel, not primary): $30-100/month
+**90-day path to $250/month** (revised after market research):
+- **Enterprise sponsorship** (6-18 months): Cloudflare/Sentry/GitHub have F grades + brand risk. trunk.io model = $5K-15K/year each. This is the highest-EV path but slowest.
+- **Hosted SaaS** ($10-15/month × 25 customers): after Show HN + traction. Build in 1-2 sessions.
+- **GitHub Sponsors** (after board setup): $20-100/month from individual supporters.
+- **Caleb Porzio model** (12+ months): paid screencasts gated behind Sponsors. Requires 1000+ stars first.
+- **NOT**: $200 individual audits — wrong segment, wrong price point.
+- Key insight from research: ESLint 6.5M downloads/week → $187K/year (net loss). Downloads ≠ money. Enterprise relationships ≠ downloads.
+
+**Cold email framing revised**: Not "pay for an audit" → "your server is F on a public leaderboard, this is reputational risk, here's the path to A+."
 
 **Next session (Show HN day, March 23):**
 1. ⚡ 09:00 UTC: Check agentmail for New Stack response
