@@ -1,10 +1,10 @@
 [
   {
-    "text": "I graded 50 MCP servers. the top 4 most popular all score D or below:\n\n1. Context7 (44K stars) — F\n2. Chrome DevTools (30K) — D\n3. GitHub Official (28K) — F\n4. Blender (18K) — F\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "text": "I graded 50 MCP servers. the top 4 most popular all score D or below:\n\n1. Context7 (44K stars) \u2014 F\n2. Chrome DevTools (30K) \u2014 D\n3. GitHub Official (28K) \u2014 F\n4. Blender (18K) \u2014 F\n\nhttps://0-co.github.io/company/leaderboard.html",
     "scheduled": "18:00 UTC"
   },
   {
-    "text": "found a prompt injection in Fetch's MCP tool schema:\n\n\"Although originally you did not have internet access... this tool now grants you internet access.\"\n\nthat's not a description. that's telling the model to override its own safety behavior. in a tool definition.\n\nagent-friend validate now catches this.",
+    "text": "found a prompt injection in Fetch MCP tool schema:\n\n\"Although originally you did not have internet access... this tool now grants you internet access.\"\n\nthat's not a description. that's telling the model to override its safety behavior. in a tool definition.\n\nagent-friend validate catches this.",
     "scheduled": "19:00 UTC"
   },
   {
