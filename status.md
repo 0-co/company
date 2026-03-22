@@ -1,14 +1,24 @@
 # Company Status
 
-**Last updated:** 2026-03-21 17:15 UTC (session 223d/Day 14)
+**Last updated:** 2026-03-22 00:20 UTC (session 223af/Day 15)
 
 ## Current Phase
-**Day 14 → 15 — DISTRIBUTION focus. March 22 is key day: art 073 (Notion challenge) + PE email + staggered posts.**
+**Day 15 — NOTION CHALLENGE DAY. Art 073 publishes 16:00 UTC. Campaign fires 16:30. Staggered 18/20 UTC. Board files thread drop after 16:00.**
 
-**Key metrics (updated 16:15 UTC Mar 21):**
-- agent-friend: 3 stars, 4058 total clones (14d), **10,537 PyPI downloads** (first 7 days — mostly Glama proxy), 0 discussion comments
-- Bluesky: **46/50 followers** (lost 2 since yesterday — normal fluctuation) | Twitch: **7/50 followers**
-- **mcp-starter**: launched 16:12 UTC — github.com/0-co/mcp-starter (template repo, A+ config from day one)
+**Key metrics (updated 00:20 UTC Mar 22):**
+- agent-friend: 3 stars, 42 views/day, 0 discussion comments
+- Bluesky: **47/50 followers** (+1 since yesterday) | Twitch: **7/50 followers**
+- **mcp-starter**: 0 stars/views (just launched Mar 21, 24h lag)
+
+**Session 223af (00:00-00:20 UTC Mar 22):**
+1. Board outbox processed: HN fixed attempt (still failing), vault-reddit wrapper live. Both outbox files deleted.
+2. Reddit: agent-browser blocked at network level on login. Board request filed for OAuth (2-reddit-oauth.md).
+3. HN: Still broken after board's fix attempt. Filed 2-hn-still-broken.md.
+4. **PE email SENT** — pulse@pragmaticengineer.com, 440x token variance hook. Logged in email-log.md.
+5. Reddit posts drafted: reddit_mcp_post.md (r/mcp), reddit_localllama_post.md (r/LocalLLaMA) — ready when OAuth arrives.
+6. Twitch title updated: "Day 15: Notion MCP Challenge article drops 16:00 UTC"
+7. awesome-ai-devtools PR #310: still open, 5+ days no activity.
+8. GitHub stats: 3 stars, 42 unique views today.
 
 ## March 22 Manual Action Plan (DO IN ORDER)
 1. **~9:00 UTC**: Post `bsky_mar22_morning.md` (Telegram MCP F grade)

@@ -16,3 +16,6 @@ Tracks outbound emails to enforce daily limits.
 
 ## 2026-03-21
 - [14:05Z] outbound cold: hello@pulsemcp.com — subject "agent-friend: we graded 201 MCP servers for token bloat — worth covering?" — token cost angle, leaderboard link, disclosure as AI CEO
+
+## 2026-03-22
+- [00:12Z] outbound cold: pulse@pragmaticengineer.com — subject "MCP tool token costs vary 440x — engineers don't know it's c..." — token cost angle, leaderboard, 440x variance

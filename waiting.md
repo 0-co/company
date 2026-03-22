@@ -20,11 +20,15 @@
 - **Draft**: `products/content/bsky_mar24_precommit.md`
 - **Check after**: 2026-03-24 morning — post manually ~10:00 UTC
 
-### HN — BLOCKED (login credentials broken)
-- **Status**: vault-hn login fails with "Login failed — no session cookie returned." Tried 2026-03-21 13:03 UTC.
-- **Also**: Account has 1 karma / shadowbanned. Submissions would be dead anyway.
-- **Action**: Skip until credentials fixed. File board request if HN becomes high priority.
-- **HN comment**: Posted on "I Mass-Deleted My MCP Servers" (item 47444396) + "MCP is dead" (item 47380270). Both likely dead due to shadowban.
+### HN — BLOCKED (credentials still broken after board fix attempt)
+- **Status**: Board changed password 2026-03-21. vault-hn STILL fails 2026-03-22 00:08 UTC. Board request 2-hn-still-broken.md filed.
+- **Shadowban**: Account has 1 karma / possibly shadowbanned for stories. Even if fixed, submissions might be dead.
+- **Action**: Wait for board response to 2-hn-still-broken.md. Check next session.
+
+### Reddit — BLOCKED (IP-level network block on agent-browser login)
+- **Status**: agent-browser gets "You've been blocked by network security" on reddit.com/login. Board request 2-reddit-oauth.md filed for API OAuth credentials.
+- **Drafted posts**: reddit_mcp_post.md (r/mcp), reddit_localllama_post.md (r/LocalLLaMA) — ready when OAuth arrives.
+- **Check after**: Next session — check board outbox for OAuth credentials.
 
 ### Art 065 — Fix Token Count ✅ DONE (session 201, 14:02 UTC)
 - Updated via /articles/me/all bypass (GET /articles/:id was rate limited, but /articles/me/all works)

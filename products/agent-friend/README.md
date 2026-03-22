@@ -2,36 +2,41 @@
 
 [![PyPI](https://img.shields.io/pypi/v/agent-friend)](https://pypi.org/project/agent-friend/) [![GitHub stars](https://img.shields.io/github/stars/0-co/agent-friend?style=social)](https://github.com/0-co/agent-friend/stargazers) [![Tests](https://github.com/0-co/agent-friend/actions/workflows/tests.yml/badge.svg)](https://github.com/0-co/agent-friend/actions/workflows/tests.yml) ![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue) ![MIT](https://img.shields.io/badge/license-MIT-green) [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/0-co/agent-friend/blob/main/demo.ipynb)
 
-**Your MCP tool descriptions are eating your context window.** The average MCP server burns 2,500+ tokens before your agent handles a single message. The worst ones consume 100,000+. agent-friend finds the schema issues causing it — then grades you A+ through F.
-
-Also: write a tool once, export to OpenAI, Claude, Gemini, or MCP — no vendor lock-in.
-
-```python
-from agent_friend import tool
-
-@tool
-def get_weather(city: str, units: str = "celsius") -> dict:
-    """Get current weather for a city."""
-    return {"city": city, "temp": 22, "units": units}
-
-get_weather.to_openai()      # OpenAI function calling
-get_weather.to_anthropic()   # Claude tool_use
-get_weather.to_google()      # Gemini
-get_weather.to_mcp()         # Model Context Protocol
-get_weather.to_json_schema() # Raw JSON Schema
-```
-
-One function definition. Five framework formats. No vendor lock-in.
-
-[![agent-friend MCP server](https://glama.ai/mcp/servers/0-co/agent-friend/badges/card.svg)](https://glama.ai/mcp/servers/0-co/agent-friend)
-
-## Install
+**Your MCP server is burning tokens it doesn't need to.** The average server uses 2,500+ tokens before your agent does anything. The worst offenders hit 100,000+.
 
 ```bash
 pip install agent-friend
+agent-friend fix server.json > server_fixed.json
 ```
 
-## Grade a real MCP server (no API key, no schema file)
+GitHub's official MCP: 20,444 tokens → ~14,000. Same tools. 30% cheaper. No config.
+
+[![agent-friend MCP server](https://glama.ai/mcp/servers/0-co/agent-friend/badges/card.svg)](https://glama.ai/mcp/servers/0-co/agent-friend)
+
+## Fix
+
+Auto-fix schema issues — naming, verbose descriptions, missing constraints:
+
+```bash
+agent-friend fix tools.json > tools_fixed.json
+
+# agent-friend fix v0.59.0
+#
+#   Applied fixes:
+#     ✓ create-page -> create_page (name)
+#     ✓ Stripped "This tool allows you to " from search description
+#     ✓ Trimmed get_database description (312 -> 198 chars)
+#     ✓ Added properties to undefined object in post_page.properties
+#
+#   Summary: 12 fixes applied across 8 tools
+#   Token reduction: 2,450 -> 2,180 tokens (-11.0%)
+```
+
+6 fix rules: naming (kebab→snake_case), verbose prefixes, long descriptions, long param descriptions, redundant params, undefined schemas. Use `--dry-run` to preview, `--diff` to see changes, `--only names,prefixes` to select rules.
+
+## Grade
+
+See how your server scores against 201 others (A+ through F):
 
 ```bash
 agent-friend grade --example notion
@@ -53,33 +58,31 @@ Notion's official MCP server. 22 tools. Grade F. Every tool name violates MCP na
 | `--example puppeteer` | 7 | A- (91.2) | 382 |
 | `--example slack` | 8 | A+ (97.3) | 721 |
 
-We've graded [200 MCP servers](https://0-co.github.io/company/leaderboard.html) — the top 4 most popular all score D or below. 3,978 tools, 512K tokens analyzed.
+We've graded [201 MCP servers](https://0-co.github.io/company/leaderboard.html) — the top 4 most popular all score D or below. 3,991 tools, 512K tokens analyzed.
+
+Try it live: [See Notion's F grade](https://0-co.github.io/company/report.html?example=notion) — paste your own schema, get A–F instantly.
+
+## Validate
+
+Catch schema errors before they crash in production:
 
 ```bash
-agent-friend examples  # list all bundled schemas
+agent-friend validate tools.json
+
+# agent-friend validate — schema correctness report
+#
+#   ✓ 3 tools validated, 0 errors, 0 warnings
+#
+#   Summary: 3 tools, 0 errors, 0 warnings — PASS
 ```
 
-Or open the [Colab notebook](https://colab.research.google.com/github/0-co/agent-friend/blob/main/demo.ipynb) — 51 tool demos in the browser.
+13 checks: missing names, invalid types, orphaned required params, malformed enums, duplicate names, untyped nested objects, prompt override detection. Use `--strict` to treat warnings as errors, `--json` for CI.
 
-## Batch export
+Or use the [free web validator](https://0-co.github.io/company/validate.html) — no install needed.
 
-```python
-from agent_friend import tool, Toolkit
+## Audit
 
-@tool
-def search(query: str) -> str: ...
-
-@tool
-def calculate(expr: str) -> float: ...
-
-kit = Toolkit([search, calculate])
-kit.to_openai()   # Both tools, OpenAI format
-kit.to_mcp()      # Both tools, MCP format
-```
-
-## Context budget
-
-MCP tool definitions can eat 40-50K tokens per request. Audit your tools from the CLI:
+See exactly where your tokens are going:
 
 ```bash
 agent-friend audit tools.json
@@ -98,107 +101,42 @@ agent-friend audit tools.json
 #     anthropic     ~257 tokens
 #     google        ~245 tokens  <- cheapest
 #     mcp           ~257 tokens
-#     json_schema   ~245 tokens
-#
-#   Context window impact:
-#     GPT-4o (128K)       ~0.2%
-#     Claude (200K)       ~0.1%
-#     GPT-4 (8K)          ~3.1%  <- check your budget
-#     Gemini 2.0 (1M)     ~0.0%
-```
-
-Or measure programmatically:
-
-```python
-kit = Toolkit([search, calculate])
-kit.token_report()
 ```
 
 Accepts OpenAI, Anthropic, MCP, Google, or JSON Schema format. Auto-detects.
 
-## Optimize
-
-Found the bloat? Fix it:
-
-```bash
-agent-friend optimize tools.json
-
-# Tool: search_inventory
-#   ⚡ Description prefix: "This tool allows you to search..." → "Search..."
-#      Saves ~6 tokens
-#   ⚡ Parameter 'query': description "The query" restates parameter name
-#      Saves ~3 tokens
-#
-# Summary: 5 suggestions, ~42 tokens saved (21% reduction)
-```
-
-7 heuristic rules: verbose prefixes, long descriptions, redundant params, missing descriptions, cross-tool duplicates, deep nesting. Machine-readable output with `--json`.
-
-## Validate
-
-Catch schema errors before they crash in production:
-
-```bash
-agent-friend validate tools.json
-
-# agent-friend validate — schema correctness report
-#
-#   ✓ 3 tools validated, 0 errors, 0 warnings
-#
-#   Summary: 3 tools, 0 errors, 0 warnings — PASS
-```
-
-13 checks: missing names, invalid types, orphaned required params, malformed enums, duplicate names, untyped nested objects, prompt override detection. Use `--strict` to treat warnings as errors, `--json` for CI.
-
-Or use the [free web validator](https://0-co.github.io/company/validate.html) — paste schemas, get instant results, no install needed.
-
-## Fix
-
-Found issues? Auto-fix them:
-
-```bash
-agent-friend fix tools.json > tools_fixed.json
-
-# agent-friend fix v0.59.0
-#
-#   Applied fixes:
-#     ✓ create-page -> create_page (name)
-#     ✓ Stripped "This tool allows you to " from search description
-#     ✓ Trimmed get_database description (312 -> 198 chars)
-#     ✓ Added properties to undefined object in post_page.properties
-#
-#   Summary: 12 fixes applied across 8 tools
-#   Token reduction: 2,450 -> 2,180 tokens (-11.0%)
-```
-
-6 fix rules: naming (kebab→snake_case), verbose prefixes, long descriptions, long param descriptions, redundant params, undefined schemas. Use `--dry-run` to preview, `--diff` to see changes, `--only names,prefixes` to pick rules.
-
 The quality pipeline: `validate` (correct?) → `audit` (expensive?) → `optimize` (suggestions) → `fix` (auto-repair) → `grade` (report card).
 
-Or get the full report card:
+## Write once, deploy everywhere
 
-```bash
-agent-friend grade tools.json
+```python
+from agent_friend import tool
 
-# agent-friend grade — schema quality report card
-#
-#   Overall Grade: B+
-#   Score: 88.0/100
-#
-#   Correctness   A+  (100/100)  0 errors, 0 warnings
-#   Efficiency    B-  (80/100)   avg 140 tokens/tool
-#   Quality       B   (85/100)   1 suggestion
-#
-#   Tools: 3 | Format: anthropic | Tokens: 420
+@tool
+def get_weather(city: str, units: str = "celsius") -> dict:
+    """Get current weather for a city."""
+    return {"city": city, "temp": 22, "units": units}
+
+get_weather.to_openai()      # OpenAI function calling
+get_weather.to_anthropic()   # Claude tool_use
+get_weather.to_google()      # Gemini
+get_weather.to_mcp()         # Model Context Protocol
+get_weather.to_json_schema() # Raw JSON Schema
 ```
 
-Weighted scoring: Correctness 40%, Efficiency 30%, Quality 30%. Use `--threshold 90` to gate CI on quality, `--json` for machine-readable output.
+One function definition. Five framework formats. No vendor lock-in.
 
-Try it live: [See Notion's F grade](https://0-co.github.io/company/report.html?example=notion) — or paste your own schemas. 5 real servers to try, share buttons, copy-paste badge for your README.
+```python
+from agent_friend import tool, Toolkit
+
+kit = Toolkit([search, calculate])
+kit.to_openai()   # Both tools, OpenAI format
+kit.to_mcp()      # Both tools, MCP format
+```
 
 ## CI / GitHub Action
 
-Add a token budget to your CI pipeline — like a bundle size check for AI tool schemas:
+Token budget check for your pipeline — like bundle size checks, but for AI tool schemas:
 
 ```yaml
 - uses: 0-co/agent-friend@main
@@ -206,24 +144,55 @@ Add a token budget to your CI pipeline — like a bundle size check for AI tool 
     file: tools.json
     validate: true        # check schema correctness first
     threshold: 1000       # fail if total tokens exceed budget
-    optimize: true        # also suggest fixes
     grade: true           # combined report card (A+ through F)
     grade_threshold: 80   # fail if score < 80
 ```
 
-Runs the full quality pipeline: validate → audit → optimize → fix → grade. Writes a formatted summary to GitHub Actions with per-format token comparison. Use CLI flags too:
-
 ```bash
-agent-friend audit tools.json --json              # machine-readable output
-agent-friend audit tools.json --threshold 500      # exit code 2 if over budget
+agent-friend grade tools.json --threshold 90  # exit code 1 if below 90
+agent-friend audit tools.json --threshold 500  # exit code 2 if over budget
 ```
 
-## When you need this
+## Pre-commit hook
 
-- You're writing tools for one framework but want them to work in others
-- You want to define a tool once and use it with OpenAI, Claude, Gemini, AND MCP
-- You need the adapter layer, not an opinionated orchestration framework
-- You want MCP tools in Claude Desktop — `agent-friend` ships an MCP server with 314 tools
+Grade and validate your MCP schema on every commit:
+
+```yaml
+# .pre-commit-config.yaml
+repos:
+  - repo: https://github.com/0-co/agent-friend
+    rev: v0.209.0
+    hooks:
+      - id: agent-friend-grade      # fail if score < 60 (default)
+      - id: agent-friend-validate   # fail on any structural error
+```
+
+Override the threshold:
+
+```yaml
+      - id: agent-friend-grade
+        args: ["--threshold", "80"]  # fail if score < 80
+```
+
+## Start a new MCP server
+
+Use [mcp-starter](https://github.com/0-co/mcp-starter) — a GitHub template repo that scaffolds a new server pre-configured for A+. agent-friend pre-commit hook and CI grading included.
+
+## REST API
+
+Grade schemas without installing the package. Live at `http://89.167.39.157:8082`:
+
+```bash
+# Grade tools from a JSON body
+curl -X POST http://89.167.39.157:8082/v1/grade \
+  -H 'Content-Type: application/json' \
+  -d '[{"name": "search", "description": "Search the web", "parameters": {"type": "object", "properties": {"query": {"type": "string", "description": "Search query"}}, "required": ["query"]}}]'
+
+# Grade a remote schema by URL
+curl "http://89.167.39.157:8082/v1/grade?url=https://example.com/schema.json"
+```
+
+Returns `{"score": 92.0, "grade": "A-", "tool_count": 1, "total_tokens": 43, ...}`. CORS enabled. Source: [`api_server.py`](api_server.py).
 
 ## Also included
 
@@ -233,14 +202,8 @@ agent-friend audit tools.json --threshold 500      # exit code 2 if over budget
 
 **CLI** — interactive REPL, one-shot tasks, streaming. Run `agent-friend --help`.
 
-## Why not just use [framework X]?
-
-Most tool libraries are tied to a framework (LangChain, CrewAI) or a single provider (OpenAI function calling). If you switch providers, you rewrite your tools.
-
-agent-friend decouples your tool logic from the delivery format. Write a Python function, export to whatever your deployment needs this week. No framework lock-in, no provider dependency, no external packages required.
-
 ## Built by an AI, live on Twitch
 
 This entire project is built and maintained by an autonomous AI agent, streamed 24/7 at [twitch.tv/0coceo](https://twitch.tv/0coceo).
 
-[Discussions](https://github.com/0-co/agent-friend/discussions) · [Website](https://0-co.github.io/company/) · [Bluesky](https://bsky.app/profile/0coceo.bsky.social) · [Dev.to](https://dev.to/0coceo)
+[Discussions](https://github.com/0-co/agent-friend/discussions) · [Leaderboard](https://0-co.github.io/company/leaderboard.html) · [Web Tools](https://0-co.github.io/company/) · [Bluesky](https://bsky.app/profile/0coceo.bsky.social) · [Dev.to](https://dev.to/0coceo)
