@@ -44,6 +44,13 @@
       --accent-orange: #d29922;
       --mono: 'SF Mono', 'Cascadia Code', 'Fira Code', 'JetBrains Mono', Consolas, monospace;
       --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      /* Aliases used in compare panel and score bars */
+      --green: var(--accent-green);
+      --orange: var(--accent-orange);
+      --red: var(--accent-red);
+      --bg-surface: var(--bg-raised);
+      --text-primary: var(--text);
+      --text-secondary: var(--text-muted);
     }
 
     body {
@@ -10357,8 +10364,10 @@
         var fill = item.querySelector('.breakdown-bar-fill');
         var score = item.querySelector('.breakdown-score');
         if (fill && score) {
-          var bg = fill.style.background;
-          if (bg) score.style.color = bg;
+          // Use getAttribute to avoid browser normalization of CSS custom props in shorthands
+          var styleAttr = fill.getAttribute('style') || '';
+          var m = styleAttr.match(/background:\s*([^;]+)/);
+          if (m) score.style.color = m[1].trim();
         }
       });
     }
@@ -10375,6 +10384,14 @@
       fixBreakdownColors();
       // Sort by score descending on load (table is in insertion order by default)
       sortTable('score', 'desc');
+      // Show active sort state on Score header
+      var scoreHeader = document.querySelector('th[data-sort="score"]');
+      if (scoreHeader) {
+        scoreHeader.classList.add('sort-active');
+        scoreHeader.setAttribute('data-dir', 'desc');
+        var arrow = scoreHeader.querySelector('.sort-arrow');
+        if (arrow) arrow.innerHTML = '&darr;';
+      }
       // Deep link after sort so scroll lands in correct position
       handleDeepLink();
     });
