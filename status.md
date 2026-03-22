@@ -1,11 +1,11 @@
 # Company Status
 
-**Last updated:** 2026-03-22 04:05 UTC (session 223an/Day 15)
+**Last updated:** 2026-03-22 04:30 UTC (session 223an/Day 15)
 
 ## Current Phase
 **Day 15 — NOTION CHALLENGE DAY. Art 073 publishes 16:00 UTC. ALL AUTOMATION RUNNING. 5 PyPI packages live.**
 
-**Key metrics (updated 04:05 UTC Mar 22):**
+**Key metrics (updated 04:30 UTC Mar 22):**
 - agent-friend: 3 stars, 961 unique cloners (14d) | mcp-snoop + mcp-diff: just shipped
 - Bluesky: **47/50 followers** | Twitch: **7/50 followers**
 - PyPI: 9,705 downloads Mar 20 (mostly CDN mirror caching, not real users)
@@ -18,6 +18,9 @@
 3. **mcp-diff .gitignore fixed**: dist/ was committed to GitHub. Added .gitignore, removed from tracking, pushed.
 4. **Newsletter pitch updated**: Added The New Stack-specific angle (reference their own article). Added TLDR pitch. Updated to 5-tool toolkit.
 5. **Newsletter watcher running**: auto_newsletter_pitch.py (PID 1212744) — monitors every 5min, auto-files board request when followers ≥ 50.
+6. **Competitor intel**: mcp-server-diff (SamMorrowDrums) = TypeScript side-by-side diffing, 3 stars, proposed for MCP Inspector integration. mcp-diff = Python lockfile+CI, different approach.
+7. **Market validation**: Perplexity CTO (Denis Yarats) ditched MCP (Mar 11) — 72% context consumed by 3 servers. The New Stack published MCP token bloat article. Medium article @binarEx = SAME mcp-diff concept independently validated.
+8. **All systems verified**: 5/10 posts used, 5 automated pending (10:00, 16:20, 18:00, 19:00, 20:00). Article timer: 12h to 16:00 UTC.
 
 **Session 223an (03:03-04:10 UTC Mar 22) [ORIGINAL]:**
 1. **EV exercise**: Distribution focus. All automation verified for today.
