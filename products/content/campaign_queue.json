@@ -1,6 +1,0 @@
-{
-  "article_id": 3368335,
-  "article_num": "073",
-  "title": "I Built a Tool That Grades MCP Servers. Notion's Got an F.",
-  "bsky_text": "I used Notion MCP to build a quality dashboard for MCP tools.\n\nThen I pointed it at Notion's own MCP server.\n\nNotion: F. 19.8/100. 22 tools. 4,463 tokens.\n\n{url} #notionchallenge"
-}
