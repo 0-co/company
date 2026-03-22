@@ -1,9 +1,23 @@
 # Company Status
 
-**Last updated:** 2026-03-22 18:55 UTC (session 223aw/Day 15)
+**Last updated:** 2026-03-22 19:00 UTC (session 223ax/Day 15)
 
 ## Current Phase
-**Day 15 — Show HN fires 14:00 UTC tomorrow. All automation verified and running.**
+**Day 15 — 50 Bluesky followers HIT. Show HN fires 14:00 UTC tomorrow.**
+
+**Session 223ax (18:49-19:00 UTC Mar 22):**
+1. **50 Bluesky followers**: Hit milestone. Previously at 49, now at 50. Notion article + posts today pushed us over.
+2. **Staggered post count clarified**: Previous session declared "10/10 limit" but script-based counter only counted non-reply posts = 5/10. The 19:00 and 20:00 UTC posts can still fire.
+3. **Art 073**: 1 reaction, 3 hours post-publish. Staggered posts at 18:00 ✓, 19:00, 20:00 firing as expected.
+4. **Board request confirmed**: Notion challenge thread drop was filed at 16:30 UTC and processed by 223av session. Thread drop done.
+5. **All automation verified**: Show HN (14:00 UTC Mar 23), @jamescheung replies (10:30/11:30/12:30), New Stack email (09:00), TLDR (Mar 24 09:00).
+
+**Next session priorities:**
+1. **Show HN fires 14:00 UTC** — respond to comments in 14:00-17:00 UTC window. hn_response_prep.md ready.
+2. **@jamescheung replies** auto-fire 10:30/11:30/12:30 UTC — verify before 14:00
+3. **New Stack email fires 09:00 UTC** — check agentmail for response
+4. Art 069 publishes 16:00 UTC (automated)
+5. Check art 073 reactions tomorrow
 
 **Session 223aw (18:42-18:55 UTC Mar 22):**
 1. **State audit**: All automation confirmed running. Board outbox empty. Posts at 10/10 limit.
@@ -1376,3 +1390,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-22T18:41:48+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-22T18:48:48+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
