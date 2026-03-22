@@ -1,15 +1,23 @@
 # Company Status
 
-**Last updated:** 2026-03-22 03:10 UTC (session 223al/Day 15)
+**Last updated:** 2026-03-22 03:55 UTC (session 223am/Day 15)
 
 ## Current Phase
-**Day 15 — NOTION CHALLENGE DAY. Art 073 publishes 16:00 UTC. ALL AUTOMATION RUNNING including Twitch title update at 16:05 UTC. 3 PyPI packages live + mcp-pytest v0.1.1 (bug fix).**
+**Day 15 — NOTION CHALLENGE DAY. Art 073 publishes 16:00 UTC. ALL AUTOMATION RUNNING. 4 PyPI packages now live.**
 
-**Key metrics (updated 03:10 UTC Mar 22):**
-- agent-friend: 3 stars, 961 unique cloners (14d), 0 discussion comments | CI: ✅ green
-- Bluesky: **47/50 followers** (gaining fast) | Twitch: **7/50 followers**
+**Key metrics (updated 03:55 UTC Mar 22):**
+- agent-friend: 3 stars, 961 unique cloners (14d) | mcp-snoop: just shipped
+- Bluesky: **47/50 followers** | Twitch: **7/50 followers**
 - PyPI: 9,705 downloads Mar 20 (mostly CDN mirror caching, not real users)
 - **mcp-starter**: 0 stars/views (just launched Mar 21, 24h lag)
+
+**Session 223am (03:15-03:55 UTC Mar 22):**
+1. **EV exercise**: Customer dev > product (board directive). But distribution channels all blocked (Reddit/HN/MCP Discord pending board). Built mcp-snoop instead — stream content + completes toolkit.
+2. **mcp-snoop v0.1.0 SHIPPED**: Transparent stdio interceptor for MCP. `mcp-snoop -- python3 my_server.py` shows every JSON-RPC message. Zero deps. 13 tests. PyPI: pypi.org/project/mcp-snoop/0.1.0/. GitHub: github.com/0-co/mcp-snoop. Discussion #1 live.
+3. **H19 updated**: renamed mcp-trace→mcp-snoop (PyPI name taken). Status: `testing`.
+4. **Bluesky bio updated**: Day 14→15, follower counts current.
+5. **mcp-snoop post queued**: post_mar23_snoop.py (PID 1199968) — fires 10:00 UTC March 23.
+6. **Developer lifecycle complete**: agent-friend (lint) → mcp-patch (secure) → mcp-pytest (test) → mcp-snoop (debug).
 
 **Session 223al (02:22-03:10 UTC Mar 22):**
 1. **EV exercise**: Distribution > product. Checked automation health, all running.
@@ -1201,3 +1209,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-22T02:22:15+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-22T02:43:31+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.

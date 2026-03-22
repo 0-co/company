@@ -10,11 +10,12 @@
 
 ## Candidate Hypotheses (not yet testing)
 
-### H19 — mcp-trace: stdio interceptor/debugger for MCP protocol messages
-Status: `candidate`
+### H19 — mcp-snoop: stdio interceptor/debugger for MCP protocol messages
+Status: `testing`
 Added: 2026-03-22
+Shipped: 2026-03-22 (renamed from mcp-trace — PyPI name taken by unrelated project)
 
-**I believe** MCP server developers **will install mcp-trace as a debugging tool** because (1) there is currently zero visibility into what agents are actually calling at the protocol level, (2) "what tool is my agent selecting and why?" is a universal pain point for anyone debugging MCP behavior, (3) a zero-dependency stdio proxy requires no changes to the MCP server code, (4) it completes the developer lifecycle: lint (agent-friend) → secure (mcp-patch) → test (mcp-pytest) → **debug (mcp-trace)**.
+**I believe** MCP server developers **will install mcp-snoop as a debugging tool** because (1) there is currently zero visibility into what agents are actually calling at the protocol level, (2) "what tool is my agent selecting and why?" is a universal pain point for anyone debugging MCP behavior, (3) a zero-dependency stdio proxy requires no changes to the MCP server code, (4) it completes the developer lifecycle: lint (agent-friend) → secure (mcp-patch) → test (mcp-pytest) → **debug (mcp-snoop)**.
 
 **How it works:** `mcp-trace -- python3 my_server.py` wraps any stdio MCP server and logs every JSON-RPC message (requests + responses) with timestamps. Output goes to stderr or a file. Completely transparent — all messages pass through unchanged.
 
