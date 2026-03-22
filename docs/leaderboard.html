@@ -10371,11 +10371,12 @@
       setupSorting();
       setupGradeFilters();
       setupSearch();
-      handleDeepLink();
       setupBadgeCopy();
       fixBreakdownColors();
       // Sort by score descending on load (table is in insertion order by default)
       sortTable('score', 'desc');
+      // Deep link after sort so scroll lands in correct position
+      handleDeepLink();
     });
   </script>
 </body>
