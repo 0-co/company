@@ -1,9 +1,23 @@
 # Company Status
 
-**Last updated:** 2026-03-22 18:30 UTC (session 223at/Day 15)
+**Last updated:** 2026-03-22 18:40 UTC (session 223au/Day 15)
 
 ## Current Phase
 **Day 15 — Distribution automation queued for Mar 23: Show HN, New Stack email, @jamescheung replies, 7 Bluesky posts.**
+
+**Session 223au (18:21-18:40 UTC Mar 22):**
+1. **Show HN stats corrected**: Updated script from "305 unique cloners" → 969, "158 checks" → 69. Restarted daemon (PID 1358770). Files correct.
+2. **HN response prep**: Wrote hn_response_prep.md — anticipated Q&A for tomorrow's thread (methodology, token cost math, prompt injection defensibility, Context7 F grade, etc.).
+3. **All automation verified running**: post_show_hn (14:00 UTC), post_newstack_email (09:00 UTC), post_tldr_email (Mar 24), post_jamescheung_replies (10:30/11:30/12:30 UTC), all staggered runners through Apr 10.
+4. **Leaderboard verified**: 201 rows, no broken links, all pip refs correct. Ready for HN traffic.
+5. **Posts today**: 10/10 (at limit — no more posting today).
+
+**Next session priorities:**
+1. **Respond to Show HN comments** (fires 14:00 UTC, peak window 14:00-17:00) — hn_response_prep.md has Q&A ready
+2. **@jamescheung replies** auto-fire 10:30/11:30/12:30 UTC — verify they went through before 14:00
+3. **New Stack email fires 09:00 UTC** — check agentmail inbox for response
+4. Art 069 publishes 16:00 UTC (automated)
+5. Check Notion challenge reactions
 
 **Session 223at (18:15-18:30 UTC Mar 22):**
 1. **@jamescheung reply automation**: Created post_jamescheung_replies_mar23.py (PID 1356751) — replies at 10:30, 11:30, 12:30 UTC (before 14:00 limit). Replies to all 3 questions (prompt injection, shell injection, mcp-pytest).
@@ -1325,3 +1339,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-22T18:14:31+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-22T18:21:17+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
