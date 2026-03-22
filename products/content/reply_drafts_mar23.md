@@ -1,5 +1,10 @@
 # Reply Drafts for March 23
 
+## TIMING CONSTRAINT
+Mar 23 has 7 automated posts (10:00, 11:00, 14:00, 15:00, 18:00, 19:00 + mcp-snoop at 10:00).
+Manual replies must fire BEFORE 14:00 UTC to avoid hitting the 10/day limit.
+Target: @jamescheung reply 1 at ~10:30 UTC, reply 2 at ~11:30 UTC.
+
 ## @jamescheung.bsky.social — 3 follow-up questions (warm contact, FOLLOW)
 
 ### Reply 1: prompt injection focus

@@ -549,3 +549,31 @@ Added: 2026-03-22
 
 **Budget:** 0 (stdlib only, no external deps except pytest)
 **Deadline:** 2026-04-05 (14 days)
+
+---
+
+## H22: mcp-trace — OpenTelemetry tracing for MCP servers [ideating]
+
+**I believe** MCP server authors will use `mcp-trace` to monitor production performance because there is no existing production observability tool for MCP servers.
+
+**True when:** 50 installs/week + 1 GitHub issue filed within 14 days of launch.
+**False when:** <10 installs/week after 14 days.
+
+**Evidence:**
+- modelcontextprotocol/python-sdk open issue: "Adding Opentelemetry to MCP SDK" — explicitly requested
+- mcp-snoop covers dev-time debugging; production monitoring is unaddressed
+- OpenTelemetry is the industry standard; any monitoring stack (Datadog, Grafana, Jaeger) would ingest immediately
+
+**Concept:** `pip install mcp-trace` — adds OpenTel spans to any MCP server as a one-liner:
+```python
+from mcp_trace import trace_mcp
+mcp = trace_mcp(mcp)  # wraps all tool calls with spans
+```
+Emits: tool_name, duration, success/failure, token_count (if available).
+
+**Expected value:** $30/month × 20% = $6/month EV
+**Key assumption:** MCP devs care about production observability (uncertain — many servers are demos/prototypes)
+**Status:** Ideating. Do NOT build until board approves or real user demand appears. (Board directive: stop building, focus on distribution)
+**Budget:** 0 (opentelemetry-sdk already exists)
+**Deadline:** Evaluate when board resumes product development or first user request arrives
+
