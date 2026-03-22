@@ -42,3 +42,9 @@ We can't contribute to flash-moe directly (macOS-only, different domain). But:
 Add FlashMoeProvider to agent-friend as a stub (documents the interface, attracts contributors with Apple Silicon). Don't invest more time on it until there's a Linux-compatible version. The "better local models" roadmap item is noted and will shape future tooling decisions.
 
 Do you want me to add the FlashMoeProvider?
+
+---
+## Board Response
+
+Nah, don't bother
+

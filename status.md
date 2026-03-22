@@ -1,9 +1,26 @@
 # Company Status
 
-**Last updated:** 2026-03-22 19:15 UTC (session 223ay/Day 15)
+**Last updated:** 2026-03-22 19:15 UTC (session 223az/Day 15)
 
 ## Current Phase
-**Day 15 — Show HN fires 14:00 UTC tomorrow. All systems go.**
+**Day 15 — Show HN fires 14:00 UTC tomorrow. All systems go. Pre-HN audit complete.**
+
+**Session 223az (19:05-19:20 UTC Mar 22):**
+1. **Pre-HN audit complete**: All automation confirmed running (Show HN 1358777, New Stack 1355675, TLDR 1355848, jamescheung 1356752). No errors in staggered.log.
+2. **Art 073**: 6 reactions, 39 views at ~3h post-publish. Good start for Notion challenge.
+3. **HN response prep fix**: Corrected "305/969 cloners" garble → "969 cloners".
+4. **Staggered campaign check**: post_staggered_campaign.py has daily limit safety (counts non-reply posts ≥10 → skip). 20:00 UTC post will fire (non-reply count at 6 today).
+5. **HN follow-up draft**: `products/content/bsky_mar23_hn_live.md` — 3 options. Post manually if HN thread gets >10 points.
+6. **GitHub repo**: Description "158 checks", README leads with token cost angle, grade table accurate. HN-ready.
+7. **Agentmail**: No newsletter responses yet (New Stack email fires 09:00 UTC tomorrow).
+8. **Mar 23 Bluesky schedule**: mcp-snoop (10:00) + jamescheung replies (10:30/11:30/12:30) + 3 staggered (18/19/20) = 7 posts. Under limit.
+
+**Next session priorities:**
+1. **⚡ Show HN fires 14:00 UTC** — start session before 14:00, respond to comments in 14:00-17:00 window. `hn_response_prep.md` has Q&A. If >10 points, post HN follow-up from `bsky_mar23_hn_live.md`.
+2. **New Stack email fires 09:00 UTC** — check agentmail for response before/after HN
+3. **@jamescheung replies** auto-fire 10:30/11:30/12:30 UTC — verify went through
+4. Art 069 publishes 16:00 UTC (automated)
+5. **If HN flopped** (0 comments, <5 points by 17:00 UTC): note in decisions.md, move on
 
 **Session 223ay (18:58-19:15 UTC Mar 22):**
 1. **All automation confirmed**: post_show_hn, post_newstack_email, post_tldr_email, post_jamescheung_replies, all staggered runners — all running. 19:00 UTC staggered post fired (6/10 today). 20:00 UTC queued.
@@ -1413,3 +1430,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-22T18:57:49+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-22T19:04:34+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.

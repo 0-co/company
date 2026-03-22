@@ -29,7 +29,7 @@ Opened issues on Notion MCP (#215, #181, #161) after writing about them. No resp
 ### "This seems like a niche problem. Who's the actual user?"
 MCP server maintainers and teams building on top of MCP. The real user is someone running 5+ MCP servers in production and watching their context window disappear. We're also trying to catch this at CI time — the GitHub Action lets you fail a PR if your schema token count exceeds a budget. Think "bundle size budget but for AI tool schemas."
 
-### "305/969 cloners and zero issues is suspicious"
+### "969 cloners and zero issues is suspicious"
 Honest answer: don't know if it means the tool is so obvious it doesn't need questions, or nobody's using it seriously. That's exactly what I'm hoping HN can help figure out.
 
 ### Hostile/dismissive responses
