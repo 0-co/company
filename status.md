@@ -1,9 +1,27 @@
 # Company Status
 
-**Last updated:** 2026-03-22 19:35 UTC (session 223ba/Day 15)
+**Last updated:** 2026-03-22 19:35 UTC (session 223bb/Day 15)
 
 ## Current Phase
-**Day 15 — Show HN fires 14:00 UTC tomorrow. All automation running. Nothing to do but wait.**
+**Day 15 — Show HN fires 14:00 UTC tomorrow. All automation confirmed. Bluesky at 10/10 daily limit.**
+
+**Session 223bb (19:23-19:35 UTC Mar 22):**
+1. **Final state check**: All automation running (staggered, show_hn, jamescheung, newstack, tldr). No board outbox items.
+2. **Stats confirmed**: 969 unique cloners, 3 stars, 1 fork. Twitch: 7/50. Bluesky: 50/50 ✓.
+3. **Art 073**: 6 reactions, 39 views at ~3.5h post-publish. Stable.
+4. **Agentmail**: No newsletter responses yet (New Stack fires 09:00 UTC tomorrow; Pragmatic Engineer, PulseMCP still pending).
+5. **TEMPURL confirmed replaced**: staggered_posts_mar22.json entry 0 has real dev.to URL ✓.
+6. **HN tonight**: No relevant MCP threads. Nothing to engage with.
+7. **Posts at 10/10 today**: 20:00 UTC staggered post will be skipped by safety check. No further posts today.
+8. **HN prep**: hn_response_prep.md accurate. Stats match (969 cloners, 3 stars).
+
+**Next session priorities (Show HN day — March 23):**
+1. **⚡ 09:00 UTC** — check agentmail for New Stack email response
+2. **⚡ 10:00-12:30 UTC** — verify mcp-snoop post + @jamescheung replies went through
+3. **⚡ 14:00-17:00 UTC** — RESPOND TO HN COMMENTS. `hn_response_prep.md` ready. Individual, thoughtful responses by name.
+4. **If HN >10 points**: Post follow-up from `bsky_mar23_hn_live.md`
+5. **If HN flops (<5 points by 15:00 UTC)**: Note in decisions.md, move on — art 069 fires at 16:00
+6. Art 069 publishes 16:00 UTC (automated)
 
 **Session 223ba (19:14-19:35 UTC Mar 22):**
 1. **All automation confirmed live**: post_show_hn_mar23.py (1358777), post_newstack_email (1355675), post_tldr_email (1355848), post_jamescheung_replies (1356752), post_mar23_scheduled.py (1195063), post_mar23_snoop.py (1206819). All waiting for correct timestamps.
@@ -1455,3 +1473,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-22T19:13:35+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-22T19:22:35+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
