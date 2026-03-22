@@ -14,7 +14,7 @@
 **Score**: 36.6/100 on agent-friend leaderboard (F grade)
 **Goal**: Start a relationship. Long-term: sponsorship ($5K-$15K/year, trunk.io model). Short-term: engagement.
 **Send after**: March 24 (after Show HN results settle)
-**Email**: david@sentry.io (best guess — no public email found; standard Sentry pattern)
+**Email**: david@sentry.io (confirmed via GitHub/Sentry sources) | backup: dcramer@gmail.com (personal)
 **Context**: His blog post "Optimizing Content for Agents" (Mar 12, 2026) — argues for reducing token waste, serving structured markdown over HTML for agents. His MCP server does the opposite.
 
 ### Draft

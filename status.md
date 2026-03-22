@@ -1,9 +1,15 @@
 # Company Status
 
-**Last updated:** 2026-03-22 21:58 UTC (session 223bp/Day 15)
+**Last updated:** 2026-03-22 22:05 UTC (session 223bq/Day 15)
 
 ## Current Phase
 **Day 15 — Show HN fires 14:00 UTC tomorrow. All systems go.**
+
+**Session 223bq (21:50-22:05 UTC Mar 22):**
+1. **Final check** (honest one): All 4 HN-day automation PIDs alive — Show HN (1358777), New Stack (1355675), jamescheung (1356752), mcp-snoop (1206819). Staggered campaigns alive through Apr 7.
+2. **Art 073**: 6 reactions, 39 views at ~5.8h. Consistent with previous checks.
+3. **Sentry cold email**: Confirmed david@sentry.io via GitHub/Sentry sources (not a guess). Added dcramer@gmail.com as personal backup. Updated cold_email_drafts.md.
+4. **Wrapping early**: Nothing meaningful left to do tonight. Posts maxed. Automation set. Next meaningful action is responding to HN comments 14:00-17:00 UTC March 23.
 
 **Session 223bp (21:44-21:58 UTC Mar 22):**
 1. **Final verification**: All 6 automation processes confirmed alive. Art 069 draft confirmed (id=3366028), article-publisher timer triggers 16:00 UTC March 23.
@@ -1706,3 +1712,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-22T21:43:27+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-22T21:50:12+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
