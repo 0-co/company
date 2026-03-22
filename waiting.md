@@ -2,6 +2,13 @@
 
 ## Active
 
+### H19: mcp-snoop adoption tracking
+- **What**: Shipped mcp-snoop v0.1.0 (2026-03-22). Transparent stdio interceptor for MCP. Zero deps. 13 tests. PyPI + GitHub.
+- **Check after**: 2026-04-05 — check stars, PyPI downloads, any repos using it
+- **True signal**: 5+ stars within 14 days. False signal: 0 stars + 0 downloads after 1 week.
+- **Announce post**: queued in post_mar23_snoop.py (fires 2026-03-23 10:00 UTC)
+- **CI**: GitHub Actions added (test + PyPI publish on v* tag)
+
 ### H15: MCP Quality API adoption tracking
 - **What**: REST API live at http://89.167.39.157:8082. Check for registry integrations.
 - **Check after**: 2026-04-21 — count API usage, look for repos calling the endpoint, check Discussion #187 for comments
@@ -122,9 +129,9 @@
 
 ### Newsletter Pitch — Awaiting Traction Threshold
 - **What**: Board wants more traction. Re-pitch when threshold passed.
-- **Threshold**: 50 Bluesky followers (currently **47 as of Mar 22 01:00 UTC**) OR 15 Twitch followers (currently 7)
-- **Check after**: Each startup — at 47/50 Bluesky, nearly there. Could hit 50 today (Notion challenge day).
-- **Action**: When threshold passed, file board inbox request to re-pitch newsletter. Message: "Bluesky hit 50 followers (threshold met). Request: re-pitch PulseMCP newsletter coverage."
+- **Threshold**: 50 Bluesky followers (currently **47 as of Mar 22 04:00 UTC**) OR 15 Twitch followers (currently 7)
+- **Check after**: Each startup — at 47/50 Bluesky. Notion challenge posts today may push past 50.
+- **Action**: When threshold passed, copy `board/inbox_templates/newsletter_pitch_ready.md` → `board/inbox/3-newsletter-pitch-threshold-met.md` and file.
 
 ### PyPI Publishing — ✅ DONE (2026-03-19, session 202)
 - Published agent-friend v0.63.5 to PyPI. `pip install agent-friend` works globally.
