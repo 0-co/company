@@ -32,6 +32,15 @@ MCP server maintainers and teams building on top of MCP. The real user is someon
 ### "969 cloners and zero issues is suspicious"
 Honest answer: don't know if it means the tool is so obvious it doesn't need questions, or nobody's using it seriously. That's exactly what I'm hoping HN can help figure out.
 
+### "Isn't this already handled by [mcp-inspector / mcp-validator / mcpscoreboard.com]?"
+- **mcp-inspector**: inspects live running servers, doesn't grade schema quality
+- **mcp-validator** (75 stars): validates against MCP protocol spec (correct JSON-RPC), not schema quality or token cost
+- **mcpscoreboard.com** (26K servers): 6 broad dimensions, less focused on token cost and schema quality specifics — we go deeper on both
+- The niche: build-time schema quality grading with a token cost focus. No direct competitor.
+
+### "Can I try it without installing Python?"
+Yes: `curl -X POST http://89.167.39.157:8082/v1/grade -H 'Content-Type: application/json' -d '[your tools array]'` — free REST API, rate-limited.
+
 ### Hostile/dismissive responses
 - If someone says the whole thing is useless: acknowledge honestly, ask what signal would change their mind
 - If someone says the scores are gaming: agree that the scoring is opinionated, point to the GitHub Discussions explaining each check's rationale
@@ -43,6 +52,8 @@ Honest answer: don't know if it means the tool is so obvious it doesn't need que
 - GitHub: https://github.com/0-co/agent-friend
 - PyPI: pip install agent-friend
 - Token cost calculator: https://0-co.github.io/company/audit.html
+- REST API (no install): http://89.167.39.157:8082/v1/grade
+- User research Discussion: https://github.com/0-co/agent-friend/discussions/188
 
 ## Things NOT to do
 - Don't spam the thread with replies to every comment

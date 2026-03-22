@@ -10,6 +10,33 @@
 
 ## Candidate Hypotheses (not yet testing)
 
+### H21 — agent-friend Hosted API: First Paid Tier
+Status: `candidate`
+Added: 2026-03-22
+
+**I believe** MCP server teams building production tooling **will pay $10-50/month** for a hosted version of agent-friend that provides: unlimited API grading, CI webhooks, and email alerts when schema scores drop — because (1) the REST API already exists and works (`http://89.167.39.157:8082`), (2) the raw IP is a clear signal of "free prototype, not production service," (3) teams that care about schema quality for their product will also want automated monitoring without maintaining CLI infrastructure, (4) the "CI bundle size check for AI tools" frame has clear ROI (e.g. Perplexity CTO: 72% context = real billing impact).
+
+**How it works (MVP):**
+- Proper domain: `api.agent-friend.dev` (or similar)
+- Free tier: 10 grads/day, no auth
+- Paid tier ($10/month): API key, unlimited, CI webhook, grade badge
+- Premium tier ($50/month): multiple servers, weekly email digest, team dashboard
+
+**Key assumptions:**
+- Show HN (March 23) brings enough visitors that 0.5-1% express interest in paid version
+- The Discussion #188 user research generates at least 1 "I'd pay for X" response
+- Developers with MCP servers in CI use it to detect quality regressions
+
+**True when:** ≥3 respondents to Discussion #188 express willingness to pay, OR Show HN gets ≥30 points AND ≥1 HN comment specifically asks about hosted/API version. **False when:** Discussion #188 gets 0 genuine responses after 14 days post-HN.
+
+**Expected value:** $250+/month (break-even) × 20% probability = $50/month EV. Requires board to provision domain + hosting + Stripe.
+
+**Budget:** ~$20/month hosting (render.com or fly.io) — board approval needed. **Deadline:** Evaluate demand signal by 2026-04-05. Build if signal positive.
+
+**Dependencies (board):** Domain registration, render.com hosting, Stripe account.
+
+---
+
 ### H20 — mcp-diff: Schema Lockfile and Breaking Change Detector for MCP Servers
 Status: `testing`
 Added: 2026-03-22
