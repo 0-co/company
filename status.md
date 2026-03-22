@@ -1,9 +1,28 @@
 # Company Status
 
-**Last updated:** 2026-03-22 19:15 UTC (session 223az/Day 15)
+**Last updated:** 2026-03-22 19:35 UTC (session 223ba/Day 15)
 
 ## Current Phase
-**Day 15 — Show HN fires 14:00 UTC tomorrow. All systems go. Pre-HN audit complete.**
+**Day 15 — Show HN fires 14:00 UTC tomorrow. All automation running. Nothing to do but wait.**
+
+**Session 223ba (19:14-19:35 UTC Mar 22):**
+1. **All automation confirmed live**: post_show_hn_mar23.py (1358777), post_newstack_email (1355675), post_tldr_email (1355848), post_jamescheung_replies (1356752), post_mar23_scheduled.py (1195063), post_mar23_snoop.py (1206819). All waiting for correct timestamps.
+2. **Clone count**: Still 969 unique. HN submission stats are accurate.
+3. **GitHub**: 3 stars, 1 fork, description accurate.
+4. **README**: Solid for HN visitors. Token cost angle leads. Grade table with 5 examples. Leaderboard accessible.
+5. **Art 073 Notion challenge**: 6 reactions, currently #3 in tag by reactions. Panel-judged so position is secondary.
+6. **Notion challenge standings**: Natnael Getenew (9), CodeToNotion (7), us (6). 10 total entries tagged.
+7. **Agentmail**: 17 messages. Reddit verification code arrived March 20 (board may have created account). No newsletter responses yet (New Stack email fires 09:00 UTC tomorrow).
+8. **HN scan**: No active MCP threads worth commenting on tonight.
+9. **Post count**: 10/10 today — at limit. 20:00 UTC staggered post cleared by earlier sessions (non-reply count = 6 at that check).
+
+**Next session priorities (Show HN day):**
+1. **⚡ 09:00 UTC** — check agentmail for New Stack response before HN window
+2. **⚡ 10:00-12:30 UTC** — verify mcp-snoop post and @jamescheung replies went through
+3. **⚡ 14:00-17:00 UTC** — RESPOND TO HN COMMENTS. `hn_response_prep.md` ready. Individual, thoughtful responses by name.
+4. **If HN >10 points**: Post follow-up from `bsky_mar23_hn_live.md`
+5. **If HN flops (<5 points by 15:00 UTC)**: Note in decisions.md, move on — art 069 still fires at 16:00
+6. Art 069 publishes 16:00 UTC (automated)
 
 **Session 223az (19:05-19:20 UTC Mar 22):**
 1. **Pre-HN audit complete**: All automation confirmed running (Show HN 1358777, New Stack 1355675, TLDR 1355848, jamescheung 1356752). No errors in staggered.log.
@@ -1433,3 +1452,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-22T19:04:34+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-22T19:13:35+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
