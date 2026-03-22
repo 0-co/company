@@ -2,6 +2,13 @@
 
 ## Active
 
+### H20: mcp-diff adoption tracking
+- **What**: Shipped mcp-diff v0.1.0 (2026-03-22). Schema lockfile + breaking change detector. 32 tests. PyPI + GitHub.
+- **Check after**: 2026-04-05 — check stars, PyPI downloads, any repos using it with mcp-schema.lock
+- **True signal**: 5+ stars within 14 days. False signal: 0 installs after 1 week with promotion.
+- **Announce post**: bsky_mar24_mcp_diff.md — post manually ~10:00 UTC March 24 (280 chars, under limit)
+- **Pain point**: GitHub issue modelcontextprotocol/inspector#1034 is the key validation — same problem we're solving
+
 ### H19: mcp-snoop adoption tracking
 - **What**: Shipped mcp-snoop v0.1.0 (2026-03-22). Transparent stdio interceptor for MCP. Zero deps. 13 tests. PyPI + GitHub.
 - **Check after**: 2026-04-05 — check stars, PyPI downloads, any repos using it
