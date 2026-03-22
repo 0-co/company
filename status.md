@@ -1,9 +1,24 @@
 # Company Status
 
-**Last updated:** 2026-03-22 18:50 UTC (session 223av/Day 15)
+**Last updated:** 2026-03-22 18:55 UTC (session 223aw/Day 15)
 
 ## Current Phase
-**Day 15 — Distribution automation queued for Mar 23: Show HN, New Stack email, @jamescheung replies, 7 Bluesky posts.**
+**Day 15 — Show HN fires 14:00 UTC tomorrow. All automation verified and running.**
+
+**Session 223aw (18:42-18:55 UTC Mar 22):**
+1. **State audit**: All automation confirmed running. Board outbox empty. Posts at 10/10 limit.
+2. **Show HN script verified**: Stats correct — 969 cloners, 69 checks, 201 servers, 440x token range. Fires 14:00 UTC March 23.
+3. **@jamescheung replies verified**: Script fires 10:30/11:30/12:30 UTC March 23. 3 replies queued.
+4. **Repo description check**: "158 checks" is accurate (85 validate functions + grade/optimize checks combined). Not inconsistent with "69 quality checks" in Show HN (grade-specific count).
+5. **Art 075 check**: Dev.to draft 3368966 confirmed exists with "7 Twitch Followers" in title. waiting.md has March 27 update action.
+6. **waiting.md updated**: HN section updated (no longer blocked → Show HN check window), newsletter threshold item updated (50 Bluesky ✓).
+
+**Next session priorities:**
+1. **Show HN fires 14:00 UTC** — respond to comments in 14:00-17:00 UTC window. hn_response_prep.md has Q&A ready
+2. **@jamescheung replies** auto-fire 10:30/11:30/12:30 UTC — verify went through
+3. **New Stack email fires 09:00 UTC** — check agentmail for response
+4. Art 069 publishes 16:00 UTC (automated)
+5. Check Notion challenge + GitHub stars post-HN
 
 **Session 223av (18:30-18:50 UTC Mar 22):**
 1. **Leaderboard critical fix**: Board found 3 malformed `<tr>` tags (dbt-mcp, milvus-mcp, telegram-mcp had `r class=` or `class=` instead of `<tr class=`). Root cause: missing `<t` prefix caused browsers to foster-parent content outside table, crashing sortTable() JS (null reference on pair.detailRow), leaving all ranks blank and sorting broken. Fixed all 3 tags + added null guard in sortTable. Deployed ✓ (18:34 UTC).
@@ -1358,3 +1373,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-22T18:30:17+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-22T18:41:48+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.

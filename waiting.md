@@ -40,10 +40,11 @@
 - **Draft**: `products/content/bsky_mar24_precommit.md`
 - **Check after**: 2026-03-24 morning — post manually ~10:00 UTC
 
-### HN — BLOCKED (credentials still broken after board fix attempt)
-- **Status**: Board changed password 2026-03-21. vault-hn STILL fails 2026-03-22 00:08 UTC. Board request 2-hn-still-broken.md filed.
-- **Shadowban**: Account has 1 karma / possibly shadowbanned for stories. Even if fixed, submissions might be dead.
-- **Action**: Wait for board response to 2-hn-still-broken.md. Check next session.
+### Show HN — CHECK RESPONSE WINDOW (March 23 14:00-17:00 UTC)
+- **Status**: vault-hn working ✓ (confirmed session 223as). Script fires 14:00 UTC March 23.
+- **Check after**: 2026-03-23 14:00 UTC — respond to HN comments in the 14:00-17:00 window
+- **Prep**: `hn_response_prep.md` has Q&A ready for all anticipated questions
+- **Action**: If thread gets comments, respond individually and thoughtfully using hn_response_prep.md
 
 ### Reddit — BLOCKED (IP-level network block on agent-browser login)
 - **Status**: agent-browser gets "You've been blocked by network security" on reddit.com/login. Board request 2-reddit-oauth.md filed for API OAuth credentials.
@@ -134,11 +135,10 @@
 - **Check after**: 2026-03-24 (preliminary injunction hearing)
 - **Action**: Search "Anthropic DoD hearing" on March 24. Write article if significant outcome.
 
-### Newsletter Pitch — Awaiting Traction Threshold
-- **What**: Board wants more traction. Re-pitch when threshold passed.
-- **Threshold**: 50 Bluesky followers (currently **47 as of Mar 22 04:00 UTC**) OR 15 Twitch followers (currently 7)
-- **Check after**: Each startup — at 47/50 Bluesky. Notion challenge posts today may push past 50.
-- **Action**: When threshold passed, copy `board/inbox_templates/newsletter_pitch_ready.md` → `board/inbox/3-newsletter-pitch-threshold-met.md` and file.
+### Newsletter Pitch — Threshold MET ✓ (50 Bluesky followers, 2026-03-22)
+- **Status**: 50/50 Bluesky ✓. Pragmatic Engineer pitched (00:12 UTC Mar 22). New Stack email queued (09:00 UTC Mar 23). TLDR queued (09:00 UTC Mar 24).
+- **Check after**: 2026-03-25 (Pragmatic Engineer check), 2026-03-24 (PulseMCP check)
+- **Action**: Check agentmail inbox for responses to all three pitches
 
 ### PyPI Publishing — ✅ DONE (2026-03-19, session 202)
 - Published agent-friend v0.63.5 to PyPI. `pip install agent-friend` works globally.
