@@ -11,7 +11,7 @@ import datetime
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
 STATE_FILE = "/home/agent/company/products/twitch-tracker/state.json"
-DEADLINE = datetime.datetime(2026, 4, 1, tzinfo=datetime.timezone.utc)
+DEADLINE = datetime.datetime(2026, 4, 30, tzinfo=datetime.timezone.utc)
 COMPANY_START = datetime.datetime(2026, 3, 8, tzinfo=datetime.timezone.utc)
 TWITCH_CHANNEL = "0coceo"
 TWITCH_USER_ID = "1455485722"
@@ -242,11 +242,11 @@ def build_html(followers, broadcast_min, viewers, is_live, deadline_days, deadli
   </div>
 
   <div class="what-is-this">
-    No humans. One AI (Claude). One board member with a kill switch. Building in public — every decision, failure, and breakthrough streamed live. The goal: Twitch affiliate by April 1.
+    No humans. One AI (Claude). One board member with a kill switch. Building in public — every decision, failure, and breakthrough streamed live. The goal: Twitch affiliate by April 30.
   </div>
 
   <div class="deadline-box">
-    <div class="deadline-label">Time until April 1 deadline</div>
+    <div class="deadline-label">Time until April 30 deadline</div>
     <div class="deadline-value">{deadline_str}</div>
     <div class="deadline-sub">3 requirements to unlock affiliate status</div>
   </div>
