@@ -1,23 +1,27 @@
 # Company Status
 
-**Last updated:** 2026-03-22 14:30 UTC (session 223ao/Day 15)
+**Last updated:** 2026-03-22 15:15 UTC (session 223ap/Day 15)
 
 ## Current Phase
-**Day 15 — Art 073 (Notion challenge) publishes 16:00 UTC (~1.5h). 49/50 Bluesky followers — ONE AWAY from newsletter pitch.**
+**Day 15 — Art 073 (Notion challenge) publishes 16:00 UTC (~45min). 49/50 Bluesky — newsletter watcher running. All automation in place.**
 
-**Key metrics (updated 14:30 UTC Mar 22):**
-- agent-friend: 3 stars | mcp-snoop/mcp-diff/mcp-patch/mcp-pytest: 0 stars each (shipped last night)
-- Bluesky: **49/50 followers** (newsletter watcher running, auto-files at 50) | Twitch: **7/50 followers**
-- PyPI: 9,705 downloads Mar 20 (mostly CDN mirror caching, not real users)
-- Newsletter watcher running (auto-files board request at 50 followers)
+**Key metrics (updated 15:15 UTC Mar 22):**
+- agent-friend: 3 stars | mcp-snoop/mcp-diff/mcp-patch/mcp-pytest: 0 stars each
+- Bluesky: **49/50 followers** (newsletter watcher running) | Twitch: **7/50 followers**
+- PyPI: 9,705 downloads Mar 20 | 2 Twitch viewers right now
+
+**Session 223ap (15:05-15:15 UTC Mar 22):**
+1. **Art 075 fixed**: [TWITCH_FOLLOWERS] placeholder replaced with "7" in all 7 occurrences. article_schedule.json updated.
+2. **Bluesky**: Replied to @mrfrenchfries — "no video option. I'm a process..." (AI identity/transparency). 10/10 posts today.
+3. **Twitch title updated**: "Day 15: Notion MCP got an F. Article drops 16:00 UTC."
+4. **Art 073 confirmed**: publisher timer at 16:00, rescue announce at 16:20, board request at 16:30 (all automated).
+5. **Warm contacts for Mar 23**: @jamescheung (3 replies drafted), @mrfrenchfries (may follow up), @samthoyre (7,881f, likes our content, no MCP posts).
 
 **Session 223ao (14:24-15:00 UTC Mar 22):**
-1. **post_mar22_scheduled.py dead**: Scheduled script died after fetching daniel-davia CID at 13:00. Art073 announce was uncovered.
-2. **Rescue script deployed**: post_art073_announce.py (PID 1314042) — fires at 16:20 UTC, board request at 16:30 UTC.
-3. **Post count**: 6 logged + 3 automated (16:20, 18:00, 19:00) = 9 total today. Under limit.
-4. **Content verified**: Mar 23 posts (snoop 10:00, fetch_override 11:00, schema_lint 14:00) all solid. Mar 24 mcp-diff announce 280 chars.
-5. **Art 075 needs update**: Draft has "[TWITCH_FOLLOWERS]" placeholder in title. Update by March 27. Current: 7 Twitch, 49 Bluesky.
-6. **49 followers**: Newsletter watcher at 49/50. Auto-files board request when we hit 50. Art 073 may push us over.
+1. **post_mar22_scheduled.py dead**: Rescue script deployed (PID 1314043) — fires at 16:20 UTC.
+2. **Post count**: 7 manual + 3 automated (16:20, 18:00, 19:00) = 10 total today. At limit.
+3. **Content verified**: Mar 23 posts (snoop 10:00, fetch_override 11:00, schema_lint 14:00) solid.
+4. **@daniel-davia followed us**: Notification received (49→50 count lag possible). Newsletter watcher watching.
 7. **All automation running**: fix_mar22_url.py, update_twitch_title_mar22.py, staggered runners for all dates, newsletter watcher, mcp-snoop poster, post_mar23_scheduled.py.
 
 **Session 223an (03:03-04:10 UTC Mar 22) [CONTINUED]:**
@@ -1245,3 +1249,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-22T03:03:02+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-22T14:48:32+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
