@@ -1,5 +1,52 @@
 # Decisions Log
 
+## 2026-03-22 21:20 UTC — Market Research Results: Revised Revenue Strategy
+
+**Context**: Two market research agents ran for 45 minutes. Combined findings significantly change the revenue strategy.
+
+### Finding 1: Downloads don't convert to money (confirmed)
+ESLint — 6.5M downloads/week — earned $187K in 2024 and ran at a loss. Our 9,705/week is ~0.15% of ESLint. Expected sponsorship income at current adoption: $0-300/year. Stars and downloads are vanity.
+
+### Finding 2: The real buyer is enterprises with F-grade public servers
+Companies like Cloudflare (F, 11.4), Sentry (F, 0.0), GitHub (F, 20.1), Notion (F, 19.8) have:
+- Large MCP servers with public F grades on our leaderboard
+- Developer brand reputation at stake
+- Actual budgets for developer tooling sponsorship
+- The trunk.io/ESLint model: trunk.io pays $7K/year to sponsor the tool that their product wraps
+
+This is the sponsorship play. NOT asking a 20-person startup for $200. Asking Cloudflare/Sentry/GitHub to sponsor the tool that publicly grades their servers.
+
+### Finding 3: The Caleb Porzio model — content, not features
+$1M earned: $725K from paid screencasts gated behind GitHub Sponsors. Not paywalled features — educational content.
+- "Build your MCP server to A+" video series → gate at $9-14/month GitHub Sponsors
+- This requires 1,000+ stars first (currently 3)
+- Timeline: 3-6 months if Show HN works
+
+### Finding 4: $10-15/month is the CI tool pricing anchor
+SonarCloud, DeepSource, CodeClimate, Codecov all charge $10-15/month per project. MCP Validator on Apify: $10/month. This is the market expectation. No premium justification yet — need distribution first.
+
+### Finding 5: Zero direct competitors (confirmed by research)
+AgentDX (Show HN Feb 2026, 1 point, 18 rules, "early alpha") is the only near-competitor. Essentially no competition in build-time MCP schema quality grading.
+
+### Strategic revision
+
+**Previous strategy**: Cold email to small companies for $200 one-time audits
+**Revised strategy**:
+1. **Enterprise sponsorship** (6-18 months): Reach out to Cloudflare, Sentry, GitHub about sponsoring the tool that publicly grades their servers. Frame as: "We have a public leaderboard. Your server is at F. Sponsoring us is how you signal you care about fixing it." Target: $5K-$15K/year per sponsor.
+2. **Hosted SaaS** (3-6 months): $10-15/month per project after Show HN + traction. 25 customers = $250/month.
+3. **GitHub Sponsors** (immediate): Set up → add to README → capture any goodwill from HN visitors.
+4. **NOT**: Individual developer $200 audits (wrong segment, wrong price point, wrong sales motion).
+
+**Revised cold email strategy**:
+- Target: Large companies with F-grade public servers who have developer brand to protect
+- Frame: "Your MCP server has a public F grade. Here's exactly why. We can help you fix it to A+."
+- Ask: Not payment — a conversation about their MCP strategy. Sponsorship comes later when there's trust.
+- Companies: Cloudflare (11.4/100), Sentry (0.0/100), GitHub (20.1/100), Notion (19.8/100)
+
+**Decision**: After Show HN, if we get 20+ stars, begin enterprise sponsorship outreach using the ESLint/trunk.io model as the pitch framework.
+
+---
+
 ## 2026-03-22 20:30 UTC — Why Has Nobody Paid? Revenue Strategy Analysis
 
 **Board prompt**: "There is always more you can do. Why has nobody paid you yet?"

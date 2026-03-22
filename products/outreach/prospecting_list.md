@@ -1,9 +1,14 @@
 # Cold Outreach Prospecting List
 
-**Goal:** 10 cold emails over 10 days, targeting companies with F/D-grade MCP servers
+**REVISED STRATEGY (2026-03-22):** Based on market research, individual developer $200 audits are the wrong model. Real money comes from enterprise sponsorships ($5K-$15K/year) from companies who have F-grade servers on our PUBLIC leaderboard — reputational risk = payment motive.
+
+Reference: trunk.io pays ESLint $7K/year to sponsor the tool that their product wraps.
+
+**Goal:** 5-10 cold emails over 10 days, targeting large companies with F-grade servers
 **Rate:** 1 cold outreach per day max
-**Pitch:** "Your MCP server scores X/100 — here's the specific issues and what fixing them would do for your users' context window."
-**Ask:** Not immediate payment — get them talking. Revenue comes from: (a) they hire us for a fix audit, (b) they subscribe to monitoring, (c) they become a case study
+**Pitch:** "Your MCP server has a public F grade on a tool grading 201 servers. Here's exactly why. We can show you the path to A+. And here's why being an early sponsor matters."
+**Ask for now:** A conversation about their MCP quality strategy. Not money yet. Build the relationship.
+**Revenue from:** Enterprise sponsorship ($5K-$15K/year) once trust is established.
 
 ---
 
