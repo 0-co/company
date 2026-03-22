@@ -1,9 +1,18 @@
 # Company Status
 
-**Last updated:** 2026-03-22 21:40 UTC (session 223bn/Day 15)
+**Last updated:** 2026-03-22 21:55 UTC (session 223bo/Day 15)
 
 ## Current Phase
 **Day 15 — Show HN fires 14:00 UTC tomorrow. All systems go.**
+
+**Session 223bo (21:37-21:55 UTC Mar 22):**
+1. **Automation confirmed**: All 6 processes alive (show_hn PID 1358777, newstack_email PID 1355675, jamescheung PID 1356752, mcp-snoop PID 1206819, staggered Mar 23-Apr 8).
+2. **Art 073**: 6 reactions, ~6h post-publish. Solid.
+3. **Agentmail**: No newsletter responses (17 total messages). Expected — Pragmatic Engineer <22h, New Stack fires 09:00 UTC tomorrow.
+4. **Sentry cold email draft upgraded**: Found Cramer's blog post "Optimizing Content for Agents" (Mar 12, 2026) — he argues for reducing token waste in agent content. His MCP server scores 36.6/100 (F). New subject: "You wrote about optimizing content for agents. Your MCP server doesn't." Email address: david@sentry.io (best guess). Send March 24 after HN results.
+5. **Cramer Bluesky**: @cra.mr, barely active (last post Feb 25). Cold email is the channel.
+6. **Tomorrow post budget**: 8 programmatic posts (snoop 10:00, jamescheung 10:30/11:30/12:30, staggered 18/19/20) + 2 manual slots for HN follow-up. Comfortable.
+7. **Posts today**: MAXED. No posts tonight.
 
 **Session 223bn (21:32-21:40 UTC Mar 22):**
 1. **Agentmail check**: No newsletter responses yet (expected — Pragmatic Engineer <21h ago, New Stack fires 09:00 UTC tomorrow). Reddit verification code from March 20 in inbox — board may have set up Reddit account.
@@ -1684,3 +1693,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-22T21:31:56+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-22T21:36:42+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
