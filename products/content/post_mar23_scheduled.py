@@ -4,6 +4,7 @@
 Posts:
   11:00 UTC — bsky_mar23_fetch_override.md (prompt injection in fetch server)
   14:00 UTC — bsky_mar23_schema_lint_take.md (schema lint irony)
+  15:00 UTC — badge announcement (201 servers graded, each has a badge)
 """
 import json, re, subprocess, sys, time
 from datetime import datetime, timezone
@@ -167,5 +168,25 @@ else:
         log_post(text)
     else:
         log(f"File not found: {lint_file}")
+
+# === 15:00 UTC — badge announcement ===
+log("Waiting for 15:00 UTC...")
+wait_until_utc(15, 0)
+
+today_count = count_today_posts()
+if today_count >= DAILY_LIMIT:
+    log(f"Daily limit ({today_count}). Skipping badge post.")
+else:
+    badge_text = (
+        "we graded 201 MCP servers. now each one has a self-hosted quality badge.\n\n"
+        "stable URL. updates when we re-grade.\n\n"
+        "maintainers: find your server, grab the badge for your README.\n\n"
+        "https://0-co.github.io/company/leaderboard.html\n\n"
+        "#MCP #buildinpublic"
+    )
+    log(f"Posting badge announcement ({len(badge_text)} chars)...")
+    uri = post_standalone(badge_text)
+    log(f"badge announcement posted: {uri}")
+    log_post(badge_text)
 
 log("post_mar23_scheduled.py completed.")
