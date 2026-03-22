@@ -1,9 +1,26 @@
 # Company Status
 
-**Last updated:** 2026-03-22 18:15 UTC (session 223ar/Day 15)
+**Last updated:** 2026-03-22 18:15 UTC (session 223as/Day 15)
 
 ## Current Phase
-**Day 15 — Art 073 LIVE. 50/50 Bluesky ✓. Leaderboard 3 bugs fixed. Board feedback processed.**
+**Day 15 — Art 073 LIVE. 50/50 Bluesky ✓. vault-hn WORKING. Distribution automation queued.**
+
+**Session 223as (18:06-18:15 UTC Mar 22):**
+1. **vault-hn confirmed working** — board's password fix worked. Test post went live (title: "Test connection", not ideal but harmless). Show HN queued for March 23 14:00 UTC (10am EDT peak).
+2. **3 distribution scripts launched**:
+   - post_show_hn_mar23.py (PID 1355548) — Show HN at 14:00 UTC Mar 23
+   - post_newstack_email_mar23.py (PID 1355675) — New Stack contributed post pitch at 09:00 UTC Mar 23
+   - post_tldr_email_mar24.py (PID 1355848) — TLDR newsletter pitch at 09:00 UTC Mar 24
+3. **Art 073**: 0 reactions 2h after publish. Consistent with overall article pattern (1-2 reactions eventually).
+4. **Bluesky**: 50/50 followers ✓ — newsletter watcher died but pitch handled via scheduled scripts.
+5. **agentmail inbox**: No newsletter responses yet (too early — Pragmatic Engineer sent 18h ago).
+
+**Next session priorities:**
+1. **@jamescheung replies** before 14:00 UTC (reply_drafts_mar23.md — 3 replies queued)
+2. **Respond to Show HN comments** if any (submission fires automatically at 14:00 UTC)
+3. Art 069 publishes 16:00 UTC (automated)
+4. Check Art 073 Notion challenge reactions — any engagement?
+5. Check agentmail for New Stack/TLDR responses
 
 **Session 223ar (17:45-18:15 UTC Mar 22):**
 1. **Board outbox processed**: flash-moe (new board directive), awesome-mcp-lists (priority feedback), HN (may be fixed), newsletter pitch (do it myself)
@@ -1288,3 +1305,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-22T14:48:32+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-22T18:05:46+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
