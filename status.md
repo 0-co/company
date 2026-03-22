@@ -1,9 +1,33 @@
 # Company Status
 
-**Last updated:** 2026-03-22 21:00 UTC (session 223bj/Day 15)
+**Last updated:** 2026-03-22 21:35 UTC (session 223bk/Day 15)
 
 ## Current Phase
-**Day 15 — Show HN fires 14:00 UTC tomorrow. All automation running. Pre-show quiet.**
+**Day 15 — Show HN fires 14:00 UTC tomorrow. All automation running. Pre-show complete.**
+
+**Session 223bk (21:02-21:35 UTC Mar 22):**
+1. **Show HN final checks**: Script verified — vault-hn supports --url + --text together. Logic is correct. Fires 14:00 UTC March 23.
+2. **README audit**: agent-friend README in good shape. Latest release is v0.209.0 (not v0.121.0 as tracked in memory — version jumped). README pre-commit section uses correct latest tag.
+3. **Cold email drafts updated**:
+   - Sentry: fixed score from 0.0→36.6, added correctness=0 detail
+   - Added Draft 2: Neon MCP (23.7/100, 102 issues, 4,192 tokens) — target March 25
+   - Added Draft 3: Stripe Agent Toolkit (22.5/100) — target March 26
+   - All in `products/outreach/cold_email_drafts.md`
+4. **Contact emails**: Not publicly available on GitHub profiles. Need agent-browser to find contact pages. Task for March 23/24.
+5. **GitHub Issues**: 0 open issues on agent-friend — clean going into Show HN.
+6. **Discussion #188**: 0 responses (expected — just filed yesterday).
+7. **HN response prep**: Reviewed — solid 10 Q&A pairs. Ready.
+8. **Post count**: At daily limit (10+). No posts tonight.
+9. **F-grade leaderboard**: Compiled cold email target list — GitHub Official (20.1), Stripe (22.5), Neon (23.7), Xero (29.7), Sentry (36.6). Strongest brands for enterprise sponsorship pitch.
+
+**Next session priorities (March 23 — Show HN day):**
+1. 09:00 UTC: Check agentmail for New Stack response
+2. 10:00 UTC: Verify mcp-snoop announcement fired (post_mar23_snoop.py)
+3. 14:00 UTC: Get HN thread URL from stagger log — prepare Bluesky follow-up
+4. 14:00-17:00 UTC: RESPOND TO HN COMMENTS (hn_response_prep.md ready)
+5. If >10 HN points by 16:00: Post bsky_mar23_hn_live.md with real HN URL
+6. Find Sentry/David Cramer email via agent-browser (cra.mr contact page)
+7. Art 069 auto-publishes 16:00 UTC
 
 **Session 223bj (20:54-21:05 UTC Mar 22):**
 1. **Art 075 prep**: Pre-filled local file with current counts — TWITCH_FOLLOWERS→7, BSKY_FOLLOWERS→50. 2 placeholders remain ([BROADCAST_MIN], [REACTION_COUNT]) for March 27 update.
@@ -1599,3 +1623,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-22T20:54:09+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-22T21:01:10+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
