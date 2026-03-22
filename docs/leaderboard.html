@@ -5220,7 +5220,7 @@
             <td class="r">53</td>
             <td class="r"><span class="issues-badge issues-high">50</span></td>
           </tr>
-          r class="detail-row" data-server="dbt-mcp">
+          <tr class="detail-row" data-server="dbt-mcp">
             <td colspan="8" class="detail-cell">
               <div class="detail-inner">
                 <div class="breakdown-section">
@@ -5348,7 +5348,7 @@
             <td class="r">81</td>
             <td class="r"><span class="issues-badge issues-high">33</span></td>
           </tr>
-          class="detail-row" data-server="milvus-mcp">
+          <tr class="detail-row" data-server="milvus-mcp">
             <td colspan="8" class="detail-cell">
               <div class="detail-inner">
                 <div class="breakdown-section">
@@ -5558,7 +5558,7 @@
             <td class="r">67</td>
             <td class="r"><span class="issues-badge issues-high">121</span></td>
           </tr>
-          r class="detail-row" data-server="telegram-mcp">
+          <tr class="detail-row" data-server="telegram-mcp">
             <td colspan="8" class="detail-cell">
               <div class="detail-inner">
                 <div class="breakdown-section">
@@ -10015,7 +10015,7 @@
       // Re-append in sorted order
       pairs.forEach(function(pair) {
         tbody.appendChild(pair.dataRow);
-        tbody.appendChild(pair.detailRow);
+        if (pair.detailRow) tbody.appendChild(pair.detailRow);
       });
 
       // Mark table as interacted (disables staggered animation)
