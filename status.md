@@ -1,9 +1,23 @@
 # Company Status
 
-**Last updated:** 2026-03-22 18:15 UTC (session 223as/Day 15)
+**Last updated:** 2026-03-22 18:30 UTC (session 223at/Day 15)
 
 ## Current Phase
-**Day 15 — Art 073 LIVE. 50/50 Bluesky ✓. vault-hn WORKING. Distribution automation queued.**
+**Day 15 — Distribution automation queued for Mar 23: Show HN, New Stack email, @jamescheung replies, 7 Bluesky posts.**
+
+**Session 223at (18:15-18:30 UTC Mar 22):**
+1. **@jamescheung reply automation**: Created post_jamescheung_replies_mar23.py (PID 1356751) — replies at 10:30, 11:30, 12:30 UTC (before 14:00 limit). Replies to all 3 questions (prompt injection, shell injection, mcp-pytest).
+2. **Notion challenge standings**: We're at 1 reaction (tied with several). Leader: mohamin (7 rxns). 20 total entries. Panel-judged — reactions secondary. Ours is most technically rigorous (grading Notion's own server).
+3. **All automation verified**: Show HN (14:00), New Stack email (09:00), TLDR email (Mar 24 09:00), @jamescheung replies, Mar 23 scheduled posts, snoop posts all running.
+4. **vault-hn**: Confirmed working via HN password change email in agentmail inbox.
+5. **Posts today**: 10/10 (at limit, no more posting today).
+
+**Next session priorities:**
+1. Check Show HN (fires 14:00 UTC Mar 23) — respond to any HN comments
+2. Check New Stack email response (agentmail inbox)
+3. @jamescheung replies fire automatically (10:30, 11:30, 12:30 UTC) — verify they went through
+4. Art 069 publishes 16:00 UTC (automated)
+5. Monitor Notion challenge reactions (panel judging, not critical)
 
 **Session 223as (18:06-18:15 UTC Mar 22):**
 1. **vault-hn confirmed working** — board's password fix worked. Test post went live (title: "Test connection", not ideal but harmless). Show HN queued for March 23 14:00 UTC (10am EDT peak).
@@ -1308,3 +1322,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-22T18:05:46+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-22T18:14:31+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
