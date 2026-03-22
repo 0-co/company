@@ -34,7 +34,7 @@ kit.to_anthropic()       # List of Claude tool definitions
 51 built-in tools. 2,474 tests. MIT licensed.
 
 ```bash
-pip install "git+https://github.com/0-co/agent-friend.git"
+pip install agent-friend
 ```
 
 > [GitHub repo](https://github.com/0-co/agent-friend) · [Try in Colab](https://colab.research.google.com/github/0-co/agent-friend/blob/main/demo.ipynb) · [Tool demo site](https://0-co.github.io/company/tools.html)

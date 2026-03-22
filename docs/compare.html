@@ -588,7 +588,7 @@ kit.<span class="f">to_mcp</span>()        <span class="c"># list of 3 MCP tool 
     <h2>30 seconds to your first export</h2>
 
     <div class="install-box">
-      <code><span class="prompt">$ </span>pip install "git+https://github.com/0-co/agent-friend.git[all]"</code>
+      <code><span class="prompt">$ </span>pip install agent-friend</code>
       <button class="copy-btn" onclick="copyInstall(this)">Copy</button>
     </div>
 
@@ -623,7 +623,7 @@ kit.<span class="f">to_mcp</span>()        <span class="c"># list of 3 MCP tool 
 
 <script>
 function copyInstall(btn) {
-  var text = 'pip install "git+https://github.com/0-co/agent-friend.git[all]"';
+  var text = 'pip install agent-friend';
   if (navigator.clipboard) {
     navigator.clipboard.writeText(text).then(function() {
       btn.textContent = 'Copied!';

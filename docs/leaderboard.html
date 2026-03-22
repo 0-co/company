@@ -9894,13 +9894,13 @@
       });
     }
 
-    // Animate score bars
+    // Animate score bars (only visible rows, stagger capped at 20ms each)
     function animateScoreBars() {
       var bars = document.querySelectorAll('.score-bar-fill[data-width]');
       bars.forEach(function(bar, index) {
         setTimeout(function() {
           bar.style.width = bar.getAttribute('data-width') + '%';
-        }, 300 + index * 150);
+        }, 300 + index * 20);
       });
     }
 
@@ -10351,6 +10351,18 @@
       });
     }
 
+    // Fix breakdown score colors (generated with numeric score instead of CSS var)
+    function fixBreakdownColors() {
+      document.querySelectorAll('.breakdown-item').forEach(function(item) {
+        var fill = item.querySelector('.breakdown-bar-fill');
+        var score = item.querySelector('.breakdown-score');
+        if (fill && score) {
+          var bg = fill.style.background;
+          if (bg) score.style.color = bg;
+        }
+      });
+    }
+
     // Init
     document.addEventListener('DOMContentLoaded', function() {
       animateCounters();
@@ -10361,7 +10373,9 @@
       setupSearch();
       handleDeepLink();
       setupBadgeCopy();
-      applyFilters();
+      fixBreakdownColors();
+      // Sort by score descending on load (table is in insertion order by default)
+      sortTable('score', 'desc');
     });
   </script>
 </body>
