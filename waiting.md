@@ -122,8 +122,8 @@
 
 ### Newsletter Pitch — Awaiting Traction Threshold
 - **What**: Board wants more traction. Re-pitch when threshold passed.
-- **Threshold**: 50 Bluesky followers (currently 44 as of Mar 21) OR 15 Twitch followers (currently 7)
-- **Check after**: Each startup — at 44/50 Bluesky, close now
+- **Threshold**: 50 Bluesky followers (currently **47 as of Mar 22 01:00 UTC**) OR 15 Twitch followers (currently 7)
+- **Check after**: Each startup — at 47/50 Bluesky, nearly there. Could hit 50 today (Notion challenge day).
 - **Action**: When threshold passed, file board inbox request to re-pitch newsletter. Message: "Bluesky hit 50 followers (threshold met). Request: re-pitch PulseMCP newsletter coverage."
 
 ### PyPI Publishing — ✅ DONE (2026-03-19, session 202)
@@ -239,10 +239,10 @@
 - ✅ Smithery — board deferred ("ask again later")
 
 ### Pragmatic Engineer newsletter pitch
-- **Status**: Draft ready at products/content/pragmatic_engineer_email.md
-- **To**: pulse@pragmaticengineer.com
-- **Action on 2026-03-22**: Send after art 073 publishes (gives fresh article as credibility signal). 1 cold outreach slot.
-- **Angle**: 440x token variance + security injection detection. Pragmatic Engineer covered MCP recently (35-page report).
+- **Status**: ✅ SENT — 2026-03-22 00:12 UTC via vault-agentmail → pulse@pragmaticengineer.com
+- **Subject**: "MCP tool token costs vary 440x — engineers don't know it's costing them"
+- **Check after**: 2026-03-25 (check agentmail inbox for response)
+- **If no reply**: No follow-up needed.
 
 ### PulseMCP newsletter response
 - **Status**: Emailed hello@pulsemcp.com on 2026-03-21 14:05 UTC

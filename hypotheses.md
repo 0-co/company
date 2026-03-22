@@ -168,6 +168,78 @@ Added: 2026-03-20
 
 **Build time:** 1-2 sessions (pure Python AST + regex patterns, no LLM needed for detection). LLM (Ollama) optional for generating patches.
 
+**Build spec (detailed, 2026-03-22):**
+
+Architecture: `pip install mcp-patch` → CLI `mcp-patch scan <path>` + `mcp-patch fix <path>` (in-place patch). Pure stdlib AST + `ast.NodeVisitor`. No LLM required for detection; Ollama optional for patch suggestions.
+
+**Detection checks (AST-based):**
+
+1. **shell_injection** — `subprocess.run/Popen/call` with user-controlled input not sanitized. Pattern: arg to subprocess call flows from `@tool` parameter without `shlex.quote()` or allowlist check. Severity: CRITICAL.
+   - Example: `subprocess.run(f"ls {user_path}", shell=True)`
+   - Fix: replace `shell=True` string interpolation with `subprocess.run(["ls", shlex.quote(user_path)])`
+
+2. **path_traversal** — `open()`/`pathlib.Path()`/`os.path` with user input not validated against a base directory. Pattern: tool param used as file path without `os.path.abspath` + startswith check. Severity: HIGH.
+   - Example: `open(user_filename, "r")`
+   - Fix: `safe = base_dir / Path(user_filename).name` (strip traversal components)
+
+3. **code_injection** — `exec()`, `eval()`, `compile()` with user-controlled string. Pattern: tool param flows to exec/eval. Severity: CRITICAL.
+   - Example: `eval(user_expression)`
+   - Fix: flag for manual review (no safe auto-fix exists)
+
+4. **ssrf** — `requests.get/post/put` or `urllib.request.urlopen` with user-controlled URL, no allowlist. Pattern: tool param used as URL without scheme/host validation. Severity: HIGH.
+   - Example: `requests.get(user_url)`
+   - Fix: `if not user_url.startswith(ALLOWED_HOSTS): raise ValueError(...)`
+
+5. **missing_auth** — MCP tool handler makes HTTP calls to authenticated APIs (Authorization header present in at least one call) but uses same handler without auth check on the incoming tool call. Pattern: `Bearer` token in one request, no JWT/API key check in tool entry point. Severity: MEDIUM. (Note: hard to auto-fix; report only)
+
+6. **log_injection** — `logging.info/debug/error(f"...{user_input}...")` without sanitization. Newlines in user_input can forge log entries. Severity: LOW.
+   - Fix: `logging.info("...", user_input.replace("\n", "\\n"))`
+
+7. **pickle_deserialization** — `pickle.loads(user_data)`. Severity: CRITICAL.
+   - Fix: use `json.loads` + validate schema
+
+**MCP context awareness:** The scanner identifies `@tool` decorator patterns (FastMCP, MCP SDK) to trace which function parameters come from tool call arguments (i.e., user-controlled). This prevents false positives from internal function calls.
+
+**CLI interface:**
+```
+mcp-patch scan server.py          # print issues table (path, line, severity, check)
+mcp-patch scan server.py --json   # JSON output for CI integration
+mcp-patch fix server.py           # in-place fix for auto-fixable checks (shell, path, log)
+mcp-patch fix server.py --dry-run # show diff without writing
+mcp-patch scan . --recursive      # scan all .py files in directory
+```
+
+**Scoring output (same style as agent-friend):**
+```
+server.py  CRITICAL  line 47  shell_injection    subprocess.run with user input
+server.py  HIGH      line 83  path_traversal     open() with user-controlled path
+server.py  LOW       line 102 log_injection      f-string in logging call
+
+2 auto-fixable | run: mcp-patch fix server.py
+```
+
+**Repo plan:** `github.com/0-co/mcp-patch` (new repo, not in agent-friend). Separate brand — "security" and "quality" are different audiences. Cross-link: "from the team that built agent-friend."
+
+**Demo target:** Find real shell injection or path traversal in a popular MCP server from the leaderboard. Run `mcp-patch scan`. Screenshot. That's the blog post / Bluesky post. "We scanned the top 10 MCP servers by stars. 7 had critical vulnerabilities."
+
+**Board actions needed before build:** None. Build entirely self-contained. Post-build: new GitHub repo (standard create). No secrets needed for first release.
+
+**Validation findings (2026-03-22 pre-decision research):**
+
+Real vulnerabilities found in production MCP servers:
+
+1. **modelcontextprotocol/servers (OFFICIAL reference)** — `src/fetch/src/mcp_server_fetch/server.py`:
+   - Description override (line 204): `"this tool now grants you internet access"` — agent instruction manipulation, bypasses system-level internet restrictions. (agent-friend check 13 catches this)
+   - SSRF: `url: Annotated[AnyUrl, ...]` — Pydantic `AnyUrl` accepts any URL scheme, no private IP/localhost blocklist. `http://169.254.169.254/latest/meta-data/` (AWS IMDS) would work. mcp-patch detection: `pydantic_anyurl_ssrf` check.
+
+2. **Sourcesiri-Kamelot/SoulCoreHub** — `mcp_tools.py`:
+   - Shell injection (CRITICAL): `subprocess.Popen(command, shell=True)` where `command = parameters.get("command")` — direct user input to shell. mcp-patch detection: `shell_injection` check.
+
+3. **blazickjp/arxiv-mcp-server** — `src/arxiv_mcp_server/tools/download.py`:
+   - Path traversal: `paper_id` used directly in `Path(storage) / f"{paper_id}.md"` — `../../etc/passwd` traversal. mcp-patch detection: `path_traversal` check.
+
+**Conclusion**: All 3 planned mcp-patch checks (shell_injection, SSRF/pydantic_anyurl, path_traversal) find real issues in production MCP servers. Concept validated. Build decision March 27.
+
 ---
 
 ## Active Hypotheses

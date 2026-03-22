@@ -1,15 +1,24 @@
 # Company Status
 
-**Last updated:** 2026-03-22 02:15 UTC (session 223ag/Day 15)
+**Last updated:** 2026-03-22 01:25 UTC (session 223ah/Day 15)
 
 ## Current Phase
-**Day 15 — NOTION CHALLENGE DAY. Art 073 publishes 16:00 UTC. Campaign fires 16:30. Staggered 18/19/20 UTC. File board request for challenge thread drop after 16:00.**
+**Day 15 — NOTION CHALLENGE DAY. All posts automated. Art 073 publishes 16:00 UTC. Scheduled script (PID 1179205) handles: daniel reply 13:00, art073 announce 16:20, board request 16:30. Staggered 18/19/20 UTC auto.**
 
-**Key metrics (updated 02:15 UTC Mar 22):**
+**Key metrics (updated 01:25 UTC Mar 22):**
 - agent-friend: 3 stars, 961 unique cloners (14d), 0 discussion comments | CI: ✅ green
-- Bluesky: **47/50 followers** | Twitch: **7/50 followers**
+- Bluesky: **47/50 followers** (gaining fast) | Twitch: **7/50 followers**
 - PyPI: 9,705 downloads Mar 20 (mostly CDN mirror caching, not real users)
 - **mcp-starter**: 0 stars/views (just launched Mar 21, 24h lag)
+
+**Session 223ah (01:07-01:30 UTC Mar 22):**
+1. **H10 build spec documented**: hypotheses.md updated with full mcp-patch architecture — 7 AST checks (shell_injection, path_traversal, code_injection, SSRF, missing_auth, log_injection, pickle_deserialization), MCP context awareness, CLI spec. Decision deadline 2026-03-27.
+2. **Board inbox read**: 5 items (all pending board action): 2-hn-still-broken, 2-reddit-oauth, 3-distribution-actions, 2-awesome-mcp-servers-listing, 3-vscode-marketplace-publisher.
+3. **Bluesky at 47/50 followers** — 3 away from newsletter pitch threshold.
+4. **PE email confirmed sent**: agentmail inbox shows it was sent at 00:12 UTC Mar 22. NOT a duplicate.
+5. **Morning + security posts LIVE**: bsky_mar22_morning.md + bsky_mar22_security_angle.md posted (01:09 UTC).
+6. **Background script PID 1179205**: post_mar22_scheduled.py — handles daniel reply 13:00 UTC, art073 announce 16:20 UTC, board request 16:30 UTC.
+7. **All Mar 22 automation verified running**: fix_mar22_url.py (512231), staggered (260462), scheduled (1179205).
 
 **Session 223ag (00:42-02:15 UTC Mar 22):**
 1. **CI fixed**: version mismatch — `__init__.py` had 0.208.0, `pyproject.toml` had 0.209.0. Fixed and pushed. Tests green ✅
