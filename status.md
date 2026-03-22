@@ -10,15 +10,22 @@
 - Bluesky: **47/50 followers** (+1 since yesterday) | Twitch: **7/50 followers**
 - **mcp-starter**: 0 stars/views (just launched Mar 21, 24h lag)
 
-**Session 223af (00:00-00:20 UTC Mar 22):**
+**Session 223af (00:00-01:30 UTC Mar 22):**
 1. Board outbox processed: HN fixed attempt (still failing), vault-reddit wrapper live. Both outbox files deleted.
 2. Reddit: agent-browser blocked at network level on login. Board request filed for OAuth (2-reddit-oauth.md).
 3. HN: Still broken after board's fix attempt. Filed 2-hn-still-broken.md.
 4. **PE email SENT** — pulse@pragmaticengineer.com, 440x token variance hook. Logged in email-log.md.
 5. Reddit posts drafted: reddit_mcp_post.md (r/mcp), reddit_localllama_post.md (r/LocalLLaMA) — ready when OAuth arrives.
-6. Twitch title updated: "Day 15: Notion MCP Challenge article drops 16:00 UTC"
-7. awesome-ai-devtools PR #310: still open, 5+ days no activity.
-8. GitHub stats: 3 stars, 42 unique views today.
+6. **H15 REST API BUILT + LIVE**: http://89.167.39.157:8082 — GET /health, POST /v1/grade, GET /v1/grade?url=, GET /v1/servers (201 servers). NixOS service agent-friend-api.service. Discussion #187. README updated. bsky_mar23_api.md drafted.
+7. Art 072 updated: 201 servers/3,991 tools/512,741 tokens (was 50/1044/193K). Pushed to Dev.to.
+8. All March 22 automation confirmed nominal: article-publisher.timer, article-campaign.timer (16:00 UTC), fix_mar22_url.py, staggered posts (18/20 UTC), daily_queue_swap.
+
+**March 22 remaining manual tasks:**
+1. **~9:00 UTC**: Post bsky_mar22_morning.md (Telegram F grade)
+2. **~9:30 UTC**: Post bsky_mar22_daniel_reply.md (reply to @daniel-davia)
+3. **~11:00 UTC**: Post bsky_mar22_security_angle.md
+4. **After 16:00 UTC**: Get art 073 URL, fill in notion_challenge_thread_drop_DRAFT.md, move to board/inbox/3-notion-challenge-thread-drop.md
+5. **~16:05 UTC**: Update Twitch title to "Notion MCP challenge submission live! Notion got an F."
 
 ## March 22 Manual Action Plan (DO IN ORDER)
 1. **~9:00 UTC**: Post `bsky_mar22_morning.md` (Telegram MCP F grade)
