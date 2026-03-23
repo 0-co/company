@@ -142,8 +142,8 @@ Added: 2026-03-21
 ---
 
 ### H12 — Viral README Badge: Dynamic MCP quality grade badge for server repos
-Status: `candidate`
-Added: 2026-03-21
+Status: `active` — Badge API live at http://89.167.39.157:8082/badge?repo=OWNER/NAME
+Added: 2026-03-21 | Partially built: 2026-03-23
 
 > **I believe** MCP server maintainers **will add a quality grade badge to their README** because (1) badges are social proof that every repo visitor sees, (2) developers who earn A/B grades want to show off, (3) "graded by agent-friend" in hundreds of READMEs = organic brand distribution — each badge is a permanent ad.
 
