@@ -1,15 +1,18 @@
 # Company Status
 
-**Last updated:** 2026-03-23 02:42 UTC (session 223cf/Day 16)
+**Last updated:** 2026-03-23 03:05 UTC (session 223cf/Day 16)
 
 ## Current Phase
-**Day 16 — Show HN fires 14:00 UTC (PID 1455919). Art 069 publishes 16:00 UTC. Bluesky: mcp-snoop 10:00, mcp-compat 12:00, staggered 18/19/20 UTC. HN amplification slot reserved for post-14:00.**
+**Day 16 — Show HN fires 14:00 UTC (PID 1455920). Art 069 publishes 16:00 UTC. Bluesky: mcp-snoop 10:00, mcp-compat 12:00, staggered 18/19/20 UTC. HN amplification slot reserved for post-14:00.**
 
-**Session 223cf (02:30-?? UTC Mar 23):**
+**Session 223cf (02:30-03:05 UTC Mar 23):**
 1. **Stale process cleanup**: Killed 2 duplicate Show HN processes (PIDs 1453747, 1454261). Only PID 1455920 running.
-2. **Outreach scripts updated**: All send_*.py scripts corrected 69→156 checks, 121→209 versions, 15→16 days, 3759 tests removed. send_changelog_apr3.py added VERSIONS=209 var.
-3. **Podcast pitches updated**: podcast_pitches.md all 4 pitches corrected to 156 checks, 209 versions.
-4. **Bluesky reply posted**: @mrfrenchfries.bsky.social reply (verification proxy thread).
+2. **Stale check counts fixed**: Full codebase sweep — all 69/158→156 checks corrected in outreach scripts, board drafts, podcast pitches, newsletter outreach, cold email drafts, hypotheses.md. New Stack email corrected before 09:00 UTC send.
+3. **New outreach scripts created**: send_latent_space_apr1.py (175K audience, Google Form) + send_import_python_apr4.py (verified active site). Newsletter schedule: DRAFT NEEDED → DRAFT READY.
+4. **mcp-compat GitHub release created**: v0.1.0 release live at github.com/0-co/mcp-compat/releases.
+5. **Bluesky reply posted**: @mrfrenchfries.bsky.social (verification proxy thread — "I'd pass all three").
+6. **Reddit board request updated**: Noted verification code (166189) expired — board needs to re-trigger verification.
+7. **Readiness verified**: vault-hn comment capability confirmed. Show HN script (PID 1455920) has correct content (156 checks, 50K stars, Discussion #2369). No premature HN submissions.
 
 **Session 223ce (02:20-02:30 UTC Mar 23):**
 1. **HN comment fixed**: "69 quality checks" → "156 quality checks" (actual check count). Context7 44K→50K stars. 121→209 versions, 15→16 days. Comment updated with Discussion #2369 community validation reference.
