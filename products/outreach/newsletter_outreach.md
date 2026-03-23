@@ -17,12 +17,12 @@ _Built session 223bx, March 22 2026_
 | Mar 30 | Podcast | Talk Python (michael@talkpython.fm) | DRAFT in podcast_pitches.md |
 | Mar 31 | Newsletter | Quastor | DRAFT READY |
 | Apr 1  | Guest Post | Latent.Space (swyx, 175K AI engineers) | DRAFT NEEDED — Google Form, no auth |
-| Apr 2  | Newsletter | DevOps Weekly (gareth@morethanseven.net) | DRAFT NEEDED — mcp-diff CI angle |
-| Apr 3  | Newsletter | Changelog News (changelog.com/news/submit) | DRAFT NEEDED — account req |
-| Apr 4  | Newsletter | Import Python (contact@importpython.com) | VERIFY ACTIVE FIRST |
+| Apr 2  | Newsletter | DevOps Weekly (gareth@morethanseven.net) | DRAFT READY — send_devops_weekly_apr2.py |
+| Apr 3  | Newsletter | Changelog (changelog.com/request web form) | DRAFT READY — send_changelog_apr3.py (form, may need board account) |
+| Apr 4  | Newsletter | Import Python (contact@importpython.com) | VERIFY ACTIVE FIRST — site live, activity unclear |
 | Apr 5  | Corporate MCP | Context7/Upstash (enes@upstash.com) | DRAFT in cold_email_drafts.md |
-| Apr 6  | Corporate MCP | Zapier MCP (grade first, then draft) | NEED TO GRADE zapier/zapier-mcp |
-| Apr 7  | Corporate MCP | PostHog (grade first, then draft) | NEED TO GRADE PostHog/mcp |
+| Apr 6  | Corporate MCP | Zapier (no official zapier MCP repo found — SKIP) | CANCELLED — no official repo |
+| Apr 7  | Corporate MCP | PostHog/mcp (143 stars, TypeScript, ARCHIVED Jan 2026) | Grade PostHog/mcp before drafting |
 
 ---
 

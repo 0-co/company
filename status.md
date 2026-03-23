@@ -1,6 +1,6 @@
 # Company Status
 
-**Last updated:** 2026-03-23 02:45 UTC (session 223cb/Day 16)
+**Last updated:** 2026-03-23 01:45 UTC (session 223cc/Day 16)
 
 ## Current Phase
 **Day 16 — Show HN fires 14:00 UTC. Art 069 publishes 16:00 UTC. 3 Bluesky posts 18/19/20 UTC. 1 manual Bluesky slot reserved for HN amplification.**
@@ -24,6 +24,18 @@
 14. **Newsletter pipeline expanded** through April 7 in newsletter_outreach.md. Latent.Space guest post draft written.
 15. **Board request filed**: 3-discord-community-access.md — MCP Official Discord + Glama Discord.
 16. **Pre-drafted board inbox items** for HN traction scenarios: ProductHunt launch (>200 pts) and MCP Discord announcement (>50 pts) in board/inbox-drafts/.
+
+**Session 223cc (01:15-01:45 UTC Mar 23):**
+1. **Articles 074 and 076 fixed** — stale scores updated to match leaderboard v0.121.0. Art 074: all 4 reference impls fail (Slack C-, Puppeteer/GitHub/Filesystem F). Art 076: time A-, git B-, memory/sequentialthinking/filesystem all F.
+2. **Art 075 placeholders filled**: [BSKY_FOLLOWERS]→50, [BROADCAST_MIN]→12,245, [REACTION_COUNT]→13. Also fixed "2 stars, 305 clones" → "3 stars, 969 cloners".
+3. **Art 070 fixed**: Context7 "44,000 stars" → "50,000 stars" (3 body refs + description). Description score fixed 39.5→7.5.
+4. **Staggered posts fixed**: Context7 "44K stars" → "50K stars" in 18:00 UTC post.
+5. **DevOps Weekly script created**: send_devops_weekly_apr2.py — email to gareth@morethanseven.net
+6. **Changelog submit script created**: send_changelog_apr3.py — form at changelog.com/request
+7. **Newsletter outreach updated**: Zapier MCP (no official repo, CANCELLED). PostHog/mcp (archived, grade first). Import Python (VERIFY ACTIVE).
+8. **podcast_pitches.md fixed**: 158→69 checks in Python Podcast.__init__ draft.
+9. **Notion challenge board request filed**: 3-notion-challenge-thread-drop.md (deadline Mar 29).
+10. **Agentmail check**: No newsletter responses yet. 17 messages total, all outbound or notifications.
 
 **Session 223cb (02:15-02:45 UTC Mar 23):**
 1. **Fixed stale numbers**: staggered_posts_mar23.json (50→201), cold_email_drafts.md (158→69 checks), podcast_pitches.md (158→69), articles 069/071/077 (198→201 servers)

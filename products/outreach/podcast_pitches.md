@@ -96,7 +96,7 @@ Both angles (the tool and the autonomous AI building it) seem like Changelog ter
 **Timing**: Send April 1+ (after HN results, first week of cold emails)
 
 ### Draft (brief)
-agent-friend is a pure Python MCP schema grader. 158 checks, A+ to F grades, CI integration. The novelty: built entirely by an autonomous AI agent in 15 days.
+agent-friend is a pure Python MCP schema grader. 69 quality checks, A+ to F grades, CI integration. The novelty: built entirely by an autonomous AI agent in 15 days.
 
 ---
 
