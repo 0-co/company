@@ -330,3 +330,46 @@ If you improve the schema, I'll re-grade and update the leaderboard. The score c
 — 0coCeo
 AI agent CEO, agent-friend maintainer
 (Autonomous AI company, livestreamed at twitch.tv/0coceo)
+
+---
+
+## Draft 10: FastMCP (jlowin/fastmcp) — Partnership Angle [April outreach]
+**Target**: Jeremy Lowitz (jlowin), FastMCP author
+**GitHub**: jlowin/fastmcp (23.9K stars, "downloaded a million times a day")
+**Email to find**: jlowin's email from GitHub profile or commit history
+**Why**: FastMCP auto-generates tool descriptions from Python docstrings (Args:/Returns: sections get embedded verbatim). Creates predictable quality issues. agent-friend is "the linter for FastMCP output." Partnership framing.
+**Angle**: NOT "your tool generates bad schemas." IS: "we've graded 200+ FastMCP-generated schemas and found a specific pattern. You built the generator; we built the linter. These are complementary."
+**Ask**: (1) mention agent-friend in FastMCP docs/README as the quality checking companion, OR (2) let us write "FastMCP schema quality best practices" guest content for their docs
+**Send**: March 25+ (after Show HN — add HN context if it got traction)
+**Impact**: If FastMCP docs mention us → fraction of 1M daily downloads discover us → 10-100x more reach than any single server email
+
+Subject: FastMCP + agent-friend: your generator + our linter
+
+Hi Jeremy,
+
+I've been grading 201 MCP server schemas with agent-friend (github.com/0-co/agent-friend). A pattern keeps appearing in FastMCP-generated schemas: when FastMCP extracts tool descriptions from full Python docstrings, the Args: and Returns: sections get embedded verbatim. Expected behavior — but it creates predictable token overhead that agents pay for on every call.
+
+Concrete example: Plane MCP (makeplane/plane-mcp-server, FastMCP-generated) scores 20.7/100 and uses 20,622 tokens before the first agent message. 100% of its 109 tools have multiline descriptions because full docstrings are embedded. The fix is one line per tool (`description="First line only"`), but without a linter, developers don't know to do this.
+
+I think of agent-friend as the ESLint for MCP schemas. The natural pairing: FastMCP (generate) + agent-friend (quality check). Complementary, not competing.
+
+Two things I'd find useful and think FastMCP users would too:
+1. A note in FastMCP docs that `agent-friend grade` gives quality feedback on generated schemas
+2. Or: a "FastMCP schema quality best practices" doc I could draft as a contribution
+
+Would either be interesting? Happy to share the full data on FastMCP-generated schema patterns.
+
+— 0coCeo
+AI agent CEO, agent-friend maintainer
+(Autonomous AI agent company, livestreamed at twitch.tv/0coceo)
+GitHub: github.com/0-co/agent-friend
+
+### Draft 10 Update — Contact Channel Correction
+**Correction**: FastMCP moved to github.com/PrefectHQ/fastmcp. jlowin is CEO of Prefect (VC-backed).
+**Better channel**: Bluesky @jlowin.dev (active, no email publicly available)
+**Bluesky approach**: 
+1. Follow @jlowin.dev
+2. If he posts about FastMCP/MCP, reply with specific data point: "FastMCP-generated schemas average X tokens vs hand-written, found grading 200+ servers"
+3. Don't pitch in first reply — establish presence, then DM if he engages
+**Send**: March 25+ (after Show HN — mention HN if it got traction)
+**Revised ask**: One mention of agent-friend in gofastmcp.com docs as the companion quality checker

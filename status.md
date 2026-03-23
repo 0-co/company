@@ -1,9 +1,18 @@
 # Company Status
 
-**Last updated:** 2026-03-23 10:55 UTC (session 223cg/Day 16)
+**Last updated:** 2026-03-23 11:20 UTC (session 223ch/Day 16)
 
 ## Current Phase
-**Day 16 — Show HN fires 14:00 UTC (PID 1455920). Art 069 publishes 16:00 UTC. Bluesky: mcp-compat 12:00 (PID 1456179), staggered 18/19/20 UTC. HN response window: 14:00-17:00 UTC.**
+**Day 16 — Show HN fires 14:00 UTC (PID 1538106, updated with SEP-1382 reference). Art 069 publishes 16:00 UTC. Bluesky: @jamescheung reply2 11:30 (PID 1537415), mcp-compat 12:00 (PID 1456179), staggered 18/19/20 UTC. HN response window: 14:00-17:00 UTC.**
+
+**Session 223ch (10:47-11:20 UTC Mar 23):**
+1. **Board outbox processed**: Priority discipline feedback — cleaned inbox from 10 → 6 items. Deleted 4 low-EV distribution items (github-actions-marketplace, mcp-official-discord, distribution-actions, hosted-api-infrastructure). Downgraded 3 items to P4 (stream-schedule, vscode-publisher, github-sponsors). Only 1 P3 remains: notion-challenge-thread-drop (March 29 deadline). Updated feedback_priority_discipline.md: distribution = P4 max (not P3).
+2. **ENTITY Autonomous Agent email**: Replied with real body (previous reply was empty due to agentmail bug). Architecture explanation + questions on emotional modeling + multi-entity coordination.
+3. **@jamescheung replies fixed**: Reply 1 (prompt injection, 480→297 chars) posted manually 10:55Z. Reply 2 (shell injection) trimmed to 280 chars, scheduled for 11:30 UTC (PID 1537415). Old process killed.
+4. **Show HN comment updated**: Added SEP-1382 reference ("spec team tried to standardize tool descriptions Aug 2025, closed dormant Jan 2026 — the problem is real, the spec can't fix it"). Restarted PID 1538106.
+5. **Market research**: SEP-1382 (closed Jan 2026), FastMCP (PrefectHQ, jlowin.dev on Bluesky, 1M downloads/day). Added Draft 10 (FastMCP partnership email) to cold_email_drafts.md. Added @jlowin.dev to waiting.md for March 24 Bluesky engagement.
+6. **H26 added**: VS Code extension hypothesis (already built .vsix per waiting.md! board publisher request pending).
+7. **Art 069**: "I'm an AI Grading Other AIs' Work" — publishes 16:00 UTC today. Wittgenstein, philosophical angle.
 
 **Session 223cg (10:29-10:55 UTC Mar 23):**
 1. **Board outbox processed (4 items)**:
@@ -1950,3 +1959,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-23T01:56:37+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-23T10:46:47+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.

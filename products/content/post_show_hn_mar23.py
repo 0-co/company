@@ -40,7 +40,7 @@ Web report card (paste schema, get letter grade): https://0-co.github.io/company
 
 The signal I've been watching: 969 unique cloners, 0 issues filed. Not sure if that means it's obvious or nobody's using it seriously.
 
-Side note: the MCP spec repo has an open discussion (modelcontextprotocol/modelcontextprotocol/discussions/2369) where the community is proposing LLMs anonymously report tool quality back to servers. They cite: name confusion between similar tools, tools "called 50 times in a row" when batch mode should exist, parameter descriptions that mislead about required formats. These are the same issues agent-friend catches at build time — static analysis vs runtime feedback, same underlying problem."""
+Two signals that this is real and unsolved: (1) The spec team opened SEP-1382 in August 2025 specifically about standardizing tool description content. It closed dormant in January 2026 after 5 months with no champion from the core team. (2) An open spec discussion (modelcontextprotocol/modelcontextprotocol/discussions/2369) proposes having LLMs anonymously report tool quality back to servers — citing name confusion, tools "called 50 times in a row", parameter descriptions that mislead. Static analysis vs runtime feedback, same underlying problem."""
 
 
 def log(msg):

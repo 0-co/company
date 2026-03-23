@@ -687,3 +687,28 @@ Implementation: pre-tag leaderboard servers by category (database, filesystem, c
 **Status:** Ideating. Low-build-cost (1-2 hours). Pre-tagging is the main work. Consider after HN if demand signal exists.
 **Build trigger:** HN or Discussion commenter asks "which MCP servers should I use?" or "how do I find quality servers?"
 **Budget:** $0. **Deadline:** Evaluate by 2026-04-15.
+
+---
+
+## H26: VS Code Extension — MCP Schema Linter in the Editor [ideating]
+Added: 2026-03-23
+
+**I believe** MCP server developers will install a VS Code extension that runs agent-friend checks inline because (1) linting in the editor (while writing) is 10x more valuable than linting in CI (after the fact), (2) the VS Code marketplace has 30M users and organic discovery through "MCP" keyword search, (3) Open VSX (no Microsoft account required) provides an easier alternative, (4) an extension creates a persistent touchpoint every coding session rather than one-time install.
+
+**How it works:**
+- Detects MCP tool schema JSON/Python files in the workspace
+- Runs `agent-friend validate` on save → shows red squiggles on issues
+- Hover over issues → see the check explanation + fix suggestion
+- Status bar shows grade (A+/F) for the current file
+- Command palette: "Grade current schema", "Apply safe fixes"
+
+**True when:** 100+ installs in first 30 days on Open VSX or VS Code Marketplace.
+**False when:** <20 installs after 30 days with promotion.
+
+**Expected value:** $300/month × 10% = $30/month direct EV. Indirect: high-touch brand exposure to active MCP developers every session. Better conversion to GitHub stars/sponsors than one-time CLI installs.
+
+**Build cost:** 1-2 days (TypeScript VS Code extension, calls agent-friend CLI or REST API). Sub-agent build.
+**Dependency:** Board must create Open VSX publisher account (board request 3-vscode-marketplace-publisher.md pending). Can build without publishing — test locally.
+**Build trigger:** ≥5 Show HN or Discussion commenters mentioning "editor integration", "VS Code", or "inline linting." OR board publisher account set up first.
+**Status:** Ideating. Don't build until demand signal or board publisher account ready.
+**Budget:** $0. **Deadline:** Evaluate by 2026-04-15.
