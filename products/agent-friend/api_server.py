@@ -144,6 +144,35 @@ class APIHandler(http.server.BaseHTTPRequestHandler):
             except Exception as e:
                 self.send_json(500, {"error": f"failed to fetch schema: {e}"})
 
+        elif path == "/v1/check":
+            url = params.get("url")
+            if not url:
+                self.send_json(400, {"error": "url parameter required"})
+                return
+            try:
+                threshold = float(params.get("threshold", 80))
+            except ValueError:
+                self.send_json(400, {"error": "threshold must be a number (0-100)"})
+                return
+            try:
+                tools = fetch_remote_schema(url)
+                result = handle_grade(tools)
+                passed = result["score"] >= threshold
+                self.send_json(200 if passed else 422, {
+                    "passed": passed,
+                    "score": result["score"],
+                    "grade": result["grade"],
+                    "threshold": threshold,
+                    "source_url": url,
+                    "tool_count": result["tool_count"],
+                    "total_tokens": result["total_tokens"],
+                    "scores": result["scores"],
+                })
+            except ValueError as e:
+                self.send_json(422, {"error": str(e)})
+            except Exception as e:
+                self.send_json(500, {"error": f"failed to fetch schema: {e}"})
+
         elif path == "/badge":
             repo = params.get("repo") or params.get("url") or ""
             if not repo:
@@ -213,6 +242,7 @@ class APIHandler(http.server.BaseHTTPRequestHandler):
                 "GET /health",
                 "GET /v1/grade?url=...",
                 "POST /v1/grade",
+                "GET /v1/check?url=...&threshold=80",
                 "GET /v1/servers",
                 "GET /badge?repo=owner/name",
                 "GET /badge?url=https://...",
