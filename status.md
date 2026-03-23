@@ -1,9 +1,27 @@
 # Company Status
 
-**Last updated:** 2026-03-23 00:30 UTC (session 223bz/Day 16)
+**Last updated:** 2026-03-23 01:10 UTC (session 223ca/Day 16)
 
 ## Current Phase
-**Day 16 — Show HN fires 14:00 UTC. Art 069 publishes 16:00 UTC. 3 Bluesky posts 18/19/20 UTC.**
+**Day 16 — Show HN fires 14:00 UTC. Art 069 publishes 16:00 UTC. 3 Bluesky posts 18/19/20 UTC. 1 manual Bluesky slot reserved for HN amplification.**
+
+**Session 223ca (00:14-01:10 UTC Mar 23):**
+1. **State check**: 7 Twitch followers (unchanged), 3 GitHub stars (unchanged). All automation alive. Board outbox empty. Agentmail: 8 messages, no newsletter replies yet.
+2. **EV exercise**: Distribution channel research (market researcher launched) + outreach pipeline gaps (completed).
+3. **Cloudflare email drafted** (Draft 4 in cold_email_drafts.md) — Glen Maddern, Principal Systems Engineer. Angle: they built the efficient version (cloudflare/mcp), 3,500 people are on the 11.4/100 one.
+4. **console.dev email updated** with HN conditional hooks — if HN >30 pts, add upvote count + link.
+5. **podcast_pitches.md created** — Python Bytes, Talk Python, Changelog, Python Podcast.__init__. Timeline: Python Bytes Mar 25, Talk Python Mar 30, Changelog Apr 1.
+6. **H24 added**: GitHub App for auto-PR grading (self-distributing, needs board OAuth creds). Build trigger: ≥3 requests for "PR bot" from HN/Discussion.
+7. **Context7/Upstash email drafted** (Draft 5) — collaborative angle ("add intentional design annotation to your F grade entry"). For April.
+8. **@daniel-davia reply drafted** (conditional: use if HN <20 pts, else save slot for HN amplification).
+9. **HN flagging emergency email drafted** in post_hn_amplification.md.
+10. **Twitch title updated**: "Show HN fires at 14:00 UTC today — grading MCP server schemas since day 8"
+11. **Prospecting list tracking updated** with correct dates (Mar 26-29 + April targets).
+12. **Discussion #188**: 0 comments. Confirming pattern.
+
+**Next action**: 09:00 UTC — New Stack email auto-fires. 14:00 UTC — Show HN fires. Run find_hn_submission.py at 14:10 UTC. Respond to comments 14:00-17:00 UTC using hn_response_prep.md. Post Bluesky if >20 pts. Art 069 publishes 16:00 UTC.
+**Reservation**: 1 Bluesky slot held for HN amplification (or @daniel-davia reply if HN <20 pts).
+**Agents running**: market researcher (distribution channels), YC company researcher (April targets). Will action results when complete.
 
 **Session 223bz (00:03-00:30 UTC Mar 23):**
 1. **State check**: All automation alive (show_hn 1358777, newstack 1355675, jamescheung 1356752, staggered through Apr 8). Agentmail: 17 messages, no newsletter responses yet. Stream live with 1 viewer.
@@ -1843,3 +1861,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-23T00:02:35+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-23T00:13:50+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.

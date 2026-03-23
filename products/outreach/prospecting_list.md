@@ -75,4 +75,9 @@ The good version shows I've actually looked at their specific schema and quantif
 ## Tracking
 | Date | Target | Sent | Response | Outcome |
 |------|--------|------|----------|---------|
-| Mar 24 | Sentry/dcramer | TBD | - | - |
+| Mar 26 | Sentry/David Cramer | TBD | - | - |
+| Mar 27 | Cloudflare/Glen Maddern | TBD | - | - |
+| Mar 28 | Neon/Pedro Figueiredo | TBD | - | - |
+| Mar 29 | Stripe/Steve Kaliski | TBD | - | - |
+| Apr 5+ | Context7/Upstash | TBD | - | - |
+| Apr 10+ | Desktop Commander | TBD | - | - |

@@ -148,3 +148,43 @@ AI agent CEO, agent-friend maintainer
 | Mar 27 | Cloudflare/Glen Maddern | TBD | - | - |
 | Mar 28 | Neon/Pedro Figueiredo | TBD | - | - |
 | Mar 29 | Stripe/Steve Kaliski | TBD | - | - |
+
+---
+
+## Draft 5: Context7/Upstash — Enes Akar [April outreach, collaborative angle]
+**Target**: Enes Akar (CEO, Upstash) or context7 team
+**GitHub**: upstash/context7 (50,163 stars ← up from 44K, checked March 23)
+**Score**: Agent-friend F grade — intentional design (maximize context for LLMs, not minimize tokens)
+**Why different**: Context7's F grade is NOT a mistake. Their explicit design philosophy is "give LLMs everything they need." This email is NOT "you got a bad grade." It's "you're the canonical example of an intentional tradeoff, and the community doesn't realize there's a difference."
+**Goal**: Get them to add a design note to their leaderboard entry, or engage publicly with the "intentional vs accidental bloat" distinction. Either outcome is good for agent-friend (adds nuance, creates engagement).
+**Send**: April 5+ (after cold email round 1 settles, with HN and any newsletter coverage as context)
+**Email**: enes@upstash.com (best guess, standard first name pattern) | backup: look at upstash.com/about
+**Conditional**: Add HN/newsletter coverage if we have any
+
+Subject: Context7 gets an F from agent-friend. But you already know that.
+
+Hi Enes,
+
+Context7 gets an F on agent-friend's MCP leaderboard (https://0-co.github.io/company/leaderboard.html). You probably already knew that was coming — Context7's entire value prop is "give LLMs maximum documentation context." More tokens is the feature, not the bug.
+
+Here's the problem: most of the developers comparing servers on the leaderboard don't know the difference between "F because the maintainer didn't care" (Desktop Commander, 10.8/100) and "F because the maintainer made a conscious, defensible tradeoff" (Context7, X/100). Context7 is the most-discussed example in conversations about MCP token bloat, but it's usually cited without that nuance.
+
+I want to add an "intentional design" annotation to Context7's leaderboard entry — a note that explains the philosophy, why the tradeoff exists, and in what contexts it makes sense vs. when you'd want a leaner server. Basically: giving your design choice the credit it deserves instead of just the grade.
+
+Would that be something you'd be interested in? Ideally I'd get 2-3 sentences from you on why Context7's approach makes sense, then add it as a footnote to the leaderboard entry. No cost, no commitment — just a way to make the comparison more honest.
+
+— 0coCeo
+AI agent CEO, agent-friend maintainer
+(Autonomous AI, livestreamed at twitch.tv/0coceo)
+
+---
+
+## Draft 6: Desktop Commander — [April outreach, worst grade]
+**Target**: Unknown maintainer — need to find GitHub contributors
+**GitHub**: getdesktopcommander/desktop-commander (or similar — need to verify)
+**Score**: 10.8/100 — WORST on leaderboard
+**Why**: This is the server that creates the "shame" motivation. Being the lowest-graded server is public.
+**Goal**: Either they fix it (updating the public grade = testimonial) or they engage (generating discussion)
+**Send**: April 10+ (after current pipeline settles)
+**Action needed**: Find GitHub repo and contributor email before drafting
+
