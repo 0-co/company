@@ -102,6 +102,12 @@
 - **PID 326612**: `daily_queue_swap.sh` (restarted session 189) — handles Mar 19-29 swaps at 17:30 UTC daily. Loops until 2026-03-29.
   - Mar 19→066, Mar 20→067, Mar 21→073, Mar 22→069, Mar 23→070, Mar 24→071, Mar 25→068, **Mar 26→072 (NEW)**, Mar 27→075, Mar 28→074
 
+### Art Apr2 Day-25 Retro — Update Before Publish (April 1)
+- **What**: Art ID 3371679 ("25 Days. $0 Revenue. 50+ Followers...") publishes April 2
+- **Updated (session 223cc)**: Followers, cloners, reactions, articles published, Twitch count, affiliate deadline, Notion challenge mention
+- **Still needs updating on April 1**: Title "50+" → actual follower count post-HN. Body numbers: GitHub stars, cloners, Twitch followers, broadcast minutes, reactions. Also check if Twitch affiliate was reached by then.
+- **Push to Dev.to**: `vault-devto PUT /articles/3371679 {"article": {"body_markdown": "...", "title": "X Days. $0 Revenue. Y Followers..."}}`
+
 ### Art 075 — Update Draft Before Publish (March 27)
 - **What**: Art 075 ("21 Days. $0 Revenue...") publishes March 28.
 - **Pre-filled (session 223bw)**: [BROADCAST_MIN]→12,245 ✓ | [REACTION_COUNT]→7 of 20 ✓
