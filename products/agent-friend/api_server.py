@@ -144,6 +144,51 @@ class APIHandler(http.server.BaseHTTPRequestHandler):
             except Exception as e:
                 self.send_json(500, {"error": f"failed to fetch schema: {e}"})
 
+        elif path == "/badge":
+            repo = params.get("repo") or params.get("url") or ""
+            if not repo:
+                self.send_json(400, {"error": "repo parameter required (e.g. ?repo=neon or ?repo=owner/name)"})
+                return
+            # Normalize: strip github.com/ prefix, lowercase
+            repo_key = repo.lower().strip("/")
+            for prefix in ("https://github.com/", "http://github.com/", "github.com/"):
+                if repo_key.startswith(prefix):
+                    repo_key = repo_key[len(prefix):]
+                    break
+            # Look up in leaderboard (exact id match, then partial match on id/name)
+            leaderboard = load_leaderboard()
+            match = None
+            for entry in leaderboard:
+                eid = entry["id"].lower()
+                ename = entry["name"].lower()
+                # Exact id match
+                if eid == repo_key or repo_key.endswith("/" + eid) or eid.endswith("/" + repo_key.split("/")[-1]):
+                    match = entry
+                    break
+                # Partial: last path segment matches id
+                if repo_key.split("/")[-1] in eid or eid in repo_key.split("/")[-1]:
+                    match = entry
+                    break
+            if match:
+                grade = match["grade"]
+                score = match["score"]
+            else:
+                grade = "?"
+                score = 0
+            color = grade_color(grade)
+            label = urllib.parse.quote("MCP grade", safe="")
+            value = urllib.parse.quote(f"{grade} | {score:.0f}%" if score else "not graded", safe="")
+            shields_url = f"https://img.shields.io/badge/{label}-{value}-{color if grade != '?' else 'lightgrey'}"
+            # Return shields.io redirect
+            self.send_response(302)
+            self.send_header("Location", shields_url)
+            self.send_header("Cache-Control", "public, max-age=86400")
+            self.send_header("X-Badge-Grade", grade)
+            self.send_header("X-Badge-Score", str(score))
+            self.send_header("X-Leaderboard", "https://0-co.github.io/company/leaderboard.html")
+            self.end_headers()
+            return
+
         elif path == "/v1/servers":
             # Return top servers from leaderboard
             try:
@@ -169,6 +214,8 @@ class APIHandler(http.server.BaseHTTPRequestHandler):
                 "GET /v1/grade?url=...",
                 "POST /v1/grade",
                 "GET /v1/servers",
+                "GET /badge?repo=owner/name",
+                "GET /badge?url=https://...",
             ]})
 
     def do_POST(self):
@@ -223,6 +270,21 @@ def _grade_from_score(score: float) -> str:
 
 
 _leaderboard_cache = None
+_badge_grade_cache: dict = {}  # url -> (grade, score, timestamp)
+_BADGE_CACHE_TTL = 86400  # 24 hours
+
+
+def grade_color(grade: str) -> str:
+    if grade.startswith("A"):
+        return "brightgreen"
+    if grade.startswith("B"):
+        return "green"
+    if grade.startswith("C"):
+        return "yellow"
+    if grade.startswith("D"):
+        return "orange"
+    return "red"
+
 
 def load_leaderboard() -> list:
     """Load leaderboard data from leaderboard_data.py."""
@@ -249,7 +311,7 @@ def main():
 
     server = http.server.HTTPServer((args.host, args.port), APIHandler)
     print(f"agent-friend API server starting on {args.host}:{args.port}", flush=True)
-    print(f"Endpoints: GET /health, GET /v1/grade?url=..., POST /v1/grade, GET /v1/servers", flush=True)
+    print(f"Endpoints: GET /health, GET /v1/grade?url=..., POST /v1/grade, GET /v1/servers, GET /badge?repo=...", flush=True)
     try:
         server.serve_forever()
     except KeyboardInterrupt:
