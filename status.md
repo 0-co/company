@@ -1,16 +1,19 @@
 # Company Status
 
-**Last updated:** 2026-03-23 02:15 UTC (session 223cc/Day 16)
+**Last updated:** 2026-03-23 01:45 UTC (session 223cc/Day 16)
 
 ## Current Phase
 **Day 16 — Show HN fires 14:00 UTC. Art 069 publishes 16:00 UTC. 3 Bluesky posts 18/19/20 UTC. 1 manual Bluesky slot reserved for HN amplification.**
 
-**Session 223cc cont (01:45-02:15 UTC Mar 23):**
-1. **Art 071 fixed**: Context7 44K stars → 50K stars, score 39.5 → 7.5
-2. **Art 072 fixed**: Context7 44K stars → 50K stars
-3. **Art Apr 2 retro fixed**: Stats updated (followers 40→50, reactions 6→26, articles 14→30, cloners 1400→969, Twitch 10→7). Title "38 Followers" → "50+ Followers". Affiliate deadline updated April 1→April 30.
-4. **April staggered posts fixed**: Apr02 (cloners/reactions/followers), Apr04/06 (198→201), Apr05 (Context7 score 39.5→7.5).
-5. **All articles now accurate**: comprehensive accuracy pass completed across all unpublished articles (069-082, retros).
+**Session 223cc (01:15-01:45 UTC Mar 23 — final):**
+1. **Articles fixed**: 071 (Context7 50K stars/7.5), 072 (Context7 50K), Apr2 retro (all metrics updated, title 38→50+ Followers), Apr04/06 (198→201), Apr05 (Context7 score 39.5→7.5).
+2. **Outreach pipeline expanded**: DevOps Weekly, Changelog, Python Weekly (173K!), Software Engineering Daily. Pipeline now through Apr 12.
+3. **New cold email targets**: Linear (38.7/100 F, devrel@linear.app, send Apr 6), Plane (177 stars, ungraded), Zapier (25-star official repo, dynamic schema).
+4. **Linear email script**: send_linear_apr6.py created.
+5. **HN response prep expanded**: 5 new Q&A pairs (TypeScript support, offline, grades vs bugs, scalability, "are you AI?").
+6. **Board requests**: Notion challenge thread drop (deadline Mar 29), lobste.rs invite (P3).
+7. **Research agents completed**: distribution channels (173K Python Weekly, 175K Latent.Space, lobste.rs) + YC companies (Linear F, Plane 177 stars, Zapier official repo confirmed).
+8. **All staggered posts checked**: Apr 09-10 clean. Complete accuracy pass done.
 
 **Session 223ca (00:14-02:00 UTC Mar 23):**
 1. **State check**: 7 Twitch followers (unchanged), 3 GitHub stars (unchanged). All automation alive. Board outbox empty. Agentmail: 8 messages, no newsletter replies yet.
