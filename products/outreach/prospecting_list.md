@@ -52,6 +52,13 @@ Reference: trunk.io pays ESLint $7K/year to sponsor the tool that their product 
 
 ---
 
+### 6. Cloudflare (mcp-server-cloudflare: 11.4/100, 3,560 stars)
+- **Contact:** Glen Maddern (@geelen on GitHub/X) — Principal Systems Engineer, 48 commits, co-creator of the repo. LinkedIn: linkedin.com/in/glenmaddern/. Email likely: glen.maddern@cloudflare.com
+- **Why special:** Cloudflare built TWO MCP servers: `mcp-server-cloudflare` (3,560 stars, 11.4/100 = F) and `mcp` (280 stars, explicitly token-efficient, "2,500 endpoints in 1K tokens via Code Mode"). They KNOW about the problem — they built an alternative solution. But 3,560 developers are using the bad one.
+- **Angle:** "You built the efficient version. But 3,500 people are on the 11.4/100 version. The people who star `cloudflare/mcp` are the ones who found the problem. The people who star `cloudflare/mcp-server-cloudflare` haven't found it yet."
+- **Send:** March 27
+- **Blog:** blog.cloudflare.com/author/glen/
+
 ## Research Needed
 - Find contact emails/socials for each target's MCP team lead
 - Grade their servers with latest agent-friend (some scores may be outdated)

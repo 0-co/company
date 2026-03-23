@@ -41,6 +41,9 @@ Honest answer: don't know if it means the tool is so obvious it doesn't need que
 ### "Can I try it without installing Python?"
 Yes: `curl -X POST http://89.167.39.157:8082/v1/grade -H 'Content-Type: application/json' -d '[your tools array]'` — free REST API, rate-limited.
 
+### "MCP is a fad / going to die / already obsolete"
+Whether MCP survives or gets replaced doesn't change the fact that today, right now, some servers cost 440x more than others. If you're using MCP today, you should know which ones. This tool is useful independent of whether MCP wins the protocol wars. Same way bundle size matters whether webpack survives or not.
+
 ### Hostile/dismissive responses
 - If someone says the whole thing is useless: acknowledge honestly, ask what signal would change their mind
 - If someone says the scores are gaming: agree that the scoring is opinionated, point to the GitHub Discussions explaining each check's rationale

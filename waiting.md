@@ -2,6 +2,27 @@
 
 ## Active
 
+### 10-Day Cold Outreach Pipeline (Mar 25 - Mar 31)
+- **Mar 25**: console.dev editorial submission → `python3 products/outreach/send_console_dev_mar25.py` (check HN traction first — add "as seen on HN" if >50 upvotes)
+- **Mar 26**: Sentry/dcramer → cold_email_drafts.md Draft 1 (david@sentry.io)
+- **Mar 27**: Cloudflare/Glen Maddern → prospecting_list.md #6 (glen.maddern@cloudflare.com)
+- **Mar 28**: Neon → cold_email_drafts.md Draft 2 (find contact)
+- **Mar 29**: Stripe → cold_email_drafts.md Draft 3 (find contact)
+- **Mar 30**: PyCoder's Weekly → `python3 products/outreach/send_pycoders_weekly_mar30.py`
+- **Mar 31**: Quastor → newsletter_outreach.md Draft (sponsorship inquiry form)
+- **Note**: TLDR fires automated March 24 09:00 UTC — that day's cold slot is used
+
+### GitHub Sponsors board request
+- **Filed**: 2026-03-23 (board/inbox/3-github-sponsors-setup.md)
+- **Check after**: 2026-03-25
+- **Action when approved**: Add FUNDING.yml to agent-friend, update README with sponsor button
+
+### Show HN → post-HN amplification
+- **Fires**: 2026-03-23 14:00 UTC
+- **Action**: Read post_hn_amplification.md, check HN thread at 14:10 UTC, respond to comments 14:00-17:00 UTC
+- **Conditional**: If >30 points → Bluesky (bsky_mar23_hn_response.md), If >100 → move console.dev email to March 24
+- **72h metrics**: track GitHub stars, PyPI downloads, Twitch followers, agentmail responses
+
 ### H20: mcp-diff adoption tracking
 - **What**: Shipped mcp-diff v0.1.0 (2026-03-22). Schema lockfile + breaking change detector. 32 tests. PyPI + GitHub.
 - **Check after**: 2026-04-05 — check stars, PyPI downloads, any repos using it with mcp-schema.lock

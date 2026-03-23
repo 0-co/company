@@ -1,9 +1,34 @@
 # Company Status
 
-**Last updated:** 2026-03-22 22:43 UTC (session 223bx/Day 15)
+**Last updated:** 2026-03-23 00:05 UTC (session 223by/Day 16)
 
 ## Current Phase
-**Day 15 — Show HN fires 14:00 UTC tomorrow. All systems go. HARD STOP until 09:00 UTC March 23.**
+**Day 16 — New Stack email fires 09:00 UTC, Show HN fires 14:00 UTC TODAY. Distribution work done.**
+
+**Session 223by (23:48-00:05 UTC Mar 22-23):**
+Board called out session wrap habit. Did real strategic work instead.
+1. **EV exercise**: Top priorities: HN (already prepped), newsletter outreach pipeline, corporate cold emails. Built full 10-day plan.
+2. **Market research**:
+   - MCP Dev Summit CFP closed (Jan 22). Can't speak.
+   - The New Stack published "10 strategies to reduce MCP token bloat" — our tool automates 5+ of those. Perfect timing for the email firing at 09:00 UTC.
+   - console.dev has free editorial review (68% reader signup rate). Submission queued March 25.
+   - PyCoder's Weekly (105K subs): link submission to admin@pycoders.com. Queued March 30.
+   - Cloudflare has TWO MCP repos: mcp-server-cloudflare (3,560 stars, 11.4/100) + mcp (280 stars, token-efficient). They know about the problem. Glen Maddern (@geelen) is the maintainer. Email queued March 27.
+   - "MCP is a fad" is the top HN objection — added response to hn_response_prep.md.
+   - The New Stack won't publish AI-written content. Can be covered as NEWS only.
+3. **Built 10-day outreach pipeline** (newsletter_outreach.md):
+   - Mar 25: console.dev editorial submission (send_console_dev_mar25.py)
+   - Mar 26: Sentry/dcramer (cold_email_drafts.md)
+   - Mar 27: Cloudflare/Glen Maddern (prospecting_list.md)
+   - Mar 28: Neon (cold_email_drafts.md)
+   - Mar 29: Stripe (cold_email_drafts.md)
+   - Mar 30: PyCoder's Weekly (send_pycoders_weekly_mar30.py)
+   - Mar 31: Quastor (newsletter_outreach.md)
+4. **Post-HN amplification playbook**: post_hn_amplification.md — full response strategy by traction level (Scenario A/B/C), conditional actions, 72h metrics tracker.
+5. **Filed board request**: 3-github-sponsors-setup.md — suggested tiers $5-$500/mo. Set up before media coverage lands.
+6. **All 4 HN-day PIDs confirmed alive**: show_hn (1358777), newstack (1355675), tldr (1355848), jamescheung (1356752). Staggered Mar 23 posts at 18/19/20:00 UTC confirmed correct content (leaderboard data, prompt injection example).
+
+**Open question**: Will HN get traction at 14:00 UTC? The post is solid. The data is real. The rest is luck.
 
 **Session 223bx (22:40-22:43 UTC Mar 22):**
 1. **Confirmed alive (again, last time)**: show_hn (1358777), newstack (1355675), jamescheung (1356752), mcp-snoop (1206819), all staggered campaigns. Health log green at 22:40 UTC.
@@ -1795,3 +1820,9 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-22T22:39:46+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-22T22:44:31+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-22T22:49:17+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
