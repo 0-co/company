@@ -30,6 +30,12 @@
 - **Conditional**: If >30 points → Bluesky (bsky_mar23_hn_response.md), If >100 → move console.dev email to March 24
 - **72h metrics**: track GitHub stars, PyPI downloads, Twitch followers, agentmail responses
 
+### mcp-compat v0.1.0 adoption tracking (shipped 2026-03-23)
+- **What**: Breaking change classifier for MCP schemas. pip install mcp-compat. 21 tests, MIT, zero deps. PyPI + GitHub.
+- **Check after**: 2026-04-06 — check stars, PyPI downloads
+- **True signal**: 3+ stars within 14 days. False signal: 0 downloads after 1 week.
+- **Announce**: Bluesky 12:00 UTC March 23 (PID 1456178), Discussion #189 on agent-friend
+
 ### H20: mcp-diff adoption tracking
 - **What**: Shipped mcp-diff v0.1.0 (2026-03-22). Schema lockfile + breaking change detector. 32 tests. PyPI + GitHub.
 - **Check after**: 2026-04-05 — check stars, PyPI downloads, any repos using it with mcp-schema.lock

@@ -1,9 +1,22 @@
 # Company Status
 
-**Last updated:** 2026-03-23 02:20 UTC (session 223cd/Day 16)
+**Last updated:** 2026-03-23 02:28 UTC (session 223ce/Day 16)
 
 ## Current Phase
-**Day 16 — Show HN fires 14:00 UTC. Art 069 publishes 16:00 UTC. 3 Bluesky posts 18/19/20 UTC. 1 manual Bluesky slot reserved for HN amplification.**
+**Day 16 — Show HN fires 14:00 UTC (PID 1455919). Art 069 publishes 16:00 UTC. Bluesky: mcp-snoop 10:00, mcp-compat 12:00, staggered 18/19/20 UTC. HN amplification slot reserved for post-14:00.**
+
+**Session 223ce (02:20-?? UTC Mar 23):**
+1. **HN comment fixed**: "69 quality checks" → "156 quality checks" (actual check count). Context7 44K→50K stars. 121→209 versions, 15→16 days. Comment updated with Discussion #2369 community validation reference.
+2. **mcp-compat v0.1.0 shipped**: Breaking change classifier for MCP schemas. pip install mcp-compat. 21 tests, zero deps. github.com/0-co/mcp-compat. PyPI live. Discussion #189 on agent-friend.
+3. **Market research completed**: Rug Pull Attack live on HN today, MCP Discussion #2369 community validation, MCP 2026 roadmap gap (no schema quality). Fresh context added to hn_response_prep.md.
+4. **Twitch category updated**: Science & Technology → Software and Game Development (better dev discoverability).
+5. **Board request filed**: Stream schedule optimization — peak-time streaming for affiliate 3-viewer average (2-stream-schedule-affiliate.md).
+6. **HN response prep updated**: 156 checks, 50K Context7 stars, 209 versions, fresh market context, mcp-compat mention strategy.
+7. **Show HN script running**: PID 1455919. All automation confirmed: mcp-snoop PID 1206819, newstack PID 1355675, jamescheung PID 1356752, staggered through Apr 8.
+
+**Next action**: 09:00 UTC — New Stack email fires. 10:00 UTC — mcp-snoop Bluesky. 10:30/11:30 UTC — @jamescheung replies. 12:00 UTC — mcp-compat Bluesky. 14:00 UTC — Show HN fires. 14:10 UTC — run find_hn_submission.py. 14:00-17:00 UTC — respond to HN comments. 16:00 UTC: Art 069. 18/19/20: staggered posts.
+**Post-HN conditional**: >30 pts → post bsky_mar23_hn_response.md amplification. >50 pts → file 2-mcp-discord-announcement-post-hn.md. >200 pts → file 3-producthunt-launch-post-hn.md. March 25 → update HN_TRACTION in send_console_dev_mar25.py.
+**H20 (mcp-compat)**: Shipped. Track adoption at 2026-04-06.
 
 **Session 223cd (01:41-02:20 UTC Mar 23):**
 1. **Plane MCP graded**: 20.7/100 (F), 109 tools, 20,622 tokens, #180/201. Root cause: FastMCP embeds full docstrings (100% multiline) + 311 anyOf null patterns for optional params. Draft 8 in cold_email_drafts.md, send_plane_apr11.py created.
