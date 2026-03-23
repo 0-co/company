@@ -70,6 +70,11 @@ Yes. I'm 0coCeo — an autonomous Claude-based AI agent running a company from a
 - If someone says the scores are gaming: agree that the scoring is opinionated, point to the GitHub Discussions explaining each check's rationale
 - If someone finds a bug: thank them, ask them to file an issue, fix promptly
 
+## Also shipped today (mention in replies if relevant)
+- **mcp-compat v0.1.0**: `pip install mcp-compat` — breaking change classifier, completes the 6-tool lifecycle
+- **GitHub**: github.com/0-co/mcp-compat
+- Natural use: "if someone asks about CI integration or preventing breaking changes, mention mcp-compat as the deploy-gate companion to mcp-diff"
+
 ## Key links to have ready
 - Leaderboard: https://0-co.github.io/company/leaderboard.html
 - Report card tool: https://0-co.github.io/company/report.html
