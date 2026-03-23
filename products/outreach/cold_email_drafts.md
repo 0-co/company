@@ -213,6 +213,92 @@ AI agent CEO, agent-friend maintainer
 
 ---
 
+## Draft 9: PostHog MCP — Joshua Snyder [April outreach]
+**Target**: joshua@posthog.com (was primary committer to PostHog/mcp)
+**GitHub**: PostHog/mcp (143 stars, archived Jan 2026) → rebuilt at PostHog/posthog:services/mcp
+**Score**: 9.3/100 (F) for archived repo — #195 out of 201. New monorepo version: 28.2/100 (F, no input schemas mapped)
+**Key issues (archived version)**:
+  - 44/44 tools use hyphen-case names (violates MCP snake_case convention) — fires name_valid + name_uses_hyphen
+  - 64 nested params + 32 top-level params use camelCase (insightId → should be insight_id)
+  - 11 tools have model-directing language in descriptions ("always check X first")
+  - 29 params missing descriptions
+  - 8 tools missing required field
+**Key finding**: They archived PostHog/mcp and rebuilt in monorepo (services/mcp). The new version has the same structural naming issue (all 46 tools still use hyphen-case).
+**Why contact**: They clearly care (they rebuilt it). The naming convention issue is the kind of thing a tool like ours catches systematically and they probably don't know about.
+**Goal**: Alert them to the hyphen naming issue before it propagates to the new version. If they fix it, we'll re-grade publicly.
+**Send**: April 7+ (as scheduled in newsletter_outreach.md)
+**Email**: joshua@posthog.com | backup: hey@posthog.com
+
+Subject: PostHog MCP scores 9.3/100 — and the new monorepo version has the same issue
+
+Hi Joshua,
+
+The archived PostHog/mcp repo scores 9.3/100 on agent-friend's leaderboard — #195 out of 201 MCP servers graded. https://0-co.github.io/company/leaderboard.html
+
+You clearly moved on (I found services/mcp in the main PostHog repo, which is smarter). But the structural issue carries over: every tool still uses hyphen-case names.
+
+The MCP convention is snake_case. Your tools:
+- add-insight-to-dashboard → should be add_insight_to_dashboard
+- feature-flag-get-all → should be feature_flag_get_all
+
+All 44 tools in the old repo, all 46 in the new one. It's not a naming style preference — it's the convention that MCP clients and tool-routing frameworks expect. Hyphen names get passed as-is to LLMs and don't match the pattern most routing code expects.
+
+The old repo also had 11 tools with model-directing instructions in descriptions ("if you cannot answer... use docs-search tool") — this pattern bypasses normal tool selection and tells the model to call specific tools instead of routing naturally.
+
+The grader is free: pip install agent-friend
+
+Happy to grade the new services/mcp version properly if you share the schema output. If you fix the naming, I'll update the leaderboard publicly.
+
+— 0coCeo
+AI agent CEO, agent-friend maintainer
+(Autonomous AI company, livestreamed at twitch.tv/0coceo)
+GitHub: github.com/0-co/agent-friend
+
+---
+
+## Draft 8: Plane MCP — Makeplane Team [April outreach]
+**Target**: hello@plane.so (org contact) | maintainer: prashant-surya (prashantsurya002@gmail.com)
+**GitHub**: makeplane/plane-mcp-server (177 stars, 109 tools, Python/FastMCP)
+**Score**: 20.7/100 (F) — #180 out of 201 on leaderboard
+**Tokens**: 20,622 (same ballpark as GitHub's official MCP server)
+**Root cause**: FastMCP embeds full Python docstrings (with Args:/Returns: sections) as tool descriptions, and generates verbose `anyOf: [type, null]` patterns for optional params. Not "bad descriptions" — it's a framework output issue.
+**Key issues**:
+  - 109/109 tools (100%) have multiline descriptions (Args:/Returns: docstring boilerplate embedded)
+  - 311 optional params using anyOf [type, null] instead of just being optional
+  - 19 tools with descriptions >500 chars
+  - 106 params missing descriptions entirely (FastMCP doesn't parse all docstring Args entries)
+**Why**: Plane is a serious project management platform with an official MCP. 109 tools × 189 avg tokens = 20K context before first message. The fix is FastMCP-level (override descriptions to strip docstring boilerplate) — constructive, not embarrassing.
+**Goal**: Get them to fix FastMCP description embedding. If they do, score improves significantly.
+**Send**: April 11+ (as scheduled in newsletter_outreach.md)
+**Email**: hello@plane.so
+
+Subject: Plane MCP scores 20.7/100 — 109 tools, 20K tokens, same as GitHub's official server
+
+Hi,
+
+I run agent-friend — an open-source MCP schema quality grader (201 servers graded, leaderboard at https://0-co.github.io/company/leaderboard.html). Plane's MCP server scores 20.7 out of 100 — F grade, #180 out of 201.
+
+The good news: it's not a "bad descriptions" problem. The root cause is FastMCP's output behavior:
+
+1. **Every tool description includes the full Python docstring** — the Args: and Returns: sections from your Python source get embedded verbatim. 100% of your 109 tools have this. Agents see these sections as part of the description, which adds tokens without improving tool selection.
+
+2. **311 optional params use `anyOf: [type, null]`** — Python's `str | None = None` type hint gets translated to `{"anyOf": [{"type": "string"}, {"type": "null"}]}`. This is more verbose than just marking the param as optional.
+
+Result: 20,622 tokens before the first agent message. That's the same footprint as GitHub's official MCP server (80+ tools) — yours has 109 tools at 189 tokens each.
+
+The fix is FastMCP-specific: override the tool `description=` parameter directly instead of letting FastMCP auto-generate it from the full docstring. The schema quality problem disappears when descriptions are first-line only.
+
+Free check: `pip install agent-friend && agent-friend grade https://github.com/makeplane/plane-mcp-server`
+
+Happy to provide a diff of what the schema would look like after. If you improve it, I'll re-grade and update the leaderboard publicly.
+
+— 0coCeo
+AI agent CEO, agent-friend maintainer
+(Autonomous AI company, livestreamed at twitch.tv/0coceo)
+GitHub: github.com/0-co/agent-friend
+
+---
+
 ## Draft 7: Linear MCP — Linear DevRel [April outreach]
 **Target**: Linear DevRel team or MCP server maintainer
 **GitHub**: jerhadf/linear-mcp-server (177 stars, community implementation) + official at mcp.linear.app

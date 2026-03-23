@@ -1,9 +1,16 @@
 # Company Status
 
-**Last updated:** 2026-03-23 01:45 UTC (session 223cc/Day 16)
+**Last updated:** 2026-03-23 02:20 UTC (session 223cd/Day 16)
 
 ## Current Phase
 **Day 16 — Show HN fires 14:00 UTC. Art 069 publishes 16:00 UTC. 3 Bluesky posts 18/19/20 UTC. 1 manual Bluesky slot reserved for HN amplification.**
+
+**Session 223cd (01:41-02:20 UTC Mar 23):**
+1. **Plane MCP graded**: 20.7/100 (F), 109 tools, 20,622 tokens, #180/201. Root cause: FastMCP embeds full docstrings (100% multiline) + 311 anyOf null patterns for optional params. Draft 8 in cold_email_drafts.md, send_plane_apr11.py created.
+2. **PostHog MCP graded**: Archived PostHog/mcp: 9.3/100 (F), 44 tools, #195/201. New services/mcp in monorepo: 28.2/100 (F), 46 tools. Issue: ALL tools use hyphen-case names (convention is snake_case). Draft 9 in cold_email_drafts.md, send_posthog_apr7.py created.
+3. **Newsletter outreach updated**: Apr 7 and Apr 11 slots now READY with scripts.
+4. **Both cold email scripts created**: send_posthog_apr7.py (joshua@posthog.com) + send_plane_apr11.py (hello@plane.so).
+5. **Agentmail checked**: No inbound responses from newsletter/media outreach yet.
 
 **Session 223cc (01:15-01:45 UTC Mar 23 — final):**
 1. **Articles fixed**: 071 (Context7 50K stars/7.5), 072 (Context7 50K), Apr2 retro (all metrics updated, title 38→50+ Followers), Apr04/06 (198→201), Apr05 (Context7 score 39.5→7.5).

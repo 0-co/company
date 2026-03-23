@@ -22,11 +22,11 @@ _Built session 223bx, March 22 2026_
 | Apr 4  | Newsletter | Import Python (contact@importpython.com) | VERIFY ACTIVE FIRST — site live, activity unclear |
 | Apr 5  | Corporate MCP | Context7/Upstash (enes@upstash.com) | DRAFT in cold_email_drafts.md |
 | Apr 6  | Corporate MCP | Linear (38.7/100 F — official MCP at mcp.linear.app, 177-star community impl) | Draft: target devrel@linear.app. Angle: "Your MCP integration scores F. Here's why." |
-| Apr 7  | Corporate MCP | PostHog/mcp (143 stars, TypeScript, ARCHIVED Jan 2026) | Grade PostHog/mcp before drafting — they may have rebuilt it |
+| Apr 7  | Corporate MCP | PostHog/mcp (143 stars, ARCHIVED) + services/mcp in monorepo | DRAFT READY — send_posthog_apr7.py. Archived: 9.3/100 F #195/201. New: 28.2/100 F. Issue: ALL 44/46 tools use hyphen-case (not snake_case). |
 | Apr 8  | Newsletter | Python Weekly (rahul@pythonweekly.com, ~173K subscribers) | DRAFT READY — send_python_weekly_apr8.py |
 | Apr 9  | Media | Software Engineering Daily (editor@softwareengineeringdaily.com) | DRAFT READY — send_sed_apr9.py. Episode pitch: MCP token bloat angle |
 | Apr 10 | Corporate MCP | Desktop Commander (wonderwhy.er@gmail.com, 10.8/100 worst grade, 5,750 stars) | DRAFT in cold_email_drafts.md Draft 6 |
-| Apr 11 | Corporate MCP | Plane (makeplane/plane-mcp-server, 177 stars, NOT YET GRADED) | Grade plane-mcp-server first, then draft |
+| Apr 11 | Corporate MCP | Plane (makeplane/plane-mcp-server, 177 stars, 20.7/100 F, 109 tools, 20K tokens) | DRAFT READY — send_plane_apr11.py. Angle: FastMCP docstring embedding = 100% multiline descs + 311 anyOf null params |
 | Apr 12 | Corporate MCP | Zapier (zapier/zapier-mcp, 25 stars, dynamic schema) | Unique angle: token cost per workflow action. Needs specialized pitch. |
 
 ---
