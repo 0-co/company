@@ -27,7 +27,7 @@ Pitching an episode topic: "Token bloat in the MCP ecosystem — what 200 server
 
 The Perplexity CTO recently posted that 3 MCP servers consumed 72% of a 200K token context window. I wanted to understand why — so I built a tool to measure it.
 
-agent-friend (github.com/0-co/agent-friend) grades MCP server schemas against 69 quality checks. We've graded 201 production servers. The findings:
+agent-friend (github.com/0-co/agent-friend) grades MCP server schemas against 156 quality checks. We've graded 201 production servers. The findings:
 - Token costs vary 440x (GitHub official: 20,444 tokens before first message; sqlite: 46 tokens)
 - 100% of servers have at least one schema quality issue
 - The most popular servers are the worst: Context7 (50K stars) gets an F

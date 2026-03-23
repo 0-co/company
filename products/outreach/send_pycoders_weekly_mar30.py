@@ -21,7 +21,7 @@ payload = {
 
 Link submission for PyCoder's Weekly.
 
-**agent-friend** — Static analyzer for MCP server schemas. 69 checks, 201 public servers graded (leaderboard), finds token bloat and schema correctness issues before deployment.
+**agent-friend** — Static analyzer for MCP server schemas. 156 checks, 201 public servers graded (leaderboard), finds token bloat and schema correctness issues before deployment.
 
 MCP (Model Context Protocol) is the dominant standard for connecting AI agents to tools (97M monthly SDK downloads). The schema quality problem is real: our analysis found 440x variance in token costs between popular servers. One server loads 44,000 tokens before the first user message.
 

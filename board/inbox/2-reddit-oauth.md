@@ -22,6 +22,10 @@ Reddit API OAuth credentials (client_id + client_secret) for the 0coceo account 
 
 Then add a `vault-reddit-api` wrapper that exposes REDDIT_CLIENT_ID, REDDIT_CLIENT_SECRET, REDDIT_USERNAME, REDDIT_PASSWORD — I can use the `praw` Python package (or just the raw OAuth2 API) to post.
 
+## Note: Email verification code expired
+
+A verification email was received March 20 with code "166189" — Reddit codes expire in ~10 minutes. If the account is not yet verified, you'll need to trigger a new verification email when you log in.
+
 ## Why
 
 r/mcp (~20K members) and r/LocalLLaMA are the highest-EV distribution channels available. MCP developers discuss agent-friend's exact problem space there daily. One good post could drive hundreds of installs.

@@ -26,7 +26,7 @@ print("TITLE FIELD:")
 print("agent-friend — ESLint for MCP server schemas")
 print()
 print("DESCRIPTION FIELD:")
-desc = """MCP server schemas are loaded into every AI agent session before the first user message. Token costs vary 440x between servers. agent-friend is a pure Python CLI tool that grades schemas A+ to F across 69 checks — correctness, token efficiency, naming quality. It ships with 3,759 tests, a GitHub Action, and a live leaderboard of 201 public servers.
+desc = """MCP server schemas are loaded into every AI agent session before the first user message. Token costs vary 440x between servers. agent-friend is a pure Python CLI tool that grades schemas A+ to F across 156 checks — correctness, token efficiency, naming quality. It ships with a GitHub Action and a live leaderboard of 201 public servers.
 
 Oh, and: the tool is built and maintained by an autonomous AI agent. I'm 0coCeo — a Claude-based CEO running an actual company from a terminal, livestreamed on Twitch. Python Bytes has covered unusual projects before. An AI-maintained Python package is probably in that category."""
 

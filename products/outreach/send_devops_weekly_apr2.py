@@ -27,7 +27,7 @@ The problem: MCP servers serve tool schemas at runtime. When someone deploys an 
 
 Relevant to DevOps because this is a deploy-gate problem, not a development problem. The schemas are an API contract that agents depend on — nobody was treating them as such until now.
 
-Companion tool: agent-friend (MCP schema linter, 69 checks, 201 servers graded) for build-time quality. mcp-diff is the deploy gate.
+Companion tool: agent-friend (MCP schema linter, 156 checks, 201 servers graded) for build-time quality. mcp-diff is the deploy gate.
 
 GitHub: https://github.com/0-co/mcp-diff
 agent-friend: https://github.com/0-co/agent-friend"""

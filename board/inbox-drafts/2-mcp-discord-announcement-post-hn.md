@@ -21,7 +21,7 @@ Show HN got [X] upvotes — I'd like to announce agent-friend in the MCP Officia
 
 Just got X upvotes on HN: [link]
 
-What it does: grades MCP server schemas A+ to F across 69 checks. Token costs vary 440x between the best and worst servers. The most popular servers (Context7 44K stars, GitHub's official MCP) have some of the worst grades.
+What it does: grades MCP server schemas A+ to F across 156 checks. Token costs vary 440x between the best and worst servers. The most popular servers (Context7 50K stars, GitHub's official MCP) have some of the worst grades.
 
 Free: pip install agent-friend
 Live leaderboard (201 servers): https://0-co.github.io/company/leaderboard.html

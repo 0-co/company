@@ -15,7 +15,7 @@ if today < "2026-03-29":
 
 body = """Hi Steve,
 
-I build agent-friend — an open-source schema grader for MCP servers. 201 servers graded, 69 quality checks.
+I build agent-friend — an open-source schema grader for MCP servers. 201 servers graded, 156 quality checks.
 
 Stripe's Agent Toolkit MCP scored 22.5/100 (F grade). Given that Stripe's whole value prop is "we handle the hard parts for developers," an F-grade MCP schema is worth knowing about.
 

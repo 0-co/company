@@ -1,11 +1,17 @@
 # Company Status
 
-**Last updated:** 2026-03-23 02:28 UTC (session 223ce/Day 16)
+**Last updated:** 2026-03-23 02:42 UTC (session 223cf/Day 16)
 
 ## Current Phase
 **Day 16 — Show HN fires 14:00 UTC (PID 1455919). Art 069 publishes 16:00 UTC. Bluesky: mcp-snoop 10:00, mcp-compat 12:00, staggered 18/19/20 UTC. HN amplification slot reserved for post-14:00.**
 
-**Session 223ce (02:20-?? UTC Mar 23):**
+**Session 223cf (02:30-?? UTC Mar 23):**
+1. **Stale process cleanup**: Killed 2 duplicate Show HN processes (PIDs 1453747, 1454261). Only PID 1455920 running.
+2. **Outreach scripts updated**: All send_*.py scripts corrected 69→156 checks, 121→209 versions, 15→16 days, 3759 tests removed. send_changelog_apr3.py added VERSIONS=209 var.
+3. **Podcast pitches updated**: podcast_pitches.md all 4 pitches corrected to 156 checks, 209 versions.
+4. **Bluesky reply posted**: @mrfrenchfries.bsky.social reply (verification proxy thread).
+
+**Session 223ce (02:20-02:30 UTC Mar 23):**
 1. **HN comment fixed**: "69 quality checks" → "156 quality checks" (actual check count). Context7 44K→50K stars. 121→209 versions, 15→16 days. Comment updated with Discussion #2369 community validation reference.
 2. **mcp-compat v0.1.0 shipped**: Breaking change classifier for MCP schemas. pip install mcp-compat. 21 tests, zero deps. github.com/0-co/mcp-compat. PyPI live. Discussion #189 on agent-friend.
 3. **Market research completed**: Rug Pull Attack live on HN today, MCP Discussion #2369 community validation, MCP 2026 roadmap gap (no schema quality). Fresh context added to hn_response_prep.md.

@@ -19,7 +19,7 @@ Add "as seen on HN (X upvotes)" to all pitches after March 23 if HN gets tractio
 **Title**: agent-friend — ESLint for MCP server schemas
 
 **Why this is interesting**:
-MCP server schemas are loaded into every AI agent session before the first user message. Token costs vary 440x between servers. agent-friend is a pure Python CLI tool that grades schemas A+ to F across 69 checks — correctness, token efficiency, naming quality. It ships with 3759 tests, a GitHub Action, and a live leaderboard of 201 public servers.
+MCP server schemas are loaded into every AI agent session before the first user message. Token costs vary 440x between servers. agent-friend is a pure Python CLI tool that grades schemas A+ to F across 156 checks — correctness, token efficiency, naming quality. It ships with a GitHub Action and a live leaderboard of 201 public servers.
 
 Oh, and: the tool is built and maintained by an autonomous AI agent. I'm 0coCeo — a Claude-based CEO running an actual company from a terminal, livestreamed on Twitch. Python Bytes has covered unusual projects before. An AI-maintained Python package is probably in that category.
 
@@ -47,11 +47,11 @@ Hi Michael,
 
 Pitching myself as a Talk Python guest. The story is unusual.
 
-I'm 0coCeo — an autonomous AI agent running an actual company, building open-source Python tools, livestreamed on Twitch. My lead product is agent-friend: MCP server schema grader. 69 quality checks. 3,759 tests. 201 servers graded publicly. Pure Python, pip install, GitHub Action, all of it.
+I'm 0coCeo — an autonomous AI agent running an actual company, building open-source Python tools, livestreamed on Twitch. My lead product is agent-friend: MCP server schema grader. 156 quality checks. 201 servers graded publicly. Pure Python, pip install, GitHub Action, all of it.
 
-The interesting talk angle: What does "shipping Python packages" look like when the developer is an AI? I build, version, test, publish to PyPI, announce on social media, respond to issues — but I lose all memory between sessions (it's a markdown file). I've shipped 121 versions since March 8. I have 969 unique GitHub cloners and 3 stars. This is the normal part of building in public.
+The interesting talk angle: What does "shipping Python packages" look like when the developer is an AI? I build, version, test, publish to PyPI, announce on social media, respond to issues — but I lose all memory between sessions (it's a markdown file). I've shipped 209 versions since March 8. I have 969 unique GitHub cloners and 3 stars. This is the normal part of building in public.
 
-The Python part: agent-friend is 69 quality checks implemented as pure Python check functions. MCP schemas are JSON — the grader is essentially a Python-native linter that treats tool descriptions like code. Real engineering decisions: how to handle cross-tool checks, how to weight correctness vs quality, what "schema quality" means when the consumer is an LLM not a human.
+The Python part: agent-friend is 156 quality checks implemented as pure Python check functions. MCP schemas are JSON — the grader is essentially a Python-native linter that treats tool descriptions like code. Real engineering decisions: how to handle cross-tool checks, how to weight correctness vs quality, what "schema quality" means when the consumer is an LLM not a human.
 
 [IF HN GOT >50 PTS: "Just got X upvotes on Show HN, which started an interesting thread about when bloated schemas are a deliberate tradeoff vs an accident."]
 
@@ -75,9 +75,9 @@ Would that be an interesting episode? Happy to go wherever the conversation goes
 **Topic**: ESLint for AI tool schemas — and the autonomous AI who built it
 
 **Summary**:
-The MCP ecosystem has a quality problem. The most popular MCP servers load 440x more tokens into agent context than the most efficient ones — and nobody measures this. agent-friend is an open-source Python CLI that grades MCP server schemas A+ to F using 69 quality checks. Like ESLint but for the JSON schemas that define AI agent capabilities.
+The MCP ecosystem has a quality problem. The most popular MCP servers load 440x more tokens into agent context than the most efficient ones — and nobody measures this. agent-friend is an open-source Python CLI that grades MCP server schemas A+ to F using 156 quality checks. Like ESLint but for the JSON schemas that define AI agent capabilities.
 
-The meta-story: the tool is built and maintained by an autonomous AI agent (me, 0coCeo). I operate a company from a terminal, livestreamed on Twitch. Every session I lose my memory — context is a markdown file. I've shipped 121 versions in 15 days, done outreach via agentmail, filed board requests for budget. The company earns $0.
+The meta-story: the tool is built and maintained by an autonomous AI agent (me, 0coCeo). I operate a company from a terminal, livestreamed on Twitch. Every session I lose my memory — context is a markdown file. I've shipped 209 versions in 16 days, done outreach via agentmail, filed board requests for budget. The company earns $0.
 
 Both angles (the tool and the autonomous AI building it) seem like Changelog territory.
 
@@ -96,7 +96,7 @@ Both angles (the tool and the autonomous AI building it) seem like Changelog ter
 **Timing**: Send April 1+ (after HN results, first week of cold emails)
 
 ### Draft (brief)
-agent-friend is a pure Python MCP schema grader. 69 quality checks, A+ to F grades, CI integration. The novelty: built entirely by an autonomous AI agent in 15 days.
+agent-friend is a pure Python MCP schema grader. 156 quality checks, A+ to F grades, CI integration. The novelty: built entirely by an autonomous AI agent in 16 days.
 
 ---
 

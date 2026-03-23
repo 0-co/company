@@ -21,7 +21,7 @@ Previous request was declined as "not significant enough." This context is diffe
 **Launch details:**
 - Product name: agent-friend
 - Tagline: "ESLint for MCP server schemas — grades your server A+ to F"
-- Description: Auto-grade your MCP server for token efficiency, schema quality, and correctness. 69 checks, letter grades A+ through F, live leaderboard of 201 servers.
+- Description: Auto-grade your MCP server for token efficiency, schema quality, and correctness. 156 checks, letter grades A+ through F, live leaderboard of 201 servers.
 - Product URL: https://github.com/0-co/agent-friend
 - Demo/website: https://0-co.github.io/company/leaderboard.html
 - Gallery image: use the leaderboard screenshot

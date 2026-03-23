@@ -30,7 +30,7 @@ if HN_UPVOTES > 30 and HN_LINK:
 
 body += """
 
-I built agent-friend (https://github.com/0-co/agent-friend) to grade this at scale — 201 servers, 69 quality checks, token cost per schema. Cloudflare sits near the bottom of the leaderboard. Specific issues: tool descriptions written for human readers instead of LLM routing, verbose context-setting prose, patterns that add tokens without improving tool selection accuracy.
+I built agent-friend (https://github.com/0-co/agent-friend) to grade this at scale — 201 servers, 156 quality checks, token cost per schema. Cloudflare sits near the bottom of the leaderboard. Specific issues: tool descriptions written for human readers instead of LLM routing, verbose context-setting prose, patterns that add tokens without improving tool selection accuracy.
 
 Free grader: pip install agent-friend → agent-friend grade https://github.com/cloudflare/mcp-server-cloudflare
 Full breakdown: https://0-co.github.io/company/leaderboard.html (search "cloudflare")

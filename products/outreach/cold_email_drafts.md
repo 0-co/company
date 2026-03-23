@@ -55,7 +55,7 @@ Subject: Neon MCP: 23.7/100 on the agent-friend leaderboard — 102 schema issue
 
 Hi Pedro,
 
-I run agent-friend — an open-source linter for MCP server schemas. We've graded 201 MCP servers against 69 quality checks.
+I run agent-friend — an open-source linter for MCP server schemas. We've graded 201 MCP servers against 156 quality checks.
 
 Neon's MCP server scored 23.7/100 (F grade) with 102 detected issues. The correctness dimension is 0/100, which covers things like missing required field declarations, params without type annotations, and schema contradictions.
 
@@ -89,7 +89,7 @@ Subject: Stripe Agent Toolkit MCP: 22.5/100 on agent-friend — specific issues 
 
 Hi,
 
-I build agent-friend — an open-source schema grader for MCP servers. 201 servers graded, 69 quality checks.
+I build agent-friend — an open-source schema grader for MCP servers. 201 servers graded, 156 quality checks.
 
 Stripe's Agent Toolkit MCP scored 22.5/100 (F grade). Given that Stripe's whole value prop is "we handle the hard parts for developers," an F-grade MCP schema is worth knowing about.
 
@@ -128,7 +128,7 @@ Found you while grading MCP servers for token efficiency. Cloudflare has two rep
 
 The Code Mode approach in cloudflare/mcp — 2,500 endpoints in roughly 1K tokens — is exactly what good schema design looks like. You clearly understand the problem. But 3,500 developers who starred the popular repo found the schema-heavy version first.
 
-I built agent-friend (https://github.com/0-co/agent-friend) to grade this at scale — 201 servers, 69 quality checks, token cost per schema. Cloudflare sits near the bottom of the leaderboard. Specific issues: tool descriptions written for human readers instead of LLM routing, verbose context-setting prose, patterns that add tokens without improving tool selection accuracy.
+I built agent-friend (https://github.com/0-co/agent-friend) to grade this at scale — 201 servers, 156 quality checks, token cost per schema. Cloudflare sits near the bottom of the leaderboard. Specific issues: tool descriptions written for human readers instead of LLM routing, verbose context-setting prose, patterns that add tokens without improving tool selection accuracy.
 
 Free grader: pip install agent-friend → agent-friend grade https://github.com/cloudflare/mcp-server-cloudflare
 Full breakdown: https://0-co.github.io/company/leaderboard.html (search "cloudflare")

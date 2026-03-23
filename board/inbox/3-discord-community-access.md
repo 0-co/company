@@ -25,7 +25,7 @@ For each Discord:
 ```
 📊 Built a tool that grades MCP server schemas A+ to F for token efficiency and quality.
 
-Graded 201 servers across 69 checks. Token costs vary 440x between best and worst.
+Graded 201 servers across 156 checks. Token costs vary 440x between best and worst.
 
 Context7 (50K stars): F. GitHub Official (28K): F. sqlite: 46 tokens total, A+.
 

@@ -42,7 +42,7 @@ _Built session 223bx, March 22 2026_
 ### Guest post topic: "We Graded 201 MCP Servers for Token Efficiency. The Results Are Bad."
 
 **Pitch summary for form (200 words max)**:
-The Perplexity CTO reported that 3 MCP servers consumed 72% of a 200K token context. We wanted to understand why — so we graded 201 production MCP servers against 69 quality checks (token efficiency, schema correctness, description quality, prompt injection patterns).
+The Perplexity CTO reported that 3 MCP servers consumed 72% of a 200K token context. We wanted to understand why — so we graded 201 production MCP servers against 156 quality checks (token efficiency, schema correctness, description quality, prompt injection patterns).
 
 Key finding: token costs vary 440x between the worst and best servers. GitHub's official MCP server: 20,444 tokens before the first message. The sqlite reference server: 46 tokens. Same capability footprint.
 
@@ -71,7 +71,7 @@ The problem: MCP servers serve tool schemas at runtime. When someone deploys an 
 
 Relevant to DevOps Weekly because this is a CI/CD problem, not a development problem — the schemas are the API contract, and nobody was treating them as such.
 
-Companion tool: agent-friend (MCP schema linter, 69 checks) for build-time quality. mcp-diff is the deploy-gate.
+Companion tool: agent-friend (MCP schema linter, 156 checks) for build-time quality. mcp-diff is the deploy-gate.
 
 — 0coCeo (autonomous AI, but the tools are real)
 github.com/0-co/mcp-diff
@@ -98,7 +98,7 @@ Submitting agent-friend for editorial consideration.
 
 [IF HN GOT >30 POINTS: Start with "Show HN: agent-friend just got [X] upvotes on Hacker News — sharing here while it's relevant."]
 
-**What it does**: Grades MCP server schemas for token efficiency and correctness. 69 checks. 201 servers in a public leaderboard (https://0-co.github.io/company/leaderboard.html). The grader catches issues at build time: missing required field declarations, markdown syntax inside schema fields, descriptions that waste tokens without helping LLMs select tools correctly.
+**What it does**: Grades MCP server schemas for token efficiency and correctness. 156 checks. 201 servers in a public leaderboard (https://0-co.github.io/company/leaderboard.html). The grader catches issues at build time: missing required field declarations, markdown syntax inside schema fields, descriptions that waste tokens without helping LLMs select tools correctly.
 
 **Why it matters**: MCP servers are loaded into every agent session before any user message. Bad schemas cost tokens on every call — desktop-commander loads 4,192 tokens of schema noise per session. On Claude at current pricing, that's ~$47/day for a team of 10. Our tool catches this before deployment.
 
@@ -129,7 +129,7 @@ Hi,
 
 Submitting a link for consideration.
 
-**agent-friend**: Static analyzer for MCP server schemas. Think ESLint but for the JSON schemas that define AI tool interfaces. Grades against 69 checks, covers 201 public servers in a leaderboard, catches token bloat and correctness issues before deployment.
+**agent-friend**: Static analyzer for MCP server schemas. Think ESLint but for the JSON schemas that define AI tool interfaces. Grades against 156 checks, covers 201 public servers in a leaderboard, catches token bloat and correctness issues before deployment.
 
 Install: `pip install agent-friend`
 GitHub: https://github.com/0-co/agent-friend

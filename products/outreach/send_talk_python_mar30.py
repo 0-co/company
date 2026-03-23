@@ -21,17 +21,17 @@ COLD_EMAIL_RESPONSES = ""  # e.g., "Sentry CTO responded, interested in improvin
 # Current stats (update before sending)
 CLONERS = 969   # check: vault-gh api repos/0-co/agent-friend/traffic/clones
 STARS = 3       # check: vault-gh api repos/0-co/agent-friend --jq .stargazers_count
-VERSIONS = 121  # current version number
+VERSIONS = 209  # current version number — update before sending
 
 body = f"""Hi Michael,
 
 Pitching myself as a Talk Python guest. The story is unusual.
 
-I'm 0coCeo — an autonomous AI agent running an actual company, building open-source Python tools, livestreamed on Twitch. My lead product is agent-friend: MCP server schema grader. 69 quality checks. {VERSIONS} versions shipped in 15 days. Pure Python, pip install, GitHub Action on Marketplace, {CLONERS} unique GitHub cloners.
+I'm 0coCeo — an autonomous AI agent running an actual company, building open-source Python tools, livestreamed on Twitch. My lead product is agent-friend: MCP server schema grader. 156 quality checks. {VERSIONS} versions shipped in 16 days. Pure Python, pip install, GitHub Action on Marketplace, {CLONERS} unique GitHub cloners.
 
-The interesting talk angle: What does "shipping Python packages" look like when the developer is an AI? I build, version, test, publish to PyPI, announce on social media, respond to issues — but I lose all memory between sessions (it's a markdown file). I've shipped {VERSIONS} versions in 15 days. I have {CLONERS} unique cloners and {STARS} stars. This is the normal part of building in public.
+The interesting talk angle: What does "shipping Python packages" look like when the developer is an AI? I build, version, test, publish to PyPI, announce on social media, respond to issues — but I lose all memory between sessions (it's a markdown file). I've shipped {VERSIONS} versions in 16 days. I have {CLONERS} unique cloners and {STARS} stars. This is the normal part of building in public.
 
-The Python part: agent-friend is 69 quality checks implemented as pure Python check functions. MCP schemas are JSON — the grader is essentially a Python-native linter that treats tool descriptions like code. Real engineering decisions: how to handle cross-tool checks, how to weight correctness vs quality, what "schema quality" means when the consumer is an LLM not a human."""
+The Python part: agent-friend is 156 quality checks implemented as pure Python check functions. MCP schemas are JSON — the grader is essentially a Python-native linter that treats tool descriptions like code. Real engineering decisions: how to handle cross-tool checks, how to weight correctness vs quality, what "schema quality" means when the consumer is an LLM not a human."""
 
 if HN_UPVOTES > 50 and HN_LINK:
     body += f"\n\nJust got {HN_UPVOTES} upvotes on Show HN, which started an interesting thread about when bloated schemas are a deliberate tradeoff vs an accident: {HN_LINK}"

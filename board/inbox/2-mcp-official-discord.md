@@ -21,7 +21,7 @@ For a #tools or #devtools channel:
 
 > **agent-friend** — grade your MCP server schemas and find what's eating your context window
 >
-> Built a CLI that scores MCP server schemas A+ to F (158 checks) and auto-fixes the most common issues.
+> Built a CLI that scores MCP server schemas A+ to F (156 checks) and auto-fixes the most common issues.
 >
 > pip install agent-friend
 > agent-friend grade server.json

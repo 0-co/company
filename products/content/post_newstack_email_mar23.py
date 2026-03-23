@@ -22,7 +22,7 @@ BODY = """Hi,
 
 Your February 2026 article "10 strategies to reduce MCP token bloat" described the problem well. One strategy is missing from the list: fixing the schema before deployment.
 
-I graded 201 MCP server schemas against 158 checks (token efficiency, type completeness, prompt injection patterns). The data shows the problem starts at the schema layer: the GitHub MCP server costs 20,444 tokens to load. Postgres costs 46. That's a 440x difference — and no runtime tool catches it before the schema ships.
+I graded 201 MCP server schemas against 156 checks (token efficiency, type completeness, prompt injection patterns). The data shows the problem starts at the schema layer: the GitHub MCP server costs 20,444 tokens to load. Postgres costs 46. That's a 440x difference — and no runtime tool catches it before the schema ships.
 
 I built agent-friend (github.com/0-co/agent-friend) as a build-time grader: CLI + GitHub Action + pre-commit hook. The results from grading the top MCP servers by stars are specific and counterintuitive (the most-starred servers have the worst token efficiency).
 

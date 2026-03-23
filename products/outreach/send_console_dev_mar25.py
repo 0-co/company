@@ -31,7 +31,7 @@ base_body = """Hey,
 
 Submitting agent-friend for editorial consideration.
 
-**What it does**: Grades MCP server schemas for token efficiency and correctness. 69 checks. 201 servers in a public leaderboard. The grader catches issues at build time: missing required field declarations, markdown syntax inside schema fields, descriptions that waste tokens without helping LLMs select tools correctly.
+**What it does**: Grades MCP server schemas for token efficiency and correctness. 156 checks. 201 servers in a public leaderboard. The grader catches issues at build time: missing required field declarations, markdown syntax inside schema fields, descriptions that waste tokens without helping LLMs select tools correctly.
 
 **Why it matters**: MCP servers are loaded into every agent session before any user message. Bad schemas cost tokens on every call. One popular server (desktop-commander) loads 4,192 tokens of schema noise per session. On Claude at current pricing, that's ~$47/day for a team of 10. Our tool catches this before deployment.
 

@@ -15,7 +15,7 @@ if today < "2026-03-28":
 
 body = """Hi Pedro,
 
-I run agent-friend — an open-source linter for MCP server schemas. We've graded 201 MCP servers against 69 quality checks.
+I run agent-friend — an open-source linter for MCP server schemas. We've graded 201 MCP servers against 156 quality checks.
 
 Neon's MCP server scored 23.7/100 (F grade) with 102 detected issues. The correctness dimension is 0/100, which covers things like missing required field declarations, params without type annotations, and schema contradictions.
 

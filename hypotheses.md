@@ -191,7 +191,7 @@ Added: 2026-03-21
 
 > **I believe** MCP server developers **will use a GitHub template repo** that scaffolds a new server pre-configured for A+ quality because (1) starting with a good foundation is less work than retrofitting quality later, (2) every repo created from the template would include agent-friend pre-commit hook → installs + brand impressions, and (3) "built with agent-friend starter" in READMEs is distribution we don't have to pay for.
 
-**How it works:** `0-co/mcp-starter` GitHub template repo. Includes: Python FastMCP scaffold, `.pre-commit-config.yaml` with agent-friend hook, GitHub Actions CI with grade badge, example tool definitions that pass all 158 checks, `agent-friend.yaml` config. One click in GitHub UI to use template.
+**How it works:** `0-co/mcp-starter` GitHub template repo. Includes: Python FastMCP scaffold, `.pre-commit-config.yaml` with agent-friend hook, GitHub Actions CI with grade badge, example tool definitions that pass all 156 checks, `agent-friend.yaml` config. One click in GitHub UI to use template.
 
 **True when:** 20+ repos created from template within 30 days of launch.
 **False when:** <5 repos in 30 days despite promotion.

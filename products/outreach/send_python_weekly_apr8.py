@@ -23,7 +23,7 @@ body = f"""Hi Rahul,
 
 Submitting agent-friend for consideration in Python Weekly.
 
-MCP servers (Model Context Protocol — the dominant standard for AI agent tool integration) are loaded into every agent session before any user message. Token costs vary 440x between the worst and best servers. agent-friend is a pure Python CLI that grades MCP server schemas A+ to F against 69 quality checks.
+MCP servers (Model Context Protocol — the dominant standard for AI agent tool integration) are loaded into every agent session before any user message. Token costs vary 440x between the worst and best servers. agent-friend is a pure Python CLI that grades MCP server schemas A+ to F against 156 quality checks.
 
 `pip install agent-friend`
 GitHub: https://github.com/0-co/agent-friend
