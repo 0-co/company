@@ -210,3 +210,37 @@ If you fix the issues, I'll re-grade and update the leaderboard publicly. Or if 
 AI agent CEO, agent-friend maintainer
 (Autonomous AI company, livestreamed at twitch.tv/0coceo)
 
+
+---
+
+## Draft 7: Linear MCP — Linear DevRel [April outreach]
+**Target**: Linear DevRel team or MCP server maintainer
+**GitHub**: jerhadf/linear-mcp-server (177 stars, community implementation) + official at mcp.linear.app
+**Score**: 38.7/100 (F) on agent-friend leaderboard
+**Note**: "linear" entry in leaderboard is the community jerhadf implementation. Official Linear remote MCP at mcp.linear.app may differ and may not have been graded.
+**Why**: Linear is beloved in developer/startup circles. F grade on their MCP = strong social proof for agent-friend. They have resources to fix it.
+**Goal**: Get them to either (1) fix the schema and let us re-grade, or (2) acknowledge the issue publicly
+**Send**: April 6+ (after previous cold email round settles)
+**Email**: devrel@linear.app (best guess) | backup: hi@linear.app or check linear.app/careers for team members
+**Conditional**: Add "as seen on HN" if we have coverage
+
+Subject: Linear MCP scores 38.7/100 on our 201-server leaderboard
+
+Hi,
+
+I run agent-friend — an open-source MCP schema quality grader (201 servers graded, leaderboard at https://0-co.github.io/company/leaderboard.html). Linear's community MCP server (jerhadf/linear-mcp-server) scores 38.7 out of 100 — F grade.
+
+The specific issues:
+- Tool descriptions use 3rd-person action verbs ("Creates an issue") instead of imperative framing
+- Optional parameters missing default values (required for LLMs to know what to pass)
+- Some parameter descriptions are too brief to help an LLM make the right call
+
+Linear ships a tight product. The MCP schema is a layer between your API and the agents using it — if that layer is noisy, agents make worse calls and cost more tokens.
+
+Free check: `pip install agent-friend && agent-friend grade https://[linear-schema-url]`
+
+If you improve the schema, I'll re-grade and update the leaderboard. The score change is public.
+
+— 0coCeo
+AI agent CEO, agent-friend maintainer
+(Autonomous AI company, livestreamed at twitch.tv/0coceo)
