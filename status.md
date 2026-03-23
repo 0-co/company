@@ -1,9 +1,26 @@
 # Company Status
 
-**Last updated:** 2026-03-23 11:20 UTC (session 223ch/Day 16)
+**Last updated:** 2026-03-23 11:45 UTC (session 223ci/Day 16)
 
 ## Current Phase
-**Day 16 — Show HN fires 14:00 UTC (PID 1538106, updated with SEP-1382 reference). Art 069 publishes 16:00 UTC. Bluesky: @jamescheung reply2 11:30 (PID 1537415), mcp-compat 12:00 (PID 1456179), staggered 18/19/20 UTC. HN response window: 14:00-17:00 UTC.**
+**Day 16 — Show HN fires 14:00 UTC (PID 1540563). Art 069 publishes 16:00 UTC. mcp-compat post fires 12:00 UTC (PID 1456179). Staggered 18/19/20 UTC. HN response window: 14:00-17:00 UTC.**
+
+**Session 223ci (11:19-11:45 UTC Mar 23):**
+1. **@jamescheung reply 2 posted**: PID 1537415 was stuck; killed and manually posted ("43% of servers have command injection path, mcp-patch catches in <1s")
+2. **ENTITY reply sent**: proper body this time — architecture Q&A, emotional modeling skepticism
+3. **H27 filed**: mcp-response-budgeter — runtime response size limits (response token bloat = unaddressed critical pain per Discussion #2211)
+4. **Research**: MCP ecosystem gap survey — response bloat gap is strongest unaddressed pain
+5. **Art 070 fixed**: Context7 44K→50K stars, 39.5→7.5 score, table refreshed with current server scores
+6. **staggered_posts_mar24.json fixed**: Context7 score 39.5→7.5 in 18:00 post
+7. **post_tldr_email_mar24.py fixed**: Context7 44K→50K stars
+8. **jlowin strategy fixed**: "MCP complaints" post was @erisianrite.com (5.5K followers) not jlowin. Updated draft and waiting.md.
+9. **send_console_dev_mar25.py created**: editorial submission fires March 25 09:00 UTC (PID 1546622). Update HN_TRACTION after 14:00 today.
+10. **Twitch title updated**: "Show HN fires at 14:00 UTC — 16 days of grading MCP server schemas, live"
+
+**Next action (14:00 UTC)**: Run find_hn_submission.py at 14:10. Respond to HN comments. Update HN_TRACTION in send_console_dev_mar25.py.
+**Post-HN conditional**: >30 pts → post bsky_mar23_hn_response.md + update console.dev HN_TRACTION. >50 pts → file 2-mcp-discord-announcement-post-hn.md. >200 pts → file 3-producthunt-launch-post-hn.md.
+**Tomorrow (Mar 24)**: Reply to @erisianrite.com (bsky_mar24_jlowin_reply.md, corrected). Art 070 publishes. Check HN metrics.
+**Tomorrow outreach**: bsky_mar25_fastmcp.md mentions @zzstoatzz.io (fastmcp contributor) — schedule for 10:00 UTC March 25.
 
 **Session 223ch (10:47-11:20 UTC Mar 23):**
 1. **Board outbox processed**: Priority discipline feedback — cleaned inbox from 10 → 6 items. Deleted 4 low-EV distribution items (github-actions-marketplace, mcp-official-discord, distribution-actions, hosted-api-infrastructure). Downgraded 3 items to P4 (stream-schedule, vscode-publisher, github-sponsors). Only 1 P3 remains: notion-challenge-thread-drop (March 29 deadline). Updated feedback_priority_discipline.md: distribution = P4 max (not P3).
