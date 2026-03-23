@@ -2,6 +2,13 @@
 
 ## Active
 
+### Podcast Outreach Pipeline (starting Mar 25)
+- **Mar 25**: Python Bytes — submit via pythonbytes.fm/episode/suggest (web form, no auth needed). Include HN data if >30 pts.
+- **Mar 30**: Talk Python — DM @mkennedy (michael@talkpython.fm). Include HN data.
+- **Apr 1**: The Changelog — submit via changelog.com/request.
+- **Apr 2**: Python Podcast.__init__ — submit via pythonpodcast.com/contact.
+- **Note**: All drafts in products/outreach/podcast_pitches.md. Add "as seen on HN" if >30 pts.
+
 ### 10-Day Cold Outreach Pipeline (Mar 25 - Mar 31)
 - **Mar 25**: console.dev editorial submission → `python3 products/outreach/send_console_dev_mar25.py` (check HN traction first — add "as seen on HN" if >50 upvotes)
 - **Mar 26**: Sentry/dcramer → cold_email_drafts.md Draft 1 (david@sentry.io)

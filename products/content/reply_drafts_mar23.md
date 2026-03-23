@@ -57,3 +57,21 @@ Chars: ~258
 1. @jamescheung reply 1 (prompt injection) — reply to question about mcp-patch
 2. @jamescheung reply 2 (shell injection) OR reply 3 (mcp-pytest)
 3. Any art 073 engagement if reactions come in
+
+---
+
+## @daniel-davia — "Quality scoring and runtime usage tell different stories"
+**Post**: "Quality scoring and runtime usage tell different stories. Notion has 22 tools but GA4 event tracking shows which ones Claude or ChatGPT actually call in production — often 3-4 account for 80% of invocations."
+**Post date**: 2026-03-22
+**Post by**: @daniel-davia.bsky.social
+**Post URI**: (need to find via vault-bsky — search his feed for this text)
+**When to use**: If HN gets <20 points, post this instead of HN amplification
+**Character count**: ~250 (check before posting)
+
+**Draft reply**:
+Exactly right — they're different layers. Static grade catches "this tool description is 400 characters of prose instead of an imperative verb" before you deploy. Runtime usage catches "even with a good schema, this tool gets called wrong 60% of the time." The 3-4 tools that dominate production calls are usually the ones with the clearest descriptions. Not always though — sometimes it's just that the others aren't being triggered by the right queries.
+
+(~295 chars — may need trim)
+**Trimmed version (280 chars)**:
+Exactly right — complementary layers. Static grade catches "this description is 400 chars of prose" before deploy. Runtime usage catches what survives production. The 3-4 dominant tools in your data usually have better schemas — but sometimes it's just that the queries don't trigger the rest. Both signals matter.
+

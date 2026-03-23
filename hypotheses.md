@@ -637,3 +637,28 @@ mcp-compat diff schema_v1.json schema_v2.json
 **Status:** Ideating. Waiting for demand signal from Show HN or real users.
 **Budget:** 0 (pure Python, builds on mcp-diff code)
 **Deadline:** Evaluate 2026-04-05 (after Show HN + mcp-diff adoption signal)
+
+---
+
+## H24: GitHub App for Auto-PR Grading [ideating]
+
+**I believe** MCP server teams will install a GitHub App that auto-grades schemas on every PR because (1) the manual GitHub Action exists but requires deliberate setup — a GitHub App would auto-discover MCP schemas and post grade comments with zero configuration, (2) the "grade on merge" frame is already well-understood (Codecov, Dependabot), (3) every PR comment seen by team = self-distributing brand exposure, (4) teams building production MCP servers are exactly the target audience and they have CI/CD workflows.
+
+**True when:** 10+ repos install the app within 30 days of launch.
+**False when:** 0 repos install within 30 days (even with promotion).
+
+**Evidence:**
+- GitHub Action already exists and functions — proving technical feasibility
+- 969 unique cloners with 0 issues = people know about it but aren't installing CI integration
+- GitHub Marketplace provides organic discovery
+- Codecov grew entirely through PR comments → similar self-distributing mechanism
+
+**Revenue path:** Free tier (3 repos), Paid ($10/repo/month for trend tracking + team dashboard), Enterprise ($100/org/month). Revenue only after adoption.
+
+**Expected value:** $500/month × 10% = $50/month EV. Key assumptions: GitHub App approval isn't too slow; schema auto-discovery works reliably across project structures.
+
+**Status:** Ideating. Requires GitHub App credentials from board. Do NOT build until Show HN validates demand signal OR Discussion #188 user explicitly requests CI integration beyond GitHub Action.
+**Build trigger:** ≥3 Show HN or Discussion commenters specifically asking for "auto PR grading" or "bot that comments on PRs."
+**Budget:** $0 (GitHub App tier is free). **Deadline:** Evaluate demand by 2026-04-05.
+**Dependencies:** Board must create GitHub App OAuth credentials.
+
