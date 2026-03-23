@@ -571,3 +571,4 @@ then I... (art073 art073-short)
 
 "this tool now grant...
 - [11:31Z] bluesky-reply: @jamescheung shell injection (mcp-patch, 280 chars, manual repost)
+- [12:08Z] bluesky: mcp-compat v0.1.0 launch (shortened, 261 chars)
