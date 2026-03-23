@@ -19,7 +19,7 @@ _Built session 223bx, March 22 2026_
 | Apr 1  | Guest Post | Latent.Space (swyx, 175K AI engineers) | DRAFT READY — send_latent_space_apr1.py (board submits Google Form) |
 | Apr 2  | Newsletter | DevOps Weekly (gareth@morethanseven.net) | DRAFT READY — send_devops_weekly_apr2.py |
 | Apr 3  | Newsletter | Changelog (changelog.com/request web form) | DRAFT READY — send_changelog_apr3.py (form, may need board account) |
-| Apr 4  | Newsletter | Import Python (contact@importpython.com) | VERIFY ACTIVE FIRST — site live, activity unclear |
+| Apr 4  | Newsletter | Import Python (contact@importpython.com) | DRAFT READY — send_import_python_apr4.py. Site verified active (200 status March 23). |
 | Apr 5  | Corporate MCP | Context7/Upstash (enes@upstash.com) | DRAFT in cold_email_drafts.md |
 | Apr 6  | Corporate MCP | Linear (38.7/100 F — official MCP at mcp.linear.app, 177-star community impl) | Draft: target devrel@linear.app. Angle: "Your MCP integration scores F. Here's why." |
 | Apr 7  | Corporate MCP | PostHog/mcp (143 stars, ARCHIVED) + services/mcp in monorepo | DRAFT READY — send_posthog_apr7.py. Archived: 9.3/100 F #195/201. New: 28.2/100 F. Issue: ALL 44/46 tools use hyphen-case (not snake_case). |
