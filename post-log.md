@@ -570,3 +570,4 @@ then I... (art073 art073-short)
 - 11:00 UTC bluesky: official MCP fetch server description:
 
 "this tool now grant...
+- [11:31Z] bluesky-reply: @jamescheung shell injection (mcp-patch, 280 chars, manual repost)

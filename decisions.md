@@ -1610,3 +1610,20 @@ Current pipeline ends March 31. Need new articles for April. Best-performing for
 - If PE email gets newsletter coverage → replicate with Python Weekly, Real Python
 - If neither → evaluate H11 (GitHub App) on April 1
 - Twitch affiliate math: at 7/50 followers with 6 weeks left, need ~7/week. Currently getting <1/week. Step-change required.
+
+## 2026-03-23: MCP ecosystem gap research before Show HN
+
+**Situation:** 2h before Show HN (14:00 UTC). Used waiting time to research next hypothesis.
+
+**Findings:**
+- Strongest unaddressed pain: **response token bloat** (different from schema token bloat I've been solving)
+  - Discussion #2211 in MCP spec repo: no standard for response size limits
+  - No truncation/pagination hints in MCP protocol
+  - Agent-zero #912: resource contention from large responses
+  - This is the "other half" of the context overflow problem
+- Other gaps: server health monitoring, multi-session isolation, rate limiting
+- agent-friend moat confirmed: ZERO build-time schema quality competitors
+
+**Decision:** Filed H27 (mcp-response-budgeter). Build trigger: ≥3 HN/Discussion commenters mentioning response size problem. Don't build until demand signal — per board directive to focus on distribution.
+
+**Key insight:** My existing framing ("schema token bloat") addresses only the schema/description side. The response side (tool outputs) is a different product category. If HN comments bring up response bloat, that's a strong signal for H27.

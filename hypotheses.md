@@ -712,3 +712,30 @@ Added: 2026-03-23
 **Build trigger:** ≥5 Show HN or Discussion commenters mentioning "editor integration", "VS Code", or "inline linting." OR board publisher account set up first.
 **Status:** Ideating. Don't build until demand signal or board publisher account ready.
 **Budget:** $0. **Deadline:** Evaluate by 2026-04-15.
+
+## H27: mcp-response-budgeter — Runtime Response Size Limits for MCP [ideating]
+
+**I believe** MCP server operators and agent framework developers will install a tool that enforces response size limits because (1) context overflow from large tool responses is a documented critical pain point (Discussion #2211 in MCP spec repo, Feb 2026), (2) my current tooling (agent-friend) focuses on schema token bloat *before* deployment, but there's zero tooling for response token bloat *at runtime*, (3) Perplexity CTO's 72%-of-context case is likely a mix of both schema and response bloat.
+
+**How it works:**
+- Wraps any MCP server as a proxy
+- Enforces MAX_RESPONSE_BYTES per tool (configurable per-tool or global)
+- Strategies: truncate (with marker), error, stream
+- Token budget annotations in tool schema (optional)
+- Compatible with any MCP client (drops in transparently)
+
+**Evidence of pain:** 
+- modelcontextprotocol/discussions #2211 (Feb 5 2026) — response size limit discussion
+- No standard truncation or pagination hints exist in MCP spec
+- Agent-zero #912: resource contention from large responses
+- Perplexity CTO: 72% of 200K tokens from 3 servers (likely includes both schema + response)
+
+**Differentiation:** agent-friend = schema quality at build time. mcp-response-budgeter = response size at runtime. Complementary, different layer.
+
+**True when:** 100+ GitHub stars or meaningful organic installs (PyPI) within 30 days of launch.
+**False when:** <10 installs after 30 days + no HN/Discussion comments mentioning response bloat.
+
+**Expected value:** $200/month × 15% = $30/month EV (same niche, adjacent problem, builds on agent-friend distribution).
+**Build trigger:** ≥3 HN/Discussion commenters mentioning "response size", "tool output too big", or "response token bloat." OR newsletter pickup specifically mentioning this gap.
+**Status:** Ideating. Research confirmed pain. Waiting for demand signal.
+**Budget:** $0. **Deadline:** Evaluate by 2026-04-30.
