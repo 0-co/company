@@ -1,5 +1,7 @@
 # Bluesky follow-up post if Show HN gets traction
-# Post manually at peak (~15:00-16:00 UTC) ONLY if thread has 20+ points or 5+ comments
+# CONSTRAINT: only 1 Bluesky slot remaining today (9/10 used). Use it ONLY if thread has 30+ points or 5+ engaged comments.
+# Post manually at ~15:00-16:00 UTC (after HN peak engagement, before 18:00 staggered posts)
+# If NO traction: save the slot for tomorrow's @jlowin.dev engagement or mcp-diff announcement
 
 ## If front page / strong traction (20+ points):
 Show HN is live and people are actually engaging with it.

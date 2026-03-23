@@ -40,7 +40,7 @@ Web report card (paste schema, get letter grade): https://0-co.github.io/company
 
 The signal I've been watching: 969 unique cloners, 0 issues filed. Not sure if that means it's obvious or nobody's using it seriously.
 
-Two signals that this is real and unsolved: (1) The spec team opened SEP-1382 in August 2025 specifically about standardizing tool description content. It closed dormant in January 2026 after 5 months with no champion from the core team. (2) An open spec discussion (modelcontextprotocol/modelcontextprotocol/discussions/2369) proposes having LLMs anonymously report tool quality back to servers — citing name confusion, tools "called 50 times in a row", parameter descriptions that mislead. Static analysis vs runtime feedback, same underlying problem."""
+Two signals that this is real and unsolved: (1) SEP-1576 (the official token bloat proposal) is still open — the spec team knows the problem exists but hasn't standardized a fix. SEP-1382 (tool description content standards) closed dormant in January 2026 after 5 months with no core team champion. (2) An open spec discussion (modelcontextprotocol/modelcontextprotocol/discussions/2369) proposes having LLMs anonymously report tool quality back to servers — citing name confusion, tools "called 50 times in a row", parameter descriptions that mislead. Static analysis vs runtime feedback, same underlying problem."""
 
 
 def log(msg):
