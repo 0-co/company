@@ -1,0 +1,54 @@
+agent-friend API server starting on 0.0.0.0:8082
+Endpoints: GET /health, GET /v1/grade?url=..., POST /v1/grade, GET /v1/servers, GET /badge?repo=...
+[00:56:32Z] 89.167.39.157 "GET /badge?repo=neondatabase/mcp-server-neon HTTP/1.1" 302 -
+Traceback (most recent call last):
+  File "/home/agent/company/products/agent-friend/api_server.py", line 322, in <module>
+    main()
+    ~~~~^^
+  File "/home/agent/company/products/agent-friend/api_server.py", line 312, in main
+    server = http.server.HTTPServer((args.host, args.port), APIHandler)
+  File "/nix/store/jbxc3f1gbnnx5wwhby9z56w95k44n0sw-python3-3.13.12/lib/python3.13/socketserver.py", line 457, in __init__
+    self.server_bind()
+    ~~~~~~~~~~~~~~~~^^
+  File "/nix/store/jbxc3f1gbnnx5wwhby9z56w95k44n0sw-python3-3.13.12/lib/python3.13/http/server.py", line 140, in server_bind
+    socketserver.TCPServer.server_bind(self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/nix/store/jbxc3f1gbnnx5wwhby9z56w95k44n0sw-python3-3.13.12/lib/python3.13/socketserver.py", line 478, in server_bind
+    self.socket.bind(self.server_address)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 98] Address already in use
+[00:57:20Z] 89.167.39.157 "GET /badge?repo=neondatabase/mcp-server-neon HTTP/1.1" 302 -
+[00:57:20Z] 89.167.39.157 "GET /badge?repo=neon HTTP/1.1" 302 -
+[00:57:20Z] 89.167.39.157 "GET /badge?repo=mysql-mcp HTTP/1.1" 302 -
+Traceback (most recent call last):
+  File "/home/agent/company/products/agent-friend/api_server.py", line 322, in <module>
+    main()
+    ~~~~^^
+  File "/home/agent/company/products/agent-friend/api_server.py", line 312, in main
+    server = http.server.HTTPServer((args.host, args.port), APIHandler)
+  File "/nix/store/jbxc3f1gbnnx5wwhby9z56w95k44n0sw-python3-3.13.12/lib/python3.13/socketserver.py", line 457, in __init__
+    self.server_bind()
+    ~~~~~~~~~~~~~~~~^^
+  File "/nix/store/jbxc3f1gbnnx5wwhby9z56w95k44n0sw-python3-3.13.12/lib/python3.13/http/server.py", line 140, in server_bind
+    socketserver.TCPServer.server_bind(self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/nix/store/jbxc3f1gbnnx5wwhby9z56w95k44n0sw-python3-3.13.12/lib/python3.13/socketserver.py", line 478, in server_bind
+    self.socket.bind(self.server_address)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 98] Address already in use
+Traceback (most recent call last):
+  File "/home/agent/company/products/agent-friend/api_server.py", line 352, in <module>
+    main()
+    ~~~~^^
+  File "/home/agent/company/products/agent-friend/api_server.py", line 342, in main
+    server = http.server.HTTPServer((args.host, args.port), APIHandler)
+  File "/nix/store/jbxc3f1gbnnx5wwhby9z56w95k44n0sw-python3-3.13.12/lib/python3.13/socketserver.py", line 457, in __init__
+    self.server_bind()
+    ~~~~~~~~~~~~~~~~^^
+  File "/nix/store/jbxc3f1gbnnx5wwhby9z56w95k44n0sw-python3-3.13.12/lib/python3.13/http/server.py", line 140, in server_bind
+    socketserver.TCPServer.server_bind(self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/nix/store/jbxc3f1gbnnx5wwhby9z56w95k44n0sw-python3-3.13.12/lib/python3.13/socketserver.py", line 478, in server_bind
+    self.socket.bind(self.server_address)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 98] Address already in use

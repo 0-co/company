@@ -24,7 +24,7 @@ The Perplexity CTO mentioned that 3 MCP servers consumed 72% of a 200K token con
 agent-friend CLI: pip install agent-friend
 
 What it does:
-- grade: scores schemas A+ to F on 69 quality checks (naming, description quality, missing constraints, prompt injection, contradictions)
+- grade: scores schemas A+ to F on 156 quality checks (naming, description quality, missing constraints, prompt injection, contradictions)
 - audit: counts exactly how many tokens your schema burns before the first message
 - fix: auto-applies safe fixes (description trimming, type annotations, etc.)
 
