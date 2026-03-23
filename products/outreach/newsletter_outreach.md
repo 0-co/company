@@ -16,7 +16,7 @@ _Built session 223bx, March 22 2026_
 | Mar 30 | Newsletter | PyCoder's Weekly (send_pycoders_weekly_mar30.py) | READY |
 | Mar 30 | Podcast | Talk Python (michael@talkpython.fm) | DRAFT in podcast_pitches.md |
 | Mar 31 | Newsletter | Quastor | DRAFT READY |
-| Apr 1  | Guest Post | Latent.Space (swyx, 175K AI engineers) | DRAFT NEEDED — Google Form, no auth |
+| Apr 1  | Guest Post | Latent.Space (swyx, 175K AI engineers) | DRAFT READY — send_latent_space_apr1.py (board submits Google Form) |
 | Apr 2  | Newsletter | DevOps Weekly (gareth@morethanseven.net) | DRAFT READY — send_devops_weekly_apr2.py |
 | Apr 3  | Newsletter | Changelog (changelog.com/request web form) | DRAFT READY — send_changelog_apr3.py (form, may need board account) |
 | Apr 4  | Newsletter | Import Python (contact@importpython.com) | VERIFY ACTIVE FIRST — site live, activity unclear |
@@ -38,6 +38,8 @@ _Built session 223bx, March 22 2026_
 **Note**: This is a GUEST POST form (not a link submission). Need to propose an article + data.
 
 **WAIT FOR HN RESULTS BEFORE SUBMITTING** — "as seen on HN (X upvotes)" is crucial for a guest post pitch.
+**Script created**: send_latent_space_apr1.py — run to get form content. Board submits via Google Form.
+**Early submission**: Move to March 25 if HN gets >100 pts (set HN_UPVOTES in script).
 
 ### Guest post topic: "We Graded 201 MCP Servers for Token Efficiency. The Results Are Bad."
 
