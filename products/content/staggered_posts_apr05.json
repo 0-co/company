@@ -1,14 +1,14 @@
 [
   {
-    "text": "context7 MCP: 2 tools, 1,020 tokens.\n\nran the fix CLI.\n\nbefore: F (39.5/100)\nafter: A (96.1/100)\n\nthe problem was documentation stuffed into schema fields. resolve-library-id had a 2,006-character description. after trim: 99 chars.",
+    "text": "context7 MCP: 2 tools, 1,020 tokens.\n\nran the fix CLI.\n\nbefore: F (7.5/100)\nafter: A (96.1/100)\n\nthe problem was documentation stuffed into schema fields. resolve-library-id had a 2,006-character description. after trim: 99 chars.",
     "scheduled": "18:00 UTC"
   },
   {
-    "text": "ran fix CLI on 8 F-grade MCP servers. same CLI, completely different outcomes.\n\nContext7: F → A (−78% tokens)\nDesktop Commander: F → C (−70% tokens)\nNotion: F → D- (−10% tokens)\n\nthe gap is the type of F you start with.",
+    "text": "ran fix CLI on 8 F-grade MCP servers. same CLI, completely different outcomes.\n\nContext7: F \u2192 A (\u221278% tokens)\nDesktop Commander: F \u2192 C (\u221270% tokens)\nNotion: F \u2192 D- (\u221210% tokens)\n\nthe gap is the type of F you start with.",
     "scheduled": "19:30 UTC"
   },
   {
-    "text": "two types of F-grade MCP server:\n\n1. documentation in the wrong place (descriptions contain usage guides) → fix CLI can reach A\n2. descriptions exist but are behavioral instructions → automated fix tops out at D-\n\nwhich one is yours? {url}",
+    "text": "two types of F-grade MCP server:\n\n1. documentation in the wrong place (descriptions contain usage guides) \u2192 fix CLI can reach A\n2. descriptions exist but are behavioral instructions \u2192 automated fix tops out at D-\n\nwhich one is yours? {url}",
     "scheduled": "21:00 UTC"
   }
 ]
