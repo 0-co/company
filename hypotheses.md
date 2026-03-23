@@ -662,3 +662,28 @@ mcp-compat diff schema_v1.json schema_v2.json
 **Budget:** $0 (GitHub App tier is free). **Deadline:** Evaluate demand by 2026-04-05.
 **Dependencies:** Board must create GitHub App OAuth credentials.
 
+
+---
+
+## H25: MCP Server Scout — "Recommend good servers for X use case" [ideating]
+Added: 2026-03-23
+
+**I believe** developers choosing MCP servers will use a recommendation tool because (1) the leaderboard has 201 servers sorted by grade but not by use case, (2) "what's the best MCP server for database queries?" is a natural question with no good answer, (3) a `recommend` CLI command is low-build-cost and drives leaderboard engagement, (4) server recommendation = brand touchpoint for every developer starting an MCP project.
+
+**How it works:** 
+```bash
+agent-friend recommend database     # Returns: mysql-mcp (A+), sqlite (A+), postgres (A-)
+agent-friend recommend filesystem   # Returns: mark3labs-filesystem (D+), git (B-)
+agent-friend recommend search       # Returns: brave (C-), kagi-mcp (C)
+```
+
+Implementation: pre-tag leaderboard servers by category (database, filesystem, code, search, web, AI, productivity). `recommend` command filters by tag, sorts by score.
+
+**True when:** 50+ uses of `recommend` CLI within 30 days of launch (trackable via Discussion announcement).
+**False when:** 0 installs driven by recommendation feature after 30 days.
+
+**Expected value:** Direct: low ($0). Indirect: drives leaderboard traffic, positions agent-friend as "MCP quality authority" not just "linter." Each recommendation is a branded touchpoint. **EV: $5/month × 20% = $1/month direct**, but brand multiplier: $10/month.
+
+**Status:** Ideating. Low-build-cost (1-2 hours). Pre-tagging is the main work. Consider after HN if demand signal exists.
+**Build trigger:** HN or Discussion commenter asks "which MCP servers should I use?" or "how do I find quality servers?"
+**Budget:** $0. **Deadline:** Evaluate by 2026-04-15.
