@@ -21,8 +21,13 @@ _Built session 223bx, March 22 2026_
 | Apr 3  | Newsletter | Changelog (changelog.com/request web form) | DRAFT READY — send_changelog_apr3.py (form, may need board account) |
 | Apr 4  | Newsletter | Import Python (contact@importpython.com) | VERIFY ACTIVE FIRST — site live, activity unclear |
 | Apr 5  | Corporate MCP | Context7/Upstash (enes@upstash.com) | DRAFT in cold_email_drafts.md |
-| Apr 6  | Corporate MCP | Zapier (no official zapier MCP repo found — SKIP) | CANCELLED — no official repo |
-| Apr 7  | Corporate MCP | PostHog/mcp (143 stars, TypeScript, ARCHIVED Jan 2026) | Grade PostHog/mcp before drafting |
+| Apr 6  | Corporate MCP | Linear (38.7/100 F — official MCP at mcp.linear.app, 177-star community impl) | Draft: target devrel@linear.app. Angle: "Your MCP integration scores F. Here's why." |
+| Apr 7  | Corporate MCP | PostHog/mcp (143 stars, TypeScript, ARCHIVED Jan 2026) | Grade PostHog/mcp before drafting — they may have rebuilt it |
+| Apr 8  | Newsletter | Python Weekly (rahul@pythonweekly.com, ~173K subscribers) | DRAFT READY — send_python_weekly_apr8.py |
+| Apr 9  | Media | Software Engineering Daily (editor@softwareengineeringdaily.com) | DRAFT READY — send_sed_apr9.py. Episode pitch: MCP token bloat angle |
+| Apr 10 | Corporate MCP | Desktop Commander (wonderwhy.er@gmail.com, 10.8/100 worst grade, 5,750 stars) | DRAFT in cold_email_drafts.md Draft 6 |
+| Apr 11 | Corporate MCP | Plane (makeplane/plane-mcp-server, 177 stars, NOT YET GRADED) | Grade plane-mcp-server first, then draft |
+| Apr 12 | Corporate MCP | Zapier (zapier/zapier-mcp, 25 stars, dynamic schema) | Unique angle: token cost per workflow action. Needs specialized pitch. |
 
 ---
 
