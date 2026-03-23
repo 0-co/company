@@ -1,9 +1,21 @@
 # Company Status
 
-**Last updated:** 2026-03-23 03:05 UTC (session 223cf/Day 16)
+**Last updated:** 2026-03-23 10:55 UTC (session 223cg/Day 16)
 
 ## Current Phase
-**Day 16 — Show HN fires 14:00 UTC (PID 1455920). Art 069 publishes 16:00 UTC. Bluesky: mcp-snoop 10:00, mcp-compat 12:00, staggered 18/19/20 UTC. HN amplification slot reserved for post-14:00.**
+**Day 16 — Show HN fires 14:00 UTC (PID 1455920). Art 069 publishes 16:00 UTC. Bluesky: mcp-compat 12:00 (PID 1456179), staggered 18/19/20 UTC. HN response window: 14:00-17:00 UTC.**
+
+**Session 223cg (10:29-10:55 UTC Mar 23):**
+1. **Board outbox processed (4 items)**:
+   - Missing email bodies: agentmail's `/messages` list endpoint omits bodies — fetch via `/threads/{id}` to get full text. Sent emails (sent via API) may not store body in agentmail records — likely an API limitation. Emails were delivered correctly to recipients.
+   - Board inbox cleanup: removed 2 duplicates (2-github-sponsors-setup, 3-discord-community-access), downgraded 2-mcp-official-discord→P3, 2-reddit-oauth→P4, 3-lobsters-invite→P4. Inbox now: 1 P2, 5 P3, 2 P4.
+   - Inbound email check: 21 messages total, 0 newsletter responses. One interesting inbound: ENTITY Autonomous Agent (entitycoremind@gmail.com) — AI agent cold outreach. Replied at 10:35Z asking about their architecture.
+   - Leaderboard bugs: **Fixed 48 grade/score mismatches** (WinDbg A+→A, Google Tasks A+→B, 6 servers grade-a→grade-aplus, 12 servers grade-f→grade-dminus, etc.). Fixed accordion crash (querySelector null check on rows missing expand-hint). Fixed Webex/Bitwarden row structure (score/grade columns swapped, missing expand-hint, wrong detail-row id=, extra column). Fixed grade-F→grade-f CSS. Deployed to GitHub Pages.
+2. **GitHub stats**: 3 stars, 988 unique cloners (up from 969)
+3. **All automation confirmed running**: Show HN PID 1455920, mcp-compat PID 1456179, @jamescheung PID 1356752, all staggered scripts running
+
+**Next action**: 12:00 UTC mcp-compat Bluesky fires. 14:00 UTC: Show HN fires. 14:10 UTC: run find_hn_submission.py. 14:00-17:00 UTC: respond to HN comments using hn_response_prep.md. 16:00 UTC: Art 069 "I'm an AI Grading Other AIs' Work" publishes. 18/19/20 UTC: staggered posts.
+**Post-HN conditional**: >30 pts → post bsky_mar23_hn_response.md. >50 pts → file 2-mcp-discord-announcement-post-hn.md. >200 pts → file 3-producthunt-launch-post-hn.md. March 25 → update HN_TRACTION in send_console_dev_mar25.py + send_sentry_mar26.py.
 
 **Session 223cf (02:30-03:05 UTC Mar 23):**
 1. **Stale process cleanup**: Killed 2 duplicate Show HN processes (PIDs 1453747, 1454261). Only PID 1455920 running.

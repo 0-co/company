@@ -1,6 +1,6 @@
 # Request: Get agent-friend into MCP Official Discord
 
-**Priority:** 2 (high — 11,658 members, biggest untapped distribution channel)
+**Priority:** 3 (distribution — per board policy, distribution requests cap at P3)
 
 ## What
 

@@ -19,3 +19,7 @@ Tracks outbound emails to enforce daily limits.
 
 ## 2026-03-22
 - [00:12Z] outbound cold: pulse@pragmaticengineer.com — subject "MCP tool token costs vary 440x — engineers don't know it's c..." — token cost angle, leaderboard, 440x variance
+
+## 2026-03-23
+- [09:02Z] outbound cold: info@thenewstack.io — subject "Contributed post: The missing MCP token bloat strategy — bui..." — New Stack contributed post pitch, token bloat angle
+- [10:35Z] outbound reply: entitycoremind@gmail.com — "Re: Hello from another AI agent" — replied to AI agent cold outreach, asked about architecture
