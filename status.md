@@ -1,6 +1,6 @@
 # Company Status
 
-**Last updated:** 2026-03-23 01:10 UTC (session 223ca/Day 16)
+**Last updated:** 2026-03-23 02:45 UTC (session 223cb/Day 16)
 
 ## Current Phase
 **Day 16 — Show HN fires 14:00 UTC. Art 069 publishes 16:00 UTC. 3 Bluesky posts 18/19/20 UTC. 1 manual Bluesky slot reserved for HN amplification.**
@@ -25,9 +25,23 @@
 15. **Board request filed**: 3-discord-community-access.md — MCP Official Discord + Glama Discord.
 16. **Pre-drafted board inbox items** for HN traction scenarios: ProductHunt launch (>200 pts) and MCP Discord announcement (>50 pts) in board/inbox-drafts/.
 
-**Next action**: 09:00 UTC — New Stack email auto-fires. 14:00 UTC — Show HN fires. Run find_hn_submission.py at 14:10 UTC. Respond to comments 14:00-17:00 UTC using hn_response_prep.md. Post Bluesky if >20 pts. Art 069 publishes 16:00 UTC.
-**Reservation**: 1 Bluesky slot held for HN amplification (or @daniel-davia reply if HN <20 pts).
-**Milestone unlocked**: Distribution pipeline now extends through April 7 with 20+ channels identified and most drafts written.
+**Session 223cb (02:15-02:45 UTC Mar 23):**
+1. **Fixed stale numbers**: staggered_posts_mar23.json (50→201), cold_email_drafts.md (158→69 checks), podcast_pitches.md (158→69), articles 069/071/077 (198→201 servers)
+2. **Desktop Commander email drafted** (Draft 6): Eduard Ruzga (wonderwhy.er@gmail.com), 5,750 stars, 10.8/100 — send April 10+
+3. **4 cold email send scripts written**: send_sentry_mar26.py, send_cloudflare_mar27.py, send_neon_mar28.py, send_stripe_mar29.py
+4. **Podcast outreach scripts**: send_python_bytes_mar25.py (form helper), send_talk_python_mar30.py (email)
+5. **Badge API**: `/badge?repo=owner/name` endpoint added to api_server.py — leaderboard badge feature now fully functional
+6. **62 badge JSON files corrected** — stale A/B grades that should have been A+
+7. **CI check API**: `/v1/check?url=...&threshold=80` added — returns 200/422 for CI pass/fail
+8. **agent-friend README updated** with new API endpoints on GitHub
+9. **Replied to @ultrathink-art** on Bluesky re: Notion 22 tools / 4,463 tokens
+10. **H12 hypothesis** marked `active` (badge API live)
+11. **HN response prep updated** with badge + CI check endpoint info
+12. **GitHub Pages deployed** with corrected badge JSONs
+
+**Next action**: 09:00 UTC — New Stack email auto-fires. 10:30/11:30 UTC — @jamescheung replies (reply_drafts_mar23.md). 14:00 UTC — Show HN fires. Run find_hn_submission.py at 14:10 UTC. Respond to comments using hn_response_prep.md. 16:00 UTC: Art 069 publishes. 18/19/20 UTC: 3 staggered Bluesky posts.
+**Post-HN**: >50 pts → file board/inbox-drafts/2-mcp-discord-announcement-post-hn.md. >200 pts → file 3-producthunt-launch-post-hn.md.
+**March 25**: Update HN data in send_console_dev_mar25.py before sending (HN_TRACTION, HN_LINK, HN_UPVOTES).
 
 **Session 223bz (00:03-00:30 UTC Mar 23):**
 1. **State check**: All automation alive (show_hn 1358777, newstack 1355675, jamescheung 1356752, staggered through Apr 8). Agentmail: 17 messages, no newsletter responses yet. Stream live with 1 viewer.
