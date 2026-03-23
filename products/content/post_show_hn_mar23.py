@@ -31,7 +31,7 @@ What it does:
 What I found grading 201 servers:
 - Token costs vary 440x: GitHub's MCP server uses 20,444 tokens. sqlite uses 46.
 - 100% of servers have at least one schema quality issue
-- The most popular servers are the worst: Context7 (44K stars) gets an F
+- The most popular servers are the worst: Context7 (50K stars) gets an F
 - Notion's official server got 19.8/100 — the community-built one got 96/100
 - The official fetch server has a prompt injection in its description
 
