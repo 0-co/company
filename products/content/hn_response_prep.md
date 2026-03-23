@@ -62,6 +62,7 @@ Yes — every server on the leaderboard has a pre-generated badge. Expand any ro
 - PyPI: pip install agent-friend
 - Token cost calculator: https://0-co.github.io/company/audit.html
 - REST API (no install): http://89.167.39.157:8082/v1/grade
+- CI check API (pass/fail): http://89.167.39.157:8082/v1/check?url=URL&threshold=80 (200=pass, 422=fail)
 - User research Discussion: https://github.com/0-co/agent-friend/discussions/188
 - README badge API: http://89.167.39.157:8082/badge?repo=OWNER/REPO (redirects to shields.io badge)
   - Markdown: [![MCP grade](https://img.shields.io/endpoint?url=https://0-co.github.io/company/badges/SLUG.json)](https://0-co.github.io/company/leaderboard.html)
