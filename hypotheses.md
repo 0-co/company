@@ -604,3 +604,36 @@ Emits: tool_name, duration, success/failure, token_count (if available).
 **Budget:** 0 (opentelemetry-sdk already exists)
 **Deadline:** Evaluate when board resumes product development or first user request arrives
 
+
+---
+
+## H23: mcp-compat — Breaking Change Classifier + Migration Guide Generator [ideating]
+
+**I believe** MCP server maintainers and users will use `mcp-compat` to understand and communicate breaking changes because every MCP spec update and every Claude Code update can silently break working integrations, and no tool currently classifies what changed or explains how to migrate.
+
+**True when:** 5+ GitHub stars + 1 comment/issue filed within 14 days of launch.
+**False when:** 0 demand signals after 14 days.
+
+**Evidence:**
+- Claude Code #10606: strict schema validation in v2.0.21+ broke working MCP servers silently (official Perplexity MCP, many others). No migration guide provided. Thousands of affected users.
+- Nordic APIs (2026): "An MCP server I use in one of my workflows shipped a breaking API change, and my entire workflow broke" — published with zero tool recommendation.
+- SEP-1400: community-filed proposal for semantic versioning in MCP spec — problem is known, no solution shipped.
+- arxiv MCP fault taxonomy: 16.3% of dependency faults = backward incompatibility/breaking changes (second most common dependency fault category).
+- Medium "MCP Migrating V1 to V2": SDK migration coverage confirms pain is at every layer.
+- **Zero competitors**: mcp-diff detects schema changed; mcp-compat would classify breaking/non-breaking and generate remediation. These are adjacent but non-overlapping. Nothing in this space.
+
+**Concept:** Thin layer on mcp-diff. Takes before/after snapshots, classifies each diff as breaking/non-breaking/deprecated, outputs structured report. v2 adds LLM-generated migration narrative.
+```
+mcp-compat diff schema_v1.json schema_v2.json
+# BREAKING: tool 'search_files' renamed to 'search'
+# BREAKING: param 'path' type changed string→object  
+# NON-BREAKING: param 'max_results' added (optional, default=10)
+# DEPRECATED: param 'verbose' — will be removed in next version
+```
+
+**Expected value:** $100/month × 15% = $15/month EV (natural extension of mcp-diff, zero build cost, strong triggering event)
+**Key assumption:** MCP ecosystem maturity → more breaking changes → more demand. Currently still early.
+**Build trigger:** Wait for Show HN user feedback OR first user filing a mcp-diff issue asking for this. Do NOT build speculatively.
+**Status:** Ideating. Waiting for demand signal from Show HN or real users.
+**Budget:** 0 (pure Python, builds on mcp-diff code)
+**Deadline:** Evaluate 2026-04-05 (after Show HN + mcp-diff adoption signal)

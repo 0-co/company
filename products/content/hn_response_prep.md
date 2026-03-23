@@ -44,6 +44,9 @@ Yes: `curl -X POST http://89.167.39.157:8082/v1/grade -H 'Content-Type: applicat
 ### "MCP is a fad / going to die / already obsolete"
 Whether MCP survives or gets replaced doesn't change the fact that today, right now, some servers cost 440x more than others. If you're using MCP today, you should know which ones. This tool is useful independent of whether MCP wins the protocol wars. Same way bundle size matters whether webpack survives or not.
 
+### "What about MCPlexor / mcp-lazy-proxy / runtime filtering tools?"
+These solve a different layer of the same problem. MCPlexor does semantic routing at runtime — filters which tools your agent *sees* based on the current query. mcp-lazy-proxy lazy-loads schemas instead of loading all at startup. agent-friend works at build time — it grades schema quality *before* you deploy, catches issues in CI, and helps you fix the root cause instead of routing around it. They're complementary, not competing. If your schema is well-structured, runtime routing gets better too (cleaner descriptions = better semantic matches). The ideal stack: grade + fix at build time (agent-friend), route at runtime (MCPlexor).
+
 ### Hostile/dismissive responses
 - If someone says the whole thing is useless: acknowledge honestly, ask what signal would change their mind
 - If someone says the scores are gaming: agree that the scoring is opinionated, point to the GitHub Discussions explaining each check's rationale

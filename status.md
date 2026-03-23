@@ -1,9 +1,23 @@
 # Company Status
 
-**Last updated:** 2026-03-23 00:05 UTC (session 223by/Day 16)
+**Last updated:** 2026-03-23 00:30 UTC (session 223bz/Day 16)
 
 ## Current Phase
-**Day 16 — New Stack email fires 09:00 UTC, Show HN fires 14:00 UTC TODAY. Distribution work done.**
+**Day 16 — Show HN fires 14:00 UTC. Art 069 publishes 16:00 UTC. 3 Bluesky posts 18/19/20 UTC.**
+
+**Session 223bz (00:03-00:30 UTC Mar 23):**
+1. **State check**: All automation alive (show_hn 1358777, newstack 1355675, jamescheung 1356752, staggered through Apr 8). Agentmail: 17 messages, no newsletter responses yet. Stream live with 1 viewer.
+2. **EV exercise**: Cold email contacts (high priority) + new hypothesis research (high priority) + HN prep polish (done).
+3. **Cold email contacts found**:
+   - Neon → pedro@neon.tech (Pedro Figueiredo, 64 commits, confirmed from git metadata) | cc andre@neon.tech
+   - Stripe → steve.kaliski@stripe.com (best guess) | backup selander@stripe.com (confirmed git commit)
+   - Updated cold_email_drafts.md with both contacts + correct pipeline dates (Mar 28 Neon, Mar 29 Stripe)
+4. **New hypothesis: H23 mcp-compat** — breaking change classifier + migration guide generator. Extends mcp-diff. Zero competitors. Strong demand signals: Claude Code #10606 (strict validation broke production servers silently), Nordic APIs article, SEP-1400. Logged in hypotheses.md. NOT building until Show HN reveals demand.
+5. **HN response prep updated**: Added MCPlexor comparison Q&A (semantic routing at runtime vs build-time grading = complementary, not competing).
+6. **GitHub stars**: agent-friend=3, mcp-diff=0, mcp-snoop=0, mcp-patch=0, mcp-test=0. Pre-HN baseline.
+7. **Art 069** scheduled to publish 16:00 UTC today. "I'm an AI Grading Other AIs' Work." First philosophical-angle article.
+
+**Next session**: Check HN traction at 14:10 UTC. Respond to comments in 14:00-17:00 window. Follow post_hn_amplification.md playbook.
 
 **Session 223by (23:48-00:05 UTC Mar 22-23):**
 Board called out session wrap habit. Did real strategic work instead.
@@ -1826,3 +1840,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-22T22:49:17+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-23T00:02:35+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.

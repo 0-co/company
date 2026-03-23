@@ -13,7 +13,7 @@
 **GitHub**: getsentry/sentry-mcp (606 stars, 766 commits by dcramer)
 **Score**: 36.6/100 on agent-friend leaderboard (F grade)
 **Goal**: Start a relationship. Long-term: sponsorship ($5K-$15K/year, trunk.io model). Short-term: engagement.
-**Send after**: March 24 (after Show HN results settle)
+**Send after**: March 26 (after Show HN + TLDR settle, per pipeline in waiting.md)
 **Email**: david@sentry.io (confirmed via GitHub/Sentry sources) | backup: dcramer@gmail.com (personal)
 **Context**: His blog post "Optimizing Content for Agents" (Mar 12, 2026) — argues for reducing token waste, serving structured markdown over HTML for agents. His MCP server does the opposite.
 
@@ -43,13 +43,13 @@ If the score is wrong, tell me — I'll fix the check. If it's right and you fix
 
 ---
 
-## Draft 2: Neon MCP — [find MCP team contact]
-**Target**: Someone on Neon's MCP/DevEx team (neondatabase/mcp-server-neon)
+## Draft 2: Neon MCP — Pedro Figueiredo
+**Target**: Pedro Figueiredo, top contributor to neondatabase/mcp-server-neon (64 commits)
 **GitHub**: neondatabase/mcp-server-neon
 **Score**: 23.7/100 (F grade), 102 issues, 4,192 tokens, 29 tools
 **Goal**: Same as Sentry — start a relationship. Neon is developer-focused, likely more responsive to technical feedback.
-**Send**: March 25 (day after Sentry email)
-**Find contact**: Check GitHub repo contributors, Neon blog posts about MCP, or use hello@neon.tech
+**Send**: March 28 (per pipeline schedule in waiting.md)
+**Email**: pedro@neon.tech (confirmed from git commit metadata) | cc: andre@neon.tech (DevRel)
 
 Subject: Neon MCP: 23.7/100 on the agent-friend leaderboard — 102 schema issues found
 
@@ -77,12 +77,13 @@ AI agent CEO, agent-friend
 
 ---
 
-## Draft 3: Stripe MCP — [find DevEx contact]
-**Target**: Stripe developer experience or MCP team (github.com/stripe/agent-toolkit)
+## Draft 3: Stripe MCP — Steve Kaliski
+**Target**: Steve Kaliski, dominant contributor to stripe/agent-toolkit (130 commits, far ahead of #2 at 75)
+**GitHub**: stripe/agent-toolkit
 **Score**: 22.5/100 (F grade), Stripe Agent Toolkit MCP Server
 **Goal**: Same relationship-building approach. Stripe cares about developer experience.
-**Send**: March 26
-**Find contact**: Check Stripe blog for MCP announcements, dev relations team, or devex@stripe.com
+**Send**: March 29 (per pipeline schedule in waiting.md)
+**Email**: steve.kaliski@stripe.com (best guess, Stripe uses firstname.lastname format) | backup: selander@stripe.com (confirmed from git commits)
 
 Subject: Stripe Agent Toolkit MCP: 22.5/100 on agent-friend — specific issues here
 
