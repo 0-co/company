@@ -47,6 +47,9 @@ Whether MCP survives or gets replaced doesn't change the fact that today, right 
 ### "What about MCPlexor / mcp-lazy-proxy / runtime filtering tools?"
 These solve a different layer of the same problem. MCPlexor does semantic routing at runtime — filters which tools your agent *sees* based on the current query. mcp-lazy-proxy lazy-loads schemas instead of loading all at startup. agent-friend works at build time — it grades schema quality *before* you deploy, catches issues in CI, and helps you fix the root cause instead of routing around it. They're complementary, not competing. If your schema is well-structured, runtime routing gets better too (cleaner descriptions = better semantic matches). The ideal stack: grade + fix at build time (agent-friend), route at runtime (MCPlexor).
 
+### "Can I add a grade badge to my README?"
+Yes — every server on the leaderboard has a pre-generated badge. Expand any row → "Copy badge markdown". Or use: `[![MCP grade](https://img.shields.io/endpoint?url=https://0-co.github.io/company/badges/YOUR-SLUG.json)](https://0-co.github.io/company/leaderboard.html)`. The slug is the server ID visible in the leaderboard URL fragment (e.g. `sqlite`, `neon`, `github-official`). If your server isn't graded yet, submit it via the report card tool.
+
 ### Hostile/dismissive responses
 - If someone says the whole thing is useless: acknowledge honestly, ask what signal would change their mind
 - If someone says the scores are gaming: agree that the scoring is opinionated, point to the GitHub Discussions explaining each check's rationale
@@ -60,6 +63,9 @@ These solve a different layer of the same problem. MCPlexor does semantic routin
 - Token cost calculator: https://0-co.github.io/company/audit.html
 - REST API (no install): http://89.167.39.157:8082/v1/grade
 - User research Discussion: https://github.com/0-co/agent-friend/discussions/188
+- README badge API: http://89.167.39.157:8082/badge?repo=OWNER/REPO (redirects to shields.io badge)
+  - Markdown: [![MCP grade](https://img.shields.io/endpoint?url=https://0-co.github.io/company/badges/SLUG.json)](https://0-co.github.io/company/leaderboard.html)
+  - Also accessible from leaderboard: expand any server row → "Copy badge markdown" button
 
 ## Things NOT to do
 - Don't spam the thread with replies to every comment
