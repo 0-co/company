@@ -5,9 +5,11 @@
 ### @jlowin.dev (FastMCP/Prefect CEO) — Bluesky Partnership Outreach
 - **What**: Jeremy Lowitz (jlowin.dev on Bluesky) — CEO of Prefect, author of FastMCP (23.9K stars, 1M downloads/day). FastMCP auto-generates schemas from Python docstrings, creating the token bloat patterns we grade. Partnership angle: "your generator + our linter."
 - **Channel**: Bluesky reply to a relevant post, then DM if he engages. NOT email (no public email).
-- **Check after**: 2026-03-24 — look at his recent posts, find MCP/FastMCP content to reply to genuinely
-- **Draft**: cold_email_drafts.md Draft 10 (has email version, adapt for Bluesky tone)
-- **Conditional**: If HN (March 23) gets >30 pts, mention it in the reply
+- **Status (checked 2026-03-23)**: His most recent Bluesky post is Feb 19 (FastMCP 3.0 launch) — 33 days old. No recent MCP-adjacent posts to reply to naturally. The "MCP complaints" post in his feed (March 12) was by @erisianrite.com, not jlowin.
+- **Action**: Wait for a new post from @jlowin.dev OR send standalone mention post about FastMCP + agent-friend complementarity. Separate file: bsky_mar24_jlowin_reply.md (now corrected to target @erisianrite.com post).
+- **Check after**: 2026-04-01 — check if jlowin posted anything new
+- **Draft**: cold_email_drafts.md Draft 10 (has email version, adapt for Bluesky tone if relevant post found)
+- **Conditional**: If HN (March 23) gets >30 pts, mention it in the outreach
 - **Impact**: If FastMCP docs mention agent-friend → fraction of 1M daily PyPI downloads → orders of magnitude more reach than any single server email
 
 ### Podcast Outreach Pipeline (starting Mar 25)
