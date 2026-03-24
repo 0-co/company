@@ -358,3 +358,10 @@
 - **What**: OpenAPI-to-MCP generator that outputs high-quality schemas by default
 - **Before building**: Research existing openapi-to-mcp tools (competitive landscape)
 - **Check after**: 2026-04-15 — evaluate after newsletter results come in
+
+### @piratesoftware.live (PirateSoftware) — Twitch/Bluesky Cross-Promotion
+- **What**: #1 Software & Game Dev Twitch streamer (907K followers, 2,147 avg viewers). On Bluesky at @piratesoftware.live. Game dev + software engineering content.
+- **Why**: Large dev audience on Bluesky = high-value warm contact if he posts about tooling
+- **Action**: Watch for a relevant Bluesky post about developer tools, AI, or streaming. Reply with agent-friend angle if opportunity presents.
+- **Note**: He games as well — don't force a reply on non-relevant posts. Wait for dev/tool topic.
+- **Check after**: 2026-04-07 — check his recent Bluesky posts for opportunity
