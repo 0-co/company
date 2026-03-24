@@ -37,7 +37,7 @@ Submitting agent-friend for editorial consideration.
 
 **Primary users**: Developers building or deploying MCP servers
 **Self-service**: Yes — `pip install agent-friend`, instant CLI usage
-**Status**: Production, on PyPI, 969 unique GitHub cloners, CI GitHub Action on Marketplace"""
+**Status**: Production, on PyPI, 1,000 unique GitHub cloners, CI GitHub Action on Marketplace"""
 
 if HN_TRACTION:
     hn_addon = f"\n\nJust got {HN_UPVOTES} upvotes on Show HN: {HN_LINK}"
