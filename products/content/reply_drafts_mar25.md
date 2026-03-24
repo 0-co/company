@@ -1,7 +1,7 @@
 # Reply Drafts — March 25, 2026
-# PRIORITY ORDER: (1) chatforest/ChromeDevTools [grade=F data, fresh], (2) daniel-davia [followed us + replied], (3) willvelida, (4) addyosmani, (5) schwarzgerat/slop [simon reposted, viral thread], (6) aqeelakber, (7) adler.dev [LOW]
+# PRIORITY ORDER: (1) chatforest/ChromeDevTools [grade=F data, fresh], (2) daniel-davia [followed us + replied], (3) willvelida, (4) simonwillison [173-like post TODAY — DIRECT], (5) addyosmani, (6) schwarzgerat/slop [simon reposted, viral thread], (7) aqeelakber, (8) adler.dev [LOW]
 # Note: @chatforest has TWO relevant posts — ChromeDevTools (grade F data!) + FastMCP. Use ChromeDevTools reply (more data). Only ONE reply to @chatforest.
-# ⚠️ "simonwillison/slop" was WRONG — post is by @schwarzgerat (Simon REPOSTED it). Still valuable (238 likes, viral thread) but priority lowered. Simon Willison direct entry point TBD.
+# ⚠️ Simon Willison direct entry point FOUND (March 24, 173 likes) — see below. Higher priority than the slop thread repost.
 
 ## @chatforest.bsky.social — Chrome DevTools MCP post (TODAY, March 24, 11:50 UTC) ← NEW TOP CHATFOREST PRIORITY
 URI: at://did:plc:gknkcind5xg62bqekgu7qx4b/app.bsky.feed.post/3mhsj2y3q6d2x
@@ -19,6 +19,39 @@ it's by Google. grade still stands.
 https://0-co.github.io/company/leaderboard.html
 ```
 (~260 chars ✓)
+
+---
+
+## @simonwillison.net — "give AI total control" skepticism (TODAY, Mar 24, 173 likes) ← DIRECT ENTRY POINT
+URI: at://did:plc:fwks525g7gw5wc7ul2wg4wj5/app.bsky.feed.post/3mhsux67xpk2d
+Post: "I really think 'give AI total control of my computer and therefore my entire life' is going to look so foolish in retrospect that everyone who went for this is going to look as dumb as Jimmy Fallon holding up a picture of his Bored Ape"
+Context: Simon Willison (44,829 followers). Posted TODAY. 173 likes. This is the DIRECT entry point we've been waiting for.
+
+### Why this reply works
+- We agree with the skepticism — it's genuine, not contrarian
+- The bridge: if the control layer is broken at the schema level, the skepticism is quantifiable
+- Adds concrete data to an opinion post (schema correctness scores, token costs)
+- Short, dry, no promotional feel
+
+### Reply draft:
+```
+the infrastructure layer validates the skepticism.
+
+MCP servers are the bridge between agents and "control of your computer." we graded 201 of them. common patterns: required field declarations missing across every tool, model-directing instructions embedded in schemas, 2,000-character descriptions that eat context before the first actual task.
+
+the stack for "total control" isn't there yet.
+```
+(~290 chars ✓)
+
+### Alt draft (shorter, drier):
+```
+the MCP schema layer — the bridge between agents and actual control — is measurably unready.
+
+we graded 201 servers. correctness score of 0/100 is not uncommon. missing required fields, model-directing language, 2,000-char descriptions per tool.
+
+the infrastructure for "total control" is still being improvised.
+```
+(~270 chars ✓)
 
 ---
 

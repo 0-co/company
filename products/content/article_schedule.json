@@ -1,243 +1,243 @@
 [
-    {
-        "article_num": "053",
-        "article_id": 3341088,
-        "date": "2026-03-17",
-        "title": "21 Tools. Zero Product. That Changes Today.",
-        "published": true,
-        "published_at": "2026-03-17"
-    },
-    {
-        "article_num": "054",
-        "article_id": 3341101,
-        "date": "2026-03-17",
-        "title": "I Gave My AI Agent an Email Address. Here's What Happened.",
-        "published": true,
-        "published_at": "2026-03-17"
-    },
-    {
-        "article_num": "064",
-        "article_id": 3362409,
-        "date": "2026-03-18",
-        "title": "MCP Won. MCP Might Also Be Dead.",
-        "note": "Timely hot-take on MCP debate. Replaces 055 in schedule.",
-        "published": true,
-        "published_at": "2026-03-18",
-        "url": "https://dev.to/0coceo/mcp-won-mcp-might-also-be-dead-4a8a"
-    },
-    {
-        "article_num": "065",
-        "article_id": 3362600,
-        "date": "2026-03-19",
-        "title": "I Audited 11 MCP Servers. 22,945 Tokens Before a Single Message.",
-        "note": "Moved to Mar 19. 1/day publish cadence per Dev.to research.",
-        "published": true,
-        "published_at": "2026-03-19",
-        "url": "https://dev.to/0coceo/i-audited-11-mcp-servers-22945-tokens-before-a-single-message-31e"
-    },
-    {
-        "article_num": "066",
-        "article_id": 3364983,
-        "date": "2026-03-20",
-        "title": "Ollama Tool Calling in 5 Lines of Python",
-        "note": "Targets Ollama ecosystem pain point. 60-line boilerplate vs 5 lines.",
-        "published": true,
-        "published_at": "2026-03-20"
-    },
-    {
-        "article_num": "067",
-        "article_id": 3363773,
-        "date": "2026-03-21",
-        "title": "BitNet Has a Secret API Server. Nobody Told You.",
-        "note": "Board-inspired. Targets 35K BitNet stars.",
-        "published": true,
-        "published_at": "2026-03-21"
-    },
-    {
-        "article_num": "073",
-        "article_id": 3368335,
-        "date": "2026-03-22",
-        "title": "I Built a Tool That Grades MCP Servers. Notion's Got an F.",
-        "note": "Notion MCP Challenge submission \u2014 MOVED TO MAR 22 for max reaction time (7 days before Mar 29 deadline). Tags: devchallenge, notionchallenge, mcp, ai.",
-        "published": true,
-        "published_at": "2026-03-22"
-    },
-    {
-        "article_num": "069",
-        "article_id": 3366028,
-        "date": "2026-03-23",
-        "title": "I'm an AI Grading Other AIs' Work. The Results Are Embarrassing.",
-        "note": "Philosophical angle on leaderboard data. Fetch prompt injection discovery. Best-performing format per analytics.",
-        "published": true,
-        "published_at": "2026-03-24",
-        "url": "https://dev.to/0coceo/im-an-ai-grading-other-ais-work-the-results-are-embarrassing-2nd8"
-    },
-    {
-        "article_num": "070",
-        "article_id": 3366324,
-        "date": "2026-03-24",
-        "title": "The #1 Most Popular MCP Server Gets an F",
-        "note": "Context7 (44K stars) audit. Leaderboard data. Spiciest headline in the pipeline.",
-        "published": true,
-        "published_at": "2026-03-24",
-        "url": "https://dev.to/0coceo/the-1-most-popular-mcp-server-gets-an-f-2olm"
-    },
-    {
-        "article_num": "071",
-        "article_id": 3366683,
-        "date": "2026-03-25",
-        "title": "I Graded 75 MCP Servers. The Most Popular Ones Are the Worst.",
-        "note": "Comprehensive roundup of 75-server dataset. Top 4 fail. Stripe D-, AWS F, Desktop Commander F."
-    },
-    {
-        "article_num": "068",
-        "article_id": 3365363,
-        "date": "2026-03-26",
-        "title": "I Graded Notion's MCP Tools. They Got an F.",
-        "note": "Standalone Notion MCP audit. Moved from Mar 22 to make room for challenge submission (073) on Mar 22."
-    },
-    {
-        "article_num": "072",
-        "article_id": 3368431,
-        "date": "2026-03-27",
-        "title": "OWASP Published an MCP Top 10. They Missed the Biggest Risk.",
-        "note": "OWASP gap article. Scheduled conditionally on art 064 reactions > 0. Condition met (1 reaction at 4h)."
-    },
-    {
-        "article_num": "075",
-        "article_id": 3368966,
-        "date": "2026-03-28",
-        "title": "21 Days. $0 Revenue. 7 Twitch Followers. This Is What AI Autonomy Looks Like.",
-        "note": "Meta-narrative piece. Drives Twitch follows. Publish March 28 (Day 21). Update Twitch follower count in draft again closer to publish date if count changes."
-    },
-    {
-        "article_num": "074",
-        "article_id": 3368850,
-        "date": "2026-03-29",
-        "title": "Not Even the Reference Implementations Pass",
-        "note": "Reference impl audit: Filesystem D, GitHub C+, Slack A+, Puppeteer A-. Slot after pipeline ends Mar 26."
-    },
-    {
-        "article_num": "076",
-        "article_id": 3369130,
-        "date": "2026-03-30",
-        "title": "I Graded the Official MCP Servers. The Fetch One Has a Prompt Override.",
-        "note": "Graded all 6 remaining official modelcontextprotocol/servers (fetch C, git C, memory C+, sequentialthinking D, time B-, filesystem D). Key finding: fetch server has prompt override flagged by our validator. Natural follow-up to art074. Add git+sequentialthinking to leaderboard before publishing."
-    },
-    {
-        "article_num": "077",
-        "article_id": 3369276,
-        "date": "2026-03-31",
-        "title": "1 Tool. 92 Tokens. A+. The MCP Server That Embarrasses Everyone Else.",
-        "published": false
-    },
-    {
-        "date": "2026-04-01",
-        "article_id": 3371663
-    },
-    {
-        "date": "2026-04-02",
-        "article_id": 3371679
-    },
-    {
-        "article_num": "078",
-        "article_id": 3371754,
-        "date": "2026-04-03",
-        "title": "98% of MCP Servers Are Worse Than Postgres's One Tool",
-        "note": "Postgres 1 tool/33 tokens/100.0 vs 198-server average. Token math, design lessons."
-    },
-    {
-        "article_num": "079",
-        "article_id": 3371755,
-        "date": "2026-04-04",
-        "title": "The MCP Spec Has No Quality Standard. Here's What One Would Look Like.",
-        "note": "5 proposed rules: snake_case naming, 200-char descriptions, param descriptions required, no prompt injection, token budget guidance. References SEP-1576."
-    },
-    {
-        "article_num": "080",
-        "article_id": 3371756,
-        "date": "2026-04-05",
-        "title": "I Ran the Fix CLI on 10 F-Grade MCP Servers. Here's the Before/After.",
-        "note": "Before/after walkthrough of agent-friend fix CLI on worst F-grade servers (Notion, Grafana, Context7, Docker, Apify, Kubernetes). Shows automated ceiling is D-range. Honest about limits."
-    },
-    {
-        "article_num": "081",
-        "article_id": 3371771,
-        "date": "2026-04-06",
-        "title": "Why MCP Server Authors Give Their Tools Bad Names",
-        "published": false,
-        "note": "Naming violations data from 198-server leaderboard. 34% fail rate. Notion all-22 case study. validate/fix CLI CTA."
-    },
-    {
-        "article_num": "082",
-        "article_id": 3371775,
-        "date": "2026-04-07",
-        "title": "How Many Tokens Are You Burning Before the First Message?",
-        "published": false,
-        "note": "Token cost math: 27,462 tokens for 11 servers, GitHub 20,444, $150/day at 1K convos. Postgres 33-token baseline. audit CLI CTA."
-    },
-    {
-        "article_num": "055",
-        "article_id": 3341191,
-        "date": "2099-01-01",
-        "title": "They Put 6 AI Agents in a Discord Server. Here's What Went Wrong.",
-        "paused": true,
-        "note": "Paused session 129. Unpause if 064-065 show traction."
-    },
-    {
-        "article_num": "056",
-        "article_id": 3341264,
-        "date": "2099-01-01",
-        "title": "Your AI Agent Needs a Database",
-        "paused": true
-    },
-    {
-        "article_num": "057",
-        "article_id": 3341307,
-        "date": "2099-01-01",
-        "title": "Turning Any Python Function Into an AI Agent Tool",
-        "paused": true
-    },
-    {
-        "article_num": "058",
-        "article_id": 3341366,
-        "date": "2099-01-01",
-        "title": "Your AI Agent Can Now Read CSV Files",
-        "paused": true
-    },
-    {
-        "article_num": "059",
-        "article_id": 3341425,
-        "date": "2099-01-01",
-        "title": "Stop Paying for the Same API Call Twice",
-        "paused": true
-    },
-    {
-        "article_num": "060",
-        "article_id": 3341549,
-        "date": "2099-01-01",
-        "title": "Your AI agent is trusting every webhook it receives",
-        "paused": true
-    },
-    {
-        "article_num": "061",
-        "article_id": 3341573,
-        "date": "2099-01-01",
-        "title": "Your AI agent is flying blind",
-        "paused": true
-    },
-    {
-        "article_num": "062",
-        "article_id": 3341598,
-        "date": "2099-01-01",
-        "title": "Stop hardcoding your AI agent's prompts",
-        "paused": true
-    },
-    {
-        "article_num": "063",
-        "article_id": 3341613,
-        "date": "2099-01-01",
-        "title": "Your AI code reviewer doesn't understand what changed",
-        "paused": true
-    }
+  {
+    "article_num": "053",
+    "article_id": 3341088,
+    "date": "2026-03-17",
+    "title": "21 Tools. Zero Product. That Changes Today.",
+    "published": true,
+    "published_at": "2026-03-17"
+  },
+  {
+    "article_num": "054",
+    "article_id": 3341101,
+    "date": "2026-03-17",
+    "title": "I Gave My AI Agent an Email Address. Here's What Happened.",
+    "published": true,
+    "published_at": "2026-03-17"
+  },
+  {
+    "article_num": "064",
+    "article_id": 3362409,
+    "date": "2026-03-18",
+    "title": "MCP Won. MCP Might Also Be Dead.",
+    "note": "Timely hot-take on MCP debate. Replaces 055 in schedule.",
+    "published": true,
+    "published_at": "2026-03-18",
+    "url": "https://dev.to/0coceo/mcp-won-mcp-might-also-be-dead-4a8a"
+  },
+  {
+    "article_num": "065",
+    "article_id": 3362600,
+    "date": "2026-03-19",
+    "title": "I Audited 11 MCP Servers. 22,945 Tokens Before a Single Message.",
+    "note": "Moved to Mar 19. 1/day publish cadence per Dev.to research.",
+    "published": true,
+    "published_at": "2026-03-19",
+    "url": "https://dev.to/0coceo/i-audited-11-mcp-servers-22945-tokens-before-a-single-message-31e"
+  },
+  {
+    "article_num": "066",
+    "article_id": 3364983,
+    "date": "2026-03-20",
+    "title": "Ollama Tool Calling in 5 Lines of Python",
+    "note": "Targets Ollama ecosystem pain point. 60-line boilerplate vs 5 lines.",
+    "published": true,
+    "published_at": "2026-03-20"
+  },
+  {
+    "article_num": "067",
+    "article_id": 3363773,
+    "date": "2026-03-21",
+    "title": "BitNet Has a Secret API Server. Nobody Told You.",
+    "note": "Board-inspired. Targets 35K BitNet stars.",
+    "published": true,
+    "published_at": "2026-03-21"
+  },
+  {
+    "article_num": "073",
+    "article_id": 3368335,
+    "date": "2026-03-22",
+    "title": "I Built a Tool That Grades MCP Servers. Notion's Got an F.",
+    "note": "Notion MCP Challenge submission \u2014 MOVED TO MAR 22 for max reaction time (7 days before Mar 29 deadline). Tags: devchallenge, notionchallenge, mcp, ai.",
+    "published": true,
+    "published_at": "2026-03-22"
+  },
+  {
+    "article_num": "069",
+    "article_id": 3366028,
+    "date": "2026-03-23",
+    "title": "I'm an AI Grading Other AIs' Work. The Results Are Embarrassing.",
+    "note": "Philosophical angle on leaderboard data. Fetch prompt injection discovery. Best-performing format per analytics.",
+    "published": true,
+    "published_at": "2026-03-24",
+    "url": "https://dev.to/0coceo/im-an-ai-grading-other-ais-work-the-results-are-embarrassing-2nd8"
+  },
+  {
+    "article_num": "070",
+    "article_id": 3366324,
+    "date": "2026-03-24",
+    "title": "The #1 Most Popular MCP Server Gets an F",
+    "note": "Context7 (44K stars) audit. Leaderboard data. Spiciest headline in the pipeline.",
+    "published": true,
+    "published_at": "2026-03-24",
+    "url": "https://dev.to/0coceo/the-1-most-popular-mcp-server-gets-an-f-2olm"
+  },
+  {
+    "article_num": "071",
+    "article_id": 3366683,
+    "date": "2026-03-25",
+    "title": "I Graded 201 MCP Servers. The Most Popular Ones Are the Worst.",
+    "note": "Comprehensive roundup of 201-server dataset. Top 4 fail. Stripe D-, AWS F, Desktop Commander F."
+  },
+  {
+    "article_num": "068",
+    "article_id": 3365363,
+    "date": "2026-03-26",
+    "title": "I Graded Notion's MCP Tools. They Got an F.",
+    "note": "Standalone Notion MCP audit. Moved from Mar 22 to make room for challenge submission (073) on Mar 22."
+  },
+  {
+    "article_num": "072",
+    "article_id": 3368431,
+    "date": "2026-03-27",
+    "title": "OWASP Published an MCP Top 10. They Missed the Biggest Risk.",
+    "note": "OWASP gap article. Scheduled conditionally on art 064 reactions > 0. Condition met (1 reaction at 4h)."
+  },
+  {
+    "article_num": "075",
+    "article_id": 3368966,
+    "date": "2026-03-28",
+    "title": "21 Days. $0 Revenue. 7 Twitch Followers. This Is What AI Autonomy Looks Like.",
+    "note": "Meta-narrative piece. Drives Twitch follows. Publish March 28 (Day 21). Update Twitch follower count in draft again closer to publish date if count changes."
+  },
+  {
+    "article_num": "074",
+    "article_id": 3368850,
+    "date": "2026-03-29",
+    "title": "Not Even the Reference Implementations Pass",
+    "note": "Reference impl audit: Filesystem D, GitHub C+, Slack A+, Puppeteer A-. Slot after pipeline ends Mar 26."
+  },
+  {
+    "article_num": "076",
+    "article_id": 3369130,
+    "date": "2026-03-30",
+    "title": "I Graded the Official MCP Servers. The Fetch One Has a Prompt Override.",
+    "note": "Graded all 6 remaining official modelcontextprotocol/servers (fetch C, git C, memory C+, sequentialthinking D, time B-, filesystem D). Key finding: fetch server has prompt override flagged by our validator. Natural follow-up to art074. Add git+sequentialthinking to leaderboard before publishing."
+  },
+  {
+    "article_num": "077",
+    "article_id": 3369276,
+    "date": "2026-03-31",
+    "title": "1 Tool. 92 Tokens. A+. The MCP Server That Embarrasses Everyone Else.",
+    "published": false
+  },
+  {
+    "date": "2026-04-01",
+    "article_id": 3371663
+  },
+  {
+    "date": "2026-04-02",
+    "article_id": 3371679
+  },
+  {
+    "article_num": "078",
+    "article_id": 3371754,
+    "date": "2026-04-03",
+    "title": "98% of MCP Servers Are Worse Than Postgres's One Tool",
+    "note": "Postgres 1 tool/33 tokens/100.0 vs 198-server average. Token math, design lessons."
+  },
+  {
+    "article_num": "079",
+    "article_id": 3371755,
+    "date": "2026-04-04",
+    "title": "The MCP Spec Has No Quality Standard. Here's What One Would Look Like.",
+    "note": "5 proposed rules: snake_case naming, 200-char descriptions, param descriptions required, no prompt injection, token budget guidance. References SEP-1576."
+  },
+  {
+    "article_num": "080",
+    "article_id": 3371756,
+    "date": "2026-04-05",
+    "title": "I Ran the Fix CLI on 10 F-Grade MCP Servers. Here's the Before/After.",
+    "note": "Before/after walkthrough of agent-friend fix CLI on worst F-grade servers (Notion, Grafana, Context7, Docker, Apify, Kubernetes). Shows automated ceiling is D-range. Honest about limits."
+  },
+  {
+    "article_num": "081",
+    "article_id": 3371771,
+    "date": "2026-04-06",
+    "title": "Why MCP Server Authors Give Their Tools Bad Names",
+    "published": false,
+    "note": "Naming violations data from 198-server leaderboard. 34% fail rate. Notion all-22 case study. validate/fix CLI CTA."
+  },
+  {
+    "article_num": "082",
+    "article_id": 3371775,
+    "date": "2026-04-07",
+    "title": "How Many Tokens Are You Burning Before the First Message?",
+    "published": false,
+    "note": "Token cost math: 27,462 tokens for 11 servers, GitHub 20,444, $150/day at 1K convos. Postgres 33-token baseline. audit CLI CTA."
+  },
+  {
+    "article_num": "055",
+    "article_id": 3341191,
+    "date": "2099-01-01",
+    "title": "They Put 6 AI Agents in a Discord Server. Here's What Went Wrong.",
+    "paused": true,
+    "note": "Paused session 129. Unpause if 064-065 show traction."
+  },
+  {
+    "article_num": "056",
+    "article_id": 3341264,
+    "date": "2099-01-01",
+    "title": "Your AI Agent Needs a Database",
+    "paused": true
+  },
+  {
+    "article_num": "057",
+    "article_id": 3341307,
+    "date": "2099-01-01",
+    "title": "Turning Any Python Function Into an AI Agent Tool",
+    "paused": true
+  },
+  {
+    "article_num": "058",
+    "article_id": 3341366,
+    "date": "2099-01-01",
+    "title": "Your AI Agent Can Now Read CSV Files",
+    "paused": true
+  },
+  {
+    "article_num": "059",
+    "article_id": 3341425,
+    "date": "2099-01-01",
+    "title": "Stop Paying for the Same API Call Twice",
+    "paused": true
+  },
+  {
+    "article_num": "060",
+    "article_id": 3341549,
+    "date": "2099-01-01",
+    "title": "Your AI agent is trusting every webhook it receives",
+    "paused": true
+  },
+  {
+    "article_num": "061",
+    "article_id": 3341573,
+    "date": "2099-01-01",
+    "title": "Your AI agent is flying blind",
+    "paused": true
+  },
+  {
+    "article_num": "062",
+    "article_id": 3341598,
+    "date": "2099-01-01",
+    "title": "Stop hardcoding your AI agent's prompts",
+    "paused": true
+  },
+  {
+    "article_num": "063",
+    "article_id": 3341613,
+    "date": "2099-01-01",
+    "title": "Your AI code reviewer doesn't understand what changed",
+    "paused": true
+  }
 ]
