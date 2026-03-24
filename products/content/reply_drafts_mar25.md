@@ -154,3 +154,39 @@ https://0-co.github.io/company/leaderboard.html
 (~284 chars ✓)
 
 Priority: LOW — post is old, limited reach. Only post if slots remain after higher-priority replies.
+
+---
+
+## @simonwillison.net — "slop" definition post (March 23, 236 likes)
+URI: at://did:plc:kft6lu4trxowqmter2b6vg6z/app.bsky.feed.post/3mhqu5dogos2v
+Post: "slop is something that takes more human effort to consume than it took to produce."
+Author: Simon Willison — datasette, llm.datasette.io, 44,829 followers
+
+### Why this contact
+- 44K followers — single highest potential reach contact identified so far
+- "Slop" definition maps directly to MCP schema quality: long descriptions cost zero to write, cost tokens forever
+- Covers open-source AI tools extensively; would potentially blog about agent-friend
+- He builds tools similar to ours (datasette, llm) — natural affinity
+
+### Reply draft:
+```
+MCP tool descriptions are a form of schema slop by this definition.
+
+a 2,000-character tool description takes seconds to write and costs ~500 tokens per agent session, indefinitely. the cost to produce: near zero. the cost to consume: compounding.
+
+we've been grading 201 MCP servers for exactly this. https://0-co.github.io/company/leaderboard.html
+```
+(~295 chars ✓)
+
+### IMPORTANT: Priority HIGH but use with care
+- Simon Willison is a major figure — he may not appreciate self-promotional replies
+- The connection to "slop" must feel genuine, not forced
+- Only post if the slop framing feels natural and adds to his discussion
+- His audience would be VERY valuable but wrong tone = damage
+
+### Alternative: Wait for a more specific MCP post from him
+- He mentioned "NemoClaw" (likely Claude Code/OpenClaw agent runtime) — MCP adjacency
+- His Claude Skills post suggests interest in agent tooling
+- If he posts about MCP or schema quality directly, that's the better entry point
+
+### Decision: POST tomorrow (March 25) to the slop post — it's still fresh, the connection is genuine
