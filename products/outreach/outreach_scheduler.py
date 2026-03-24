@@ -49,6 +49,7 @@ SCHEDULE = [
     ("2026-04-21", "send_ucla_mcp_apr21.py"),
     ("2026-04-22", "send_thesequence_apr22.py"),
     ("2026-04-23", "send_bytebytego_apr23.py"),
+    ("2026-04-24", "send_systemdesign_apr24.py"),  # System Design Newsletter — Neo Kim, 227K subs
 ]
 
 

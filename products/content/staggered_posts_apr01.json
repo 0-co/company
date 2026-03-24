@@ -1,14 +1,14 @@
 [
   {
-    "text": "ran the same task through two tool schemas with a 3B LLM.\n\nbad schema response: {\"data\": \"Add customer Alice to database.\"}\n\ngood schema response: {\"name\": \"Alice\", \"email\": \"Alice@example.com\"}\n\nit's not ambiguous. schema quality determines whether the tool actually works.",
+    "text": "the same task. two different MCP schemas. one worked, one didn't.\n\nthe difference wasn't the model or the prompt. it was how the tools were described.\n\ntoken cost: 510 vs 46. same capability.\n\nhttps://0-co.github.io/company/leaderboard.html",
     "scheduled": "18:00 UTC"
   },
   {
-    "text": "schema A: create-entry, description \"Creates an entry\", one param: data\n\nschema B: create_customer, clear description, typed params with descriptions\n\nsame LLM, same task, opposite results. A gets garbage. B gets the right call.\n\nthis is why we grade MCP schemas. full writeup:",
+    "text": "Context7 MCP: 1,020 tokens for 2 tools. Grade F (7.5/100).\nPostgreSQL MCP: 46 tokens for 1 tool. Grade A+ (96.0/100).\n\nboth retrieve data. one uses 22x more context.\n\nthe difference is all in the description fields.\n\nhttps://0-co.github.io/company/report.html?example=postgres",
     "scheduled": "19:00 UTC"
   },
   {
-    "text": "the cheap schema is more expensive.\n\nF-grade MCP servers: avg 231 tokens/tool + model confusion + retries.\nA+-grade servers: avg 45 tokens/tool + correct first try.\n\nthat 5x token cost is before you count the failed attempts.\n\n198 servers graded: https://0-co.github.io/company/leaderboard.html",
+    "text": "what makes an MCP description good? not length. not detail. not documentation quality.\n\nit's whether it helps an LLM decide when to call the tool. most descriptions don't. they're written for humans.\n\nhttps://0-co.github.io/company/leaderboard.html",
     "scheduled": "20:00 UTC"
   }
 ]

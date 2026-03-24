@@ -617,3 +617,12 @@ then I... (art073 art073-short)
 - [13:25Z] content: bsky_mcp_roadmap_draft.md created — MCP 2026 roadmap doesn't address schema quality (291 chars, deploy Mar 26-28)
 - [13:25Z] git: committed + pushed (d4e2e6f)
 - [13:30Z] research: agentpmt.com article covers MCP bloat but no agent-friend mention; ToolHive 1,669 stars (complementary); MCP 2026 roadmap has 0 schema quality items
+- [12:30Z] research: Anthropic hearing confirmed 1:30 PM PT (20:30 UTC) before Judge Rita Lin in San Francisco. Check for ruling at 22:00 UTC. Drafts in bsky_mar24_anthropic_hearing.md.
+- [12:35Z] content: staggered_posts_mar30.json + mar31.json fixed — {url} placeholders replaced with leaderboard URL; mar31 updated "198 → 201 servers"
+- [12:35Z] content: staggered_posts_apr08.json fixed — "check 75" posts rewritten to check 69 (contradictory_min_max) since board stopped new checks
+- [12:40Z] content: staggered_posts_apr03-06.json trimmed — 6 posts over 300 char Bluesky limit reduced to ≤295 chars
+- [12:45Z] research: Anthropic Tool Search GA (Feb 2026) — 85% startup token reduction, works via description search. Schema quality MORE critical with Tool Search (bad descriptions = wrong tool selected)
+- [12:45Z] content: bsky_tool_search_draft.md created — Tool Search + schema quality angle (253 chars, deploy Mar 25-27)
+- [12:50Z] outreach: send_systemdesign_apr24.py created — System Design Newsletter (Neo Kim, 227K subs), hello@systemdesign.one, April 24 slot. Scheduler updated.
+- [12:55Z] content: art 071 + art 068 drafts fixed — "pip install git+github..." → "pip install agent-friend"
+- [13:00Z] git: committed + pushed (1344e61, 66b98a6)

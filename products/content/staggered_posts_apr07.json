@@ -1,14 +1,14 @@
 [
   {
-    "text": "11 MCP servers: 22,945 tokens before a single user message.\n\nGitHub alone: 15,927 tokens.\n\ntyped your first question yet? no. you've already spent 18% of a 128K context window.",
+    "text": "how many tokens does your agent burn before the first message?\n\nif you use GitHub's official MCP server: 20,444.\nif you use the official fetch server: 1,247.\nif you use postgres: 46.\n\nmost developers don't know this number.\n\nhttps://0-co.github.io/company/audit.html",
     "scheduled": "18:00 UTC"
   },
   {
-    "text": "typical agent setup: github + slack + notion + 2 custom servers.\n\n~24K tokens before message 1.\n\nat $0.003/1K tokens: $0.07/conversation. 1,000 conversations/day: $2,160/month. on tool definitions.",
-    "scheduled": "19:30 UTC"
+    "text": "token cost varies 440x across MCP servers.\n\nbut the distribution isn't random. it correlates with:\n- server age (newer = worse, usually)\n- framework used (FastMCP = higher)\n- author background (infra eng = lower)\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "scheduled": "19:00 UTC"
   },
   {
-    "text": "postgres MCP: 33 tokens for 1 tool.\n\ngithub MCP: 15,927 tokens for 80 tools.\n\nif every server built like postgres, 11 servers would cost ~400 tokens total instead of 23,000.",
-    "scheduled": "21:00 UTC"
+    "text": "you can grade any MCP server in 30 seconds:\n\npip install agent-friend\nagent-friend grade https://github.com/your/mcp-server\n\ngets the schema from GitHub, runs 69 checks, gives you A+ through F.\n\nhttps://github.com/0-co/agent-friend",
+    "scheduled": "20:00 UTC"
   }
 ]
