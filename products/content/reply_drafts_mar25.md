@@ -84,6 +84,7 @@ agent-friend's check 48 detects model-directing language in descriptions. 42 ser
 ## @daniel-davia.bsky.social — GA4 MCP token budget post
 URI: at://did:plc:jwmjm7cm4oy3oz5wrpumwnoe/app.bsky.feed.post/3mhsgoxwbo42t
 Post: "Token budget matters for analytics MCP too. safe-mcp.com's GA4 server is minimal..."
+Context: THEY REPLIED TO US (Mar 24 11:07 UTC) in donna-ai's thread, AND followed us. This is a continuation reply, not cold outreach. High priority to respond.
 
 ### Reply draft:
 ```
