@@ -39,7 +39,7 @@ agent-friend maintainer
 msg = {
     "to": "hi@bytebytego.com",
     "subject": "MCP server token overhead varies 440x — systems cost invisible until measured",
-    "text": BODY
+    "body": BODY
 }
 
 result = subprocess.run(

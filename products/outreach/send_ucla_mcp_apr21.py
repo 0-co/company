@@ -41,7 +41,7 @@ agent-friend maintainer
 msg = {
     "to": "whilebug@gmail.com",
     "subject": "Automated smell detection tool — agent-friend (2602.18914 connection)",
-    "text": BODY
+    "body": BODY
 }
 
 result = subprocess.run(
