@@ -97,7 +97,7 @@ Worth discussing?
 ---
 
 ## Next steps
-- [ ] Find mcpservers.org contact email
-- [ ] Find Glama contact (Discord channel? Email?)
-- [ ] Add to outreach_scheduler.py for April 10-14
-- [ ] Check if PulseMCP responded to March 21 email first
+- [x] mcpservers.org: advertising@mcpservers.org (found Mar 24)
+- [x] Glama: support@glama.ai + Discord (found Mar 24)
+- [x] Added to outreach_scheduler.py: Apr 12 (PulseMCP), Apr 13 (mcpservers), Apr 14 (Glama)
+- [ ] Check if PulseMCP responded to March 21 email first (check Apr 10)
