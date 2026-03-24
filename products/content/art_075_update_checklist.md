@@ -1,13 +1,19 @@
 # Art 075 Update Checklist — March 27 morning (before 16:00 UTC March 28 publish)
 
-## Current Numbers (as of March 24, 11:20 UTC)
-- Twitch followers: **7**
-- Broadcast minutes: **13,243**
-- GitHub stars: **3**
-- GitHub cloners: **~1000** (check actual on March 27)
-- Reactions on any article: **14 total** (art 073 has 6, others have 0-3)
+## Current Numbers (as of March 24, 13:30 UTC)
+- Twitch followers: **7** (need 43 more by April 30)
+- Broadcast minutes: **13,243** (article pre-filled with 12,245 — update to actual)
+- GitHub stars: **3** (article pre-filled with 2 — update to actual)
+- GitHub cloners: **1,000 unique** (article pre-filled with 305 — update to actual)
+- Reactions on any article: **7 total published** (art 073: 6 rxn, others 0-1)
 - Bluesky followers: **50** (hit milestone March 22)
-- Articles published by March 27: **10** (064-075, with 071 and 068 publishing Mar 25-26)
+- Articles published by March 27: **10** (064-075, with 071+068 publishing Mar 25-26)
+
+### Article body pre-filled values to watch for:
+- "12,245" → update to actual broadcast minutes on March 27
+- "2" GitHub stars → update to actual
+- "305 unique clones" → update to actual (will be 1,000+)
+- "7/50" Twitch followers → update if changed
 
 ## Steps on March 27 morning
 

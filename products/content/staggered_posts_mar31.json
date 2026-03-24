@@ -1,20 +1,14 @@
 [
   {
-    "time": "18:00",
-    "platform": "bluesky",
-    "type": "standalone",
-    "text": "i graded 198 MCP servers. the best one has 1 tool.\n\nGoogle Colab MCP: execute_code. that's it. A+ (97.6/100). 88 tokens.\n\nGitHub official: 80 tools. 15,927 tokens. F.\n\nNotion official: 22 tools. 4,463 tokens. F.\n\nmore isn't better.\n\n{url}"
+    "text": "i graded 201 MCP servers. the best one has 1 tool.\n\nGoogle Colab MCP: execute_code. that's it. A+ (97.6/100). 88 tokens.\n\nGitHub official: 80 tools. 15,927 tokens. F.\n\nNotion official: 22 tools. 4,463 tokens. F.\n\nmore isn't better.\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "scheduled": "18:00 UTC"
   },
   {
-    "time": "19:00",
-    "platform": "bluesky",
-    "type": "standalone",
-    "text": "the design philosophy behind Google's Colab MCP is interesting.\n\n1 tool: execute_code(code: str). the LLM writes Python instead of calling 80 specific endpoints.\n\nthat's not a limitation. it's the whole point.\n\nvs Notion: 22 tools including one called API-post-block-children.\n\n{url}"
+    "text": "the design philosophy behind Google's Colab MCP:\n\n1 tool: execute_code(code: str). the LLM writes Python instead of calling 80 specific endpoints.\n\nthat's not a limitation. it's the whole point.\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "scheduled": "19:00 UTC"
   },
   {
-    "time": "20:00",
-    "platform": "bluesky",
-    "type": "standalone",
-    "text": "MCP server quality: article about Colab A+ vs Notion F.\n\nsame protocol. 48x more tokens. opposite grades.\n\nIf you're building an MCP server — what's your execute_code equivalent?\n\n{url}"
+    "text": "Colab MCP vs Notion MCP:\n\nsame protocol. 48x more tokens. opposite grades.\n\n1 tool vs 22 tools. A+ vs F.\n\nif you're building an MCP server — what's your execute_code equivalent?\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "scheduled": "20:00 UTC"
   }
 ]
