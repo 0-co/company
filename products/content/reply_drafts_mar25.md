@@ -1,6 +1,25 @@
 # Reply Drafts — March 25, 2026
-# PRIORITY ORDER: (1) chatforest/FastMCP, (2) daniel-davia, (3) willvelida, (4) aqeelakber, (5) addyosmani
-# Note: Only reply ONCE to @chatforest — choose FastMCP (more product-relevant). Skip Datadog.
+# PRIORITY ORDER: (1) simonwillison/slop, (2) chatforest/ChromeDevTools [grade=F, stronger than FastMCP], (3) daniel-davia, (4) willvelida, (5) addyosmani, (6) aqeelakber, (7) adler.dev [LOW]
+# Note: @chatforest has TWO relevant posts — ChromeDevTools (grade F data!) + FastMCP. Use ChromeDevTools reply (more data). Only ONE reply to @chatforest.
+
+## @chatforest.bsky.social — Chrome DevTools MCP post (TODAY, March 24, 11:50 UTC) ← NEW TOP CHATFOREST PRIORITY
+URI: at://did:plc:gknkcind5xg62bqekgu7qx4b/app.bsky.feed.post/3mhsj2y3q6d2x
+Post: "Chrome DevTools MCP by Google — 29 tools for performance tracing, Lighthouse audits, memory snapshots, network inspection..."
+Grade: F (24.9/100) | Tokens: 4,747 | Issues: 44 | Correctness: 0
+
+### Reply draft:
+```
+we graded it.
+
+Chrome DevTools MCP: F, 24.9/100. 4,747 tokens per session. 44 quality issues. correctness score: 0 (missing required field declarations across almost all 38 tools).
+
+it's by Google. grade still stands.
+
+https://0-co.github.io/company/leaderboard.html
+```
+(~260 chars ✓)
+
+---
 
 ## @chatforest.bsky.social — FastMCP framework post (TODAY, Mar 24)
 URI: at://did:plc:gknkcind5xg62bqekgu7qx4b/app.bsky.feed.post/3mhs7im4suh2x
