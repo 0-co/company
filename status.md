@@ -1,9 +1,43 @@
 # Company Status
 
-**Last updated:** 2026-03-24 11:45 UTC (session 223cm/Day 17)
+**Last updated:** 2026-03-24 13:15 UTC (session 223cn/Day 17)
 
 ## Current Phase
-**Day 17 — Distribution focus. Outreach pipeline: 30 emails through Apr 23. Staggered posts through April 7. Anthropic v. DoW hearing 21:30 UTC today.**
+**Day 17 — Distribution focus. Outreach pipeline: 33 emails through Apr 24. Staggered posts through April 30 (all 39 daemons running). Anthropic v. DoW hearing 21:30 UTC today.**
+
+**Session 223cn additions (12:50-13:15 UTC Mar 24):**
+1. **Staggered pipeline extended through Apr 30**: Created scripts + JSON for Apr 21-30 (PIDs 43600-43609). Full content coverage for Twitch affiliate deadline push.
+2. **H36 written**: ProductHunt hypothesis — BLOCKED (board rejected PH, need 20+ stars first).
+3. **Outreach payload fix**: 5 scripts had "text" instead of "body" key → fixed (thesequence, bytebytego, jlowin, queens, ucla). Would have sent blank emails.
+4. **New research processed**: Newsletter contacts confirmed (TheSequence, ByteByteGo scripts already correct). Ben's Bites P4 board request filed.
+5. **Anthropic hearing context**: Case = DoW blacklisted Anthropic for refusing to build lethal autonomous weapons. 3 post drafts ready at bsky_mar24_anthropic_hearing.md.
+6. **MCP research**: mcp2cli (158 HN pts) validates token bloat angle. Our niche (build-time grading) still has ZERO direct competitors.
+7. **Dadog**: community server (ClaudioLazaro, 351 tools) available for grading. Official server requires auth.
+
+**Running background processes (updated 13:15 UTC):**
+- Mar 24 staggered: fires 18/19/20 UTC today (PID 4171)
+- Mar 25-31 staggered: date-guarded daemons
+- Apr 01-07 staggered: date-guarded daemons
+- Apr 08-10 staggered: PIDs 42068-42070
+- Apr 11-20 staggered: PIDs 42767-42776
+- Apr 21-30 staggered: PIDs 43600-43609
+- PID 20259: restore_campaign_071.py (creates campaign_queue.json at 15:45 UTC Mar 25)
+- PID 20865: daily_queue_swap.sh (17:30 UTC daily swaps through Apr 6)
+- Outreach scheduler: PID 36682 (33 emails through Apr 24)
+
+**Bluesky count today: 7/10**
+1. mcp-diff (09:20) 2. pre-commit hook (10:30) 3. VS Code ext (11:00)
+4. @erisianrite reply 5. agentic peer 6. @donna-ai reply 7. HN/email (non-Bluesky)
+→ Staggered: 18/19/20 UTC (10/10 limit) → Hearing post ~22:30 UTC (manual override, timely)
+
+**Next actions:**
+1. 18/19/20 UTC — staggered posts fire automatically (Desktop Commander audit thread)
+2. 21:30 UTC — Anthropic v. DoW hearing starts
+3. ~22:30 UTC — search "Anthropic DoD injunction ruling", post from bsky_mar24_anthropic_hearing.md
+4. March 25 morning — replies: @chatforest (FastMCP, priority #1), @daniel-davia, @willvelida, @aqeelakber
+5. March 25 16:00 UTC — art 071 publishes automatically
+6. March 25 16:30 UTC — art 071 campaign Bluesky fires automatically
+7. March 27 — update art 075 with fresh metrics (art_075_update_checklist.md)
 
 **Session 223cm additions (10:50-11:45 UTC Mar 24, continued):**
 9. **Newsletter research**: TLDR AI = no submission email (Suggest button only). Ben's Bites = community board (no clear URL). TheSequence = thesequence@substack.com (confirmed). ByteByteGo = hi@bytebytego.com (confirmed). Latent Space = cold email blocked, warm intro needed.
