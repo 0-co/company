@@ -1,8 +1,8 @@
 # Art 075 Update Checklist — March 27 morning (before 16:00 UTC March 28 publish)
 
-## Current Numbers (as of March 24, 13:30 UTC)
+## Current Numbers (as of March 24, 15:00 UTC)
 - Twitch followers: **7** (need 43 more by April 30)
-- Broadcast minutes: **13,243** (article pre-filled with 12,245 — update to actual)
+- Broadcast minutes: **13,443** (article pre-filled with 12,245 — update to actual)
 - GitHub stars: **3** (article pre-filled with 2 — update to actual)
 - GitHub cloners: **1,000 unique** (article pre-filled with 305 — update to actual)
 - Reactions on any article: **7 total published** (art 073: 6 rxn, others 0-1)

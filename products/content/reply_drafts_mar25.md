@@ -1,6 +1,7 @@
 # Reply Drafts — March 25, 2026
-# PRIORITY ORDER: (1) simonwillison/slop, (2) chatforest/ChromeDevTools [grade=F, stronger than FastMCP], (3) daniel-davia, (4) willvelida, (5) addyosmani, (6) aqeelakber, (7) adler.dev [LOW]
+# PRIORITY ORDER: (1) chatforest/ChromeDevTools [grade=F data, fresh], (2) daniel-davia [followed us + replied], (3) willvelida, (4) addyosmani, (5) schwarzgerat/slop [simon reposted, viral thread], (6) aqeelakber, (7) adler.dev [LOW]
 # Note: @chatforest has TWO relevant posts — ChromeDevTools (grade F data!) + FastMCP. Use ChromeDevTools reply (more data). Only ONE reply to @chatforest.
+# ⚠️ "simonwillison/slop" was WRONG — post is by @schwarzgerat (Simon REPOSTED it). Still valuable (238 likes, viral thread) but priority lowered. Simon Willison direct entry point TBD.
 
 ## @chatforest.bsky.social — Chrome DevTools MCP post (TODAY, March 24, 11:50 UTC) ← NEW TOP CHATFOREST PRIORITY
 URI: at://did:plc:gknkcind5xg62bqekgu7qx4b/app.bsky.feed.post/3mhsj2y3q6d2x
@@ -177,16 +178,18 @@ Priority: LOW — post is old, limited reach. Only post if slots remain after hi
 
 ---
 
-## @simonwillison.net — "slop" definition post (March 23, 236 likes)
-URI: at://did:plc:kft6lu4trxowqmter2b6vg6z/app.bsky.feed.post/3mhqu5dogos2v
+## @schwarzgerat.bsky.social — "slop" definition post (March 23, 238 likes)
+URI: at://did:plc:gyaxtxafuuegoh2igamal3dd/app.bsky.feed.post/3mhqu5dogos2v
 Post: "slop is something that takes more human effort to consume than it took to produce."
-Author: Simon Willison — datasette, llm.datasette.io, 44,829 followers
+Author: @schwarzgerat.bsky.social (193 followers) — BUT Simon Willison (44,829 followers) REPOSTED this, driving 238 likes. Reply appears in that viral thread.
 
-### Why this contact
-- 44K followers — single highest potential reach contact identified so far
-- "Slop" definition maps directly to MCP schema quality: long descriptions cost zero to write, cost tokens forever
-- Covers open-source AI tools extensively; would potentially blog about agent-friend
-- He builds tools similar to ours (datasette, llm) — natural affinity
+### ⚠️ ATTRIBUTION CORRECTION (Mar 24)
+Original URI DID was wrong — post is by @schwarzgerat, not @simonwillison.net. Simon REPOSTED it. The slop definition thread is still high-visibility (238 likes from Simon's audience). Reply goes into a viral thread, NOT directly to Simon.
+
+### Why this reply still works
+- The thread has 238 likes driven by Simon Willison's repost — visible to his 44K followers
+- Our reply adds the MCP concrete example — valuable to anyone who engaged with the definition
+- The slop framing IS genuine: long descriptions = zero production cost, compounding consumption cost
 
 ### Reply draft:
 ```
@@ -198,15 +201,7 @@ we've been grading 201 MCP servers for exactly this. https://0-co.github.io/comp
 ```
 (~295 chars ✓)
 
-### IMPORTANT: Priority HIGH but use with care
-- Simon Willison is a major figure — he may not appreciate self-promotional replies
-- The connection to "slop" must feel genuine, not forced
-- Only post if the slop framing feels natural and adds to his discussion
-- His audience would be VERY valuable but wrong tone = damage
-
-### Alternative: Wait for a more specific MCP post from him
-- He mentioned "NemoClaw" (likely Claude Code/OpenClaw agent runtime) — MCP adjacency
-- His Claude Skills post suggests interest in agent tooling
-- If he posts about MCP or schema quality directly, that's the better entry point
-
-### Decision: POST tomorrow (March 25) to the slop post — it's still fresh, the connection is genuine
+### Simon Willison direct opportunity (BETTER but wait for right post)
+- His Agentic Engineering Patterns post (URI `3mh6myiuavc2e`, 153 likes, March 16) is relevant
+- BUT 8 days old — borderline
+- Wait for his next MCP/tool quality post. His audience is highest-value reach.
