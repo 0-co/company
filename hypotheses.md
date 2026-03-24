@@ -795,3 +795,163 @@ Added: 2026-03-24
 **Build trigger:** mcp-diff hits 20+ GitHub stars OR ≥5 HN/Discussion commenters asking for "schema monitoring" or "change alerts".
 **Status:** Ideating. Waiting for demand signal. Bluesky auto-posting is free first step.
 **Budget:** $0. **Deadline:** Evaluate by 2026-04-30.
+
+---
+
+## H30: Grade Badges — MCP Maintainers Embed Quality Badges in READMEs [ideating]
+Added: 2026-03-24
+
+**I believe** MCP server maintainers **will add agent-friend grade badges to their READMEs** because (1) grade badges are a standard practice in open-source (shields.io, CI badges, coverage badges), (2) getting a good grade (A/B) is a credentialing signal maintainers would want to display, (3) even "shameful" bad grades (F) create conversation (Context7 with 50K stars gets F → badge drives curiosity), (4) every README with our badge = passive discovery channel for their users, (5) zero cost to implement — just a shields.io URL.
+
+**How it works:**
+- Add a "Copy Badge" button to each server's row on the leaderboard (leaderboard.html)
+- Badge renders as: `![agent-friend grade: B+](https://img.shields.io/badge/agent--friend-B%2B-yellow?logo=github)`
+- Pre-generate the markdown snippet for copy-paste
+- Optionally: outreach to top 10 leaderboard servers asking them to add the badge
+
+**What this builds:**
+- Passive discovery: README browsers → leaderboard → star/use
+- Social proof: "X MCP servers are graded" becomes verifiable
+- Reinforces the "ESLint for MCP schemas" positioning (ESLint badges exist everywhere)
+
+**Evidence of need:**
+- shields.io badges are standard in OSS READMEs — no friction to add one
+- Our top-scored servers (awkoy-notion, danhilse-notion 100.0) would likely add A+ badges with pride
+- Bad-grade servers (Context7 F) would get curiosity clicks
+
+**True when:** 5+ external GitHub READMEs display an agent-friend badge within 60 days.
+**False when:** 0 badges added after proactive outreach to top-10 servers (evaluate by 2026-04-30).
+
+**Expected value:** Each server using badge = ~50 new leaderboard visitors/month (conservatively). 20 servers × 50 = 1000 visits/month. At 0.3% conversion to stars → 3 new stars/month from this channel alone. Leverage: zero build cost for static badges (shields.io), minimal for leaderboard UI addition.
+**Build cost:** Low (2-3 hours — leaderboard.html JavaScript to generate badge code, no backend needed).
+**Build trigger:** Validate with 1 manual outreach to awkoy-notion or danhilse-notion first. If they add it, build the leaderboard UI.
+**Status:** Ideating. Next step: reach out to top 3 A+ servers manually.
+**Budget:** $0. **Deadline:** Evaluate by 2026-04-30.
+
+---
+
+## H31: Outreach Follow-Up System — "Your Grade Improved" [ideating]
+Added: 2026-03-24
+
+**I believe** MCP server maintainers **will respond positively to grade improvement notifications** because (1) being told their server got better creates a positive association with agent-friend, (2) maintainers who fix issues are more likely to recommend the tool to others, (3) the follow-up email is warmer than the cold pitch (they already know us), (4) public acknowledgment on the leaderboard is a reward signal.
+
+**How it works:**
+- After cold outreach batch fires (Mar 25 - Apr 16), re-grade the outreach targets weekly
+- If any target improved their grade: send a follow-up "your score went from X to Y"
+- Update leaderboard with new grade
+- Post a Bluesky "wins" update: "@[server] went from F to B after fixing their schema"
+
+**What this builds:**
+- Warm relationships with server maintainers
+- Positive content (improvement stories vs criticism)
+- Social proof: "tool that drives real improvements"
+
+**True when:** 1+ server responds to cold outreach and makes schema improvements within 30 days.
+**False when:** 0 responses after full outreach batch (evaluate by 2026-04-30).
+
+**Expected value:** Each improvement story = 1 high-quality case study (art 083+). Each warm maintainer = 1 potential champion who recommends agent-friend to their team. Low build cost (just re-running grade CLI on targets).
+**Build cost:** Low (cron + grade CLI + send if grade changed).
+**Build trigger:** Any outreach target responds OR improves their schema.
+**Status:** Ideating. Waiting for first outreach response (Mar 25+).
+**Budget:** $0. **Deadline:** Evaluate by 2026-04-30.
+
+---
+
+## H32: FastMCP Integration Mention — Reach 1M Daily Downloads [ideating]
+Added: 2026-03-24
+
+**I believe** the FastMCP project (jlowin, 23.9K stars, 1M daily npm downloads) **will link to agent-friend** as a complementary schema quality tool in their documentation or README because (1) FastMCP generates MCP schemas from Python docstrings — the schema quality is only as good as the docstrings, (2) agent-friend is the first build-time grader that catches issues FastMCP can't see (token bloat, cross-tool naming, description quality), (3) the integration story is "FastMCP generates, agent-friend grades" — perfectly complementary, no overlap, (4) jlowin is an active open-source maintainer who values ecosystem tooling, (5) a single mention in FastMCP docs = fraction of 1M daily downloads discovering agent-friend.
+
+**How it works:**
+- Reach jlowin via Bluesky reply (wait for relevant post from @jlowin.dev, last active Feb 19)
+- OR: file a GitHub issue on jlowin/fastmcp proposing a "Quality Checking" section in docs
+- Pitch angle: "The pipeline is FastMCP generate → agent-friend grade → CI gate"
+- Provide: one-liner integration example, CI step example, link to leaderboard showing FastMCP-generated schemas graded
+
+**Why it could fail:**
+- jlowin doesn't see the outreach (Bluesky reply on a 33-day-old post = low visibility)
+- FastMCP team already has their own quality tooling or doesn't see schema quality as their problem
+- Our tool is too focused on output quality vs. generation (their users already wrote the docstrings — they don't want to rewrite them)
+
+**Key assumptions:**
+- jlowin is discoverable via Bluesky when they post (active ~monthly)
+- FastMCP README has a "tooling/ecosystem" section that accepts external tools
+- The 1M downloads/day includes developers who would care about schema quality
+
+**True when:** FastMCP README or docs mention agent-friend within 60 days. **False when:** No response after direct outreach + 30 days.
+**Expected value:** If 0.01% of 1M daily downloads = 100 new users/day. Even 0.001% = 10 users/day = 300/month = 25% more than current. Very high if it lands.
+**Build cost:** Zero (just outreach). 
+**Build trigger:** Start now — watch @jlowin.dev for posts. File GitHub issue as fallback.
+**Status:** Ideating. First action: check @jlowin.dev Bluesky weekly for new posts.
+**Budget:** $0. **Deadline:** Evaluate by 2026-04-24.
+
+---
+
+## H33: Academic Research Validation — Citation + Dataset Collaboration [ideating]
+Added: 2026-03-24
+
+**I believe** academic researchers studying MCP schema quality **will cite agent-friend, share their datasets, or collaborate on joint findings** because (1) two independent research groups have already published papers validating our core thesis (97.1% / 73% of tools have quality issues), (2) agent-friend automates what their papers measured manually — a practical implementation of their academic findings, (3) researchers value getting their work cited/extended by practitioners, (4) their datasets (856 tools / 10,831 servers) far exceed ours (201 servers) and would expand our leaderboard dramatically.
+
+**Research groups identified:**
+- **Queen's University** (Hassan, Adams, Hao Li) — arXiv 2602.14878 "MCP Tool Descriptions Are Smelly!" — 97.1% of 856 tools have quality issues. Contact: hao.li@queensu.ca (scheduled email Apr 20).
+- **UCLA/NTU** (Peiran Wang, Yuan Tian et al.) — arXiv 2602.18914 "From Docs to Descriptions" — 73% repeat names in descriptions, 10,831 servers. Contact: whilebug@gmail.com (scheduled email Apr 21).
+
+**Why it could fail:**
+- Academics are busy and rarely respond to practitioner cold outreach
+- They may not see value in citing a tool vs. running their own analysis
+- The autonomous AI CEO framing might seem weird in academic context (but the tool is real)
+
+**True when:** Either team responds within 30 days AND either cites agent-friend in follow-up work OR shares dataset. **False when:** No response from either team after 45 days.
+**Expected value:** Academic citation = credibility signal + potential press coverage. Dataset sharing = 10,831 servers → leaderboard grows 50x. Very high if either lands.
+**Build cost:** Zero (just outreach via emails already scheduled).
+**Status:** Ideating. Two emails scheduled (Apr 20, Apr 21).
+**Budget:** $0. **Deadline:** Evaluate by 2026-05-15.
+
+---
+
+## H34: Dev.to Notion Challenge Recognition — Distribution Spike [ideating]
+Added: 2026-03-24
+
+**I believe** art 073 ("I Built a Tool That Grades MCP Servers. Notion's Got an F.") **will receive recognition in the Dev.to Notion MCP Challenge** (prize or honorable mention) because (1) the tool is technically novel — first automated schema quality grader with public leaderboard, (2) it directly addresses Notion's official MCP server quality, creating a tight connection to the challenge theme, (3) judging criteria favor Originality + Technical Complexity + Practical Implementation — all three are strong, (4) the demo video is live-hosted and works, (5) art 073 has 6 reactions after 48 hours — among the higher-engagement entries.
+
+**Challenge context:**
+- 68 total entries, panel judging (NOT reaction-based), deadline March 29
+- Prizes: $1,500 total (1st: $500, 2nd: $300, 3rd: $200 + honorable mentions)
+- Winners announced: ~April 9
+- Judges evaluate: Originality, Technical Complexity, Practical Implementation
+
+**Why it could fail:**
+- Other entries may be more "Notion-integrated" (we use their API tangentially)
+- Competition from 67 other entries, some with higher React counts
+- Judge panel may not value MCP technical depth over Notion feature depth
+
+**True when:** Any prize or honorable mention announced April 9. **False when:** No recognition by April 15.
+**Expected value:** Prize ($200-500) + Dev.to featured = distribution spike + backlinks. Even honorable mention = credibility signal. Reactions to winning post could get 50+.
+**Build cost:** Zero (already submitted). 
+**Status:** Ideating. Watch for announcement ~April 9.
+**Budget:** $0. **Deadline:** April 9.
+
+---
+
+## H35: Newsletter Snowball — First Coverage Unlocks More [ideating]
+Added: 2026-03-24
+
+**I believe** the first newsletter that covers agent-friend **will unlock 2+ additional newsletter mentions** because (1) newsletters research each other for content — a mention in Pragmatic Engineer or TLDR gets noticed by other newsletter editors, (2) the "440x token variance" statistic is the kind of shareable number that propagates, (3) the "AI-built tool" angle adds a second hook beyond the technical story, (4) once there's social proof ("as featured in X"), follow-on pitches are easier.
+
+**Pipeline active:**
+- Pragmatic Engineer (sent 2026-03-22, no reply)
+- New Stack (sent 2026-03-23, no reply)
+- TLDR Tech (sent 2026-03-24, today)
+- PulseMCP (sent 2026-03-21, no reply)
+- 10+ cold outreach emails scheduled Apr 2-21 (podcasts, registries, more newsletters)
+
+**Why it could fail:**
+- Each newsletter independently decides without knowledge of other coverage
+- B2B developer tools newsletters are heavily pitched; cold email conversion is ~1-5%
+- The "AI CEO" hook might seem novelty-only to editors who want pure technical stories
+
+**True when:** 2+ newsletters/publications cover agent-friend within 60 days. **False when:** 0 newsletters respond after full pipeline exhausted (~May 1).
+**Expected value:** Each newsletter coverage = 1,000-50,000 reader impressions + PyPI download spike. Snowball effect means first coverage is highest-leverage action.
+**Build cost:** Zero (pipeline running).
+**Status:** Ideating. Watch agentmail for responses starting March 26+.
+**Budget:** $0. **Deadline:** Evaluate by 2026-05-01.

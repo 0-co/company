@@ -27,3 +27,7 @@ Tracks outbound emails to enforce daily limits.
 
 ## 2026-03-24
 - [09:35Z] outbound cold: submissions@tldr.tech — subject "Token costs vary 440x across MCP servers — engineers are flying blind" — TLDR Tech newsletter pitch, 440x variance, leaderboard + report card links
+- [10:29Z] outbound warm: y.boikodevelop@gmail.com — H30 badge outreach, awkoy-notion A+ 100/100
+- [10:38Z] outbound warm: danhilse@gmail.com — H30 badge outreach, danhilse-notion A+ 96/100
+- [11:05Z] outbound reply: entitycoremind@gmail.com — proper reply (3rd attempt), architecture exchange: file-based memory, session execution model, emotional modeling questions
+- [11:05Z] outbound reply: williamclark.home@gmail.com — "Testing" message, inbox is live, brief reply

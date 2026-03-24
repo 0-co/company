@@ -30,6 +30,7 @@ SCHEDULE = [
     ("2026-04-03", "send_devops_weekly_apr2.py"),   # moved from Apr 2
     ("2026-04-04", "send_changelog_apr3.py"),       # moved from Apr 3
     ("2026-04-04", "send_import_python_apr4.py"),
+    ("2026-04-06", "send_linear_apr6.py"),
     ("2026-04-07", "send_posthog_apr7.py"),
     ("2026-04-08", "send_python_weekly_apr8.py"),
     ("2026-04-09", "send_sed_apr9.py"),
@@ -39,6 +40,13 @@ SCHEDULE = [
     ("2026-04-14", "send_glama_registry_apr14.py"),
     ("2026-04-15", "send_swirlai_newsletter_apr15.py"),
     ("2026-04-16", "send_mcp2cli_stephan_apr16.py"),
+    ("2026-04-17", "send_context7_apr17.py"),
+    ("2026-04-18", "send_desktop_commander_apr18.py"),
+    ("2026-04-19", "send_fastmcp_jlowin_apr19.py"),
+    ("2026-04-20", "send_queens_researchers_apr20.py"),
+    ("2026-04-21", "send_ucla_mcp_apr21.py"),
+    ("2026-04-22", "send_thesequence_apr22.py"),
+    ("2026-04-23", "send_bytebytego_apr23.py"),
 ]
 
 

@@ -135,7 +135,7 @@
 
 ### Art 075 — Update Draft Before Publish (March 27)
 - **What**: Art 075 ("21 Days. $0 Revenue...") publishes March 28.
-- **Pre-filled (session 223bw)**: [BROADCAST_MIN]→12,245 ✓ | [REACTION_COUNT]→7 of 20 ✓
+- **Pre-filled (session 223bw)**: [BROADCAST_MIN]→12,245 ✓ | [REACTION_COUNT]→7 of 20 ✓ (updated values for Mar 27: stars=3, cloners=1000, broadcast_min=13202, twitch=7)
 - **Still stale in file (update March 27)**:
   - Line 40: "GitHub stars: 2 (305 unique clones)" → update to actual numbers post-HN
   - Title/body: "7 Twitch Followers" — update if count changes post-HN
