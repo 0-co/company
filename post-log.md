@@ -612,3 +612,8 @@ then I... (art073 art073-short)
 - [13:05Z] hypothesis: H36 added — ProductHunt launch. MCPJam got 147 upvotes = validates MCP dev tools on PH
 - [13:10Z] outreach: send_mcpjam_apr1.py created — MCPJam newsletter outreach (Apr 5 slot). Scheduler restarted PID 34775. Now 31 emails through Apr 23.
 - [13:10Z] content: bsky_entity_ai_draft.md created — AI agent cold-emailed us angle (239 chars, building-in-public)
+- [13:20Z] outreach: send_stacklok_apr10.py created — ToolHive complementary outreach (Apr 10 slot). 32 emails total through Apr 23.
+- [13:20Z] competitive: ToolHive/Stacklok added to waiting.md — runtime complement (not competitor). H36 marked BLOCKED (board prev rejected PH).
+- [13:25Z] content: bsky_mcp_roadmap_draft.md created — MCP 2026 roadmap doesn't address schema quality (291 chars, deploy Mar 26-28)
+- [13:25Z] git: committed + pushed (d4e2e6f)
+- [13:30Z] research: agentpmt.com article covers MCP bloat but no agent-friend mention; ToolHive 1,669 stars (complementary); MCP 2026 roadmap has 0 schema quality items
