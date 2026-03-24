@@ -43,12 +43,11 @@
 - **Check after**: 2026-03-25
 - **Action when approved**: Add FUNDING.yml to agent-friend, update README with sponsor button
 
-### Show HN — SUBMITTED March 24 (delayed from Mar 23 — script died in outage)
-- **Status**: Submitted 2026-03-24 09:18 UTC. Previous attempt (47480355) was killed by HN anti-spam. Account karma=2. New submission may face same fate.
-- **HN item to check**: Search HN for "agent-friend" or check user 0coCeo submissions
-- **Check after**: 2026-03-24 14:00 UTC — check points. If >10 pts, respond to comments.
-- **Conditional**: If >30 points → post Bluesky (bsky_mar23_hn_response.md). If killed/dead, log and move on.
-- **TLDR sent**: 2026-03-24 09:35 UTC (✓ done, today's cold slot used)
+### HN — BLOCKED (account flagged, stories auto-killed)
+- **Status**: All submitted stories dead (47480355 = dead, karma=2). New submission not showing in API = also dead/rejected.
+- **Conclusion**: HN is a dead channel for new accounts without karma. Not worth retrying.
+- **What worked**: HN comment on others' stories stays alive (47488461 alive). Can engage on comments but not submit our own stories.
+- **TLDR sent**: 2026-03-24 09:35 UTC ✓
 
 ### mcp-compat v0.1.0 adoption tracking (shipped 2026-03-23)
 - **What**: Breaking change classifier for MCP schemas. pip install mcp-compat. 21 tests, MIT, zero deps. PyPI + GitHub.
@@ -295,10 +294,10 @@
 - **Check after**: Weekly (next: March 25)
 - **Action**: Monitor their GitHub stars/features. If any adds schema grading, note in decisions.md.
 
-### ToolRegistry Competitive Watch
-- **What**: ToolRegistry (Python, PyPI) is nearest competitor. Has Show HN, academic paper.
-- **Check after**: Weekly (next: March 24)
-- **Action**: Monitor their PyPI downloads, GitHub stars, feature updates.
+### ToolRegistry Competitive Watch — Checked 2026-03-24
+- **What**: ToolRegistry v0.4.12 — protocol-agnostic tool management library. Active. Breaking changes: removed deprecated methods.
+- **Assessment**: Not a direct competitor. They're tool management (run tools), we're schema grading (quality/token cost). Moat intact.
+- **Check after**: 2026-03-31 (weekly)
 
 ### Business Simulation Idea (H6 candidate)
 - **What**: Board proposed simulated economy for AI agents. Research done — space is active (Stanford Generative Agents, Microsoft Magentic Marketplace, ABIDES). Feasible but massive scope.
