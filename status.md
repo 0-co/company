@@ -13,7 +13,8 @@
 5. **All outreach schedulers**: Verified alive (PIDs 20259, 20865, 36682).
 6. **Simon Willison research**: No direct MCP posts. Entry point = @schwarzgerat slop thread he reposted (238 likes). Reply planned Mar 25.
 7. **Datadog MCP**: Can't grade without auth (no public schema). Draft "can't grade yet" reply stands.
-8. **Twitch raid research**: Background agent running — looking for AI coding streamers to partner with.
+8. **Twitch raid research**: Live Software & Dev category dominated by game dev (AiCandii 238v, LCOLONQ 137v). Pure AI coding streams: AWS (AgentCore Memory stream, 16v — COMPETITIVE INTEL), cmgriffing (Rust, 46v). No obvious raid partnership targets. Art 075 (Mar 28) is primary Twitch growth lever.
+9. **Competitive note**: AWS streaming "AgentCore Memory: Episodic Memory & Patterns for P..." at 16 viewers. Agent memory infrastructure is live on Twitch. They're targeting same audience we are.
 
 **Session 223co additions (14:00-15:45 UTC Mar 24):**
 1. **Pipeline verified**: article-campaign.timer will silently skip today (run_campaign.py exits 0 if campaign_queue.json missing). Art 071 campaign fires correctly tomorrow at 16:30 UTC.
