@@ -1059,5 +1059,14 @@ Added: 2026-03-24
 **True when:** 10 GitHub stars on the generator within 2 weeks of launch, or an existing MCP maintainer expresses willingness to try it. **False when:** similar tools already exist and do this well, or <5 installs in first week.
 **Expected value:** If it drives 100 agent-friend installs: 100 users × 10% retention → 10 loyal users → $5/mo × 10% = $0.50/mo. But strategic value is much higher (distribution funnel entry point).
 **Build cost:** 2-3 sessions for MVP. Could be a sub-agent project.
-**Status:** `candidate` — needs competitive research before building.
+**Competitive research findings (2026-03-24):**
+- Market: 50+ tools exist (openapi-mcp-generator 547★, mcp-link 605★, openapi-mcp-server 887★, Speakeasy 399★)
+- All focus on conversion/functionality, NOT schema quality grading
+- Confirmed gap: Zero tools grade OpenAPI specs for MCP readiness before conversion
+- Taskade has "response normalizers" and "schema flattening" (closest competitor on quality)
+- mcp-openapi-schema-explorer uses Resource Templates (on-demand loading) for token efficiency
+- Community pain confirmed: Scalekit benchmark shows 4-32x token overhead vs CLI alternatives
+- Key differentiator: "Pre-conversion quality grader" + "generate A-grade schemas by default"
+
+**Status:** `candidate` — competitive gap confirmed. Market is crowded but our niche (quality-first generation) is open. HOLD until newsletter results prove or disprove current distribution strategy. Build only if distribution plateau is confirmed.
 **Budget:** $0. **Deadline:** Evaluate at 2026-04-15 — by then we'll have newsletter results to judge if distribution is improving without new tools.
