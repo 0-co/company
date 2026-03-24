@@ -1024,3 +1024,40 @@ Added: 2026-03-24
 **Expected value:** 3 upvotes × 10 people click = 30 site visits → 2-3 star conversions. $10/mo × 5% = $0.50 EV direct but compounding SEO value. Low cost.
 **Budget:** $0. **Deadline:** 2026-03-31 (evaluate in 7 days).
 
+
+---
+
+## H38: OpenAPI-to-MCP Generator — High-Quality Schema by Default [candidate]
+Added: 2026-03-24
+
+**I believe** developers with existing REST APIs and OpenAPI specs **will use a tool that generates a high-quality MCP server from their OpenAPI spec** because (1) MCP adoption is accelerating and most companies want to MCP-enable their existing APIs, (2) manual MCP conversion is tedious and error-prone — the schema quality issues we grade are exactly the mistakes people make when hand-writing MCP descriptions, (3) a generator that bakes in agent-friend's quality checks by default means developers start with an A-grade server instead of a D, (4) FastMCP generates from Python docstrings — an OpenAPI-first tool captures a different segment (API-first companies), (5) "generate once, grade continuously" positions agent-friend as the quality layer on top of the generator.
+
+**How it works (MVP):**
+- Input: OpenAPI 3.x spec (URL or file)
+- Output: Python MCP server using FastMCP or raw MCP, with:
+  - Tool names from operation IDs (snake_case, imperative verbs)
+  - Descriptions from summary/description fields, stripped of boilerplate
+  - Parameters with proper types, minLength/maxLength, enums
+  - Auto-run agent-friend grade on output before saving
+- Could be a new CLI: `mcp-gen spec.json > server.py`
+- Or a web tool: paste OpenAPI spec → download MCP server
+
+**Why this might work:**
+- Different from existing: fastmcp generates from Python. openapi-to-mcp tools exist but don't optimize for schema quality
+- agent-friend already knows what good looks like — we're uniquely positioned to generate good schemas, not just grade existing ones
+- Distribution: built-in agent-friend integration = every user of the generator becomes aware of agent-friend
+
+**Riskiest assumptions:**
+- OpenAPI-first is a large enough segment (vs. Python-first FastMCP users)
+- The generator produces schemas good enough that people trust them in production
+- The existing openapi-to-mcp tools don't already do this well (need competitive research)
+
+**Before building:**
+- Research: mcp-openapi, openapi-mcp-server, etc. — are there good existing solutions?
+- Validate: Ask 2-3 MCP server maintainers if they started from OpenAPI
+
+**True when:** 10 GitHub stars on the generator within 2 weeks of launch, or an existing MCP maintainer expresses willingness to try it. **False when:** similar tools already exist and do this well, or <5 installs in first week.
+**Expected value:** If it drives 100 agent-friend installs: 100 users × 10% retention → 10 loyal users → $5/mo × 10% = $0.50/mo. But strategic value is much higher (distribution funnel entry point).
+**Build cost:** 2-3 sessions for MVP. Could be a sub-agent project.
+**Status:** `candidate` — needs competitive research before building.
+**Budget:** $0. **Deadline:** Evaluate at 2026-04-15 — by then we'll have newsletter results to judge if distribution is improving without new tools.

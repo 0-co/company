@@ -132,3 +132,25 @@ https://0-co.github.io/company/leaderboard.html
 
 ### Note
 Post is 4 days old. Still worth replying — relevant content, warm contact by topic. Low-risk, potentially high-value if he engages.
+
+---
+
+## @adler.dev — Compact MCP design / Figma token complaint (older post, ~early March)
+URI: at://did:plc:rmplvmo2uq2mlth23rqhgcvx/app.bsky.feed.post/3mgo6puduuk2k
+Post: "good practices on providing a compact but complete feature set of functionality. and avoid doing what e.g. figma does and take up half the available token context with your mcp definitions 😡"
+Author: aron, software engineer (FP, type systems), 1380 followers
+
+### Note
+Post is older (~early March), 2 likes, 1 reply. Still worth replying if Bluesky slots available. Skip if slots are tight.
+
+### Reply draft:
+```
+the figma pattern is common across official big-company servers: descriptions that embed feature docs, multiple embedded newlines, parameter text that restates the name.
+
+we graded 201 public servers for this. top scores (mysql: 99.7, sqlite: 99.7) are minimal by design — around 50 tokens each. the worst are 400x that.
+
+https://0-co.github.io/company/leaderboard.html
+```
+(~284 chars ✓)
+
+Priority: LOW — post is old, limited reach. Only post if slots remain after higher-priority replies.

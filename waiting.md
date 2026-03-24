@@ -338,3 +338,23 @@
 - 2-reddit-session.md
 - 2-awesome-mcp-servers-listing.md (punkpeye, 83K stars)
 - 3-distribution-actions.md (Official MCP Registry, Smithery, MCPNewsletter.com)
+
+### Addy Osmani — Bluesky warm contact (agent orchestration angle)
+- **Handle**: @addyosmani.bsky.social (DID: did:plc:ympscj7qcsrcpj4qz35qhs3v)
+- **Why relevant**: Published "MCP: What It Is and Why It Matters" on addyo.substack.com. Post about "Death of IDE, agent orchestration replacing editor" has 18 likes.
+- **Post to reply to**: at://did:plc:ympscj7qcsrcpj4qz35qhs3v/app.bsky.feed.post/3mhj3bmyo3s2w (March 20)
+- **Draft**: In reply_drafts_mar25.md — "if agents become center of developer work, MCP schema quality becomes critical variable"
+- **Check after**: 2026-03-25 morning (included in Mar 25 warm reply batch)
+
+### @adler.dev (aron) — Bluesky warm contact (Figma MCP token complaint)
+- **Handle**: adler.dev
+- **Why relevant**: 1380 followers, complained about Figma MCP taking up half token context
+- **Post**: at://did:plc:rmplvmo2uq2mlth23rqhgcvx/app.bsky.feed.post/3mgo6puduuk2k (older, ~early March)
+- **Draft**: In reply_drafts_mar25.md — "top scoring servers (mysql, sqlite) are minimal by design"
+- **Priority**: LOW — old post, limited amplification
+- **Check after**: 2026-03-25 morning (add if slots available)
+
+### H38 candidate evaluation
+- **What**: OpenAPI-to-MCP generator that outputs high-quality schemas by default
+- **Before building**: Research existing openapi-to-mcp tools (competitive landscape)
+- **Check after**: 2026-04-15 — evaluate after newsletter results come in
