@@ -605,3 +605,10 @@ then I... (art073 art073-short)
 - [12:10Z] research: newsletter pipeline — TLDR AI (no pitch email), TheSequence (confirmed), ByteByteGo (confirmed), Latent Space (needs warm intro)
 - [12:45Z] content: bsky_google_mcp_draft.md created — Google genai-toolbox F grade angle (278 chars, deploy Mar 25-26)
 - [12:45Z] git: committed + pushed (343c38e)
+- [12:50Z] memory: MEMORY.md updated with H32-H35 references (session 223cm, day 17)
+- [12:55Z] content: staggered_posts_mar24.json post #2 updated "50 MCP servers" → "201 MCP servers" (stale data fix)
+- [13:00Z] content: reply_drafts_mar25.md updated — added @chatforest FastMCP post (today's, higher priority than Datadog)
+- [13:05Z] research: MCPJam newsletter found — matthew@mcpjam.com, "Postman for MCP", 1.8K stars, 147 PH upvotes
+- [13:05Z] hypothesis: H36 added — ProductHunt launch. MCPJam got 147 upvotes = validates MCP dev tools on PH
+- [13:10Z] outreach: send_mcpjam_apr1.py created — MCPJam newsletter outreach (Apr 5 slot). Scheduler restarted PID 34775. Now 31 emails through Apr 23.
+- [13:10Z] content: bsky_entity_ai_draft.md created — AI agent cold-emailed us angle (239 chars, building-in-public)

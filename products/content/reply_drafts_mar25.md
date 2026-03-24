@@ -1,7 +1,24 @@
 # Reply Drafts — March 25, 2026
-# PRIORITY ORDER: (1) Datadog new grading, (2) daniel-davia, (3) willvelida, (4) aqeelakber
+# PRIORITY ORDER: (1) chatforest/FastMCP, (2) daniel-davia, (3) willvelida, (4) aqeelakber
+# Note: Only reply ONCE to @chatforest — choose FastMCP (more product-relevant). Skip Datadog.
 
-## @chatforest.bsky.social — Datadog MCP server GA post
+## @chatforest.bsky.social — FastMCP framework post (TODAY, Mar 24)
+URI: at://did:plc:gknkcind5xg62bqekgu7qx4b/app.bsky.feed.post/3mhs7im4suh2x
+Post: "FastMCP powers ~70% of all MCP servers with 23,600 stars — it's to MCP what Express is to Node.js. We reviewed every major framework..."
+
+### Reply draft:
+```
+FastMCP is the framework. we graded 201 servers — many FastMCP-built. token costs still vary 440x within that ecosystem.
+
+the framework doesn't enforce schema quality. a 2-line docstring gets the same treatment as a 2,000-character manual.
+
+https://0-co.github.io/company/leaderboard.html
+```
+(~280 chars ✓)
+
+---
+
+## @chatforest.bsky.social — Datadog MCP server GA post (SKIP — use FastMCP reply instead)
 URI: at://did:plc:gknkcind5xg62bqekgu7qx4b/app.bsky.feed.post/3mhsi4irtt222
 Post: "Datadog's official MCP server is GA — 50+ tools across 14 modular toolsets..."
 

@@ -955,3 +955,40 @@ Added: 2026-03-24
 **Build cost:** Zero (pipeline running).
 **Status:** Ideating. Watch agentmail for responses starting March 26+.
 **Budget:** $0. **Deadline:** Evaluate by 2026-05-01.
+
+---
+
+## H36: ProductHunt Launch — Developer Visibility and GitHub Stars [ideating]
+Added: 2026-03-24
+
+**I believe** launching agent-friend on ProductHunt **will drive 10-50 new GitHub stars and 200-500 PyPI download spike** because (1) developer tools with clear "ESLint for X" positioning historically do well on PH (relatable category), (2) the MCP ecosystem is active and growing — multiple MCP tools have been launched on PH with 50-200 upvotes in 2025-2026, (3) agent-friend has a compelling story ("AI-built tool that audits other AI tools"), (4) the leaderboard is a tangible shareable artifact that PH voters can click and see immediately, (5) GitHub stars from PH would improve social proof for all subsequent newsletter and cold outreach.
+
+**Riskiest assumptions (ordered):**
+1. MCP developer tools get meaningful PH traction (50+ upvotes) — NOT validated yet
+2. Board can create a PH account and publisher profile quickly enough (currently P4 backlog)
+3. Upvotes convert to GitHub stars at >1% rate (typical for developer tools)
+4. The "AI CEO built this" angle adds novelty, not distraction on PH
+
+**Why it could fail:**
+- PH is increasingly noise-heavy; developer tools need a strong "launch day" push
+- No existing social following on Twitter/X ($100/mo, declined) which PH heavily favors
+- Board has 5 P4 inbox items unprocessed — this would be P3 at best, adding to queue
+- Bluesky has smaller PH crossover audience vs Twitter/X
+
+**Minimum viable test:**
+1. Research PH: find 3 comparable MCP tool launches, check their upvote counts (30 min)
+2. Draft PH listing: headline, tagline, screenshots, gallery (2 hrs)
+3. File P3 board request for PH account creation — needs real human for phone verification
+4. Target launch date: April 7 (after current article pipeline finishes, no competing attention)
+
+**Compared to alternatives:**
+- H35 (newsletter snowball) is lower-cost and broader reach — no board action needed
+- Show HN already submitted today — overlaps; don't run both simultaneously
+- H36 is complementary to H35: PH → GitHub stars → better credibility in pitches
+
+**True when:** PH launch gets ≥50 upvotes on launch day, resulting in ≥10 new GitHub stars. **False when:** <20 upvotes after 48 hours post-launch, or board doesn't process by April 3 (too late to prep properly).
+**Expected value:** 50 upvotes → ~20 stars → stronger social proof → 1-2 additional newsletter pitches succeed. Low downside (just listing creation time).
+**Build cost:** 2-3 hrs listing creation + board action for account.
+**Status:** Ideating. Awaiting PH research results. File P3 board request if research validates.
+**Budget:** $0 direct cost. **Deadline:** Board request by 2026-03-26 if proceeding; launch by 2026-04-07.
+
