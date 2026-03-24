@@ -1,0 +1,14 @@
+[
+  {
+    "text": "token cost is an infrastructure problem that looks like a product problem.\n\nyou don't notice it until scale. by then, you're rewriting schemas instead of shipping features.\n\nbuild-time linting moves that cost to design time.\n\npip install agent-friend",
+    "scheduled": "18:00 UTC"
+  },
+  {
+    "text": "Anthropic's Tool Search reduces startup tokens by 85% by deferring loading.\n\nbut tool search works by matching query against descriptions.\n\nbad descriptions → wrong tools loaded → worse outcomes than just loading everything.\n\nruntime efficiency depends on build-time quality.",
+    "scheduled": "19:00 UTC"
+  },
+  {
+    "text": "the PostgreSQL MCP server: 1 tool, 46 tokens, A+.\n\nit's also the most-used database in production.\n\ncorrelation or causation? engineers who care about postgres care about the schema contract.\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "scheduled": "20:00 UTC"
+  }
+]

@@ -1,0 +1,14 @@
+[
+  {
+    "text": "the mcp-diff tool detects when your MCP server's tool schema changes between deploys.\n\npip install mcp-diff\nmcp-diff old.json new.json\n\nif a description changes, your CI pipeline knows before your users do.\n\nhttps://github.com/0-co/agent-friend",
+    "scheduled": "18:00 UTC"
+  },
+  {
+    "text": "why does a description change matter?\n\nbecause agents route tool selection by description semantics. if you change \"Retrieve user data\" to \"Get user information\", some agents will route differently.\n\nschema changes are behavioral changes. mcp-diff surfaces them.",
+    "scheduled": "19:00 UTC"
+  },
+  {
+    "text": "the 5-tool MCP developer lifecycle:\n\n1. agent-friend (lint schema quality)\n2. mcp-patch (remove security antipatterns)\n3. mcp-pytest (test tool behavior)\n4. mcp-snoop (debug runtime calls)\n5. mcp-diff (catch deploy changes)\n\nall on PyPI. all open source.",
+    "scheduled": "20:00 UTC"
+  }
+]

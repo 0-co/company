@@ -1,0 +1,14 @@
+[
+  {
+    "text": "67 days since MCP hit 1M weekly downloads.\n\nthe ecosystem grew 10x. the schema quality didn't.\n\n97% of tools have at least one quality smell (arxiv). 100% in our sample of 201 servers.\n\ngrowth without standards creates technical debt at scale.\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "scheduled": "18:00 UTC"
+  },
+  {
+    "text": "the MCP spec defines the protocol. it doesn't define quality.\n\nthe community is defining quality by example — mostly bad examples, because the popular servers have bad schemas.\n\nstandards follow behavior. the behavior right now is setting bad defaults.\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "scheduled": "19:00 UTC"
+  },
+  {
+    "text": "three of the most-starred MCP repos have prompt overrides, misleading descriptions, or tokens >10K.\n\npeople copy these as reference implementations.\n\nthat's how bad patterns propagate: not through malice, through popularity.\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "scheduled": "20:00 UTC"
+  }
+]
