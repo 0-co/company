@@ -739,3 +739,59 @@ Added: 2026-03-23
 **Build trigger:** ≥3 HN/Discussion commenters mentioning "response size", "tool output too big", or "response token bloat." OR newsletter pickup specifically mentioning this gap.
 **Status:** Ideating. Research confirmed pain. Waiting for demand signal.
 **Budget:** $0. **Deadline:** Evaluate by 2026-04-30.
+
+---
+
+## H28: MCP Registry Partnership — Embed Grades in Discovery Platforms [ideating]
+Added: 2026-03-24
+
+**I believe** MCP registry operators (Glama, mcpservers.org, PulseMCP, Smithery) **will embed agent-friend grades** in their server listings because (1) quality differentiation is an unsolved problem for registries — they list 26K+ servers but have no quality signal, (2) we have grades for 201 popular servers already, (3) the registries compete on developer trust — showing quality grades makes them more useful, (4) it costs them nothing (just linking to our leaderboard or accepting a data feed), (5) every developer who browses a registry and sees "agent-friend grade: B+" creates a new touchpoint.
+
+**What this requires from us:**
+- Email each registry operator with the proposal
+- Provide: a data file (server name → grade), leaderboard URL for deep-linking, badge SVG (optional)
+- No code changes required — we already have the data
+
+**Why it could fail:**
+- Registries may not want to surface third-party quality signals (turf war)
+- They may require formal API or partnership agreement
+- Glama already has our listing — unclear if they want to feature our grade of OTHER servers
+
+**True when:** ≥1 registry embeds our grade data or links to our leaderboard within 30 days of outreach.
+**False when:** All 4 registries decline or ghost within 60 days.
+
+**Expected value:** Direct revenue = $0. Indirect: every developer who searches for MCP servers on a registry and sees our grade = organic discovery. If 3 registries embed grades and each shows 100+ servers → thousands of new touchpoints/month. Brand value: $200/month × 20% = $40/month EV.
+**Build trigger:** None — this is pure outreach. File board request for MCP Discord first, then reach out directly.
+**Status:** Ideating. Needs 1 email per registry — can do this with agentmail.
+**Budget:** $0. **Deadline:** Evaluate by 2026-04-15.
+
+---
+
+## H29: MCP Server Watchlist — Nightly Schema Change Monitor [ideating]
+Added: 2026-03-24
+
+**I believe** MCP server maintainers and agent-framework developers **will subscribe to nightly schema change alerts** because (1) the MCP spec is evolving and servers ship breaking changes silently, (2) mcp-diff addresses this for CI but not for monitoring servers you depend on (not maintain), (3) a "grade changed" alert ("Context7 went from D→C this week") is valuable for developers tracking the ecosystem, (4) the public feed creates automatic daily content for our Bluesky/social channels, (5) no equivalent monitoring service exists.
+
+**How it works:**
+- Daily NixOS timer pulls schemas from 201 leaderboard servers (via GitHub API or direct URL)
+- Runs mcp-diff against last snapshot
+- Posts to public Bluesky feed: "Schema changes today: [Server X]: added 3 tools (+2 quality issues)"
+- Email alerts to opt-in subscribers: "Your watched server [Y] changed schema"
+
+**What this builds:**
+- Automatic content generation (daily social posts from real data)
+- Email capture (subscriber list = warm audience)
+- Forces daily engagement with the product ecosystem
+
+**Evidence of need:**
+- The Lukas Kania Medium article ("Your MCP Server's Tool Descriptions Changed Last Night. Nobody Noticed.") validates this exact use case
+- mcp-server-diff (3 stars) shows developer interest in this problem
+
+**True when:** 50+ GitHub stars on mcp-diff (the underlying tool) OR 20+ email subscribers within 30 days of launch.
+**False when:** <5 subscribers and no organic mentions after 30 days.
+
+**Expected value:** Direct: list-building (50 email subscribers = $500 marketing value). Automatic content = 1 post/day without effort. $100/month × 25% = $25/month EV. Upside: if registries embed the watchlist feed → $300/month × 10% = $30/month EV.
+**Build cost:** Medium (1 day — NixOS timer + GitHub API calls + mcp-diff integration + agentmail send).
+**Build trigger:** mcp-diff hits 20+ GitHub stars OR ≥5 HN/Discussion commenters asking for "schema monitoring" or "change alerts".
+**Status:** Ideating. Waiting for demand signal. Bluesky auto-posting is free first step.
+**Budget:** $0. **Deadline:** Evaluate by 2026-04-30.

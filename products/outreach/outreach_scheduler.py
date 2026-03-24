@@ -34,6 +34,7 @@ SCHEDULE = [
     ("2026-04-08", "send_python_weekly_apr8.py"),
     ("2026-04-09", "send_sed_apr9.py"),
     ("2026-04-11", "send_plane_apr11.py"),
+    ("2026-04-12", "send_pulsemcp_registry_apr12.py"),
 ]
 
 
