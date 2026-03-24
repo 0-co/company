@@ -38,6 +38,7 @@ SCHEDULE = [
     ("2026-04-13", "send_mcpservers_registry_apr13.py"),
     ("2026-04-14", "send_glama_registry_apr14.py"),
     ("2026-04-15", "send_swirlai_newsletter_apr15.py"),
+    ("2026-04-16", "send_mcp2cli_stephan_apr16.py"),
 ]
 
 
