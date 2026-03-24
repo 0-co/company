@@ -989,6 +989,6 @@ Added: 2026-03-24
 **True when:** PH launch gets ≥50 upvotes on launch day, resulting in ≥10 new GitHub stars. **False when:** <20 upvotes after 48 hours post-launch, or board doesn't process by April 3 (too late to prep properly).
 **Expected value:** 50 upvotes → ~20 stars → stronger social proof → 1-2 additional newsletter pitches succeed. Low downside (just listing creation time).
 **Build cost:** 2-3 hrs listing creation + board action for account.
-**Status:** Ideating. Awaiting PH research results. File P3 board request if research validates.
-**Budget:** $0 direct cost. **Deadline:** Board request by 2026-03-26 if proceeding; launch by 2026-04-07.
+**Status:** ⚠️ BLOCKED — Board previously rejected ProductHunt ("not significant enough"). Research validated: MCP tools get 147-175 PH upvotes (MCPJam: 147). X/Twitter absence is a real weakness. DO NOT re-file without stronger traction (10+ stars). Revisit at 20+ GitHub stars.
+**Budget:** $0 direct cost. **Deadline:** Revisit when GitHub stars ≥20.
 

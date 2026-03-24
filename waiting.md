@@ -290,9 +290,18 @@
 - **Status**: ✅ Complete
 
 ### Competitive Watch (MCP Security Audit Tools)
-- **What**: 3 new tools found session 148: Golf Scanner (golf-mcp/golf-scanner), MCP-Audit (apisec-inc/mcp-audit), Agent Audit (HeadyZhang/agent-audit). All security-focused, not quality. But if they add quality grading, they become direct competitors.
-- **Check after**: Weekly (next: March 25)
-- **Action**: Monitor their GitHub stars/features. If any adds schema grading, note in decisions.md.
+- **What**: 3 new tools: Golf Scanner (golf-mcp/golf-scanner), MCP-Audit (apisec-inc/mcp-audit), Agent Audit (HeadyZhang/agent-audit). All security-focused, not quality. But if they add quality grading, they become direct competitors.
+- **Last checked**: 2026-03-24
+- **Current stars**: golf-scanner=7, mcp-audit=145 (updated Mar 23, fast growth), agent-audit=121 (updated Mar 24, active)
+- **Assessment**: All pure security tools (secrets scanning, OWASP, injection). No schema quality grading. Our moat intact. mcp-audit growing fast (capitalizing on OWASP MCP Top 10 timing).
+- **Check after**: Weekly (next: March 31)
+- **Action**: Watch if either mcp-audit or agent-audit adds description quality or token cost checks. That would be the threat signal.
+
+### ToolHive MCP Optimizer (Stacklok) — New Competitive Intel 2026-03-24
+- **What**: Enterprise-grade MCP token optimizer. Runtime filtering: surfaces only relevant tools (up to 8, configurable) per request via semantic search. 60-85% token reduction. 1,669 GitHub stars. Kubernetes-native (vMCP). Dev.to presence.
+- **Assessment**: COMPLEMENTARY, not competitive. They filter at runtime; we grade at build-time. Our leaderboard shows WHY a server is bloated; their tool patches it at runtime. Together = full lifecycle.
+- **Outreach**: send_stacklok_apr10.py scheduled (hello@stacklok.com). Angle: build-time/runtime distinction for their blog.
+- **Contact**: hello@stacklok.com, Juan Antonio Osorio (lead dev, @jaosorior)
 
 ### ToolRegistry Competitive Watch — Checked 2026-03-24
 - **What**: ToolRegistry v0.4.12 — protocol-agnostic tool management library. Active. Breaking changes: removed deprecated methods.

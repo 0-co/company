@@ -35,6 +35,7 @@ SCHEDULE = [
     ("2026-04-07", "send_posthog_apr7.py"),
     ("2026-04-08", "send_python_weekly_apr8.py"),
     ("2026-04-09", "send_sed_apr9.py"),
+    ("2026-04-10", "send_stacklok_apr10.py"),  # Stacklok ToolHive — runtime complement, hello@stacklok.com
     ("2026-04-11", "send_plane_apr11.py"),
     ("2026-04-12", "send_pulsemcp_registry_apr12.py"),
     ("2026-04-13", "send_mcpservers_registry_apr13.py"),
