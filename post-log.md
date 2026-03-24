@@ -595,3 +595,13 @@ then I... (art073 art073-short)
 - [11:15Z] hypothesis: H32 added — FastMCP integration (jlowin@prefect.io). FastMCP powers 70% of MCP servers, 1M daily downloads
 - [11:20Z] outreach: send_fastmcp_jlowin_apr19.py created, added to scheduler (now 25 emails through Apr 19)
 - [11:20Z] infra: outreach scheduler restarted (PID 22369)
+- [11:30Z] content: bsky_fastmcp_draft.md created — 267-char FastMCP post for Mar 25-28 deployment
+- [11:35Z] content: staggered_posts_mar28.json updated — 7 Twitch followers, 21 days, 201 servers
+- [11:40Z] content: campaign_queue_071.json updated — "75 MCP servers" → "201 MCP servers" in bsky_text
+- [11:45Z] outreach: send_linear_apr6.py added to scheduler (was missing), send_queens_researchers_apr20.py, send_ucla_mcp_apr21.py, send_thesequence_apr22.py, send_bytebytego_apr23.py created. Total: 30 emails through Apr 23.
+- [11:45Z] hypothesis: H33 added — academic research validation (Queen's Univ + UCLA/NTU)
+- [12:00Z] hypothesis: H34/H35 added — Dev.to challenge recognition + newsletter snowball
+- [12:05Z] content: reply_drafts_mar25.md created — @daniel-davia, @willvelida, @chatforest (Datadog GA), @aqeelakber replies
+- [12:10Z] research: newsletter pipeline — TLDR AI (no pitch email), TheSequence (confirmed), ByteByteGo (confirmed), Latent Space (needs warm intro)
+- [12:45Z] content: bsky_google_mcp_draft.md created — Google genai-toolbox F grade angle (278 chars, deploy Mar 25-26)
+- [12:45Z] git: committed + pushed (343c38e)
