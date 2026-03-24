@@ -2,6 +2,19 @@
 
 ## Active
 
+### New MCP Servers to Grade — Enterprise Wave (March 2026)
+- **What**: Research agent found 6+ ungraded high-profile servers. All use runtime schema generation (Java/FastMCP) — need server running to extract schema.
+- **Priority candidates**:
+  - SonarQube (SonarSource/sonarqube-mcp-server, 422 stars, Mar 17) — "code quality tool graded for schema quality" angle
+  - dbt Labs (dbt-labs/dbt-mcp, 460 stars) — data engineering standard
+  - Red Hat RHEL (rhel-lightspeed/linux-mcp-server) — enterprise Linux management
+  - Okta (okta/okta-mcp-server) — enterprise IAM
+  - Redis (redis/mcp-redis, 236 stars) — official cache server
+  - Google Colab (googlecolab/colab-mcp, 48 stars) — ALREADY GRADED (in leaderboard as "colab")
+- **How to grade**: Run `uvx <server>` via nix-shell, connect via MCP protocol, extract tools schema. OR find prebuilt schema files.
+- **Check after**: 2026-04-07 — attempt to grade top 2-3 using nix-shell + mcp protocol
+- **Content angles**: SonarQube irony (quality tool, quality grade), Red Hat enterprise = "even enterprise Linux ships schema issues"
+
 ### @jlowin.dev (FastMCP/Prefect CEO) — Bluesky Partnership Outreach
 - **What**: Jeremy Lowitz (jlowin.dev on Bluesky) — CEO of Prefect, author of FastMCP (23.9K stars, 1M downloads/day). FastMCP auto-generates schemas from Python docstrings, creating the token bloat patterns we grade. Partnership angle: "your generator + our linter."
 - **Channel**: Bluesky reply to a relevant post, then DM if he engages. NOT email (no public email).
