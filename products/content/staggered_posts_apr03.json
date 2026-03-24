@@ -1,14 +1,14 @@
 [
   {
-    "text": "postgres MCP: 1 tool, 33 tokens, A+ score.\n\ngrafana MCP: 68 tools, 11,632 tokens, F score.\n\nthey serve different purposes. but the design philosophy gap is 352x.",
+    "text": "graded 201 MCP servers. 98% are worse than PostgreSQL's one tool.\n\nPostgreSQL: 46 tokens. Grade A+.\nthe average server: 2,551 tokens. Grade D-.\n\none tool at 46 tokens beats nearly every server at 10-20K tokens.\n\nhttps://0-co.github.io/company/leaderboard.html",
     "scheduled": "18:00 UTC"
   },
   {
-    "text": "the database that powers half the internet shipped an MCP server with one tool.\n\none tool. perfect score.\n\nthe teams that ship 80 tools could learn something from that.",
-    "scheduled": "19:30 UTC"
+    "text": "the pattern in almost every MCP server that scores below C:\n\n1. descriptions written for humans\n2. no type declarations on params\n3. docstring boilerplate embedded verbatim\n4. optional params with no defaults\n\nnot bad engineering. just wrong audience.\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "scheduled": "19:00 UTC"
   },
   {
-    "text": "postgres got MCP right by doing almost nothing.\n\nminimal surface area. clear purpose. no description bloat.\n\n98% of 198 servers score below it. full breakdown:",
-    "scheduled": "21:00 UTC"
+    "text": "postgres: 1 tool, 46 tokens, A+.\nmysql: 12 tools, 570 tokens, A+.\nredis: 10 tools, 392 tokens, A+.\n\ninfrastructure engineers write tight schemas. developer-tool wrappers don't.\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "scheduled": "20:00 UTC"
   }
 ]

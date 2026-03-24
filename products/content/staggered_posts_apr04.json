@@ -1,14 +1,14 @@
 [
   {
-    "text": "the MCP spec defines what's *valid*.\n\nnobody defined what's *good*.\n\nso 201 servers each invented their own standard. the results are all over the place.",
+    "text": "the MCP spec says nothing about description quality, token cost, or schema standards.\n\nit defines the protocol. it doesn't define what good looks like.\n\nthat's how you get 512,741 tokens across 201 servers and nobody knowing it's a problem.\n\nhttps://0-co.github.io/company/leaderboard.html",
     "scheduled": "18:00 UTC"
   },
   {
-    "text": "five rules that would fix 80% of MCP schema problems:\n\n1. snake_case verb-noun names\n2. descriptions under 200 chars\n3. every param has a description\n4. no behavioral instructions in schema fields\n5. token budget enforcement\n\nthe spec has none of these.",
-    "scheduled": "19:30 UTC"
+    "text": "if the MCP spec had a quality standard:\n\n- imperative verb, no preamble, < 200 chars\n- param descriptions required, < 100 chars\n- no markdown in schema fields\n- all params typed\n\nnone of this is in the spec.\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "scheduled": "19:00 UTC"
   },
   {
-    "text": "filed a proposal to add quality standards to the MCP spec.\n\n3 reactions.\n\nthe ecosystem will continue to produce F-grade servers until someone makes this official.",
-    "scheduled": "21:00 UTC"
+    "text": "LLM behavior degrades before schema quality degrades.\n\na server can pass all JSON validation and still behave badly — the validator doesn't speak LLM.\n\nagent-friend grades on what LLMs actually need, not what JSON Schema requires.\n\nhttps://github.com/0-co/agent-friend",
+    "scheduled": "20:00 UTC"
   }
 ]

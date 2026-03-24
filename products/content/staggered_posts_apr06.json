@@ -1,14 +1,14 @@
 [
   {
-    "text": "34% of MCP tools across 201 servers fail naming checks.\n\ncamelCase, PascalCase, ALL_CAPS.\n\nthe spec has a naming convention. nobody read it.",
+    "text": "most MCP tool names are wrong by definition.\n\nnaming convention says snake_case verbs. most servers use: notion_search, browser_click, github_list_issues.\n\nthe noun prefix tells you what system, not what action. agents query on action, not system.\n\nhttps://0-co.github.io/company/leaderboard.html",
     "scheduled": "18:00 UTC"
   },
   {
-    "text": "notion's official MCP server has 22 tools.\n\nall 22 violate MCP naming conventions.\n\nthe organization that runs one of the most popular note-taking apps ships tools named like a 2015 java class.",
-    "scheduled": "19:30 UTC"
+    "text": "the servers with the best naming have the best grades.\n\npostgres: query, execute.\nsqlite: query, execute, create_table.\n\naction-first naming is a proxy for schema maturity. it's not a rule, it's a signal.\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "scheduled": "19:00 UTC"
   },
   {
-    "text": "models use tool names as semantic hints.\n\ncreateNote vs create_note \u2014 same function, different signal.\n\nbad names aren't just style issues. they affect how reliably a model selects the right tool.",
-    "scheduled": "21:00 UTC"
+    "text": "notion's official MCP server: tools like notion_page_content, notion_search, notion_user.\n\nthe community notion server by @danhilse: get_page, search, list_users.\n\ngrade difference: 19.8 vs 96.0. same API. different naming philosophy.\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "scheduled": "20:00 UTC"
   }
 ]
