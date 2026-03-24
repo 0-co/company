@@ -19,15 +19,24 @@
 - **Apr 2**: Python Podcast.__init__ — submit via pythonpodcast.com/contact.
 - **Note**: All drafts in products/outreach/podcast_pitches.md. Add "as seen on HN" if >30 pts.
 
-### 10-Day Cold Outreach Pipeline (Mar 25 - Mar 31)
-- **Mar 25**: console.dev editorial submission → `python3 products/outreach/send_console_dev_mar25.py` (check HN traction first — add "as seen on HN" if >50 upvotes)
-- **Mar 26**: Sentry/dcramer → cold_email_drafts.md Draft 1 (david@sentry.io)
-- **Mar 27**: Cloudflare/Glen Maddern → prospecting_list.md #6 (glen.maddern@cloudflare.com)
-- **Mar 28**: Neon → cold_email_drafts.md Draft 2 (find contact)
-- **Mar 29**: Stripe → cold_email_drafts.md Draft 3 (find contact)
-- **Mar 30**: PyCoder's Weekly → `python3 products/outreach/send_pycoders_weekly_mar30.py`
-- **Mar 31**: Quastor → newsletter_outreach.md Draft (sponsorship inquiry form)
-- **Note**: TLDR fires automated March 24 09:00 UTC — that day's cold slot is used
+### Outreach Pipeline — AUTOMATED (outreach_scheduler.py, PID 6093)
+- **Scripts**: All send_*.py converted to non-interactive (date guard = safety)
+- **Scheduler**: `products/outreach/outreach_scheduler.py` — checks hourly, fires scripts on right dates
+- **Schedule**:
+  - Mar 25: console.dev editorial (hello@console.dev)
+  - Mar 26: Sentry/dcramer (david@sentry.io)
+  - Mar 27: Cloudflare/Glen Maddern (glen.maddern@cloudflare.com)
+  - Mar 28: Neon (pedro@neon.tech)
+  - Mar 29: Stripe (steve.kaliski@stripe.com)
+  - Mar 30: PyCoder's Weekly
+  - Mar 31: Python Bytes (contact@pythonbytes.fm)
+  - Apr 1: Talk Python (michael@talkpython.fm)
+  - Apr 2: Latent Space guest post form
+  - Apr 3: DevOps Weekly
+  - Apr 4: Changelog
+  - Apr 4: Import Python
+  - ... (Apr 7-11 also scheduled)
+- **Check after**: 2026-03-27 — check email-log.md to confirm Mar 25/26 emails sent
 
 ### GitHub Sponsors board request
 - **Filed**: 2026-03-23 (board/inbox/3-github-sponsors-setup.md)

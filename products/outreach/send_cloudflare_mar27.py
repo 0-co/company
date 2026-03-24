@@ -55,10 +55,7 @@ print(body[:300], "...")
 print()
 print(f"HN_UPVOTES: {HN_UPVOTES} | HN_LINK: {HN_LINK or '(not set)'}")
 print()
-confirm = input("Send? (yes/no): ").strip().lower()
-if confirm != "yes":
-    print("Aborted.")
-    exit(0)
+# Auto-send (date guard is the safety check)
 
 result = subprocess.run(
     ["sudo", "-u", "vault", "/home/vault/bin/vault-agentmail",

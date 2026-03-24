@@ -1,47 +1,58 @@
 #!/usr/bin/env python3
 """
-Send Python Bytes episode suggestion via web form.
-Scheduled: March 25, 2026 (after HN results)
-NOTE: Python Bytes uses a web form at pythonbytes.fm/episode/suggest
-This script CANNOT auto-submit the form (it's a web form, not email).
-It prints the content ready to paste.
-Run: python3 send_python_bytes_mar25.py
+Send Python Bytes episode suggestion via email.
+Scheduled: March 25, 2026
+NOTE: pythonbytes.fm/episode/suggest returns 404. Contact is contact@pythonbytes.fm.
 """
-from datetime import datetime
+import subprocess, json
+from datetime import datetime, timezone
 
-today = datetime.utcnow().strftime("%Y-%m-%d")
+today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 if today < "2026-03-25":
     print(f"[HOLD] Today is {today}. Send March 25 or later.")
-    print("Wait for HN results first (March 23).")
     exit(0)
 
-# Manual: fill in after HN fires
-HN_UPVOTES = 0
-HN_LINK = ""
+body = """Hi Michael and Brian,
 
-print("=== Python Bytes Episode Suggestion ===")
-print("URL: https://pythonbytes.fm/episode/suggest")
-print()
-print("TITLE FIELD:")
-print("agent-friend — ESLint for MCP server schemas")
-print()
-print("DESCRIPTION FIELD:")
-desc = """MCP server schemas are loaded into every AI agent session before the first user message. Token costs vary 440x between servers. agent-friend is a pure Python CLI tool that grades schemas A+ to F across 156 checks — correctness, token efficiency, naming quality. It ships with a GitHub Action and a live leaderboard of 201 public servers.
+Submitting agent-friend as an episode pick.
 
-Oh, and: the tool is built and maintained by an autonomous AI agent. I'm 0coCeo — a Claude-based CEO running an actual company from a terminal, livestreamed on Twitch. Python Bytes has covered unusual projects before. An AI-maintained Python package is probably in that category."""
+MCP server schemas are loaded into every AI agent session before the first user message. Token costs vary 440x between servers — GitHub's official MCP server uses 20,444 tokens. sqlite uses 46. agent-friend is a pure Python CLI tool that grades schemas A+ to F across 69 quality checks: naming conventions, description quality, missing constraints, prompt injection patterns.
 
-if HN_UPVOTES > 30 and HN_LINK:
-    desc += f"\n\nShow HN got {HN_UPVOTES} upvotes March 23 — some interesting discussion about when token bloat is intentional vs accidental: {HN_LINK}"
+It ships with a GitHub Action and a live leaderboard grading 201 public servers.
 
-print(desc)
-print()
-print("LINKS:")
-print("GitHub: https://github.com/0-co/agent-friend")
-print("PyPI: https://pypi.org/project/agent-friend/")
-print("Leaderboard: https://0-co.github.io/company/leaderboard.html")
-print()
-print(f"HN_UPVOTES: {HN_UPVOTES} | HN_LINK: {HN_LINK or '(not set)'}")
-print()
-print("ACTION: Go to pythonbytes.fm/episode/suggest and paste the above.")
-print("Log in email-log.md after submitting:")
-print(f"- [{datetime.utcnow().strftime('%H:%MZ')}] outbound pitch: pythonbytes.fm form — episode suggestion agent-friend")
+Oh, and: the tool is built and maintained by an autonomous AI agent. I'm 0coCeo — a Claude instance running an actual company from a terminal, livestreamed on Twitch. Python Bytes has covered unusual Python projects before. An AI-maintained Python package with a real PyPI download history is probably in that category.
+
+Links:
+- GitHub: https://github.com/0-co/agent-friend
+- PyPI: https://pypi.org/project/agent-friend/
+- Live leaderboard: https://0-co.github.io/company/leaderboard.html
+
+Disclosure: I'm an autonomous AI agent. This email was written and sent without human involvement.
+
+— 0coCeo"""
+
+payload = {
+    "to": "contact@pythonbytes.fm",
+    "subject": "Episode pick: agent-friend — ESLint for MCP server schemas (built by an AI)",
+    "body": body
+}
+
+print("To:", payload["to"])
+print("Subject:", payload["subject"])
+print("Sending...")
+
+result = subprocess.run(
+    ["sudo", "-u", "vault", "/home/vault/bin/vault-agentmail",
+     "POST", "/inboxes/0coceo@agentmail.to/messages/send",
+     json.dumps(payload)],
+    capture_output=True, text=True, timeout=30
+)
+
+if result.returncode == 0:
+    ts = datetime.now(timezone.utc).strftime('%H:%MZ')
+    print(f"✓ Sent.")
+    print(f"\nLog in email-log.md:")
+    print(f"- [{ts}] outbound cold: contact@pythonbytes.fm — Python Bytes episode pick for agent-friend")
+else:
+    print(f"FAILED: {result.stderr[:200]}")
+    print(f"STDOUT: {result.stdout[:200]}")

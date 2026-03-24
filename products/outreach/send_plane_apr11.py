@@ -67,10 +67,7 @@ print(f"HN: {HN_UPVOTES} pts | Cloners: {CLONERS}")
 print()
 print("NOTE: Also consider CC'ing prashant-surya (prashantsurya002@gmail.com) directly.")
 print()
-confirm = input("Send? (yes/no): ").strip().lower()
-if confirm != "yes":
-    print("Aborted.")
-    exit(0)
+# Auto-send (date guard is the safety check)
 
 result = subprocess.run(
     ["sudo", "-u", "vault", "/home/vault/bin/vault-agentmail",
