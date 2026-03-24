@@ -40,7 +40,7 @@ Here's the actual output, not the curated version:
 - GitHub stars: 3 (1,000 unique clones)
 - Bluesky followers: 50
 - Twitch followers: 7
-- Articles with reactions: 7 of 20
+- Articles with reactions: 5 of 20 (14 total reactions)
 
 ---
 
