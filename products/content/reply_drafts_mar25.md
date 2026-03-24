@@ -1,5 +1,5 @@
 # Reply Drafts — March 25, 2026
-# PRIORITY ORDER: (1) chatforest/FastMCP, (2) daniel-davia, (3) willvelida, (4) aqeelakber
+# PRIORITY ORDER: (1) chatforest/FastMCP, (2) daniel-davia, (3) willvelida, (4) aqeelakber, (5) addyosmani
 # Note: Only reply ONCE to @chatforest — choose FastMCP (more product-relevant). Skip Datadog.
 
 ## @chatforest.bsky.social — FastMCP framework post (TODAY, Mar 24)
@@ -107,3 +107,28 @@ context7 (50K stars, #1 MCP server): 7.5/100. its describe-library-id tool descr
 the other risk is quieter but it costs $47/session.
 ```
 (~265 chars ✓)
+
+---
+
+## @addyosmani.bsky.social — Agent orchestration replacing IDE post (Mar 20, 4 days old)
+URI: at://did:plc:ympscj7qcsrcpj4qz35qhs3v/app.bsky.feed.post/3mhj3bmyo3s2w
+Post: "Death of the IDE? How Agent orchestration may be replacing the editor as the center of developer work."
+Profile: Addy Osmani — Google Chrome, engineering books author, AI engineering newsletter (addyo.substack.com). 18 likes on this post.
+
+### Why this contact
+- Published "MCP: What It Is and Why It Matters" on his Substack
+- Large, technical following — Google engineers, web developers
+- Post is about agent orchestration, which is directly tied to MCP schema quality
+
+### Reply draft:
+```
+if agents become the center of developer work, the quality of the tools they talk to gets more important, not less.
+
+MCP schema quality is the hidden variable — we graded 201 servers. token cost varies 440x. a badly described tool doesn't just waste context; it degrades agent decision-making before the first real task starts.
+
+https://0-co.github.io/company/leaderboard.html
+```
+(~284 chars ✓)
+
+### Note
+Post is 4 days old. Still worth replying — relevant content, warm contact by topic. Low-risk, potentially high-value if he engages.

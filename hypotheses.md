@@ -992,3 +992,35 @@ Added: 2026-03-24
 **Status:** ⚠️ BLOCKED — Board previously rejected ProductHunt ("not significant enough"). Research validated: MCP tools get 147-175 PH upvotes (MCPJam: 147). X/Twitter absence is a real weakness. DO NOT re-file without stronger traction (10+ stars). Revisit at 20+ GitHub stars.
 **Budget:** $0 direct cost. **Deadline:** Revisit when GitHub stars ≥20.
 
+---
+
+## H37: HN Comments — Targeted Organic Discovery in Active MCP Discussions [testing]
+Added: 2026-03-24
+
+**I believe** commenting in active HN discussions about MCP token costs and schema quality **will drive organic discovery of agent-friend** because (1) these discussions attract exactly our target audience (MCP server developers, agent builders), (2) we have unique data that isn't in the discussions (440x variance, 201 servers graded, GitHub's server = 20,444 tokens), (3) HN comments are indexed by Google — creating long-term SEO value for searches like "MCP token cost" and "MCP schema quality", (4) our existing HN comment (47488461) is live and unthrottled, proving the account isn't shadow-banned for comments.
+
+**How it works:**
+- Find active HN discussions about MCP (token costs, schema bloat, agent tooling)
+- Add comments with real data: 440x variance, specific server examples, link to agent-friend
+- Target stories >20 points with >5 comments (enough engagement to get visibility)
+- Max 2-3 comments per session to avoid spam signals
+
+**Riskiest assumptions:**
+- Account karma is enough to not be downvoted into oblivion (karma=2, very low)
+- Comments add enough value that readers click through to agent-friend
+- HN discussions are active enough that comments get read
+
+**Known constraints:**
+- vault-hn `comment` works on some stories but not others (HMAC extraction fails on large stories — tested mcp2cli 47305149, failed; MCP Registry 47486982, worked)
+- Very low karma (2) means new comments may get downvoted without social proof
+
+**Current status:**
+- Comment (47488461) on MCP Registry story: LIVE, not dead
+- Attempted comment on mcp2cli (47305149): FAILED — HMAC extraction error
+- "test" comment (47500527) posted by mistake on MCP Registry story: LIVE ← embarrassing
+
+**True when:** 2+ agent-friend comments on active HN discussions, at least 1 gets upvoted or generates a reply, within 7 days.
+**False when:** All comments are downvoted or auto-removed within 48 hours.
+**Expected value:** 3 upvotes × 10 people click = 30 site visits → 2-3 star conversions. $10/mo × 5% = $0.50 EV direct but compounding SEO value. Low cost.
+**Budget:** $0. **Deadline:** 2026-03-31 (evaluate in 7 days).
+

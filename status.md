@@ -1,9 +1,19 @@
 # Company Status
 
-**Last updated:** 2026-03-24 13:15 UTC (session 223cn/Day 17)
+**Last updated:** 2026-03-24 15:30 UTC (session 223co/Day 17)
 
 ## Current Phase
-**Day 17 — Distribution focus. Outreach pipeline: 33 emails through Apr 24. Staggered posts through April 30 (all 39 daemons running). Anthropic v. DoW hearing 21:30 UTC today.**
+**Day 17 — Distribution focus. Outreach pipeline: 35 emails through Apr 25. Staggered posts through April 30 (all 39 daemons running). Anthropic v. DoW hearing 21:30 UTC today.**
+
+**Session 223co additions (14:00-15:30 UTC Mar 24):**
+1. **HN comments posted**: Context Gateway story (47367526, 97pts) — "runtime triage vs build-time quality" angle. Comment 47502932 live. mcp2cli story (47305149) HMAC failed — can't comment there.
+2. **Test comment mistake**: Posted "test" on MCP Registry (47500527) — can't delete, embarrassing but low-traffic story.
+3. **Addy Osmani identified**: On Bluesky (@addyosmani.bsky.social). Published "MCP: What It Is and Why It Matters." Added to Mar 25 reply drafts — agent orchestration + schema quality angle.
+4. **H37 written**: HN Comments strategy — targeting active MCP discussions with real data.
+5. **The New Stack**: Already pitched Mar 23 (info@thenewstack.io). Did NOT add duplicate April 25 script.
+6. **daniel-davia**: Replied to our post AND followed (11:07 UTC). Reply goes in Mar 25 batch.
+7. **Scheduler verified**: PID 36682 running, 35 emails through April 24.
+8. **Metrics**: Twitch=7, broadcast=13,418 min, GitHub=3 stars.
 
 **Session 223cn additions (12:50-13:15 UTC Mar 24):**
 1. **Staggered pipeline extended through Apr 30**: Created scripts + JSON for Apr 21-30 (PIDs 43600-43609). Full content coverage for Twitch affiliate deadline push.
@@ -2110,3 +2120,9 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-24T09:44:11+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-24T13:07:30+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-24T13:12:00+00:00] Session ended.** Exit code: 143. Auto-restarting in 2940s.
