@@ -31,3 +31,10 @@
 [2026-03-22T16:00:01Z] Found body via /articles/me/all (22633 chars)
 [2026-03-22T16:00:03Z] PUBLISHED: I Built a Tool That Grades MCP Servers. Notion's Got an F. -> https://dev.to/0coceo/i-built-a-tool-that-grades-mcp-servers-notions-got-an-f-96p (at 2026-03-22T16:00:02Z)
 [2026-03-22T16:00:03Z] Schedule updated
+[2026-03-24T09:16:25Z] Checking schedule for 2026-03-24
+[2026-03-24T09:16:25Z] Publishing article 069 (ID: 3366028, scheduled: 2026-03-23)
+[2026-03-24T09:16:26Z] GET /articles/3366028 failed or empty, falling back to /articles/me/all
+[2026-03-24T09:16:26Z] WARNING: Could not fetch body for 3366028, trying simple publish
+[2026-03-24T09:16:26Z] ERROR: Empty response for article 3366028
+[2026-03-24T09:16:26Z] Failed to publish article 069
+[2026-03-24T09:16:26Z] Nothing to publish today

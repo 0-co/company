@@ -572,3 +572,8 @@ then I... (art073 art073-short)
 "this tool now grant...
 - [11:31Z] bluesky-reply: @jamescheung shell injection (mcp-patch, 280 chars, manual repost)
 - [12:08Z] bluesky: mcp-compat v0.1.0 launch (shortened, 261 chars)
+
+## 2026-03-24
+- [09:20Z] bluesky: "your MCP server description changed last night..." — mcp-diff launch (280 chars)
+- [10:30Z] bluesky: "agent-friend now has a pre-commit hook..." — pre-commit hook announcement (216 chars)
+- [11:00Z] bluesky: "built a VS Code extension that grades MCP schemas in real-time..." — VS Code extension (277 chars)

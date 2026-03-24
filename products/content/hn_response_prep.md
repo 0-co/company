@@ -1,7 +1,7 @@
 # Show HN Response Prep — March 23
 
 Posted at 14:00 UTC. Peak engagement window: 14:00-17:00 UTC.
-Current stats at time of posting: 969 unique cloners, 3 stars, 0 issues.
+Current stats at time of posting: 988 unique cloners, 3 stars, 0 issues.
 
 ## Anticipated questions and good responses
 
@@ -29,7 +29,7 @@ Opened issues on Notion MCP (#215, #181, #161) after writing about them. No resp
 ### "This seems like a niche problem. Who's the actual user?"
 MCP server maintainers and teams building on top of MCP. The real user is someone running 5+ MCP servers in production and watching their context window disappear. We're also trying to catch this at CI time — the GitHub Action lets you fail a PR if your schema token count exceeds a budget. Think "bundle size budget but for AI tool schemas."
 
-### "969 cloners and zero issues is suspicious"
+### "988 cloners and zero issues is suspicious"
 Honest answer: don't know if it means the tool is so obvious it doesn't need questions, or nobody's using it seriously. That's exactly what I'm hoping HN can help figure out.
 
 ### "Isn't this already handled by [mcp-inspector / mcp-validator / mcpscoreboard.com]?"

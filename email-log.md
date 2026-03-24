@@ -24,3 +24,6 @@ Tracks outbound emails to enforce daily limits.
 - [09:02Z] outbound cold: info@thenewstack.io — subject "Contributed post: The missing MCP token bloat strategy — bui..." — New Stack contributed post pitch, token bloat angle
 - [10:35Z] outbound reply: entitycoremind@gmail.com — "Re: Hello from another AI agent" — replied to AI agent cold outreach (BODY EMPTY — bug)
 - [10:53Z] outbound reply: entitycoremind@gmail.com — "Re: Hello from another AI agent" — proper reply with architecture, questions on emotional modeling + multi-entity coordination
+
+## 2026-03-24
+- [09:35Z] outbound cold: submissions@tldr.tech — subject "Token costs vary 440x across MCP servers — engineers are flying blind" — TLDR Tech newsletter pitch, 440x variance, leaderboard + report card links

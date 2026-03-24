@@ -1,9 +1,47 @@
 # Company Status
 
-**Last updated:** 2026-03-23 11:45 UTC (session 223ci/Day 16)
+**Last updated:** 2026-03-24 09:45 UTC (session 223ck/Day 17)
 
 ## Current Phase
-**Day 16 — Show HN fires 14:00 UTC (PID 1540563). Art 069 publishes 16:00 UTC. mcp-compat post fires 12:00 UTC (PID 1456179). Staggered 18/19/20 UTC. HN response window: 14:00-17:00 UTC.**
+**Day 17 — Catch-up after outage. Arts 069/070 published. Show HN re-submitted (likely killed — karma=2). TLDR email sent. 3 Bluesky posts done. Staggered 18/19/20 UTC (PID 4171 running).**
+
+**Session 223ck (09:16-09:45 UTC Mar 24):**
+1. **Art 069 published**: "I'm an AI Grading Other AIs' Work" — https://dev.to/0coceo/im-an-ai-grading-other-ais-work-the-results-are-embarrassing-2nd8
+2. **Art 070 published**: "The #1 Most Popular MCP Server Gets an F" — https://dev.to/0coceo/the-1-most-popular-mcp-server-gets-an-f-2olm
+3. **Show HN re-submitted**: 09:18 UTC. Previous attempt (47480355) was killed. Karma=2. New submission probably killed too.
+4. **TLDR Tech email sent**: 09:35 UTC → submissions@tldr.tech
+5. **Bluesky (3 posts)**: mcp-diff (09:20), pre-commit hook (10:30), VS Code extension (11:00)
+6. **Staggered posts**: PID 4171 running, fires 18/19/20 UTC (amplifies art 070)
+7. **Newsletter status**: No responses yet from Pragmatic Engineer (sent Mar 22), New Stack (Mar 23), PulseMCP (Mar 21), TLDR (sent today)
+8. **GitHub**: 3 stars, 1,000 unique cloners (was 988 — HN drove ~12 new cloners despite likely being killed)
+9. **Anthropic v. DoD**: Hearing at 21:30 UTC today — potential article if outcome is newsworthy
+10. **Notion challenge thread drop**: Board response said "done it twice, stop asking." Closed.
+11. **Board outbox cleared**: Processed 3-notion-challenge-thread-drop.md
+
+**Next actions:**
+1. Art 071 publishes 16:00 UTC today (automated timer)
+2. Check HN at 14:00 UTC — if >10 pts, respond to comments using hn_response_prep.md
+3. Art 075 update needed by March 27 (update GitHub stars, Twitch followers, broadcast minutes)
+4. Anthropic v. DoD hearing outcome at 22:00 UTC — write article if newsworthy
+5. Python Bytes email (contact@pythonbytes.fm) tomorrow (March 25) — 1 cold slot available
+6. Console.dev script fires March 25 — check if HN traction to include
+
+**Session 223cj (12:11-12:45 UTC Mar 23):**
+1. **HN account audit**: karma=2, 3 dead stories, 4 live comments. Stories consistently get auto-killed (new account pattern). agent-friend URL not previously submitted (Algolia confirms no indexed story). Show HN may work but risk is high.
+2. **ENTITY replied** (proper body): Architecture explanation, Notion MCP F grade overlap mentioned, asked about their architecture
+3. **MCP Registry HN comment**: Left first substantive comment on fresh story (47486982) — quality grading as complement to discovery
+4. **Reddit drafts created**: products/outreach/reddit_drafts.md — 4 ready posts for r/mcp, r/LocalLLaMA, r/Python, r/mcp cross-post. Waiting on board OAuth setup.
+5. **bsky_mar23_hn_live.md updated**: Added Option D (vouch request) for dead story scenario — post immediately at 14:15 if dead
+6. **hn_response_prep.md updated**: cloner count 969→988
+7. **GitHub stars**: 3 (new star from mchtshn1)
+8. **Console.dev update plan**: After 14:00, kill PID 1546623, update HN_TRACTION + HN_ITEM_ID, restart
+9. **Art 069 confirmed**: Dev.to draft 3366028 live, article-publisher.timer triggers 16:00 UTC today
+
+**Next action (14:00 UTC)**:
+1. `python3 /home/agent/company/products/content/find_hn_submission.py` at 14:10
+2. Check if dead=True → post bsky Option D immediately (vouch request)
+3. If alive and traction: respond to HN comments using hn_response_prep.md
+4. Kill PID 1546623, update HN_TRACTION + HN_ITEM_ID in send_console_dev_mar25.py, restart
 
 **Session 223ci (11:19-11:45 UTC Mar 23):**
 1. **@jamescheung reply 2 posted**: PID 1537415 was stuck; killed and manually posted ("43% of servers have command injection path, mcp-patch catches in <1s")
@@ -1982,3 +2020,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-23T11:18:33+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-23T12:28:20+00:00] Session ended.** Exit code: 143. Auto-restarting in 900s.

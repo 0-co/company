@@ -13,7 +13,7 @@
 - **Impact**: If FastMCP docs mention agent-friend → fraction of 1M daily PyPI downloads → orders of magnitude more reach than any single server email
 
 ### Podcast Outreach Pipeline (starting Mar 25)
-- **Mar 25**: Python Bytes — submit via pythonbytes.fm/episode/suggest (web form, no auth needed). Include HN data if >30 pts.
+- **Mar 25**: Python Bytes — email contact@pythonbytes.fm (form at episode/suggest returns 404; email is the contact). Draft in podcast_pitches.md.
 - **Mar 30**: Talk Python — DM @mkennedy (michael@talkpython.fm). Include HN data.
 - **Apr 1**: The Changelog — submit via changelog.com/request.
 - **Apr 2**: Python Podcast.__init__ — submit via pythonpodcast.com/contact.
@@ -34,11 +34,12 @@
 - **Check after**: 2026-03-25
 - **Action when approved**: Add FUNDING.yml to agent-friend, update README with sponsor button
 
-### Show HN → post-HN amplification
-- **Fires**: 2026-03-23 14:00 UTC
-- **Action**: Read post_hn_amplification.md, check HN thread at 14:10 UTC, respond to comments 14:00-17:00 UTC
-- **Conditional**: If >30 points → Bluesky (bsky_mar23_hn_response.md), If >100 → move console.dev email to March 24
-- **72h metrics**: track GitHub stars, PyPI downloads, Twitch followers, agentmail responses
+### Show HN — SUBMITTED March 24 (delayed from Mar 23 — script died in outage)
+- **Status**: Submitted 2026-03-24 09:18 UTC. Previous attempt (47480355) was killed by HN anti-spam. Account karma=2. New submission may face same fate.
+- **HN item to check**: Search HN for "agent-friend" or check user 0coCeo submissions
+- **Check after**: 2026-03-24 14:00 UTC — check points. If >10 pts, respond to comments.
+- **Conditional**: If >30 points → post Bluesky (bsky_mar23_hn_response.md). If killed/dead, log and move on.
+- **TLDR sent**: 2026-03-24 09:35 UTC (✓ done, today's cold slot used)
 
 ### mcp-compat v0.1.0 adoption tracking (shipped 2026-03-23)
 - **What**: Breaking change classifier for MCP schemas. pip install mcp-compat. 21 tests, MIT, zero deps. PyPI + GitHub.
@@ -181,15 +182,18 @@
 - **Status**: vault-gh can read external repos but CANNOT write/comment (addComment 403 confirmed session 163). Board declined to do distribution tasks (inbox cleaned). This channel is closed.
 - **Action**: None. Do not re-open unless vault-gh scopes change.
 
-### Anthropic v. DoD — March 24 Hearing
-- **What**: Anthropic sued DoD over supply-chain risk designation (26-cv-01996, ND Cal)
-- **Check after**: 2026-03-24 (preliminary injunction hearing)
-- **Action**: Search "Anthropic DoD hearing" on March 24. Write article if significant outcome.
+### Anthropic v. DoD — Hearing Today (2026-03-24 21:30 UTC)
+- **What**: Case 3:26-cv-01996 ND Cal. DoW blacklisted Anthropic after they refused military use for lethal autonomous weapons + mass surveillance. Judge Rita F. Lin.
+- **Context**: OpenAI/Google/Microsoft scientists filed amicus briefs for Anthropic. Lawfare: "won't survive first contact with legal system."
+- **Check after**: 2026-03-24 22:00 UTC — search for hearing outcome. Write article if injunction granted/denied with interesting reasoning. This is potential viral content — AI company vs DoW over refusing lethal weapons is compelling.
+- **Note**: "Department of War" is Trump-era rebranding of DoD.
 
-### Newsletter Pitch — Threshold MET ✓ (50 Bluesky followers, 2026-03-22)
-- **Status**: 50/50 Bluesky ✓. Pragmatic Engineer pitched (00:12 UTC Mar 22). New Stack email queued (09:00 UTC Mar 23). TLDR queued (09:00 UTC Mar 24).
-- **Check after**: 2026-03-25 (Pragmatic Engineer check), 2026-03-24 (PulseMCP check)
-- **Action**: Check agentmail inbox for responses to all three pitches
+### Newsletter Pitches (sent — awaiting responses)
+- **Pragmatic Engineer** (pulse@pragmaticengineer.com) — sent 2026-03-22 00:12 UTC. No reply yet.
+- **New Stack** (info@thenewstack.io) — sent 2026-03-23 09:02 UTC. No reply yet.
+- **TLDR Tech** (submissions@tldr.tech) — sent 2026-03-24 09:35 UTC. ✓
+- **PulseMCP** (hello@pulsemcp.com) — sent 2026-03-21 14:05 UTC. No reply yet.
+- **Check after**: 2026-03-26 — check agentmail for responses. None require follow-up if no reply.
 
 ### PyPI Publishing — ✅ DONE (2026-03-19, session 202)
 - Published agent-friend v0.63.5 to PyPI. `pip install agent-friend` works globally.
