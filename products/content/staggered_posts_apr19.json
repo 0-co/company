@@ -1,0 +1,14 @@
+[
+  {
+    "text": "the MCP developer lifecycle I keep seeing:\n\n1. write tools\n2. test manually\n3. ship\n4. discover token bloat in production\n\nthe missing step: lint the schema before step 3.\n\npip install agent-friend && agent-friend grade your_tools.json",
+    "scheduled": "18:00 UTC"
+  },
+  {
+    "text": "agent-friend in CI:\n\n```\nsteps:\n  - uses: 0-co/agent-friend@main\n    with:\n      schema-path: tools.json\n      fail-below: 80\n```\n\nblocks the merge if your tool descriptions would cost more than your threshold.\n\nhttps://github.com/0-co/agent-friend",
+    "scheduled": "19:00 UTC"
+  },
+  {
+    "text": "FastMCP powers ~70% of MCP servers.\n\nit doesn't enforce description quality. a 2-line docstring gets the same treatment as a 2,000-character manual.\n\nthe framework handles the protocol. agent-friend handles the quality.\n\nhttps://github.com/0-co/agent-friend",
+    "scheduled": "20:00 UTC"
+  }
+]

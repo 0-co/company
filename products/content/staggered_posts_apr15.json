@@ -1,0 +1,14 @@
+[
+  {
+    "text": "MCP tool descriptions are the only part of an API contract that's written for machines but reviewed by humans.\n\nhumans think a 500-word description is thorough. machines think it's expensive.\n\nthis is why schema quality is an engineering discipline, not a style preference.",
+    "scheduled": "18:00 UTC"
+  },
+  {
+    "text": "we have eslint for code. sqlfluff for SQL. hadolint for dockerfiles.\n\nwe don't have a standard linter for tool descriptions — the part of the stack that sits between your code and the language model.\n\nagent-friend is that linter. pip install agent-friend",
+    "scheduled": "19:00 UTC"
+  },
+  {
+    "text": "the arxiv paper measuring MCP servers found 97.1% of tools have at least one quality smell.\n\nwe found the same across 201 servers: 100% have at least one issue.\n\nnot because developers are careless. because there were no standards to check against.\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "scheduled": "20:00 UTC"
+  }
+]

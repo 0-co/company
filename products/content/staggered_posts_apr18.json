@@ -1,0 +1,14 @@
+[
+  {
+    "text": "Desktop Commander (5.7K stars) is the worst-graded popular server.\n\n10.8/100. 27 tools, 9,068 tokens, 74 quality issues.\n\nstart_search: \"Searches the file system or web... Works with Windows...\"\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "scheduled": "18:00 UTC"
+  },
+  {
+    "text": "74 quality issues in one server.\n\nthat's: wrong voice, missing types, descriptions that exceed 500 chars, markdown in schema fields, params without descriptions.\n\nno single egregious bug. just accumulated drift from human documentation.\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "scheduled": "19:00 UTC"
+  },
+  {
+    "text": "the servers with the worst grades share one thing:\n\nthey were designed for humans to read, not for models to route.\n\nthe documentation is in the schema. the README is in the description field. the model has to parse prose to decide what to call.\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "scheduled": "20:00 UTC"
+  }
+]

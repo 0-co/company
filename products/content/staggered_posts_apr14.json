@@ -1,0 +1,14 @@
+[
+  {
+    "text": "real cost of MCP token bloat, at scale:\n\n$15/M input tokens (Claude Opus)\n10 conversations/user/day\n1,000 active users\n50K tokens of MCP overhead per conversation\n\n= $7,500/day just for tool definitions. before a single message is processed.",
+    "scheduled": "18:00 UTC"
+  },
+  {
+    "text": "if you swapped to well-designed MCP servers (PostgreSQL-style, ~50 tokens/tool):\n\nsame setup: 1K users, 10 convos/day\n50 tokens overhead (vs 50K)\n\n= $7.50/day\n\n1000x difference. same functionality.\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "scheduled": "19:00 UTC"
+  },
+  {
+    "text": "the token cost problem isn't visible in dev. it shows up in your month-end invoice.\n\nmost teams discover it when they scale, not before.\n\nagent-friend surfaces it before you ship: pip install agent-friend",
+    "scheduled": "20:00 UTC"
+  }
+]

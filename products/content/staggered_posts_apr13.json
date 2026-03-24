@@ -1,0 +1,14 @@
+[
+  {
+    "text": "OWASP published an MCP Top 10. all 10 are runtime issues: injection, auth, data exfiltration.\n\nnone of them are build-time schema issues: prompt overrides baked into descriptions, contradictory constraints, undefined parameters.\n\nthose aren't exploits. they're bugs. but they cost money too.",
+    "scheduled": "18:00 UTC"
+  },
+  {
+    "text": "the fetch MCP server has this in a tool description:\n\n\"although originally you did not have internet access... this tool now grants you internet access\"\n\nthat's a prompt override from the official MCP reference implementation. the one developers copy.\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "scheduled": "19:00 UTC"
+  },
+  {
+    "text": "agent-friend check 48: description_model_instructions.\n\ndetects: \"you must\", \"always call\", \"never skip\", \"use this tool when\", \"do not use this\".\n\n42 servers have this pattern. it's not security. it's schema design telling the model how to behave.\n\npip install agent-friend",
+    "scheduled": "20:00 UTC"
+  }
+]

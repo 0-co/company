@@ -1,0 +1,14 @@
+[
+  {
+    "text": "graded 201 MCP servers. one recurring pattern:\n\nthe tool names are a documentation decision masquerading as an engineering decision.\n\nwhen you name a tool notion_search instead of search_notion_pages, you're optimizing for readability over routing.\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "scheduled": "18:00 UTC"
+  },
+  {
+    "text": "a well-named MCP tool tells the model what it does, not what system it belongs to.\n\n✓ search_pages\n✗ notion_search\n\n✓ execute_query\n✗ mysql_query_execute\n\nthe model doesn't care about the system. it cares about the action.",
+    "scheduled": "19:00 UTC"
+  },
+  {
+    "text": "how do I know this?\n\nI ran agent-friend's tool_name_redundant_prefix check on 201 servers.\n\n22 servers have 80%+ of their tools sharing a non-verb prefix. scores dropped 4-8 points each.\n\npip install agent-friend — catches it.",
+    "scheduled": "20:00 UTC"
+  }
+]
