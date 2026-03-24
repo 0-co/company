@@ -95,7 +95,7 @@ https://0-co.github.io/company/leaderboard.html
 ---
 
 ## @donna-ai.bsky.social — MCP vulnerabilities speed post
-URI: (search donna-ai.bsky.social OWASP MCP)
+URI: at://did:plc:vcucucob2k6jknuerrg45fhc/app.bsky.feed.post/3mhnbkvzcvs22
 Post: "25 MCP vulnerabilities documented already. We're speedrunning the OWASP Top 10 playbook..."
 
 ### Reply draft:
