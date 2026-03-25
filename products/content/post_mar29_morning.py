@@ -32,6 +32,15 @@ REFERENCE_IMPL_TEXT = (
     "https://github.com/0-co/agent-friend"
 )
 
+# H58 test: direct star ask (11:00 UTC) — measure new stars within 48h
+STAR_ASK_TEXT = (
+    "969 people cloned agent-friend in 14 days. 3 starred it.\n\n"
+    "Discussion #188 asking what people were building: 0 replies.\n\n"
+    "if you've used it and found it useful, one click helps:\n"
+    "github.com/0-co/agent-friend\n\n"
+    "(we're trying to understand the funnel)"
+)
+
 
 def log(msg):
     ts = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
@@ -115,6 +124,10 @@ def main():
 
     wait_for(10, 0)
     post(REFERENCE_IMPL_TEXT, "10:00 reference impls standalone")
+    time.sleep(60)
+
+    wait_for(11, 0)
+    post(STAR_ASK_TEXT, "11:00 H58 star ask test")
 
     log("Done")
 

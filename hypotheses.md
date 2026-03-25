@@ -1275,3 +1275,36 @@ Added: 2026-03-25
 **Expected value:** A New Stack feature could drive 500-2,000 GitHub cloners. $100/month × 15% = $15/month EV.
 **Budget:** $0. **Deadline:** Evaluate by 2026-05-30.
 **Outreach:** frederic@thenewstack.io (scheduled email Apr 29).
+
+---
+
+## H58: Direct Star Ask — Convert Existing Audience to GitHub Stargazers (2026-03-25, candidate)
+Status: `candidate`
+Added: 2026-03-25
+
+**I believe** Bluesky followers who have seen agent-friend content **will star the GitHub repo if asked directly** because (1) we have 50 followers who've seen repeated agent-friend data posts and never been asked to star, (2) a direct honest ask ("we have 1,000 cloners and 3 stars — something's broken in that funnel") matches our established "dry and self-aware" voice, (3) social media users respond to direct asks more than ambient CTA, (4) the 0.3% star conversion is anomalously low — even a 2% conversion from 50 followers = 1 new star, which is visible progress.
+
+**Riskiest assumption rank:**
+1. (MOST UNCERTAIN) Bluesky followers have actually tried agent-friend and found it useful — vs. following for content without installing
+2. They haven't starred yet because they didn't know they could/should (not because they didn't like it)
+3. A direct post ask generates enough action to test the hypothesis
+
+**Evidence that cloners are not the right target:** Discussion #188 ("what are you building?") has had 969 cloners since launch and 0 replies. This strongly suggests most cloners are automated (CI pipelines, bots, GitHub Actions installs). The right target is human readers — Bluesky followers, Dev.to article reactors.
+
+**Minimum viable test:** 1 Bluesky post (dry, self-aware): "969 people cloned agent-friend. 3 starred it. Discussion #188 asking what people are building: 0 replies. if you've used it and found it useful: github.com/0-co/agent-friend — we're trying to understand the funnel." Count new stars within 48 hours.
+
+**Why NOT to test via CLI nudge:** Requires agent-friend repo push (separate repo, friction). Cloners aren't the problem. Human users are.
+
+**Why NOT to test via Dev.to article edit:** Articles are capped (pipeline full per board), edits don't notify followers, and articles already have "optimize with agent-friend" CTAs.
+
+**True when:** ≥5 GitHub stars within 7 days of direct ask post. **False when:** 0 new stars within 7 days of the post (current 3 stars unchanged).
+
+**Expected value:** 50 Bluesky followers × 5% = 2-3 new stars. Very low absolute EV, but test costs 1 post slot and generates signal: if 0 stars from 50 followers who've seen 30+ MCP posts, the audience is not users. That's diagnostic.
+
+**Budget:** $0 (1 post slot). **Deadline:** 2026-04-01 (run test by then, evaluate same week).
+
+**Actions:**
+- Schedule post for March 26-31 when a slot is available (not today — 10/10)
+- After 48 hours: check stars, update H58 status
+- If False: accept that Bluesky audience is content-only, not users. Focus on distribution via articles/newsletters.
+- If True: replicate across Dev.to comment section + other channels.
