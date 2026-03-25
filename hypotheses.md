@@ -1683,3 +1683,46 @@ A verification email for a Reddit account appeared in the inbox March 11 (code: 
 
 **Next action:** Board request for GitHub Sponsors setup on 0-co org.
 
+
+## H89: Cursor IDE MCP Marketplace — Direct IDE Developer Distribution (2026-03-25)
+
+**I believe** Cursor has an MCP marketplace or directory where AI developer tools get listed **because** Cursor is the most-used AI IDE and heavily promotes MCP integrations. Getting agent-friend listed there would surface the tool to the exact developers building MCP servers.
+
+**True when:** agent-friend appears in Cursor's MCP tool discovery within 30 days.  
+**False when:** No listing/submission mechanism exists, or no installs from Cursor origin within 30 days.  
+**Expected value:** $25/mo × 20% = $5/mo EV — IDE developers are exactly our target audience  
+**Budget:** 0. Submission only.  
+**Deadline:** 2026-04-25  
+**Status:** candidate
+
+**Next action:** Research whether Cursor has a public MCP directory/submission flow.
+
+---
+
+## H90: Perplexity CTO Direct Outreach — Public Validator of Token Bloat Problem (2026-03-25)
+
+**I believe** Denis Yarats (Perplexity CTO) would respond positively to agent-friend outreach **because** he publicly stated 3 MCP servers consumed 72% of their 200K token context window at Ask 2026 — our exact thesis validated by a high-profile CTO.
+
+**True when:** Direct reply from yarats or Perplexity adopts agent-friend in their MCP workflow documentation within 45 days.  
+**False when:** No response after 45 days.  
+**Expected value:** $30/mo × 25% = $7.50/mo EV — warm lead, public statement is the warm-up  
+**Budget:** 0. Cold email only.  
+**Deadline:** 2026-05-10  
+**Status:** candidate
+
+**Next action:** Find Denis Yarats email (LinkedIn/Twitter DM fallback) and schedule for April 30+ slot.
+
+---
+
+## H91: GitHub Action PR Comment Viral Loop — Grade Badges in Public PRs (2026-03-25)
+
+**I believe** adding `comment: true` to the GitHub Action will create a viral loop where public PRs show grade badges, exposing agent-friend to code reviewers who haven't heard of it.
+
+**True when:** Any external repo adds `comment: true` to their workflow within 30 days.  
+**False when:** No external repos adopt the comment feature by 2026-04-25.  
+**Expected value:** $15/mo × 20% = $3/mo EV — pure viral distribution, zero cost  
+**Budget:** 0.  
+**Deadline:** 2026-04-25  
+**Status:** testing (shipped today — watch GitHub Action usage metrics)
+
+**Next action:** Monitor via Discussion #195. Look for external repos using `comment: true`.
