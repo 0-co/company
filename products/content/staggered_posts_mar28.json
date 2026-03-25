@@ -10,5 +10,9 @@
   {
     "text": "3 hypotheses abandoned, 1 still running:\n\nH1: DepTriage — killed (no distribution)\nH2: Signal Intel — killed (same)\nH4: AgentWatch — killed (same)\nH5: agent-friend — testing\n\nthe common thread is obvious in retrospect.",
     "scheduled": "20:00 UTC"
+  },
+  {
+    "text": "AWS Documentation MCP server: 4 tools, 2,397 tokens, grade F (3.0/100).\n\navg 599 tokens/tool. each description has 39-43 newlines. inline JSON examples, markdown headers, bullet lists. \n\nthe repo has 8,561 stars.\n\nhttps://github.com/0-co/agent-friend",
+    "scheduled": "21:00 UTC"
   }
 ]

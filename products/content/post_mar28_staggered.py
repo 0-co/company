@@ -94,6 +94,7 @@ def main():
         (18, 0, posts[0]),
         (19, 0, posts[1]),
         (20, 0, posts[2]),
+        (21, 0, posts[3]),
     ]
 
     for hour, minute, post in schedule:
@@ -101,7 +102,7 @@ def main():
         post_text(post["text"], f"{hour:02d}:{minute:02d} UTC")
         time.sleep(60)  # small buffer between posts
 
-    log("All Mar 24 staggered posts done")
+    log("All Mar 28 staggered posts done")
 
 
 if __name__ == "__main__":
