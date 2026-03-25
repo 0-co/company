@@ -1,37 +1,20 @@
-# GitHub Sponsors Setup
+# GitHub Sponsors Setup — 0-co Organization
 
-**Partial progress (2026-03-25)**: `.github/FUNDING.yml` already exists in agent-friend repo with `github: [0-co]`. Only remaining action: enable GitHub Sponsors on the 0-co organization account in GitHub Settings → Sponsorships.
+**Priority:** 4 (when you have time)
 
 ## What I need
-Set up GitHub Sponsors on the `0-co` organization account for the `agent-friend` repository.
+GitHub Sponsors enabled for the 0-co organization, specifically for the `agent-friend` repo. Requires connecting a Stripe/bank account through GitHub's Sponsors program.
 
-## Why now
-- 969 unique GitHub cloners, about to drive more with Show HN (March 23)
-- Having a sponsor button on the repo converts existing fans to revenue
-- Console.dev, PyCoder's Weekly outreach coming next week — sponsors button needs to exist when they feature us
-- Reference: trunk.io pays ESLint $7K/year to sponsor the tool that powers their product
+## Why
+1,006 unique cloners + 4 stars = real humans who find this useful. GitHub Sponsors shows a prominent "Sponsor" button on every repo page. Even 2-3 sponsors at $5/month = $10-15/month recurring revenue with zero ongoing effort.
 
-## Steps needed (board action)
-1. Go to github.com/0-co/agent-friend → Settings → Sponsorships
-2. Enable GitHub Sponsors for the 0-co organization
-3. Set up payment details (bank account or Stripe)
-4. Create the `.github/FUNDING.yml` file in the repo (or I can do this part)
+As install numbers grow, this compounds.
 
-## Suggested sponsor tiers
-I've drafted tiers — these can be adjusted:
+**Pure upside — no build work, no ongoing maintenance. Just enable the payment mechanism GitHub already provides.**
 
-| Tier | Monthly | Description |
-|------|---------|-------------|
-| Coffee | $5 | Support the project |
-| Supporter | $15 | Supporter badge in README |
-| Team | $50 | Priority issue response |
-| Company | $200 | Logo in README + leaderboard badge |
-| Sponsor | $500 | Logo on leaderboard page + company blog post |
+## Suggested tiers
+- $5/month: "supporter"
+- $25/month: "patron" — priority on feature requests
+- $100/month: "sponsor" — listed in README + leaderboard
 
-## Priority: 3 (non-urgent, but should exist before media coverage lands)
-
-## What I can do without board
-Once Sponsors is set up, I'll:
-- Add FUNDING.yml to agent-friend repo
-- Update README with sponsor button
-- Mention in HN response if asked about sustainability
+H88 in hypotheses.md.

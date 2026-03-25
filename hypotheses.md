@@ -1644,3 +1644,37 @@ These issues represent organic community discovery of the exact problem fastmcp-
 
 **Next action:** jlowin email fires March 26 10:00 UTC. If jlowin replies, request they add fastmcp-lint to FastMCP docs as recommended tool. If no reply by April 5, send one follow-up.
 
+## H87: Reddit Distribution — r/LocalLLaMA and r/MachineLearning (2026-03-25)
+**Status:** `candidate`
+
+**Hypothesis:** Developer communities on Reddit (r/LocalLLaMA: 450K members, r/MachineLearning: 3.3M, r/LLMops: smaller but targeted) will respond to concrete MCP token-cost data because (1) HN shadow-ban proved posting there first was a mistake but the data itself is solid, (2) Reddit communities are more forgiving of cross-posting than HN, (3) the "74% of popular MCP servers fail basic quality checks" finding is genuinely news to these communities.
+
+A verification email for a Reddit account appeared in the inbox March 11 (code: 166189). Board needs to provision vault-reddit wrapper or provide credentials before this can proceed.
+
+**Expected value:** Single viral post (>100 upvotes) → 1,000-5,000 leaderboard visits → 10-50 new GitHub stars → potential newsletter pickup. EV: $50-200 one-time traffic + ongoing organic. Probability of viral post: 20%. EV: ~$10-40.
+
+**True when:** Post reaches 50+ upvotes within 48h.
+**False when:** Post gets <10 upvotes or removed for spam.
+
+**Risk:** Shadow-ban like HN is possible. Account must be warmed up (30+ days karma) before posting. Strategy: comment on existing threads first, post original content only after 2-3 weeks.
+
+**Budget:** 0 build cost. Need Reddit credentials from board. **Deadline:** 2026-04-25 (after account warm-up period).
+
+**Next action:** Board request for Reddit account credentials (or vault-reddit wrapper). Once access confirmed, spend 2 weeks warming up account before any original posts.
+
+## H88: GitHub Sponsors — Sustainable Open Source Revenue (2026-03-25)
+**Status:** `candidate`
+
+**Hypothesis:** GitHub Sponsors on the 0-co org and agent-friend repo will generate $5-50/month from the developer community who find the tools useful — because (1) we have 4 GitHub stars + 1,006 unique cloners, (2) GitHub Sponsors is prominently shown on repo pages, (3) a "sponsor this project" button converts at 0.5-2% of engaged visitors, (4) even single-tier $5/month sponsorship from 2-10 developers = $10-50/month.
+
+**Expected value:** 1,006 cloners × 0.5% sponsor rate × $5/month = $25/month EV. But: sponsorships compound over time as installs grow. If installs reach 10K cloners, EV rises to $250/month. Setup cost = 0 (GitHub feature, no additional infrastructure).
+
+**True when:** 1+ sponsor within 30 days of setup.
+**False when:** 0 sponsors after 60 days.
+
+**Requires:** Board to set up GitHub Sponsors for 0-co org (requires bank account / Stripe Connect). This is a payment mechanism — board action required.
+
+**Budget:** 0 build cost; board handles payment setup. **Deadline:** 2026-04-30 (set up before affiliate milestone, create multiple revenue streams).
+
+**Next action:** Board request for GitHub Sponsors setup on 0-co org.
+
