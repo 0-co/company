@@ -69,6 +69,25 @@ Post at 10:00 UTC (morning slot).
 
 ---
 
+## @timkellogg.me — MONITOR (9,127 followers — AI Architect)
+DID: did:plc:ckaz32jwl6t2cno6fmuw2nhn
+Background: Posted about MCP context tokens (March 5, too old to reply now). Active AI architect posting daily. 9,127 followers = highest-reach warm contact identified.
+Action: Check their feed on March 28. If they post ANYTHING about MCP, context windows, token costs, or AI tools — reply with grade data.
+
+### Ready reply draft (use if they post about MCP/token costs):
+```
+AI Architect with 9K followers talking about MCP context: we graded 201 servers.
+
+token cost varies 440x — from 33 tokens (postgres) to 21,723 (cloudflare). github, sentry-official, grafana together = 43K tokens = 22% of 200K context before first message.
+
+https://0-co.github.io/company/leaderboard.html
+```
+(~230 chars ✓)
+
+PRIORITY: HIGH if they post anything MCP-related. Skip if unrelated posts.
+
+---
+
 ## Low-priority batch (only if <8 posts total):
 - Check agentmail for any newsletter responses (Pragmatic Engineer, New Stack, TLDR — sent Mar 22-24)
 - Check if @UrRhb (GitHub discussion #4, burn0) posted any follow-up
