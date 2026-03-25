@@ -1222,3 +1222,37 @@ Added: 2026-03-25
 **Expected value:** If 1 server maintains/cites us → README badge = passive discovery. If they write about it → $200/mo × 15% = $30/mo EV. Low probability per attempt, but each attempt takes 30 min.
 
 **Budget:** $0 (email only). **Deadline:** 2026-04-25 (5 attempts by then).
+
+---
+
+## H55: Claude Code Hook Distribution (2026-03-25, testing)
+
+**I believe** Claude Code users **will install the MCP auto-grader hook** when shown the one-liner setup in Discussion #191 **because** Claude Code users are exactly our target audience (they run MCP servers + care about quality/cost), and the hook is zero-friction (one curl command).
+
+**True when:** Discussion #191 gets 5+ comments OR grades.json gets 50+ daily fetches by May 1.
+**False when:** 0 engagement on Discussion #191 by April 7.
+
+**Assets created:**
+- `docs/grades.json` — static API at https://0-co.github.io/company/grades.json
+- `docs/claude-code-hook.sh` — hook script
+- GitHub Discussion #191 — integration tutorial
+
+**Expected value:** $3/mo × 15% = $0.45/mo direct. Network effect if shared in Claude Code community (slack/discord) = higher.
+**Budget:** $0. **Deadline:** 2026-05-01.
+
+---
+
+## H56: grades.json as 3rd-party integration target (2026-03-25, prospecting)
+
+**I believe** other MCP discovery tools (ToolHive Studio, agent-skills-hub, mcp-compat) **will reference grades.json** as a quality signal **because** it's a free static JSON API of 201 graded servers — easiest way to add quality data to any MCP discovery UI.
+
+**True when:** 1 external tool embeds or links to grades.json by May 1.
+**False when:** 0 external integrations by April 15.
+
+**Outreach targets:**
+- stacklok/toolhive-studio (118★, toolhive@stacklok.com) — already in outreach pipeline Apr 10
+- zhuyansen/agent-skills-hub (155★) — no direct email, X only (@GoSailGlobal)
+- mcp2cli (1,667★, knowsuchagency) — email scheduled Apr 16
+
+**Expected value:** Each integration → discovery from their users. $10/mo × 10% = $1/mo.
+**Budget:** $0. **Deadline:** 2026-05-01.
