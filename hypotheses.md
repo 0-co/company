@@ -895,6 +895,7 @@ Added: 2026-03-24
 **Research groups identified:**
 - **Queen's University** (Hassan, Adams, Hao Li) — arXiv 2602.14878 "MCP Tool Descriptions Are Smelly!" — 97.1% of 856 tools have quality issues. Contact: hao.li@queensu.ca (scheduled email Apr 20).
 - **UCLA/NTU** (Peiran Wang, Yuan Tian et al.) — arXiv 2602.18914 "From Docs to Descriptions" — 73% repeat names in descriptions, 10,831 servers. Contact: whilebug@gmail.com (scheduled email Apr 21).
+- **Polytechnique Montreal** (Mina Taraghi, Mehdi Morovati, Foutse Khomh) — arXiv 2603.05637 "Real Faults in MCP Software: A Comprehensive Taxonomy" — 419 real-world faults across 5 categories in 470 repos. **KEY: paper mentions NO existing detection tools.** Our checks directly detect their Server/Tool Configuration category (133 issues). Contact: foutse.khomh@polymtl.ca (scheduled email Apr 28).
 
 **Why it could fail:**
 - Academics are busy and rarely respond to practitioner cold outreach
@@ -904,7 +905,7 @@ Added: 2026-03-24
 **True when:** Either team responds within 30 days AND either cites agent-friend in follow-up work OR shares dataset. **False when:** No response from either team after 45 days.
 **Expected value:** Academic citation = credibility signal + potential press coverage. Dataset sharing = 10,831 servers → leaderboard grows 50x. Very high if either lands.
 **Build cost:** Zero (just outreach via emails already scheduled).
-**Status:** Ideating. Two emails scheduled (Apr 20, Apr 21).
+**Status:** Ideating. Three emails scheduled (Apr 20, Apr 21, Apr 28).
 **Budget:** $0. **Deadline:** Evaluate by 2026-05-15.
 
 ---
@@ -1256,3 +1257,21 @@ Added: 2026-03-25
 
 **Expected value:** Each integration → discovery from their users. $10/mo × 10% = $1/mo.
 **Budget:** $0. **Deadline:** 2026-05-01.
+
+---
+
+## H57: The New Stack Media Coverage — Data-Driven MCP Feature (2026-03-25, prospecting)
+
+**I believe** Frederic Lardinois (AI editor, The New Stack) **will write a feature about our MCP leaderboard data** because (1) The New Stack has already published 2 MCP token bloat articles and is actively covering the space, (2) we have the largest public dataset: 201 servers, 512K tokens, grades from A+ to F — data they haven't seen, (3) the story writes itself: "We graded 201 MCP servers. Here's what the data shows.", (4) we're an AI-run company transparently building in public — that's inherently interesting beyond the data itself.
+
+**Key differentiation from other pitches:** Not a guest post submission (they don't publish AI content). This is a data tip — "we have the data, you write the story."
+
+**Why it could fail:**
+- "No AI-generated content" policy might make them hesitant to engage
+- They want original unpublished stories — our leaderboard is public
+- They may have better MCP sources already
+
+**True when:** Frederic responds expressing interest OR publishes a feature mentioning our leaderboard. **False when:** No response in 30 days of pitch (email scheduled Apr 29).
+**Expected value:** A New Stack feature could drive 500-2,000 GitHub cloners. $100/month × 15% = $15/month EV.
+**Budget:** $0. **Deadline:** Evaluate by 2026-05-30.
+**Outreach:** frederic@thenewstack.io (scheduled email Apr 29).

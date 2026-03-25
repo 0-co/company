@@ -52,6 +52,8 @@ SCHEDULE = [
     ("2026-04-24", "send_systemdesign_apr24.py"),  # System Design Newsletter — Neo Kim, 227K subs
     ("2026-04-25", "send_mcplink_anyisalin_mar27.py"),  # mcp-link (605 stars) — agent-friend quality gate angle
     ("2026-04-27", "send_okx_mcp_apr27.py"),            # OKX agent-trade-kit — already has internal token budget process (25K cap), we automate their manual workflow
+    ("2026-04-28", "send_polymtl_researchers_apr28.py"),  # Polytechnique Montreal — arXiv 2603.05637, 419 MCP faults, no detection tools mentioned
+    ("2026-04-29", "send_new_stack_frederic_apr29.py"),   # The New Stack AI editor — data tip: 201 servers graded, leaderboard
 ]
 
 
