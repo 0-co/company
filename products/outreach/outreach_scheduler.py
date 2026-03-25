@@ -29,8 +29,8 @@ SCHEDULE = [
     ("2026-04-02", "send_latent_space_apr1.py"),    # moved from Apr 1
     ("2026-04-03", "send_devops_weekly_apr2.py"),   # moved from Apr 2
     ("2026-04-04", "send_changelog_apr3.py"),       # moved from Apr 3
-    ("2026-04-04", "send_import_python_apr4.py"),
     ("2026-04-05", "send_mcpjam_apr1.py"),       # MCPJam newsletter — "Postman for MCP", 1.8K stars
+    ("2026-04-26", "send_import_python_apr4.py"),  # moved from Apr 4/5 (conflicts), appended to end
     ("2026-04-06", "send_linear_apr6.py"),
     ("2026-04-07", "send_posthog_apr7.py"),
     ("2026-04-08", "send_python_weekly_apr8.py"),

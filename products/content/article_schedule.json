@@ -92,9 +92,10 @@
   {
     "article_num": "068",
     "article_id": 3365363,
-    "date": "2026-03-26",
+    "date": "2099-01-01",
     "title": "I Graded Notion's MCP Tools. They Got an F.",
-    "note": "Standalone Notion MCP audit. Moved from Mar 22 to make room for challenge submission (073) on Mar 22."
+    "paused": true,
+    "note": "Paused 2026-03-25. Body was placeholder. Too similar to art 073 (already published Mar 22). May repurpose as deep-dive technical audit if 073 gets traction."
   },
   {
     "article_num": "072",
