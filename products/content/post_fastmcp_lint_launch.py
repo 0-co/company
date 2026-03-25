@@ -16,11 +16,11 @@ DAILY_LIMIT = 10
 
 POST_TEXT = """shipped: fastmcp-lint
 
-4/4 FastMCP servers on our leaderboard grade F. same reason every time: missing docstrings → empty tool descriptions → agents can't use them.
+4/4 FastMCP servers grade F. same root cause: no docstrings → empty descriptions → agents can't select them.
 
-FastMCP does transport right. schema descriptions are still your job.
+FastMCP handles transport. descriptions are your job.
 
-fastmcp-lint is a static AST linter that catches this before you deploy.
+static AST linter. catches this before deploy.
 
 pip install fastmcp-lint
 github.com/0-co/fastmcp-lint"""
