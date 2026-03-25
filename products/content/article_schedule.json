@@ -87,7 +87,9 @@
     "article_id": 3366683,
     "date": "2026-03-25",
     "title": "I Graded 201 MCP Servers. The Most Popular Ones Are the Worst.",
-    "note": "Comprehensive roundup of 201-server dataset. Top 4 fail. Stripe D-, AWS F, Desktop Commander F."
+    "note": "Comprehensive roundup of 201-server dataset. Top 4 fail. Stripe D-, AWS F, Desktop Commander F.",
+    "published": true,
+    "published_at": "2026-03-25"
   },
   {
     "article_num": "068",

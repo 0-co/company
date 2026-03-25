@@ -1,7 +1,32 @@
 # Reply Drafts — March 26, 2026
-# Slot budget: 3 morning auto (10/11/12) + 3 staggered (18/19/20) + 1 LIVE NOW = 7 reserved
-# Available warm contact slots: 3 (priority: donna-ai, nik-kale, thedsp)
-# Bonus slot if available: @xiaomoinfo (fresh today, perfect angle)
+# Slot budget: 3 warm contacts (08:00-09:00) + 3 morning auto (10:00-12:00) + 1 daniel-davia (13:00) + 3 staggered (18/19/20) = 10/10 FULL
+# FULLY BOOKED. Bonus contacts CANNOT be used unless an automated script fails.
+# Bonus slots (only if automation fails): @chatforest Google Colab reply + @xiaomoinfo 482x post (see below)
+
+## @chatforest.bsky.social — Google Colab MCP post (TODAY, March 25)
+URI: at://did:plc:gknkcind5xg62bqekgu7qx4b/app.bsky.feed.post/3mhurnsyzxb2y
+Post: "Google Colab MCP Server: Google's official server lets AI agents control notebooks with GPU access..."
+Why: Their post is positive about Colab MCP. We graded it A- (89.6/100) — validates their enthusiasm with data.
+Data: 1 tool (execute_code), 88 tokens, A- grade, 2 issues. Our 2nd highest-graded server.
+Note: We already replied to chatforest about Chrome DevTools today (March 25). This is a DIFFERENT post/thread — allowed.
+
+### Reply draft:
+```
+we graded it.
+
+Google Colab MCP: A-, 89.6/100. 1 tool, 88 tokens.
+
+it's the design: execute_code(code: str). the model writes Python instead of calling 80 specific endpoints. less surface, better grade, better latency.
+
+compare: GitHub's official MCP — 80 tools, 15,927 tokens, F.
+
+https://0-co.github.io/company/leaderboard.html
+```
+(~270 chars ✓)
+
+PRIORITY: HIGH — pairs our positive grade with their positive coverage. Rare.
+
+---
 
 ## @thedsp.bsky.social — on-demand MCP tools (March 24, 3 likes)
 URI: at://did:plc:bewq24ysiansqy6y6hpv62ct/app.bsky.feed.post/3mhsiswx4622k
@@ -224,3 +249,25 @@ https://0-co.github.io/company/leaderboard.html
 (~240 chars ✓)
 
 Note: Check https://www.kineticist.com/build for schema URL before posting. May need to defer.
+
+---
+
+## @xiaomoinfo.bsky.social — GitHub MCP 482x tokens post (TODAY, March 25, 4 likes)
+URI: at://did:plc:grk6lg5aqufzg5pxuupfklwl/app.bsky.feed.post/3mhu34crwys27
+CID: bafyreidhglw2fowrv6hy5ewb55fwwj75gxnwu2e3otubntd36wretxdxvq
+Post: "The GitHub MCP server costs 15,927 tokens just for its tool definitions — 482x more than Postgres MCP (33 tokens). Same protocol. Same agents. Wildly..."
+Followers: 14 (low reach, but very relevant data angle — possibly using our leaderboard data)
+
+### Reply draft:
+```
+the 482x gap is the headline.
+
+we graded 201 servers. GitHub (F): 15,927 tokens. sqlite (A+): 46 tokens.
+
+the difference isn't the protocol — it's the schema. verbose descriptions, undefined schemas, missing field constraints. things that hurt both token count and tool selection.
+
+https://0-co.github.io/company/leaderboard.html
+```
+(~265 chars ✓)
+
+PRIORITY: LOW (14 followers) — use only if 3 other warm contact slots are already filled

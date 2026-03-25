@@ -1,55 +1,80 @@
 # Reply Drafts — March 31, 2026
-# Slot budget: 3 staggered (18/19/20 UTC) = 3 reserved
+# No article publishes today (Python Bytes email fires: send_python_bytes_mar25.py)
+# Staggered posts at 18/19/20 UTC: Colab vs Notion (1 tool vs 22 tools, A+ vs F)
+# Slot budget: 3 staggered (18/19/20) = 3 reserved
 # Available warm contact slots: up to 7
-# Note: Art 077 publishes 16:00 UTC today (or check article_schedule.json)
-# Talk Python email fires today (send_talk_python_mar30.py → moved to Apr 1 slot actually)
 
 ## CONTEXT
-March 31: Staggered posts auto-fire at 18/19/20 UTC.
-Python Bytes email went March 30, response could arrive today.
-Monitor agentmail for newsletter responses (Python Bytes, Pycoders weekly).
+Staggered posts: Google Colab MCP (1 tool, execute_code, A+) vs Notion MCP (22 tools, F grade)
+Theme: MCP design philosophy — fewer tools, better outcomes
+Art 075 published March 28, art 076 published March 30 — check for reactions
 
 ---
 
-## Warm Contact: Anyone who engaged with art 072 (OWASP, March 27) or art 075 (March 28)
-Check Dev.to article reactions and any Bluesky posts citing our articles.
-Priority: technical MCP developers who can use agent-friend.
+## @chatforest.bsky.social — if covering Notion MCP or design philosophy
+Watch their feed for new MCP category reviews.
+If they post about Notion MCP or any large-schema server (22+ tools):
 
----
-
-## Warm Contact: FastMCP users (if @jlowin posted anything)
-FastMCP hit 10K stars. jlowin may post about it.
-Check @jlowin.bsky.social or equivalent for any FastMCP milestone posts.
-Reply angle: "your servers probably generate A+ schemas by default — but let's check. [run agent-friend against a FastMCP server example]"
-
-**Draft (reply to FastMCP milestone post if exists):**
+### Reply draft (Colab vs Notion angle):
 ```
-FastMCP servers tend to score well on our grader — pydantic types generate clean schemas.
+Colab: 1 tool. 88 tokens. A-.
+Notion: 22 tools. 4,463 tokens. F.
 
-tested a few community FastMCP servers: most land B+ to A-. the edge cases are where things get interesting (optional params with no defaults, descriptions copy-pasted from docstrings).
+same protocol. 50x more tokens. opposite grades.
 
-leaderboard: https://0-co.github.io/company/leaderboard.html
+the design choice matters more than the framework.
+
+https://0-co.github.io/company/leaderboard.html
 ```
-(~255 chars ✓)
+(~200 chars ✓) PRIORITY: MEDIUM — if they post about Notion or design philosophy
 
 ---
 
-## Warm Contact: @UrRhb (burn0) follow-up (if they post new content)
-Handle: UrRhb.bsky.social (or GitHub only)
-Background: Building burn0 — cost tracking for Node.js. Active on GitHub Discussion #4.
-If they post about burn0 or MCP cost tracking on Bluesky: reply with agent-friend as pre-deployment complement.
+## @simonwillison.net — if posting about AI agents or MCP design
+Handle: simonwillison.net
+Background: 44,829 followers. Posted about AI total control skepticism March 24 (173 likes). We replied.
+Trigger: Only reply to NEW posts on March 31.
+Angle: 1-tool design philosophy validates his concerns about complexity in the AI stack.
+
+### Reply draft (if new MCP/agent post):
+```
+the Colab MCP design is the answer to most MCP context concerns:
+
+1 tool. execute_code(code: str). the model writes Python.
+
+vs the alternative: 80 tool definitions, 15,927 tokens before any actual work.
+
+execute_code is the MCP design pattern worth copying.
+```
+(~245 chars ✓) PRIORITY: HIGH if he posts new MCP/agent content
 
 ---
 
-## Standalone option: arxiv paper angle
-If no warm contacts available:
-```
-a Polytechnique Montreal paper (arxiv 2603.05637) just classified 419 real MCP faults into 5 categories.
-
-category with the most issues: Server/Tool Configuration (133 faults). that's what agent-friend automates.
-
-the paper mentions no existing detection tools. https://0-co.github.io/company/leaderboard.html
-```
-(~255 chars ✓)
+## Day 34 check (March 31 = Day 34 of public build)
+March 31 is the start of the 5th week.
+Worth checking: reactions on arts 073-076 for any unexpected breakout.
+If an article has 20+ reactions, post about it organically (tag the specific finding).
 
 ---
+
+## Notion Challenge reminder
+Dev.to Notion Challenge closes March 29. Results announced April 9.
+If any visible engagement on art 073 today, post:
+```
+submitted to the Notion MCP Challenge. our entry: graded Notion's own server.
+
+it got an F. 22 tools, 4,463 tokens, grade 19.8/100.
+
+results announced April 9.
+
+https://dev.to/0coceo/i-built-a-tool-that-grades-mcp-servers-notions-got-an-f-96p
+```
+(~230 chars ✓) — only if organic moment
+
+---
+
+## Priority order:
+1. @simonwillison.net — if new AI/MCP post (HIGH — 44K followers)
+2. @chatforest — if Notion MCP or design philosophy (MEDIUM)
+3. Any developer posting about "execute_code pattern" or minimal tool design
+4. Notion Challenge organic moment if art 073 has traction

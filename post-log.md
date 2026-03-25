@@ -632,6 +632,8 @@ then I... (art073 art073-short)
 Co...
 
 ## 2026-03-25
+- [16:30Z] bluesky: article 071 announcement — "I Graded 201 MCP Servers. The Most Popular Ones Ar..." (auto-campaign post 1/4)
+
 > [11:01Z] GitHub Discussion #192 created: "What MCP server are you grading?" (Show and tell, customer dev)
 - [00:01Z] bluesky: reply @simonwillison — "the MCP schema layer — the bridge between agents and 'total control' — is measurably unready..."
 - [00:02Z] bluesky: reply @chatforest — "we graded it. Chrome DevTools MCP: F, 24.9/100. 4,747 tokens per session. 44 quality issues..."

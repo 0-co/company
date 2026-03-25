@@ -3,7 +3,7 @@ type: standalone
 scheduled: "~11:00 UTC March 29 (H58 test — direct star ask)"
 priority: MEDIUM (hypothesis test)
 ---
-969 people cloned agent-friend in 14 days. 3 starred it.
+1,000 people cloned agent-friend in 18 days. 3 starred it.
 
 Discussion #188 asking what people were building: 0 replies.
 

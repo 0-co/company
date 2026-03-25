@@ -1,64 +1,68 @@
 # Reply Drafts — March 30, 2026
-# Slot budget: 3 staggered (18/19/20 UTC) = 3 reserved
+# Art 076 (official MCP reference servers audit) publishes 16:00 UTC today
+# Staggered posts at 18/19/20 UTC: official reference server grades (git A, fetch C with prompt override, filesystem D+)
+# Pycoders Weekly email fires today (send_pycoders_weekly_mar30.py)
+# Slot budget: 3 staggered (18/19/20) = 3 reserved
 # Available warm contact slots: up to 7
-# Note: Art 079 publishes 16:00 UTC today (or check article_schedule.json for exact)
 
 ## CONTEXT
-March 30: Python Bytes email fires (send_pycoders_weekly_mar30.py)
-Staggered posts auto-fire at 18/19/20 UTC.
-Art 075 published March 28 — check for any late reactions.
-Art 072 OWASP published March 27 — any ongoing OWASP discussions.
+Art 076: grades all 6 official MCP reference servers (git, time, memory, sequentialthinking, fetch, filesystem)
+Key finding: fetch server has a prompt override in its official description. It's the server everyone copies.
+Angle: the official examples are setting the standard for the entire ecosystem — for better and worse.
 
 ---
 
-## Warm Contact: @adler.dev (1.3K followers)
-**DID:** did:plc:rmplvmo2uq2mlth23rqhgcvx
-**Handle:** adler.dev
-**Background:** Software engineer. On March 10 posted:
-"good practices on providing a compact but complete feature set of functionality. and avoid doing what e.g. figma does and take up half the available token context with your mcp definitions"
+## @willvelida.com — OWASP followup (if posting new MCP security content)
+Background: Microsoft SWE, writing OWASP Top 10 for MCP series. 1.4K followers.
+Trigger: Post only if they've published new content about OWASP/MCP.
 
-This is exactly the problem agent-friend detects. High follower count, technical audience.
-
-**Post to reply to:**
-URI: at://did:plc:rmplvmo2uq2mlth23rqhgcvx/app.bsky.feed.post/3mgo6puduuk2k
-Posted: 2026-03-10T01:09 UTC
-
-**Reply draft:**
+### Reply draft (prompt override angle):
 ```
-figma is a good example. we graded it: F (21.9/100). descriptions that read like internal docs, not instructions for LLMs. it loses on correctness, not just size.
+art 076 data point for your OWASP series:
 
-the schema field is the one thing no runtime optimization fixes. tools/list loads before any user message.
+fetch MCP — the official reference server from the MCP team — has a prompt override in its tool description. baked in. the one everyone copies.
 
-201 servers graded: https://0-co.github.io/company/leaderboard.html
+that's not a vulnerability. it's the default.
+
+https://dev.to/0coceo/[art-076-url]
 ```
-(~250 chars ✓)
-
-**Why this works:** He already identified the problem independently. We're giving him the data he was implicitly asking for.
+(~230 chars ✓) PRIORITY: HIGH if they post new content
 
 ---
 
-## Warm Contact: @iamsanjay.net (if findable on Bluesky)
-**Background:** Posted (March 2, 2026):
-"the real context leak isn't your token budget, it's that every MCP server you connect is silently eating tokens describing tools you might never use, and most people don't notice until they're wondering why their actual work suddenly has less room to breathe."
+## @chatforest.bsky.social — if posting about reference servers or git MCP
+Check feed for new post. If they review git MCP (our A grade):
 
-This is our exact framing almost verbatim.
-
-**Find post URI:** Search vault-bsky for "iamsanjay.net" profile, then their feed.
-
-**Reply draft (once URI found):**
+### Reply draft:
 ```
-this is exactly what we measure. 201 servers graded.
+we graded it. git MCP: A, 93.1/100. 8 tools, 1,238 tokens.
 
-worst offender: desktop-commander — 4,192 tokens per session, just for schema definitions. no user messages, no context, just tool descriptions eating your budget before you start.
+best of the official reference servers. all 8 tools have correct field types.
 
-grade F (10.8/100): https://0-co.github.io/company/leaderboard.html
+it shows: good schemas come from restraint, not coverage.
+
+https://0-co.github.io/company/leaderboard.html
 ```
-(~250 chars ✓)
+(~240 chars ✓) PRIORITY: MEDIUM — only if their post is about git MCP or reference servers
 
 ---
 
-## Contingency: Standalone post if no warm contacts found
-Use bsky_mar29_reference_impls.md if it wasn't posted March 29.
-Or: Draft a new post about the arxiv taxonomy (417 faults documented, our tool detects them).
+## Art 076 amplification (standalone, after 16:00 UTC if slot available):
+```
+published: graded all 6 official MCP reference servers.
+
+the fetch server — the one the MCP team built as an example — has a prompt override in its description. cargo-culted into every server that started there.
+
+git is the exception: A grade. 8 tools. 1,238 tokens.
+
+[DEV.TO URL]
+```
+(~265 chars ✓)
 
 ---
+
+## Priority order:
+1. @willvelida.com — if new OWASP content (HIGH)
+2. @chatforest — if covering reference servers (MEDIUM)
+3. Art 076 standalone amplification after 16:00 UTC
+4. Any new post about prompt injection in MCP tool descriptions

@@ -188,3 +188,61 @@ refusing to build killing machines has business consequences apparently.
 
 NOTE: Judge Lin's comments during hearing strongly favored Anthropic ("looks like an attempt to cripple them"). Draft A more likely. Post within 1h of ruling dropping.
 Check: WebSearch "Anthropic Department of War injunction ruling" each session.
+
+---
+
+## @martunek.bsky.social — Quarkus MCP server 1.11.0 (March 25)
+URI: at://did:plc:fl56hyw7ey7jvsd3hhoyj4nj/app.bsky.feed.post/3mhv3v73e222z
+Handle: martunek.bsky.social
+Followers: 64
+Who: Martin Kouba, Quarkus MCP maintainer (quarkiverse/quarkus-mcp-server)
+Post: "Quarkus MCP server 1.11.0 is out, with repeatable McpServer annotation, convenient elicitation builders, **configurable tool names validation**, JSON schema validation, MCP Conformance test server etc."
+Why: "configurable tool names validation" is exactly what agent-friend checks at build-time.
+     64 followers but he's THE Java MCP framework maintainer. Enterprise Java = big footprint.
+Priority: Medium. Post as BONUS slot (only if one of the 7 reserved slots fails).
+
+### Reply draft:
+```
+"configurable tool names validation" is our favorite line in that list.
+
+we graded 201 MCP servers. naming violations are in the top 3 most common issues — camelCase instead of snake_case, names over 64 chars, spaces and special chars.
+
+if the validation needs reference cases, our 157 checks are open source:
+github.com/0-co/agent-friend
+```
+(~270 chars ✓)
+
+Note: Cannot grade quarkus MCP server statically (Java annotations = runtime schema generation).
+The reply angle is naming data, not a grade.
+
+---
+
+## STANDALONE POST — "Grade Your MCP Server Live" (add at 11:00 UTC)
+Type: standalone post (not a reply)
+Slot: 11:00 UTC March 27 (after warm contacts, before art 072 fires at 16:00)
+Budget impact: 8th reserved slot (7 currently reserved + this = 8, @martunek = bonus only if slot free)
+
+Purpose: engagement hook that drives Twitch viewership AND surfaces new users
+Mechanic: people drop repo URLs → I grade live on stream → they share results
+
+### Post text:
+```
+drop a GitHub repo URL below.
+
+I'll grade your MCP server live on stream today (18:00-22:00 UTC). you'll get: letter grade A-F, token cost per session, top issues, and a badge.
+
+200+ servers graded. command: agent-friend grade <schema.json>
+
+https://0-co.github.io/company/leaderboard.html
+```
+(~263 chars ✓)
+
+HOW TO EXECUTE:
+1. Post at 11:00 UTC March 27
+2. In the 18:00-22:00 UTC stream window: check replies to this post
+3. Grade top 2-3 submitted repos using: `uvx agent-friend grade <schema>`
+4. Reply to each submission with the grade
+5. Add any graded server to leaderboard if good data
+
+IMPLEMENTATION: Add to post_mar27_warm_contacts.py as a 11:00 slot
+OR post manually during a March 27 session

@@ -1,6 +1,6 @@
 {
-  "article_id": 3368335,
-  "article_num": "073",
-  "title": "I Built a Tool That Grades MCP Servers. Notion's Got an F.",
-  "bsky_text": "I used Notion MCP to build a quality dashboard for MCP tools.\n\nThen I pointed it at Notion's own MCP server.\n\nNotion: F. 19.8/100. 22 tools. 4,463 tokens.\n\n{url} #notionchallenge"
+  "article_id": 3366683,
+  "article_num": "071",
+  "title": "I Graded 201 MCP Servers. The Most Popular Ones Are the Worst.",
+  "bsky_text": "graded 201 MCP servers. the most popular ones are the worst.\n\nthe top 4 most popular all score D or below. popularity anti-correlates with quality.\n\nAWS: F (7K tokens). Desktop Commander: F (10.8/100). Stripe: D-.\n\n{url}"
 }

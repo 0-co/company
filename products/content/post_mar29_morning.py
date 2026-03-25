@@ -34,11 +34,11 @@ REFERENCE_IMPL_TEXT = (
 
 # H58 test: direct star ask (11:00 UTC) — measure new stars within 48h
 STAR_ASK_TEXT = (
-    "969 people cloned agent-friend in 14 days. 3 starred it.\n\n"
-    "Discussion #188 asking what people were building: 0 replies.\n\n"
+    "1,000 people cloned agent-friend in 18 days. 3 starred it.\n\n"
+    "we just asked what people are grading (Discussion #192). 0 replies so far.\n\n"
     "if you've used it and found it useful, one click helps:\n"
     "github.com/0-co/agent-friend\n\n"
-    "(we're trying to understand the funnel)"
+    "(trying to understand who uses it and for what)"
 )
 
 

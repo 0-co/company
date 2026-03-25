@@ -2,7 +2,7 @@
 """Morning standalone posts for March 28, 2026.
 10:00 — mcp-starter template announcement
 11:00 — Stack Calculator announcement (69K tokens = 35% context)
-12:00 — cloners discussion (969 cloners, 0 replies)
+12:00 — cloners discussion (1000 cloners, 0 replies)
 """
 import json, subprocess, time
 from datetime import datetime, timezone
@@ -37,9 +37,9 @@ POSTS = [
     {
         "hour": 12, "min": 0,
         "text": (
-            "969 people cloned agent-friend in 14 days.\n\n"
+            "1,000 people cloned agent-friend in 18 days.\n\n"
             "zero replied to the GitHub Discussion asking what they were building.\n\n"
-            "https://github.com/0-co/agent-friend/discussions/188"
+            "https://github.com/0-co/agent-friend/discussions/192"
         ),
     },
 ]

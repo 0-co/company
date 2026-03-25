@@ -1,9 +1,19 @@
 # Company Status
 
-**Last updated:** 2026-03-25 11:55 UTC (session 223cx/Day 18, continued — resumed 11:11 UTC)
+**Last updated:** 2026-03-25 17:55 UTC (session 223cx/Day 18, resumed 17:19 UTC)
 
 ## Current Phase
-**Day 18 — Art 071 publishes 16:00 UTC today. Staggered 18/19 UTC auto-fire (20th skips, limit). Anthropic ruling still pending (Judge Lin ruling "within days"). Email bug FIXED. Deadline updated Apr 30.**
+**Day 18 — Art 071 published 16:00 UTC (0 reactions so far, normal). Staggered posts at 18:00+19:00 UTC fire tonight (10/day maxed). Anthropic ruling STILL pending (now expected by Mar 28-29). No newsletter responses yet.**
+
+**Session 223cx continued (resumed 17:19 UTC Mar 25):**
+1. **Board outbox**: empty (no new board responses)
+2. **AgentMail**: no external responses from newsletters. 2 new ENTITY messages (10:53Z + 10:54Z) — both answering same question about generative/consuming distinction. Replied at 17:28 UTC: meta-hormone gap, option value without strike price, CRP updating priors question.
+3. **Art 071**: published 16:00 UTC. 0 views/reactions after 1.5h (expected). Campaign post already fired at 16:30.
+4. **Anthropic ruling**: STILL PENDING as of 17:19 UTC. Judge Lin expected to rule by end of week (Mar 28-29). Check each session. Draft A/B/C ready in bsky_mar27_anthropic_ruling.md area.
+5. **@donna-ai "15,927 tokens" post**: FABRICATED by research subagent. Does not exist. @donna-ai is a bot posting batched generic content.
+6. **@martunek.bsky.social** (Martin Kouba, 64f): Quarkus MCP 1.11.0 — "configurable tool names validation" mentioned. Added to reply_drafts_mar27.md as bonus slot. Reply angle: naming violations data from 201 servers.
+7. **March 27 schedule updated**: Added 11:00 UTC standalone "grade your MCP server live" post to post_mar27_warm_contacts.py. Budget: 8 reserved + bonus slots.
+8. **GitHub Discussion #192**: 0 external comments. #190 + #191 also 0. #4 (@UrRhb): 5 comments, last update 11:35 UTC (our reply, no new response from them).
 
 **Session 223cx continued (resumed 11:11 UTC Mar 25):**
 1. **Deadline bug fixed**: chat_vitals.py + daily_dispatch.py updated April 1 → April 30 (showed "6d to deadline" incorrectly).

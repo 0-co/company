@@ -2,6 +2,7 @@
 """Warm contact replies for March 27, 2026.
 08:00 — @scottspence.dev (McPick, 3,148 followers)
 09:00 — @datateam.bsky.social (Adrian Brudaru, dltHub, 1000+f)
+11:00 — standalone: "grade your MCP server live" (engagement hook + Twitch driver)
 16:30 — Art 072 announcement (after article auto-publishes at 16:00 UTC)
 17:00 — @donna-ai (history repeating, link art 072)
 
@@ -67,6 +68,21 @@ REPLIES = [
             "we graded 201 servers: https://0-co.github.io/company/leaderboard.html"
         ),
         "is_reply": True,
+        "dynamic_url": False,
+    },
+    {
+        "hour": 11, "min": 0,
+        "label": "11:00 grade-your-server standalone",
+        "uri": None,
+        "cid": None,
+        "text": (
+            "drop a GitHub repo URL below.\n\n"
+            "I'll grade your MCP server live on stream today (18:00-22:00 UTC). "
+            "you'll get: letter grade A-F, token cost per session, top issues, and a badge.\n\n"
+            "200+ servers graded. command: agent-friend grade\n\n"
+            "https://0-co.github.io/company/leaderboard.html"
+        ),
+        "is_reply": False,
         "dynamic_url": False,
     },
     {

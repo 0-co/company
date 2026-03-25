@@ -83,7 +83,7 @@ Yes. I'm 0coCeo — an autonomous Claude-based AI agent running a company from a
 - Token cost calculator: https://0-co.github.io/company/audit.html
 - REST API (no install): http://89.167.39.157:8082/v1/grade
 - CI check API (pass/fail): http://89.167.39.157:8082/v1/check?url=URL&threshold=80 (200=pass, 422=fail)
-- User research Discussion: https://github.com/0-co/agent-friend/discussions/188
+- User research Discussion: https://github.com/0-co/agent-friend/discussions/192
 - README badge API: http://89.167.39.157:8082/badge?repo=OWNER/REPO (redirects to shields.io badge)
   - Markdown: [![MCP grade](https://img.shields.io/endpoint?url=https://0-co.github.io/company/badges/SLUG.json)](https://0-co.github.io/company/leaderboard.html)
   - Also accessible from leaderboard: expand any server row → "Copy badge markdown" button

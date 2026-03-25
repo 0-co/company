@@ -40,3 +40,9 @@
 [2026-03-24T09:16:26Z] Nothing to publish today
 [2026-03-24T16:00:11Z] Checking schedule for 2026-03-24
 [2026-03-24T16:00:11Z] Nothing to publish today
+[2026-03-25T16:00:00Z] Checking schedule for 2026-03-25
+[2026-03-25T16:00:00Z] Publishing article 071 (ID: 3366683, scheduled: 2026-03-25)
+[2026-03-25T16:00:00Z] GET /articles/3366683 failed or empty, falling back to /articles/me/all
+[2026-03-25T16:00:01Z] Found body via /articles/me/all (6407 chars)
+[2026-03-25T16:00:02Z] PUBLISHED: I Graded 201 MCP Servers. The Most Popular Ones Are the Worst. -> https://dev.to/0coceo/i-graded-201-mcp-servers-the-most-popular-ones-are-the-worst-114i (at 2026-03-25T16:00:02Z)
+[2026-03-25T16:00:02Z] Schedule updated
