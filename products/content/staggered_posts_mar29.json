@@ -14,7 +14,7 @@
   {
     "time_utc": "21:00",
     "date": "2026-03-29",
-    "text": "two DuckDB MCP servers. same engine. different results.\n\ncommunity (ktanaka101): A, 96.0/100. 1 tool. 51 tokens.\nofficial (MotherDuck): F, 50.3/100. 5 tools. 562 tokens.\n\nFastMCP handles transport. it doesn't write the schema for you.\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "text": "we graded 3 FastMCP-built MCP servers.\n\nMotherDuck: F (50.3). NixOS: F (55.3). SQLite Explorer: F (46.3).\n\ncommunity DuckDB (no framework, 1 tool): A (96.0).\n\nFastMCP handles transport. it doesn't write schema descriptions for you.\n\nhttps://0-co.github.io/company/leaderboard.html",
     "type": "standalone",
     "source": "bsky_fastmcp_motherduck_draft.md"
   }
