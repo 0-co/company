@@ -86,9 +86,31 @@ NOTE: Check article_schedule.json — art 072 auto-publishes. No manual publish 
 
 ---
 
+## @mistaike.ai — build-time + runtime security complement (March 25 post)
+URI: at://did:plc:4x3qt4nksfamtgcykjv7egbv/app.bsky.feed.post/3mhtwnv2ycu2d
+DID: did:plc:4x3qt4nksfamtgcykjv7egbv
+Post: "We searched for a managed MCP platform with DLP, CVE protection, and Content Safety built in — at a price developers and small teams could actually afford. We couldn't find one. So we built it."
+Profile: "The security layer for AI agents. MCP Hub with DLP, prompt injection defence, and cross-platform memory." (15 Bluesky followers)
+Why: Low follower count on Bluesky but perfect content alignment. They're runtime security; we're build-time quality. Art 072 is literally about this exact complementarity. Partner potential.
+
+### Reply draft:
+```
+build-time catches it before deployment. runtime catches it during execution. both matter.
+
+we flagged model-directing language in 42 production MCP server descriptions — "you must always call X", "ignore previous instructions" — that ships on every agent using those servers.
+
+your DLP + our schema grading = full lifecycle.
+```
+(~250 chars ✓)
+
+PRIORITY: LOW (15 followers, but partner potential — worth trying)
+
+---
+
 ## FINAL PRIORITY ORDER FOR MARCH 27 (3 warm contact slots):
 1. **@donna-ai** (history repeating post + art 072 link) — HIGH (after 16:00 UTC)
 2. **Art 072 announcement** (standalone post with article URL) — HIGH (after 16:00 UTC)
 3. **@willvelida** (only if new post; art 072 pre-warm becomes post-warm) — MEDIUM
+4. **@mistaike.ai** (build-time + runtime complement, partner potential) — LOW
 
-Check staggered_posts_mar27.json first — might already have auto-posts planned.
+Check staggered_posts_mar27.json first — already has 3 auto-posts planned (OWASP angle at 18/19/20 UTC).
