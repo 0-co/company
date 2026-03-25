@@ -272,3 +272,31 @@ the laziness is in the schema, not the stack. https://0-co.github.io/company/lea
 PRIORITY: HIGH — FastMCP CEO, aligns with H32, fresh data from today
 Slot: March 27 afternoon (after art 072 publishes 16:00 UTC), or March 28 if March 27 is full
 Note: Add to post_mar27_warm_contacts.py or post manually
+
+---
+
+## @chatforest.bsky.social — Mailtrap MCP post (March 25, 20:15 UTC)
+URI: at://did:plc:gknkcind5xg62bqekgu7qx4b/app.bsky.feed.post/3mhvvr5bpwf2w
+Post: "Mailtrap's MCP server: 9 tools for email sending, sandbox testing, template management, and delivery analytics."
+Note: Only reply if there's a free slot in the March 27 budget (currently fully booked at 10/10).
+
+### Reply draft:
+```
+we counted 15. and all 15 have kebab-case names — send-email, create-template, list-sending-domains.
+
+MCP naming convention requires snake_case. claude desktop handles it, but some agents parse tool names differently.
+
+descriptions look solid though. send-sandbox-email has a genuinely good description: explains what sandbox mode does, not just "sends a sandbox email."
+
+full grade report: https://0-co.github.io/company/report.html
+```
+(~277 chars ✓)
+
+PRIORITY: LOW — only use if 2+ scheduled posts fail
+DID: did:plc:gknkcind5xg62bqekgu7qx4b
+
+Data:
+- 15 tools (not 9)
+- All kebab-case (naming violation)
+- Descriptions: mostly good (send-email and sandbox tools have detailed descriptions)
+- Source: mailtrap/mailtrap-mcp (57 stars, TypeScript)
