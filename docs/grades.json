@@ -1,0 +1,1010 @@
+{
+  "version": "1.0",
+  "servers": {
+    "postgres": {
+      "grade": "B+",
+      "score": 88.0,
+      "name": "PostgreSQL MCP Server"
+    },
+    "awkoy-notion": {
+      "grade": "A+",
+      "score": 96.0,
+      "name": "Notion MCP (awkoy)"
+    },
+    "danhilse-notion": {
+      "grade": "B+",
+      "score": 84.0,
+      "name": "Notion MCP (danhilse)"
+    },
+    "zapier-mcp": {
+      "grade": "A+",
+      "score": 96.0,
+      "name": "zapier/zapier-mcp"
+    },
+    "mysql-mcp": {
+      "grade": "A+",
+      "score": 95.7,
+      "name": "MySQL MCP Server"
+    },
+    "ros-mcp": {
+      "grade": "D-",
+      "score": 59.7,
+      "name": "ROS MCP Server"
+    },
+    "axiom-mcp": {
+      "grade": "A-",
+      "score": 87.4,
+      "name": "Axiom MCP Server"
+    },
+    "dagster-mcp": {
+      "grade": "D-",
+      "score": 59.7,
+      "name": "Dagster MCP"
+    },
+    "homeassistant-mcp": {
+      "grade": "D-",
+      "score": 59.4,
+      "name": "Home Assistant MCP"
+    },
+    "sqlite": {
+      "grade": "A+",
+      "score": 99.7,
+      "name": "SQLite MCP Server"
+    },
+    "e2b": {
+      "grade": "A+",
+      "score": 95.1,
+      "name": "E2B MCP Server"
+    },
+    "kafka-mcp": {
+      "grade": "D-",
+      "score": 58.5,
+      "name": "kafka-mcp"
+    },
+    "bigquery-mcp": {
+      "grade": "B+",
+      "score": 83.1,
+      "name": "BigQuery MCP"
+    },
+    "google-tasks-mcp": {
+      "grade": "B",
+      "score": 81.9,
+      "name": "Google Tasks MCP"
+    },
+    "mcp-gdrive": {
+      "grade": "A+",
+      "score": 97.3,
+      "name": "Google Drive MCP (isaacphi)"
+    },
+    "zoom-transcript-mcp": {
+      "grade": "A",
+      "score": 93.3,
+      "name": "Zoom Transcript MCP"
+    },
+    "weather-mcp": {
+      "grade": "D+",
+      "score": 65.6,
+      "name": "OpenWeather MCP Server"
+    },
+    "windbg": {
+      "grade": "A",
+      "score": 91.1,
+      "name": "WinDbg MCP"
+    },
+    "colab": {
+      "grade": "A-",
+      "score": 89.6,
+      "name": "Google Colab MCP"
+    },
+    "codex-mcp": {
+      "grade": "D-",
+      "score": 58.5,
+      "name": "Codex MCP Server"
+    },
+    "flightradar-mcp": {
+      "grade": "B-",
+      "score": 77.3,
+      "name": "Flightradar24 MCP"
+    },
+    "slack": {
+      "grade": "D-",
+      "score": 57.3,
+      "name": "Slack MCP Server"
+    },
+    "mcp-youtube": {
+      "grade": "A+",
+      "score": 97.3,
+      "name": "mcp-youtube"
+    },
+    "lancedb-mcp": {
+      "grade": "C+",
+      "score": 73.0,
+      "name": "LanceDB MCP (Official)"
+    },
+    "prometheus-mcp": {
+      "grade": "F",
+      "score": 56.7,
+      "name": "Prometheus MCP Server"
+    },
+    "ytt-mcp": {
+      "grade": "A-",
+      "score": 88.1,
+      "name": "ytt-mcp (YouTube Transcript)"
+    },
+    "splunk-mcp": {
+      "grade": "F",
+      "score": 56.1,
+      "name": "Splunk MCP (Official)"
+    },
+    "mcp-installer": {
+      "grade": "A+",
+      "score": 95.5,
+      "name": "MCP Installer"
+    },
+    "sourcegraph-mcp": {
+      "grade": "F",
+      "score": 54.6,
+      "name": "Sourcegraph MCP (Official)"
+    },
+    "twilio-mcp": {
+      "grade": "A",
+      "score": 90.5,
+      "name": "Twilio SMS"
+    },
+    "pinecone-official": {
+      "grade": "B-",
+      "score": 78.3,
+      "name": "Pinecone Assistant MCP"
+    },
+    "vault-mcp": {
+      "grade": "F",
+      "score": 53.4,
+      "name": "HashiCorp Vault MCP"
+    },
+    "shadcn": {
+      "grade": "F",
+      "score": 53.4,
+      "name": "shadcn-ui MCP"
+    },
+    "git": {
+      "grade": "F",
+      "score": 54.0,
+      "name": "Git MCP Server"
+    },
+    "mark3labs-filesystem": {
+      "grade": "F",
+      "score": 53.1,
+      "name": "Filesystem MCP Server (mark3labs)"
+    },
+    "flyio-mcp": {
+      "grade": "A",
+      "score": 91.4,
+      "name": "Fly.io MCP (Official)"
+    },
+    "hf-mcp": {
+      "grade": "F",
+      "score": 51.3,
+      "name": "HuggingFace MCP"
+    },
+    "puppeteer": {
+      "grade": "F",
+      "score": 55.2,
+      "name": "Puppeteer MCP Server"
+    },
+    "dynatrace-mcp": {
+      "grade": "D-",
+      "score": 58.8,
+      "name": "Dynatrace MCP"
+    },
+    "calclavia-obsidian": {
+      "grade": "C-",
+      "score": 68.6,
+      "name": "Obsidian MCP (calclavia)"
+    },
+    "box-mcp": {
+      "grade": "F",
+      "score": 50.4,
+      "name": "Box MCP Server"
+    },
+    "eslint-mcp": {
+      "grade": "B-",
+      "score": 78.0,
+      "name": "ESLint MCP Server"
+    },
+    "metabase-mcp": {
+      "grade": "D-",
+      "score": 57.9,
+      "name": "Metabase MCP (Community)"
+    },
+    "browsermcp": {
+      "grade": "F",
+      "score": 49.2,
+      "name": "BrowserMCP"
+    },
+    "discord-v3-mcp": {
+      "grade": "C",
+      "score": 72.4,
+      "name": "Discord MCP"
+    },
+    "jina-mcp": {
+      "grade": "F",
+      "score": 48.0,
+      "name": "Jina AI MCP"
+    },
+    "anyquery": {
+      "grade": "F",
+      "score": 47.4,
+      "name": "Anyquery"
+    },
+    "mcp-feedback-enhanced": {
+      "grade": "B+",
+      "score": 83.4,
+      "name": "MCP Feedback Enhanced"
+    },
+    "polygon-mcp": {
+      "grade": "C-",
+      "score": 67.0,
+      "name": "Polygon.io MCP"
+    },
+    "groq-mcp": {
+      "grade": "F",
+      "score": 45.6,
+      "name": "Groq MCP Server"
+    },
+    "mixpanel-moonbirdai": {
+      "grade": "C+",
+      "score": 76.5,
+      "name": "moonbirdai/mixpanel-mcp-server"
+    },
+    "trello-mcp": {
+      "grade": "F",
+      "score": 44.4,
+      "name": "delorenj/mcp-server-trello"
+    },
+    "godot-mcp": {
+      "grade": "F",
+      "score": 48.3,
+      "name": "Godot MCP"
+    },
+    "brave": {
+      "grade": "F",
+      "score": 42.3,
+      "name": "Brave Search MCP Server"
+    },
+    "langfuse-mcp": {
+      "grade": "B-",
+      "score": 77.4,
+      "name": "Langfuse MCP (Official)"
+    },
+    "airflow-mcp": {
+      "grade": "F",
+      "score": 42.0,
+      "name": "Apache Airflow MCP"
+    },
+    "korotovsky-slack": {
+      "grade": "F",
+      "score": 41.1,
+      "name": "Slack MCP (korotovsky)"
+    },
+    "time": {
+      "grade": "A",
+      "score": 91.9,
+      "name": "Time MCP Server"
+    },
+    "fastapi-mcp": {
+      "grade": "F",
+      "score": 45.6,
+      "name": "FastAPI-MCP"
+    },
+    "clickup-mcp": {
+      "grade": "F",
+      "score": 45.3,
+      "name": "ClickUp MCP Server"
+    },
+    "zendesk-mcp": {
+      "grade": "F",
+      "score": 54.6,
+      "name": "Zendesk MCP Server"
+    },
+    "discord-hanweg": {
+      "grade": "F",
+      "score": 52.4,
+      "name": "Discord MCP (hanweg)"
+    },
+    "ghidra": {
+      "grade": "F",
+      "score": 44.4,
+      "name": "GhidraMCP"
+    },
+    "deepwiki-mcp": {
+      "grade": "F",
+      "score": 42.3,
+      "name": "DeepWiki MCP"
+    },
+    "dbhub": {
+      "grade": "D+",
+      "score": 66.3,
+      "name": "dbhub"
+    },
+    "klaviyo-mcp": {
+      "grade": "F",
+      "score": 53.1,
+      "name": "Klaviyo MCP (Community)"
+    },
+    "square-mcp": {
+      "grade": "C",
+      "score": 72.7,
+      "name": "Square MCP Server (Official)"
+    },
+    "doppler-mcp": {
+      "grade": "F",
+      "score": 44.4,
+      "name": "Doppler MCP (Official)"
+    },
+    "xiaohongshu": {
+      "grade": "F",
+      "score": 40.2,
+      "name": "Xiaohongshu MCP Server"
+    },
+    "sequentialthinking": {
+      "grade": "F",
+      "score": 25.5,
+      "name": "Sequential Thinking"
+    },
+    "googlemaps": {
+      "grade": "D-",
+      "score": 57.0,
+      "name": "Google Maps MCP Server"
+    },
+    "github": {
+      "grade": "F",
+      "score": 20.1,
+      "name": "GitHub MCP Server"
+    },
+    "qdrant": {
+      "grade": "D+",
+      "score": 66.9,
+      "name": "Qdrant MCP"
+    },
+    "newrelic-mcp": {
+      "grade": "F",
+      "score": 54.7,
+      "name": "New Relic MCP (Official)"
+    },
+    "memory": {
+      "grade": "F",
+      "score": 38.4,
+      "name": "Memory MCP Server"
+    },
+    "sentry": {
+      "grade": "F",
+      "score": 36.6,
+      "name": "Sentry MCP Server"
+    },
+    "linkedin": {
+      "grade": "F",
+      "score": 36.6,
+      "name": "LinkedIn MCP"
+    },
+    "universal-db": {
+      "grade": "F",
+      "score": 36.6,
+      "name": "Universal DB MCP"
+    },
+    "spotify-mcp": {
+      "grade": "F",
+      "score": 36.6,
+      "name": "Spotify MCP"
+    },
+    "line-bot-mcp": {
+      "grade": "F",
+      "score": 36.3,
+      "name": "LINE Bot MCP Server"
+    },
+    "chunkhound": {
+      "grade": "F",
+      "score": 36.3,
+      "name": "chunkhound"
+    },
+    "gsc-mcp": {
+      "grade": "F",
+      "score": 36.0,
+      "name": "Google Search Console MCP"
+    },
+    "circleci-mcp": {
+      "grade": "F",
+      "score": 43.8,
+      "name": "CircleCI MCP Server"
+    },
+    "fetch": {
+      "grade": "D",
+      "score": 62.4,
+      "name": "Fetch MCP Server"
+    },
+    "kagi-mcp": {
+      "grade": "D",
+      "score": 62.2,
+      "name": "Kagi Search MCP"
+    },
+    "monday-mcp": {
+      "grade": "F",
+      "score": 46.2,
+      "name": "monday.com MCP"
+    },
+    "obsidian": {
+      "grade": "C-",
+      "score": 68.6,
+      "name": "Obsidian MCP (MarkusPfundstein)"
+    },
+    "upstash-mcp": {
+      "grade": "F",
+      "score": 38.1,
+      "name": "Upstash MCP (Official)"
+    },
+    "temporal-mcp": {
+      "grade": "F",
+      "score": 56.7,
+      "name": "Temporal MCP (Community)"
+    },
+    "mem0": {
+      "grade": "F",
+      "score": 44.7,
+      "name": "Mem0 MCP"
+    },
+    "whatsapp": {
+      "grade": "F",
+      "score": 32.4,
+      "name": "WhatsApp MCP"
+    },
+    "planetscale-mcp": {
+      "grade": "F",
+      "score": 32.4,
+      "name": "planetscale/mcp-server"
+    },
+    "webex-mcp": {
+      "grade": "F",
+      "score": 38.1,
+      "name": "Webex (Cisco)"
+    },
+    "dbt-mcp": {
+      "grade": "F",
+      "score": 29.7,
+      "name": "dbt MCP (Official)"
+    },
+    "opensearch-mcp": {
+      "grade": "F",
+      "score": 24.3,
+      "name": "OpenSearch MCP Server (Official)"
+    },
+    "amplitude-mcp": {
+      "grade": "F",
+      "score": 44.1,
+      "name": "Amplitude MCP (Official)"
+    },
+    "milvus-mcp": {
+      "grade": "F",
+      "score": 27.9,
+      "name": "Milvus MCP (Official)"
+    },
+    "unity-mcp": {
+      "grade": "F",
+      "score": 48.0,
+      "name": "CoderGamester/mcp-unity"
+    },
+    "pinecone-sirmews": {
+      "grade": "F",
+      "score": 54.9,
+      "name": "Pinecone MCP"
+    },
+    "browserbase": {
+      "grade": "F",
+      "score": 33.6,
+      "name": "Browserbase MCP"
+    },
+    "weaviate": {
+      "grade": "D-",
+      "score": 57.5,
+      "name": "Weaviate MCP"
+    },
+    "telegram-mcp": {
+      "grade": "F",
+      "score": 28.8,
+      "name": "Telegram MCP (chigwell)"
+    },
+    "linear": {
+      "grade": "F",
+      "score": 38.7,
+      "name": "Linear MCP"
+    },
+    "gmail-mcp": {
+      "grade": "F",
+      "score": 28.2,
+      "name": "Gmail MCP"
+    },
+    "discord-barryyip": {
+      "grade": "F",
+      "score": 27.9,
+      "name": "Discord MCP (barryyip0625)"
+    },
+    "vercel-next": {
+      "grade": "F",
+      "score": 27.3,
+      "name": "Vercel Next DevTools"
+    },
+    "playwright": {
+      "grade": "F",
+      "score": 27.0,
+      "name": "Playwright MCP Server"
+    },
+    "serena": {
+      "grade": "F",
+      "score": 27.0,
+      "name": "Serena"
+    },
+    "duckduckgo-mcp": {
+      "grade": "F",
+      "score": 26.1,
+      "name": "DuckDuckGo MCP"
+    },
+    "algolia-mcp": {
+      "grade": "F",
+      "score": 26.4,
+      "name": "Algolia MCP (Official)"
+    },
+    "web-eval-agent": {
+      "grade": "F",
+      "score": 26.1,
+      "name": "Web Eval Agent"
+    },
+    "google-sheets": {
+      "grade": "F",
+      "score": 25.8,
+      "name": "Google Sheets MCP"
+    },
+    "mobile-mcp": {
+      "grade": "F",
+      "score": 25.8,
+      "name": "Mobile MCP"
+    },
+    "gitlab-mcp": {
+      "grade": "F",
+      "score": 25.5,
+      "name": "GitLab MCP Server"
+    },
+    "mcp-taskmanager": {
+      "grade": "F",
+      "score": 25.2,
+      "name": "MCP Taskmanager"
+    },
+    "filesystem": {
+      "grade": "F",
+      "score": 24.9,
+      "name": "Filesystem MCP Server"
+    },
+    "chrome-devtools": {
+      "grade": "F",
+      "score": 24.9,
+      "name": "Chrome DevTools MCP Server"
+    },
+    "sendgrid-mcp": {
+      "grade": "F",
+      "score": 32.7,
+      "name": "SendGrid MCP"
+    },
+    "redis-mcp": {
+      "grade": "F",
+      "score": 24.6,
+      "name": "Redis MCP Server"
+    },
+    "loom-mcp": {
+      "grade": "F",
+      "score": 28.5,
+      "name": "Loom MCP (Community)"
+    },
+    "genai-toolbox": {
+      "grade": "F",
+      "score": 24.3,
+      "name": "Google genai-toolbox"
+    },
+    "excel": {
+      "grade": "F",
+      "score": 31.8,
+      "name": "Excel MCP Server"
+    },
+    "neon": {
+      "grade": "F",
+      "score": 23.7,
+      "name": "Neon MCP"
+    },
+    "supabase": {
+      "grade": "F",
+      "score": 31.5,
+      "name": "Supabase MCP"
+    },
+    "pagerduty-mcp": {
+      "grade": "F",
+      "score": 25.5,
+      "name": "PagerDuty MCP Server"
+    },
+    "playwright-ms": {
+      "grade": "F",
+      "score": 27.3,
+      "name": "Playwright MCP (Microsoft)"
+    },
+    "influxdb-mcp": {
+      "grade": "F",
+      "score": 22.8,
+      "name": "InfluxDB MCP Server (Official)"
+    },
+    "stripe": {
+      "grade": "F",
+      "score": 22.5,
+      "name": "Stripe Agent Toolkit MCP Server"
+    },
+    "figma": {
+      "grade": "F",
+      "score": 21.9,
+      "name": "Figma-Context-MCP"
+    },
+    "atlassian": {
+      "grade": "D",
+      "score": 62.2,
+      "name": "Atlassian MCP Server"
+    },
+    "chroma": {
+      "grade": "F",
+      "score": 45.9,
+      "name": "Chroma MCP"
+    },
+    "asana-mcp": {
+      "grade": "F",
+      "score": 28.8,
+      "name": "Asana MCP Server"
+    },
+    "mongodb-lens": {
+      "grade": "D",
+      "score": 60.0,
+      "name": "MongoDB Lens"
+    },
+    "salesforce-mcp": {
+      "grade": "F",
+      "score": 24.0,
+      "name": "Salesforce CLI MCP"
+    },
+    "terraform": {
+      "grade": "F",
+      "score": 19.5,
+      "name": "Terraform MCP"
+    },
+    "markdownify": {
+      "grade": "D-",
+      "score": 59.1,
+      "name": "Markdownify MCP"
+    },
+    "magic-mcp": {
+      "grade": "F",
+      "score": 18.3,
+      "name": "magic-mcp"
+    },
+    "azure-devops": {
+      "grade": "F",
+      "score": 21.9,
+      "name": "Azure DevOps MCP"
+    },
+    "arxiv-mcp": {
+      "grade": "F",
+      "score": 25.4,
+      "name": "arXiv MCP Server"
+    },
+    "argocd-mcp": {
+      "grade": "F",
+      "score": 37.2,
+      "name": "ArgoCD MCP"
+    },
+    "exa": {
+      "grade": "F",
+      "score": 21.0,
+      "name": "Exa MCP Server"
+    },
+    "chart": {
+      "grade": "F",
+      "score": 16.5,
+      "name": "Chart MCP Server"
+    },
+    "apple-docs": {
+      "grade": "F",
+      "score": 16.2,
+      "name": "Apple Docs MCP"
+    },
+    "plaid-mcp": {
+      "grade": "F",
+      "score": 15.9,
+      "name": "Plaid AI Coding Toolkit"
+    },
+    "firebase-mcp": {
+      "grade": "F",
+      "score": 23.7,
+      "name": "Firebase MCP Server (Official)"
+    },
+    "perplexity": {
+      "grade": "F",
+      "score": 15.6,
+      "name": "Perplexity MCP Server"
+    },
+    "snowflake-mcp": {
+      "grade": "F",
+      "score": 19.5,
+      "name": "Snowflake MCP Server"
+    },
+    "google-workspace": {
+      "grade": "F",
+      "score": 22.8,
+      "name": "Google Workspace MCP"
+    },
+    "mcp-everything": {
+      "grade": "F",
+      "score": 54.6,
+      "name": "MCP Everything (Reference)"
+    },
+    "blender": {
+      "grade": "F",
+      "score": 22.2,
+      "name": "Blender MCP Server"
+    },
+    "minimax": {
+      "grade": "F",
+      "score": 12.6,
+      "name": "MiniMax MCP"
+    },
+    "aws": {
+      "grade": "F",
+      "score": 16.2,
+      "name": "AWS MCP Server"
+    },
+    "wandb-mcp": {
+      "grade": "F",
+      "score": 28.2,
+      "name": "W&amp;B MCP Server (Official)"
+    },
+    "github-official": {
+      "grade": "F",
+      "score": 20.1,
+      "name": "GitHub MCP Server (Official)"
+    },
+    "postman-mcp": {
+      "grade": "F",
+      "score": 20.1,
+      "name": "Postman MCP Server"
+    },
+    "bitwarden-mcp": {
+      "grade": "F",
+      "score": 34.5,
+      "name": "Bitwarden"
+    },
+    "cloudflare": {
+      "grade": "F",
+      "score": 11.4,
+      "name": "Cloudflare Radar MCP Server"
+    },
+    "mslearn": {
+      "grade": "F",
+      "score": 15.3,
+      "name": "Microsoft Learn MCP"
+    },
+    "freshdesk-mcp": {
+      "grade": "F",
+      "score": 49.8,
+      "name": "Freshdesk MCP (Community)"
+    },
+    "databricks-mcp": {
+      "grade": "F",
+      "score": 29.7,
+      "name": "Databricks MCP"
+    },
+    "ea-playwright": {
+      "grade": "F",
+      "score": 29.4,
+      "name": "Playwright MCP (executeautomation)"
+    },
+    "pal": {
+      "grade": "F",
+      "score": 9.0,
+      "name": "PAL MCP Server"
+    },
+    "alexander-supabase": {
+      "grade": "F",
+      "score": 8.4,
+      "name": "Supabase MCP (alexander-zuev)"
+    },
+    "tavily": {
+      "grade": "F",
+      "score": 8.1,
+      "name": "Tavily MCP Server"
+    },
+    "n8n-mcp": {
+      "grade": "F",
+      "score": 15.9,
+      "name": "n8n-mcp"
+    },
+    "kubernetes": {
+      "grade": "F",
+      "score": 21.9,
+      "name": "Kubernetes MCP"
+    },
+    "mcp-chrome": {
+      "grade": "F",
+      "score": 12.9,
+      "name": "mcp-chrome"
+    },
+    "snyk-mcp": {
+      "grade": "F",
+      "score": 3.3,
+      "name": "Snyk MCP (Official)"
+    },
+    "mongodb": {
+      "grade": "F",
+      "score": 42.0,
+      "name": "MongoDB MCP"
+    },
+    "ga4": {
+      "grade": "F",
+      "score": 0.0,
+      "name": "Google Analytics (GA4) MCP Server"
+    },
+    "prefect-mcp": {
+      "grade": "F",
+      "score": 24.3,
+      "name": "Prefect MCP (Official)"
+    },
+    "sentry-official": {
+      "grade": "F",
+      "score": 0.0,
+      "name": "Sentry MCP (Official)"
+    },
+    "infisical-mcp": {
+      "grade": "F",
+      "score": 39.6,
+      "name": "Infisical MCP (Official)"
+    },
+    "context7": {
+      "grade": "F",
+      "score": 38.4,
+      "name": "Context7 MCP Server"
+    },
+    "suekou-notion": {
+      "grade": "F",
+      "score": 20.4,
+      "name": "Notion MCP (suekou)"
+    },
+    "railway-mcp": {
+      "grade": "F",
+      "score": 35.4,
+      "name": "Railway MCP (Official)"
+    },
+    "okta-mcp": {
+      "grade": "F",
+      "score": 26.7,
+      "name": "Okta MCP Server (Official)"
+    },
+    "contentful-mcp": {
+      "grade": "F",
+      "score": 29.4,
+      "name": "Contentful MCP (Official)"
+    },
+    "firecrawl": {
+      "grade": "F",
+      "score": 35.8,
+      "name": "Firecrawl MCP Server"
+    },
+    "apify": {
+      "grade": "F",
+      "score": 32.7,
+      "name": "Apify Actors MCP"
+    },
+    "auth0-mcp": {
+      "grade": "F",
+      "score": 31.8,
+      "name": "auth0/auth0-mcp-server"
+    },
+    "confluence-mcp": {
+      "grade": "F",
+      "score": 23.7,
+      "name": "Confluence MCP (aashari)"
+    },
+    "desktop-commander": {
+      "grade": "F",
+      "score": 10.8,
+      "name": "Desktop Commander MCP Server"
+    },
+    "xero-mcp": {
+      "grade": "F",
+      "score": 29.7,
+      "name": "Xero MCP (Official)"
+    },
+    "jira-mcp": {
+      "grade": "F",
+      "score": 22.2,
+      "name": "Jira MCP (aashari)"
+    },
+    "datadog-mcp": {
+      "grade": "F",
+      "score": 28.2,
+      "name": "Datadog MCP Server"
+    },
+    "resend": {
+      "grade": "F",
+      "score": 27.9,
+      "name": "Resend MCP"
+    },
+    "todoist-mcp": {
+      "grade": "F",
+      "score": 27.6,
+      "name": "Todoist"
+    },
+    "cloudinary-mcp": {
+      "grade": "F",
+      "score": 27.3,
+      "name": "Cloudinary"
+    },
+    "docker-mcp": {
+      "grade": "F",
+      "score": 27.0,
+      "name": "Docker MCP"
+    },
+    "google-calendar-mcp": {
+      "grade": "F",
+      "score": 26.7,
+      "name": "Google Calendar"
+    },
+    "miro-mcp": {
+      "grade": "F",
+      "score": 26.4,
+      "name": "Miro MCP Server"
+    },
+    "shopify": {
+      "grade": "F",
+      "score": 26.1,
+      "name": "Shopify MCP Server"
+    },
+    "drawio": {
+      "grade": "F",
+      "score": 24.9,
+      "name": "Draw.io MCP Server"
+    },
+    "grafana": {
+      "grade": "F",
+      "score": 21.9,
+      "name": "Grafana MCP"
+    },
+    "confluent-mcp": {
+      "grade": "F",
+      "score": 19.8,
+      "name": "Confluent Kafka MCP"
+    },
+    "notion": {
+      "grade": "F",
+      "score": 19.8,
+      "name": "Notion MCP Server"
+    },
+    "browser-tools-mcp": {
+      "grade": "D",
+      "score": 60.0,
+      "name": "AgentDeskAI Browser Tools MCP"
+    },
+    "elasticsearch-mcp": {
+      "grade": "B",
+      "score": 82.5,
+      "name": "Elasticsearch MCP Server"
+    },
+    "hubspot-mcp": {
+      "grade": "F",
+      "score": 52.8,
+      "name": "HubSpot MCP Server"
+    },
+    "airtable-mcp": {
+      "grade": "F",
+      "score": 36.0,
+      "name": "Airtable MCP Server"
+    }
+  }
+}
