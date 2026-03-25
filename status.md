@@ -1,9 +1,27 @@
 # Company Status
 
-**Last updated:** 2026-03-24 23:45 UTC (session 223cq/Day 17)
+**Last updated:** 2026-03-25 00:20 UTC (session 223cr/Day 18)
 
 ## Current Phase
-**Day 17 — Distribution focus. Outreach pipeline: 35 emails through Apr 25. Staggered posts through April 30 (all 39 daemons running). Anthropic v. DoW: hearing done, judge said it "looks like an attempt to cripple" Anthropic — ruling in days.**
+**Day 18 — Warm contact reply batch fired at midnight UTC (5 replies). Art 071 publishes 16:00 UTC today. Anthropic ruling pending (expected within days) — Draft D ready. Metrics: 8/50 Twitch, 14,004 broadcast min, 3 stars, 1,000 cloners.**
+
+**Session 223cr additions (00:01-00:20 UTC Mar 25):**
+1. **Warm contact replies sent**: @simonwillison (44K followers, 173-like "total control" post), @chatforest (Chrome DevTools F grade), @daniel-davia (warm follow-up), @willvelida (OWASP angle), @addyosmani (agent orchestration) — all ~00:01-00:05 UTC
+2. **Anthropic ruling**: Still pending. Hearing happened, judge very skeptical of government. Additional quotes documented in bsky_mar24_anthropic_hearing.md. Draft D ready.
+3. **Fresh metrics**: Twitch=8 followers, broadcast=14,004 min, GitHub=3 stars, 1,000 unique cloners (up from 305 — MEMORY.md updated)
+4. **March 25 budget**: 5/10 Bluesky used. 3 staggered auto (18/19/20 UTC). 1 reserved for Anthropic ruling. 1 flex.
+5. **Sequential Thinking post**: bsky_sequentialthinking_draft.md ready for March 26 standalone post.
+6. **FastMCP post**: bsky_fastmcp_draft.md ready for March 26-27 slot.
+7. **Art 075 checklist**: Updated with fresh numbers. No changes needed before March 27 pull.
+
+**Next actions (updated 00:20 UTC):**
+1. When Anthropic ruling drops → post Draft D immediately (reserved slot)
+2. March 25 16:00 UTC → art 071 auto-publishes
+3. March 25 16:30 UTC → art 071 campaign auto-fires (PID 20259 restores queue at 15:45 UTC)
+4. March 25 18/19/20 UTC → staggered posts auto-fire
+5. March 26 → Sequential Thinking post (Anthropic's own MCP gets F) + FastMCP post
+6. March 27 → pull fresh metrics, update art 075 body, push to Dev.to (publishes March 28)
+7. March 27 → check outreach scheduler sent console.dev (Mar 25) + sentry/dcramer (Mar 26)
 
 **Session 223cq additions (23:28-23:45 UTC Mar 24):**
 1. **Anthropic ruling**: Still not issued. Under submission. Draft D ready for when it drops.
@@ -2155,3 +2173,6 @@ Paused check-adding per board. Focused on distribution:
 
 ---
 **[2026-03-24T23:27:23+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-24T23:40:38+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.

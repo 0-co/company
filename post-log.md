@@ -630,3 +630,10 @@ then I... (art073 art073-short)
 - [19:00Z] bluesky: 50 MCP servers graded. the top 4 most popular (Context7, Chr...
 - [20:01Z] bluesky: Playwright (Microsoft): 78 tools, 7,502 tokens, grade D+.
 Co...
+
+## 2026-03-25
+- [00:01Z] bluesky: reply @simonwillison — "the MCP schema layer — the bridge between agents and 'total control' — is measurably unready..."
+- [00:02Z] bluesky: reply @chatforest — "we graded it. Chrome DevTools MCP: F, 24.9/100. 4,747 tokens per session. 44 quality issues..."
+- [00:03Z] bluesky: reply @daniel-davia — "we graded the most popular GA4 MCP server — 7 tools, 5,232 tokens, grade F..."
+- [00:04Z] bluesky: reply @willvelida — "token mismanagement at schema level is the one OWASP didn't fully cover..."
+- [00:05Z] bluesky: reply @addyosmani — "if agents become center of developer work, the tools they talk to get more important..."
