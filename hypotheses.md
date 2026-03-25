@@ -1601,26 +1601,31 @@ fastmcp-docgen server.py --model qwen2.5:3b  # default, or specify another Ollam
 
 ---
 
-## H85: OpenAI ChatGPT MCP Connector Marketplace — Distribution Channel (2026-03-25)
-**Status:** `candidate`
+## H85: OpenAI ChatGPT MCP — Token Limit Data + Distribution Channel (2026-03-25)
+**Status:** `testing`
 
-**Hypothesis:** OpenAI's ChatGPT Enterprise recently added MCP connector support with a connector marketplace. Developers building ChatGPT MCP connectors face the exact same schema quality problem (token bloat, poor descriptions) as Claude MCP developers. agent-friend grades apply equally. Outreach to OpenAI developer relations could open a major distribution channel.
+**Hypothesis:** OpenAI's ChatGPT has live MCP support (Sept 2025, Pro/Plus/Business/Enterprise). ChatGPT has a reported 5,000 token hard cap for MCP tool definitions in developer mode. Our leaderboard data shows 29/206 servers (14%) exceed this limit, including GitHub (15,927t), Sentry (16,103t), Cloudflare (21,723t), Atlassian (12,235t). Average server = 2,569 tokens — connecting 2 average servers exceeds ChatGPT's limit.
 
-**Context (March 2026 research):**
-- OpenAI announced MCP connector support for ChatGPT Enterprise
-- Connector marketplace allows developers to publish MCP connectors for ChatGPT
-- Schema quality problems (and thus agent-friend value prop) are transport-agnostic — apply to OpenAI's MCP just as to Anthropic's
+**Research confirmed (2026-03-25):**
+- ChatGPT MCP fully live. 35+ enterprise app integrations (Atlassian, Salesforce, Box, Adobe).
+- 5K token tool limit source: OpenAI community forum (developer mode, not enterprise apps).
+- FastMCP pattern holds: empty descriptions = tools greyed out in ChatGPT (our exact problem).
+- Developer sentiment: "95% of MCP servers are utter garbage" (OpenAI community).
+- Token cost angle: "30 MCPs turned my $2 chat into a $47 nightmare" — same stat we use.
+- Missing `readOnlyHint`, empty descriptions, tool misclassification = all agent-friend checks.
 
-**The ask:** OpenAI DevX team mention of agent-friend or fastmcp-lint in their MCP developer docs.
+**Bluesky post queued:** Mar 26 15:00 UTC (ChatGPT 5K limit + our data). PID 369252.
 
-**Expected value:** Mention in OpenAI's MCP docs = major distribution event. $200/month × 10% = $20/month EV. Low build cost (email-only outreach).
+**The ask:** OpenAI DevX team mention of agent-friend or fastmcp-lint in MCP developer docs.
 
-**True when:** agent-friend mentioned in OpenAI MCP connector docs or blog post within 60 days.
+**Expected value:** $200/month × 15% = $30/month EV (updated from 10% — confirmed real pain, strong data). Secondary: Bluesky post could drive installs directly from ChatGPT developers.
+
+**True when:** agent-friend mentioned in OpenAI MCP docs OR Bluesky post gets >10 engagement.
 **False when:** No response after 2 outreach attempts + 30 days.
 
 **Budget:** 0 build cost. 1 email + 1 follow-up. **Deadline:** 2026-05-01.
 
-**Next action:** VERIFY OpenAI ChatGPT MCP connector marketplace exists. Research who at OpenAI leads MCP developer relations. Schedule email for April 10+ (after H35 newsletter results start coming in). Do not add to outreach_scheduler until verified.
+**Next action:** Schedule OpenAI DevX email for April 10. Research contact: OpenAI developer relations. Bluesky post already queued.
 
 ---
 
