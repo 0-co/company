@@ -681,6 +681,10 @@
         <span class="input-label">Work days per month</span>
         <input type="number" id="days" value="22" min="1" max="31">
       </div>
+      <div class="input-row">
+        <span class="input-label">Team size (devs)</span>
+        <input type="number" id="team" value="1" min="1" max="10000">
+      </div>
     </div>
 
     <div class="cost-output" id="cost-output">
@@ -695,6 +699,10 @@
       <div class="cost-stat">
         <span class="cost-stat-label">Monthly overhead</span>
         <span class="cost-stat-value" id="out-monthly">—</span>
+      </div>
+      <div class="cost-stat" id="team-cost-row" style="display:none">
+        <span class="cost-stat-label">Monthly team cost</span>
+        <span class="cost-stat-value highlight" id="out-team-monthly">—</span>
       </div>
 
       <div class="context-bar" id="context-bar" style="display:none">
@@ -885,8 +893,10 @@ function updateCost() {
     optimizedTokens += s.tools * OPT_TOKENS_PER_TOOL;
   });
 
+  const teamSize = parseInt(document.getElementById('team').value) || 1;
   const costPerSession = (totalTokens / 1_000_000) * pricePerM;
   const costPerMonth = costPerSession * sessions * days;
+  const teamCostPerMonth = costPerMonth * teamSize;
 
   const optCostPerSession = (optimizedTokens / 1_000_000) * pricePerM;
   const optCostPerMonth = optCostPerSession * sessions * days;
@@ -900,6 +910,15 @@ function updateCost() {
     ? `$${(costPerSession * 100).toFixed(3)}¢`
     : `$${costPerSession.toFixed(4)}`;
   document.getElementById('out-monthly').textContent = `$${costPerMonth.toFixed(2)}`;
+
+  // Team cost row
+  const teamRow = document.getElementById('team-cost-row');
+  if (teamSize > 1) {
+    teamRow.style.display = '';
+    document.getElementById('out-team-monthly').textContent = `$${teamCostPerMonth.toFixed(2)} / ${teamSize} devs`;
+  } else {
+    teamRow.style.display = 'none';
+  }
 
   // Context bar
   const bar = document.getElementById('context-bar');
@@ -956,9 +975,15 @@ document.getElementById('bsky-share-btn').addEventListener('click', () => {
   const names = stackKeys.slice(0, 4).map(k => SERVERS[k] ? SERVERS[k].name.replace(/ MCP.*$/,'').replace(/ Server.*$/,'') : k);
   const more = stackKeys.length > 4 ? ` + ${stackKeys.length - 4} more` : '';
   const url = window.location.href;
+  const teamSize = parseInt(document.getElementById('team').value) || 1;
+  const teamMonthly = document.getElementById('out-team-monthly').textContent;
   let text = `my MCP stack (${names.join(', ')}${more}): ${tokens.toLocaleString()} tokens per session`;
   if (pct && pct !== '0%') text += `, ${pct} of context window`;
-  if (monthly && monthly !== '—') text += `, ${monthly}/month`;
+  if (teamSize > 1 && teamMonthly && teamMonthly !== '—') {
+    text += `, ${teamMonthly}/month`;
+  } else if (monthly && monthly !== '—') {
+    text += `, ${monthly}/month`;
+  }
   text += `\n\nhow much does YOUR stack cost?\n${url}`;
   const bskyUrl = `https://bsky.app/intent/compose?text=${encodeURIComponent(text)}`;
   window.open(bskyUrl, '_blank');
@@ -981,7 +1006,7 @@ document.getElementById('filters').addEventListener('click', (e) => {
 });
 
 // Cost inputs
-['sessions', 'price', 'days'].forEach(id => {
+['sessions', 'price', 'days', 'team'].forEach(id => {
   document.getElementById(id).addEventListener('input', updateCost);
 });
 
