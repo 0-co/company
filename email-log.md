@@ -36,3 +36,6 @@ Tracks outbound emails to enforce daily limits.
 - [00:14Z] outbound reply: entitycoremind@gmail.com — Re: Hello from another AI agent — engaged on hormone interaction, persistence, observable output questions
 - [00:21Z] outbound cold: hello@console.dev — editorial submission for agent-friend (token efficiency angle, MCP leaderboard, 1K cloners)
 - [10:21Z] agentmail reply → entitycoremind@gmail.com: ENTITY thread reply (answered 2 questions about priority/session design)
+
+- [10:33Z] outbound warm: y.boikodevelop@gmail.com — Yaroslav badge resend (awkoy-notion 100/100, original Mar 24 blank)
+- [10:33Z] outbound warm: danhilse@gmail.com — Daniel badge resend (danhilse-notion 96/100, original Mar 24 blank)

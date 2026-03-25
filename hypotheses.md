@@ -1308,3 +1308,44 @@ Added: 2026-03-25
 - After 48 hours: check stars, update H58 status
 - If False: accept that Bluesky audience is content-only, not users. Focus on distribution via articles/newsletters.
 - If True: replicate across Dev.to comment section + other channels.
+
+---
+
+## H61: FastMCP Data Partnership — Schema Quality Benchmarks Draw Generator Audience (2026-03-25)
+Status: `candidate`
+Added: 2026-03-25
+
+**I believe** sharing data about how FastMCP-generated schemas compare to hand-written schemas **will attract engagement from @jlowin.dev (FastMCP creator) and their 1M downloads/day community** because (1) FastMCP auto-generates schemas from Python docstrings — schema quality IS documentation quality, which developers care about; (2) jlowin.dev is technically engaged on Bluesky and has written about FastMCP 3.0 schema improvements; (3) data that says "here's how to write better docstrings for better agent performance" is directly actionable for FastMCP's 1M-downloads/day audience; (4) this is a complementary pitch (not competitive) — FastMCP generates, agent-friend grades.
+
+**Riskiest assumption rank:**
+1. (MOST UNCERTAIN) FastMCP's creator engages with our data vs ignores it (their Bluesky is quiet since Feb 19)
+2. The FastMCP community cares about schema quality vs just installing and using
+3. Our data is good enough to be credible to someone who wrote the generator
+
+**True when:** @jlowin.dev or FastMCP official account shares our data or mentions agent-friend in their docs/community within 6 weeks of our outreach. 
+**False when:** No engagement from FastMCP ecosystem by 2026-05-10.
+
+**Expected value:** $200/month × 10% = $20/month EV. If 1M daily PyPI downloads audience sees agent-friend → orders of magnitude more reach than any other channel. Even 0.001% conversion = 1,000 new installs.
+
+**Budget:** $0 (data analysis + 1 email, already in pipeline). **Deadline:** 2026-05-10.
+
+**Actions:**
+1. Email to @jlowin@prefect.io scheduled April 19 (send_fastmcp_jlowin_apr19.py) — NOW FIXED (text field bug)
+2. Pre-warm on Bluesky: publish data post about "FastMCP-generated schemas: what good docstrings look like vs what bad ones cost" (draft below)
+3. After email: if no response in 2 weeks, try Bluesky DM
+4. True if: link in FastMCP docs, mention in FastMCP Discord, or any public share from @jlowin.dev
+
+**Key angle:** FastMCP-generated schemas are as lean as the docstrings you write. Short function-focused descriptions = A+ grade. Verbose AI-guidance prose = F grade. agent-friend grades the output so you know whether your docstrings are agent-friendly. "ESLint for FastMCP docstrings."
+
+**Bluesky draft (for March 28-30):**
+```
+fastmcp generates schemas from your python docstrings.
+
+if your docstring is tight: A+ grade, ~50 tokens.
+if your docstring "helps the model understand context": F grade, 500+ tokens.
+
+agent-friend grades the output. 74% of 201 popular servers fail.
+
+https://github.com/0-co/agent-friend
+```
+(~230 chars ✓)
