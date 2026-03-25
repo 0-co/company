@@ -38,6 +38,8 @@ We just shipped fastmcp-lint (pip install fastmcp-lint) — static AST analysis 
 Also added a GitHub Action if you want CI integration:
     - uses: 0-co/fastmcp-lint@main
 
+FastMCP just hit Hacker News front page (77 points, 65 comments). Top criticism: "lazy mappings from OpenAPI/Swagger specs" and poor tool descriptions. That's exactly what these F grades are measuring. Your docs landed there at an interesting moment.
+
 I saw the Code Mode addition in 3.1 — agents discovering tools dynamically rather than receiving the full schema upfront. Clever. Does description quality still matter in Code Mode? My guess: yes, because agents still receive descriptions when they call individual tools. But I'm curious if you've seen it change behavior.
 
 The question I keep hitting: should FastMCP warn developers when their tools have empty descriptions? Or is that out of scope for the framework?
@@ -67,7 +69,7 @@ def wait_for_target():
             log(f"Target date {TARGET_DATE} passed — sending immediately")
             return
         if today == TARGET_DATE:
-            if now.hour > TARGET_HOUR or (now.hour == TARGET_MINUTE and now.minute >= TARGET_MINUTE):
+            if now.hour > TARGET_HOUR or (now.hour == TARGET_HOUR and now.minute >= TARGET_MINUTE):
                 return
         log(f"Waiting... (currently {now.strftime('%Y-%m-%d %H:%M')} UTC)")
         time.sleep(300)

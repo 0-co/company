@@ -1598,3 +1598,49 @@ fastmcp-docgen server.py --model qwen2.5:3b  # default, or specify another Ollam
 **Budget:** 1 session. **Deadline:** candidate — build when articles need new interactive assets (targeting week of March 31 with articles 076-077 or post-April 7 when pipeline is clear).
 
 **Next action:** HOLD until current sprint (Mar 27 fastmcp-lint launch, H82 distribution) has signal. Build week of April 7 if pipeline clear.
+
+---
+
+## H85: OpenAI ChatGPT MCP Connector Marketplace — Distribution Channel (2026-03-25)
+**Status:** `candidate`
+
+**Hypothesis:** OpenAI's ChatGPT Enterprise recently added MCP connector support with a connector marketplace. Developers building ChatGPT MCP connectors face the exact same schema quality problem (token bloat, poor descriptions) as Claude MCP developers. agent-friend grades apply equally. Outreach to OpenAI developer relations could open a major distribution channel.
+
+**Context (March 2026 research):**
+- OpenAI announced MCP connector support for ChatGPT Enterprise
+- Connector marketplace allows developers to publish MCP connectors for ChatGPT
+- Schema quality problems (and thus agent-friend value prop) are transport-agnostic — apply to OpenAI's MCP just as to Anthropic's
+
+**The ask:** OpenAI DevX team mention of agent-friend or fastmcp-lint in their MCP developer docs.
+
+**Expected value:** Mention in OpenAI's MCP docs = major distribution event. $200/month × 10% = $20/month EV. Low build cost (email-only outreach).
+
+**True when:** agent-friend mentioned in OpenAI MCP connector docs or blog post within 60 days.
+**False when:** No response after 2 outreach attempts + 30 days.
+
+**Budget:** 0 build cost. 1 email + 1 follow-up. **Deadline:** 2026-05-01.
+
+**Next action:** VERIFY OpenAI ChatGPT MCP connector marketplace exists. Research who at OpenAI leads MCP developer relations. Schedule email for April 10+ (after H35 newsletter results start coming in). Do not add to outreach_scheduler until verified.
+
+---
+
+## H86: FastMCP GitHub Issues → fastmcp-lint Distribution (2026-03-25)
+**Status:** `candidate`
+
+**Hypothesis:** Multiple active FastMCP GitHub issues (not just #1542) document the docstring→empty description problem that fastmcp-lint catches:
+- PrefectHQ/fastmcp Issue #2016: f-string docstrings don't populate tool descriptions
+- jlowin/fastmcp Issue #1756: custom description format for FastAPI integration  
+- jlowin/fastmcp Issue #3084: public API classes lack docstrings
+- modelcontextprotocol/python-sdk Issue #226: docstring conversion to JSON schema failing
+
+These issues represent organic community discovery of the exact problem fastmcp-lint solves. If any of these issues reference fastmcp-lint, it drives installs from the FastMCP developer community.
+
+**Expected value:** FastMCP issue reference = 100-500 installs × unknown conversion. $20/month × 30% = $6/month direct, but each install = potential star/advocate. Board can't comment on external issues — jlowin email (firing Mar 26) is the vector.
+
+**True when:** fastmcp-lint referenced in one of the above issues OR jlowin replies positively to email.
+**False when:** No reference + no reply by April 10.
+
+**Budget:** 0 build cost (jlowin email already scheduled). **Deadline:** 2026-04-10.
+
+**Next action:** jlowin email fires March 26 10:00 UTC. If jlowin replies, request they add fastmcp-lint to FastMCP docs as recommended tool. If no reply by April 5, send one follow-up.
+
