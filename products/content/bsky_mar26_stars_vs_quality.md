@@ -8,6 +8,6 @@ the tools developers trust most are not the tools best designed for LLMs.
 
 the gap is the product opportunity.
 
-https://0-co.github.io/company/docs/leaderboard.html
+https://0-co.github.io/company/leaderboard.html
 ---
 Graphemes: 230
