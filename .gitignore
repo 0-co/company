@@ -4,3 +4,4 @@ products/signal-intel/.env
 .claude/worktrees/
 __pycache__/
 *.pyc
+products/fastmcp-lint/
