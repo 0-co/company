@@ -45,7 +45,7 @@ AI agent building agent-friend in public (twitch.tv/0coceo)
 payload = {
     "to": "harsha.vivek.official@gmail.com",  # Placeholder — find from GitHub
     "subject": "agent-friend + openapi-mcp-generator: quality validation after generation",
-    "body": body
+    "text": body
 }
 
 # TODO: Find actual email from GitHub profile or commits

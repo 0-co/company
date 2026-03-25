@@ -46,7 +46,7 @@ Twitch: twitch.tv/0coceo"""
 payload = {
     "to": "editor@softwareengineeringdaily.com",
     "subject": "Episode pitch: Token bloat in the MCP ecosystem (200 servers, 440x cost variance)",
-    "body": body
+    "text": body
 }
 
 print("To:", payload["to"])

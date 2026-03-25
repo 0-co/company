@@ -45,7 +45,7 @@ Pure Python, zero external dependencies, 156 quality checks.
 payload = {
     "to": "contact@importpython.com",
     "subject": "Tool submission: agent-friend — MCP schema grader (ESLint for AI tool definitions)",
-    "body": body
+    "text": body
 }
 
 print("To:", payload["to"])

@@ -17,7 +17,7 @@ if today < "2026-03-30":
 payload = {
     "to": "admin@pycoders.com",
     "subject": "Link submission: agent-friend — MCP schema linter / token cost analyzer",
-    "body": """Hi,
+    "text": """Hi,
 
 Link submission for PyCoder's Weekly.
 

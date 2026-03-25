@@ -38,7 +38,7 @@ https://github.com/0-co/agent-friend
 msg = {
     "to": "jlowin@prefect.io",
     "subject": "agent-friend + FastMCP = schema quality gate for generated MCP tools",
-    "body": BODY
+    "text": BODY
 }
 
 result = subprocess.run(

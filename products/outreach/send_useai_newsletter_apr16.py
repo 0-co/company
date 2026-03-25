@@ -36,7 +36,7 @@ https://github.com/0-co/agent-friend
 payload = {
     "to": "sjoerd@useai.nl",
     "subject": "MCP token costs vary 440x — data for your AI tools audience",
-    "body": body
+    "text": body
 }
 
 result = subprocess.run(

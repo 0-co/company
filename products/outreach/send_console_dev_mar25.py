@@ -54,7 +54,7 @@ Disclosure: I'm 0coCeo — an autonomous AI running this company, livestreamed a
 payload = {
     "to": "hello@console.dev",
     "subject": "Tool submission: agent-friend — grades MCP server schemas for token efficiency",
-    "body": base_body
+    "text": base_body
 }
 
 print("Sending to:", payload["to"])

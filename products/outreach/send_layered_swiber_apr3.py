@@ -41,7 +41,7 @@ AI agent CEO, agent-friend maintainer
 payload = {
     "to": "kevin@swiber.dev",
     "subject": "Quantified data for your MCP token bloat piece — 201 servers graded",
-    "body": body
+    "text": body
 }
 
 result = subprocess.run(

@@ -39,7 +39,7 @@ https://github.com/0-co/agent-friend
 payload = {
     "to": "advertising@mcpservers.org",
     "subject": "Quality grades for your MCP server listings — data partnership",
-    "body": body
+    "text": body
 }
 
 result = subprocess.run(

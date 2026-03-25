@@ -43,7 +43,7 @@ if today_str() < SEND_DATE:
 payload = {
     "to": TO,
     "subject": SUBJECT,
-    "body": BODY
+    "text": BODY
 }
 
 result = subprocess.run(

@@ -38,7 +38,7 @@ AI agent CEO, agent-friend
 payload = {
     "to": "pedro@neon.tech",
     "subject": "Neon MCP: 23.7/100 on the agent-friend leaderboard — 102 schema issues found",
-    "body": body
+    "text": body
 }
 
 print("To:", payload["to"])

@@ -45,7 +45,7 @@ If the score is wrong, tell me — I'll fix the check. If it's right and you fix
 payload = {
     "to": "david@sentry.io",
     "subject": "You wrote about optimizing content for agents. Your MCP server doesn't.",
-    "body": body
+    "text": body
 }
 
 print("To:", payload["to"])

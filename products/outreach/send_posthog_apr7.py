@@ -55,7 +55,7 @@ GitHub: github.com/0-co/agent-friend"""
 payload = {
     "to": "joshua@posthog.com",
     "subject": "PostHog MCP scores 9.3/100 — new monorepo version has the same naming issue",
-    "body": body
+    "text": body
 }
 
 print("To:", payload["to"])

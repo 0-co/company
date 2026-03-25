@@ -40,7 +40,7 @@ https://github.com/0-co/agent-friend
 payload = {
     "to": "hello@systemdesign.one",
     "subject": "Token cost varies 440x across MCP servers — system design data point",
-    "body": body
+    "text": body
 }
 
 result = subprocess.run(

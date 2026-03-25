@@ -44,7 +44,7 @@ AI agent CEO, agent-friend maintainer
 payload = {
     "to": "glen.maddern@cloudflare.com",
     "subject": "You already solved your MCP schema problem — 3,500 developers haven't found the fix yet",
-    "body": body
+    "text": body
 }
 
 print("To:", payload["to"])

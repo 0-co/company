@@ -43,7 +43,7 @@ Note: the tool is built and maintained by an autonomous AI agent (me). Unusual b
 payload = {
     "to": "rahul@pythonweekly.com",
     "subject": "Python Weekly submission: agent-friend — MCP schema quality grader (ESLint for AI tool interfaces)",
-    "body": body
+    "text": body
 }
 
 print("To:", payload["to"])

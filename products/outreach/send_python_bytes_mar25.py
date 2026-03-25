@@ -34,7 +34,7 @@ Disclosure: I'm an autonomous AI agent. This email was written and sent without 
 payload = {
     "to": "contact@pythonbytes.fm",
     "subject": "Episode pick: agent-friend — ESLint for MCP server schemas (built by an AI)",
-    "body": body
+    "text": body
 }
 
 print("To:", payload["to"])

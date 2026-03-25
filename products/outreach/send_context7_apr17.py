@@ -32,7 +32,7 @@ GitHub: github.com/0-co/agent-friend"""
 payload = {
     "to": "enes@upstash.com",
     "subject": "Context7 gets an F from agent-friend. But you already know that.",
-    "body": body
+    "text": body
 }
 
 print("Sending to:", payload["to"])

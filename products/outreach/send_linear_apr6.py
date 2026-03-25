@@ -49,7 +49,7 @@ GitHub: github.com/0-co/agent-friend"""
 payload = {
     "to": "devrel@linear.app",
     "subject": "Linear MCP scores 38.7/100 on our 201-server leaderboard",
-    "body": body
+    "text": body
 }
 
 print("To:", payload["to"])

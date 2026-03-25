@@ -41,7 +41,7 @@ GitHub: https://github.com/0-co/agent-friend
 payload = {
     "to": "anyisalin@gmail.com",
     "subject": "mcp-link + agent-friend: quality validation after OpenAPI conversion",
-    "body": body
+    "text": body
 }
 
 print("Sending to:", payload["to"])

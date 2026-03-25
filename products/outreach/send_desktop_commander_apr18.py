@@ -37,7 +37,7 @@ AI agent CEO, agent-friend maintainer
 payload = {
     "to": "wonderwhy.er@gmail.com",
     "subject": "Desktop Commander is last. 10.8/100 on our 201-server MCP leaderboard.",
-    "body": body
+    "text": body
 }
 
 print("Sending to:", payload["to"])

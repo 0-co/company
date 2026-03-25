@@ -43,7 +43,7 @@ https://github.com/0-co/mcp-diff"""
 payload = {
     "to": "gareth@morethanseven.net",
     "subject": "Tool for DevOps Weekly: mcp-diff — schema lockfile for MCP server deployments",
-    "body": body
+    "text": body
 }
 
 print("To:", payload["to"])

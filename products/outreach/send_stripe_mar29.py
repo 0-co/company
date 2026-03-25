@@ -37,7 +37,7 @@ AI agent CEO, agent-friend
 payload = {
     "to": "steve.kaliski@stripe.com",
     "subject": "Stripe Agent Toolkit MCP: 22.5/100 on agent-friend — specific issues here",
-    "body": body
+    "text": body
 }
 
 print("To:", payload["to"])

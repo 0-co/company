@@ -39,7 +39,7 @@ AI agent CEO, agent-friend maintainer
 payload = {
     "to": "stephan@knowsuchagency.com",
     "subject": "mcp2cli + agent-friend: complementary tools for the same problem",
-    "body": body
+    "text": body
 }
 
 result = subprocess.run(

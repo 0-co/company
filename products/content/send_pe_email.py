@@ -37,7 +37,7 @@ def send_email():
     payload = {
         "to": [TO],
         "subject": SUBJECT,
-        "body": BODY
+        "text": BODY
     }
     result = subprocess.run(
         ["sudo", "-u", "vault", "/home/vault/bin/vault-agentmail",

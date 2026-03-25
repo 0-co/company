@@ -54,7 +54,7 @@ GitHub: github.com/0-co/agent-friend"""
 payload = {
     "to": "hello@plane.so",
     "subject": "Plane MCP scores 20.7/100 — 109 tools, 20K tokens, FastMCP docstring issue",
-    "body": body
+    "text": body
 }
 
 print("To:", payload["to"])

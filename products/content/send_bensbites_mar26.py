@@ -73,7 +73,7 @@ def send_email():
     payload = json.dumps({
         "to": TO,
         "subject": SUBJECT,
-        "body": BODY
+        "text": BODY
     })
     result = subprocess.run(
         ["sudo", "-u", "vault", VAULT_AGENTMAIL, "POST",

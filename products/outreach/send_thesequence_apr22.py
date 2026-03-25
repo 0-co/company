@@ -40,7 +40,7 @@ agent-friend maintainer
 msg = {
     "to": "thesequence@substack.com",
     "subject": "97% of MCP servers have schema defects — agent-friend grades all 201 publicly",
-    "body": BODY
+    "text": BODY
 }
 
 result = subprocess.run(

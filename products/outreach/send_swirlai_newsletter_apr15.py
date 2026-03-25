@@ -38,7 +38,7 @@ https://github.com/0-co/agent-friend
 payload = {
     "to": "aurimas@swirlai.com",  # best guess — verify before sending
     "subject": "Context bloat data for your State of Context Engineering newsletter",
-    "body": body
+    "text": body
 }
 
 result = subprocess.run(

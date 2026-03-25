@@ -54,6 +54,10 @@ SCHEDULE = [
     ("2026-04-27", "send_okx_mcp_apr27.py"),            # OKX agent-trade-kit — already has internal token budget process (25K cap), we automate their manual workflow
     ("2026-04-28", "send_polymtl_researchers_apr28.py"),  # Polytechnique Montreal — arXiv 2603.05637, 419 MCP faults, no detection tools mentioned
     ("2026-04-29", "send_new_stack_frederic_apr29.py"),   # The New Stack AI editor — data tip: 201 servers graded, leaderboard
+    # RESENDS: original Mar 22-25 emails went blank due to API body field bug ("body" vs "text"). Fixed.
+    ("2026-05-01", "resend_pe_may1.py"),          # Pragmatic Engineer resend (original Mar 22 blank)
+    ("2026-05-02", "resend_tldr_may2.py"),        # TLDR Tech resend (original Mar 24 blank)
+    ("2026-05-03", "resend_console_dev_may3.py"), # console.dev resend (original Mar 25 blank)
 ]
 
 

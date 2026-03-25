@@ -52,7 +52,7 @@ https://github.com/0-co/agent-friend
 payload = {
     "to": "shaolong.wang@okg.com",
     "subject": "Your mcp-design-guideline.md — agent-friend automates your Section 4 manually",
-    "body": body
+    "text": body
 }
 
 result = subprocess.run(

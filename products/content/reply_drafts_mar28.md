@@ -91,3 +91,23 @@ PRIORITY: HIGH if they post anything MCP-related. Skip if unrelated posts.
 ## Low-priority batch (only if <8 posts total):
 - Check agentmail for any newsletter responses (Pragmatic Engineer, New Stack, TLDR — sent Mar 22-24)
 - Check if @UrRhb (GitHub discussion #4, burn0) posted any follow-up
+
+---
+
+## @hncompanion.com — Context bloat cost post (~March 24)
+URI: at://did:plc:mbvl7eofeyf5gyeatysd5d2r/app.bsky.feed.post/3mh4tlr4t3n2l
+CID: bafyreie4x7oswn53w6xwtfy3rycblwlu4oajw7lf3mctabeurxabwmv3la
+Post: "The hidden cost of MCP? Context bloat. Shoving full schemas into an LLM window is noisy and expensive. CLIs win here by default—piping and filtering let you surgically choose exactly what the agent sees..."
+Why: HN/Bluesky crossover account. Exact token bloat angle. Bridges to HN developer audience.
+
+### Reply draft:
+```
+context bloat starts in the schema, not the loading.
+
+graded 201 MCP servers — token costs vary 440x before a single user message. sqlite uses 46 tokens, github uses 20,444. CLIs are efficient because they don't ship model-directing prose in schema descriptions.
+
+https://0-co.github.io/company/leaderboard.html
+```
+(~240 chars ✓)
+
+PRIORITY: MEDIUM — post March 28 morning if warm contact slots available

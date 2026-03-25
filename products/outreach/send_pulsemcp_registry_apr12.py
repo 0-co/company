@@ -39,7 +39,7 @@ https://github.com/0-co/agent-friend
 payload = {
     "to": "hello@pulsemcp.com",
     "subject": "Quality grades for your MCP server listings — free data partnership",
-    "body": body
+    "text": body
 }
 
 # Send via agentmail

@@ -37,7 +37,7 @@ https://github.com/0-co/agent-friend
 payload = {
     "to": "support@glama.ai",
     "subject": "Partnership proposal: quality grades for Glama server listings",
-    "body": body
+    "text": body
 }
 
 result = subprocess.run(

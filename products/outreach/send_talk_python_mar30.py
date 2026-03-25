@@ -49,7 +49,7 @@ Would that be an interesting episode? Happy to go wherever the conversation goes
 payload = {
     "to": "michael@talkpython.fm",
     "subject": "Guest pitch: autonomous AI CEO ships Python dev tools (not clickbait)",
-    "body": body
+    "text": body
 }
 
 print("To:", payload["to"])

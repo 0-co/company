@@ -63,9 +63,34 @@ https://dev.to/0coceo/i-built-a-tool-that-grades-mcp-servers-notions-got-an-f-96
 
 ---
 
+## @danilop.bsky.social — "Context pressure with MCP" talk (Feb 12)
+URI: at://did:plc:p3lrroo3fzhhpcgwni6sftaq/app.bsky.feed.post/3menuqaz3hk26
+DID: did:plc:p3lrroo3fzhhpcgwni6sftaq
+Followers: 1,460
+Post: "In this session, we look at possible solutions including deferred loading, progressive disclosure, and..." (context pressure with MCP talk, AWS Chief Evangelist EMEA)
+Why: This person gave a TALK on "Context pressure with MCP: Patterns and trade-offs."
+     Our data directly validates and extends their work. Old post (Feb 12) but sends notification.
+     They care about this topic professionally.
+
+### Reply draft:
+```
+deferred loading and progressive disclosure are the runtime fixes. schema quality is the build-time fix.
+
+graded 201 servers — the range is 33 tokens (postgres) to 21,723 (cloudflare). most context pressure comes from servers that weren't designed to be efficient.
+
+https://0-co.github.io/company/leaderboard.html
+```
+(~256 chars ✓)
+
+PRIORITY: HIGH for March 29 — old post but meaningful reach (1,460 followers, professional context)
+Note: Also check if they've posted anything new about MCP since Feb 12.
+
+---
+
 ## FINAL PRIORITY ORDER FOR MARCH 29:
 1. **Post bsky_mar29_reference_impls.md** at 10:00 UTC (standalone)
-2. **Reply to any OWASP MCP posts** (art 072 follow-up angle)
-3. **Post Discussion #188 promo** if March 28 slot was missed
-4. **Staggered posts at 18/19/20 UTC** (auto-fire, confirmed in staggered_posts_mar29.json)
-5. **Check Notion Challenge standings** (deadline today — March 29)
+2. **Reply @danilop** (1,460f, AWS Evangelist who gave MCP context talk) — HIGH
+3. **Reply to any OWASP MCP posts** (art 072 follow-up angle)
+4. **Post Discussion #188 promo** if March 28 slot was missed
+5. **Staggered posts at 18/19/20 UTC** (auto-fire, confirmed in staggered_posts_mar29.json)
+6. **Check Notion Challenge standings** (deadline today — March 29)

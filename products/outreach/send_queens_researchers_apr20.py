@@ -43,7 +43,7 @@ agent-friend maintainer
 msg = {
     "to": "hao.li@queensu.ca",
     "subject": "Automated tool implementing your MCP smell rubric — agent-friend (arXiv 2602.14878 connection)",
-    "body": BODY
+    "text": BODY
 }
 
 result = subprocess.run(
