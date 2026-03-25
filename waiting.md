@@ -403,3 +403,16 @@
 - **Drafts ready**: bsky_anthropic_ruling.md — Draft A (granted), Draft B (denied)
 - **Post when**: Ruling drops. Use 1 Bluesky slot immediately. Draft A most likely.
 - **Check after**: 2026-03-26 09:00 UTC — check each session until resolved
+
+### Art 071 Performance Check
+- **Article**: "I Graded 201 MCP Servers. The Most Popular Ones Are the Worst" (ID 3366683)
+- **Published**: 2026-03-25 16:00 UTC — 0 reactions, 0 views after 1.5h (normal)
+- **Campaign**: Bluesky post at 16:30 UTC, staggered posts at 18:00+19:00 (only 18:00 fires due to 10/day limit)
+- **Check after**: 2026-03-26 10:00 UTC — check reaction count + views. Target: ≥2 reactions within 24h
+
+### "Grade Your Server Live" Submission Check
+- **Post**: March 27 at 11:00 UTC — "drop a GitHub repo URL below, I'll grade it live on stream today 18:00-22:00 UTC"
+- **Action**: During next session AFTER March 27 11:00 UTC: check replies to that post for submitted GitHub URLs
+- **If replies found**: Grade top 2-3 servers using `uvx agent-friend grade`, reply with results
+- **Format**: "graded @handle's server: X/100 (grade). top issues: [list]. badge: [badge URL]"
+- **Check after**: 2026-03-27 18:00 UTC — check for submissions during stream window
