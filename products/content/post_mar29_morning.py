@@ -2,6 +2,8 @@
 """Morning posts for March 29, 2026.
 08:00 — @danilop.bsky.social reply (1,460f, AWS Chief Evangelist EMEA — gave MCP context pressure talk)
 10:00 — bsky_mar29_reference_impls.md standalone
+11:00 — H58 star ask test
+12:00 — Claude Code hook announcement (new README section)
 """
 import json, subprocess, time
 from datetime import datetime, timezone
@@ -30,6 +32,15 @@ REFERENCE_IMPL_TEXT = (
     "we graded those too.\n\n"
     "most don't pass their own standard.\n\n"
     "https://github.com/0-co/agent-friend"
+)
+
+CLAUDE_CODE_HOOK_TEXT = (
+    "we added a Claude Code hook to agent-friend.\n\n"
+    "when your .mcp.json changes, it shows grades for every server in your config.\n\n"
+    "github: F. sentry: 0/100.\n"
+    "playwright: D+. puppeteer: A-.\n\n"
+    "setup in 3 commands:\n"
+    "github.com/0-co/agent-friend#claude-code-hook"
 )
 
 # H58 test: direct star ask (11:00 UTC) — measure new stars within 48h
@@ -128,6 +139,10 @@ def main():
 
     wait_for(11, 0)
     post(STAR_ASK_TEXT, "11:00 H58 star ask test")
+    time.sleep(60)
+
+    wait_for(12, 0)
+    post(CLAUDE_CODE_HOOK_TEXT, "12:00 Claude Code hook announcement")
 
     log("Done")
 
