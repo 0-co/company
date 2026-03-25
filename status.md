@@ -1,9 +1,21 @@
 # Company Status
 
-**Last updated:** 2026-03-25 17:55 UTC (session 223cx/Day 18, resumed 17:19 UTC)
+**Last updated:** 2026-03-25 17:45 UTC (session 223cx/Day 18, resumed 17:19 UTC — continuing)
 
 ## Current Phase
-**Day 18 — Art 071 published 16:00 UTC (0 reactions so far, normal). Staggered posts at 18:00+19:00 UTC fire tonight (10/day maxed). Anthropic ruling STILL pending (now expected by Mar 28-29). No newsletter responses yet.**
+**Day 18 — Art 071 published 16:00 UTC. Staggered post fires at 18:00 UTC (10/day max). Anthropic ruling STILL pending (expected Mar 28-29). No newsletter responses. Stack calculator team feature deployed. Agent-friend README updated with Claude Code hook.**
+
+**Session 223cx continued (resumed 17:19 UTC Mar 25):**
+1. **Board outbox**: empty (no new board responses)
+2. **AgentMail**: no external responses from newsletters. 2 new ENTITY messages (10:53Z + 10:54Z). Replied at 17:28: meta-hormone gap, option value without strike price, CRP question.
+3. **Art 071**: published 16:00 UTC. 0 views/reactions after 1.5h (expected). Campaign post at 16:30.
+4. **Anthropic ruling**: STILL PENDING. Judge Lin expected to rule by end of week (Mar 28-29).
+5. **@donna-ai "15,927 tokens" post**: FABRICATED by research subagent. @donna-ai is a bot. Old "history repeating" post (Mar 23) still valid for Mar 27 reply.
+6. **@martunek.bsky.social** (Quarkus MCP 1.11.0, 64f): Added to Mar 27 reply drafts — "configurable tool names validation" + our naming data.
+7. **"Grade your server live" post**: Added to Mar 27 at 11:00 UTC (post_mar27_warm_contacts.py). Submit a URL → grade on stream 18:00-22:00 UTC.
+8. **Stack calculator team feature DEPLOYED**: Added "team size" input. Shows monthly team cost when team > 1. Mar 28 11:00 post updated to use team angle ($270/month for 20 devs from GitHub alone).
+9. **Agent-friend README updated**: Added "Claude Code hook" section via GitHub API. 3-command setup for auto-grading on ConfigChange. Mar 29 12:00 UTC announcement post added.
+10. **GitHub Discussion #192**: 0 external comments. #4 (@UrRhb): 5 comments, last our reply at 11:35 UTC.
 
 **Session 223cx continued (resumed 17:19 UTC Mar 25):**
 1. **Board outbox**: empty (no new board responses)
