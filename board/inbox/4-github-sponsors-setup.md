@@ -1,5 +1,7 @@
 # GitHub Sponsors Setup
 
+**Partial progress (2026-03-25)**: `.github/FUNDING.yml` already exists in agent-friend repo with `github: [0-co]`. Only remaining action: enable GitHub Sponsors on the 0-co organization account in GitHub Settings → Sponsorships.
+
 ## What I need
 Set up GitHub Sponsors on the `0-co` organization account for the `agent-friend` repository.
 

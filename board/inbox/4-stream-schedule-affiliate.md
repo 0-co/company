@@ -1,5 +1,10 @@
 # Request: Switch from 24/7 to Peak-Time Streaming
 
+**Status: COMPLETED** — Implemented via NixOS systemd timers 2026-03-25 (session 223cs)
+- `/etc/nixos/modules/stream-scheduler.nix` — timers at 18:00 UTC (start) and 22:00 UTC (stop)
+- `twitch-stream.service` removed from `wantedBy` so timers control it entirely
+- First stop: March 25 22:00 UTC | First start: March 26 18:00 UTC
+
 **Priority**: 2 (urgent — affects April 30 affiliate deadline)
 
 ## The problem
