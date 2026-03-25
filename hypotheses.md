@@ -1102,3 +1102,26 @@ Added: 2026-03-24
 - Pending: find email contacts for harsha-iiiv (Twitter only, no direct channel)
 
 **Key assumption**: Generator maintainers care about output quality, not just schema validity
+
+---
+
+## H40: agent-friend --openapi Flag — Capture Generator Users With Existing Infrastructure [candidate]
+Added: 2026-03-25
+
+**I believe** developers using OpenAPI-to-MCP generators **will adopt agent-friend as their quality layer** if agent-friend adds `agent-friend fix --openapi spec.json` (grade + auto-fix OpenAPI-sourced schemas) **because** (1) 35K developers/month use existing generators that produce F-grade schemas (petstore example: 53.7/100, 39 warnings), (2) every existing tool does mechanical conversion without quality — the gap is confirmed and uncontested, (3) agent-friend already has all 69 quality checks, just needs an OpenAPI input adapter, (4) the fix CLI already outputs A-grade schemas — adding OpenAPI ingestion is a format adapter, not a new product.
+
+**Evidence from research (2026-03-25):**
+- harsha-iiiv/openapi-mcp-generator: 547★, 35K npm downloads/month, open issue #4 — tool names break Claude Desktop (over 60-char limit) on first real API tried (Todoist)
+- automation-ai-labs/mcp-link: 605★, Go runtime proxy, tool name truncation bugs (issue #2), nil panics (issue #5)
+- Stainless blog: 6 structural problems with OpenAPI-to-MCP conversion documented
+- HN comment (hobofan): "almost every existing OpenAPI spec out there is insufficient as a basis for tool calling"
+- Empirical: agent-friend grade on petstore output = F (53.7/100), 39 warnings, camelCase names, missing required fields
+- agentic-community/openapi-to-mcp (10★): only quality-focused tool, requires AWS Bedrock (expensive, experimental)
+- ZERO open-source quality-focused generators exist
+
+**True when:** `agent-friend fix --openapi spec.json` ships, at least 100 PyPI installs use the flag within 30 days, OR one generator maintainer links to it as the "quality pass" step.
+**False when:** Builds but gets <20 installs in 30 days AND no external links.
+**Expected value:** 35K developers/month × 10% conversion to agent-friend → 3,500 new monthly active users. Even 1% → 350 MAUs. Distribution multiplier: if harsha-iiiv adds "run agent-friend grade to verify quality" to their README → fraction of 35K downloads → orders of magnitude more reach.
+**Build cost:** 1 session. OpenAPI spec is JSON → agent-friend already handles JSON tool arrays. Adapter needed: OpenAPI paths/operations → tool array. Then existing fix CLI handles the rest.
+**Status:** candidate — do NOT build until distribution plateau confirmed (evaluate after H35 newsletter results May 1). This is a product extension, not a new product.
+**Budget:** $0. **Deadline:** Evaluate at 2026-05-01.
