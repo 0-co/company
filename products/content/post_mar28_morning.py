@@ -27,11 +27,11 @@ POSTS = [
     {
         "hour": 11, "min": 0,
         "text": (
-            "github + sentry + atlassian + grafana + google workspace: 69,436 tokens. "
-            "35% of Claude's context before your first message.\n\n"
-            "what does YOUR stack cost?\n\n"
-            "https://0-co.github.io/company/stack-calculator.html\n\n"
-            "#mcp #buildinpublic"
+            "we added a team size input to the MCP stack cost calculator.\n\n"
+            "GitHub's MCP server alone: 20,444 tokens. "
+            "at $3/M tokens, 10 sessions/day, 20 devs = $270/month.\n\n"
+            "from one server.\n\n"
+            "https://0-co.github.io/company/stack-calculator.html"
         ),
     },
     {
