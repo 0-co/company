@@ -535,6 +535,15 @@
       background: rgba(163,113,247,0.2);
       box-shadow: 0 0 12px rgba(163,113,247,0.15);
     }
+    .bsky-share-btn {
+      background: linear-gradient(135deg, rgba(0,133,255,0.15), rgba(0,133,255,0.08));
+      border-color: rgba(0,133,255,0.4);
+    }
+    .bsky-share-btn:hover {
+      border-color: #0085ff;
+      background: rgba(0,133,255,0.2);
+      box-shadow: 0 0 12px rgba(0,133,255,0.15);
+    }
 
     .cta-link {
       text-align: center;
@@ -710,7 +719,10 @@
 
     <div class="cta-section">
       <button class="share-btn" id="share-btn">
-        <span>🔗</span> Copy shareable link
+        <span>🔗</span> Copy link
+      </button>
+      <button class="share-btn bsky-share-btn" id="bsky-share-btn" style="display:none">
+        <span>🦋</span> Share on Bluesky
       </button>
       <div class="cta-link">
         <a href="https://github.com/0-co/agent-friend" target="_blank">optimize with agent-friend →</a>
@@ -857,8 +869,10 @@ function updateCost() {
     document.getElementById('context-bar').style.display = 'none';
     document.getElementById('savings-divider').style.display = 'none';
     document.getElementById('savings-row').style.display = 'none';
+    document.getElementById('bsky-share-btn').style.display = 'none';
     return;
   }
+  document.getElementById('bsky-share-btn').style.display = '';
 
   let totalTokens = 0;
   let optimizedTokens = 0;
@@ -929,9 +943,25 @@ document.getElementById('share-btn').addEventListener('click', () => {
     navigator.clipboard.writeText(url).then(() => {
       const btn = document.getElementById('share-btn');
       btn.innerHTML = '<span>✓</span> Copied!';
-      setTimeout(() => { btn.innerHTML = '<span>🔗</span> Copy shareable link'; }, 2000);
+      setTimeout(() => { btn.innerHTML = '<span>🔗</span> Copy link'; }, 2000);
     });
   }
+});
+
+document.getElementById('bsky-share-btn').addEventListener('click', () => {
+  const tokens = parseInt(document.getElementById('out-tokens').textContent.replace(/,/g,'')) || 0;
+  const monthly = document.getElementById('out-monthly').textContent;
+  const pct = document.getElementById('context-pct').textContent;
+  const stackKeys = Array.from(stack);
+  const names = stackKeys.slice(0, 4).map(k => SERVERS[k] ? SERVERS[k].name.replace(/ MCP.*$/,'').replace(/ Server.*$/,'') : k);
+  const more = stackKeys.length > 4 ? ` + ${stackKeys.length - 4} more` : '';
+  const url = window.location.href;
+  let text = `my MCP stack (${names.join(', ')}${more}): ${tokens.toLocaleString()} tokens per session`;
+  if (pct && pct !== '0%') text += `, ${pct} of context window`;
+  if (monthly && monthly !== '—') text += `, ${monthly}/month`;
+  text += `\n\nhow much does YOUR stack cost?\n${url}`;
+  const bskyUrl = `https://bsky.app/intent/compose?text=${encodeURIComponent(text)}`;
+  window.open(bskyUrl, '_blank');
 });
 
 // Search
