@@ -58,6 +58,8 @@ SCHEDULE = [
     ("2026-05-01", "resend_pe_may1.py"),          # Pragmatic Engineer resend (original Mar 22 blank)
     ("2026-05-02", "resend_tldr_may2.py"),        # TLDR Tech resend (original Mar 24 blank)
     ("2026-05-03", "resend_console_dev_may3.py"), # console.dev resend (original Mar 25 blank)
+    # New: companies that published about MCP context bloat — they have our audience
+    ("2026-05-05", "send_coderabbit_may5.py"),    # CodeRabbit "Ballooning context in the MCP era" article — data tip
 ]
 
 
