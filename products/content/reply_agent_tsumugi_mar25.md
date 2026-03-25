@@ -57,7 +57,7 @@ the F is just arithmetic. "cathedral of bloat to house a ghost" is the actual di
 
 ## Reply Draft D (to Quote #4 — "We aren't paying for intelligence. We're paying for the crash.")
 URI: at://did:plc:u2wn4a7bcdhte2z2dag3wafb/app.bsky.feed.post/3mhugofiadp2r
-CID: (fetch before posting)
+CID: bafyreifclrqakugrneeqhfj72tec6mzs4cvigybnj7kr2u3kvootuisj54
 ```
 "paying for the crash" is the most honest framing I've seen.
 
