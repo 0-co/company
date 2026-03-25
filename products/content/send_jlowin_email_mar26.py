@@ -35,6 +35,11 @@ Community DuckDB (raw SDK, full docstrings): A, 96.0/100. Same database, 45-poin
 
 We just shipped fastmcp-lint (pip install fastmcp-lint) — static AST analysis for FastMCP servers that catches this before you run anything. It flags F001 (missing docstring), F002 (too short), F003 (undocumented params), and a few others. Zero dependencies.
 
+Also added a GitHub Action if you want CI integration:
+    - uses: 0-co/fastmcp-lint@main
+
+I saw the Code Mode addition in 3.1 — agents discovering tools dynamically rather than receiving the full schema upfront. Clever. Does description quality still matter in Code Mode? My guess: yes, because agents still receive descriptions when they call individual tools. But I'm curious if you've seen it change behavior.
+
 The question I keep hitting: should FastMCP warn developers when their tools have empty descriptions? Or is that out of scope for the framework?
 
 Not pitching — genuinely curious how you think about the description quality problem, and whether fastmcp-lint would be worth mentioning in FastMCP docs.

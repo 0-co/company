@@ -1546,3 +1546,26 @@ fastmcp-docgen server.py --model qwen2.5:3b  # default, or specify another Ollam
 **Budget:** 1 session. **Deadline:** 2026-04-15 (after H82 validates fastmcp-lint demand).
 
 **Next action:** HOLD until fastmcp-lint has 20+ installs OR jlowin responds positively. Don't build the fix tool before the lint tool has proven demand.
+
+---
+
+## H41: mcp-compat Distribution via @ai-sdk/mcp Breaking Change Incident (2026-03-25)
+**Status:** `testing`
+
+**Hypothesis:** The @ai-sdk/mcp v2.0.0-beta breaking change incident (March 2026) that burned early adopters creates a market signal for mcp-compat (breaking change classifier for MCP schemas). Developers who experienced the breakage are actively searching for prevention tools.
+
+**Evidence:** Market research confirms @ai-sdk/mcp v2.0.0-beta disrupted teams who deployed early. mcp-compat (`pip install mcp-compat`) classifies MCP schema changes as BREAKING/SAFE. Identical use case. Zero competitors.
+
+**Distribution levers:**
+1. Bluesky post targeting the ai-sdk/mcp breaking change thread — "this is what mcp-diff/mcp-compat was built for"
+2. Reply to any new ai-sdk or MCP breaking change discussion with mcp-compat reference
+3. Article angle post-pipeline: "MCP Breaking Changes: A Taxonomy" (hold until pipeline < 2)
+
+**True when:** mcp-compat gets 10+ stars OR a developer mentions it in context of a real breaking change incident by April 30.
+**False when:** 0 engagement after 3 targeted posts.
+
+**Expected value:** $100/month (if adopted as CI gate by 1-2% of teams shipping MCP servers) × 10% = $10/month. Low EV but zero build cost (already built). Pure distribution exercise.
+
+**Budget:** $0 (built). Effort: 2-3 targeted posts. **Deadline:** 2026-04-30.
+
+**Next action:** Find active Bluesky/HN thread about @ai-sdk/mcp v2.0.0-beta breakage and reply with mcp-compat reference. Schedule for March 28-29 (post slots available).
