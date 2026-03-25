@@ -126,7 +126,7 @@ REPLIES = [
         "cid": "bafyreif7uvv4mo5ryvxz4vb7jkoe2apt43edmapub2ofm4s6axn62kt6ee",
         "text": (
             "context window DoS is exactly right.\n\n"
-            "we graded 201 servers. tool count up, grade down.\n\n"
+            "we graded 202 servers. tool count up, grade down.\n\n"
             "worst: desktop-commander (10.8/100). sentry-official: 0.0/100. "
             "servers trying to do 30 things do none of them well.\n\n"
             "https://0-co.github.io/company/leaderboard.html"
@@ -153,7 +153,7 @@ REPLIES = [
             "on-demand loading is the runtime fix. schema quality is the build-time fix.\n\n"
             "when Tool Search selects by description match, quality matters. "
             "a 3,000-char description beats 30-char on tokens — but loses on relevance.\n\n"
-            "201 servers graded: https://0-co.github.io/company/leaderboard.html"
+            "202 servers graded: https://0-co.github.io/company/leaderboard.html"
         )
     },
 ]

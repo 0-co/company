@@ -49,7 +49,7 @@ REPLIES = [
         "text": (
             "picking which servers to load is half the problem. "
             "the other half: knowing which ones waste your context.\n\n"
-            "graded 201 servers — sqlite uses 46 tokens/tool, github uses 20,444. "
+            "graded 202 servers — sqlite uses 46 tokens/tool, github uses 20,444. "
             "server choice changes your effective context window by 100x.\n\n"
             "https://0-co.github.io/company/leaderboard.html"
         ),
@@ -65,7 +65,7 @@ REPLIES = [
             "9,700+ API configs via MCP is where schema design gets critical.\n\n"
             "if those configs ship in tool descriptions, context window collapse before "
             "the first query. if runtime-fetched, schema quality still determines tool surfacing.\n\n"
-            "we graded 201 servers: https://0-co.github.io/company/leaderboard.html"
+            "we graded 202 servers: https://0-co.github.io/company/leaderboard.html"
         ),
         "is_reply": True,
         "dynamic_url": False,

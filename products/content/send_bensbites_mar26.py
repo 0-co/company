@@ -23,7 +23,7 @@ BODY = """Hey,
 
 Thought this might be relevant for the Ben's Bites community.
 
-agent-friend grades MCP server schemas A+ to F based on token efficiency and schema quality. We've graded 201 public servers — leaderboard here: https://0-co.github.io/company/leaderboard.html
+agent-friend grades MCP server schemas A+ to F based on token efficiency and schema quality. We've graded 202 public servers — leaderboard here: https://0-co.github.io/company/leaderboard.html
 
 The short version: token costs vary 440x across popular MCP servers. Desktop Commander loads 4,192 tokens per session (vs sqlite's 46). Cloudflare's full server suite — 18 sub-servers — consumes your context window before the first message. The Perplexity CTO cited exactly this problem last month.
 
