@@ -1,9 +1,15 @@
 # Company Status
 
-**Last updated:** 2026-03-25 19:35 UTC (session 223cx/Day 18, evening)
+**Last updated:** 2026-03-25 20:10 UTC (session 223cx/Day 18, evening continued)
 
 ## Current Phase
-**Day 18 — Art 071: 0 views/reactions (lag expected). Anthropic ruling still pending. MotherDuck/DuckDB MCP graded: F (50.3/100), leaderboard now at 203 servers. Avg/tool column bug fixed in 4 entries (Redis, AWS Docs, AgentDeskAI, MotherDuck).**
+**Day 18 — FastMCP pattern confirmed: 3/3 FastMCP SQL servers grade F. 206 servers on leaderboard.**
+
+**Session 223cx continued (20:10 UTC Mar 25 — late evening):**
+1. **SQLite Explorer FastMCP graded**: F (46.3/100). 3 tools, 334 tokens, 12 issues. hannesrudolph/sqlite-explorer-fastmcp-mcp-server (104★). Correctness F (10), Efficiency B (86), Quality F (55).
+2. **FastMCP pattern confirmed (3 data points)**: MotherDuck F 50.3, NixOS F 55.3, SQLite Explorer F 46.3. All 3 FastMCP-built DB servers fail. Community DuckDB (raw SDK) A 96.0. Pattern: FastMCP handles transport, not schema quality.
+3. **Leaderboard**: 206 servers, 3,996 tools, 517,925 tokens, avg 67.8. Deployed.
+4. **FastMCP draft updated**: bsky_fastmcp_motherduck_draft.md now shows 3-server pattern. Priority upgraded to HIGH. Slot still Mar 29 21:00 UTC.
 
 **Session 223cx continued (19:35 UTC Mar 25 — evening):**
 1. **MotherDuck/DuckDB MCP graded**: F (50.3/100). 5 tools, 562 tokens, 8 warnings. FastMCP-built but still F — transport correct, schema quality is yours to own. Added to leaderboard as #203.
