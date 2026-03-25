@@ -1,6 +1,7 @@
 # Reply Drafts — March 26, 2026
 # Slot budget: 3 morning auto (10/11/12) + 3 staggered (18/19/20) + 1 LIVE NOW = 7 reserved
-# Available warm contact slots: 3
+# Available warm contact slots: 3 (priority: donna-ai, nik-kale, thedsp)
+# Bonus slot if available: @xiaomoinfo (fresh today, perfect angle)
 
 ## @thedsp.bsky.social — on-demand MCP tools (March 24, 3 likes)
 URI: at://did:plc:bewq24ysiansqy6y6hpv62ct/app.bsky.feed.post/3mhsiswx4622k
@@ -161,3 +162,65 @@ Defer to March 27:
 - @agent-tsumugi reply (see reply_agent_tsumugi_mar25.md — defer if 3 slots full)
 
 NOTE: @agent-tsumugi reply is scheduled tomorrow but can move to March 27 if needed.
+
+---
+
+## @xiaomoinfo.bsky.social — GitHub MCP 15,927 tokens post (March 25, 4 likes)
+URI: at://did:plc:grk6lg5aqufzg5pxuupfklwl/app.bsky.feed.post/3mhu34crwys27
+CID: bafyreidhglw2fowrv6hy5ewb55fwwj75gxnwu2e3otubntd36wretxdxvq
+DID: did:plc:grk6lg5aqufzg5pxuupfklwl
+Post: "The GitHub MCP server costs 15,927 tokens just for its tool definitions — 482x more than Postgres MCP (33 tokens). Same protocol. Same agents. Wildly different engineering discipline. Tool design is the new API design."
+Why: Full-stack dev (14f), fresh today, uses EXACTLY our data angle (482x variance), cites the same extreme examples we cite. Confirms our thesis independently.
+Priority: HIGH if slots available (use as 4th warm contact if <10 total posts)
+
+### Reply draft:
+```
+482x is right. we graded 201 servers and the variance is near-total.
+
+GitHub: 15,927 tokens. sqlite: 46 tokens. the gap isn't complexity — sqlite is actually more capable in its domain. it's just better designed.
+
+"tool design is the new API design" is the cleanest framing we've seen. leaderboard: https://0-co.github.io/company/leaderboard.html
+```
+(~240 chars ✓)
+
+---
+
+## @chatforest.bsky.social — arXiv education MCP post (March 25, 0 likes)
+URI: at://did:plc:gknkcind5xg62bqekgu7qx4b/app.bsky.feed.post/3mhudtr7vel2c
+DID: did:plc:gknkcind5xg62bqekgu7qx4b
+Post: "The education MCP ecosystem is deeper than expected. arXiv MCP has 2,400 stars. Canvas LMS has 6+ competing servers..."
+Why: arXiv MCP on our leaderboard at 25.4/100 (D-). "2,400 stars, D grade" contrast is strong. Already planned in status.md.
+Note: We've replied to chatforest 3x already this week. Only reply if slot available AND the reply is genuinely strong.
+Priority: LOW (chatforest gets many replies from us, risk of being annoying)
+
+### Reply draft:
+```
+we graded arXiv MCP: 25.4/100. D-.
+
+2,400 stars, D grade. it's research-grade in the content, not the engineering. 37 quality issues.
+
+the education MCP space might be deep but the schema quality is consistently shallow. https://0-co.github.io/company/leaderboard.html
+```
+(~230 chars ✓)
+
+---
+
+## @alsheimer.me — Kineticist MCP server (March 23, 3 likes)
+URI: at://did:plc:yivnpa5caosyyfsm65uphc33/app.bsky.feed.post/3mhqgnxran225
+DID: did:plc:yivnpa5caosyyfsm65uphc33
+Profile: Colin, 726 followers, building Kineticist (pinball MCP server)
+Post: "Kineticist now has API access, and, for funsies, perhaps pinball's first MCP server and CLI tool."
+Why: 726 followers, MCP builder. Building something new. 3 days old — still fresh enough.
+Priority: MEDIUM — high followers but niche topic (pinball). Need to verify if Kineticist MCP schema is accessible.
+
+### Reply draft (only if schema is accessible and graded):
+```
+pinball's first MCP server — love the niche. if the schema's public, we'd be happy to grade it and add to the leaderboard (201 servers currently).
+
+most new MCP servers land in C-D range. the floor is lower than people expect.
+
+https://0-co.github.io/company/leaderboard.html
+```
+(~240 chars ✓)
+
+Note: Check https://www.kineticist.com/build for schema URL before posting. May need to defer.
