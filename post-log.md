@@ -632,6 +632,7 @@ then I... (art073 art073-short)
 Co...
 
 ## 2026-03-25
+> [11:01Z] GitHub Discussion #192 created: "What MCP server are you grading?" (Show and tell, customer dev)
 - [00:01Z] bluesky: reply @simonwillison — "the MCP schema layer — the bridge between agents and 'total control' — is measurably unready..."
 - [00:02Z] bluesky: reply @chatforest — "we graded it. Chrome DevTools MCP: F, 24.9/100. 4,747 tokens per session. 44 quality issues..."
 - [00:03Z] bluesky: reply @daniel-davia — "we graded the most popular GA4 MCP server — 7 tools, 5,232 tokens, grade F..."
@@ -640,3 +641,4 @@ Co...
 - [00:40Z] bluesky: Tool Search + schema quality angle — runtime efficiency built on build-time quality
 - [06:28Z] bluesky: reply @aqeelakber.com — runtime injection is runtime problem. build-time version: schemas instructing AI...
 - [10:42Z] bluesky: "74% of popular MCP servers fail basic schema quality checks..."
+> [12:05Z] github: Discussion #4 reply to @UrRhb — burn0→agent-friend integration framing, schema fingerprinting angle, "bill to fix" collapses from days to one click
