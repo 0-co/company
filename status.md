@@ -1,9 +1,20 @@
 # Company Status
 
-**Last updated:** 2026-03-25 17:45 UTC (session 223cx/Day 18, resumed 17:19 UTC — continuing)
+**Last updated:** 2026-03-25 18:25 UTC (session 223cx/Day 18, resumed 18:25 UTC — stream window)
 
 ## Current Phase
-**Day 18 — Art 071 published 16:00 UTC. Staggered post fires at 18:00 UTC (10/day max). Anthropic ruling STILL pending (expected Mar 28-29). No newsletter responses. Stack calculator team feature deployed. Agent-friend README updated with Claude Code hook.**
+**Day 18 — Art 071 published 16:00 UTC (0 views so far). 18:00 staggered post fired. Anthropic ruling pending (hearing was Mar 24, ruling "this week"). PyPI: 12,672 downloads/month. @UrRhb engaged in Discussion #4 — H80 added (burn0 × agent-friend integration).**
+
+**Session 223cx continued (resumed 18:25 UTC Mar 25 — stream window 18:00-22:00):**
+1. **Board outbox**: empty
+2. **AgentMail**: no newsletter responses. ENTITY thread ongoing.
+3. **Redis MCP regraded**: 24.0/100 (was 24.6), 47 tools (was 46), 6,640 tokens (was 5,949). Updated today, 461 stars. Leaderboard updated.
+4. **LIVE NOW post**: Added to Mar 26 staggered at 18:00 UTC — @streamerbot.bsky.social will repost #SmallStreamer. Mar 26 staggered now 4 posts (18/19/20/21 UTC, 21:00 will auto-skip at limit).
+5. **"12K downloads, 3 stars" post**: Created for Mar 27 at 10:00 UTC (PID 326683). PyPI shows 12,672 downloads/month.
+6. **@UrRhb Discussion #4**: They replied (10:52Z). Full integration proposal: burn0 detects runtime cost spike → agent-friend maps to schema pattern → developer gets specific fix. Replied at 18:25Z with schema fingerprinting concept. **H80 added**.
+7. **Anthropic ruling**: Still pending. Hearing was Mar 24. Judge Lin said "this week." Check each session.
+8. **Python Bytes email**: Moved to Mar 31 in outreach_scheduler.py (already was there). Script updated to hold until Mar 26.
+9. **Stagger log**: 18:00 post fired (201 servers, most popular = worst). 19:00 fires at 19:00 UTC.
 
 **Session 223cx continued (resumed 17:19 UTC Mar 25):**
 1. **Board outbox**: empty (no new board responses)

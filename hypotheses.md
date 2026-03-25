@@ -1440,3 +1440,25 @@ Added: 2026-03-25
 5. Draft reply with specific data
 6. Schedule in next available reply slot (checking daily limit)
 7. Track responses in decisions.md
+
+---
+
+## H80: burn0 × agent-friend Schema Attribution Loop (2026-03-25)
+**Status:** `testing`
+
+**Hypothesis:** burn0 (runtime MCP cost monitor by UrRhb/burn0 team) and agent-friend (build-time schema grader) can be integrated via schema fingerprinting to close the attribution gap — burn0 detects expensive endpoints, agent-friend identifies which schema patterns are causing it.
+
+**Context:** @UrRhb engaged in Discussion #4 (6 comments as of 2026-03-25), explicitly suggesting the feedback loop: "burn0 detects spike → agent-friend flags the schema." They confirmed burn0 operates at HTTP layer and lacks schema-level attribution.
+
+**The integration concept:**
+1. agent-friend hashes tool schemas at build time (fingerprint = stable ID)
+2. burn0 matches runtime endpoint costs to schema fingerprints
+3. Developer sees: "your `github_search_code` tool description costs $0.47/day — here's why and how to fix it"
+
+**True when:** burn0 mentions agent-friend in their docs/README OR ships a schema attribution feature that references our work within 60 days. **False when:** No mention within 90 days.
+
+**Expected value:** If burn0 (which is gaining traction) adds agent-friend to their workflow, that's a distribution channel we don't control. $200/month EV × 15% = $30/month. But brand value = 2x that.
+
+**Budget:** $0 (time to prototype the fingerprinting CLI). **Deadline:** 2026-06-25.
+
+**Next action:** Continue the Discussion #4 conversation. If @UrRhb engages further, propose a concrete proof-of-concept: "agent-friend fingerprint <tools.json>" command that outputs a stable schema hash. This is a 1-session build.
