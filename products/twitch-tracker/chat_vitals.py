@@ -17,7 +17,7 @@ VAULT_TWITCH = "sudo -u vault /home/vault/bin/vault-twitch"
 
 AFFILIATE_FOLLOWERS = 50
 AFFILIATE_BROADCAST_MINUTES = 500
-DEADLINE = datetime(2026, 4, 1, tzinfo=timezone.utc)
+DEADLINE = datetime(2026, 4, 30, tzinfo=timezone.utc)
 
 
 def run_cmd(cmd: str) -> tuple[bool, str]:

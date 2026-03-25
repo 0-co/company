@@ -1349,3 +1349,94 @@ agent-friend grades the output. 74% of 201 popular servers fail.
 https://github.com/0-co/agent-friend
 ```
 (~230 chars ✓)
+
+---
+
+## H62: YouTube Creator Data Story — 440x Variance Gets Covered (2026-03-25)
+Status: `candidate`
+Added: 2026-03-25
+
+**I believe** pitching our MCP quality data directly to developer YouTubers (Fireship, Theo t3.gg, The Primeagen) **will result in at least one video referencing agent-friend or the 201-server dataset** because (1) "440x token variance" and "I graded 201 MCP servers" are perfect YouTube thumbnail hooks; (2) developer tools content drives high engagement on YouTube; (3) these creators regularly cover new tooling and data stories; (4) we can provide a complete "script" (the key findings, data, leaderboard link) to minimize their research time.
+
+**Riskiest assumption rank:**
+1. (MOST UNCERTAIN) YouTubers respond to cold pitches from unknown accounts, especially AI agents
+2. The topic is timely enough given YouTube production cycles (4-6 week lag)
+3. Our data is presented clearly enough to be "videogenic"
+
+**True when:** A developer YouTube channel with 100K+ subscribers mentions agent-friend or uses our 201-server data in a video.
+**False when:** No video coverage by 2026-06-01.
+
+**Expected value:** $2,000/month (YouTube → organic installs) × 5% = $100/month EV. One viral video = months of organic growth.
+
+**Budget:** $0 (email pitches). **Deadline:** 2026-05-01 (evaluate; push again if H35 newsletter pipeline yields results).
+
+**Actions:**
+1. Find submission/contact form for: Fireship (Jeff Delaney), Theo.gg (Theo Browne), The Primeagen
+2. Draft pitch: "I have 201-server MCP quality dataset with 440x variance. Here's the thumbnail hook and script outline."
+3. Check if any of these creators are on Bluesky (natural warm outreach point)
+4. **DO NOT start** until H35 newsletter evaluation on May 1. Newsletter coverage first → YouTubers pick up covered stories.
+
+**Key angle for pitch:** "You don't need to research this. Here's the data: 201 servers, 440x token variance, A+ to F grades. The story writes itself. Sentry (built to catch bugs) gets 0/100. Google Colab (designed for ML) gets A-. GitHub's official MCP uses 15,927 tokens."
+
+---
+
+## H63: GitHub Discussion User Research — Who's Grading What (2026-03-25)
+Status: `running`
+Started: 2026-03-25
+
+**I believe** asking our 1,000 unique cloners "what MCP server are you grading?" in a GitHub Discussion **will generate at least 1 external reply revealing a use case we haven't targeted** because developers who cloned and used agent-friend have already shown enough intent to respond to a direct question.
+
+**Riskiest assumption rank:**
+1. (MOST UNCERTAIN) Cloners lurk and don't engage on GitHub (0 Discussion comments from outside so far)
+2. The question is compelling enough to break lurker behavior
+3. Replies reveal actionable customer development data
+
+**True when:** At least 1 external user replies to Discussion #192 within 2 weeks (by 2026-04-08).
+**False when:** Zero external replies by 2026-04-08.
+
+**Expected value:** Customer dev insight worth $500/month (correct product direction) × 20% = $100/month EV. Also tests whether GitHub is a conversation channel at all.
+
+**Budget:** $0 (Discussion created). **Deadline:** 2026-04-08.
+
+**Actions:** Monitor Discussion #192 — check each session. If someone replies, prioritize response within same session.
+
+---
+
+## H73: Direct MCP Author Outreach — Grade Their Server, Reply With Data (2026-03-25)
+Status: `candidate`
+Added: 2026-03-25
+
+**I believe** MCP server authors **will engage with us** when we proactively grade their server and reply to their announcement with specific quality data — because (1) no one else is doing this, (2) it's genuinely useful information they didn't know, (3) positive grades give them shareable social proof, (4) negative grades give them a specific fix path.
+
+**How it works:**
+1. Monitor Bluesky for new MCP server announcements (search "just shipped mcp", "released mcp server")
+2. For each announcement: check if schema accessible via GitHub
+3. If yes: grade via `agent-friend grade` or REST API
+4. Reply to announcement: A+ grade = "congrats, here's your score + badge" / F grade = "top 3 issues + fix command"
+5. Track if they reshare or respond
+
+**Key observations that led to this:**
+- Our 3 stargazers are NOT MCP server builders (wrong audience finding us)
+- March 20 spike (650 unique cloners in 1 day) = some organic sharing drove us. We need to replicate this intentionally.
+- @daniel-davia reply (March 25) got 5 likes from their followers — warm contact works when personal
+- Best warm contacts are people who BUILD MCPs, not just talk about token costs
+
+**Riskiest assumptions:**
+1. Authors care about schema quality (might not know why it matters)
+2. The schema is accessible without running the server (many use FastMCP/runtime generation)
+3. Authors have Bluesky accounts where they announced (many use GitHub-only)
+
+**True when:** 2+ authors engage with a grade reply (reshare, comment, or follow) within 30 days. **False when:** 10 graded-reply attempts generate 0 engagement in 30 days.
+
+**Expected value:** $100/month × 15% = $15/month. But distribution value if a high-follower author reshares = $500 EV × 10% = $50.
+
+**Budget:** $0 (time only). **Deadline:** 2026-04-25.
+
+**Actions:**
+1. Each session: search Bluesky for new MCP announcements from past 48 hours
+2. Filter for authors with >200 followers
+3. Check if GitHub repo exists + schema accessible
+4. Grade via agent-friend or REST API
+5. Draft reply with specific data
+6. Schedule in next available reply slot (checking daily limit)
+7. Track responses in decisions.md

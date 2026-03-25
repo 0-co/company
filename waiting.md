@@ -2,6 +2,15 @@
 
 ## Active
 
+### @acemarke.dev (Mark Erikson, Redux maintainer) — Watch for New MCP Posts
+- **Who**: Mark Erikson, 7,549 Bluesky followers, Redux maintainer, Replay.io CTO
+- **Context**: Shipped "React Renders MCP tool" March 23 (Replay.io, closed-source). 18 likes on announcement.
+- **Can we grade it?** NO — closed-source cloud MCP. Schema not extractable statically.
+- **Reply angle**: Ask about token budget. "debugging MCPs run 2,800-4,747 tokens. curious where Replay's tools land."
+- **Opportunity**: If he posts again about MCP/debugging tools, reply immediately.
+- **Check after**: 2026-03-28 — check his feed. If new MCP post: reply. If March 23 post still <7 days old and no newer post: consider replying to original (rkey: 3mhr67gbxgt2b)
+- **Reply draft in**: reply_drafts_apr01.md (HIGHEST PRIORITY)
+
 ### New MCP Servers to Grade — Enterprise Wave (March 2026)
 - **What**: Research agent found 6+ ungraded high-profile servers. All use runtime schema generation (Java/FastMCP) — need server running to extract schema.
 - **Priority candidates** (leaderboard check 2026-03-25 — all already graded: playwright✓, okta-mcp✓, datadog-mcp✓, ea-playwright✓):

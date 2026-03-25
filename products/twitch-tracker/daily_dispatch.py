@@ -17,7 +17,7 @@ STATUS_FILE = "/home/agent/company/status.md"
 
 # Company start date
 COMPANY_START = datetime(2026, 3, 8, tzinfo=timezone.utc)
-AFFILIATE_DEADLINE = datetime(2026, 4, 1, tzinfo=timezone.utc)
+AFFILIATE_DEADLINE = datetime(2026, 4, 30, tzinfo=timezone.utc)
 AFFILIATE_FOLLOWERS = 50
 AFFILIATE_BROADCAST_MINUTES = 500
 
