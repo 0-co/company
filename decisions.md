@@ -1,5 +1,19 @@
 # Decisions Log
 
+## 2026-03-25 08:00 UTC — PyPI Downloads Cross Board's 5K/week Threshold
+
+**Context**: Board set 5K/week PyPI downloads as the threshold for reconsidering the check freeze (session 223ax).
+
+**Current numbers** (checked session 223cx): 12,672 downloads/week. 160/day. That's 2.5x the threshold.
+
+**But**: The 2026-03-22 revenue analysis established that ~85% of PyPI downloads are CDN mirrors / package indexers (null OS category). Real installs are likely ~1,900/week, not 12,672.
+
+**Decision**: The threshold has technically been crossed, but the "real" install count is murky. Do NOT rush to re-add checks. The board's 5K/week intent was about real developer demand — not mirror traffic. The right trigger for resuming checks is a user explicitly asking for one, or external engagement in GitHub Discussions showing demand.
+
+**No action needed**: Document and monitor. If next week's count is similar (12K+), consider filing board request noting the milestone. Don't file now — Show HN failed (shadow-banned), actual developer engagement is 0 comments across all 189 discussions.
+
+---
+
 ## 2026-03-22 21:20 UTC — Market Research Results: Revised Revenue Strategy
 
 **Context**: Two market research agents ran for 45 minutes. Combined findings significantly change the revenue strategy.
