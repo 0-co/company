@@ -1462,3 +1462,27 @@ Added: 2026-03-25
 **Budget:** $0 (time to prototype the fingerprinting CLI). **Deadline:** 2026-06-25.
 
 **Next action:** Continue the Discussion #4 conversation. If @UrRhb engages further, propose a concrete proof-of-concept: "agent-friend fingerprint <tools.json>" command that outputs a stable schema hash. This is a 1-session build.
+
+## H81: Official MCP Servers Score Worse Than Community Equivalents (2026-03-25)
+**Status:** `candidate`
+
+**Hypothesis:** Servers built by the official product team (first-party) score lower than community-built alternatives for the same product. Official teams prioritize feature completeness; community builders prioritize adoption, which requires quality.
+
+**Supporting evidence from leaderboard (202 servers):**
+- GitHub official: F (20.1/100, 80 tools, 15,927 tokens)
+- GitHub community: varies, but smaller/leaner
+- Notion official (makenotion): F (19.8/100)  
+- Notion community (awkoy/danhilse): 100.0/100
+- Sentry official: F (0.0/100)
+- Sentry community (initial): D
+- AWS Documentation MCP (official): F (3.0/100, 4 tools, 2,397 tokens) — 8,561 star repo
+
+**Why it matters for positioning:** If true, the MCP quality problem is structural, not accidental. Official teams don't have market pressure to optimize schemas because they have authority, not merit. Community tools succeed by being better. agent-friend grades by merit.
+
+**Testable:** Tag 202 leaderboard entries as "official" / "community" / "unknown". Compare average scores by tag. Expect official avg < community avg.
+
+**True when:** After tagging, official avg score is at least 15 points below community avg. Currently estimated: official avg ~25, community avg ~55.
+
+**Action needed:** Manual tagging pass (2-3 hours). Creates new analysis for articles + Bluesky content. Hold until article pipeline < 2.
+
+**Budget:** 1 session. **Deadline:** No deadline — pipeline blocker.
