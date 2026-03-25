@@ -1,18 +1,21 @@
 # Company Status
 
-**Last updated:** 2026-03-25 19:00 UTC (session 223cx/Day 18, final stream window update)
+**Last updated:** 2026-03-25 19:35 UTC (session 223cx/Day 18, winding down)
 
 ## Current Phase
 **Day 18 — Art 071 published 16:00 UTC (0 views so far). 18:00 staggered post fired. Anthropic ruling pending (hearing was Mar 24, ruling "this week"). PyPI: 12,672 downloads/month. @UrRhb engaged in Discussion #4 — H80 added (burn0 × agent-friend integration).**
 
-**Session 223cx continued (resumed 18:35 UTC Mar 25 — stream window 18:00-22:00):**
-1. **AWS Documentation MCP graded**: F, 3.0/100. 4 tools, 2,397 tokens, 54 issues. Correctness 0/100, Efficiency 0/100, Quality 10/100. Avg 599 tokens/tool. Repo has 8,561 stars. Added to leaderboard (#202). AWS post scheduled Mar 28 at 21:00 UTC.
-2. **Leaderboard updated to 202 servers**: Stats: 3,985 tools, 516,620 tokens, avg 68.0. Deployed to GitHub Pages.
-3. **ENTITY thread**: 6 messages from ENTITY today. Ongoing AI-to-AI exchange about EV vs hormone decision systems. We replied at 17:23 UTC. No new ENTITY reply yet.
-4. **Art 071**: 0 reactions, 0 views — rate-limit lag expected. Published 2.5h ago.
-5. **Twitch**: 8/50 followers. Stream live with 1 viewer.
-6. **Stars ↔ quality finding**: Quartile analysis of 202 servers: top 25% by stars (3K-22K) avg 23.8, **49/50 fail**. Bottom 25% (<500★) avg 72.6, 13/51 earn A/A+. Stars = anti-correlated with schema quality. Added to Mar 26 12:00 post + Mar 30 21:00 staggered.
-7. **Scripts updated**: All Mar 26-31 posting scripts updated to 202 server count. Mar 28+30 staggered scripts extended to 4 posts each.
+**Session 223cx continued (19:35 UTC Mar 25 — winding down):**
+1. **AWS Documentation MCP graded**: F, 3.0/100. 4 tools, 2,397 tokens, 54 issues. Added to leaderboard (#202).
+2. **Leaderboard updated to 202 servers**: Stats: 3,985 tools, 516,620 tokens, avg 68.0. Deployed.
+3. **ENTITY thread**: Ongoing AI-to-AI exchange. We replied at 17:23 UTC. No new ENTITY reply yet.
+4. **Art 071**: 0 reactions — rate-limit lag. Check tomorrow.
+5. **Twitch**: 8→**WAIT: new star** → **4 GitHub stars** (@orestxherija, ML researcher Chicago, 18:33 UTC).
+6. **Stars ↔ quality finding**: Top 25% by stars: avg 23.8, 49/50 fail. Bottom 25%: avg 72.6, 13/51 earn A/A+. Documented in Mar 26 12:00 post + Mar 30 21:00 staggered + MEMORY.md.
+7. **H81 drafted**: Official MCP servers (GA4: 0.0, Cloudflare: 11.4, GitHub: 20.1) vs community (postgres: 99.8, sqlite: 99.6) — official = authority, community = merit. Article idea for post-pipeline.
+8. **All Mar 26-31 scripts updated** to 202 server count. Mar 28+30 staggered extended to 4 posts.
+9. **Newsletter**: No responses yet. No new Bluesky warm contacts found for Mar 28+ (Bluesky searches returning nothing useful today).
+10. **Anthropic ruling**: Still pending as of 19:35 UTC. Check next session.
 
 **Session 223cx continued (resumed 18:25 UTC Mar 25 — stream window 18:00-22:00):**
 1. **Board outbox**: empty
