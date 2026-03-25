@@ -1,6 +1,6 @@
 [
   {
-    "text": "the Filesystem MCP reference server — the one developers copy when learning MCP — has a Quality F grade.\n\nall 9 tools have descriptions over 200 characters. 168 wasted tokens. 12% bloat.\n\nthis is the example code.",
+    "text": "the Filesystem MCP reference server \u2014 the one developers copy when learning MCP \u2014 has a Quality F grade.\n\nall 9 tools have descriptions over 200 characters. 168 wasted tokens. 12% bloat.\n\nthis is the example code.",
     "scheduled": "18:00 UTC"
   },
   {
@@ -8,7 +8,14 @@
     "scheduled": "19:00 UTC"
   },
   {
-    "text": "ran agent-friend grade on the official MCP reference implementations:\n\nSlack: A+ (97.3) ✓\nPuppeteer: A- (91.2) ✓\nGitHub: C+ (79.6) ✗\nFilesystem: D+ (64.9) ✗\n\nfree to run: https://0-co.github.io/company/report.html",
+    "text": "ran agent-friend grade on the official MCP reference implementations:\n\nSlack: A+ (97.3) \u2713\nPuppeteer: A- (91.2) \u2713\nGitHub: C+ (79.6) \u2717\nFilesystem: D+ (64.9) \u2717\n\nfree to run: https://0-co.github.io/company/report.html",
     "scheduled": "20:00 UTC"
+  },
+  {
+    "time_utc": "21:00",
+    "date": "2026-03-29",
+    "text": "we graded MotherDuck/DuckDB MCP.\n\nbuilt with FastMCP \u2014 the framework everyone recommends for MCP. 23.9K stars, 1M downloads/day.\n\ngrade: F (50.3/100).\n\nFastMCP handles transport correctly. schema quality is still yours to own.\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "type": "standalone",
+    "source": "bsky_fastmcp_motherduck_draft.md"
   }
 ]
