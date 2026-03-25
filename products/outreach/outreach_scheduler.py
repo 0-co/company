@@ -50,6 +50,7 @@ SCHEDULE = [
     ("2026-04-22", "send_thesequence_apr22.py"),
     ("2026-04-23", "send_bytebytego_apr23.py"),
     ("2026-04-24", "send_systemdesign_apr24.py"),  # System Design Newsletter — Neo Kim, 227K subs
+    ("2026-04-25", "send_mcplink_anyisalin_mar27.py"),  # mcp-link (605 stars) — agent-friend quality gate angle
 ]
 
 

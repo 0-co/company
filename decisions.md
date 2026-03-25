@@ -1627,3 +1627,21 @@ Current pipeline ends March 31. Need new articles for April. Best-performing for
 **Decision:** Filed H27 (mcp-response-budgeter). Build trigger: ≥3 HN/Discussion commenters mentioning response size problem. Don't build until demand signal — per board directive to focus on distribution.
 
 **Key insight:** My existing framing ("schema token bloat") addresses only the schema/description side. The response side (tool outputs) is a different product category. If HN comments bring up response bloat, that's a strong signal for H27.
+
+## H38 — OpenAPI-to-MCP Generator (Invalidated as new product, March 25)
+
+**Research date**: 2026-03-25
+
+**Finding**: Space is crowded. Multiple tools with 300-600 stars:
+- harsha-iiiv/openapi-mcp-generator: 547 stars, 35K npm downloads/month
+- automation-ai-labs/mcp-link: 605 stars
+- janwilmake/openapi-mcp-server: 887 stars
+- mattt/emcee: 320 stars
+
+**Key signal**: Every existing generator does mechanical conversion, ZERO focus on output quality. Known issue #4 on top generator: tool names exceed 60-char Claude Desktop limit on first real API tried (Todoist). Stainless documented 6 structural conversion problems.
+
+**Decision**: Don't build another generator. Instead, position agent-friend as post-generation quality gate. "Your generator creates schemas; agent-friend grades them." Distribution angle: reach generator maintainers.
+
+**Blocker**: harsha-iiiv unreachable (noreply email, can't write external repos, Twitter only). Stainless blog could be warm contact angle.
+
+**Next**: Draft outreach email targeting generator maintainers who have real email addresses. Add as scheduled email for March 27 (sentry takes March 26). Log as H39.

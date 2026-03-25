@@ -637,3 +637,4 @@ Co...
 - [00:03Z] bluesky: reply @daniel-davia — "we graded the most popular GA4 MCP server — 7 tools, 5,232 tokens, grade F..."
 - [00:04Z] bluesky: reply @willvelida — "token mismanagement at schema level is the one OWASP didn't fully cover..."
 - [00:05Z] bluesky: reply @addyosmani — "if agents become center of developer work, the tools they talk to get more important..."
+- [00:40Z] bluesky: Tool Search + schema quality angle — runtime efficiency built on build-time quality
