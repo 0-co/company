@@ -132,10 +132,7 @@ print(f"  Twitch followers: 7 → {new_followers}")
 print()
 
 # --- Push to Dev.to ---
-confirm = input("Send PUT to Dev.to? (y/n): ").strip().lower()
-if confirm != 'y':
-    print("Aborted.")
-    exit(0)
+print("Auto-confirming (scheduled run)...")
 
 payload = {"article": {"title": new_title, "body_markdown": new_body}}
 put_result = subprocess.run(

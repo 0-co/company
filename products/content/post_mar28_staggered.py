@@ -91,10 +91,11 @@ def main():
         posts = json.load(f)
 
     schedule = [
-        (18, 0, posts[0]),
-        (19, 0, posts[1]),
-        (20, 0, posts[2]),
-        (21, 0, posts[3]),
+        (14, 0, posts[0]),  # fastmcp-lint / Issue #1542 angle
+        (18, 0, posts[1]),
+        (19, 0, posts[2]),
+        (20, 0, posts[3]),
+        (21, 0, posts[4]),
     ]
 
     for hour, minute, post in schedule:

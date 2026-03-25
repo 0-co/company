@@ -1569,3 +1569,32 @@ fastmcp-docgen server.py --model qwen2.5:3b  # default, or specify another Ollam
 **Budget:** $0 (built). Effort: 2-3 targeted posts. **Deadline:** 2026-04-30.
 
 **Next action:** Find active Bluesky/HN thread about @ai-sdk/mcp v2.0.0-beta breakage and reply with mcp-compat reference. Schedule for March 28-29 (post slots available).
+
+---
+
+## H84: Context Budget Simulator — Animated Context Window Visualization (2026-03-25)
+**Status:** `candidate`
+
+**Hypothesis:** An interactive, animated visualization showing your context window filling up as you add MCP servers will be highly shareable screenshot content and drive organic discovery of agent-friend.
+
+**The product (web page: docs/context-budget.html):**
+- Context window bar that starts at 100% and fills as you add servers
+- Add/remove servers from a searchable list (207 graded servers)
+- Animated fill as tokens accumulate
+- Warning states: 50% = yellow, 80% = orange, 100% = red ("no room for conversation")
+- Compare: "With these 3 servers, you have [X%] of context for actual work"
+- Shareable URL (`#servers=github,slack,filesystem`)
+- "Before your first message, you've already burned..." headline
+
+**Why now:** We have 207 graded servers with exact token counts. This is 2-4 hours of build on top of existing leaderboard data. The animated/emotional frame converts better than static number tables (audit.html traffic ≠ audit.html shares).
+
+**Distribution:** Screenshot-worthy → developers share → tags @agent-friend. "I tried to load 5 MCP servers and this happened" posts. Embed in articles 078-082 with deeplinking.
+
+**True when:** 100+ unique visits within 7 days of launch, OR 3+ organic shares/screenshots.
+**False when:** <30 visits after 14 days.
+
+**Expected value:** $30/month indirect (drives agent-friend clones/stars) × 25% = $7.50/month EV direct, but strong multiplier on awareness. Build cost is 1 session.
+
+**Budget:** 1 session. **Deadline:** candidate — build when articles need new interactive assets (targeting week of March 31 with articles 076-077 or post-April 7 when pipeline is clear).
+
+**Next action:** HOLD until current sprint (Mar 27 fastmcp-lint launch, H82 distribution) has signal. Build week of April 7 if pipeline clear.
