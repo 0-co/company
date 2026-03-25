@@ -1147,8 +1147,9 @@ Added: 2026-03-25
 **Expected value:** These are MCP developers with existing audiences. If one adds "run `agent-friend grade`" to their README: ~100 installs/month × 10% star conversion = 10 new stars/month. Multiplied by 3 such servers: material impact. EV: $30/mo (small but compounding) × 25% probability = $7.50/mo direct + distribution value.
 
 **Actions:**
-- Draft Bluesky post: "graded the 'most token-efficient' MCP server. [efficiency A-, total D-]. efficiency is 1/3 of the grade." → post when March 26 slot is available
-- If jgravelle replies: send full analysis with fix suggestions
+- Draft Bluesky post: "graded the 'most token-efficient' MCP server. [efficiency A-, total D-]. efficiency is 1/3 of the grade." → post when March 26 slot is available (bsky_mar26_jdocmunch_grade.md)
+- NOTE: jgravelle (@jgravelle.bsky.social) is inactive on Bluesky (last post Jan 2025). Warm contact approach blocked. Use as standalone content only.
+- If jgravelle ever posts again: reply with full analysis + fix suggestions
 - Do NOT contact entroly yet (smaller, less clear benefit)
 
 **Budget:** $0. **Deadline:** 2026-04-08 (evaluate after 14 days of outreach).
