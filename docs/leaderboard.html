@@ -1054,6 +1054,19 @@
       box-shadow: 0 0 12px rgba(163,113,247,0.12);
     }
 
+    .chatgpt-filter-btn.active {
+      background: rgba(16,185,129,0.12);
+      border-color: #10b981;
+      color: #10b981;
+      box-shadow: 0 0 12px rgba(16,185,129,0.12);
+    }
+
+    .chatgpt-filter-btn:hover {
+      border-color: #10b981;
+      color: #10b981;
+      background: rgba(16,185,129,0.06);
+    }
+
     .grade-filter-sep {
       width: 1px;
       height: 20px;
@@ -1256,6 +1269,7 @@
         <button class="grade-filter-btn" data-grades="D+,D,D-">D</button>
         <button class="grade-filter-btn" data-grades="F">F</button>
       </div>
+      <button class="grade-filter-btn chatgpt-filter-btn" id="chatgptFilterBtn" title="ChatGPT MCP tool definitions cap at 5,000 tokens. These servers fit.">✓ ChatGPT &lt;5K tokens</button>
     </div>
 
         <!-- Compare Panel -->
@@ -10315,6 +10329,7 @@
     // --- Grade Filtering + Search ---
     var activeGrades = null; // null = all
     var searchQuery = '';
+    var tokenMaxFilter = null; // null = all, number = max tokens
 
     function gradeMatchesFilter(gradeText) {
       if (!activeGrades) return true;
@@ -10342,7 +10357,13 @@
 
         var gradeOk = gradeMatchesFilter(gradeText);
         var searchOk = nameMatchesSearch(dr);
-        var visible = gradeOk && searchOk;
+        var tokenOk = true;
+        if (tokenMaxFilter) {
+          var tokenCell = dr.querySelectorAll('td')[5];
+          var rowTokens = tokenCell ? parseInt(tokenCell.textContent.replace(/,/g,'')) || 0 : 0;
+          tokenOk = rowTokens <= tokenMaxFilter;
+        }
+        var visible = gradeOk && searchOk && tokenOk;
 
         dr.style.display = visible ? '' : 'none';
         if (detailRow) {
@@ -10414,6 +10435,31 @@
         searchQuery = this.value.toLowerCase().trim();
         var table = document.getElementById('leaderboard');
         table.classList.add('interacted');
+        applyFilters();
+      });
+    }
+
+    function setupChatGPTFilter() {
+      var btn = document.getElementById('chatgptFilterBtn');
+      if (!btn) return;
+      btn.addEventListener('click', function() {
+        var isActive = btn.classList.contains('active');
+        if (isActive) {
+          tokenMaxFilter = null;
+          btn.classList.remove('active');
+          // Update URL: remove chatgpt param
+          var url = new URL(window.location.href);
+          url.searchParams.delete('filter');
+          history.replaceState(null, '', url.toString());
+        } else {
+          tokenMaxFilter = 5000;
+          btn.classList.add('active');
+          // Update URL for shareability
+          var url = new URL(window.location.href);
+          url.searchParams.set('filter', 'chatgpt');
+          history.replaceState(null, '', url.toString());
+        }
+        document.getElementById('leaderboard').classList.add('interacted');
         applyFilters();
       });
     }
@@ -10642,6 +10688,7 @@
       setupSorting();
       setupGradeFilters();
       setupSearch();
+      setupChatGPTFilter();
       setupBadgeCopy();
       fixBreakdownColors();
       // Sort by score descending on load (table is in insertion order by default)
@@ -10653,6 +10700,14 @@
         scoreHeader.setAttribute('data-dir', 'desc');
         var arrow = scoreHeader.querySelector('.sort-arrow');
         if (arrow) arrow.innerHTML = '&darr;';
+      }
+      // ChatGPT filter via URL param: ?filter=chatgpt
+      var urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('filter') === 'chatgpt') {
+        tokenMaxFilter = 5000;
+        var cgBtn = document.getElementById('chatgptFilterBtn');
+        if (cgBtn) cgBtn.classList.add('active');
+        applyFilters();
       }
       // Deep link after sort so scroll lands in correct position
       handleDeepLink();

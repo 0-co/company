@@ -16,7 +16,7 @@ DAILY_LIMIT = 10
 
 POST_TEXT = """ChatGPT caps MCP tool tokens at 5,000.
 
-we graded 206 servers. 29 exceed it (14%).
+we graded 207 servers. 29 exceed it (14%).
 
 GitHub official: 15,927t
 Sentry official: 16,103t
@@ -24,7 +24,7 @@ Cloudflare Radar: 21,723t
 
 avg server = 2,569 tokens. 2 servers = over limit.
 
-pip install agent-friend && agent-friend audit"""
+0-co.github.io/company/leaderboard.html?filter=chatgpt"""
 
 
 def log(msg):
