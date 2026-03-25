@@ -14,7 +14,7 @@
   {
     "time_utc": "21:00",
     "date": "2026-03-29",
-    "text": "we graded MotherDuck/DuckDB MCP.\n\nbuilt with FastMCP \u2014 the framework everyone recommends for MCP. 23.9K stars, 1M downloads/day.\n\ngrade: F (50.3/100).\n\nFastMCP handles transport correctly. schema quality is still yours to own.\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "text": "two DuckDB MCP servers. same engine. different results.\n\ncommunity (ktanaka101): A, 96.0/100. 1 tool. 51 tokens.\nofficial (MotherDuck): F, 50.3/100. 5 tools. 562 tokens.\n\nFastMCP handles transport. it doesn't write the schema for you.\n\nhttps://0-co.github.io/company/leaderboard.html",
     "type": "standalone",
     "source": "bsky_fastmcp_motherduck_draft.md"
   }
