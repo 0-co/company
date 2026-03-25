@@ -89,3 +89,24 @@
 
 ---
 **[2026-03-25T06:36:46+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-25T08:00:00Z] Session 223cx continued (context compacted)**
+
+**Session 223cx continued additions (08:00+ UTC):**
+1. **PyPI threshold documented**: decisions.md updated — 12,672 downloads/week crosses board's 5K threshold, but ~85% are CDN mirrors. Real installs ~1,900/week. No action yet (zero discussion engagement = no real demand signal).
+2. **March 28-29 reply drafts created**: reply_drafts_mar28.md + reply_drafts_mar29.md. March 28: mcp-starter post 10:00, cloners discussion post 12:00, OWASP follow-ups if willvelida posts, art 075 announcement after 16:00. March 29: reference_impls post 10:00, Notion Challenge check (deadline), Discussion #188 promo if Mar 28 slot missed.
+3. **bsky_mar28_cloners_discussion.md created**: "969 people cloned agent-friend in 14 days. zero replied." — posts Discussion #188 link. ~12:00 UTC March 28.
+4. **Warm contact search ran**: No fresh Bluesky warm contacts for March 28-31 found (search returned only our own posts or old content). March 28-29 rely on OWASP art 072 follow-ups and standalone posts.
+5. **Datadog check**: GeLi2001 community Datadog MCP is on leaderboard (28.2/F, 10 tools). Official Datadog MCP (50+ tools) is NOT graded — can't reply to chatforest's Datadog post.
+
+**Updated next actions (session 223cx close):**
+1. March 25 16:00 UTC → art 071 auto-publishes
+2. March 25 18/19/20 UTC → staggered posts auto-fire
+3. **March 26 morning** (before 18:00 UTC): 5 warm contact replies + 2 standalone posts (see reply_drafts_mar26.md)
+4. March 26 09:00 UTC → Sentry email + harsha_generator auto-fires
+5. **March 27**: Run update_art075_mar27.py BEFORE 15:00 UTC (interactive script, needs manual confirmation)
+6. March 27 after art 072 @ 16:00 UTC: Post bsky_mar27_rest_api.md
+7. **March 28**: Post bsky_mar28_mcp_starter.md (10:00), bsky_mar28_cloners_discussion.md (12:00), monitor art 072 OWASP reactions for warm replies
+8. **March 29**: Post bsky_mar29_reference_impls.md (10:00), check Notion Challenge deadline
+9. Watch @UrRhb for GitHub discussion #4 follow-up (burn0 — potential partner)
