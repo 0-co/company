@@ -1125,3 +1125,45 @@ Added: 2026-03-25
 **Build cost:** 1 session. OpenAPI spec is JSON → agent-friend already handles JSON tool arrays. Adapter needed: OpenAPI paths/operations → tool array. Then existing fix CLI handles the rest.
 **Status:** candidate — do NOT build until distribution plateau confirmed (evaluate after H35 newsletter results May 1). This is a product extension, not a new product.
 **Budget:** $0. **Deadline:** Evaluate at 2026-05-01.
+
+---
+
+## H46: burn0 Partnership — Pre-Deploy Quality + Runtime Cost = Complete Picture
+Status: `testing`
+Added: 2026-03-25
+
+**I believe** @UrRhb (building burn0 — Node.js API cost tracking) **will mention agent-friend in burn0's docs/README** because (1) burn0 tracks runtime API costs; agent-friend tracks pre-deployment schema token costs — complementary, not competitive, (2) UrRhb already engaged substantively on Discussion #4 with specific technical questions and personal context ("teams rarely measure this stuff until they get a surprise bill"), (3) the "full cost lifecycle" framing — agent-friend finds schema bloat before deploy, burn0 tracks actual spend after deploy — is a natural narrative for both products, (4) burn0 is new (GitHub just created, small audience) and benefits from association with an established tool (agent-friend has 3 stars, 969 cloners, 201 servers graded).
+
+**True when:** burn0 README or docs mentions agent-friend as a "pre-deploy schema quality" step within 30 days (by 2026-04-24).
+
+**False when:** UrRhb doesn't engage with our Discussion #4 comments within 7 days (by 2026-04-01), suggesting the Discussion conversation was curiosity not intent.
+
+**Expected value:** burn0's Node.js audience → agent-friend exposure to Node.js AI developers = estimated 50-200 new GitHub visitors × 2% install rate = 1-4 new installs/month. Small direct, high signal value — if burn0 integrates with us, it validates the "cost lifecycle" narrative for investor/press angles later.
+
+**Actions taken:**
+- Replied to UrRhb's Discussion #4 comment March 25 with substance (2 comments: description-dominance data, lazy loading options)
+- No direct partnership ask yet — relationship first
+
+**Next steps:**
+- If UrRhb replies again: engage further, ask about their burn0 roadmap
+- If no reply by April 1: send a GitHub Discussion reply suggesting the integration angle explicitly
+- Do NOT cold-email (UrRhb is in a technical thread, not a cold lead)
+
+**Budget:** $0. **Deadline:** 2026-04-24.
+
+---
+
+## H47: VS Code Marketplace Distribution (Board Dependency)
+Status: `candidate`
+Added: 2026-03-25
+
+**I believe** publishing the agent-friend VS Code Extension to VS Code Marketplace **will drive 100+ installs within 30 days** because (1) the extension is already built and functional (real-time schema grading in status bar + inline diagnostics, 0.1.0.vsix), (2) VS Code Marketplace discovery = passive ongoing channel (developers searching "MCP" or "Claude tools" find us), (3) 40M+ VS Code users, even 0.01% finding MCP-related extensions = 4,000 potential installs.
+
+**True when:** Extension listed + 100 installs within 30 days.
+**False when:** <10 installs within 30 days after listing.
+
+**Blocker:** Board action needed — Microsoft account + Azure DevOps PAT for marketplace publisher registration. Board request 4-vscode-marketplace-publisher.md filed. Alternatively: Open VSX (open-source alternative, no Microsoft account required — board still needed for initial setup).
+
+**Expected value:** 100 installs × 5% GitHub conversion = 5 new GitHub stars. Discovery channel for indefinite passive growth. $0 revenue direct. $0 cost.
+
+**Budget:** $0. **Deadline:** Board dependent. Evaluate 30 days after listing.

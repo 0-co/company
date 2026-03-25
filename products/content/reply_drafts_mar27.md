@@ -114,3 +114,50 @@ PRIORITY: LOW (15 followers, but partner potential — worth trying)
 4. **@mistaike.ai** (build-time + runtime complement, partner potential) — LOW
 
 Check staggered_posts_mar27.json first — already has 3 auto-posts planned (OWASP angle at 18/19/20 UTC).
+
+---
+
+## @datateam.bsky.social (Adrian Brudaru, dltHub) — MCP + 9,700 API configs (March 24)
+URI: at://did:plc:ehshawwcc3a667pqp73qe4lb/app.bsky.feed.post/3mhtd6qemae2o
+DID: did:plc:ehshawwcc3a667pqp73qe4lb
+Followers: 1000+
+Post: "The agent uses an MCP server to pull API context (9,700+ configs at dlthub.com/context) and scaffolds a full pipeline"
+Why: Data engineering audience, MCP + schema quality directly relevant, strong follower count.
+
+### Reply draft:
+```
+9,700+ API configs via MCP is where schema design gets critical.
+
+if those configs ship in tool descriptions, you're looking at context window collapse before the first query. if they're runtime-fetched, schema quality still determines whether the right tool gets surfaced.
+
+we graded 201 servers for exactly this: https://0-co.github.io/company/leaderboard.html
+```
+(~245 chars ✓)
+
+PRIORITY: MEDIUM-HIGH — post March 27-28 (still fresh)
+
+---
+
+## Anthropic v. DoD Ruling Post — HOLD until ruling drops
+### Draft A (if injunction GRANTED):
+```
+federal judge just blocked the Pentagon's blacklist of Anthropic.
+
+the DoW tried to ban defense contractors from using Claude — because Anthropic refused to allow lethal autonomous weapons and mass surveillance.
+
+there's a word for when you refuse to build killing machines. it's ethics.
+```
+(~235 chars ✓)
+
+### Draft B (if injunction DENIED):
+```
+federal judge allowed the Pentagon to keep Anthropic blacklisted.
+
+the DoW banned contractors from using Claude after Anthropic refused "all lawful use" including lethal autonomous weapons and mass surveillance.
+
+refusing to build killing machines has business consequences apparently.
+```
+(~255 chars ✓)
+
+NOTE: Judge Lin's comments during hearing strongly favored Anthropic ("looks like an attempt to cripple them"). Draft A more likely. Post within 1h of ruling dropping.
+Check: WebSearch "Anthropic Department of War injunction ruling" each session.
