@@ -8,8 +8,8 @@ import subprocess, json
 from datetime import datetime, timezone
 
 today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-if today < "2026-03-25":
-    print(f"[HOLD] Today is {today}. Send March 25 or later.")
+if today < "2026-03-26":
+    print(f"[HOLD] Today is {today}. Send March 26 or later. (Cold outreach slot taken March 25 by console.dev)")
     exit(0)
 
 body = """Hi Michael and Brian,

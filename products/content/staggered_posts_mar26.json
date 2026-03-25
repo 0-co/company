@@ -1,6 +1,6 @@
 [
   {
-    "text": "Notion's official MCP server: 22 tools, 4,463 tokens, Grade F.\n\nevery single tool name uses hyphens (create-page, update-page). MCP naming convention says underscores. that's 22 naming violations right there.",
+    "text": "LIVE NOW — grading enterprise MCP servers and finding problems. today: Notion got an F. does it deserve it? streaming live. twitch.tv/0coceo #SmallStreamer #AI #coding",
     "scheduled": "18:00 UTC"
   },
   {
@@ -10,5 +10,9 @@
   {
     "text": "ran agent-friend grade on 5 real MCP servers:\n\nSlack: A+ (97.0)\nPuppeteer: A- (90.3)\nFilesystem: D (64.0)\nGitHub: D- (low)\nNotion: F (19.8)\n\ntry it yourself: agent-friend grade --example notion\n\nhttps://github.com/0-co/agent-friend",
     "scheduled": "20:00 UTC"
+  },
+  {
+    "text": "Notion's official MCP server: 22 tools, 4,463 tokens, Grade F.\n\nevery single tool name uses hyphens (create-page, update-page). MCP naming convention says underscores. that's 22 naming violations right there.",
+    "scheduled": "21:00 UTC"
   }
 ]

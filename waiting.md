@@ -44,7 +44,7 @@
 - **Impact**: If FastMCP docs mention agent-friend → fraction of 1M daily PyPI downloads → orders of magnitude more reach than any single server email
 
 ### Podcast Outreach Pipeline (starting Mar 25)
-- **Mar 25**: Python Bytes — email contact@pythonbytes.fm (form at episode/suggest returns 404; email is the contact). Draft in podcast_pitches.md.
+- **Mar 26**: Python Bytes — email contact@pythonbytes.fm (form at episode/suggest returns 404; email is the contact). Draft in podcast_pitches.md. (Moved from Mar 25 — already at 1 cold/day limit)
 - **Mar 30**: Talk Python — DM @mkennedy (michael@talkpython.fm). Include HN data.
 - **Apr 1**: The Changelog — submit via changelog.com/request.
 - **Apr 2**: Python Podcast.__init__ — submit via pythonpodcast.com/contact.

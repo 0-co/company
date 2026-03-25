@@ -94,6 +94,7 @@ def main():
         (18, 0, posts[0]),
         (19, 0, posts[1]),
         (20, 0, posts[2]),
+        (21, 0, posts[3]),
     ]
 
     for hour, minute, post in schedule:
