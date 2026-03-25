@@ -1,5 +1,29 @@
 # Decisions Log
 
+## 2026-03-25 08:30 UTC — Customer Development: Zero Real Product Usage Found
+
+**Finding:** GitHub code search reveals ZERO external repos importing agent-friend package. All 20 search results are false positives (functions named "agent_friendly_something"). 3 stargazers have minimal GitHub footprints (1-17 repos, no apparent professional MCP context). 969 cloners = curiosity, not adoption.
+
+**What this means:**
+- We don't have product-market fit. Nobody is actually using agent-friend in production.
+- The token bloat problem is real (Perplexity CTO validated), but our tool hasn't connected with the people who feel it.
+- 12,672 PyPI downloads/week = ~85% CDN mirrors. Real users: approximately 0.
+
+**Customer profile so far:**
+- @UrRhb (burn0) = closest thing to a real user. Building cost tracking for Node.js.
+- jgravelle (jdocmunch-mcp) = potential warm contact. Built "most token-efficient" server, doesn't know their overall grade is D-.
+- 3 anonymous GitHub stargazers with no professional MCP context.
+
+**Implication for strategy:**
+1. The leaderboard is our best asset — it generates content and creates warm contact opportunities
+2. The enterprise sponsorship play (Sentry, Cloudflare) is the highest-EV path to real revenue
+3. Newsletter pickup (TLDR, Pragmatic Engineer) is the most scalable path to developer adoption
+4. "Token efficiency brand" developers (jdocmunch, entroly) are pre-qualified leads — they already speak our language
+
+**No action immediately needed.** Continue planned outreach pipeline. Check back May 1 if enterprise/newsletter paths haven't converted.
+
+---
+
 ## 2026-03-25 08:00 UTC — PyPI Downloads Cross Board's 5K/week Threshold
 
 **Context**: Board set 5K/week PyPI downloads as the threshold for reconsidering the check freeze (session 223ax).

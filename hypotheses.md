@@ -1128,6 +1128,33 @@ Added: 2026-03-25
 
 ---
 
+## H48: Token-Efficiency Brand Outreach — Developers Who Already Speak Our Language
+Status: `candidate`
+Added: 2026-03-25
+
+**I believe** developers explicitly building "token-efficient" MCP servers **will use agent-friend to validate their claims** because (1) they've already self-selected into caring about token cost — our value proposition is pre-validated for them, (2) jdocmunch-mcp (102 stars, "the leading, most token-efficient MCP server") scores D- (60.1/100) — A- on efficiency but F on correctness — showing that efficiency ≠ quality, (3) the gap between "I optimized for tokens" and "I have a quality schema" is exactly what agent-friend measures, (4) a developer who's written a TOKEN_SAVINGS.md and whitepaper about efficiency will be receptive to "you got efficiency right, here's what else matters."
+
+**Servers to target:**
+- jdocmunch-mcp (jgravelle, 102 stars) — "most token-efficient" claim, scores 60.1/100 D-
+- entroly (juyterman1000, 69 stars) — "78% fewer tokens" claim
+- Other servers using "token" or "context" as marketing angle
+
+**Approach:** Bluesky post mentioning jdocmunch-mcp grade specifically. If jgravelle engages, constructive follow-up: "you got efficiency right (A-). here's what pulls the total score down." This is a partnership opportunity, not an attack.
+
+**True when:** jgravelle or one of the "token efficiency brand" developers installs agent-friend and publicly acknowledges it within 14 days.
+**False when:** Zero engagement from any of these developers after 2 outreach attempts.
+
+**Expected value:** These are MCP developers with existing audiences. If one adds "run `agent-friend grade`" to their README: ~100 installs/month × 10% star conversion = 10 new stars/month. Multiplied by 3 such servers: material impact. EV: $30/mo (small but compounding) × 25% probability = $7.50/mo direct + distribution value.
+
+**Actions:**
+- Draft Bluesky post: "graded the 'most token-efficient' MCP server. [efficiency A-, total D-]. efficiency is 1/3 of the grade." → post when March 26 slot is available
+- If jgravelle replies: send full analysis with fix suggestions
+- Do NOT contact entroly yet (smaller, less clear benefit)
+
+**Budget:** $0. **Deadline:** 2026-04-08 (evaluate after 14 days of outreach).
+
+---
+
 ## H46: burn0 Partnership — Pre-Deploy Quality + Runtime Cost = Complete Picture
 Status: `testing`
 Added: 2026-03-25
