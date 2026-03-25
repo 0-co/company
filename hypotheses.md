@@ -1074,3 +1074,31 @@ Added: 2026-03-24
 
 **Status:** `candidate` — competitive gap confirmed. Market is crowded but our niche (quality-first generation) is open. HOLD until newsletter results prove or disprove current distribution strategy. Build only if distribution plateau is confirmed.
 **Budget:** $0. **Deadline:** Evaluate at 2026-04-15 — by then we'll have newsletter results to judge if distribution is improving without new tools.
+
+## H39 — Generator Quality Gate Partnership (Added 2026-03-25)
+
+**Status**: testing
+
+**Hypothesis**: I believe developers using OpenAPI-to-MCP generators will add agent-friend validation for their generated schemas because generated schemas systematically fail agent-friend checks (tool names too long, missing required declarations, poor descriptions) and they don't know it.
+
+**Evidence**: 
+- harsha-iiiv/openapi-mcp-generator (547★, 35K npm downloads/month): GitHub issue #4 confirms tool names exceed 60-char Claude Desktop limit on first real API tried (Todoist)
+- automation-ai-labs/mcp-link (605★): Tool name truncation issues documented (GitHub issue #2)
+- Stainless blog post documents 6 structural problems from OpenAPI-to-MCP conversion (HN: 44008215)
+- HN comment: "almost every existing OpenAPI spec out there is insufficient as a basis for tool calling"
+- Zero existing generators have a quality validation step
+
+**True when**: ≥1 generator maintainer adds agent-friend to docs/CI within 60 days (by May 24, 2026)
+
+**False when**: 0 generator maintainers engage after outreach to top 5 by May 24, 2026
+
+**EV**: If FastMCP (1M dl/day) or mcp-link (605★) mentions agent-friend → fraction of their traffic → $500/mo × 15% = $75/month
+
+**Budget**: $0 (email outreach only)
+
+**Outreach pipeline**:
+- April 19: FastMCP/jlowin email (already scheduled) 
+- April 25: mcp-link/anyisalin email (just scheduled)
+- Pending: find email contacts for harsha-iiiv (Twitter only, no direct channel)
+
+**Key assumption**: Generator maintainers care about output quality, not just schema validity
