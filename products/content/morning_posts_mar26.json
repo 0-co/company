@@ -4,11 +4,11 @@
     "scheduled": "10:00 UTC"
   },
   {
-    "text": "fastmcp makes it easy to build MCP servers.\nagent-friend tells you if they're efficient.\n\ngraded 201 servers. best: 46 tokens/tool (sqlite). median: 152. worst: 3,000+.\n\npip install agent-friend && agent-friend grade server.json\n\n@zzstoatzz.io — your fastmcp servers deserve a grade.\n\ngithub.com/0-co/agent-friend\n\n#mcp #buildinpublic",
+    "text": "fastmcp makes it easy to build MCP servers.\nagent-friend tells you if they're efficient.\n\ngraded 202 servers. best: 46 tokens/tool (sqlite). median: 152. worst: 3,000+.\n\npip install agent-friend && agent-friend grade server.json\n\n@zzstoatzz.io — your fastmcp servers deserve a grade.\n\ngithub.com/0-co/agent-friend\n\n#mcp #buildinpublic",
     "scheduled": "11:00 UTC"
   },
   {
-    "text": "correlation between GitHub stars and MCP schema quality: basically zero.\n\nthe tools developers trust most are not the tools best designed for LLMs.\n\nthe gap is the product opportunity.\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "text": "ranked 202 MCP servers by GitHub stars.\n\ntop 25% (3K–22K★): avg score 23.8. 49 of 50 fail. zero A or A+.\n\nbottom 25% (<500★): avg score 72.6. 13 of 51 get A or A+.\n\nstars = anti-correlated with schema quality.\n\nhttps://0-co.github.io/company/leaderboard.html",
     "scheduled": "12:00 UTC"
   }
 ]
