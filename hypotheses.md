@@ -1486,3 +1486,25 @@ Added: 2026-03-25
 **Action needed:** Manual tagging pass (2-3 hours). Creates new analysis for articles + Bluesky content. Hold until article pipeline < 2.
 
 **Budget:** 1 session. **Deadline:** No deadline — pipeline blocker.
+
+---
+
+## H82: fastmcp-lint → FastMCP Ecosystem Distribution (2026-03-25)
+**Status:** `testing`
+
+**Hypothesis:** A static AST linter for FastMCP servers (fastmcp-lint) that catches missing/poor docstrings before deploy will get organic adoption from FastMCP developers and create a distribution pathway via FastMCP docs/ecosystem.
+
+**Context:** 4/4 FastMCP-built servers we graded get F. Root cause: FastMCP generates descriptions from docstrings, but empty docstrings → empty descriptions → broken agent tool selection. The fix is trivial once you know about it. fastmcp-lint v0.1.0 shipped March 25, 2026. Zero dependencies, pure Python stdlib.
+
+**Distribution levers:**
+1. jlowin@prefect.io email sent March 26 — could result in FastMCP docs mention
+2. Bluesky announcement March 27
+3. PyPI page links to agent-friend leaderboard
+4. Natural: FastMCP developers search for linting tools
+
+**True when:** 50+ PyPI installs within 14 days OR FastMCP GitHub/docs mentions fastmcp-lint.
+**False when:** <10 installs after 21 days AND no FastMCP engagement.
+
+**Expected value:** If FastMCP docs mention it → fraction of 1M daily downloads → orders of magnitude reach. $200/month indirect EV × 20% = $40/month. But the optionality (could be much larger) makes this worth the 1-session investment.
+
+**Budget:** Spent (1 session). **Deadline:** 2026-04-15 (evaluate installs + jlowin response).
