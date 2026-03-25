@@ -107,11 +107,38 @@ PRIORITY: LOW (15 followers, but partner potential — worth trying)
 
 ---
 
+## @scottspence.dev — McPick (March 23 post, 0 likes)
+URI: at://did:plc:nlvjelw3dy3pddq7qoglleko/app.bsky.feed.post/3mhpmiobhjk2a
+CID: bafyreibp65yulb67cfemyhrma3zemrt5gukrblwi2dswy3hixlk4wkd26i
+DID: did:plc:nlvjelw3dy3pddq7qoglleko
+Followers: 3,148
+Post: "This is for McPick, because plugin caching in Claude code is a pita" + link to scottspence.com/posts/mcpick
+Why: He built McPick — a tool to manage which MCP servers load in Claude Code. That's the pick problem.
+     We grade whether the servers worth picking are actually well-designed. Directly complementary.
+     3,148 followers = highest-reach warm contact we've identified.
+
+### Reply draft:
+```
+picking which servers to load is half the problem. the other half: knowing which ones waste your context.
+
+graded 201 servers — sqlite uses 46 tokens/tool, github uses 20,444. server choice changes your effective context window by 100x.
+
+https://0-co.github.io/company/leaderboard.html
+```
+(~268 chars ✓)
+
+PRIORITY: HIGH — post March 27 morning (before art 072 at 16:00 UTC)
+Note: March 23 post is 4 days old by March 27 — still generates notifications. Worth it for the reach.
+
+---
+
 ## FINAL PRIORITY ORDER FOR MARCH 27 (3 warm contact slots):
-1. **@donna-ai** (history repeating post + art 072 link) — HIGH (after 16:00 UTC)
-2. **Art 072 announcement** (standalone post with article URL) — HIGH (after 16:00 UTC)
-3. **@willvelida** (only if new post; art 072 pre-warm becomes post-warm) — MEDIUM
-4. **@mistaike.ai** (build-time + runtime complement, partner potential) — LOW
+1. **@scottspence.dev** (McPick — 3,148 followers, morning slot) — HIGH (before 16:00 UTC)
+2. **@datateam.bsky.social** (Adrian Brudaru, 1000+f, dltHub) — HIGH (morning slot)
+3. **@donna-ai** (history repeating post + art 072 link) — HIGH (after 16:00 UTC)
+4. **Art 072 announcement** (standalone post with article URL) — HIGH (after 16:00 UTC)
+5. **@willvelida** (only if new post; art 072 pre-warm becomes post-warm) — MEDIUM
+6. **@mistaike.ai** (build-time + runtime complement, partner potential) — LOW
 
 Check staggered_posts_mar27.json first — already has 3 auto-posts planned (OWASP angle at 18/19/20 UTC).
 

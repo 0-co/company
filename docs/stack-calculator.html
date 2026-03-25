@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCP Stack Cost Calculator — Token Overhead for Your AI Stack</title>
+  <meta name="description" content="Calculate the real token cost of your MCP server stack. Pick your servers, see your monthly context window tax, and find out how much you could save.">
+  <meta name="keywords" content="MCP token cost calculator, MCP server tokens, context window calculator, MCP stack cost, AI agent token overhead">
+  <meta property="og:title" content="MCP Stack Cost Calculator">
+  <meta property="og:description" content="How much context window tax is your MCP stack charging? Pick your servers from 201 graded servers and see the real dollar cost.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://0-co.github.io/company/stack-calculator.html">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0514;
+      --bg-raised: #110820;
+      --bg-card: #160c2a;
+      --border: #2a1a4a;
+      --border-bright: #4a2a8a;
+      --text: #e8d8ff;
+      --text-muted: #8a6aaa;
+      --violet: #a371f7;
+      --gold: #d4a72c;
+      --magenta: #db61a2;
+      --cyan: #3bc9db;
+      --green: #3dd68c;
+      --red: #f85149;
+      --mono: 'SF Mono', 'Cascadia Code', Consolas, monospace;
+      --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    /* Gradient orbs background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -20%;
+      left: -10%;
+      width: 50%;
+      height: 60%;
+      background: radial-gradient(ellipse, rgba(163,113,247,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -20%;
+      right: -10%;
+      width: 50%;
+      height: 60%;
+      background: radial-gradient(ellipse, rgba(212,167,44,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    header {
+      text-align: center;
+      padding: 48px 24px 32px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(163,113,247,0.1);
+      border: 1px solid rgba(163,113,247,0.3);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 12px;
+      color: var(--violet);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--violet) 0%, var(--gold) 60%, var(--magenta) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 16px;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .subtitle strong { color: var(--text); }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--violet); }
+
+    /* Main layout */
+    .calculator {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 0;
+      max-width: 1200px;
+      margin: 0 auto;
+      min-height: calc(100vh - 200px);
+    }
+
+    @media (max-width: 768px) {
+      .calculator { grid-template-columns: 1fr; }
+    }
+
+    /* Server browser panel */
+    .browser-panel {
+      border-right: 1px solid var(--border);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .panel-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .search-wrap {
+      position: relative;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    #search {
+      width: 100%;
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px 10px 36px;
+      color: var(--text);
+      font-size: 14px;
+      font-family: var(--sans);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    #search:focus { border-color: var(--violet); box-shadow: 0 0 0 3px rgba(163,113,247,0.1); }
+    #search::placeholder { color: var(--text-muted); }
+
+    .filter-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 12px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-btn:hover { border-color: var(--violet); color: var(--violet); }
+    .filter-btn.active { background: rgba(163,113,247,0.15); border-color: var(--violet); color: var(--violet); }
+
+    .server-list {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-height: 520px;
+      padding-right: 4px;
+    }
+
+    .server-list::-webkit-scrollbar { width: 6px; }
+    .server-list::-webkit-scrollbar-track { background: transparent; }
+    .server-list::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 3px; }
+
+    .server-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s;
+      user-select: none;
+    }
+
+    .server-item:hover {
+      border-color: var(--border-bright);
+      background: var(--bg-card);
+      transform: translateY(-1px);
+    }
+
+    .server-item.in-stack {
+      border-color: var(--violet);
+      background: rgba(163,113,247,0.08);
+    }
+
+    .server-item.in-stack:hover {
+      border-color: var(--red);
+      background: rgba(248,81,73,0.08);
+    }
+
+    .grade-badge {
+      font-size: 11px;
+      font-weight: 700;
+      font-family: var(--mono);
+      padding: 2px 7px;
+      border-radius: 4px;
+      min-width: 30px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .grade-Aplus { background: rgba(61,214,140,0.15); color: #3dd68c; border: 1px solid rgba(61,214,140,0.3); }
+    .grade-A { background: rgba(61,214,140,0.1); color: #5dcfa0; border: 1px solid rgba(61,214,140,0.2); }
+    .grade-Aminus { background: rgba(100,210,150,0.1); color: #7ec9a8; border: 1px solid rgba(100,210,150,0.2); }
+    .grade-Bplus { background: rgba(59,201,219,0.1); color: #3bc9db; border: 1px solid rgba(59,201,219,0.2); }
+    .grade-B { background: rgba(59,201,219,0.08); color: #5bbfce; border: 1px solid rgba(59,201,219,0.15); }
+    .grade-Bminus { background: rgba(59,201,219,0.06); color: #7ab3be; border: 1px solid rgba(59,201,219,0.1); }
+    .grade-Cplus { background: rgba(212,167,44,0.1); color: #d4a72c; border: 1px solid rgba(212,167,44,0.2); }
+    .grade-C { background: rgba(212,167,44,0.08); color: #c49b30; border: 1px solid rgba(212,167,44,0.15); }
+    .grade-Cminus { background: rgba(212,167,44,0.06); color: #b49035; border: 1px solid rgba(212,167,44,0.1); }
+    .grade-Dplus, .grade-D, .grade-Dminus { background: rgba(219,97,162,0.1); color: #db61a2; border: 1px solid rgba(219,97,162,0.2); }
+    .grade-F { background: rgba(248,81,73,0.1); color: #f85149; border: 1px solid rgba(248,81,73,0.2); }
+
+    .server-name {
+      flex: 1;
+      font-size: 13px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .server-tokens {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-family: var(--mono);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .server-tokens .tok-count {
+      color: var(--text);
+    }
+
+    .add-icon {
+      font-size: 16px;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      width: 20px;
+      text-align: center;
+      transition: color 0.15s;
+    }
+
+    .server-item:hover .add-icon { color: var(--violet); }
+    .server-item.in-stack .add-icon { color: var(--violet); }
+    .server-item.in-stack:hover .add-icon { color: var(--red); }
+
+    .no-results {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    /* Right panel */
+    .cost-panel {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      background: var(--bg-raised);
+    }
+
+    .stack-section {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .stack-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .stack-count {
+      font-size: 11px;
+      background: rgba(163,113,247,0.2);
+      color: var(--violet);
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    .stack-empty {
+      border: 2px dashed var(--border);
+      border-radius: 8px;
+      padding: 24px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    .stack-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .stack-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+    }
+
+    .stack-item .server-name { font-size: 12px; }
+
+    .remove-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 16px;
+      padding: 0;
+      line-height: 1;
+      transition: color 0.15s;
+      flex-shrink: 0;
+    }
+    .remove-btn:hover { color: var(--red); }
+
+    /* Cost inputs */
+    .inputs-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .input-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .input-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      flex: 1;
+    }
+
+    .input-row input {
+      width: 80px;
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 10px;
+      color: var(--text);
+      font-size: 13px;
+      font-family: var(--mono);
+      text-align: right;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .input-row input:focus { border-color: var(--violet); }
+
+    /* Cost output */
+    .cost-output {
+      background: linear-gradient(135deg, rgba(163,113,247,0.05), rgba(212,167,44,0.05));
+      border: 1px solid var(--border-bright);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .cost-stat {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .cost-stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .cost-stat-value {
+      font-size: 18px;
+      font-weight: 700;
+      font-family: var(--mono);
+      color: var(--text);
+    }
+
+    .cost-stat-value.highlight { color: var(--violet); }
+
+    .cost-divider {
+      height: 1px;
+      background: var(--border);
+    }
+
+    .savings-row {
+      background: rgba(61,214,140,0.05);
+      border: 1px solid rgba(61,214,140,0.2);
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .savings-label {
+      font-size: 11px;
+      color: #3dd68c;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    .savings-value {
+      font-size: 22px;
+      font-weight: 700;
+      font-family: var(--mono);
+      color: #3dd68c;
+    }
+
+    .savings-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Share / CTA */
+    .cta-section {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .share-btn {
+      background: linear-gradient(135deg, rgba(163,113,247,0.2), rgba(212,167,44,0.15));
+      border: 1px solid var(--border-bright);
+      border-radius: 8px;
+      padding: 10px 16px;
+      color: var(--text);
+      font-size: 13px;
+      font-family: var(--sans);
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .share-btn:hover {
+      border-color: var(--violet);
+      background: rgba(163,113,247,0.2);
+      box-shadow: 0 0 12px rgba(163,113,247,0.15);
+    }
+
+    .cta-link {
+      text-align: center;
+      font-size: 12px;
+    }
+
+    .cta-link a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .cta-link a:hover { color: var(--violet); }
+
+    /* Context bar */
+    .context-bar {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .context-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .context-track {
+      height: 6px;
+      background: var(--bg-card);
+      border-radius: 3px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .context-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--green), var(--gold), var(--red));
+      transition: width 0.4s ease;
+    }
+
+    /* Tooltip-style info */
+    .info-row {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+      padding: 4px 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    footer a {
+      color: var(--violet);
+      text-decoration: none;
+    }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-badge">201 servers graded · Real token data</div>
+  <h1>MCP Stack Cost Calculator</h1>
+  <p class="subtitle">
+    How much context window is your MCP stack consuming before your first message?<br>
+    <strong>Pick your servers. See the real cost.</strong>
+  </p>
+  <nav class="nav-links">
+    <a href="leaderboard.html">← Full Leaderboard</a>
+    <a href="audit.html">Audit a Schema</a>
+    <a href="report.html">Grade a Server</a>
+    <a href="https://github.com/0-co/agent-friend">GitHub</a>
+  </nav>
+</header>
+
+<div class="calculator">
+  <!-- Left: Server browser -->
+  <div class="browser-panel">
+    <div class="panel-title">Browse 201 graded servers — click to add</div>
+
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="search" placeholder="Search by name (github, sentry, stripe...)" autocomplete="off">
+    </div>
+
+    <div class="filter-row" id="filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="F">F grade</button>
+      <button class="filter-btn" data-filter="high">High bloat (1K+ tokens)</button>
+      <button class="filter-btn" data-filter="good">Good (A/B)</button>
+    </div>
+
+    <div class="server-list" id="server-list"></div>
+    <div class="info-row" id="list-count"></div>
+  </div>
+
+  <!-- Right: Cost panel -->
+  <div class="cost-panel">
+    <div class="stack-section">
+      <div class="stack-title">
+        <span class="panel-title">Your Stack</span>
+        <span class="stack-count" id="stack-count">0 servers</span>
+      </div>
+      <div class="stack-empty" id="stack-empty">
+        ← Search and click servers to add them to your stack
+      </div>
+      <div class="stack-list" id="stack-list" style="display:none"></div>
+    </div>
+
+    <div class="inputs-section">
+      <div class="panel-title">Usage settings</div>
+      <div class="input-row">
+        <span class="input-label">Sessions per day</span>
+        <input type="number" id="sessions" value="10" min="1" max="10000">
+      </div>
+      <div class="input-row">
+        <span class="input-label">$ per million tokens</span>
+        <input type="number" id="price" value="3.00" min="0.01" step="0.01">
+      </div>
+      <div class="input-row">
+        <span class="input-label">Work days per month</span>
+        <input type="number" id="days" value="22" min="1" max="31">
+      </div>
+    </div>
+
+    <div class="cost-output" id="cost-output">
+      <div class="cost-stat">
+        <span class="cost-stat-label">Tokens per session</span>
+        <span class="cost-stat-value highlight" id="out-tokens">—</span>
+      </div>
+      <div class="cost-stat">
+        <span class="cost-stat-label">Cost per session</span>
+        <span class="cost-stat-value" id="out-session-cost">—</span>
+      </div>
+      <div class="cost-stat">
+        <span class="cost-stat-label">Monthly overhead</span>
+        <span class="cost-stat-value" id="out-monthly">—</span>
+      </div>
+
+      <div class="context-bar" id="context-bar" style="display:none">
+        <div class="context-label">
+          <span>Context window consumed</span>
+          <span id="context-pct">0%</span>
+        </div>
+        <div class="context-track">
+          <div class="context-fill" id="context-fill" style="width:0%"></div>
+        </div>
+        <div class="info-row">before your first message (Claude 3.5: 200K context)</div>
+      </div>
+
+      <div class="cost-divider" id="savings-divider" style="display:none"></div>
+
+      <div class="savings-row" id="savings-row" style="display:none">
+        <div class="savings-label">Potential monthly savings</div>
+        <div class="savings-value" id="out-savings">$0</div>
+        <div class="savings-desc" id="savings-desc">if all servers were optimized to A+ grade</div>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <button class="share-btn" id="share-btn">
+        <span>🔗</span> Copy shareable link
+      </button>
+      <div class="cta-link">
+        <a href="https://github.com/0-co/agent-friend" target="_blank">optimize with agent-friend →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>data from <a href="https://github.com/0-co/agent-friend">agent-friend</a> · 201 servers graded ·
+  <a href="leaderboard.html">view full leaderboard</a></p>
+</footer>
+
+<script>
+const SERVERS = {"cloudflare":{"name":"Cloudflare Radar MCP Server","grade":"F","score":11.4,"tools":66,"tokens":21723},"sentry-official":{"name":"Sentry MCP (Official)","grade":"F","score":0.0,"tools":26,"tokens":16103},"github":{"name":"GitHub MCP Server","grade":"F","score":20.1,"tools":80,"tokens":15927},"github-official":{"name":"GitHub MCP Server (Official)","grade":"F","score":20.1,"tools":80,"tokens":15927},"azure-devops":{"name":"Azure DevOps MCP","grade":"F","score":21.9,"tools":86,"tokens":14657},"google-workspace":{"name":"Google Workspace MCP","grade":"F","score":22.8,"tools":86,"tokens":13539},"atlassian":{"name":"Atlassian MCP Server","grade":"D","score":62.2,"tools":73,"tokens":12235},"grafana":{"name":"Grafana MCP","grade":"F","score":21.9,"tools":68,"tokens":11632},"gitlab-mcp":{"name":"GitLab MCP Server","grade":"F","score":25.5,"tools":86,"tokens":10227},"confluent-mcp":{"name":"Confluent Kafka MCP","grade":"F","score":19.8,"tools":48,"tokens":9655},"desktop-commander":{"name":"Desktop Commander MCP Server","grade":"F","score":10.8,"tools":27,"tokens":9068},"mcp-chrome":{"name":"mcp-chrome","grade":"F","score":12.9,"tools":27,"tokens":8309},"salesforce-mcp":{"name":"Salesforce CLI MCP","grade":"F","score":24.0,"tools":58,"tokens":8106},"postman-mcp":{"name":"Postman MCP Server","grade":"F","score":20.1,"tools":41,"tokens":8070},"playwright":{"name":"Playwright MCP Server","grade":"F","score":27.0,"tools":78,"tokens":7502},"aws":{"name":"AWS MCP Server","grade":"F","score":16.2,"tools":28,"tokens":7168},"chart":{"name":"Chart MCP Server","grade":"F","score":16.5,"tools":27,"tokens":6838},"pal":{"name":"PAL MCP Server","grade":"F","score":9.0,"tools":18,"tokens":6610},"algolia-mcp":{"name":"Algolia MCP (Official)","grade":"F","score":26.4,"tools":61,"tokens":6313},"telegram-mcp":{"name":"Telegram MCP (chigwell)","grade":"F","score":28.8,"tools":93,"tokens":6241},"redis-mcp":{"name":"Redis MCP Server","grade":"F","score":24.6,"tools":46,"tokens":5949},"bitwarden-mcp":{"name":"Bitwarden","grade":"F","score":34.5,"tools":58,"tokens":5625},"webex-mcp":{"name":"Webex (Cisco)","grade":"F","score":38.1,"tools":52,"tokens":5618},"snyk-mcp":{"name":"Snyk MCP (Official)","grade":"F","score":3.3,"tools":12,"tokens":5406},"playwright-ms":{"name":"Playwright MCP (Microsoft)","grade":"F","score":27.3,"tools":59,"tokens":5321},"alexander-supabase":{"name":"Supabase MCP (alexander-zuev)","grade":"F","score":8.4,"tools":14,"tokens":5254},"ga4":{"name":"Google Analytics (GA4) MCP Server","grade":"F","score":0.0,"tools":7,"tokens":5232},"n8n-mcp":{"name":"n8n-mcp","grade":"F","score":15.9,"tools":20,"tokens":5189},"firebase-mcp":{"name":"Firebase MCP Server (Official)","grade":"F","score":23.7,"tools":35,"tokens":5121},"chrome-devtools":{"name":"Chrome DevTools MCP Server","grade":"F","score":24.9,"tools":38,"tokens":4747},"apple-docs":{"name":"Apple Docs MCP","grade":"F","score":16.2,"tools":18,"tokens":4646},"firecrawl":{"name":"Firecrawl MCP Server","grade":"F","score":35.8,"tools":12,"tokens":4611},"resend":{"name":"Resend MCP","grade":"F","score":27.9,"tools":56,"tokens":4527},"notion":{"name":"Notion MCP Server","grade":"F","score":19.8,"tools":22,"tokens":4483},"loom-mcp":{"name":"Loom MCP (Community)","grade":"F","score":28.5,"tools":60,"tokens":4357},"neon":{"name":"Neon MCP","grade":"F","score":23.7,"tools":29,"tokens":4192},"serena":{"name":"Serena","grade":"F","score":27.0,"tools":43,"tokens":4181},"stripe":{"name":"Stripe Agent Toolkit MCP Server","grade":"F","score":22.5,"tools":25,"tokens":4112},"opensearch-mcp":{"name":"OpenSearch MCP Server (Official)","grade":"F","score":24.3,"tools":30,"tokens":4063},"freshdesk-mcp":{"name":"Freshdesk MCP (Community)","grade":"F","score":49.8,"tools":58,"tokens":4021},"contentful-mcp":{"name":"Contentful MCP (Official)","grade":"F","score":29.4,"tools":66,"tokens":3999},"genai-toolbox":{"name":"Google genai-toolbox","grade":"F","score":24.3,"tools":29,"tokens":3921},"okta-mcp":{"name":"Okta MCP Server (Official)","grade":"F","score":26.7,"tools":40,"tokens":3912},"pagerduty-mcp":{"name":"PagerDuty MCP Server","grade":"F","score":25.5,"tools":33,"tokens":3893},"kubernetes":{"name":"Kubernetes MCP","grade":"F","score":21.9,"tools":22,"tokens":3760},"blender":{"name":"Blender MCP Server","grade":"F","score":22.2,"tools":22,"tokens":3700},"trello-mcp":{"name":"delorenj/mcp-server-trello","grade":"F","score":44.4,"tools":45,"tokens":3639},"klaviyo-mcp":{"name":"Klaviyo MCP (Community)","grade":"F","score":53.1,"tools":41,"tokens":3483},"suekou-notion":{"name":"Notion MCP (suekou)","grade":"F","score":20.4,"tools":18,"tokens":3482},"ea-playwright":{"name":"Playwright MCP (executeautomation)","grade":"F","score":29.4,"tools":33,"tokens":3471},"discord-barryyip":{"name":"Discord MCP (barryyip0625)","grade":"F","score":27.9,"tools":42,"tokens":3406},"excel":{"name":"Excel MCP Server","grade":"F","score":31.8,"tools":25,"tokens":3349},"snowflake-mcp":{"name":"Snowflake MCP Server","grade":"F","score":19.5,"tools":16,"tokens":3330},"miro-mcp":{"name":"Miro MCP Server","grade":"F","score":26.4,"tools":30,"tokens":3058},"auth0-mcp":{"name":"auth0/auth0-mcp-server","grade":"F","score":31.8,"tools":22,"tokens":3002},"todoist-mcp":{"name":"Todoist","grade":"F","score":27.6,"tools":35,"tokens":2976},"dbt-mcp":{"name":"dbt MCP (Official)","grade":"F","score":29.7,"tools":54,"tokens":2876},"unity-mcp":{"name":"CoderGamester/mcp-unity","grade":"F","score":48.0,"tools":30,"tokens":2870},"xero-mcp":{"name":"Xero MCP (Official)","grade":"F","score":29.7,"tools":51,"tokens":2837},"clickup-mcp":{"name":"ClickUp MCP Server","grade":"F","score":45.3,"tools":42,"tokens":2797},"minimax":{"name":"MiniMax MCP","grade":"F","score":12.6,"tools":9,"tokens":2797},"upstash-mcp":{"name":"Upstash MCP (Official)","grade":"F","score":38.1,"tools":26,"tokens":2787},"xiaohongshu":{"name":"Xiaohongshu MCP Server","grade":"F","score":40.2,"tools":13,"tokens":2731},"mobile-mcp":{"name":"Mobile MCP","grade":"F","score":25.8,"tools":24,"tokens":2727},"newrelic-mcp":{"name":"New Relic MCP (Official)","grade":"F","score":54.7,"tools":27,"tokens":2722},"airflow-mcp":{"name":"Apache Airflow MCP","grade":"F","score":42.0,"tools":60,"tokens":2604},"influxdb-mcp":{"name":"InfluxDB MCP Server (Official)","grade":"F","score":22.8,"tools":16,"tokens":2504},"supabase":{"name":"Supabase MCP","grade":"F","score":31.5,"tools":32,"tokens":2330},"google-sheets":{"name":"Google Sheets MCP","grade":"F","score":25.8,"tools":20,"tokens":2293},"exa":{"name":"Exa MCP Server","grade":"F","score":21.0,"tools":10,"tokens":2287},"amplitude-mcp":{"name":"Amplitude MCP (Official)","grade":"F","score":44.1,"tools":27,"tokens":2276},"groq-mcp":{"name":"Groq MCP Server","grade":"F","score":45.6,"tools":17,"tokens":2256},"drawio":{"name":"Draw.io MCP Server","grade":"F","score":24.9,"tools":18,"tokens":2241},"doppler-mcp":{"name":"Doppler MCP (Official)","grade":"F","score":44.4,"tools":27,"tokens":2191},"sentry":{"name":"Sentry MCP Server","grade":"F","score":36.6,"tools":11,"tokens":2181},"asana-mcp":{"name":"Asana MCP Server","grade":"F","score":28.8,"tools":33,"tokens":2172},"ghidra":{"name":"GhidraMCP","grade":"F","score":44.4,"tools":27,"tokens":2161},"korotovsky-slack":{"name":"Slack MCP (korotovsky)","grade":"F","score":41.1,"tools":16,"tokens":2118},"railway-mcp":{"name":"Railway MCP (Official)","grade":"F","score":35.4,"tools":14,"tokens":2084},"mongodb":{"name":"MongoDB MCP","grade":"F","score":42.0,"tools":46,"tokens":2076},"cloudinary-mcp":{"name":"Cloudinary","grade":"F","score":27.3,"tools":23,"tokens":2065},"jina-mcp":{"name":"Jina AI MCP","grade":"F","score":48.0,"tools":21,"tokens":2027},"databricks-mcp":{"name":"Databricks MCP","grade":"F","score":29.7,"tools":38,"tokens":2027},"prefect-mcp":{"name":"Prefect MCP (Official)","grade":"F","score":24.3,"tools":14,"tokens":1907},"temporal-mcp":{"name":"Temporal MCP (Community)","grade":"F","score":56.7,"tools":19,"tokens":1896},"tavily":{"name":"Tavily MCP Server","grade":"F","score":8.1,"tools":5,"tokens":1893},"terraform":{"name":"Terraform MCP","grade":"F","score":19.5,"tools":9,"tokens":1878},"docker-mcp":{"name":"Docker MCP","grade":"F","score":27.0,"tools":19,"tokens":1828},"spotify-mcp":{"name":"Spotify MCP","grade":"F","score":36.6,"tools":27,"tokens":1715},"sourcegraph-mcp":{"name":"Sourcegraph MCP (Official)","grade":"F","score":54.6,"tools":13,"tokens":1691},"argocd-mcp":{"name":"ArgoCD MCP","grade":"F","score":37.2,"tools":14,"tokens":1678},"linear":{"name":"Linear MCP","grade":"F","score":38.7,"tools":10,"tokens":1672},"chroma":{"name":"Chroma MCP","grade":"F","score":45.9,"tools":13,"tokens":1624},"ros-mcp":{"name":"ROS MCP Server","grade":"D-","score":59.7,"tools":29,"tokens":1556},"infisical-mcp":{"name":"Infisical MCP (Official)","grade":"F","score":39.6,"tools":10,"tokens":1545},"shopify":{"name":"Shopify MCP Server","grade":"F","score":26.1,"tools":14,"tokens":1525},"whatsapp":{"name":"WhatsApp MCP","grade":"F","score":32.4,"tools":12,"tokens":1498},"gmail-mcp":{"name":"Gmail MCP","grade":"F","score":28.2,"tools":19,"tokens":1486},"apify":{"name":"Apify Actors MCP","grade":"F","score":32.7,"tools":12,"tokens":1483},"hubspot-mcp":{"name":"HubSpot MCP Server","grade":"F","score":52.8,"tools":16,"tokens":1446},"hf-mcp":{"name":"HuggingFace MCP","grade":"F","score":51.3,"tools":13,"tokens":1443},"circleci-mcp":{"name":"CircleCI MCP Server","grade":"F","score":43.8,"tools":16,"tokens":1437},"mongodb-lens":{"name":"MongoDB Lens","grade":"D","score":60.0,"tools":42,"tokens":1398},"filesystem":{"name":"Filesystem MCP Server","grade":"F","score":24.9,"tools":11,"tokens":1392},"google-calendar-mcp":{"name":"Google Calendar","grade":"F","score":26.7,"tools":13,"tokens":1287},"mem0":{"name":"Mem0 MCP","grade":"F","score":44.7,"tools":9,"tokens":1282},"godot-mcp":{"name":"Godot MCP","grade":"F","score":48.3,"tools":14,"tokens":1245},"discord-hanweg":{"name":"Discord MCP (hanweg)","grade":"F","score":52.4,"tools":15,"tokens":1245},"perplexity":{"name":"Perplexity MCP Server","grade":"F","score":15.6,"tools":4,"tokens":1237},"box-mcp":{"name":"Box MCP Server","grade":"F","score":50.4,"tools":21,"tokens":1230},"mark3labs-filesystem":{"name":"Filesystem MCP Server (mark3labs)","grade":"F","score":53.1,"tools":14,"tokens":1229},"datadog-mcp":{"name":"Datadog MCP Server","grade":"F","score":28.2,"tools":10,"tokens":1227},"mcp-taskmanager":{"name":"MCP Taskmanager","grade":"F","score":25.2,"tools":10,"tokens":1210},"universal-db":{"name":"Universal DB MCP","grade":"F","score":36.6,"tools":9,"tokens":1164},"arxiv-mcp":{"name":"arXiv MCP Server","grade":"F","score":25.4,"tools":4,"tokens":1141},"wandb-mcp":{"name":"W&B MCP Server (Official)","grade":"F","score":28.2,"tools":6,"tokens":1141},"milvus-mcp":{"name":"Milvus MCP (Official)","grade":"F","score":27.9,"tools":14,"tokens":1137},"dynatrace-mcp":{"name":"Dynatrace MCP","grade":"D-","score":58.8,"tools":17,"tokens":1136},"sendgrid-mcp":{"name":"SendGrid MCP","grade":"F","score":32.7,"tools":19,"tokens":1066},"plaid-mcp":{"name":"Plaid AI Coding Toolkit","grade":"F","score":15.9,"tools":4,"tokens":1045},"browsermcp":{"name":"BrowserMCP","grade":"F","score":49.2,"tools":13,"tokens":1001},"planetscale-mcp":{"name":"planetscale/mcp-server","grade":"F","score":32.4,"tools":5,"tokens":971},"browserbase":{"name":"Browserbase MCP","grade":"F","score":33.6,"tools":9,"tokens":962},"vercel-next":{"name":"Vercel Next DevTools","grade":"F","score":27.3,"tools":7,"tokens":962},"sequentialthinking":{"name":"Sequential Thinking","grade":"F","score":25.5,"tools":1,"tokens":961},"mslearn":{"name":"Microsoft Learn MCP","grade":"F","score":15.3,"tools":3,"tokens":952},"memory":{"name":"Memory MCP Server","grade":"F","score":38.4,"tools":9,"tokens":925},"magic-mcp":{"name":"magic-mcp","grade":"F","score":18.3,"tools":4,"tokens":906},"monday-mcp":{"name":"monday.com MCP","grade":"F","score":46.2,"tools":16,"tokens":889},"git":{"name":"Git MCP Server","grade":"F","score":54.0,"tools":12,"tokens":852},"airtable-mcp":{"name":"Airtable MCP Server","grade":"F","score":36.0,"tools":12,"tokens":847},"jira-mcp":{"name":"Jira MCP (aashari)","grade":"F","score":22.2,"tools":5,"tokens":840},"line-bot-mcp":{"name":"LINE Bot MCP Server","grade":"F","score":36.3,"tools":12,"tokens":812},"shadcn":{"name":"shadcn-ui MCP","grade":"F","score":53.4,"tools":10,"tokens":799},"linkedin":{"name":"LinkedIn MCP","grade":"F","score":36.6,"tools":6,"tokens":797},"fastapi-mcp":{"name":"FastAPI-MCP","grade":"F","score":45.6,"tools":6,"tokens":796},"mcp-everything":{"name":"MCP Everything (Reference)","grade":"F","score":54.6,"tools":12,"tokens":774},"splunk-mcp":{"name":"Splunk MCP (Official)","grade":"F","score":56.1,"tools":7,"tokens":752},"metabase-mcp":{"name":"Metabase MCP (Community)","grade":"D-","score":57.9,"tools":9,"tokens":730},"slack":{"name":"Slack MCP Server","grade":"D-","score":57.3,"tools":8,"tokens":721},"confluence-mcp":{"name":"Confluence MCP (aashari)","grade":"F","score":23.7,"tools":5,"tokens":713},"figma":{"name":"Figma-Context-MCP","grade":"F","score":21.9,"tools":2,"tokens":706},"markdownify":{"name":"Markdownify MCP","grade":"D-","score":59.1,"tools":11,"tokens":696},"googlemaps":{"name":"Google Maps MCP Server","grade":"D-","score":57.0,"tools":7,"tokens":661},"vault-mcp":{"name":"HashiCorp Vault MCP","grade":"F","score":53.4,"tools":8,"tokens":640},"kafka-mcp":{"name":"kafka-mcp","grade":"D-","score":58.5,"tools":9,"tokens":637},"prometheus-mcp":{"name":"Prometheus MCP Server","grade":"F","score":56.7,"tools":6,"tokens":590},"chunkhound":{"name":"chunkhound","grade":"F","score":36.3,"tools":2,"tokens":539},"homeassistant-mcp":{"name":"Home Assistant MCP","grade":"D-","score":59.4,"tools":9,"tokens":531},"dagster-mcp":{"name":"Dagster MCP","grade":"D-","score":59.7,"tools":9,"tokens":493},"context7":{"name":"Context7 MCP Server","grade":"F","score":38.4,"tools":2,"tokens":482},"polygon-mcp":{"name":"Polygon.io MCP","grade":"C-","score":67.0,"tools":4,"tokens":467},"codex-mcp":{"name":"Codex MCP Server","grade":"D-","score":58.5,"tools":6,"tokens":446},"windbg":{"name":"WinDbg MCP","grade":"A","score":91.1,"tools":7,"tokens":442},"web-eval-agent":{"name":"Web Eval Agent","grade":"F","score":26.1,"tools":2,"tokens":441},"duckduckgo-mcp":{"name":"DuckDuckGo MCP","grade":"F","score":26.1,"tools":2,"tokens":439},"browser-tools-mcp":{"name":"AgentDeskAI Browser Tools MCP","grade":"D","score":60.0,"tools":13,"tokens":436},"weather-mcp":{"name":"OpenWeather MCP Server","grade":"D+","score":65.6,"tools":5,"tokens":433},"zendesk-mcp":{"name":"Zendesk MCP Server","grade":"F","score":54.6,"tools":7,"tokens":429},"square-mcp":{"name":"Square MCP Server (Official)","grade":"C","score":72.7,"tools":3,"tokens":429},"google-tasks-mcp":{"name":"Google Tasks MCP","grade":"B","score":81.9,"tools":5,"tokens":414},"gsc-mcp":{"name":"Google Search Console MCP","grade":"F","score":36.0,"tools":1,"tokens":410},"puppeteer":{"name":"Puppeteer MCP Server","grade":"F","score":55.2,"tools":7,"tokens":382},"mixpanel-moonbirdai":{"name":"moonbirdai/mixpanel-mcp-server","grade":"C+","score":76.5,"tools":4,"tokens":382},"elasticsearch-mcp":{"name":"Elasticsearch MCP Server","grade":"B","score":82.5,"tools":5,"tokens":372},"mcp-gdrive":{"name":"Google Drive MCP (isaacphi)","grade":"A+","score":97.3,"tools":4,"tokens":367},"deepwiki-mcp":{"name":"DeepWiki MCP","grade":"F","score":42.3,"tools":2,"tokens":365},"dbhub":{"name":"dbhub","grade":"D+","score":66.3,"tools":2,"tokens":364},"brave":{"name":"Brave Search MCP Server","grade":"F","score":42.3,"tools":2,"tokens":363},"mcp-feedback-enhanced":{"name":"MCP Feedback Enhanced","grade":"B+","score":83.4,"tools":2,"tokens":343},"kagi-mcp":{"name":"Kagi Search MCP","grade":"D","score":62.2,"tools":2,"tokens":332},"sqlite":{"name":"SQLite MCP Server","grade":"A+","score":99.7,"tools":6,"tokens":322},"anyquery":{"name":"Anyquery","grade":"F","score":47.4,"tools":3,"tokens":307},"lancedb-mcp":{"name":"LanceDB MCP (Official)","grade":"C+","score":73.0,"tools":3,"tokens":290},"pinecone-sirmews":{"name":"Pinecone MCP","grade":"F","score":54.9,"tools":5,"tokens":287},"qdrant":{"name":"Qdrant MCP","grade":"D+","score":66.9,"tools":2,"tokens":256},"fetch":{"name":"Fetch MCP Server","grade":"D","score":62.4,"tools":1,"tokens":239},"mcp-installer":{"name":"MCP Installer","grade":"A+","score":95.5,"tools":2,"tokens":233},"discord-v3-mcp":{"name":"Discord MCP","grade":"C","score":72.4,"tools":2,"tokens":210},"time":{"name":"Time MCP Server","grade":"A","score":91.9,"tools":2,"tokens":207},"awkoy-notion":{"name":"Notion MCP (awkoy)","grade":"A+","score":96.0,"tools":5,"tokens":202},"flightradar-mcp":{"name":"Flightradar24 MCP","grade":"B-","score":77.3,"tools":2,"tokens":184},"calclavia-obsidian":{"name":"Obsidian MCP (calclavia)","grade":"C-","score":68.6,"tools":2,"tokens":171},"obsidian":{"name":"Obsidian MCP (MarkusPfundstein)","grade":"C-","score":68.6,"tools":2,"tokens":171},"langfuse-mcp":{"name":"Langfuse MCP (Official)","grade":"B-","score":77.4,"tools":2,"tokens":165},"danhilse-notion":{"name":"Notion MCP (danhilse)","grade":"B+","score":84.0,"tools":4,"tokens":153},"weaviate":{"name":"Weaviate MCP","grade":"D-","score":57.5,"tools":2,"tokens":147},"pinecone-official":{"name":"Pinecone Assistant MCP","grade":"B-","score":78.3,"tools":1,"tokens":137},"axiom-mcp":{"name":"Axiom MCP Server","grade":"A-","score":87.4,"tools":2,"tokens":115},"flyio-mcp":{"name":"Fly.io MCP (Official)","grade":"A","score":91.4,"tools":2,"tokens":114},"ytt-mcp":{"name":"ytt-mcp (YouTube Transcript)","grade":"A-","score":88.1,"tools":1,"tokens":110},"mcp-youtube":{"name":"mcp-youtube","grade":"A+","score":97.3,"tools":1,"tokens":91},"zoom-transcript-mcp":{"name":"Zoom Transcript MCP","grade":"A","score":93.3,"tools":1,"tokens":90},"colab":{"name":"Google Colab MCP","grade":"A-","score":89.6,"tools":1,"tokens":88},"twilio-mcp":{"name":"Twilio SMS","grade":"A","score":90.5,"tools":1,"tokens":74},"eslint-mcp":{"name":"ESLint MCP Server","grade":"B-","score":78.0,"tools":1,"tokens":74},"e2b":{"name":"E2B MCP Server","grade":"A+","score":95.1,"tools":1,"tokens":65},"bigquery-mcp":{"name":"BigQuery MCP","grade":"B+","score":83.1,"tools":1,"tokens":62},"mysql-mcp":{"name":"MySQL MCP Server","grade":"A+","score":95.7,"tools":1,"tokens":54},"zapier-mcp":{"name":"zapier/zapier-mcp","grade":"A+","score":96.0,"tools":1,"tokens":43},"postgres":{"name":"PostgreSQL MCP Server","grade":"B+","score":88.0,"tools":1,"tokens":33}};
+
+// Grade CSS class mapping
+function gradeClass(g) {
+  return 'grade-' + g.replace('+','plus').replace('-','minus');
+}
+
+// Stack state
+const stack = new Set();
+
+// Filtering state
+let searchQuery = '';
+let activeFilter = 'all';
+
+// Get filtered + sorted server entries
+function getFiltered() {
+  const q = searchQuery.toLowerCase();
+  return Object.entries(SERVERS).filter(([key, s]) => {
+    if (q && !s.name.toLowerCase().includes(q) && !key.toLowerCase().includes(q)) return false;
+    if (activeFilter === 'F' && s.grade !== 'F') return false;
+    if (activeFilter === 'high' && s.tokens < 1000) return false;
+    if (activeFilter === 'good' && !['A+','A','A-','B+','B','B-'].includes(s.grade)) return false;
+    return true;
+  }).sort((a, b) => b[1].tokens - a[1].tokens);
+}
+
+function renderList() {
+  const list = document.getElementById('server-list');
+  const countEl = document.getElementById('list-count');
+  const filtered = getFiltered();
+
+  if (filtered.length === 0) {
+    list.innerHTML = '<div class="no-results">No servers match — try a different search</div>';
+    countEl.textContent = '';
+    return;
+  }
+
+  countEl.textContent = `${filtered.length} server${filtered.length !== 1 ? 's' : ''} shown`;
+
+  list.innerHTML = filtered.map(([key, s]) => {
+    const inStack = stack.has(key);
+    const icon = inStack ? '✓' : '+';
+    return `<div class="server-item ${inStack ? 'in-stack' : ''}" data-key="${key}">
+      <span class="grade-badge ${gradeClass(s.grade)}">${s.grade}</span>
+      <span class="server-name">${s.name}</span>
+      <span class="server-tokens"><span class="tok-count">${s.tokens.toLocaleString()}</span> tok</span>
+      <span class="add-icon">${icon}</span>
+    </div>`;
+  }).join('');
+
+  // Attach click handlers
+  list.querySelectorAll('.server-item').forEach(el => {
+    el.addEventListener('click', () => toggleServer(el.dataset.key));
+  });
+}
+
+function toggleServer(key) {
+  if (stack.has(key)) {
+    stack.delete(key);
+  } else {
+    stack.add(key);
+  }
+  renderList();
+  renderStack();
+  updateCost();
+  updateURL();
+}
+
+function renderStack() {
+  const stackList = document.getElementById('stack-list');
+  const stackEmpty = document.getElementById('stack-empty');
+  const stackCount = document.getElementById('stack-count');
+
+  stackCount.textContent = stack.size === 0 ? '0 servers' : `${stack.size} server${stack.size !== 1 ? 's' : ''}`;
+
+  if (stack.size === 0) {
+    stackEmpty.style.display = '';
+    stackList.style.display = 'none';
+    return;
+  }
+
+  stackEmpty.style.display = 'none';
+  stackList.style.display = '';
+
+  const items = Array.from(stack).map(key => {
+    const s = SERVERS[key];
+    if (!s) return '';
+    return `<div class="stack-item">
+      <span class="grade-badge ${gradeClass(s.grade)}" style="font-size:10px">${s.grade}</span>
+      <span class="server-name">${s.name}</span>
+      <span class="server-tokens" style="font-size:11px"><span class="tok-count">${s.tokens.toLocaleString()}</span></span>
+      <button class="remove-btn" data-key="${key}" title="Remove">×</button>
+    </div>`;
+  }).join('');
+
+  stackList.innerHTML = items;
+  stackList.querySelectorAll('.remove-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleServer(btn.dataset.key);
+    });
+  });
+}
+
+function updateCost() {
+  const sessions = parseFloat(document.getElementById('sessions').value) || 10;
+  const pricePerM = parseFloat(document.getElementById('price').value) || 3.0;
+  const days = parseFloat(document.getElementById('days').value) || 22;
+
+  if (stack.size === 0) {
+    document.getElementById('out-tokens').textContent = '—';
+    document.getElementById('out-session-cost').textContent = '—';
+    document.getElementById('out-monthly').textContent = '—';
+    document.getElementById('context-bar').style.display = 'none';
+    document.getElementById('savings-divider').style.display = 'none';
+    document.getElementById('savings-row').style.display = 'none';
+    return;
+  }
+
+  let totalTokens = 0;
+  let optimizedTokens = 0;
+  const OPT_TOKENS_PER_TOOL = 54; // sqlite quality baseline
+
+  Array.from(stack).forEach(key => {
+    const s = SERVERS[key];
+    if (!s) return;
+    totalTokens += s.tokens;
+    optimizedTokens += s.tools * OPT_TOKENS_PER_TOOL;
+  });
+
+  const costPerSession = (totalTokens / 1_000_000) * pricePerM;
+  const costPerMonth = costPerSession * sessions * days;
+
+  const optCostPerSession = (optimizedTokens / 1_000_000) * pricePerM;
+  const optCostPerMonth = optCostPerSession * sessions * days;
+  const savings = costPerMonth - optCostPerMonth;
+
+  // Context window pct (200K claude context)
+  const pct = Math.min(100, Math.round((totalTokens / 200_000) * 100));
+
+  document.getElementById('out-tokens').textContent = totalTokens.toLocaleString();
+  document.getElementById('out-session-cost').textContent = costPerSession < 0.01
+    ? `$${(costPerSession * 100).toFixed(3)}¢`
+    : `$${costPerSession.toFixed(4)}`;
+  document.getElementById('out-monthly').textContent = `$${costPerMonth.toFixed(2)}`;
+
+  // Context bar
+  const bar = document.getElementById('context-bar');
+  bar.style.display = '';
+  document.getElementById('context-pct').textContent = pct + '%';
+  document.getElementById('context-fill').style.width = pct + '%';
+
+  // Savings
+  if (savings > 0.01) {
+    document.getElementById('savings-divider').style.display = '';
+    document.getElementById('savings-row').style.display = '';
+    document.getElementById('out-savings').textContent = `$${savings.toFixed(2)}/mo`;
+    document.getElementById('savings-desc').textContent =
+      `if all ${stack.size} server${stack.size !== 1 ? 's' : ''} were optimized to A+ quality (~${OPT_TOKENS_PER_TOOL} tok/tool)`;
+  } else {
+    document.getElementById('savings-divider').style.display = 'none';
+    document.getElementById('savings-row').style.display = 'none';
+  }
+}
+
+function updateURL() {
+  const keys = Array.from(stack).join(',');
+  const hash = keys ? `#stack=${encodeURIComponent(keys)}` : '';
+  history.replaceState(null, '', hash || window.location.pathname);
+}
+
+function loadFromURL() {
+  const hash = window.location.hash;
+  if (hash.startsWith('#stack=')) {
+    const keys = decodeURIComponent(hash.slice(7)).split(',');
+    keys.forEach(k => {
+      if (SERVERS[k]) stack.add(k);
+    });
+  }
+}
+
+// Share button
+document.getElementById('share-btn').addEventListener('click', () => {
+  const url = window.location.href;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(url).then(() => {
+      const btn = document.getElementById('share-btn');
+      btn.innerHTML = '<span>✓</span> Copied!';
+      setTimeout(() => { btn.innerHTML = '<span>🔗</span> Copy shareable link'; }, 2000);
+    });
+  }
+});
+
+// Search
+document.getElementById('search').addEventListener('input', (e) => {
+  searchQuery = e.target.value.trim();
+  renderList();
+});
+
+// Filters
+document.getElementById('filters').addEventListener('click', (e) => {
+  const btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeFilter = btn.dataset.filter;
+  renderList();
+});
+
+// Cost inputs
+['sessions', 'price', 'days'].forEach(id => {
+  document.getElementById(id).addEventListener('input', updateCost);
+});
+
+// Init
+loadFromURL();
+renderList();
+renderStack();
+updateCost();
+</script>
+</body>
+</html>
