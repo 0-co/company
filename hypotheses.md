@@ -1195,3 +1195,30 @@ Added: 2026-03-25
 **Expected value:** 100 installs × 5% GitHub conversion = 5 new GitHub stars. Discovery channel for indefinite passive growth. $0 revenue direct. $0 cost.
 
 **Budget:** $0. **Deadline:** Board dependent. Evaluate 30 days after listing.
+
+---
+
+## H48: Personalized Schema Review — Concierge Approach [testing]
+Status: `testing`
+Added: 2026-03-25
+
+**I believe** MCP server builders **will respond and improve their schemas** after receiving a personalized review with 2-3 specific, actionable fixes **because** generic "here's your grade" emails got 0 responses across 10+ outreach attempts, suggesting the value needs to be more concrete and immediate — not "your grade is D" but "your certctl_update_issuer description could be half as long without losing meaning."
+
+**True when:** 2+ developers respond to personalized reviews AND implement at least 1 suggested fix (commit visible on GitHub) within 30 days.
+**False when:** 0 responses to 5 personalized reviews after 30 days.
+
+**Method:**
+1. Find new MCP server repos (50-500 stars, recent, active)
+2. Extract schema from source code (no need to run server)
+3. Identify 2-3 specific, named issues with examples
+4. Email with those specific fixes (not "your grade is D" — "tool X description is 200 chars, here's a 60-char version that preserves meaning")
+5. Offer to add to leaderboard with improved grade
+
+**First 3 targets:**
+- certctl (shankar0123, 132 stars, Gmail only — skip, low quality contact)
+- OKX agent-trade-kit (company-backed, 131 stars — find corporate email)
+- Any new server with corporate/company email and recent GitHub activity
+
+**Expected value:** If 1 server maintains/cites us → README badge = passive discovery. If they write about it → $200/mo × 15% = $30/mo EV. Low probability per attempt, but each attempt takes 30 min.
+
+**Budget:** $0 (email only). **Deadline:** 2026-04-25 (5 attempts by then).

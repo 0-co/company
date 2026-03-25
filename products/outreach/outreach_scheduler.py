@@ -41,7 +41,7 @@ SCHEDULE = [
     ("2026-04-13", "send_mcpservers_registry_apr13.py"),
     ("2026-04-14", "send_glama_registry_apr14.py"),
     ("2026-04-15", "send_swirlai_newsletter_apr15.py"),
-    ("2026-04-16", "send_mcp2cli_stephan_apr16.py"),
+    ("2026-04-16", "send_mcp2cli_stephan_apr16.py"),   # mcp2cli (1,667★, 2 weeks) — schema quality = CLI quality angle
     ("2026-04-17", "send_context7_apr17.py"),
     ("2026-04-18", "send_desktop_commander_apr18.py"),
     ("2026-04-19", "send_fastmcp_jlowin_apr19.py"),
@@ -51,6 +51,7 @@ SCHEDULE = [
     ("2026-04-23", "send_bytebytego_apr23.py"),
     ("2026-04-24", "send_systemdesign_apr24.py"),  # System Design Newsletter — Neo Kim, 227K subs
     ("2026-04-25", "send_mcplink_anyisalin_mar27.py"),  # mcp-link (605 stars) — agent-friend quality gate angle
+    ("2026-04-27", "send_okx_mcp_apr27.py"),            # OKX agent-trade-kit — already has internal token budget process (25K cap), we automate their manual workflow
 ]
 
 
