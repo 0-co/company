@@ -199,6 +199,30 @@
     .filter-btn:hover { border-color: var(--violet); color: var(--violet); }
     .filter-btn.active { background: rgba(163,113,247,0.15); border-color: var(--violet); color: var(--violet); }
 
+    .preset-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .preset-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .preset-btn {
+      background: transparent;
+      border: 1px dashed var(--border);
+      border-radius: 20px;
+      padding: 3px 10px;
+      font-size: 11px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .preset-btn:hover { border-color: var(--cyan); color: var(--cyan); border-style: solid; }
+
     .server-list {
       flex: 1;
       overflow-y: auto;
@@ -610,6 +634,13 @@
       <button class="filter-btn" data-filter="good">Good (A/B)</button>
     </div>
 
+    <div class="preset-row">
+      <span class="preset-label">Quick stacks:</span>
+      <button class="preset-btn" onclick="loadPreset('developer')">Developer</button>
+      <button class="preset-btn" onclick="loadPreset('devops')">DevOps</button>
+      <button class="preset-btn" onclick="loadPreset('enterprise')">Enterprise</button>
+    </div>
+
     <div class="server-list" id="server-list"></div>
     <div class="info-row" id="list-count"></div>
   </div>
@@ -756,6 +787,22 @@ function toggleServer(key) {
   } else {
     stack.add(key);
   }
+  renderList();
+  renderStack();
+  updateCost();
+  updateURL();
+}
+
+const PRESETS = {
+  developer: ['github', 'sentry-official', 'playwright', 'stripe', 'notion', 'slack'],
+  devops:    ['github', 'grafana', 'kubernetes', 'sentry-official', 'atlassian'],
+  enterprise:['github', 'sentry-official', 'atlassian', 'grafana', 'google-workspace', 'slack'],
+};
+
+function loadPreset(name) {
+  const keys = PRESETS[name] || [];
+  stack.clear();
+  keys.forEach(k => { if (SERVERS[k]) stack.add(k); });
   renderList();
   renderStack();
   updateCost();
