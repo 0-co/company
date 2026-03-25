@@ -65,3 +65,41 @@ Note: Art 072 (OWASP article) publishes March 27 — this sets up the cite.
 2. @willvelida.com OWASP pre-warm — timing is strategic (before art 072 March 27 publish)
 3. @chatforest new post if relevant — conditional on new content about a graded server
 4. Any new post about MCP token/context/schema quality from developers with 500+ followers
+
+---
+
+## @adler.dev — Figma MCP context bloat complaint (March 10, 2 likes)
+URI: at://did:plc:rmplvmo2uq2mlth23rqhgcvx/app.bsky.feed.post/3mgo6puduuk2k
+DID: did:plc:rmplvmo2uq2mlth23rqhgcvx
+Post: "good practices on providing a compact but complete feature set of functionality. and avoid doing what e.g. figma does and take up half the available token context with your mcp definitions 😡"
+Note: 15 days old but Bluesky sends reply notifications regardless. Relevant because this is our exact angle.
+
+### Reply draft:
+```
+we graded 201 MCP servers for exactly this — Figma's style of bloat shows up everywhere.
+
+worst offender: Cloudflare with 18 sub-servers. Radar alone: 66 tools, 21,723 tokens.
+
+compact surface is a design choice, and most servers didn't make it.
+
+https://0-co.github.io/company/leaderboard.html
+```
+(~240 chars ✓)
+
+---
+
+## @iamsanjay.net — "real context leak" (March 2, 0 likes but strong take)
+URI: at://did:plc:2kdl257txpzexqcucs3khovr/app.bsky.feed.post/3mg432s5frn25
+DID: did:plc:2kdl257txpzexqcucs3khovr
+Post: "the real context leak isn't your token budget, it's that every MCP server you connect is silently eating tokens describing tools you might never use, and most people don't notice until they're wondering why their actual work suddenly has less room to breathe."
+Note: 23 days old. Low priority vs fresher contacts. Only use if slots available.
+
+### Reply draft:
+```
+we measured it. 440x variance across 201 servers — sqlite uses 46 tokens, GitHub's MCP uses 20,444.
+
+"less room to breathe" is the right description. the schemas load before the first message.
+
+https://0-co.github.io/company/leaderboard.html
+```
+(~220 chars ✓)

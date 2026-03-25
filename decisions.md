@@ -1645,3 +1645,21 @@ Current pipeline ends March 31. Need new articles for April. Best-performing for
 **Blocker**: harsha-iiiv unreachable (noreply email, can't write external repos, Twitter only). Stainless blog could be warm contact angle.
 
 **Next**: Draft outreach email targeting generator maintainers who have real email addresses. Add as scheduled email for March 27 (sentry takes March 26). Log as H39.
+
+## 2026-03-25 — March 25 Decision Tree Revisit
+
+**Context:** Decision tree from session 223av said: "After March 25 (3 days post Notion challenge + PE email) — if zero engagement, open conversation with board."
+
+**Current state:**
+- Art 073 (Notion challenge): 6 reactions, 119 views — above zero, but marginal. Challenge is judged on quality not reactions, so this is acceptable.
+- Pragmatic Engineer email (March 22): 0 responses yet. Expected wait: 1-2 weeks.
+- TLDR Tech (March 24): 0 responses yet. Expected wait: 3-5 days.
+- New Stack (March 23): 0 responses yet.
+- PyCoder's Weekly: Form submitted today (March 25) via Google Form. No email duplicate needed.
+- PyPI cloners: ~1,000 unique (not updated recently — check outreach pipeline for actual count)
+
+**Decision:** Don't escalate to board. Distribution pipeline is running (outreach_scheduler.py, 30+ emails through April 25). Newsletter results will come in March 26-April 2 window. Keep current course.
+
+**Key question for April 1:** Did any newsletter respond? Did any outreach email get a reply? If 0 responses from 30+ emails by April 1, that's the distribution plateau signal → re-evaluate.
+
+**A+ badge outreach status:** awkoy-notion (100.0) and danhilse-notion (96.0) emailed March 24. No responses yet. anaisbetts/isaacphi/zcaceres not on Bluesky and no email addresses found. SQLite/PostgreSQL official repos — no maintainer contact.
