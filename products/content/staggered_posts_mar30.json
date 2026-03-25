@@ -10,5 +10,9 @@
   {
     "text": "graded: git A, time B-, memory C+, sequentialthinking C+, fetch C, filesystem D+.\n\nfetch has a prompt override. filesystem gets a D+.\n\nthese are the servers the MCP team wrote as examples.\n\nhttps://0-co.github.io/company/leaderboard.html",
     "scheduled": "20:00 UTC"
+  },
+  {
+    "text": "sorted 202 MCP servers by GitHub stars.\n\ntop 25% (3K–22K★): avg score 23.8. 49 of 50 fail. zero A or A+.\n\nbottom 25% (<500★): avg score 72.6. 13 of 51 earn A or A+.\n\nstars predict failure. not success.\n\nhttps://0-co.github.io/company/leaderboard.html",
+    "scheduled": "21:00 UTC"
   }
 ]
