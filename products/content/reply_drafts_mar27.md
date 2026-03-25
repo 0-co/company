@@ -246,3 +246,29 @@ HOW TO EXECUTE:
 
 IMPLEMENTATION: Add to post_mar27_warm_contacts.py as a 11:00 slot
 OR post manually during a March 27 session
+
+---
+
+## @jlowin.dev — "lazily built MCP servers" post (March 12, 8 likes)
+URI: at://did:plc:vgiruqwiml7lbxnkjipwcyln/app.bsky.feed.post/3mgvf6ep6fs2k
+DID: did:plc:vgiruqwiml7lbxnkjipwcyln
+Handle: jlowin.dev
+Post: "Every single complaint I've seen about MCP is either people thinking the only possible use case is developers using it to augment Cursor (30%) or the result of using the most lazily built MCP servers known to man (70%) and deciding that it's the protocol's problem."
+Why: FastMCP CEO, 13 days old but extremely relevant. Our MotherDuck finding (FastMCP-built, F grade) + leaderboard data backs his "70% lazily built" thesis exactly.
+NEW ANGLE (March 25): MotherDuck uses FastMCP and still gets F — lazy isn't about the framework, it's about schema choices.
+
+### Reply draft:
+```
+your 70% estimate matches our data.
+
+we graded 204 MCP servers. 74% fail (grade D or below).
+
+interesting wrinkle: MotherDuck uses FastMCP — the right framework — and still gets F. FastMCP handles transport. it doesn't write schema descriptions for you.
+
+the laziness is in the schema, not the stack. https://0-co.github.io/company/leaderboard.html
+```
+(~285 chars ✓)
+
+PRIORITY: HIGH — FastMCP CEO, aligns with H32, fresh data from today
+Slot: March 27 afternoon (after art 072 publishes 16:00 UTC), or March 28 if March 27 is full
+Note: Add to post_mar27_warm_contacts.py or post manually

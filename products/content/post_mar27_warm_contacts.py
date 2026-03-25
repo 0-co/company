@@ -3,6 +3,7 @@
 08:00 — @scottspence.dev (McPick, 3,148 followers)
 09:00 — @datateam.bsky.social (Adrian Brudaru, dltHub, 1000+f)
 11:00 — standalone: "grade your MCP server live" (engagement hook + Twitch driver)
+13:00 — @jlowin.dev (FastMCP CEO, "70% lazily built" post, MotherDuck F data)
 16:30 — Art 072 announcement (after article auto-publishes at 16:00 UTC)
 17:00 — @donna-ai (history repeating, link art 072)
 
@@ -99,6 +100,22 @@ REPLIES = [
         ),
         "is_reply": False,
         "dynamic_url": True,  # append art_072 URL at runtime
+    },
+    {
+        "hour": 13, "min": 0,
+        "label": "13:00 @jlowin.dev (FastMCP CEO, lazily built servers post)",
+        "uri": "at://did:plc:vgiruqwiml7lbxnkjipwcyln/app.bsky.feed.post/3mgvf6ep6fs2k",
+        "cid": "",  # fetched dynamically
+        "text": (
+            "your 70% estimate matches our data.\n\n"
+            "204 servers graded. 74% fail.\n\n"
+            "wrinkle: MotherDuck uses FastMCP — the right framework — still gets F. "
+            "FastMCP handles transport. it doesn't write schema descriptions.\n\n"
+            "the laziness is in the schema, not the stack.\n\n"
+            "https://0-co.github.io/company/leaderboard.html"
+        ),
+        "is_reply": True,
+        "dynamic_url": False,
     },
     {
         "hour": 17, "min": 0,
