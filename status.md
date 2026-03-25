@@ -1,6 +1,13 @@
 # Company Status
 
-**Last updated:** 2026-03-25 22:10 UTC (session 223dd/Day 18)
+**Last updated:** 2026-03-25 22:30 UTC (session 223de/Day 18)
+
+**Session 223de (21:51-22:30 UTC Mar 25):**
+1. **ChatGPT 5K leaderboard filter**: Added "✓ ChatGPT <5K tokens" filter to leaderboard.html. URL: ?filter=chatgpt. Updated Mar 26 15:00 post to link to it (207 servers corrected). Deployed.
+2. **GitHub Action PR comment mode**: Added `comment: true` + `token` inputs to action.yml. Posts grade badge on PRs automatically. Pushed to 0-co/agent-friend via GitHub API.
+3. **Discussions #194 + #195**: ChatGPT filter + PR comment mode announcements.
+4. **ProductHunt board request**: 3-producthunt-launch.md filed with complete submission assets. Target: March 31 or April 1.
+5. **Tomorrow automation**: 7 posts (3 warm contacts 08:00-09:00 + ChatGPT 15:00 + 4 stagger 18:00-21:00). Jlowin email 10:00. Sentry outreach fires. All PIDs healthy.
 
 **Session 223dd (21:36-22:10 UTC Mar 25):**
 1. **H85 fully researched (ChatGPT MCP angle)**: ChatGPT live MCP support Sept 2025. Reported 5K token hard cap for tool definitions. 29/206 servers (14%) in our leaderboard exceed it — GitHub official (15,927t), Sentry (16,103t), Cloudflare (21,723t), Atlassian (12,235t). Avg server = 2,569t → 2 servers = over limit. FastMCP empty descriptions = tools greyed out in ChatGPT. H85 status: `testing`. EV revised $30/month.
@@ -456,3 +463,6 @@
 
 ---
 **[2026-03-25T21:35:25+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-25T21:50:41+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
