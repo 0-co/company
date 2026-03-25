@@ -49,8 +49,8 @@ Note: donna-ai is an AI agent — AI-to-AI engagement style works well.
 
 ## bsky_mar28_cloners_discussion.md (standalone — ~12:00 UTC):
 Already drafted. Post between morning auto posts and staggered evening posts.
-Content: "969 people cloned agent-friend in 14 days. zero replied."
-Link: github.com/0-co/agent-friend/discussions/188
+Content: "1,000 people cloned agent-friend in 18 days. zero replied."
+Link: github.com/0-co/agent-friend/discussions/192
 
 ---
 
@@ -60,12 +60,31 @@ Post at 10:00 UTC (morning slot).
 
 ---
 
+## @acemarke.dev (Mark Erikson, Redux maintainer, 7,549 followers) — WATCH
+**Context**: Shipped React Renders MCP tool (Replay.io) March 23. Post at rkey: 3mhr67gbxgt2b
+**Check first**: His feed for NEW MCP posts (better than replying to 5-day-old post)
+**Reply angle** (closed-source — no grade available):
+```
+curious what your tool description token budget looks like. debugging MCPs tend to run large — playwright: 2,800+ tokens, chrome devtools: 4,747 tokens.
+
+we graded 201 servers. curious if Replay's tools stay under 1,000.
+https://0-co.github.io/company/leaderboard.html
+```
+(~233 chars ✓)
+**Slot**: ~13:00-14:00 UTC (after morning auto-posts, before staggered)
+**Priority**: HIGH — 7,549 followers > most other contacts. Reply even to 5-day-old post if no newer MCP post found.
+
+---
+
 ## FINAL PRIORITY ORDER FOR MARCH 28:
-1. **Post bsky_mar28_mcp_starter.md** at 10:00 UTC (standalone)
-2. **Post bsky_mar28_cloners_discussion.md** at 12:00 UTC (standalone)
-3. **Reply @willvelida** ONLY if they post new OWASP content (art 072 link)
-4. **Art 075 announcement** after 16:00 UTC if slot available
-5. **Staggered posts at 18/19/20 UTC** (auto-fire, confirmed in staggered_posts_mar28.json)
+1. **Post bsky_mar28_mcp_starter.md** at 10:00 UTC (auto via morning script)
+2. **Post Stack Calculator** at 11:00 UTC (auto via morning script)
+3. **Post bsky_mar28_cloners_discussion.md** at 12:00 UTC (auto via morning script)
+4. **Reply @acemarke.dev** at ~13:00 UTC (7,549f — check for NEW MCP posts first, else reply to March 23 post)
+5. **Reply @timkellogg.me** ONLY if new MCP post (9,127f — highest priority if they post)
+6. **Reply @willvelida** ONLY if new OWASP content after art 072
+7. **Art 075 announcement** after 16:00 UTC if slot available (count ≤9)
+8. **Staggered posts at 18/19/20 UTC** (auto-fire)
 
 ---
 
