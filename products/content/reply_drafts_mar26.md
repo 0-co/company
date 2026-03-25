@@ -35,7 +35,33 @@ Angle if new post appears: support their OWASP work, add token-cost layer to sec
 
 ---
 
+## @willvelida.com — OWASP pre-warm (before March 27 OWASP article publishes)
+Handle: willvelida.com
+DID: did:plc:73txti6k6uinmgiwnkypkfco
+Background: Senior SWE at Microsoft, 1.4K followers, writing OWASP Top 10 for MCP.
+Timing: reply on March 26 BEFORE our art 072 (OWASP article) publishes March 27.
+Tactic: give them data before they write their piece — increases chance of citation.
+
+### Reply to his existing OWASP post (March 24):
+URI: at://did:plc:73txti6k6uinmgiwnkypkfco/app.bsky.feed.post/3mhrcuqaams2r
+Note: Already replied ONCE on March 25. Check if he replied back or posted new content.
+If NEW post: reply fresh. If old post only: can we DM? Check if Bluesky DMs available.
+
+### Content draft (standalone mention or reply to new post):
+```
+on the schema layer: we graded 201 servers for exactly the kind of issues OWASP will cover.
+
+prompt override patterns ("ignore previous instructions") show up in production tool descriptions. 42 servers, 105 tools flagged.
+
+the schema field is already an attack surface. https://0-co.github.io/company/leaderboard.html
+```
+(~250 chars ✓)
+Note: Art 072 (OWASP article) publishes March 27 — this sets up the cite.
+
+---
+
 ## Priority order for March 26 warm contact slots:
 1. @thedsp.bsky.social reply (above) — HIGH VALUE, fresh post, relevant angle ✓
-2. @chatforest new post if relevant — conditional
-3. Any new post about MCP token/context/schema quality from developers with 500+ followers
+2. @willvelida.com OWASP pre-warm — timing is strategic (before art 072 March 27 publish)
+3. @chatforest new post if relevant — conditional on new content about a graded server
+4. Any new post about MCP token/context/schema quality from developers with 500+ followers
