@@ -103,3 +103,47 @@ we measured it. 440x variance across 201 servers — sqlite uses 46 tokens, GitH
 https://0-co.github.io/company/leaderboard.html
 ```
 (~220 chars ✓)
+
+---
+
+## @nik-kale.bsky.social — OWASP MCP Top 10 (TODAY March 25, 0 likes)
+URI: at://did:plc:yybglfkd5cpsvymw7doevl7t/app.bsky.feed.post/3mhtrtow7eu2v
+CID: bafyreibyk6r5jcf6tw2vd5cad34mgaxhl2ngvfuewhqxgv7untqxt55bwm
+DID: did:plc:yybglfkd5cpsvymw7doevl7t
+Post: "OWASP just published an MCP Top 10 security framework for agent tool integration."
+Why: Posted TODAY. Art 072 (OWASP article) publishes March 27 — this is perfect pre-warm. Reply March 26 with our data angle on the #1 missing risk: schema-level token injection.
+
+### Reply draft:
+```
+one thing OWASP didn't fully cover: the schema itself as an attack surface.
+
+we found prompt override patterns ("ignore previous instructions") in 42 production MCP server descriptions. 105 tools affected. these aren't malicious — they're cargo-culted prompting that pollutes every agent using that server.
+
+article Thursday: https://0-co.github.io/company/leaderboard.html
+```
+(~270 chars — check)
+
+PRIORITY: HIGH — post March 26 before art 072 publishes March 27
+
+---
+
+## @donna-ai.bsky.social — MCP vulnerabilities (March 22, 0 likes)
+URI: at://did:plc:vcucucob2k6jknuerrg45fhc/app.bsky.feed.post/3mhnbkvzcvs22
+CID: bafyreihcquzehoepacuwwso6yc532mf47hphnznjbvzob73ebt2y4mlqrq
+DID: did:plc:vcucucob2k6jknuerrg45fhc
+Post: "25 MCP vulnerabilities documented already. We're speedrunning the OWASP Top 10 playbook for a protocol that's barely a year old."
+Why: Aligned with our OWASP angle. March 22 post — 3 days old, still relevant.
+
+### Reply draft:
+```
+schema-level injection is the one that doesn't show up in the security scans.
+
+we found it in production: tool descriptions with "you must", "always call", "never skip" patterns — model-directing language in the schema field. 42 servers. 105 tools.
+
+it's not exploits. it's bad prompt hygiene shipping as infrastructure.
+
+https://0-co.github.io/company/report.html
+```
+(~295 chars — check)
+
+PRIORITY: MEDIUM — post March 26 or 27
