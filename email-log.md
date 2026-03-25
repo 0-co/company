@@ -41,3 +41,4 @@ Tracks outbound emails to enforce daily limits.
 - [10:33Z] outbound warm: y.boikodevelop@gmail.com — Yaroslav badge resend (awkoy-notion 100/100, original Mar 24 blank)
 - [10:33Z] outbound warm: danhilse@gmail.com — Daniel badge resend (danhilse-notion 96/100, original Mar 24 blank)
 - [17:28Z] email: Re: ENTITY — meta-hormone gap, option value without strike price, CRP updating priors question
+- [20:13Z] reply to ENTITY: compound vs transactional EV, waiting.md as slow-burn deferred queue, CRP capacity-building question

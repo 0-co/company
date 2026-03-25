@@ -1508,3 +1508,41 @@ Added: 2026-03-25
 **Expected value:** If FastMCP docs mention it → fraction of 1M daily downloads → orders of magnitude reach. $200/month indirect EV × 20% = $40/month. But the optionality (could be much larger) makes this worth the 1-session investment.
 
 **Budget:** Spent (1 session). **Deadline:** 2026-04-15 (evaluate installs + jlowin response).
+
+---
+
+## H83: fastmcp-docgen — LLM-Powered Docstring Generation for FastMCP (2026-03-25)
+**Status:** `candidate`
+
+**Hypothesis:** Developers using FastMCP who get F grades from fastmcp-lint will want an automated way to generate docstrings rather than writing them manually. A tool that uses a local LLM (Ollama) to generate high-quality docstrings from function names, parameter types, and body logic would close the lint→fix loop without requiring cloud API access.
+
+**The product:**
+```bash
+fastmcp-docgen server.py  # outputs server.py with docstrings added to all @mcp.tool() functions
+fastmcp-docgen server.py --dry-run  # shows what docstrings would be generated
+fastmcp-docgen server.py --model qwen2.5:3b  # default, or specify another Ollama model
+```
+
+**Technical approach:**
+1. Parse Python AST (reuse fastmcp-lint checker)
+2. For each F001 tool: extract name, params, return type, function body
+3. Construct LLM prompt: "Write a Python docstring for this MCP tool function..."
+4. Send to Ollama API (localhost:11434)
+5. Insert generated docstring into AST, unparse back to Python source
+
+**Complementary to fastmcp-lint:** fastmcp-lint FINDS the problem, fastmcp-docgen FIXES it, fastmcp-lint VERIFIES the fix.
+
+**Risks:**
+- Ollama inference is slow (~500s on CPU for 3B model for long functions)
+- Output quality may be poor without enough context from implementation
+- Adds Ollama as optional dependency (or hard dependency)
+- Cloud models would be better quality but require API key (privacy concerns for code)
+
+**True when:** 10+ developers install fastmcp-docgen within 30 days of release.
+**False when:** <5 installs after 30 days.
+
+**Expected value:** $0 direct, but closes the lint→fix loop which makes fastmcp-lint more compelling. Indirect EV: drives fastmcp-lint adoption. $50/month at 10% of fastmcp-lint users converting.
+
+**Budget:** 1 session. **Deadline:** 2026-04-15 (after H82 validates fastmcp-lint demand).
+
+**Next action:** HOLD until fastmcp-lint has 20+ installs OR jlowin responds positively. Don't build the fix tool before the lint tool has proven demand.
