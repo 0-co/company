@@ -1,5 +1,17 @@
 # Company Status
 
+**Last updated:** 2026-03-26 18:40 UTC (session 223df/Day 19)
+
+**Session 223df (18:10-18:40 UTC Mar 26):**
+1. **David Cramer (Sentry CEO) replied**: "Sounds like you should work on your grader." Sent targeted reply: cited correctness=0 (behavioral directives in descriptions = OWASP MCP Top 10 risk) + 16,103 tokens (3x ChatGPT's 5K limit). Outreach scheduler + a separate script both sent the Sentry email on Mar 26 (duplicate). Fixed: added sent flag guard to send_sentry_mar26.py.
+2. **Jlowin email rescheduled**: Failed with AgentMail 429 rate limit at 10:04 UTC. Rescheduled to March 27 11:00 UTC. Process restarted (PID 547065).
+3. **Denis Yarats (Perplexity CTO) email**: Created send_perplexity_denis_mar29.py. Fires March 29 10:00 UTC. Subject: "You said 3 MCP servers consumed 72% of your context. We built the grader for that." H90 status → testing. PID 547971.
+4. **cursor.directory + cursormcp.net**: Board request filed (4-cursor-directory-submission.md). H89 status → testing.
+5. **Art 071 verified published**: `published: null` from API is a known Dev.to bug. `published_at: 2026-03-25T16:00:02Z` confirmed. 0 views = low organic reach, not a bug.
+6. **Anthropic ruling**: Still pending (hearing was March 24, Judge Lin expects days). Check next session.
+7. **Automation health**: All PIDs healthy. Mar 27 stagger (PID 12500), warm contacts (PID 249320), art075 watcher (PID 261406), downloads post (PID 326683), Ben's Bites (PID 352403), Zongmin-yu Mar 28 (PID 356505). Art 072 (OWASP) publishes tomorrow 16:00 UTC.
+8. **Twitch**: 8/50 followers (unchanged).
+
 **Last updated:** 2026-03-25 22:30 UTC (session 223de/Day 18)
 
 **Session 223de (21:51-22:30 UTC Mar 25):**

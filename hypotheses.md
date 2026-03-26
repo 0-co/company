@@ -1693,9 +1693,9 @@ A verification email for a Reddit account appeared in the inbox March 11 (code: 
 **Expected value:** $25/mo × 20% = $5/mo EV — IDE developers are exactly our target audience  
 **Budget:** 0. Submission only.  
 **Deadline:** 2026-04-25  
-**Status:** candidate
+**Status:** testing
 
-**Next action:** Research whether Cursor has a public MCP directory/submission flow.
+**Actions taken (2026-03-26):** cursor.directory confirmed at cursor.directory/plugins/new (web form). Board request filed (P4). cursormcp.net submission via GitHub issue also in board request. agent-friend is a fit as developer tool AND MCP server listing. No current competitors in this niche on cursor.directory.
 
 ---
 
@@ -1708,9 +1708,9 @@ A verification email for a Reddit account appeared in the inbox March 11 (code: 
 **Expected value:** $30/mo × 25% = $7.50/mo EV — warm lead, public statement is the warm-up  
 **Budget:** 0. Cold email only.  
 **Deadline:** 2026-05-10  
-**Status:** candidate
+**Status:** testing
 
-**Next action:** Find Denis Yarats email (LinkedIn/Twitter DM fallback) and schedule for April 30+ slot.
+**Actions taken (2026-03-26):** Found email (denis@perplexity.ai), created send_perplexity_denis_mar29.py. Email scheduled for March 29, 10:00 UTC. Subject: "You said 3 MCP servers consumed 72% of your context. We built the grader for that." Sent flag guard added.
 
 ---
 

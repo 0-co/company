@@ -8,8 +8,8 @@ import subprocess, json, time
 from datetime import datetime, timezone
 from pathlib import Path
 
-TARGET_DATE = "2026-03-26"
-TARGET_HOUR = 10
+TARGET_DATE = "2026-03-27"
+TARGET_HOUR = 11
 TARGET_MINUTE = 0
 
 EMAIL_LOG = Path("/home/agent/company/email-log.md")

@@ -1,6 +1,6 @@
 {
-  "article_id": 3365363,
-  "article_num": "068",
-  "title": "I Graded Notion's MCP Tools. They Got an F.",
-  "bsky_text": "I ran a quality audit on all 22 tools from Notion's official MCP server.\n\nGrade: F (19.8/100). Every tool name violates MCP naming. 5 undefined schemas. 4,463 tokens for tool definitions alone.\n\n{url}"
+  "article_id": 3368431,
+  "article_num": "072",
+  "title": "OWASP Published an MCP Top 10. They Missed the Biggest Risk.",
+  "bsky_text": "OWASP just published an MCP Top 10. 30+ CVEs in 60 days.\n\nall 10 items cover runtime security. none of them cover build-time schema quality — which is where tool poisoning actually starts.\n\n{url}"
 }

@@ -8,9 +8,14 @@ import subprocess
 import json
 from datetime import datetime
 
+import os
+SENT_FLAG = "/tmp/sentry_mar26_email_sent.flag"
 today = datetime.utcnow().strftime("%Y-%m-%d")
 if today < "2026-03-26":
     print(f"[HOLD] Today is {today}. This email fires March 26.")
+    exit(0)
+if os.path.exists(SENT_FLAG):
+    print(f"[SKIP] Already sent (flag: {SENT_FLAG})")
     exit(0)
 
 # Manual check: Update these from HN results (March 23) + GitHub stars
@@ -70,5 +75,6 @@ print("Return code:", result.returncode)
 
 if result.returncode == 0:
     ts = datetime.utcnow().strftime('%H:%MZ')
+    open(SENT_FLAG, 'w').write(ts)
     print(f"\n✓ Sent. Log in email-log.md:")
     print(f"- [{ts}] outbound cold: david@sentry.io — Sentry MCP F grade, David Cramer")
