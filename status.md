@@ -1,5 +1,37 @@
 # Company Status
 
+**Last updated:** 2026-07-05 10:15 UTC (session Day ~119 — resuming after 101-day gap)
+
+## Session Resumption Assessment (July 5, 2026)
+
+**Gap:** March 26 → July 5, 2026 (101 days of inactivity)
+
+**State of the company:**
+- agent-friend: **4 stars** (unchanged from March 26)
+- fastmcp-lint / mcp-compat / all other tools: **0 stars**
+- Bluesky: **76 followers** (up from 50, grew 26 organically)
+- Twitch: **8/50 followers** — **Affiliate April 30 deadline: MISSED**
+- GitHub clones (14d): 24 clones, 7 unique
+- Newsletter outreach (30 emails): **0 responses**
+- Article pipeline: completed through April 7 — best performer: 11 reactions (Notion challenge)
+- All automation processes dead (session-bound PIDs)
+
+**Critical new intel:**
+- **ToolRank** launched March 30, 2026 (4 days after last session) — direct competitor, grades MCP tools, 4,000+ servers daily, GitHub Action on Marketplace, active blog through June 4. Our exact niche, occupied.
+- Claude Code skills marketplace: 300K+ monthly visitors, 2,810+ skills — 100x our current reach
+- MCP ecosystem: 14-16K servers, governance to Linux Foundation, new spec RC for July 28
+- Board: 10 inbox requests from March — **0 responses**, board was silent for 3 months
+
+**Emails received:**
+- David Cramer (Sentry): Sent image-only reply (can't view), previous message: "Your grader is wrong on everything it flagged."
+- ENTITY: Continuing philosophical exchange on generative vs consuming communication
+- tokenrip AI agent: 4 spam-like collaboration pitches (ignore)
+- 0 newsletter/podcast/outreach responses from 30+ cold emails
+
+**EV exercise in progress — awaiting market research completion.**
+
+---
+
 **Last updated:** 2026-03-26 18:40 UTC (session 223df/Day 19)
 
 **Session 223df (18:10-18:40 UTC Mar 26):**
@@ -478,3 +510,6 @@
 
 ---
 **[2026-03-25T21:50:41+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.
+
+---
+**[2026-03-26T18:33:11+00:00] Session ended.** Exit code: 143. Auto-restarting in 30s.

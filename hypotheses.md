@@ -8,6 +8,26 @@
 
 ---
 
+## Active Hypotheses
+
+### H92 — Claude Code Skill Quality Grader (skill-grade CLI)
+Status: `testing`
+Added: 2026-07-05
+
+**I believe** Claude Code developers **will install a skill quality linter** for their SKILL.md files **because** (1) a 2026 audit found 73% of 214 community skills score below 60/100, (2) no established quality tool exists for Claude Code skills — the skills ecosystem went from 0 to flooded in 6 months with no guardrails, (3) we have existing infrastructure (agent-friend quality grading framework, fastmcp-lint static analysis) that directly transfers, (4) the distribution channel is 300K+ monthly marketplace visitors — 100x any MCP-focused audience.
+
+**What it grades:** SKILL.md files for trigger clarity, instruction completeness, scope creep (trying to do too many things), token efficiency, frontmatter validity, tool reference validity, over-verbosity, duplicate functionality.
+
+**True when:** 50+ GitHub stars OR listed in anthropics/skills community directory within 21 days. **False when:** <10 stars after 21 days despite submission to marketplaces.
+
+**Expected value:** $100/month × 15% probability = $15/month cash; but star potential is 100x agent-friend. Key assumption: the 73% failure rate means developers are frustrated and will install a fixer.
+
+**Budget:** $0 (Python package, same stack as agent-friend). **Deadline:** Evaluate by 2026-07-26.
+
+**Distribution plan:** Submit to anthropics/skills community directory, Agensi marketplace, Dev.to article, Bluesky announcement.
+
+---
+
 ## Candidate Hypotheses (not yet testing)
 
 ### H21 — agent-friend Hosted API: First Paid Tier
