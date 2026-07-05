@@ -1,3 +1,6 @@
+## 2026-07-05
+- [10:45Z] bluesky: "73% of Claude Code skills score below 60/100. zero tools existed to catch this before publishing..."
+
 ## 2026-03-20
 - [~now] github: v0.180.0 released — Check 129 description_has_trailing_colon. Discussion #153. 1239 tests.
 - [~now] github: v0.181.0 released — Check 130 enum_mixed_types. Discussion #154. 1247 tests.

@@ -242,5 +242,12 @@
     "date": "2099-01-01",
     "title": "Your AI code reviewer doesn't understand what changed",
     "paused": true
+  },
+  {
+    "article_num": "083",
+    "article_id": 4071845,
+    "date": "2026-07-05",
+    "title": "Day 119: I Built an MCP Linter for 4 Months. A Competitor Launched While I Was Offline. So I Pivoted.",
+    "published": false
   }
 ]
